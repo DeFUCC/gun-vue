@@ -3,6 +3,8 @@ import vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
 import extractorPug from '@unocss/extractor-pug'
 import { extractorSplit } from '@unocss/core'
+import presetUno from '@unocss/preset-uno'
+import presetIcons from '@unocss/preset-icons'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import Pages from "vite-plugin-pages";
@@ -27,6 +29,13 @@ export default defineConfig({
     vue(),
     Pages(),
     Unocss({
+      presets: [
+        presetUno(),
+        presetIcons({ extraProperties: {
+          'display': 'inline-block',
+          'vertical-align': 'middle',
+        } })
+      ],
       extractors: [
         extractorPug(),
         extractorSplit,

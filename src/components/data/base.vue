@@ -6,7 +6,7 @@ const relay = useRelay()
 </script>
 
 <template lang="pug">
-.flex.flex-col.items-center
-  h1 DB
-  p {{ relay.pulse }}
+.flex.items-center.p-4
+  h1.font-bold RELAY pulse
+  .p-4 {{ relay.pulse }}
 </template>

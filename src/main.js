@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './app.vue'
 
-import '@unocss/reset/normalize.css'
+import '@unocss/reset/tailwind.css'
 import 'uno.css'
 
 import { createRouter, createWebHashHistory } from "vue-router";

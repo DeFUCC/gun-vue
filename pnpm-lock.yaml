@@ -1,7 +1,10 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@iconify/json': ^1.1.432
   '@unocss/extractor-pug': ^0.12.4
+  '@unocss/preset-icons': ^0.12.4
+  '@unocss/preset-uno': ^0.12.4
   '@unocss/reset': ^0.12.4
   '@vitejs/plugin-vue': ^1.9.3
   '@vueuse/core': 7.0.0
@@ -23,7 +26,10 @@ dependencies:
   vue-router: 4.0.12_vue@3.2.22
 
 devDependencies:
+  '@iconify/json': 1.1.432
   '@unocss/extractor-pug': 0.12.4_pug@3.0.2
+  '@unocss/preset-icons': 0.12.4
+  '@unocss/preset-uno': 0.12.4
   '@vitejs/plugin-vue': 1.10.0_vite@2.6.14
   pug: 3.0.2
   unocss: 0.12.2
@@ -56,6 +62,10 @@ packages:
     dependencies:
       '@babel/helper-validator-identifier': 7.15.7
       to-fast-properties: 2.0.0
+    dev: true
+
+  /@iconify/json/1.1.432:
+    resolution: {integrity: sha512-ZcQKCnJXmeKDKxSu4vOFCYkCv8sjX1OASTMQpzqVzt3ivBBDudAYyXJlO4hgk0X4B2R0IMHRNvRgCAYkKDa2eQ==}
     dev: true
 
   /@iconify/types/1.0.12:
@@ -169,6 +179,10 @@ packages:
     resolution: {integrity: sha512-akjAdCan3kUwortNvVAG9hggJPxHvQwZs1PfwlH/+VW1x1JiTIxhITaTcqXdMSC61szRTnPgSTD4B56yqxzlQA==}
     dev: true
 
+  /@unocss/core/0.12.4:
+    resolution: {integrity: sha512-yqHrqY89k1eIrP8PjgPfSUwLJn4cBNyhNK3U5sZipeUT7tHcvIiQEamKlIhE5FNxJrhOFNhVIJX6m7W6zpyeDw==}
+    dev: true
+
   /@unocss/extractor-pug/0.12.4_pug@3.0.2:
     resolution: {integrity: sha512-dkmaPUiKWOjaMM207YVYYWRC1NJ6/J33aAJhD3LhaTYMPtinI3LbXPCDS1vsUBoMF5DbNS4aAWX/4uiMwykQEg==}
     peerDependencies:
@@ -201,10 +215,24 @@ packages:
       local-pkg: 0.4.0
     dev: true
 
+  /@unocss/preset-icons/0.12.4:
+    resolution: {integrity: sha512-VdpaUSg6x3NLH2xZ0Xtr+oq7Y8Yiiqzod5uMgTqbImh+HVGN/uRInuziCZ59kbAkbpuEctQxcSfKNLUleM/mvA==}
+    dependencies:
+      '@iconify/utils': 1.0.19
+      '@unocss/core': 0.12.4
+      local-pkg: 0.4.0
+    dev: true
+
   /@unocss/preset-uno/0.12.2:
     resolution: {integrity: sha512-T7u7nDEBCYN90n+KV1rK9tC5lgLbkbFLaYdvSYGeqG6yi/UcMCgqbZjdtT+bYMQgkNNr7RQpNBiOyrcudBzTJw==}
     dependencies:
       '@unocss/core': 0.12.2
+    dev: true
+
+  /@unocss/preset-uno/0.12.4:
+    resolution: {integrity: sha512-BIrI863eOVvaV9wSe5AQM7Fv0nnnj1V/gQxhVYzkxrJC5Jj1dtHSUxNzo46FKY4XKVKwRRhgqGfAZM5af+zrVg==}
+    dependencies:
+      '@unocss/core': 0.12.4
     dev: true
 
   /@unocss/reset/0.12.2:
