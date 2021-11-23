@@ -1,7 +1,12 @@
 <script setup>
-import { db } from '@use/db.js'
+import { useRelay } from '@use/relay'
+
+const relay = useRelay()
+
 </script>
 
 <template lang="pug">
-p {{ db }}
+.flex.flex-col.items-center
+  h1 DB
+  p {{ relay.pulse }}
 </template>

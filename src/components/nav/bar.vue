@@ -3,7 +3,9 @@
 </script>
 
 <template lang="pug">
-p NAVIGATION
+.flex.flex-wrap.items-center
+  router-link(to="/") Home
+  router-link(to="/players") Players
 
 </template>
 

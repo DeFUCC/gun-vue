@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@unocss/extractor-pug': ^0.12.4
+  '@unocss/reset': ^0.12.4
   '@vitejs/plugin-vue': ^1.9.3
   '@vueuse/core': 7.0.0
   gun: ^0.2020.1235
@@ -15,6 +16,7 @@ specifiers:
   vue-router: ^4.0.12
 
 dependencies:
+  '@unocss/reset': 0.12.4
   '@vueuse/core': 7.0.0_vue@3.2.22
   gun: 0.2020.1235
   vue: 3.2.22
@@ -208,6 +210,10 @@ packages:
   /@unocss/reset/0.12.2:
     resolution: {integrity: sha512-Shr5J8QmtU6QL/fUS9JleswafaU20G0bvLlZhzmkVlQlosWbtS/lfclX9nWfDb4wtC6O2kOcX+MrUGPIV1xCBQ==}
     dev: true
+
+  /@unocss/reset/0.12.4:
+    resolution: {integrity: sha512-m0PWFV7jI9LPG7RRHN2WuXEcsILTAL47ZkJIwV8wQXXFEhTaBtn4jzxKQueJhoaf9YscsTKXnKmbpNTw7pK24g==}
+    dev: false
 
   /@unocss/scope/0.12.2:
     resolution: {integrity: sha512-cSDIkNMfQwnj465GIrciYCZqRzlo8oa+pZxUAtFLRRDPS/EQJxj5Q7/NXNHLIP0hM0xhr3Rw2bzWrPm2pV0m5A==}

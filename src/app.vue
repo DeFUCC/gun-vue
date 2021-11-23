@@ -6,3 +6,5 @@ nav-bar
 router-view
 </template>
 
+<style>
+</style>

@@ -7,6 +7,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@unocss/reset": "^0.12.4",
     "@vueuse/core": "7.0.0",
     "gun": "^0.2020.1235",
     "vue": "^3.2.16",
