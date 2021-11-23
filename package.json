@@ -1,6 +1,7 @@
 {
   "name": "vite-gun-starter",
   "version": "0.0.1",
+  "engines": { "node": "16.x" },
   "scripts": {
     "start": "node server.js",
     "dev": "vite",
