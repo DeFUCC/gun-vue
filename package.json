@@ -7,8 +7,9 @@
   "scripts": {
     "start": "vite build && node server.js",
     "dev": "vite --host",
-    "build": "vite build",
-    "serve": "vite preview"
+    "build": "vite build --base=/vite-gun-starter/",
+    "serve": "vite preview",
+    "deploy": "sh deploy.sh"
   },
   "dependencies": {
     "@unocss/reset": "^0.12.4",
