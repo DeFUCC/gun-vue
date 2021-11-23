@@ -1,7 +1,7 @@
 const config = {
   appPath: 'this',
   dbVersion: 25,
-  peers: ['https://etogun.glitch.me/gun'],
+  peers: ['http://localhost:4200/gun'],
 }
 
 
@@ -11,7 +11,7 @@ import 'gun/lib/radix'
 import 'gun/lib/radisk'
 import 'gun/lib/store'
 import 'gun/lib/rindexed'
-import 'gun/lib/webrtc'
+// import 'gun/lib/webrtc'
 import 'gun/nts'
 
 checkDbVersion(localStorage.dbVersion, config.dbVersion)
