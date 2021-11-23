@@ -1,7 +1,7 @@
 const config = {
   appPath: 'this',
   dbVersion: 25,
-  peers: ['http://localhost:4200/gun'],
+  peers: ['https://etogun.glitch.me/gun'/*, 'http://localhost:4200/gun'*/],
 }
 
 

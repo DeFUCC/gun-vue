@@ -1,14 +1,13 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import Unocss from 'unocss/vite'
-import extractorPug from '@unocss/extractor-pug'
-import { extractorSplit } from '@unocss/core'
-import presetUno from '@unocss/preset-uno'
-import presetIcons from '@unocss/preset-icons'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import Pages from "vite-plugin-pages";
 import path from "path";
+
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+import WindiCSS from 'vite-plugin-windicss'
 
 const moduleExclude = match => {
   const m = id => id.indexOf(match) > -1
@@ -28,18 +27,13 @@ export default defineConfig({
   plugins: [
     vue(),
     Pages(),
-    Unocss({
-      presets: [
-        presetUno(),
-        presetIcons({ extraProperties: {
-          'display': 'inline-block',
-          'vertical-align': 'middle',
-        } })
-      ],
-      extractors: [
-        extractorPug(),
-        extractorSplit,
-      ]
+    WindiCSS({
+      scan: {
+        dirs: ['.vitepress', './'],
+        include: ['index.md'],
+        exclude: ['**/examples/**/*', '/node_modules/'],
+        fileExtensions: ['vue', 'ts', 'md'],
+      },
     }),
     AutoImport({
       // targets to transform
@@ -54,6 +48,7 @@ export default defineConfig({
         },
       ],
     }),
+    Icons({ /* options */ }),
     Components({
       dirs: ['src/components'],
       extensions: ['vue', 'ts','js'],
@@ -61,6 +56,11 @@ export default defineConfig({
       globalNamespaces: ['global'],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       exclude: [/node_modules/, /\.git/],
+      resolvers: [
+        IconsResolver({
+          componentPrefix: '',
+        }),
+      ],
     }),
     moduleExclude('text-encoding'),
   ],
