@@ -1,4 +1,5 @@
 <script setup>
+import 'gun-avatar'
 </script>
 
 <template lang="pug">

@@ -2,14 +2,13 @@ lockfileVersion: 5.3
 
 specifiers:
   '@iconify/json': ^1.1.432
-  '@unocss/extractor-pug': ^0.12.4
-  '@unocss/preset-icons': ^0.12.4
-  '@unocss/preset-uno': ^0.12.4
   '@unocss/reset': ^0.12.4
   '@vitejs/plugin-vue': ^1.9.3
   '@vueuse/core': 7.0.0
   express: ^4.17.1
   gun: ^0.2020.1235
+  gun-avatar: ^1.3.5
+  ola: ^1.2.1
   pug: 3.0.2
   unocss: ^0.12.2
   unplugin-auto-import: ^0.4.14
@@ -27,14 +26,13 @@ dependencies:
   '@vueuse/core': 7.0.0_vue@3.2.22
   express: 4.17.1
   gun: 0.2020.1235
+  gun-avatar: 1.3.5
+  ola: 1.2.1
   vue: 3.2.22
   vue-router: 4.0.12_vue@3.2.22
 
 devDependencies:
   '@iconify/json': 1.1.432
-  '@unocss/extractor-pug': 0.12.4_pug@3.0.2
-  '@unocss/preset-icons': 0.12.4
-  '@unocss/preset-uno': 0.12.4
   '@vitejs/plugin-vue': 1.10.0_vite@2.6.14
   pug: 3.0.2
   unocss: 0.12.2
@@ -194,21 +192,6 @@ packages:
     resolution: {integrity: sha512-akjAdCan3kUwortNvVAG9hggJPxHvQwZs1PfwlH/+VW1x1JiTIxhITaTcqXdMSC61szRTnPgSTD4B56yqxzlQA==}
     dev: true
 
-  /@unocss/core/0.12.4:
-    resolution: {integrity: sha512-yqHrqY89k1eIrP8PjgPfSUwLJn4cBNyhNK3U5sZipeUT7tHcvIiQEamKlIhE5FNxJrhOFNhVIJX6m7W6zpyeDw==}
-    dev: true
-
-  /@unocss/extractor-pug/0.12.4_pug@3.0.2:
-    resolution: {integrity: sha512-dkmaPUiKWOjaMM207YVYYWRC1NJ6/J33aAJhD3LhaTYMPtinI3LbXPCDS1vsUBoMF5DbNS4aAWX/4uiMwykQEg==}
-    peerDependencies:
-      pug: ^3.0.0
-    peerDependenciesMeta:
-      pug:
-        optional: true
-    dependencies:
-      pug: 3.0.2
-    dev: true
-
   /@unocss/inspector/0.12.2:
     resolution: {integrity: sha512-/lJfiJrEjSCD3YdcZFAH9rColr61D0MqDTDy277fkAIyDoU5QtAp2nwbJNqkHvjaDsUEe2a9dFJSOI6nqymZgA==}
     dependencies:
@@ -230,24 +213,10 @@ packages:
       local-pkg: 0.4.0
     dev: true
 
-  /@unocss/preset-icons/0.12.4:
-    resolution: {integrity: sha512-VdpaUSg6x3NLH2xZ0Xtr+oq7Y8Yiiqzod5uMgTqbImh+HVGN/uRInuziCZ59kbAkbpuEctQxcSfKNLUleM/mvA==}
-    dependencies:
-      '@iconify/utils': 1.0.19
-      '@unocss/core': 0.12.4
-      local-pkg: 0.4.0
-    dev: true
-
   /@unocss/preset-uno/0.12.2:
     resolution: {integrity: sha512-T7u7nDEBCYN90n+KV1rK9tC5lgLbkbFLaYdvSYGeqG6yi/UcMCgqbZjdtT+bYMQgkNNr7RQpNBiOyrcudBzTJw==}
     dependencies:
       '@unocss/core': 0.12.2
-    dev: true
-
-  /@unocss/preset-uno/0.12.4:
-    resolution: {integrity: sha512-BIrI863eOVvaV9wSe5AQM7Fv0nnnj1V/gQxhVYzkxrJC5Jj1dtHSUxNzo46FKY4XKVKwRRhgqGfAZM5af+zrVg==}
-    dependencies:
-      '@unocss/core': 0.12.4
     dev: true
 
   /@unocss/reset/0.12.2:
@@ -1132,6 +1101,10 @@ packages:
       path-is-absolute: 1.0.1
     dev: true
 
+  /gun-avatar/1.3.5:
+    resolution: {integrity: sha512-NsiDgUDyGGY+tUCZGVRY5Ezuv9gOChN7VrAf/oYaSw3NzFSJdwLMLXUYpsPU1urQrFHUrXLTOF3VedBH2tK0Og==}
+    dev: false
+
   /gun/0.2020.1235:
     resolution: {integrity: sha512-aba6s0X/MCCOByt0T3VrMzMMUEblfN2aLV2bAmIQWjkB7SKnm07zAZWigljwI69Rb5sOw7C1G116UyvCM2p9kA==}
     engines: {node: '>=0.8.4'}
@@ -1625,6 +1598,10 @@ packages:
       has-symbols: 1.0.2
       object-keys: 1.1.1
     dev: true
+
+  /ola/1.2.1:
+    resolution: {integrity: sha512-richuePlugumsBC+ohk6NuVYkDPGQiVAHZU0qEkJ/Hy6oDaJCxCnuUQootYQ8T4k+pVeFf0Xdw7i17zTulKpTA==}
+    dev: false
 
   /on-finished/2.3.0:
     resolution: {integrity: sha1-IPEzZIGwg811M3mSoWlxqi2QaUc=}
