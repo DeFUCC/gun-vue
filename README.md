@@ -3,6 +3,7 @@
 A starter GUN client built with Vite plus some very useful plugins. With local express server to run Gun db at your dev machine.
 
 - [gun](https://gun.eco/) - the decentralized database for developers.
+  - [https://etogun.glitch.me/](https://etogun.glitch.me/) - Free Glitch no-storage relay
 - [vue3](https://v3.vuejs.org/) - The Progressive
   JavaScript Framework with Composition API
   - [vue-router](https://next.router.vuejs.org) - The official router for Vue.js.

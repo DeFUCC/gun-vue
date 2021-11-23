@@ -1,5 +1,5 @@
 const config = {
-  appPath: 'try',
+  appPath: 'test',
   dbVersion: 26,
   peers: ['https://etogun.glitch.me/gun'/*, 'http://localhost:4200/gun'*/],
 }
