@@ -12,7 +12,6 @@
     "deploy": "sh deploy.sh"
   },
   "dependencies": {
-    "@unocss/reset": "^0.12.4",
     "@vueuse/core": "7.0.0",
     "express": "^4.17.1",
     "gun": "^0.2020.1235",
@@ -25,7 +24,6 @@
     "@iconify/json": "^1.1.432",
     "@vitejs/plugin-vue": "^1.9.3",
     "pug": "3.0.2",
-    "unocss": "^0.12.2",
     "unplugin-auto-import": "^0.4.14",
     "unplugin-icons": "^0.12.18",
     "unplugin-vue-components": "^0.17.2",
