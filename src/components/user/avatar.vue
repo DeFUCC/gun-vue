@@ -1,34 +1,29 @@
 <template lang="pug">
-.avatar(
+.avatar.bg-local(
   v-if="pub",
   :title="pub",
+  :style="{ background: `url(${pic})` }"
 )
-  img.avatar.rounded-full(
-    v-if="pic",
-    :src="pic",
-    :title="pub",
-    :width="size",
-    :height="size",
-  )
 </template>
 
 <script setup >
 import { gunAvatar } from "gun-avatar"
 const props = defineProps({
   pub: String,
-  size: { type: Number, default: 400, },
+  size: { type: Number, default: 40, },
 });
 const pic = ref("");
 watchEffect(() => {
   if (props.pub && props.pub.includes(".") && props.size >= 10) {
-    pic.value = gunAvatar(props.pub, props.size);
+    pic.value = gunAvatar(props.pub, 32);
   }
 });
 </script>
 
 <style scoped>
 .avatar {
-  min-width: 0.5rem;
-  min-height: 0.5rem;
+  background-size: cover;
+  width: 32px;
+  height: 32px;
 }
 </style>
