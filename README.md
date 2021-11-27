@@ -1,5 +1,7 @@
 # Vite Gun Starter
 
+[Watch the video overview at Youtube](https://www.youtube.com/watch?v=HC4MfirOPq0)
+
 A starter GUN client built with Vite plus some very useful plugins. With local express server to run Gun db at your dev machine.
 
 - [gun](https://gun.eco/) - the decentralized database for developers.

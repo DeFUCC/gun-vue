@@ -8,7 +8,9 @@ const links = {
 
 <template lang="pug">
 .flex.flex-wrap.items-center
-  router-link.p-2(v-for="(link,l) in links" :key="link" :to="l" :class="{ active: $route.path == l }") {{ link }}
+  router-link.p-2(v-for="(link,l) in links" :key="link" 
+  :to="l" 
+  :class="{ active: $route.path == l }") {{ link }}
 
 </template>
 
