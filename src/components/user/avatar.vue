@@ -1,11 +1,3 @@
-<template lang="pug">
-.avatar.bg-local(
-  v-if="pub",
-  :title="pub",
-  :style="{ background: `url(${pic})` }"
-)
-</template>
-
 <script setup >
 import { gunAvatar } from "gun-avatar"
 const props = defineProps({
@@ -19,6 +11,14 @@ watchEffect(() => {
   }
 });
 </script>
+
+<template lang="pug">
+.avatar.bg-local(
+  v-if="pub",
+  :title="pub",
+  :style="{ background: `url(${pic})` }"
+)
+</template>
 
 <style scoped>
 .avatar {

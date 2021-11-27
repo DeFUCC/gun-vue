@@ -1,26 +1,26 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import AutoImport from "unplugin-auto-import/vite";
+import Components from "unplugin-vue-components/vite";
 import Pages from "vite-plugin-pages";
 import path from "path";
 
-import Icons from 'unplugin-icons/vite'
-import IconsResolver from 'unplugin-icons/resolver'
-import WindiCSS from 'vite-plugin-windicss'
+import Icons from "unplugin-icons/vite";
+import IconsResolver from "unplugin-icons/resolver";
+import WindiCSS from "vite-plugin-windicss";
 
-const moduleExclude = match => {
-  const m = id => id.indexOf(match) > -1
+const moduleExclude = (match) => {
+  const m = (id) => id.indexOf(match) > -1;
   return {
     name: `exclude-${match}`,
     resolveId(id) {
-      if (m(id)) return id
+      if (m(id)) return id;
     },
     load(id) {
-      if (m(id)) return `export default {}`
+      if (m(id)) return `export default {}`;
     },
-  }
-}
+  };
+};
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -29,10 +29,10 @@ export default defineConfig({
     Pages(),
     WindiCSS({
       scan: {
-        dirs: ['.vitepress', './'],
-        include: ['index.md'],
-        exclude: ['**/examples/**/*', '/node_modules/'],
-        fileExtensions: ['vue', 'ts', 'md'],
+        dirs: [".vitepress", "./"],
+        include: ["index.md"],
+        exclude: ["**/examples/**/*", "/node_modules/"],
+        fileExtensions: ["vue", "ts", "md"],
       },
     }),
     AutoImport({
@@ -42,50 +42,53 @@ export default defineConfig({
         /\.vue\??/, // .vue
       ],
       imports: [
-        'vue',
+        "vue",
         {
-          '@vueuse/core': ['useStorage'],
+          "@vueuse/core": ["useStorage"],
         },
       ],
     }),
-    Icons({ /* options */ }),
+    Icons({
+      /* options */
+    }),
     Components({
-      dirs: ['src/components'],
-      extensions: ['vue', 'ts','js'],
+      dirs: ["src/components"],
+      extensions: ["vue", "ts", "js"],
       directoryAsNamespace: true,
-      globalNamespaces: ['global'],
+      globalNamespaces: ["global"],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       exclude: [/node_modules/, /\.git/],
       resolvers: [
         IconsResolver({
-          componentPrefix: '',
+          componentPrefix: "",
         }),
       ],
     }),
-    moduleExclude('text-encoding'),
+    moduleExclude("text-encoding"),
   ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
-			"@styles": path.resolve(__dirname, "src/styles"),
-			"@assets": path.resolve(__dirname, "src/assets"),
-			"@components": path.resolve(__dirname, "src/components"),
-			"@use": path.resolve(__dirname, "src/use"),
-			"@store": path.resolve(__dirname, "src/store"),
-    }
+      "@styles": path.resolve(__dirname, "src/styles"),
+      "@assets": path.resolve(__dirname, "src/assets"),
+      "@components": path.resolve(__dirname, "src/components"),
+      "@use": path.resolve(__dirname, "src/use"),
+      "@store": path.resolve(__dirname, "src/store"),
+      "@db": path.resolve(__dirname, "src/db"),
+    },
   },
   optimizeDeps: {
     include: [
-      'gun',
-      'gun/gun',
-      'gun/sea',
-      'gun/sea.js',
-      'gun/lib/then',
-      'gun/lib/webrtc',
-      'gun/lib/radix',
-      'gun/lib/radisk',
-      'gun/lib/store',
-      'gun/lib/rindexed',
+      "gun",
+      "gun/gun",
+      "gun/sea",
+      "gun/sea.js",
+      "gun/lib/then",
+      "gun/lib/webrtc",
+      "gun/lib/radix",
+      "gun/lib/radisk",
+      "gun/lib/store",
+      "gun/lib/rindexed",
     ],
   },
-})
+});

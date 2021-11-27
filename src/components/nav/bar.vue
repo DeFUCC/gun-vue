@@ -1,7 +1,8 @@
 <script setup>
 const links = {
   '/': 'Home',
-  '/players': 'Players'
+  '/players/': 'Players',
+  '/game/': 'Game',
 }
 </script>
 

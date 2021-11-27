@@ -1,4 +1,4 @@
-import { db } from "@use/db";
+import { db } from "@db/db";
 
 export const relay = reactive({
   pulse: 0,
