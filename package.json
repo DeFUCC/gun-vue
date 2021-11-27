@@ -1,15 +1,18 @@
 {
-  "name": "vite-gun-starter",
+  "name": "gun-vue",
   "version": "0.1.0",
   "engines": {
     "node": "16.x"
   },
+  "workspaces": [
+    "store"
+  ],
   "scripts": {
-    "start": "vite build && node server/start.js",
-    "dev": "vite --host",
-    "build": "vite build --base=/vite-gun-starter/",
-    "serve": "vite preview",
-    "deploy": "sh deploy.sh"
+    "start": "cd apps/game && vite build && node server/start.js",
+    "dev": "cd apps/game && vite --host",
+    "build": "cd apps/game && vite build --base=/vite-gun-starter/",
+    "serve": "cd apps/game && vite preview",
+    "deploy": "sh apps/game/deploy.sh"
   },
   "dependencies": {
     "@vueuse/core": "7.0.0",
@@ -18,7 +21,8 @@
     "gun-avatar": "^1.3.5",
     "ola": "^1.2.1",
     "vue": "^3.2.16",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "vue3-spring": "^0.0.2"
   },
   "devDependencies": {
     "@iconify/json": "^1.1.432",
@@ -31,5 +35,10 @@
     "vite-plugin-pages": "^0.19.0-beta.6",
     "vite-plugin-windicss": "^1.5.1",
     "windicss": "^3.2.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "gun-composable": "workspace:*"
+    }
   }
 }

@@ -1,0 +1,5 @@
+@import "./transitions.css";
+
+.button {
+  @apply p-2 m-2 font-bold rounded-lg shadow-md hover:(shadow-lg bg-light-100) transition-all duration-200 ease-out bg-light-200;
+}

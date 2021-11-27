@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<style>
+  html, body {
+    background: rgb(245, 245, 245);
+    margin: 0;
+    padding: 0;
+  }
+  div {
+    position: relative;
+    overflow: hidden;
+  }
+  #top {
+    background: #283e4a;
+    height: 52px;
+    width: 100%;
+  }
+  .box {
+    border-radius: 3px;
+    box-shadow: 0px 0px 3px #777;
+    background: white;
+    max-width: 36em;
+    margin: 0 auto;
+    min-height: 10em;
+    margin-bottom: 0.5em;
+  }
+  .color {
+    background: #2977b5;
+    height: 7em;
+    width: 100%;
+  }
+  .pad {
+    margin: 1em;
+  }
+  .none { display: none; }
+  input {
+    font-size: 1em;
+    margin: 0.1em;
+  }
+</style>
+<div id="top">
+  <center>
+    <input id="search" placeholder="search by pub or DID">
+  </center>
+</div>
+
+<div class="box">
+  <div class="color"></div>
+  <div class="pad">
+    <form id="sign">
+      <h1>Login</h1>
+      <input id="alias" placeholder="username">
+      <input id="pass" type="password" placeholder="passphrase">
+      <input id="in" type="submit" value="sign in">
+      <input id="up" type="button" value="sign up">
+    </form>
+
+
+    <form id="profile" class="none">
+      <h1>Profile</h1>
+      <p>Data is privately encrypted by default. "+" to grant access, "x" to revoke access.</p>
+      <input id="name" placeholder="name"> <button>+</button><br/>
+      <input id="born" placeholder="born"> <button>+</button><br/>
+      <input id="edu" placeholder="education"> <button>+</button><br/>
+      <input id="skills" placeholder="skills"> <button>+</button><br/>
+    </form>
+  </div>
+</div>
+
+<div class="box"><div class="pad">
+  Public Key: <input id="pub">
+</div></div>
+
+<script src="../jquery.js"></script>
+<script src="../../../gun/gun.js"></script>
+<script src="../../../gun/sea.js"></script>
+
+<script>
+
+// extend SEA functions to base64 encode encrypted data
+// workaround for https://github.com/amark/gun/issues/783
+
+(() => {
+  const _encrypt = SEA.encrypt;
+  SEA.encrypt = function(...args) {
+    return _encrypt.apply(this, args).then(enc => btoa(JSON.stringify(enc)));
+  }
+
+  const _decrypt = SEA.decrypt;
+  SEA.decrypt = function(data, ...args) {
+    try     { data = JSON.parse(atob(data)); }
+    finally { return _decrypt.apply(this, [data, ...args]); }
+  }
+})();
+
+// override User functions to fix several issues
+// see https://github.com/amark/gun/issues/808
+
+SEA.Gun.User.prototype.grant = function grant(to, cb) {
+  const gun  = this;       const user = gun.back(-1).user();
+  const pair = user._.sea; let   path = '';
+
+  gun.back(at => { if (at.has) { path += at.get; } });
+
+  (async () => {
+    let enc, sec;
+
+    if (sec = await user.get('trust').get(pair.pub).get(path).then()) {
+      sec = await SEA.decrypt(sec, pair);
+
+    } else {
+      sec = SEA.random(24).toString();
+      enc = await SEA.encrypt(sec, pair);
+
+      user.get('trust').get(pair.pub).get(path).put(enc);
+    }
+
+    let pub  = to.get('pub') .then();
+    let epub = to.get('epub').then();
+
+    pub = await pub; epub = await epub;
+
+    const dh = await SEA.secret (epub, pair);
+    enc      = await SEA.encrypt(sec,  dh);
+
+    // if pub is not already in trust, first put an empty node
+    // workaround for https://github.com/amark/gun/issues/844
+
+    if (!await user.get('trust').get(pub).then()) {
+      await user.get('trust').get(pub).get(path).put({}).then();
+    }
+
+    user.get('trust').get(pub).get(path).put(enc, cb);
+  })();
+
+  return gun;
+}
+
+SEA.Gun.User.prototype.secret = function(data, cb) {
+  const gun  = this;       const user = gun.back(-1).user();
+  const pair = user._.sea; let   path = '';
+
+  gun.back(at => { if (at.has) { path += at.get; } });
+
+  (async () => {
+    let enc, sec;
+
+    if (sec = await user.get('trust').get(pair.pub).get(path).then()) {
+      sec = await SEA.decrypt(sec, pair);
+
+    } else {
+      sec = SEA.random(24).toString();
+      enc = await SEA.encrypt(sec, pair);
+
+      user.get('trust').get(pair.pub).get(path).put(enc);
+    }
+
+    enc = await SEA.encrypt(data, sec);
+    gun.put(enc, cb);
+  })();
+
+  return gun;
+}
+
+var gun = Gun('http://localhost:8765/gun');
+var user = gun.user();
+var LI = {};
+
+user.recall({sessionStorage: true});
+
+$('#up').on('click', function(e){
+	user.create($('#alias').val(), $('#pass').val());
+});
+
+$('#sign').on('submit', function(e){
+	e.preventDefault();
+	user.auth($('#alias').val(), $('#pass').val());
+});
+
+gun.on('auth', function(){
+  $('#sign').hide();
+	$('#profile').show();
+  var pub = user._.sea.pub;
+  $('#pub').val(pub);
+  return;
+  $("#search").val(pub).trigger('blur');
+});
+
+$('#profile input').on('keyup', function(e){
+  if(!user.is){ return }
+  var id = LI.busy = $(this).attr('id');
+  user.get('profile').get(id).secret($(this).val());
+}).on('blur', function(){ LI.busy = false })
+
+$('#profile button').on('click', async function(e){
+  e.preventDefault();
+	if(!user.is){ return }
+  var b = $(this);
+  var id = b.prev().attr('id');
+  var pub = prompt("What is the Public Key or DID you want to give read access to?");
+  var to = gun.user(pub);
+  var who = await to.get('alias').then();
+  if(!confirm("You want to give access to " + who + "?")){ return }
+  user.get('profile').get(id).grant(to);
+});
+
+$('#search').on('blur', function(e){
+  var s = LI.search = $(this).val();
+  var find = gun.user(s);
+  find.get('profile').on(function(data, key, at, ev){
+    if(s !== LI.search){
+      ev.off();
+      return;
+    }
+
+    Gun.node.is(data, async (enc, id) => {
+      if (id === LI.busy) { return; }
+
+      const pair = user._.sea;
+      let key, val;
+
+      if (key =
+        await find.get('trust').get(pair.pub).get(id + 'profile').then()) {
+        const mix = await Gun.SEA.secret(await find.get('epub').then(), pair);
+
+        key = await Gun.SEA.decrypt(key, mix);
+        val = await Gun.SEA.decrypt(enc, key);
+
+        // decode encrypted data to show 'SEA{...}'
+      } else { val = JSON.parse(atob(enc)); }
+
+      $('#' + id).val(val);
+    });
+  });
+});
+</script>
