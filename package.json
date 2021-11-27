@@ -5,7 +5,7 @@
     "node": "16.x"
   },
   "scripts": {
-    "start": "vite build && node server.js",
+    "start": "vite build && node server/start.js",
     "dev": "vite --host",
     "build": "vite build --base=/vite-gun-starter/",
     "serve": "vite preview",

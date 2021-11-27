@@ -1,7 +1,7 @@
 <script setup>
 import { useGame } from '@use/game';
 
-const { svg, area, me, players, mouse, join } = useGame()
+const { svg, area, my, players, mouse, join } = useGame()
 
 </script>
 
@@ -30,7 +30,7 @@ const { svg, area, me, players, mouse, join } = useGame()
       stroke-width="1px"
       opacity="0.5"
     )
-    g.me(:transform="`translate(${me.x} ${me.y})`")
+    g.me(:transform="`translate(${my.x * 1000} ${my.y * 1000})`")
       circle(
         fill="black"
         r="20"
@@ -43,6 +43,6 @@ const { svg, area, me, players, mouse, join } = useGame()
         circle(
           r="10"
         )
-  .p-4 {{ me }}
+  .p-4 {{ my }}
   .p-4 {{ players }}
 </template>

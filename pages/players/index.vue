@@ -1,5 +1,5 @@
 <script setup>
-import { usePlayers } from '@/db/players';
+import { usePlayers } from '@store/players';
 
 const { players, me, join } = usePlayers()
 

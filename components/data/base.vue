@@ -1,7 +1,5 @@
 <script setup>
-import { useRelay } from '@db/relay'
-
-const relay = useRelay()
+import { relay } from '@store/db'
 
 </script>
 

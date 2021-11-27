@@ -1,4 +1,4 @@
-import { gun, sea } from "@db/db";
+import { gun, sea } from "@store/db";
 
 let presence;
 
@@ -51,6 +51,16 @@ export const account = reactive({
       }
       if (typeof cb == "function") cb();
     });
+  },
+
+  async hasPass(pub) {
+    return await gun.get(`~${pub}`).get("pass").get("pair").then();
+  },
+
+  async logWithPass(pub, password) {
+    let encPair = await gun.get(`~${pub}`).get("pass").get("pair").then();
+    let pair = await sea.decrypt(encPair, password);
+    participate(pair);
   },
 });
 

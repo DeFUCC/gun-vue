@@ -15,14 +15,13 @@
 		"noEmit": true,
 		"baseUrl": "./",
 		"paths": {
-			"@/*": ["./src/*"],
-			"@styles/*": ["./src/styles/*"],
-			"@assets/*": ["./src/assets/*"],
-			"@components/*": ["./src/components/*"],
-			"@use/*": ["./src/use/*"],
-			"@store/*": ["./src/store/*"],
-			"@db/*": ["./src/db/*"],
+			"@/*": ["./*"],
+			"@styles/*": ["./styles/*"],
+			"@assets/*": ["./assets/*"],
+			"@components/*": ["./components/*"],
+			"@use/*": ["./use/*"],
+			"@store/*": ["./store/*"],
 		}
 	},
-	"include": ["./src"]
+	"include": ["./"]
 }

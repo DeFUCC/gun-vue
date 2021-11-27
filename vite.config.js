@@ -26,10 +26,12 @@ const moduleExclude = (match) => {
 export default defineConfig({
   plugins: [
     vue(),
-    Pages(),
+    Pages({
+      dirs: "pages",
+    }),
     WindiCSS({
       scan: {
-        dirs: [".vitepress", "./"],
+        dirs: ["./"],
         include: ["index.md"],
         exclude: ["**/examples/**/*", "/node_modules/"],
         fileExtensions: ["vue", "ts", "md"],
@@ -52,7 +54,7 @@ export default defineConfig({
       /* options */
     }),
     Components({
-      dirs: ["src/components"],
+      dirs: ["components"],
       extensions: ["vue", "ts", "js"],
       directoryAsNamespace: true,
       globalNamespaces: ["global"],
@@ -68,13 +70,12 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
-      "@styles": path.resolve(__dirname, "src/styles"),
-      "@assets": path.resolve(__dirname, "src/assets"),
-      "@components": path.resolve(__dirname, "src/components"),
-      "@use": path.resolve(__dirname, "src/use"),
-      "@store": path.resolve(__dirname, "src/store"),
-      "@db": path.resolve(__dirname, "src/db"),
+      "@": path.resolve(__dirname, "/"),
+      "@styles": path.resolve(__dirname, "styles"),
+      "@assets": path.resolve(__dirname, "assets"),
+      "@components": path.resolve(__dirname, "components"),
+      "@use": path.resolve(__dirname, "use"),
+      "@store": path.resolve(__dirname, "store"),
     },
   },
   optimizeDeps: {

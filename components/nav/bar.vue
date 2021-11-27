@@ -3,6 +3,7 @@ const links = {
   '/': 'Home',
   '/players/': 'Players',
   '/game/': 'Game',
+  '/account/': 'Account',
 }
 </script>
 

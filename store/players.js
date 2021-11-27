@@ -1,4 +1,4 @@
-import { db, sea } from "@db/db";
+import { db, sea } from "@store/db";
 
 export function usePlayers() {
   const players = reactive({
