@@ -1,0 +1,20 @@
+{
+  "name": "gun-composable",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "deploy": "sh deploy.sh"
+  },
+  "dependencies": {
+    "gun": "^0.2020.1235"
+  },
+  "peerDependencies": {
+    "vue": "3.x"
+  },
+  "devDependencies": {
+    "vite": "^2.5.6"
+  }
+}

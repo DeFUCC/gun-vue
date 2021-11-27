@@ -1,0 +1,9 @@
+{
+  "name": "gun-relay",
+  "desciprion": "A no store gun peer relay for free tier hosting",
+  "version": "0.1.0",
+  "dependencies": {
+    "gun": "^0.2020.1235",
+    "express": "^4.17.1"
+  }
+}
