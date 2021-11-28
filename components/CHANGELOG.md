@@ -1,6 +1,13 @@
 # @gun-vue/components
 
+## 0.1.1
+
+### Patch Changes
+
+- Custom components export
+
 ## 0.1.0
+
 ### Minor Changes
 
 - Begin working on the contents of the packages
