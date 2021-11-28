@@ -1,2 +1,2 @@
 cd components
-pnpm publish
+pnpm publish --access public
