@@ -7,6 +7,9 @@ import IconsResolver from "unplugin-icons/resolver";
 import Components from "unplugin-vue-components/vite";
 
 export default defineConfig({
+  define: {
+    "process.env": {},
+  },
   plugins: [
     vue({
       customElement: true,

@@ -1,6 +1,9 @@
 const path = require("path");
 
 module.exports = {
+  define: {
+    "process.env": {},
+  },
   plugins: [moduleExclude("text-encoding")],
   build: {
     lib: {
