@@ -1,4 +1,4 @@
 packages:
   - "game"
   - "server"
-  - "gun-composable"
+  - "composables"

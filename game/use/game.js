@@ -1,4 +1,4 @@
-import { db, sea } from "gun-composable/db";
+import { db, sea } from "gun-vue-composables";
 import { useSvgMouse } from "@use/mouse";
 
 export function useGame() {

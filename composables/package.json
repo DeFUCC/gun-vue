@@ -1,6 +1,6 @@
 {
-  "name": "gun-composable",
-  "version": "0.0.1",
+  "name": "gun-vue-composables",
+  "version": "0.0.2",
   "license": "MIT",
   "scripts": {
     "dev": "vite",

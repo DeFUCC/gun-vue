@@ -16,12 +16,13 @@ import "gun/lib/rindexed";
 import "gun/nts";
 
 export const gun = Gun({ peers: config.peers, localStorage: false });
+export const sea = SEA;
 window.gun = gun; //for debugging
 window.sea = SEA; //for debugging
+
 export const appPath = config.appPath;
 export const db = gun.get(appPath);
 export const soul = Gun.node.soul;
-export const sea = SEA;
 
 export function useRelay() {
   const relay = reactive({

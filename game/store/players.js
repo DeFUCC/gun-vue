@@ -1,4 +1,4 @@
-import { db, sea } from "gun-composable/db";
+import { db, sea } from "gun-vue-composables";
 
 export function usePlayers() {
   const players = reactive({

@@ -5,7 +5,7 @@ module.exports = {
   build: {
     lib: {
       entry: path.resolve(__dirname, "index.js"),
-      name: "gun-composable",
+      name: "gun-vue-composables",
     },
     rollupOptions: {
       external: ["vue"],
