@@ -1,6 +1,6 @@
 {
   "name": "@gun-vue/components",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "scripts": {
     "dev": "vite",
@@ -8,8 +8,8 @@
     "serve": "vite preview",
     "deploy": "sh deploy.sh"
   },
-  "main": "dist/gun-vue-components.umd.js",
-  "module": "dist/gun-vue-components.es.js",
+  "main": "dist/components.umd.js",
+  "module": "dist/components.es.js",
   "dependencies": {
     "@vueuse/core": "7.0.0",
     "vue": "^3.2.16",
