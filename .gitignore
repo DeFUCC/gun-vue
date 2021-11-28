@@ -4,3 +4,7 @@ dist
 dist-ssr
 *.local
 radata
+node_modules/.modules.yaml
+node_modules/.pnpm/lock.yaml
+*/node_modules
+node_modules/vue3-spring

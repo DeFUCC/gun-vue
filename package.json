@@ -19,8 +19,7 @@
     "gun-avatar": "^1.3.5",
     "ola": "^1.2.1",
     "vue": "^3.2.16",
-    "vue-router": "^4.0.12",
-    "vue3-spring": "^0.0.2"
+    "vue-router": "^4.0.12"
   },
   "devDependencies": {
     "@iconify/json": "^1.1.432",
