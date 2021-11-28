@@ -27,3 +27,5 @@ A simple no-store Gun server for throwing to any free tier Node.js environment.
 ## DEMO
 
 Try them all yourself in the demo app.
+
+[defucc.github.io/gun-vue](https://defucc.github.io/gun-vue)
