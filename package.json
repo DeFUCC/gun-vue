@@ -1,11 +1,12 @@
 {
   "name": "@gun-vue/repo",
-  "version": "0.1.0",
+  "private": true,
+  "version": "0.1.1",
   "engines": {
     "node": "16.x"
   },
   "scripts": {
-    "start": "cd server && node start.js",
+    "start": "cd relay && node start.js",
     "dev": "cd demo && vite --host",
     "build": "cd demo && vite build --base=./",
     "lib": "cd composables && vite build",
