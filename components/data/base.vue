@@ -1,5 +1,5 @@
 <script setup>
-import { useRelay } from 'gun-vue-composables'
+import { useRelay } from '@gun-vue/composables'
 
 const relay = useRelay()
 

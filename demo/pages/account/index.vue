@@ -1,5 +1,5 @@
 <script setup>
-import { useAccount } from 'gun-vue-composables'
+import { useAccount } from '@gun-vue/composables'
 
 const { account } = useAccount()
 </script>

@@ -1,5 +1,5 @@
 {
-  "name": "gun-relay",
+  "name": "@un-vue/relay",
   "desciprion": "A no store gun peer relay for free tier hosting",
   "version": "0.1.0",
   "dependencies": {
