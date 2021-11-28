@@ -6,8 +6,11 @@ const { relay } = useDb()
 </script>
 
 <template lang="pug">
-.flex.items-center.p-20
+.flex.items-center.p-2
   .p-4.flex.items-center
-    la-clock.mx-2
+    la-clock.mr-2
     span {{ relay.pulse }}
 </template>
+
+<style scoped>
+</style>

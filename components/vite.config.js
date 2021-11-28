@@ -1,13 +1,16 @@
 const path = require("path");
+import { defineConfig } from "vite";
 import WindiCSS from "vite-plugin-windicss";
 import vue from "@vitejs/plugin-vue";
 import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
 import Components from "unplugin-vue-components/vite";
 
-module.exports = {
+export default defineConfig({
   plugins: [
-    vue(),
+    vue({
+      customElement: true,
+    }),
     Icons({
       /* options */
     }),
@@ -26,7 +29,7 @@ module.exports = {
     }),
     WindiCSS({
       scan: {
-        dirs: ["./"],
+        dirs: ["data", "user", "./"],
         include: ["index.md"],
         exclude: ["**/examples/**/*", "/node_modules/"],
         fileExtensions: ["vue", "ts", "md"],
@@ -49,4 +52,4 @@ module.exports = {
       },
     },
   },
-};
+});

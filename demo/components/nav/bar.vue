@@ -8,8 +8,8 @@ const links = {
 </script>
 
 <template lang="pug">
-.flex.flex-wrap.items-center
-  router-link.p-2(v-for="(link,l) in links" :key="link" 
+.flex.flex-wrap.items-center.p-2.bg-light-900.shadow-md
+  router-link.p-2.rounded-xl(v-for="(link,l) in links" :key="link" 
   :to="l" 
   :class="{ active: $route.path == l }") {{ link }}
   .flex-1
@@ -19,7 +19,7 @@ const links = {
 
 <style scoped>
 .active {
-  font-weight: bold;
+  @apply bg-light-300;
 }
 </style>
 
