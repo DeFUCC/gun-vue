@@ -56,7 +56,6 @@ export const account = reactive({
   async logWithPass(pub, password) {
     let encPair = await gun.get(`~${pub}`).get("pass").get("pair").then();
     let pair = await sea.decrypt(encPair, password);
-    participate(pair);
   },
 });
 

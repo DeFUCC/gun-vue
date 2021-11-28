@@ -15,9 +15,7 @@
   },
   "dependencies": {
     "gun": "^0.2020.1235",
-    "@vueuse/core": "7.0.0"
-  },
-  "peerDependencies": {
+    "@vueuse/core": "7.0.0",
     "vue": "3.x"
   },
   "devDependencies": {

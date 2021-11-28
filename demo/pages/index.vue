@@ -1,5 +1,5 @@
 <script setup>
-import dataBase from '@gun-vue/components/data/base.vue'
+import { dataBase } from '@gun-vue/components'
 </script>
 
 <template lang="pug">
