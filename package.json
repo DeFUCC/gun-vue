@@ -6,11 +6,12 @@
   },
   "scripts": {
     "start": "cd server && node start.js",
-    "dev": "cd game && vite --host",
-    "build": "cd game && vite build --base=./",
+    "dev": "cd demo && vite --host",
+    "build": "cd demo && vite build --base=./",
     "lib": "cd composables && vite build",
-    "serve": "cd game && vite preview",
-    "deploy": "cd game && sh deploy.sh"
+    "comp": "cd components && vite build",
+    "serve": "cd demo && vite preview --host",
+    "deploy": "cd demo && sh deploy.sh"
   },
   "dependencies": {
     "@vueuse/core": "7.0.0",
@@ -20,7 +21,8 @@
     "ola": "^1.2.1",
     "vue": "^3.2.16",
     "vue-router": "^4.0.12",
-    "gun-vue-composables": "workspace:*"
+    "gun-vue-composables": "workspace:*",
+    "gun-vue-components": "workspace:*"
   },
   "devDependencies": {
     "@iconify/json": "^1.1.432",

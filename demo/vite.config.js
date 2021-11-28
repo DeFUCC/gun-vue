@@ -41,7 +41,7 @@ export default defineConfig({
       /* options */
     }),
     Components({
-      dirs: ["components", "../components"],
+      dirs: ["components"],
       extensions: ["vue"],
       directoryAsNamespace: true,
       globalNamespaces: ["global"],

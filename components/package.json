@@ -8,6 +8,13 @@
     "serve": "vite preview",
     "deploy": "sh deploy.sh"
   },
+  "main": "dist/gun-vue-components.umd.js",
+  "module": "dist/gun-vue-components.es.js",
+  "dependencies": {
+    "@vueuse/core": "7.0.0",
+    "vue": "^3.2.16",
+    "gun-vue-composables": "workspace:*"
+  },
   "peerDependencies": {
     "vue": "3.x"
   },

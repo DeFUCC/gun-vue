@@ -9,7 +9,8 @@
     "deploy": "sh deploy.sh"
   },
   "dependencies": {
-    "gun": "^0.2020.1235"
+    "gun": "^0.2020.1235",
+    "@vueuse/core": "7.0.0"
   },
   "peerDependencies": {
     "vue": "3.x"

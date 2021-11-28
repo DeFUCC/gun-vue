@@ -10,6 +10,7 @@ importers:
       express: ^4.17.1
       gun: ^0.2020.1235
       gun-avatar: ^1.3.5
+      gun-vue-components: workspace:*
       gun-vue-composables: workspace:*
       ola: ^1.2.1
       pug: 3.0.2
@@ -27,6 +28,7 @@ importers:
       express: 4.17.1
       gun: 0.2020.1235
       gun-avatar: 1.3.5
+      gun-vue-components: link:components
       gun-vue-composables: link:composables
       ola: 1.2.1
       vue: 3.2.22
@@ -43,11 +45,30 @@ importers:
       vite-plugin-windicss: 1.5.1_vite@2.6.14
       windicss: 3.2.1
 
+  components:
+    specifiers:
+      '@vueuse/core': 7.0.0
+      gun-vue-composables: workspace:*
+      pug: ^3.0.2
+      vite: ^2.5.6
+      vue: ^3.2.16
+      windicss: ^3.2.1
+    dependencies:
+      '@vueuse/core': 7.0.0_vue@3.2.22
+      gun-vue-composables: link:../composables
+      vue: 3.2.22
+    devDependencies:
+      pug: 3.0.2
+      vite: 2.6.14
+      windicss: 3.2.1
+
   composables:
     specifiers:
+      '@vueuse/core': 7.0.0
       gun: ^0.2020.1235
       vite: ^2.5.6
     dependencies:
+      '@vueuse/core': 7.0.0_vue@3.2.22
       gun: 0.2020.1235
     devDependencies:
       vite: 2.6.14

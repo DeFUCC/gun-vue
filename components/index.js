@@ -1,4 +1,2 @@
-export * from "./data/base";
-export * from "./nav/bar";
-export * from "./user/avatar";
-export * from "./user/point";
+export { default as dataBase } from "./data/base.vue";
+export { default as userAvatar } from "./user/avatar.vue";
