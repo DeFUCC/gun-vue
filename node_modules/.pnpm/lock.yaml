@@ -47,10 +47,8 @@ importers:
     specifiers:
       gun: ^0.2020.1235
       vite: ^2.5.6
-      vue: ^3.2.16
     dependencies:
       gun: 0.2020.1235
-      vue: 3.2.22
     devDependencies:
       vite: 2.6.14
 

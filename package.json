@@ -1,13 +1,13 @@
 {
-  "name": "gun-vue",
+  "name": "gun-vue-repo",
   "version": "0.1.0",
   "engines": {
     "node": "16.x"
   },
   "scripts": {
-    "start": "cd apps/game && vite build && node server/start.js",
+    "start": "cd server && node start.js",
     "dev": "cd game && vite --host",
-    "build": "cd game && vite build --base=/vite-gun-starter/",
+    "build": "cd game && vite build --base=./",
     "lib": "cd gun-composable && vite build",
     "serve": "cd game && vite preview",
     "deploy": "cd game && sh deploy.sh"
