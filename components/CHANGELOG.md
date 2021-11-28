@@ -1,5 +1,11 @@
 # @gun-vue/components
 
+## 0.1.2
+
+### Patch Changes
+
+- e6e3141: universal build for UMD
+
 ## 0.1.1
 
 ### Patch Changes
