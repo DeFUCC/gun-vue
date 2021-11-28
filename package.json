@@ -8,7 +8,7 @@
   "scripts": {
     "start": "cd relay && node start.js",
     "dev": "cd demo && vite --host",
-    "build": "cd demo && vite build --base=./",
+    "demo": "cd demo && vite build --base=./",
     "lib": "cd composables && vite build",
     "comp": "cd components && vite build",
     "serve": "cd demo && vite preview --host",
