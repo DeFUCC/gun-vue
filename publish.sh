@@ -1,0 +1,2 @@
+cd components
+pnpm publish

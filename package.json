@@ -11,7 +11,8 @@
     "lib": "cd composables && vite build",
     "comp": "cd components && vite build",
     "serve": "cd demo && vite preview --host",
-    "deploy": "cd demo && sh deploy.sh"
+    "deploy": "cd demo && sh deploy.sh",
+    "publish": "sh publish.sh"
   },
   "dependencies": {
     "@gun-vue/components": "workspace:*",
