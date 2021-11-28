@@ -14,11 +14,11 @@
     "deploy": "sh deploy.sh"
   },
   "dependencies": {
+    "@vueuse/core": "7.1.2",
     "gun": "^0.2020.1235",
-    "@vueuse/core": "7.0.0",
-    "vue": "3.x"
+    "vue": "^3.2.23"
   },
   "devDependencies": {
-    "vite": "^2.5.6"
+    "vite": "^2.6.14"
   }
 }
