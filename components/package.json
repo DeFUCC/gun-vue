@@ -1,0 +1,19 @@
+{
+  "name": "gun-vue-components",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "deploy": "sh deploy.sh"
+  },
+  "peerDependencies": {
+    "vue": "3.x"
+  },
+  "devDependencies": {
+    "vite": "^2.5.6",
+    "pug": "^3.0.2",
+    "windicss": "^3.2.1"
+  }
+}

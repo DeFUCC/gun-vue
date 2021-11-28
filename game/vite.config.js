@@ -9,19 +9,6 @@ import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
 import WindiCSS from "vite-plugin-windicss";
 
-const moduleExclude = (match) => {
-  const m = (id) => id.indexOf(match) > -1;
-  return {
-    name: `exclude-${match}`,
-    resolveId(id) {
-      if (m(id)) return id;
-    },
-    load(id) {
-      if (m(id)) return `export default {}`;
-    },
-  };
-};
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -31,7 +18,7 @@ export default defineConfig({
     }),
     WindiCSS({
       scan: {
-        dirs: ["./"],
+        dirs: ["../"],
         include: ["index.md"],
         exclude: ["**/examples/**/*", "/node_modules/"],
         fileExtensions: ["vue", "ts", "md"],
@@ -54,8 +41,8 @@ export default defineConfig({
       /* options */
     }),
     Components({
-      dirs: ["components"],
-      extensions: ["vue", "ts", "js"],
+      dirs: ["components", "../components"],
+      extensions: ["vue"],
       directoryAsNamespace: true,
       globalNamespaces: ["global"],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
@@ -66,7 +53,6 @@ export default defineConfig({
         }),
       ],
     }),
-    moduleExclude("text-encoding"),
   ],
   resolve: {
     alias: {
@@ -77,19 +63,5 @@ export default defineConfig({
       "@use": path.resolve(__dirname, "use"),
       "@store": path.resolve(__dirname, "store"),
     },
-  },
-  optimizeDeps: {
-    include: [
-      "gun",
-      "gun/gun",
-      "gun/sea",
-      "gun/sea.js",
-      "gun/lib/then",
-      "gun/lib/webrtc",
-      "gun/lib/radix",
-      "gun/lib/radisk",
-      "gun/lib/store",
-      "gun/lib/rindexed",
-    ],
   },
 });
