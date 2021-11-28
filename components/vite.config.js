@@ -7,7 +7,14 @@ import Components from "unplugin-vue-components/vite";
 
 module.exports = {
   plugins: [
-    vue(),
+    vue({
+      template: {
+        preprocessLang: "pug",
+        compilerOptions: {
+          // ...
+        },
+      },
+    }),
     Icons({
       /* options */
     }),
@@ -36,7 +43,7 @@ module.exports = {
   build: {
     lib: {
       entry: path.resolve(__dirname, "index.js"),
-      name: "gun-vue-components",
+      name: "components",
     },
     rollupOptions: {
       external: ["vue"],
