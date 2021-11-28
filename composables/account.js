@@ -1,4 +1,4 @@
-import { gun, sea } from "./db";
+import { gun, SEA } from "./db";
 import { reactive, computed } from "vue";
 
 export const account = reactive({
@@ -14,7 +14,7 @@ export const account = reactive({
   },
 
   async generate() {
-    account.pair = await sea.pair();
+    account.pair = await SEA.pair();
   },
 
   init() {
@@ -55,7 +55,7 @@ export const account = reactive({
 
   async logWithPass(pub, password) {
     let encPair = await gun.get(`~${pub}`).get("pass").get("pair").then();
-    let pair = await sea.decrypt(encPair, password);
+    let pair = await SEA.decrypt(encPair, password);
   },
 });
 
@@ -66,13 +66,13 @@ export function useAccount() {
     }
   });
 
+  gun.user().recall({ sessionStorage: true }, () => {
+    account.init();
+  });
+
+  gun.on("auth", () => {
+    account.init();
+  });
+
   return { account };
 }
-
-gun.user().recall({ sessionStorage: true }, () => {
-  account.init();
-});
-
-gun.on("auth", () => {
-  account.init();
-});

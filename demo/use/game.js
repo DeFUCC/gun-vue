@@ -1,4 +1,4 @@
-import { db, sea } from "@gun-vue/composables";
+import { db, SEA } from "@gun-vue/composables";
 import { useSvgMouse } from "@use/mouse";
 
 export function useGame() {
@@ -27,7 +27,7 @@ export function useGame() {
     });
 
   async function join() {
-    my.pair = await sea.pair();
+    my.pair = await SEA.pair();
     my.pub = my.pair.pub;
     my.num = players.next % players.max;
 

@@ -38,5 +38,5 @@ setInterval(() => {
 <template lang='pug'>
 .m-1.flex.absolute.pointer-events-none.opacity-80(:style="{ transform: 'translate(-50%,-50%)', left: player.x * 100 + '%', top: player.y * 100 + '%' }")
   .w-40px.transition-all.duration-100.ease(:style="{ transform: `scale(${player.size / 500})` }" v-if="player.size > 100")
-    user-avatar.rounded-full(:pub="pub" :size="100")
+    user-avatar.rounded-full.w-32px.h-32px(:pub="pub" :size="100")
 </template>

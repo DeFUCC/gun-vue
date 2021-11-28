@@ -15,24 +15,38 @@ import "gun/lib/rindexed";
 // import 'gun/lib/webrtc'
 import "gun/nts";
 
-export const gun = Gun({ peers: config.peers, localStorage: false });
-export const sea = SEA;
-window.gun = gun; //for debugging
-window.sea = SEA; //for debugging
-
-export const appPath = config.appPath;
-export const db = gun.get(appPath);
+export let gun, appPath, db;
+export { SEA };
 export const soul = Gun.node.soul;
 
-export function useRelay() {
-  const relay = reactive({
-    pulse: 0,
-  });
+const relay = reactive({
+  pulse: 0,
+  peers: null,
+  path: null,
+});
+
+export function useDb(
+  path = "gunvue",
+  peers = ["https://etogun.glitch.me/gun"],
+  debug = false
+) {
+  gun = Gun({ peers, localStorage: false });
+
+  db = gun.get(path);
+
+  if (debug) {
+    window.gun = gun; //for debugging
+    window.sea = SEA; //for debugging
+  }
+
+  relay.peers = peers;
+  relay.path = path;
 
   db.get("relay")
     .get("pulse")
     .on((d) => {
       relay.pulse = d;
     });
-  return relay;
+
+  return { gun, db, relay };
 }

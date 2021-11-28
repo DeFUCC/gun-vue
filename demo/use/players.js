@@ -1,4 +1,4 @@
-import { db, sea } from "@gun-vue/composables";
+import { db, SEA } from "@gun-vue/composables";
 
 export function usePlayers() {
   const players = reactive({
@@ -24,7 +24,7 @@ export function usePlayers() {
   });
 
   async function join() {
-    me.pair = await sea.pair();
+    me.pair = await SEA.pair();
     me.pub = me.pair.pub;
     me.num = players.count % players.max;
     const myRec = db.get("players").get(me.num);

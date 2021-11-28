@@ -12,8 +12,8 @@
     "deploy": "sh deploy.sh"
   },
   "dependencies": {
-    "@gun-vue/components": "workspace:*",
-    "@gun-vue/composables": "workspace:*",
+    "@gun-vue/components": "workspace:^",
+    "@gun-vue/composables": "workspace:^",
     "@vueuse/core": "7.0.0",
     "ola": "^1.2.1",
     "vue": "^3.2.16",

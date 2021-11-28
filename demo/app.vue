@@ -1,4 +1,7 @@
 <script setup>
+import { useDb } from '@gun-vue/composables'
+
+useDb()
 </script>
 
 <template lang="pug">

@@ -7,14 +7,7 @@ import Components from "unplugin-vue-components/vite";
 
 module.exports = {
   plugins: [
-    vue({
-      template: {
-        preprocessLang: "pug",
-        compilerOptions: {
-          // ...
-        },
-      },
-    }),
+    vue(),
     Icons({
       /* options */
     }),

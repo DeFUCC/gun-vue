@@ -16,7 +16,7 @@
   "dependencies": {
     "@vueuse/core": "7.0.0",
     "vue": "^3.2.16",
-    "@gun-vue/composables": "workspace:*",
+    "@gun-vue/composables": "workspace:^",
     "gun-avatar": "^1.3.5"
   },
   "peerDependencies": {

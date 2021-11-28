@@ -14,5 +14,8 @@
     "serve": "cd demo && pnpm run preview",
     "deploy": "cd demo && pnpm run deploy",
     "publish": "sh publish.sh"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.18.1"
   }
 }
