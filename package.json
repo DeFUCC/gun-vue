@@ -13,7 +13,7 @@
     "comp": "cd components && vite build",
     "serve": "cd demo && vite preview --host",
     "deploy": "cd demo && sh deploy.sh",
-    "publish": "pnpm publish -r --access public"
+    "publish": "sh publish.sh"
   },
   "dependencies": {
     "@gun-vue/components": "workspace:*",
