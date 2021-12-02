@@ -1,5 +1,11 @@
 # @gun-vue/relay
 
+## 0.1.3
+
+### Patch Changes
+
+- living server
+
 ## 0.1.2
 
 ### Patch Changes

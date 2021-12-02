@@ -9,60 +9,36 @@
     <meta name="description" content="A cool thing made with Glitch" />
 
     <title>No store GUN peer</title>
+
+    <link rel="stylesheet" href="/styles.css" />
   
-    <link rel="stylesheet" href="/style.css" />
     <script defer type="module">
-      import "https://cdn.jsdelivr.net/npm/gun/gun.js";
-      import { createApp, reactive } from "https://unpkg.com/petite-vue?module";
+      import  'https://cdn.skypack.dev/gun';
+      import ms from 'https://cdn.skypack.dev/ms';
+      import { createApp, reactive } from 'https://cdn.skypack.dev/petite-vue';
+     
 
-      const gun = GUN(["https://etogun.glitch.me/gun"]);
-      const gameName = "gunvue";
-      const game = gun.get(gameName);
-      const relay = gun.get("etogun.glitch.me");
+      const gun = GUN([window.location.href+'gun']);
+      const db = gun.get(window.location.hostname);
 
-      const Store = reactive({
-        relay: {
-          pulse: "connecting"
-        },
-        players: {},
+      const Relay = reactive({
+
+        status: "connecting",
+        pulse:0,
+        started: 0,
+        ms,
         listen() {
-          self = this;
-          relay.get("pulse").on(d => (self.relay.pulse = d));
+    
+          db.map().on((d,k) => {
+            Relay[k] = d
+          });
 
-          game
-            .get("players")
-            .map()
-            .on((d, k) => {
-              if (d == null) return;
-              self.players[k] = self.players[k] || {};
-              self.players[k] = { ...d };
-            });
         }
       });
 
-      function Player(props) {
-        const blob = reactive({
-          $template: "#player-template",
-          pub: props?.pub,
-          x: 0,
-          y: 0,
-          pulse: 0
-        });
+      Relay.listen();
 
-        game
-          .get("players")
-          .get(blob.pub)
-          .on((d, k) => {
-          if(!d) return
-            Object.assign(blob,{...d})
-          });
-
-        return blob;
-      }
-
-      Store.listen();
-
-      createApp({ Store, Player }).mount();
+      createApp({ Relay }).mount();
     </script>
 
     <template id="player-template">
@@ -71,20 +47,13 @@
   </head>
   <body v-scope>
     <header>
-      <h5>{{Store.relay.pulse}}</h5>
+      <h2>Gun relay peer</h2>
+      <h5>started: {{Relay.ms(Relay.pulse-Relay.started)}} </h5>
+      <h5>{{Relay.status}}: {{(Relay.pulse-Relay.started)/1000}}s</h5>
+      
     </header>
     <main>
-      <div id="app">
-        {{test}}
-      </div>
-      
-      <ul>
-        <li
-          v-for="(p,k) in Store.players"
-          :key="p"
-          v-scope="Player({pub:k})"
-        ></li>
-      </ul>
+      <code>{{Relay}}</code>
     </main>
   </body>
 </html>

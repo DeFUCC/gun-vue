@@ -1,31 +1,29 @@
-function init(url = "etogun.glitch.me") {
-  var port = 4200;
-  var express = require("express");
-  var Gun = require("gun");
-  var path = require("path");
-  var os = require("os");
+var express = require("express");
+var Gun = require("gun");
+var path = require("path");
 
-  var app = express();
-  //app.use(Gun.serve);
-  app.use(express.static(__dirname + "/public"));
-  app.use("public", express.static(path.join(__dirname, "public")));
-  app.get("/", (req, res) => res.sendFile(__dirname + "/public/index.html"));
-  var server = app.listen(port);
+const relay = {
+  initiated: false,
 
-  const gun = Gun({ file: false, radisk: false, web: server });
+  init(host = "localhost", port = 4200) {
+    if (relay.initiated) return;
+    relay.initiated = true;
+    var app = express();
+    app.use(express.static("public"));
+    var server = app.listen(port);
 
-  const relay = gun.get(url);
-  relay.get("started").put(Date.now());
+    const gun = Gun({ file: false, radisk: false, web: server });
 
-  relay.get("host").put(os.hostname());
+    const db = gun.get(host);
+    db.get("status").put("running");
+    db.get("started").put(Date.now());
 
-  let pulse = setInterval(() => {
-    relay.get("pulse").put(Date.now());
-  }, 500);
+    let pulse = setInterval(() => {
+      db.get("pulse").put(Date.now());
+    }, 500);
 
-  console.log("Server started on port " + port + " with /gun");
-}
+    console.log("Server started at " + host + ":" + port + "/gun");
+  },
+};
 
-module.exports.init = init;
-
-init();
+module.exports = relay;
