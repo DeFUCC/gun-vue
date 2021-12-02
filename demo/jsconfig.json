@@ -23,5 +23,5 @@
 			"@store/*": ["./store/*"],
 		}
 	},
-	"include": ["./"]
+	"include": ["./", "../composables/use/mouse.js"]
 }

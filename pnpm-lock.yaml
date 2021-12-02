@@ -36,12 +36,16 @@ importers:
   composables:
     specifiers:
       '@vueuse/core': 7.1.2
+      color-hash: ^2.0.1
       gun: ^0.2020.1235
+      ms: ^2.1.3
       vite: ^2.6.14
       vue: ^3.2.23
     dependencies:
       '@vueuse/core': 7.1.2_vue@3.2.23
+      color-hash: 2.0.1
       gun: 0.2020.1235
+      ms: 2.1.3
       vue: 3.2.23
     devDependencies:
       vite: 2.6.14
@@ -878,6 +882,10 @@ packages:
     dependencies:
       color-name: 1.1.4
     dev: true
+
+  /color-hash/2.0.1:
+    resolution: {integrity: sha512-/wIYAQ3xL9ruURLmDbxAsXEsivaOfwWDUVy+zbWJZL3bnNQIDNSmmqbkNzeTOQvDdiz11Kb010UlJN7hUXLg/w==}
+    dev: false
 
   /color-name/1.1.3:
     resolution: {integrity: sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=}
@@ -2164,6 +2172,10 @@ packages:
   /ms/2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
     dev: true
+
+  /ms/2.1.3:
+    resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
+    dev: false
 
   /nanoid/3.1.30:
     resolution: {integrity: sha512-zJpuPDwOv8D2zq2WRoMe1HsfZthVewpel9CAvTfc/2mBD1uUT/agc5f7GHGWXlYkFvi1mVxe4IjvP2HNrop7nQ==}

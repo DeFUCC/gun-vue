@@ -83,5 +83,5 @@ export function useAccount() {
     account.init();
   });
 
-  return { account };
+  return account;
 }
