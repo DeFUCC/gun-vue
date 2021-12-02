@@ -1,15 +1,10 @@
 <script setup>
-const links = {
-  '/': 'Home',
-  '/players/': 'Players',
-  '/game/': 'Game',
-  '/account/': 'Account',
-}
+import { routes } from '../../pages/routes'
 </script>
 
 <template lang="pug">
 .flex.flex-wrap.items-center.p-2.bg-light-900.shadow-md
-  router-link.p-2.rounded-xl(v-for="(link,l) in links" :key="link" 
+  router-link.p-2.rounded-xl(v-for="(link,l) in routes" :key="link" 
   :to="l" 
   :class="{ active: $route.path == l }") {{ link }}
   .flex-1

@@ -22,6 +22,10 @@ export const account = reactive({
     account.presence = setInterval(() => {
       gun.user().get("presence").put(Date.now());
     }, 1500);
+    account.loadProfile();
+  },
+
+  loadProfile() {
     gun
       .user()
       .get("profile")
@@ -56,6 +60,11 @@ export const account = reactive({
   async logWithPass(pub, password) {
     let encPair = await gun.get(`~${pub}`).get("pass").get("pair").then();
     let pair = await SEA.decrypt(encPair, password);
+  },
+
+  isMine(soul) {
+    if (!soul) return;
+    return soul.slice(1, 88) == user.pub;
   },
 });
 

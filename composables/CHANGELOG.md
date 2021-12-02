@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.1.3
+
+### Patch Changes
+
+- started building up the core structure
+
 ## 0.1.2
 
 ### Patch Changes

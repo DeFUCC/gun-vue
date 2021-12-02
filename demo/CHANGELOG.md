@@ -1,5 +1,14 @@
 # @gun-vue/demo
 
+## 0.1.8
+
+### Patch Changes
+
+- started building up the core structure
+- Updated dependencies
+  - @gun-vue/components@0.1.5
+  - @gun-vue/composables@0.1.3
+
 ## 0.1.7
 
 ### Patch Changes
