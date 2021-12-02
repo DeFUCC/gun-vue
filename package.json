@@ -6,11 +6,10 @@
     "node": "16.x"
   },
   "scripts": {
-    "start": "cd relay && node start.js",
     "dev": "cd demo && pnpm run dev",
-    "demo": "cd demo && pnpm run build",
     "lib": "cd composables && pnpm run build",
     "comp": "cd components && pnpm run build",
+    "demo": "cd demo && pnpm run build",
     "relay": "cd relay && pnpm run start",
     "deploy": "cd demo && pnpm run deploy",
     "ch": "pnpm changeset",
