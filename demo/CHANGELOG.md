@@ -1,5 +1,14 @@
 # @gun-vue/demo
 
+## 0.1.9
+
+### Patch Changes
+
+- basic components and composables: relay. account, space.
+- Updated dependencies
+  - @gun-vue/components@0.1.6
+  - @gun-vue/composables@0.1.4
+
 ## 0.1.8
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.1.4
+
+### Patch Changes
+
+- basic components and composables: relay. account, space.
+
 ## 0.1.3
 
 ### Patch Changes
