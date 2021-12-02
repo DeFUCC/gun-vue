@@ -11,6 +11,6 @@
 
 <style scoped>
 .card {
-    @apply p-2 bg-light-300 shadow-md m-4 rounded-xl;
+    @apply bg-light-300 shadow-md m-4 rounded-xl overflow-hidden;
 }
 </style>

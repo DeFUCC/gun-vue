@@ -1,5 +1,5 @@
 <script setup>
-import { useSpace, useSvgMouse } from '@gun-vue/composables'
+import { useSpace, useSvgMouse, account } from '@gun-vue/composables'
 import { color } from '@gun-vue/composables'
 
 const space = useSpace('testSpace')
@@ -7,9 +7,7 @@ const space = useSpace('testSpace')
 const { svg, area, mouse } = useSvgMouse()
 
 const my = reactive({
-  pair: null,
   num: null,
-  pub: null,
   x: computed(() => mouse.normX),
   y: computed(() => 1 - mouse.normY),
 });
@@ -29,8 +27,8 @@ space.db.get("players")
   });
 
 async function join() {
-  my.pair = await SEA.pair();
-  my.pub = my.pair.pub;
+  if (!account.is) return
+  let pair = account.user()._.sea
   my.num = players.next % players.max;
 
   const myRec = space.db.get("players").get(my.num);
@@ -39,13 +37,8 @@ async function join() {
     myRec.put({ x: m.normX, y: 1 - m.normY });
   });
 
-  setInterval(() => {
-    myRec.get("pulse").put(Date.now());
-  }, 500);
-
-
   let player = {
-    pub: my.pair.pub,
+    pub: pair.pub,
     pulse: Date.now(),
     x: mouse.normX,
     y: 1 - mouse.normY,

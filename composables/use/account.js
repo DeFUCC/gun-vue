@@ -2,30 +2,41 @@ import { gun, SEA } from "./db";
 import { reactive, computed } from "vue";
 
 export const account = reactive({
+  initiated: false,
   is: null,
   pub: computed(() => account.is?.pub),
   profile: {},
   pair: null,
   name: null,
-  presence: null,
-
-  graph() {
+  pulse: 0,
+  pulser: null,
+  blink: false,
+  user() {
     return gun.user();
   },
 
-  async generate() {
-    account.pair = await SEA.pair();
-  },
-
   init() {
+    if (account.initiated) return;
     account.is = gun.user().is;
-    account.presence = setInterval(() => {
-      gun.user().get("presence").put(Date.now());
-    }, 1500);
+    if (account.pulser) {
+      clearInterval(account.pulser);
+    }
+    account.pulser = setInterval(() => {
+      gun.user().get("pulse").put(Date.now());
+    }, 1000);
+
     account.loadProfile();
+    account.initiated = true;
   },
 
   loadProfile() {
+    gun
+      .user()
+      .get("pulse")
+      .on((d) => {
+        account.blink = !account.blink;
+        account.pulse = d;
+      });
     gun
       .user()
       .get("profile")
@@ -37,8 +48,9 @@ export const account = reactive({
 
   logout() {
     let is = !!account.is?.pub;
+    account.initiated = false;
+    clearInterval(account.pulser);
     gun.user().leave();
-    clearInterval(account.presence);
     setTimeout(() => {
       if (is && !gun.user()._?.sea) {
         account.is = null;
@@ -48,9 +60,14 @@ export const account = reactive({
     }, 500);
   },
 
-  auth(pair = account.pair) {
-    if (!pair) return console.log("No pair to auth");
-    gun.user().auth(pair, async () => {});
+  async auth(pair) {
+    if (!pair || !pair.pub || !pair.priv) {
+      pair = await SEA.pair();
+      console.log("new account created");
+    }
+    gun.user().auth(pair, async () => {
+      console.log("account is authenticated");
+    });
   },
 
   async hasPass(pub) {
