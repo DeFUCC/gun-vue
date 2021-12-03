@@ -14,10 +14,10 @@ importers:
       '@vueuse/core': 7.1.2
       gun-avatar: ^1.3.5
       pug: ^3.0.2
-      unplugin-icons: ^0.12.20
+      unplugin-icons: ^0.12.22
       unplugin-vue-components: ^0.17.2
       vite: ^2.6.14
-      vite-plugin-windicss: ^1.5.3
+      vite-plugin-windicss: ^1.5.4
       vue: ^3.2.23
       windicss: ^3.2.1
     dependencies:
@@ -27,10 +27,10 @@ importers:
       vue: 3.2.23
     devDependencies:
       pug: 3.0.2
-      unplugin-icons: 0.12.20_vite@2.6.14
+      unplugin-icons: 0.12.22_vite@2.6.14
       unplugin-vue-components: 0.17.2_vite@2.6.14+vue@3.2.23
       vite: 2.6.14
-      vite-plugin-windicss: 1.5.3_vite@2.6.14
+      vite-plugin-windicss: 1.5.4_vite@2.6.14
       windicss: 3.2.1
 
   composables:
@@ -54,17 +54,17 @@ importers:
     specifiers:
       '@gun-vue/components': workspace:^
       '@gun-vue/composables': workspace:^
-      '@iconify/json': ^2.0.2
+      '@iconify/json': ^2.0.6
       '@vitejs/plugin-vue': ^1.10.1
       '@vueuse/core': 7.1.2
       ola: ^1.2.1
       pug: 3.0.2
       unplugin-auto-import: ^0.5.1
-      unplugin-icons: ^0.12.20
+      unplugin-icons: ^0.12.22
       unplugin-vue-components: ^0.17.2
       vite: ^2.6.14
       vite-plugin-pages: ^0.19.0-beta.6
-      vite-plugin-windicss: ^1.5.3
+      vite-plugin-windicss: ^1.5.4
       vue: ^3.2.23
       vue-router: ^4.0.12
       windicss: ^3.2.1
@@ -76,15 +76,15 @@ importers:
       vue: 3.2.23
       vue-router: 4.0.12_vue@3.2.23
     devDependencies:
-      '@iconify/json': 2.0.2
+      '@iconify/json': 2.0.6
       '@vitejs/plugin-vue': 1.10.1_vite@2.6.14
       pug: 3.0.2
       unplugin-auto-import: 0.5.1_@vueuse+core@7.1.2+vite@2.6.14
-      unplugin-icons: 0.12.20_vite@2.6.14
+      unplugin-icons: 0.12.22_vite@2.6.14
       unplugin-vue-components: 0.17.2_vite@2.6.14+vue@3.2.23
       vite: 2.6.14
       vite-plugin-pages: 0.19.0-beta.6_vite@2.6.14
-      vite-plugin-windicss: 1.5.3_vite@2.6.14
+      vite-plugin-windicss: 1.5.4_vite@2.6.14
       windicss: 3.2.1
 
   relay:
@@ -321,8 +321,8 @@ packages:
       prettier: 1.19.1
     dev: true
 
-  /@iconify/json/2.0.2:
-    resolution: {integrity: sha512-LcGJCnYcnTBrbLEjC8ynJ9T2Pj5C3nt6dKksZAb+kCYD1kQReDen/Pjvo5ggFE1JkwMrBrzbjojR87YQGnh12g==}
+  /@iconify/json/2.0.6:
+    resolution: {integrity: sha512-I8zicn01p1CeR5YkDqyo8Sh6vQGL8tCBfscZkdpAorYZ/zv+LHPh0xc2j/y21rsr1O0H7SVaj+L06OTgeCXuMw==}
     dependencies:
       '@iconify/types': 1.0.12
       pathe: 0.0.2
@@ -332,8 +332,8 @@ packages:
     resolution: {integrity: sha512-6er6wSGF3hgc1JEZqiGpg21CTCjHBYOUwqLmb2Idzkjiw6ogalGP0ZMLVutCzah+0WB4yP+Zd2oVPN8jvJ+Ftg==}
     dev: true
 
-  /@iconify/utils/1.0.19:
-    resolution: {integrity: sha512-HEIo2FLLkzFcUcdTvNpJZugzbPIpmnhRLQk8PUYcJbjpzb8vsQHniDmTmEMAV8uN+dauMQg+Qrb8Bx054uG69w==}
+  /@iconify/utils/1.0.20:
+    resolution: {integrity: sha512-J5IriR8KeANs8vIEFKWzOlOvNgZHkwqkmqaIwvqtuDbBeFHtXGfM/LYMDmjtRJ0AAa7f254qw6TK7gAibYfHUA==}
     dependencies:
       '@iconify/types': 1.0.12
     dev: true
@@ -570,8 +570,8 @@ packages:
       vue-demi: 0.12.1_vue@3.2.23
     dev: false
 
-  /@windicss/config/1.5.3:
-    resolution: {integrity: sha512-DXUR+LWOWwG+prkcvey4IV4V9BvigOcfuLP28k21fO3UkfS6G6HRRgf+STB0AgKrXIGlUDDHfoPvEbndfUlYjg==}
+  /@windicss/config/1.5.4:
+    resolution: {integrity: sha512-muRPFulqh7nU3VrsPb5+k6ulNyiw8VGg62zAWRZIBfeCRXZb2gV1Q8a/tPn8X1T/+HTt4f/1bzFiusqMKscmlw==}
     dependencies:
       debug: 4.3.3
       jiti: 1.12.9
@@ -580,11 +580,11 @@ packages:
       - supports-color
     dev: true
 
-  /@windicss/plugin-utils/1.5.3:
-    resolution: {integrity: sha512-6C6R/wB2vzaiWn1Tv95FaK5/932UnnbObwitusyDcuCDmCM97aCCB93CYLZCtQtPdPlLYODezinPFhdfMm746w==}
+  /@windicss/plugin-utils/1.5.4:
+    resolution: {integrity: sha512-fS4y52OYB9rIzEUolIWIrrHYuaQfcqTaX3ISbFUiNbvNgH97JATjzB2iOnNqWNy6pH3M8RP0TqYQOOCCeanDoA==}
     dependencies:
       '@antfu/utils': 0.3.0
-      '@windicss/config': 1.5.3
+      '@windicss/config': 1.5.4
       debug: 4.3.3
       fast-glob: 3.2.7
       magic-string: 0.25.7
@@ -3047,8 +3047,8 @@ packages:
       - webpack
     dev: true
 
-  /unplugin-icons/0.12.20_vite@2.6.14:
-    resolution: {integrity: sha512-7gHxygp1iRbh85/43yqSbzImo5Y7KmVZFV8k79XL/SYNuIPsn19A10Mn2X1YUWm/uQWu/0J9ouq/083Mo4gyPg==}
+  /unplugin-icons/0.12.22_vite@2.6.14:
+    resolution: {integrity: sha512-GG6WAK1jqc50NXqoc3dYW9ui9k2UK0eOvilwr0MQ79iGvBtATbHoDyLTgSRsuous7Qfq8n+odL8TJgELaqvNCA==}
     peerDependencies:
       '@svgr/core': ^5.5.0
       '@vue/compiler-sfc': ^3.0.2
@@ -3066,8 +3066,8 @@ packages:
     dependencies:
       '@antfu/install-pkg': 0.1.0
       '@antfu/utils': 0.3.0
-      '@iconify/utils': 1.0.19
-      debug: 4.3.2
+      '@iconify/utils': 1.0.20
+      debug: 4.3.3
       kolorist: 1.5.0
       local-pkg: 0.4.0
       unplugin: 0.2.21_vite@2.6.14
@@ -3165,12 +3165,12 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-windicss/1.5.3_vite@2.6.14:
-    resolution: {integrity: sha512-t9iu+fs1egguTK/+RdV/UCp11R69EQhVvvGcrNhCMt43DQF/RU19gHZUXB8wspm0V02Bz+rSmtqy/h3laJ9Z5Q==}
+  /vite-plugin-windicss/1.5.4_vite@2.6.14:
+    resolution: {integrity: sha512-bG2IERA9J50MGq1QEbGC/PjrkVIaq2b3LilCeidyIpmFV/4aR14/wGDe83SobF+8coIeJ+23S0uDK/fXX5X0pQ==}
     peerDependencies:
       vite: ^2.0.1
     dependencies:
-      '@windicss/plugin-utils': 1.5.3
+      '@windicss/plugin-utils': 1.5.4
       debug: 4.3.3
       kolorist: 1.5.0
       vite: 2.6.14

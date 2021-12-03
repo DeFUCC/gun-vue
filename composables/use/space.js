@@ -1,12 +1,13 @@
-import { gun, SEA } from "./db";
+import { gun, SEA } from "./gun";
 import { reactive } from "vue";
 
-export function useSpace(title) {
-  const db = gun.get(title);
-  const space = reactive({
-    title,
-    db,
-  });
+export let db;
+export const space = reactive({
+  title,
+  db,
+});
 
+export function useSpace(title) {
+  space.db = gun.get(title);
   return space;
 }

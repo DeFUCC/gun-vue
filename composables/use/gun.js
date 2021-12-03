@@ -10,18 +10,7 @@ import "gun/nts";
 
 export const peers = ["https://etogun.glitch.me/gun"];
 export const gun = Gun({ peers, localStorage: false });
+export const gun2 = Gun({ peers, localStorage: false });
 
-export let db;
 export { SEA, Gun };
 export const soul = Gun.node.soul;
-
-export function useDb(path = "gunvue", debug = false) {
-  db = gun.get(path);
-
-  if (debug) {
-    window.gun = gun; //for debugging
-    window.sea = SEA; //for debugging
-  }
-
-  return { gun, db };
-}

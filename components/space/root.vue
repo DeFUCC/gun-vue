@@ -28,7 +28,7 @@ space.db.get("players")
 
 async function join() {
   if (!account.is) return
-  let pair = account.user()._.sea
+  let pair = account.gun()._.sea
   my.num = players.next % players.max;
 
   const myRec = space.db.get("players").get(my.num);

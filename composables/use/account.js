@@ -1,4 +1,4 @@
-import { gun, SEA } from "./db";
+import { gun, SEA } from "./gun";
 import { reactive, computed } from "vue";
 
 export const account = reactive({
@@ -11,7 +11,7 @@ export const account = reactive({
   pulse: 0,
   pulser: null,
   blink: false,
-  user() {
+  gun() {
     return gun.user();
   },
 

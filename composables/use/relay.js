@@ -1,4 +1,4 @@
-import { gun, peers } from "./db";
+import { gun, peers } from "./gun";
 import { reactive, watch } from "vue";
 import ms from "ms";
 
