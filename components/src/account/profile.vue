@@ -1,6 +1,6 @@
 <script setup>
 import { useAccount, color } from '@gun-vue/composables'
-import pulseDot from '../pulse/dot.vue'
+import pulseDot from '../util/pulse.vue'
 const account = useAccount()
 </script>
 

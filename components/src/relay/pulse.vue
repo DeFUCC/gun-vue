@@ -1,7 +1,7 @@
 <script setup>
 import { useRelay } from '@gun-vue/composables'
 
-import pulseDot from '../pulse/dot.vue'
+import pulseDot from '../util/pulse.vue'
 const relay = useRelay()
 const angle = computed(() => {
   return ((relay.pulse / 1000) % 60).toFixed(2)
