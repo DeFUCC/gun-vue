@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.1.5
+
+### Patch Changes
+
+- account controls are growing. Now we can have passwords and export keys in multiple ways. Logging in to a certain pair is next.
+
 ## 0.1.4
 
 ### Patch Changes

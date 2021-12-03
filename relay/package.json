@@ -1,7 +1,7 @@
 {
   "name": "@gun-vue/relay",
   "desciprion": "A no store gun peer relay for free tier hosting",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "server.js",
   "scripts": {
     "start": "node start.js"
