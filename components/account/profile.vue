@@ -12,7 +12,10 @@ const account = useAccount()
     ) 
     pulse-dot(:blink="account.blink")
     .ml-2.text-xs {{ account.pub }}
-  .text-xs.p-4 Profile: {{ account.profile }}
+  .flex.flex-col 
+    .p-2.flex(v-for="(d,k) in account.profile" :key="d")
+      .mr-2.font-bold {{ k }}
+      .text-md {{ d }}
   .flex.flex-wrap
     button.button(@click="account.auth()" v-if="!account.is") Auth
     button.button(@click="account.logout()" v-else) Logout

@@ -6,6 +6,8 @@
     .font-bold.text-3xl @gun-vue demo
     relay-pulse.card
     account-profile.card
+    account-credentials.card
+    room-profile.card
     space-root.card
 </template>
 

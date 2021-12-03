@@ -1,19 +1,17 @@
 import { gun, SEA } from "./gun";
 import { reactive, computed } from "vue";
+import { downloadText } from "./file";
 
 export const account = reactive({
   initiated: false,
   is: null,
-  pub: computed(() => account.is?.pub),
-  profile: {},
-  pair: null,
-  name: null,
+  pub: computed(() => account?.is?.pub),
+  name: "",
+  profile: { name: "no name" },
   pulse: 0,
   pulser: null,
   blink: false,
-  gun() {
-    return gun.user();
-  },
+  user: gun.user(),
 
   init() {
     if (account.initiated) return;
@@ -36,9 +34,8 @@ export const account = reactive({
       .on((d) => {
         account.blink = !account.blink;
         account.pulse = d;
-      });
-    gun
-      .user()
+      })
+      .back()
       .get("profile")
       .map()
       .on((data, key) => {
@@ -46,6 +43,17 @@ export const account = reactive({
       });
   },
 
+  updateProfile(field, data) {
+    if (data !== undefined) {
+      gun.user().get("profile").get(field).put(data);
+    }
+  },
+
+  find(alias, cb) {
+    gun.get("~@" + alias).once((val) => {
+      cb(val);
+    });
+  },
   logout() {
     let is = !!account.is?.pub;
     account.initiated = false;
@@ -83,20 +91,22 @@ export const account = reactive({
     if (!soul) return;
     return soul.slice(1, 88) == user.pub;
   },
+
+  downloadPair() {
+    let pair = gun.user()._.sea;
+    pair = JSON.stringify(pair);
+    downloadText(pair, "application/json", account.profile.name + ".json");
+  },
 });
 
 export function useAccount() {
-  watch(account.profile, (profile) => {
-    for (let record in profile) {
-      gun.user().get("profile").get(record).put(profile[record]);
-    }
-  });
-
   gun.user().recall({ sessionStorage: true }, () => {
+    console.log("user recalled");
     account.init();
   });
 
   gun.on("auth", () => {
+    console.log("user authenticated");
     account.init();
   });
 

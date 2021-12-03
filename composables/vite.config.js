@@ -7,6 +7,7 @@ module.exports = {
       entry: path.resolve(__dirname, "index.js"),
       name: "gun-vue-composables",
     },
+    sourcemap: "inline",
     rollupOptions: {
       external: ["vue"],
       output: {

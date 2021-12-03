@@ -3,8 +3,9 @@ import { reactive } from "vue";
 
 export const room = reactive({
   title: "",
+  author: "",
   profile: {},
-  team: [],
+  guests: [],
 });
 
 export function useRoom(title) {

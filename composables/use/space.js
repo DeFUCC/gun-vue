@@ -3,7 +3,7 @@ import { reactive } from "vue";
 
 export let db;
 export const space = reactive({
-  title,
+  title: "",
   db,
 });
 
