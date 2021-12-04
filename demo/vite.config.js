@@ -17,11 +17,11 @@ export default defineConfig({
   plugins: [
     vue(),
     Pages({
-      dirs: "pages",
+      dirs: "src/pages",
     }),
     WindiCSS({
       scan: {
-        dirs: ["../components/src", "./"],
+        dirs: ["../components/src", "src"],
         include: ["index.md"],
         exclude: ["**/examples/**/*", "/node_modules/"],
         fileExtensions: ["vue", "ts", "md"],
@@ -44,7 +44,7 @@ export default defineConfig({
       /* options */
     }),
     Components({
-      dirs: ["./components", "../../components/src"],
+      dirs: ["src/components", "../components/src"],
       extensions: ["vue"],
       directoryAsNamespace: true,
       globalNamespaces: ["global"],
@@ -60,12 +60,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "/"),
-      "@styles": path.resolve(__dirname, "styles"),
-      "@assets": path.resolve(__dirname, "assets"),
-      "@components": path.resolve(__dirname, "components"),
-      "@composables": path.resolve(__dirname, "../../composables/index"),
-      "@use": path.resolve(__dirname, "use"),
-      "@store": path.resolve(__dirname, "store"),
+      "@components": path.resolve(__dirname, "src/components"),
+      "@composables": path.resolve(__dirname, "../composables/index"),
     },
   },
 });

@@ -13,7 +13,7 @@ function show(option) {
 </script>
 
 <template lang='pug'>
-.flex.flex-col.items-stretch
+.flex.flex-col.items-stretch(v-if="account.is")
   .flex.flex-wrap.p-2.items-center
     button(@click="show('pass')" :class="{ active: current == 'pass' }")
       la-asterisk

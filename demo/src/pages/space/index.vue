@@ -3,5 +3,5 @@
 </script>
 
 <template lang='pug'>
-space-root
+space-plane
 </template>

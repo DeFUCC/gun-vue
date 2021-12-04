@@ -8,10 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview",
-    "deploy": "sh deploy.sh"
+    "build": "vite build"
   },
   "dependencies": {
     "@gun-vue/composables": "workspace:^",

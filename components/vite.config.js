@@ -15,7 +15,7 @@ export default defineConfig({
       /* options */
     }),
     Components({
-      dirs: ["./"],
+      dirs: ["src"],
       extensions: ["vue"],
       directoryAsNamespace: true,
       globalNamespaces: ["global"],
@@ -29,13 +29,20 @@ export default defineConfig({
     }),
     WindiCSS({
       scan: {
-        dirs: ["data", "user", "./"],
+        dirs: ["src"],
         include: ["index.md"],
         exclude: ["**/examples/**/*", "/node_modules/"],
         fileExtensions: ["vue", "ts", "md"],
       },
     }),
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "/"),
+      "@components": path.resolve(__dirname, "src"),
+      "@composables": path.resolve(__dirname, "../composables/index"),
+    },
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, "/src/index.js"),

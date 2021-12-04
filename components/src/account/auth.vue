@@ -26,7 +26,7 @@ const account = useAccount()
 </script>
 
 <template lang='pug'>
-.flex.flex-col
+.flex.flex-col(v-if="!account.is")
   .flex.flex-wrap.p-2.items-center(v-if="!account.is")
     button(@click="show('pass')" :class="{ active: current == 'pass' }")
       la-asterisk
@@ -45,5 +45,4 @@ const account = useAccount()
       key="text"
       )
     button.button(@click="account.auth()" v-if="!account.is") Auth
-    button.button(@click="account.logout()" v-else) Logout
 </template>

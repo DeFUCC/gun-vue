@@ -2,8 +2,7 @@ import { createApp } from "vue";
 import App from "./app.vue";
 
 import "virtual:windi.css";
-import "@styles/index.css";
-import "@gun-vue/components/dist/style.css";
+import "./styles/index.css";
 
 import { createRouter, createWebHashHistory } from "vue-router";
 import routes from "~pages";

@@ -11,6 +11,7 @@ export const account = reactive({
   pulse: 0,
   pulser: null,
   blink: false,
+  space: gun.user().get("space"),
   user: gun.user(),
 
   init() {
@@ -102,13 +103,13 @@ export const account = reactive({
 
 export function useAccount() {
   gun.user().recall({ sessionStorage: true }, () => {
-    console.log("user recalled");
+    console.log("user was recalled");
     account.init();
   });
 
   gun.on("auth", () => {
-    console.log("user authenticated");
     account.init();
+    console.log("user authenticated");
   });
 
   return account;

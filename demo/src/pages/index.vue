@@ -6,11 +6,8 @@
 .p-4 
     .font-bold.text-3xl @gun-vue demo
     relay-pulse.card
-    account-auth.card
-    account-profile.card
-    account-credentials.card
-    room-profile.card
-    space-root.card
+    account-home.card
+    space-plane.card
 </template>
 
 <style scoped>
