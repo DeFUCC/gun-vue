@@ -1,6 +1,5 @@
 <script setup>
-import { useSpace, useSvgMouse, account } from '@gun-vue/composables'
-import { color } from '@gun-vue/composables'
+import { useSpace, useSvgMouse, account, color } from '@composables'
 
 const space = useSpace('testSpace')
 

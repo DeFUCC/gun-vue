@@ -1,5 +1,5 @@
 <script setup>
-import { account } from '@gun-vue/composables'
+import { account } from '@composables'
 const current = ref('pass')
 
 function show(option) {

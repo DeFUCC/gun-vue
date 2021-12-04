@@ -1,5 +1,5 @@
 <script setup>
-import { usePass } from '@gun-vue/composables'
+import { usePass } from '@composables'
 const { pass } = usePass()
 
 </script>

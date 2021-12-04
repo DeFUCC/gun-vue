@@ -69,6 +69,7 @@ export const account = reactive({
   },
 
   async auth(pair) {
+    console.log(pair);
     if (!pair || !pair.pub || !pair.priv) {
       pair = await SEA.pair();
       console.log("new account created");

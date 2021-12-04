@@ -1,5 +1,5 @@
 <script setup>
-import { useAccount, color } from '@gun-vue/composables'
+import { useAccount, color } from '@composables'
 import pulseDot from '../util/pulse.vue'
 const account = useAccount()
 </script>
@@ -16,7 +16,4 @@ const account = useAccount()
     .p-2.flex(v-for="(d,k) in account.profile" :key="d")
       .mr-2.font-bold {{ k }}
       .text-md {{ d }}
-  .flex.flex-wrap
-    button.button(@click="account.auth()" v-if="!account.is") Auth
-    button.button(@click="account.logout()" v-else) Logout
 </template>

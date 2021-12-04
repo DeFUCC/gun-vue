@@ -63,7 +63,7 @@ export default defineConfig({
       "@styles": path.resolve(__dirname, "styles"),
       "@assets": path.resolve(__dirname, "assets"),
       "@components": path.resolve(__dirname, "components"),
-      "@composables": path.resolve(__dirname, "../../composables/use"),
+      "@composables": path.resolve(__dirname, "../../composables/index"),
       "@use": path.resolve(__dirname, "use"),
       "@store": path.resolve(__dirname, "store"),
     },

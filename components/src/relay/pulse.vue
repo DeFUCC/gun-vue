@@ -1,5 +1,5 @@
 <script setup>
-import { useRelay } from '@gun-vue/composables'
+import { useRelay } from '@composables'
 
 import pulseDot from '../util/pulse.vue'
 const relay = useRelay()

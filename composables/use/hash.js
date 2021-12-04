@@ -65,3 +65,17 @@ function decodeChar(c) {
       return "/";
   }
 }
+
+export function safeJSONParse(input, def) {
+  // Convert null to empty object
+  if (!input) {
+    return def || {};
+  } else if (Object.prototype.toString.call(input) === "[object Object]") {
+    return input;
+  }
+  try {
+    return JSON.parse(input);
+  } catch (e) {
+    return def || {};
+  }
+}

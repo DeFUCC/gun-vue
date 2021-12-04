@@ -1,5 +1,4 @@
 <script setup>
-import { userAvatar } from '@gun-vue/components'
 
 const props = defineProps({
   pub: String,
