@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.1.6
+
+### Patch Changes
+
+- The space plane is just a collection of links to actual users accounts, where their position is stored. And the collection is curated by anyone for now – you delete non active players when you join the space. This should be revisited, along with the age of an account (total and relative to the space).
+
 ## 0.1.5
 
 ### Patch Changes
