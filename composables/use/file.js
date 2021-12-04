@@ -1,3 +1,10 @@
+/**
+ * A method to download any text as a file
+ * @param {String} text - the text to download
+ * @param {String} fileType - the file type like "application/json"
+ * @param {String} fileName - the full file name like "myKey.json"
+ */
+
 export function downloadText(text, fileType, fileName) {
   var blob = new Blob([text], { type: fileType });
 
@@ -20,6 +27,11 @@ import { reactive, computed } from "vue";
 // to be upgraded with this code https://github.com/powerbot15/image-compressor/blob/master/image-compressor.js
 // https://github.com/dhhb/vue-base64-file-upload
 // https://zocada.com/compress-resize-images-javascript-browser/
+
+/**
+ *
+ * @returns {{Reactive,Function}} - The reactive state of the upload and a handleChange function to put it to @change="handleChange" of the file input
+ */
 
 export function useFileUpload() {
   const status = {
