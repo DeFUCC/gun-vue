@@ -6,9 +6,9 @@
     "node": "16.x"
   },
   "scripts": {
-    "dev": "vite --host",
-    "build": "vite build --base=./",
-    "preview": "vite preview --host",
+    "dev": "vite src --host",
+    "build": "vite  build src --base=./",
+    "preview": "vite src preview --host",
     "deploy": "sh deploy.sh"
   },
   "dependencies": {

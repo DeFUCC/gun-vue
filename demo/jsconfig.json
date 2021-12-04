@@ -16,12 +16,13 @@
 		"baseUrl": "./",
 		"paths": {
 			"@/*": ["./*"],
-			"@styles/*": ["./styles/*"],
-			"@assets/*": ["./assets/*"],
-			"@components/*": ["./components/*"],
-			"@use/*": ["./use/*"],
-			"@store/*": ["./store/*"],
+			"@styles/*": ["./src/styles/*"],
+			"@assets/*": ["./src/assets/*"],
+			"@components/*": ["./src/components/*"],
+			"@composables": ["../src/composables/use/*"],
+			"@use/*": ["./src/use/*"],
+			"@store/*": ["./src/store/*"],
 		}
 	},
-	"include": ["./", "../composables/use/mouse.js"]
+	"include": ["./", "../composables/*"]
 }

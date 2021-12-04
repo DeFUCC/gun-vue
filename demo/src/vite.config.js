@@ -21,7 +21,7 @@ export default defineConfig({
     }),
     WindiCSS({
       scan: {
-        dirs: ["../components/src", "components", "pages", "styles"],
+        dirs: ["../components/src", "./"],
         include: ["index.md"],
         exclude: ["**/examples/**/*", "/node_modules/"],
         fileExtensions: ["vue", "ts", "md"],
@@ -44,7 +44,7 @@ export default defineConfig({
       /* options */
     }),
     Components({
-      dirs: ["components", "../components/src"],
+      dirs: ["./components", "../../components/src"],
       extensions: ["vue"],
       directoryAsNamespace: true,
       globalNamespaces: ["global"],
@@ -63,6 +63,7 @@ export default defineConfig({
       "@styles": path.resolve(__dirname, "styles"),
       "@assets": path.resolve(__dirname, "assets"),
       "@components": path.resolve(__dirname, "components"),
+      "@composables": path.resolve(__dirname, "../../composables/use"),
       "@use": path.resolve(__dirname, "use"),
       "@store": path.resolve(__dirname, "store"),
     },
