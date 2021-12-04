@@ -1,3 +1,5 @@
+/** @module Files  */
+
 /**
  * A method to download any text as a file
  * @param {String} text - the text to download

@@ -14,7 +14,8 @@
     "deploy": "cd demo && pnpm run deploy",
     "ch": "pnpm changeset",
     "v": "pnpm changeset version",
-    "publish": "pnpm changeset publish"
+    "publish": "pnpm changeset publish",
+    "doc": "jsdoc -c jsdoc.json"
   },
   "devDependencies": {
     "@changesets/cli": "^2.18.1"
