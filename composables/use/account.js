@@ -5,10 +5,9 @@
 
 import { gun, SEA } from "./gun";
 import { reactive, computed } from "vue";
-import { downloadText } from "./file";
 
 /**
- * @typedef {Reactive} account - A reactive object to handle current user account
+ * @typedef {Reactive} Account - A reactive object to handle current user account
  * @property {Boolean} initiated - used to determine if we already initiated the account
  * @property {Object} is - the reactive gun.user().is property, containing the public keys of a logged in user
  * @property {String} pub - user's public key computed from the `account.is.pub`
@@ -30,96 +29,64 @@ export const account = reactive({
   blink: false,
   space: gun.user().get("space"),
   user: gun.user(),
-
-  init() {
-    if (account.initiated) return;
-    account.is = gun.user().is;
-    if (account.pulser) {
-      clearInterval(account.pulser);
-    }
-    account.pulser = setInterval(() => {
-      gun.user().get("pulse").put(Date.now());
-    }, 1000);
-
-    loadProfile();
-    account.initiated = true;
-  },
-
-  updateProfile(field, data) {
-    if (field && data !== undefined) {
-      gun.user().get("profile").get(field).put(data);
-    }
-  },
-
-  find(alias, cb) {
-    gun.get("~@" + alias).once((val) => {
-      cb(val);
-    });
-  },
-  logout() {
-    let is = !!account.is?.pub;
-    account.initiated = false;
-    clearInterval(account.pulser);
-    gun.user().leave();
-    setTimeout(() => {
-      if (is && !gun.user()._?.sea) {
-        account.is = null;
-        account.profile = {};
-        console.info("User logged out");
-      }
-    }, 500);
-  },
-
-  async auth(pair) {
-    console.log(pair);
-    if (!pair || !pair.pub || !pair.priv) {
-      pair = await SEA.pair();
-      console.log("new account created");
-    }
-    gun.user().auth(pair, async () => {
-      console.log("account is authenticated");
-    });
-  },
-
-  async hasPass(pub) {
-    return await gun.get(`~${pub}`).get("pass").get("pair").then();
-  },
-
-  async logWithPass(pub, password) {
-    let encPair = await gun.get(`~${pub}`).get("pass").get("pair").then();
-    let pair = await SEA.decrypt(encPair, password);
-  },
-
-  isMine(soul) {
-    if (!soul) return;
-    return soul.slice(1, 88) == user.pub;
-  },
 });
 
+/**
+ * Gives access to the gun user account
+ * @typedef {Object} useAccount - User access system
+ * @property {Account} account - the reactive user object
+ * @property {function} auth - log in
+ * @property {Function} leave - log out
+ */
+
+/**
+ * Account system access
+ * @returns {useAccount}
+ */
 export function useAccount() {
-  gun.user().recall({ sessionStorage: true }, () => {
-    console.log("user was recalled");
-    account.init();
-  });
+  if (!account.is) {
+    gun.user().recall({ sessionStorage: true }, () => {
+      console.log("user was recalled");
+      init();
+    });
 
-  gun.on("auth", () => {
-    account.init();
-    console.log("user authenticated");
-  });
+    gun.on("auth", () => {
+      init();
+      console.log("user authenticated");
+    });
+  }
 
-  return account;
+  return { account, auth, leave };
 }
 
 /**
- * Download full keypair as a json file
- * @param {Object} pair - a SEA keypair. If not set – the current user keypair is downloaded
+ * Authenticate with a SEA key pair
+ * @param {Object} pair
  */
-export function downloadUserPair(pair) {
-  if (!pair || !pair?.pub) {
-    pair = gun.user()._.sea;
+
+async function auth(pair) {
+  console.log(pair);
+  if (!pair || !pair.pub || !pair.priv) {
+    pair = await SEA.pair();
+    console.log("new account created");
   }
-  pair = JSON.stringify(pair);
-  downloadText(pair, "application/json", account.profile.name + ".json");
+  gun.user().auth(pair, async () => {
+    console.log("account is authenticated");
+  });
+}
+
+function init() {
+  if (account.initiated) return;
+  account.is = gun.user().is;
+  if (account.pulser) {
+    clearInterval(account.pulser);
+  }
+  account.pulser = setInterval(() => {
+    gun.user().get("pulse").put(Date.now());
+  }, 1000);
+
+  loadProfile();
+  account.initiated = true;
 }
 
 function loadProfile() {
@@ -136,4 +103,46 @@ function loadProfile() {
     .on((data, key) => {
       account.profile[key] = data;
     });
+}
+
+function updateProfile(field, data) {
+  if (field && data !== undefined) {
+    gun.user().get("profile").get(field).put(data);
+  }
+}
+
+/**
+ * Log out the user and rest the account object
+ */
+
+function leave() {
+  let is = !!account.is?.pub;
+  account.initiated = false;
+  clearInterval(account.pulser);
+  gun.user().leave();
+  setTimeout(() => {
+    if (is && !gun.user()._?.sea) {
+      account.is = null;
+      account.profile = {};
+      console.info("User logged out");
+    }
+  }, 500);
+}
+
+export async function findByAlias(alias) {
+  return await gun.get("~@" + alias).then();
+}
+
+async function hasPass(pub) {
+  return await gun.get(`~${pub}`).get("pass").get("pair").then();
+}
+
+async function getFromPass(pub, password) {
+  let encPair = await gun.get(`~${pub}`).get("pass").get("pair").then();
+  return await SEA.decrypt(encPair, password);
+}
+
+function isMine(soul) {
+  if (!soul) return;
+  return soul.slice(1, 88) == account.pub;
 }

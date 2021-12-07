@@ -26,6 +26,17 @@ export function downloadText(text, fileType, fileName) {
   }, 1500);
 }
 
+/**
+ * Download full keypair as a json file
+ * @param {Object} pair - a SEA keypair. If not set – the current user keypair is downloaded
+ */
+export function downloadJSON(pair) {
+  console.log(pair, typeof pair);
+  if (typeof pair != "object") return;
+  pair = JSON.stringify(pair);
+  downloadText(pair, "application/json", "account.json");
+}
+
 import { reactive, computed } from "vue";
 
 //// https://github.com/itsabdessalam/encodeit/blob/develop/src/components/FileUploader.vue

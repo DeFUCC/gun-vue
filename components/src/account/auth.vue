@@ -1,5 +1,5 @@
 <script setup>
-import { useAccount, safeJSONParse, downloadUserPair } from '@composables'
+import { useAccount, safeJSONParse } from '@composables'
 
 const current = ref('pass')
 const pair = ref()
@@ -15,13 +15,13 @@ function show(option) {
 watch(pair, (p) => {
   let obj = safeJSONParse(p)
   if (obj.pub && obj.priv) {
-    account.auth(obj)
+    auth(obj)
   } else {
     console.log('No valid pair')
   }
 })
 
-const account = useAccount()
+const { account, auth } = useAccount()
 
 </script>
 
@@ -34,7 +34,7 @@ const account = useAccount()
       la-key
     button(@click="show('qr')")
       la-qrcode
-    button(@click="downloadUserPair(); current = null")
+    button(@click="current = null")
       la-file-code
   .flex.flex-wrap
     textarea.p-2.text-sm.flex-1(
@@ -44,5 +44,5 @@ const account = useAccount()
       v-model="pair",
       key="text"
       )
-    button.button(@click="account.auth()" v-if="!account.is") Auth
+    button.button(@click="auth()" v-if="!account.is") Auth
 </template>

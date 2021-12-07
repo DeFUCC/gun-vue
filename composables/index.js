@@ -8,3 +8,4 @@ export * from "./use/space";
 export * from "./use/mouse";
 export * from "./use/color";
 export * from "./use/room";
+export * from "./use/file";
