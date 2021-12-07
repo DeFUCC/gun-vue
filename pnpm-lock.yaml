@@ -60,6 +60,7 @@ importers:
     specifiers:
       '@gun-vue/components': workspace:^
       '@gun-vue/composables': workspace:^
+      '@gun-vue/relay': workspace:^
       '@iconify/json': ^2.0.6
       '@vitejs/plugin-vue': ^1.10.1
       '@vueuse/core': 7.1.2
@@ -77,6 +78,7 @@ importers:
     dependencies:
       '@gun-vue/components': link:../components
       '@gun-vue/composables': link:../composables
+      '@gun-vue/relay': link:../relay
       '@vueuse/core': 7.1.2_vue@3.2.23
       ola: 1.2.1
       vue: 3.2.23
