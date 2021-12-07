@@ -5,9 +5,12 @@
     "exclude": ["node_modules"],
     "excludePattern": ".*/node_modules.*"
   },
+  "plugins": ["plugins/markdown"],
   "recurseDepth": 10,
   "opts": {
-    "destination": "./docs/",
-    "recurse": true
+    "destination": "./demo/public/docs/",
+    "recurse": true,
+    "readme": "README.md",
+    "template": "node_modules/minami"
   }
 }

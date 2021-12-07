@@ -1,5 +1,5 @@
 <script setup>
-import { account } from '@composables'
+import { account, downloadUserPair } from '@composables'
 const current = ref('pass')
 
 function show(option) {
@@ -9,7 +9,6 @@ function show(option) {
     current.value = null;
   }
 }
-
 </script>
 
 <template lang='pug'>
@@ -21,7 +20,7 @@ function show(option) {
       la-key
     button(@click="show('qr')")
       la-qrcode
-    button(@click="account.downloadPair(); current = null")
+    button(@click="downloadUserPair(); current = null")
       la-file-code
   .flex.w-full.justify-center.mt-4(v-if="current")
     transition-group(name="fade")

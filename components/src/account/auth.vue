@@ -1,5 +1,5 @@
 <script setup>
-import { useAccount, safeJSONParse } from '@composables'
+import { useAccount, safeJSONParse, downloadUserPair } from '@composables'
 
 const current = ref('pass')
 const pair = ref()
@@ -34,7 +34,7 @@ const account = useAccount()
       la-key
     button(@click="show('qr')")
       la-qrcode
-    button(@click="account.downloadPair(); current = null")
+    button(@click="downloadUserPair(); current = null")
       la-file-code
   .flex.flex-wrap
     textarea.p-2.text-sm.flex-1(

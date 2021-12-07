@@ -14,6 +14,7 @@ export default defineConfig({
   server: {
     port: 3040,
   },
+  publicDir: "public",
   plugins: [
     vue(),
     Pages({

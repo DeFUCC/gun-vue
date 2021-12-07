@@ -1,4 +1,7 @@
-/** @module Files  */
+/**
+ * File handling functions
+ * @module File
+ * */
 
 /**
  * A method to download any text as a file

@@ -18,6 +18,8 @@
     "doc": "jsdoc -c jsdoc.json"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.18.1"
+    "@changesets/cli": "^2.18.1",
+    "jsdoc": "^3.6.7",
+    "minami": "^1.2.3"
   }
 }
