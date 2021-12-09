@@ -16,4 +16,4 @@ export { default as UserAvatar } from "./user/avatar.vue";
 export { default as UtilQr } from "./util/qr.vue";
 export { default as UtilPulse } from "./util/pulse.vue";
 
-export * as use from "@gun-vue/composables";
+export * as use from "@composables";

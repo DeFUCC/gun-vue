@@ -19,7 +19,7 @@ import ms from "ms";
  */
 
 const relay = reactive({
-  host,
+  host: new URL(peers[0]).hostname,
   status: "offline",
   started: 0,
   pulse: 0,
@@ -34,21 +34,23 @@ const relay = reactive({
  * @param {URL} host
  * @returns {Relay}
  */
-export function useRelay(host = new URL(peers[0]).hostname) {
-  watch(
-    () => relay.pulse,
-    (next, prev) => {
-      relay.blink = !relay.blink;
-      relay.lag = next - prev - 500;
-    }
-  );
+export function useRelay() {
+  if (relay.pulse == 0) {
+    gun
+      .get(relay.host)
+      .map()
+      .on((d, k) => {
+        relay[k] = d;
+      });
 
-  gun
-    .get(host)
-    .map()
-    .on((d, k) => {
-      relay[k] = d;
-    });
+    watch(
+      () => relay.pulse,
+      (next, prev) => {
+        relay.blink = !relay.blink;
+        relay.lag = next - prev - 500;
+      }
+    );
+  }
 
   return relay;
 }

@@ -1,3 +1,3 @@
 var relay = require("./server");
 
-relay.init();
+relay.init("localhost", undefined, "../demo/dist");

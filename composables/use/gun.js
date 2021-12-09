@@ -4,7 +4,6 @@
  */
 
 import Gun from "gun/gun";
-import SEA from "gun/sea.js";
 import "gun/lib/then";
 import "gun/lib/radix";
 import "gun/lib/radisk";

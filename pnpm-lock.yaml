@@ -44,6 +44,7 @@ importers:
       '@vueuse/core': 7.1.2
       color-hash: ^2.0.1
       gun: ^0.2020.1235
+      gun-util: ^0.0.17
       ms: ^2.1.3
       vite: ^2.7.1
       vue: ^3.2.24
@@ -51,6 +52,7 @@ importers:
       '@vueuse/core': 7.1.2_vue@3.2.24
       color-hash: 2.0.1
       gun: 0.2020.1235
+      gun-util: 0.0.17_gun@0.2020.1235
       ms: 2.1.3
       vue: 3.2.24
     devDependencies:
@@ -440,6 +442,10 @@ packages:
     resolution: {integrity: sha512-t4YHCgtD+ERvH0FyxvNlYwJ2ezhqw7t+Ygh4urQ7dJER8i185JPv6oIM3ey5YQmGN6Zp9EMbpohkjZi9t3UxwA==}
     dev: false
     optional: true
+
+  /@types/lodash/4.14.178:
+    resolution: {integrity: sha512-0d5Wd09ItQWH1qFbEyQ7oTQ3GZrMfth5JkbN3EvTKLXcHLRDSXeLnlvlOn0wvxVIwK5o2M8JzP/OWz7T3NRsbw==}
+    dev: false
 
   /@types/minimist/1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
@@ -1632,6 +1638,17 @@ packages:
     resolution: {integrity: sha512-NsiDgUDyGGY+tUCZGVRY5Ezuv9gOChN7VrAf/oYaSw3NzFSJdwLMLXUYpsPU1urQrFHUrXLTOF3VedBH2tK0Og==}
     dev: false
 
+  /gun-util/0.0.17_gun@0.2020.1235:
+    resolution: {integrity: sha512-RG851+Lh+Ju+Wigir0h5Az/3tsNRSAvvCeIvRrvXvWv8vjfWDogNKxE86pWseMRe8ovl/zlVbO6BnsDLCB1HeQ==}
+    peerDependencies:
+      gun: '>=0.2019.930'
+    dependencies:
+      '@types/lodash': 4.14.178
+      gun: 0.2020.1235
+      lodash: 4.17.21
+      moment: 2.29.1
+    dev: false
+
   /gun/0.2020.1235:
     resolution: {integrity: sha512-aba6s0X/MCCOByt0T3VrMzMMUEblfN2aLV2bAmIQWjkB7SKnm07zAZWigljwI69Rb5sOw7C1G116UyvCM2p9kA==}
     engines: {node: '>=0.8.4'}
@@ -2099,7 +2116,6 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /lru-cache/4.1.5:
     resolution: {integrity: sha512-sWZlbEP2OsHNkXrMl5GYk/jKk70MBng6UU4YI/qGDYbgf6YbP4EvmqISbXCoJiRKs+1bSpFHVgQxvJ17F2li5g==}
@@ -2274,6 +2290,10 @@ packages:
     dependencies:
       import-meta-resolve: 1.1.1
     dev: true
+
+  /moment/2.29.1:
+    resolution: {integrity: sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==}
+    dev: false
 
   /ms/2.0.0:
     resolution: {integrity: sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=}

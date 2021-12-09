@@ -3,5 +3,6 @@
 </script>
 
 <template lang='pug'>
-account-home
+.flex.flex-col
+  date-tree
 </template>

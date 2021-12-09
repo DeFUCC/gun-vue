@@ -7,7 +7,6 @@
     .font-bold.text-3xl @gun-vue demo
     relay-pulse.card
     account-home.card
-    space-plane.card
 </template>
 
 <style scoped>

@@ -10,7 +10,7 @@
     "lib": "cd composables && pnpm run build",
     "comp": "cd components && pnpm run build",
     "demo": "cd demo && pnpm run build",
-    "start": "cd demo && pnpm run start",
+    "start": "cd relay && pnpm run start",
     "deploy": "cd demo && pnpm run deploy",
     "ch": "pnpm changeset",
     "v": "pnpm changeset version",

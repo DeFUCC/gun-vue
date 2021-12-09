@@ -1,7 +1,19 @@
+/**
+ * Working with hashes
+ * @module Hash
+ */
+
 import { gun, SEA } from "./gun";
 
-export async function getShortHash(text) {
-  return await SEA.work(text, appPath, null, { name: "SHA-1", encode: "hex" });
+/**
+ * Calculate a hash for any string data
+ * @async
+ * @param {String} text
+ * @param {String} seed
+ * @returns {String} The hex encoded SHA-1 hash
+ */
+export async function getShortHash(text, seed) {
+  return await SEA.work(text, seed, null, { name: "SHA-1", encode: "hex" });
 }
 
 export async function hashObj(obj) {
