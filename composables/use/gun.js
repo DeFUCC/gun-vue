@@ -30,11 +30,11 @@ export { default as SEA } from "gun/sea.js";
  * A wrapper for `Gun.node.soul`
  * @function soul
  */
-export const soul = Gun.node.soul;
+export const soul = Gun?.node?.soul;
 
 /**
  * **Generate a random UUID**
  * A wrapper for `Gun.text.random`
  * @function genUUID
  */
-export const genUUID = Gun.text.random;
+export const genUUID = Gun?.text?.random;

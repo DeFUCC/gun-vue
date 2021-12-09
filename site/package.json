@@ -1,0 +1,32 @@
+{
+  "name": "@gun-vue/site",
+  "version": "0.0.1",
+  "description": "vitepress demo web-site",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "serve": "vitepress serve --port 5500"
+  },
+  "keywords": [
+    "gunjs",
+    "vue3",
+    "compositionApi"
+  ],
+  "author": "davay42",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^3.2.23"
+  },
+  "devDependencies": {
+    "esbuild-register": "^3.2.0",
+    "unplugin-auto-import": "^0.5.1",
+    "unplugin-icons": "^0.12.22",
+    "unplugin-vue-components": "^0.17.6",
+    "vitepress": "0.20.1",
+    "pug": "3.0.2",
+    "vite-plugin-windicss": "^1.5.4",
+    "vitepress-tags": "^0.4.0",
+    "windicss": "3.2.1"
+  }
+}
