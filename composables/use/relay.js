@@ -29,6 +29,14 @@ const relay = reactive({
   blink: false,
 });
 
+watch(
+  () => relay.pulse,
+  (next, prev) => {
+    relay.blink = !relay.blink;
+    relay.lag = next - prev - 500;
+  }
+);
+
 /**
  * Peer server status monitor
  * @param {URL} host
@@ -44,14 +52,6 @@ export function useRelay() {
       .on((d, k) => {
         relay[k] = d;
       });
-
-    watch(
-      () => relay.pulse,
-      (next, prev) => {
-        relay.blink = !relay.blink;
-        relay.lag = next - prev - 500;
-      }
-    );
   }
 
   return relay;
