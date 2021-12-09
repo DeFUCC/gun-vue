@@ -1,6 +1,7 @@
 {
   "name": "@gun-vue/site",
-  "version": "0.0.1",
+  "private": true,
+  "version": "0.0.2",
   "description": "vitepress demo web-site",
   "main": "index.js",
   "scripts": {

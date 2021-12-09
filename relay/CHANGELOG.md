@@ -1,5 +1,11 @@
 # @gun-vue/relay
 
+## 0.1.6
+
+### Patch Changes
+
+- Momentum is building
+
 ## 0.1.5
 
 ### Patch Changes

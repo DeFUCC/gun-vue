@@ -1,5 +1,14 @@
 # @gun-vue/components
 
+## 0.1.9
+
+### Patch Changes
+
+- Momentum is building
+- Updated dependencies [4e91317]
+- Updated dependencies
+  - @gun-vue/composables@0.1.7
+
 ## 0.1.8
 
 ### Patch Changes

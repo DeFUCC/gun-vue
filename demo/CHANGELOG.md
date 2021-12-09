@@ -1,5 +1,16 @@
 # @gun-vue/demo
 
+## 0.1.12
+
+### Patch Changes
+
+- Momentum is building
+- Updated dependencies [4e91317]
+- Updated dependencies
+  - @gun-vue/composables@0.1.7
+  - @gun-vue/components@0.1.9
+  - @gun-vue/relay@0.1.6
+
 ## 0.1.11
 
 ### Patch Changes

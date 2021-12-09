@@ -1,5 +1,12 @@
 # @gun-vue/composables
 
+## 0.1.7
+
+### Patch Changes
+
+- 4e91317: JSDoc introduced. Good docs are the key to adoption
+- Momentum is building
+
 ## 0.1.6
 
 ### Patch Changes
