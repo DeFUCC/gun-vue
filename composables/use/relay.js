@@ -7,15 +7,15 @@ import { reactive, watch } from "vue";
 import ms from "ms";
 
 /**
- * @typedef {Reactive} Relay - Peer server status reactive object
- * @property {String} host - the current peer server URL
- * @property {String} status -
- * @property {Number} started - the timestamp of server started current session
- * @property {Number} pulse – last received timestamp
- * @property {Number} lag - drift of the timestamp in ms
- * @property {Number} diff - age of the session in ms
- * @property {String} age - age of the session in human readable format
- * @property {Boolean} blink - a Boolean toggled every time the new pulse comes to drive animations
+ * @typedef {reactive} Relay Peer server status reactive object
+ * @property {String} host the current peer server URL
+ * @property {String} status current connection status
+ * @property {Number} started the timestamp of server started current session
+ * @property {Number} pulse last received timestamp
+ * @property {Number} lag drift of the timestamp in ms
+ * @property {Number} diff age of the session in ms
+ * @property {String} age age of the session in human readable format
+ * @property {Boolean} blink a Boolean toggled every time the new pulse comes to drive animations
  */
 
 const relay = reactive({
@@ -33,6 +33,8 @@ const relay = reactive({
  * Peer server status monitor
  * @param {URL} host
  * @returns {Relay}
+ *
+ * @example const relay = useRelay()
  */
 export function useRelay() {
   if (relay.pulse == 0) {

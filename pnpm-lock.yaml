@@ -109,6 +109,7 @@ importers:
 
   site:
     specifiers:
+      '@gun-vue/components': workspace:^
       esbuild-register: ^3.2.0
       pug: 3.0.2
       unplugin-auto-import: ^0.5.1
@@ -120,6 +121,7 @@ importers:
       vue: ^3.2.23
       windicss: 3.2.1
     dependencies:
+      '@gun-vue/components': link:../components
       vue: 3.2.24
     devDependencies:
       esbuild-register: 3.2.0

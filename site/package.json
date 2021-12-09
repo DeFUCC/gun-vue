@@ -16,7 +16,8 @@
   "author": "davay42",
   "license": "MIT",
   "dependencies": {
-    "vue": "^3.2.23"
+    "vue": "^3.2.23",
+    "@gun-vue/components": "workspace:^"
   },
   "devDependencies": {
     "esbuild-register": "^3.2.0",
