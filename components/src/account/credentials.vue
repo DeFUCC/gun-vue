@@ -15,13 +15,13 @@ function show(option) {
 <template lang='pug'>
 .flex.flex-col.items-stretch(v-if="account.is")
   .flex.flex-wrap.p-2.items-center
-    button(@click="show('pass')" :class="{ active: current == 'pass' }")
+    button.button(@click="show('pass')" :class="{ active: current == 'pass' }")
       la-asterisk
-    button(@click="show('key')")
+    button.button(@click="show('key')")
       la-key
-    button(@click="show('qr')")
+    button.button(@click="show('qr')")
       la-qrcode
-    button(@click="downloadJSON(account.user._.sea); current = null")
+    button.button(@click="downloadJSON(account.user._.sea); current = null")
       la-file-code
   .flex.w-full.justify-center.mt-4(v-if="current")
     transition-group(name="fade")
@@ -36,10 +36,4 @@ function show(option) {
 </template>
 
 <style scoped>
-button {
-  @apply rounded-full p-2 m-2 bg-light-100 shadow;
-  &.active {
-    @apply bg-light-300;
-  }
-}
 </style>

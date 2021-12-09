@@ -23,7 +23,7 @@ export const account = reactive({
   initiated: false,
   is: null,
   pub: computed(() => account?.is?.pub),
-  profile: { name: "no name" },
+  profile: {},
   pulse: 0,
   pulser: null,
   blink: false,
@@ -65,7 +65,6 @@ export function useAccount() {
  */
 
 async function auth(pair) {
-  console.log(pair);
   if (!pair || !pair.pub || !pair.priv) {
     pair = await SEA.pair();
     console.log("new account created");

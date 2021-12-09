@@ -3,6 +3,8 @@
  * @module Crypto
  */
 
+// https://github.com/amark/gun/wiki/Snippets
+
 import { SEA, gun } from "./gun";
 
 /**

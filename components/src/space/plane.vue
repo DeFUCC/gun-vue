@@ -1,7 +1,7 @@
 <script setup>
 import { useSpace, useSvgMouse, account, color, soul } from '@composables'
 
-const gameName = 'alane'
+const gameName = 'plane'
 
 const plane = useSpace(gameName)
 

@@ -58,6 +58,18 @@ export default defineConfig({
       ],
     }),
   ],
+  build: {
+    target: "esnext",
+    brotliSize: false,
+    assetsInlineLimit: 100000000,
+    cssCodeSplit: false,
+    rollupOptions: {
+      inlineDynamicImports: true,
+      output: {
+        manualChunks: () => "everything.js",
+      },
+    },
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "/"),

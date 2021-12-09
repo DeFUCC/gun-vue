@@ -6,7 +6,6 @@
 .p-4 
     .font-bold.text-3xl @gun-vue demo
     relay-pulse.card
-    account-home.card
 </template>
 
 <style scoped>

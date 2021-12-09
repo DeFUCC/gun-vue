@@ -1,5 +1,5 @@
 <script setup>
-import { useAccount, safeJSONParse } from '@composables'
+import { useAccount, safeJSONParse, useFileUpload, uploadJSON } from '@composables'
 
 const current = ref('pass')
 const pair = ref()
@@ -12,10 +12,15 @@ function show(option) {
   }
 }
 
+const { state, handleFile } = useFileUpload()
+
+watch(() => state.output, output => pair.value = output)
+
 watch(pair, (p) => {
   let obj = safeJSONParse(p)
   if (obj.pub && obj.priv) {
     auth(obj)
+    pair.value = ''
   } else {
     console.log('No valid pair')
   }
@@ -28,21 +33,34 @@ const { account, auth } = useAccount()
 <template lang='pug'>
 .flex.flex-col(v-if="!account.is")
   .flex.flex-wrap.p-2.items-center(v-if="!account.is")
-    button(@click="show('pass')" :class="{ active: current == 'pass' }")
-      la-asterisk
-    button(@click="show('key')")
+    .p-2 Authenticate with your saved key
+    button.m-1.p-2.shadow-lg.rounded-full.cursor-pointer(@click="show('key')")
       la-key
-    button(@click="show('qr')")
+    label.m-1.p-2.shadow-lg.rounded-full.cursor-pointer(for="qr-input")
       la-qrcode
-    button(@click="current = null")
+    label.m-1.p-2.shadow-lg.rounded-full.cursor-pointer(for="json-input")
       la-file-code
+  .hidden
+    util-load-qr(
+      @loaded="pair = $event"
+    )
+    input#json-input(
+      tabindex="-1"
+      type="file",
+      accept="application/json",
+      ref="file"
+      @change="uploadJSON($event, file => pair = file)"
+    )
   .flex.flex-wrap
-    textarea.p-2.text-sm.flex-1(
-      rows="6",
-      cols="20"
-      v-if="current == 'key'",
-      v-model="pair",
-      key="text"
-      )
-    button.button(@click="auth()" v-if="!account.is") Auth
+    transition(name="fade")
+      textarea.p-2.text-sm.flex-1(
+        rows="6",
+        cols="20"
+        v-if="current == 'key'",
+        v-model="pair",
+        key="text"
+        placeholder="Paste your crypto pair here"
+        )
+
+  button.button(@click="auth()" v-if="!account.is") Auth
 </template>

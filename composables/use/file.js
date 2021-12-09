@@ -37,6 +37,22 @@ export function downloadJSON(pair) {
   downloadText(pair, "application/json", "account.json");
 }
 
+/**
+ * Upload and parse JSON keypair
+ * @param {Event} event - `$event` from the `@change` handler
+ * @param {Function} callback - a function to handle the loaded file from the reader
+ */
+
+export function uploadJSON(event, callback) {
+  let file = event.target.files[0];
+  if (file.size > 1000) return;
+  let reader = new FileReader();
+  reader.readAsText(file);
+  reader.onload = () => {
+    callback(reader.result);
+  };
+}
+
 import { reactive, computed } from "vue";
 
 //// https://github.com/itsabdessalam/encodeit/blob/develop/src/components/FileUploader.vue
@@ -90,7 +106,8 @@ export function useFileUpload() {
     }),
   });
 
-  function handleChange(fieldName, fileList) {
+  function handleChange(event) {
+    const fileList = event.target.files;
     reset();
     if (!fileList.length) return;
     state.status = status.loading;
