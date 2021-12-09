@@ -5,7 +5,7 @@ var path = require("path");
 const relay = {
   initiated: false,
 
-  init(host = "localhost", port = 4200, static = "public") {
+  init(host = "localhost", port = 4200, path = "public") {
     if (relay.initiated) return;
     relay.initiated = true;
     var app = express();
@@ -13,7 +13,7 @@ const relay = {
     var server = app.listen(port);
 
     const gun = Gun({ file: false, radisk: false, web: server });
-    app.use(express.static(static));
+    app.use(express.static(path));
     const db = gun.get(host);
     db.get("status").put("running");
     db.get("started").put(Date.now());

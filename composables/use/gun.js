@@ -20,9 +20,22 @@ export const gun = Gun({ peers, localStorage: false });
 /** Secondary Gun instance for key management */
 export const gun2 = Gun({ peers, localStorage: false });
 
-/** SEA library */
-export { SEA };
-/** Function to get a soul for any given node */
+/**
+ * SEA library
+ * @constant SEA
+ */
+export { default as SEA } from "gun/sea.js";
+
+/**
+ * **Get a soul for any given node**
+ * A wrapper for `Gun.node.soul`
+ * @function soul
+ */
 export const soul = Gun.node.soul;
-/** Function to generate a random UUID */
-export const genUuid = Gun.text.random;
+
+/**
+ * **Generate a random UUID**
+ * A wrapper for `Gun.text.random`
+ * @function genUUID
+ */
+export const genUUID = Gun.text.random;
