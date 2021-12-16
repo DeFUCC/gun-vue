@@ -3,5 +3,6 @@
 </script>
 
 <template lang='pug'>
-space-plane
+.p-2
+  space-plane.rounded-xl.overflow-hidden
 </template>
