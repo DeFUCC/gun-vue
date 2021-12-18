@@ -1,6 +1,6 @@
 /**
+ * Immutable hashed list of data
  * @module HashList
- * An append only hashed list
  */
 
 import { gun, SEA } from "./gun";
@@ -8,8 +8,6 @@ import { hashObj } from "./hash";
 
 export function usePublicHashList(tag = "hashed") {
   const list = reactive({});
-
-  const timestamps = reactive({});
 
   gun
     .get(`#${tag}`)
