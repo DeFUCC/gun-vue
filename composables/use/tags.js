@@ -9,6 +9,18 @@ import { hashObj, hashText } from "./hash";
 import slugify from "slugify";
 import Fuse from "fuse.js";
 
+/**
+ * @typedef useTags
+ * @property {Ref} search - a ref to bind to an input element
+ * @property {Computed} slug - a slugified search query - url safe verion to be used as a tag
+ * @property {Tags} tags - the object to handle all the tags
+ * @property {Function} addTag - add a slug tag to the list
+ */
+
+/**
+ * Toolkit to deal with the available tags
+ * @returns {useTags}
+ */
 export function useTags() {
   const search = ref();
   const slug = computed(() => slugify(search.value));
@@ -55,7 +67,7 @@ export function useTags() {
       tags.list[k] = d;
     });
 
-  async function addTag(tag) {
+  async function addTag(tag = slug.value) {
     if (!tag) return;
     let safe = slugify(tag);
     const hash = await hashText(safe);
@@ -65,7 +77,18 @@ export function useTags() {
   return { search, slug, tags, addTag };
 }
 
-export function useTag(tag = ref("tag1")) {
+/**
+ * @typedef useTag
+ * @property {Reactive} list -  the reactive list of hashed data
+ * @property {Function} addToTag - stringifies an object and puts it into an immutable #tag graph
+ */
+
+/**
+ * Use a list of immutable data from a #tag
+ * @param {Ref} tag - A vue ref to watch - generated from props by `toRef(props,'tag')`
+ * @returns {useTag}
+ */
+export function useTag(tag = ref("tag")) {
   const list = computed(() => {
     const obj = reactive({});
     gun

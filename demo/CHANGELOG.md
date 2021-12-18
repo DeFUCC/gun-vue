@@ -1,5 +1,14 @@
 # @gun-vue/demo
 
+## 0.1.13
+
+### Patch Changes
+
+- hashed tags as a simple but effective demo
+- Updated dependencies
+  - @gun-vue/composables@0.1.8
+  - @gun-vue/components@0.1.10
+
 ## 0.1.12
 
 ### Patch Changes

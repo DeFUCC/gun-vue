@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.1.8
+
+### Patch Changes
+
+- hashed tags as a simple but effective demo
+
 ## 0.1.7
 
 ### Patch Changes
