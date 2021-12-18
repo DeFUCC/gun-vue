@@ -5,8 +5,19 @@
 
 import { gun, SEA } from "./gun";
 
+export async function hashText(text) {
+  let hash = await SEA.work(text, null, null, { name: "SHA-256" });
+  return hash;
+}
+
+export async function hashObj(obj) {
+  let text = JSON.stringify(obj);
+  let hash = await hashText(text);
+  return { text, hash };
+}
+
 /**
- * Calculate a hash for any string data
+ * Calculate a hex hash for any string data
  * @async
  * @param {String} text
  * @param {String} seed
@@ -14,12 +25,6 @@ import { gun, SEA } from "./gun";
  */
 export async function getShortHash(text, seed) {
   return await SEA.work(text, seed, null, { name: "SHA-1", encode: "hex" });
-}
-
-export async function hashObj(obj) {
-  let text = JSON.stringify(obj);
-  let hash = await SEA.work(text, null, null, { name: "SHA-256" });
-  return { text, hash };
 }
 
 // Buffer -> Base64 String -> Url Safe Base64 String

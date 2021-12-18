@@ -2,9 +2,6 @@
 import { useDataTree } from '@composables'
 
 const { dateTree, putNow } = useDataTree();
-
-console.log(dateTree, putNow)
-
 </script>
 
 <template lang='pug'>

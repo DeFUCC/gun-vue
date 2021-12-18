@@ -62,6 +62,7 @@ export default defineConfig({
     target: "esnext",
     brotliSize: false,
     assetsInlineLimit: 100000000,
+    chunkSizeWarningLimit: 100000000,
     cssCodeSplit: false,
     rollupOptions: {
       inlineDynamicImports: true,

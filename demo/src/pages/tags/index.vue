@@ -3,6 +3,5 @@
 </script>
 
 <template lang='pug'>
-.p-2
-  space-plane.rounded-xl.overflow-hidden
+.p-4 Not tag selected
 </template>

@@ -1,7 +1,7 @@
 cd dist
 
 git init
-git remote add origin git@github.com:defucc/gun-vue.git 
+git remote add origin git@github.com:davay42/gun-vue.git 
 git add . --force
 git commit -m 'deploy'
 

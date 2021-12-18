@@ -5,7 +5,7 @@ export * from "./use/hash";
 export * from "./use/crypto";
 
 export * from "./use/dataTree";
-export * from "./use/hashList";
+export * from "./use/tags";
 
 export * from "./use/relay";
 export * from "./use/space";
