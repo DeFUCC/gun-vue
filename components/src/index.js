@@ -13,7 +13,8 @@ export { default as SpacePlane } from "./space/plane.vue";
 
 export { default as UserAvatar } from "./user/avatar.vue";
 
-export { default as UtilQr } from "./util/qr.vue";
+export { default as QrShow } from "./qr/show.vue";
+export { default as QrLoad } from "./qr/load.vue";
 export { default as UtilPulse } from "./util/pulse.vue";
 
 export * as use from "@composables";

@@ -32,7 +32,7 @@ function show(option) {
         :value="JSON.stringify(account.user._.sea)",
         key="text"
       )
-      util-qr(v-if="current == 'qr'" key="qr" :data="JSON.stringify(account.user._.sea)")
+      qr-show.max-w-600px(v-if="current == 'qr'" key="qr" :data="JSON.stringify(account.user._.sea)")
 </template>
 
 <style scoped>

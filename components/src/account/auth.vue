@@ -41,7 +41,7 @@ const { account, auth } = useAccount()
     label.m-1.p-2.shadow-lg.rounded-full.cursor-pointer(for="json-input")
       la-file-code
   .hidden
-    util-load-qr(
+    qr-load(
       @loaded="pair = $event"
     )
     input#json-input(
