@@ -1,6 +1,6 @@
 # GUN-VUE
 
-Gun – the peer-to-peer javascript database meets the reactivity system of the modern JS framework Vue 3.
+Gun-vue – is where the peer-to-peer javascript database Gun meets the reactivity system of Vue 3. Easy to import composables for devs. Pluggable components for UX designers. Relay peer for enthusiasts. Demos and docs for starters. Open source for everyone!
 
 ## @gun-vue
 
@@ -29,3 +29,7 @@ A simple no-store Gun server for throwing to any free tier Node.js environment.
 Try them all yourself in the demo app.
 
 [defucc.github.io/gun-vue](https://defucc.github.io/gun-vue)
+
+## TO DO
+
+We use different tools for development process organisation. I'm using Taskade it for everyone to have fun with building p2p apps. Jump in our project! https://www.taskade.com/d/XtaACTKmN4KqSC1v?share=view&view=hsVKduBWoYMa9S7a

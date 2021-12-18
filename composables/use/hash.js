@@ -22,26 +22,6 @@ export async function hashObj(obj) {
   return { text, hash };
 }
 
-export async function addHashedPersonal(tag, obj, pub) {
-  let certificate = await gun.get(`~${pub}`).get("cert").get(tag).then();
-  console.log(certificate);
-  const { text, hash } = await hashObj(obj);
-
-  gun
-    .get(`~${pub}`)
-    .get(`#${tag}`)
-    .get(`${hash}#${account.is.pub}`)
-    .put(
-      text,
-      () => {
-        if (linkFrom.value) {
-          link({ hash, tag, data: obj });
-        }
-      },
-      { opt: { cert: certificate } }
-    );
-}
-
 // Buffer -> Base64 String -> Url Safe Base64 String
 export function safeHash(unsafe) {
   if (!unsafe) return;
