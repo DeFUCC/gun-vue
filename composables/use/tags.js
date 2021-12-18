@@ -100,10 +100,12 @@ export function useTag(tag = ref("tag")) {
     return obj;
   });
 
+  const count = computed(() => Object.keys(list.value).length);
+
   async function addToTag(obj) {
     const { text, hash } = await hashObj(obj);
     gun.get(`#${tag.value}`).get(`${hash}`).put(text);
   }
 
-  return { list, addToTag };
+  return { list, count, addToTag };
 }

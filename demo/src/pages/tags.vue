@@ -8,6 +8,6 @@ function navigate(tag) {
 
 <template lang='pug'>
 .flex.flex-col
-  tags-all.m-2.p-2.shadow-md.rounded-xl(@tag="$router.push($event)")
+  tag-list.m-2.p-2.shadow-md.rounded-xl(@tag="$router.push($event)")
   router-view
 </template> 

@@ -6,7 +6,7 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-tags-tag(:tag="tag" @close="$router.push('/tags/')")
+tag-posts(:tag="tag" @close="$router.push('/tags/')")
 </template>
 
 <style scoped>

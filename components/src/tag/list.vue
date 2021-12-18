@@ -14,11 +14,12 @@ const emit = defineEmits(['tag'])
     .absolute.right-8.top-6 {{ tags.results.length }}/{{ tags.count }}
   .flex.flex-wrap
     transition-group(name="fade")
-      .tag(
+      tag-label.tag(
         v-for="(result,r) in tags.results" :key="r"
         @click="$emit('tag', result.item?.tag)"
-        :style="{ opacity: 1 - result.score }" 
-        ) {{ result.item?.tag }} 
+        :style="{ opacity: 1 - result.score }"
+        :tag="result.item?.tag"
+        ) 
       .tag.new(
         key="new"
         v-if="search && tags.minScore > 0.00001"

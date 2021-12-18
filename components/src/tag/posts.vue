@@ -9,14 +9,14 @@ const { list, addToTag } = useTag(toRef(props, 'tag'))
 </script>
 
 <template lang='pug'>
-.p-4 
+.m-4.shadow-lg.p-4
   .flex.items-center
-    .text-lg {{ tag }}
+    .text-xl {{ tag }}
     .p-2(@click="$emit('close')")
       la-times
   .flex.flex-wrap
     .post(v-for="(item, hash) in list" :key="hash") {{ item?.text ? item.text : item }}
-  form.p-4.bg-light-400.rounded-2xl.shadow-lg(action="javascript:void(0);")
+  form.mt-6(action="javascript:void(0);")
     input.p-4.rounded-xl(v-model="text")
     button.button(type="submit" @click="addToTag({ text }); text = ''") POST
 </template>
