@@ -4,8 +4,11 @@ const location = window.location.href
 
 <template lang="pug">
 .p-4 
-    .font-bold.text-3xl @gun-vue demo
-    relay-pulse.card
+    .flex.flex-wrap
+        img.w-full.max-w-64(src="/gun-vue-logo.svg")
+        .flex.flex-col
+            .font-bold.text-3xl.ml-8 @gun-vue demo
+            relay-pulse.card
     qr-show.w-400px(:data="location")
 </template>
 
