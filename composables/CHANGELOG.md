@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.1.13
+
+### Patch Changes
+
+- link packages version
+
 ## 0.1.10
 
 ### Patch Changes
