@@ -22,7 +22,6 @@ md.use(externalLinks, {
   externalTarget: '_blank'
 })
 
-
 </script>
 
 <template lang='pug'>
@@ -38,7 +37,9 @@ md.use(externalLinks, {
       la-times
   .flex.flex-col(v-if="!post.empty")
     .p-2(v-if="post.description") {{ post.description }} 
+    embed-youtube(v-if="post.youtube" :video="post.youtube")
     .text-md.markdown.bg-light-200.rounded-2xl.m-1.p-2.leading-relaxed.max-w-65ch(v-if="post.text" v-html="md.render(post.text)") 
+    
 </template>
 
 <style scoped>

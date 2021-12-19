@@ -13,19 +13,27 @@ export function useDataTree(
 ) {
   const tree = new DateTree(treeRoot, "day");
 
-  const dateTree = reactive({
-    recent: {},
-  });
+  const dateTree = reactive({});
 
   tree.on(
     (data, date) => {
-      dateTree.recent[date] = { ...data };
+      dateTree[formatDate(date).date] = { ...data };
     },
     { gte: from, lt: until }
   );
 
   function putNow(data) {
+    if (!data) return;
     tree.get(new Date()).put({ event: "put", data });
   }
   return { dateTree, putNow };
+}
+
+export function formatDate(date) {
+  if (!date) return;
+  let theDate = new Date(date);
+  return {
+    date: theDate.toLocaleDateString("en-CA"),
+    time: theDate.toLocaleTimeString("en-CA"),
+  };
 }

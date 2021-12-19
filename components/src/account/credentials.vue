@@ -10,15 +10,25 @@ function show(option) {
   }
 }
 
+import { useClipboard, useShare } from '@vueuse/core'
+
+
+const { text, copy, copied, isSupported: canCopy } = useClipboard()
+const { share, isSupported: canShare } = useShare()
+
 </script>
 
 <template lang='pug'>
 .flex.flex-col.items-stretch(v-if="account.is")
   .flex.flex-wrap.p-2.items-center
-    button.button(@click="show('pass')" :class="{ active: current == 'pass' }")
-      la-asterisk
+    button.button(v-if="canShare" @click="share({ title: 'Your key pair', text: JSON.stringify(account.user._.sea) })" :class="{ active: current == 'pass' }")
+      la-share
+    button.button.flex(v-if="canCopy" @click="copy(account.user._.sea)")
+      la-copy
+      transition(name="fade")
+        .absolute.bg-light-200.p-4.rounded-xl(v-if="copied") Copied!
     button.button(@click="show('key')")
-      la-key
+      la-envelope-open-text
     button.button(@click="show('qr')")
       la-qrcode
     button.button(@click="downloadJSON(account.user._.sea); current = null")
