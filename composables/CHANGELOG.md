@@ -1,5 +1,12 @@
 # @gun-vue/composables
 
+## 0.1.9
+
+### Patch Changes
+
+- Hash tagged posts are a great place to play with the immutable graph together
+- 534c84d: tag labels can show number of posts
+
 ## 0.1.8
 
 ### Patch Changes
