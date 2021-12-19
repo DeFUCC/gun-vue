@@ -1,3 +1,5 @@
+![@gun-vue logo](https://raw.githubusercontent.com/davay42/gun-vue/master/demo/public/gun-vue-logo.svg)
+
 # GUN-VUE
 
 Gun-vue – is where the peer-to-peer javascript database Gun meets the reactivity system of Vue 3. Easy to import composables for devs. Pluggable components for UX designers. Relay peer for enthusiasts. Demos and docs for starters. Open source for everyone!
