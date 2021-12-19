@@ -1,5 +1,14 @@
 # @gun-vue/demo
 
+## 0.1.15
+
+### Patch Changes
+
+- Tags are ok, tree starts growing, more small icons with powers.
+- Updated dependencies
+  - @gun-vue/components@0.1.12
+  - @gun-vue/composables@0.1.10
+
 ## 0.1.14
 
 ### Patch Changes

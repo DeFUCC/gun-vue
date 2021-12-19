@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.1.10
+
+### Patch Changes
+
+- Tags are ok, tree starts growing, more small icons with powers.
+
 ## 0.1.9
 
 ### Patch Changes
