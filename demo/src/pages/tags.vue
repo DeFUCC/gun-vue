@@ -1,9 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router'
 const route = useRouter()
-function navigate(tag) {
-  route.push(tag)
-}
 </script>
 
 <template lang='pug'>

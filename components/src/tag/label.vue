@@ -2,8 +2,8 @@
 const props = defineProps({
   tag: { type: String, default: 'tag' }
 })
-import { useTag } from '@composables';
-const { count } = useTag(toRef(props, 'tag'))
+import { useTagPosts } from '@composables';
+const { count } = useTagPosts(toRef(props, 'tag'))
 </script>
 
 <template lang='pug'>

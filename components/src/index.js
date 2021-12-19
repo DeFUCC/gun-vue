@@ -15,7 +15,12 @@ export { default as SpacePlane } from "./space/plane.vue";
 export { default as UserAvatar } from "./user/avatar.vue";
 
 export { default as TagList } from "./tag/list.vue";
-export { default as TagPosts } from "./tag/posts.vue";
+export { default as TagLabel } from "./tag/label.vue";
+
+export { default as PostCard } from "./post/card.vue";
+export { default as PostForm } from "./post/form.vue";
+export { default as PostList } from "./post/list.vue";
+export { default as PostPage } from "./post/page.vue";
 
 export { default as DateTree } from "./date/tree.vue";
 

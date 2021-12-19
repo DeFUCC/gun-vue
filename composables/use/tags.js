@@ -1,6 +1,6 @@
 /**
  * Immutable hashed list of data
- * @module HashList
+ * @module Tags
  */
 
 import { gun, SEA } from "./gun";
@@ -8,6 +8,7 @@ import { hashObj, hashText } from "./hash";
 
 import slugify from "slugify";
 import Fuse from "fuse.js";
+import ms from "ms";
 
 /**
  * @typedef useTags
@@ -64,7 +65,12 @@ export function useTags() {
     .get("#tags")
     .map()
     .on((d, k) => {
-      tags.list[k] = d;
+      let data;
+      try {
+        data = JSON.parse(d);
+      } catch (e) {
+        tags.list[k] = d;
+      }
     });
 
   async function addTag(tag = slug.value) {
@@ -78,7 +84,7 @@ export function useTags() {
 }
 
 /**
- * @typedef useTag
+ * @typedef useTagPosts
  * @property {Reactive} list -  the reactive list of hashed data
  * @property {Function} addToTag - stringifies an object and puts it into an immutable #tag graph
  */
@@ -86,26 +92,63 @@ export function useTags() {
 /**
  * Use a list of immutable data from a #tag
  * @param {Ref} tag - A vue ref to watch - generated from props by `toRef(props,'tag')`
- * @returns {useTag}
+ * @returns {useTagPosts}
  */
-export function useTag(tag = ref("tag")) {
-  const list = computed(() => {
+export function useTagPosts(tag = ref("tag")) {
+  const posts = computed(() => {
     const obj = reactive({});
     gun
       .get(`#${tag.value}`)
       .map()
-      .on((d, k) => {
-        obj[k] = JSON.parse(d);
+      .on(async (d, k) => {
+        let banned = await gun.get("#ban").get(k).then();
+        if (tag.value != "ban" && banned) return;
+        try {
+          obj[k] = JSON.parse(d);
+        } catch (e) {
+          obj[k] = d;
+        }
       });
     return obj;
   });
 
-  const count = computed(() => Object.keys(list.value).length);
+  const count = computed(() => Object.keys(posts.value).length);
 
-  async function addToTag(obj) {
+  async function addPost(obj) {
     const { text, hash } = await hashObj(obj);
     gun.get(`#${tag.value}`).get(`${hash}`).put(text);
   }
 
-  return { list, count, addToTag };
+  return { posts, count, addPost };
+}
+
+export function useTagPost(tag = ref(""), hash = ref("")) {
+  const post = computed(() => {
+    const obj = reactive({
+      empty: true,
+      tag,
+      hash,
+    });
+    gun
+      .get(`#${tag.value}`)
+      .on((d, k) => {
+        obj.timestamp = d._[">"][hash.value];
+        if (obj.timestamp) {
+          obj.lastUpdated = ms(Date.now() - obj.timestamp);
+        }
+      })
+      .get(hash.value)
+      .on(async (d, k) => {
+        let banned = await gun.get("#ban").get(k).then();
+        if (tag.value != "ban" && banned) return;
+        try {
+          Object.assign(obj, JSON.parse(d));
+        } catch (e) {
+          obj["string"] = d;
+        }
+        obj.empty = false;
+      });
+    return obj;
+  });
+  return post;
 }

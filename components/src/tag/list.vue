@@ -16,7 +16,7 @@ const emit = defineEmits(['tag'])
     transition-group(name="fade")
       tag-label.tag(
         v-for="(result,r) in tags.results" :key="r"
-        @click="$emit('tag', result.item?.tag)"
+        @click="$emit('tag', result.item?.tag); search = ''"
         :style="{ opacity: 1 - result.score }"
         :tag="result.item?.tag"
         ) 
