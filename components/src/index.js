@@ -12,7 +12,7 @@ export { default as RoomProfile } from "./room/profile.vue";
 
 export { default as SpacePlane } from "./space/plane.vue";
 
-export { default as UserAvatar } from "./user/avatar.vue";
+export { default as UserAvatar } from "./account/avatar.vue";
 
 export { default as TagList } from "./tag/list.vue";
 export { default as TagLabel } from "./tag/label.vue";

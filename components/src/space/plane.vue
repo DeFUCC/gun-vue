@@ -19,9 +19,6 @@ const players = reactive({
 let all
 
 plane.db.get("players")
-  .on(d => {
-    all = d._['>']
-  })
   .map()
   .once(function (acc, id) {
     if (acc == null) {
@@ -31,7 +28,6 @@ plane.db.get("players")
       blink: false,
       pub: '',
       pulse: 0,
-      entered: all?.[id],
       age: 0,
       pos: {
         x: 0,
@@ -46,7 +42,6 @@ plane.db.get("players")
     }
     this.get('pulse').on(d => {
       players[id].pulse = d
-      players[id].age = d - players[id].entered
       players[id].blink = !players[id].blink
     })
     this.get('space').get(gameName).get('pos').map().on((d, k) => {
@@ -109,7 +104,7 @@ async function join() {
       )
         circle.transition-all.duration-700.ease-out(
           style="filter:url(#shadowButton)"
-          :r="10 + player.age / 6000"
+          :r="10"
           :fill="color.deep.hex(player.pub)"
           stroke-width="2"
           stroke-opacity="0.5"

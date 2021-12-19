@@ -1,5 +1,4 @@
 <script setup>
-const location = window.location.href
 </script>
 
 <template lang="pug">
@@ -9,7 +8,6 @@ const location = window.location.href
         .flex.flex-col
             .font-bold.text-3xl.ml-8 @gun-vue demo
             relay-pulse.card
-    qr-show.w-400px(:data="location")
 </template>
 
 <style scoped>
