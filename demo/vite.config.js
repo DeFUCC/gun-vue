@@ -34,12 +34,7 @@ export default defineConfig({
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
         /\.vue\??/, // .vue
       ],
-      imports: [
-        "vue",
-        {
-          "@vueuse/core": ["useStorage"],
-        },
-      ],
+      imports: ["vue"],
     }),
     Icons({
       /* options */

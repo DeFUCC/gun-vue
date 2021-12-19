@@ -129,6 +129,7 @@ export function useTagPost(tag = ref(""), hash = ref("")) {
       tag,
       hash,
     });
+
     gun
       .get(`#${tag.value}`)
       .on((d, k) => {
