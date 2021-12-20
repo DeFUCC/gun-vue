@@ -1,6 +1,6 @@
 {
   "name": "@gun-vue/components",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "license": "MIT",
   "main": "dist/components.umd.js",
   "module": "dist/components.es.js",

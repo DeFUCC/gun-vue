@@ -1,5 +1,11 @@
 # @gun-vue/relay
 
+## 0.1.7
+
+### Patch Changes
+
+- More information about the packages. First announcement in the Gun community.
+
 ## 0.1.6
 
 ### Patch Changes

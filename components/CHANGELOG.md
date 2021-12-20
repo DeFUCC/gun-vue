@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.1.14
+
+### Patch Changes
+
+- More information about the packages. First announcement in the Gun community.
+- Updated dependencies
+  - @gun-vue/composables@0.1.14
+
 ## 0.1.13
 
 ### Patch Changes
