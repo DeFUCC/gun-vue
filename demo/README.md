@@ -1,6 +1,8 @@
-# Vite Gun Starter
+![@gun-vue logo](https://raw.githubusercontent.com/davay42/gun-vue/master/demo/public/gun-vue-logo.svg)
 
-[Watch the video overview at Youtube](https://www.youtube.com/watch?v=HC4MfirOPq0)
+# Vite SPA @gun-vue demo
+
+[Watch the video overview at Youtube](https://www.youtube.com/watch?v=4hpVRgVQvsY)
 
 A starter GUN client built with Vite plus some very useful plugins. With local express server to run Gun db at your dev machine.
 
