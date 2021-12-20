@@ -11,13 +11,13 @@ export function useDataTree(
   from = "2021-01-01",
   until = "2023-01-01"
 ) {
-  const tree = new DateTree(treeRoot, "day");
+  const tree = new DateTree(treeRoot, "hour");
 
   const dateTree = reactive({});
 
   tree.on(
     (data, date) => {
-      dateTree[formatDate(date).date] = { ...data };
+      dateTree[date] = { ...data };
     },
     { gte: from, lt: until }
   );
