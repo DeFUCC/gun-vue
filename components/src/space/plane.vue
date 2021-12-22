@@ -56,8 +56,8 @@ const { space, area, join } = useSpace()
       )
     g.guests
       g.guest(v-for="guest in space.guests" :key="guest" )
-        space-guest.transition-all.ease-out.duration-200(
-          :guest="guest"
+        space-guest.transition-all.ease-out.duration-600(
+          v-bind="guest"
           :style="{ transform: `translate(${guest?.pos?.x * width}px, ${guest?.pos?.y * height}px)` }"
         )
 
