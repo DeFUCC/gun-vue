@@ -1,6 +1,6 @@
 {
   "name": "@gun-vue/composables",
-  "version": "0.1.15",
+  "version": "0.2.0",
   "license": "MIT",
   "main": "dist/composables.umd.js",
   "module": "dist/composables.es.js",

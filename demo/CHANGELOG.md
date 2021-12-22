@@ -1,5 +1,18 @@
 # @gun-vue/demo
 
+## 0.2.0
+
+### Minor Changes
+
+- The versions are linked for all 4 libs. Relay is using es module syntax. Space is now hashed and guest list is immutable.
+
+### Patch Changes
+
+- Updated dependencies
+  - @gun-vue/components@0.2.0
+  - @gun-vue/composables@0.2.0
+  - @gun-vue/relay@0.2.0
+
 ## 0.1.18
 
 ### Patch Changes
