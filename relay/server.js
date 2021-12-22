@@ -1,18 +1,29 @@
-var express = require("express");
-var Gun = require("gun");
-var path = require("path");
+import express from "express";
+import Gun from "gun";
+// require("zenbase/src/index.js");
 
-const relay = {
+export default {
   initiated: false,
-
-  init(host = "localhost", port = 4200, path = "public") {
-    if (relay.initiated) return;
-    relay.initiated = true;
+  init({
+    host = "localhost",
+    store = false,
+    port = 4200,
+    path = "public",
+  } = {}) {
+    if (this.initiated) return;
+    this.initiated = true;
     var app = express();
-
     var server = app.listen(port);
 
-    const gun = Gun({ file: false, radisk: false, web: server });
+    const gun = Gun({
+      file: "store",
+      radisk: store,
+      web: server,
+      // secret: "gun-vue-demo",
+      // portal: "https://siasky.net",
+      // debug: true,
+      // until: 2 * 1000,
+    });
     app.use(express.static(path));
     const db = gun.get(host);
     db.get("status").put("running");
@@ -27,5 +38,3 @@ const relay = {
     return { app, db };
   },
 };
-
-module.exports = relay;

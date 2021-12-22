@@ -1,3 +1,7 @@
-var relay = require("./server");
+import relay from "./server.js";
 
-relay.init("localhost", undefined, "../demo/dist");
+relay.init({
+  host: "localhost",
+  store: false,
+  public: "../demo/dist",
+});

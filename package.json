@@ -10,7 +10,6 @@
     "lib": "cd composables && pnpm run build",
     "comp": "cd components && pnpm run build",
     "demo": "cd demo && pnpm run build",
-    "site": "cd site && pnpm run build",
     "start": "cd relay && pnpm run start",
     "deploy": "cd demo && pnpm run deploy",
     "ch": "pnpm changeset",
@@ -19,7 +18,7 @@
     "doc": "jsdoc -c jsdoc.json"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.18.1",
+    "@changesets/cli": "^2.19.0",
     "jsdoc": "^3.6.7",
     "minami": "^1.2.3"
   }

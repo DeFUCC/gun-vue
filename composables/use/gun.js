@@ -9,13 +9,18 @@ import "gun/lib/radix";
 import "gun/lib/radisk";
 import "gun/lib/store";
 import "gun/lib/rindexed";
-// import 'gun/lib/webrtc'
+// import "gun/lib/webrtc";
 import "gun/nts";
 
 export const peers = ["https://etogun.glitch.me/gun"];
 
+// export const peers = ["http://localhost:4200/gun"];
+
 /** Established Gun instance for database operations */
-export const gun = Gun({ peers, localStorage: false });
+export const gun = Gun({
+  peers,
+});
+
 /** Secondary Gun instance for key management */
 export const gun2 = Gun({ peers, localStorage: false });
 
