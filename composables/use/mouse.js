@@ -43,7 +43,7 @@ export function useSvgMouse() {
             ? 0
             : correct.y
           : bounds.height;
-      mouse.normY = 1 - mouse.y / bounds.height;
+      mouse.normY = mouse.y / bounds.height;
       mouse.normX = mouse.x / bounds.width;
     } else {
       mouse.x = correct.x;

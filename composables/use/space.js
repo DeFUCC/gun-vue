@@ -1,5 +1,6 @@
-import { gun, SEA } from "./gun";
-import { useSvgMouse, account } from "@composables";
+import { gun } from "./gun";
+import { useSvgMouse } from "./mouse";
+import { account } from "./account";
 
 export function useSpace(name = "public") {
   const space = reactive({
@@ -7,11 +8,20 @@ export function useSpace(name = "public") {
     db: gun.get(name),
     my: {
       id: null,
-      mouse: computed(() => ({ x: mouse.normX, y: 1 - mouse.normY })),
-      pos: { x: 0, y: 0 },
+      mouse: computed(() => ({ x: mouse.normX, y: mouse.normY })),
+      pos: null,
     },
     guests: {},
   });
+
+  gun
+    .user()
+    .get("space")
+    .get(name)
+    .get("pos")
+    .on((pos) => {
+      space.my.pos = pos;
+    });
 
   const { area, mouse } = useSvgMouse();
 
@@ -59,12 +69,8 @@ export function useSpace(name = "public") {
   }
 
   function place() {
-    gun
-      .user()
-      .get("space")
-      .get(name)
-      .get("pos")
-      .put({ x: mouse.normX, y: 1 - mouse.normY });
+    let pos = { x: mouse.normX, y: mouse.normY };
+    gun.user().get("space").get(name).get("pos").put(pos);
   }
 
   return { space, area, join, place };

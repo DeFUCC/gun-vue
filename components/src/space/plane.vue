@@ -1,8 +1,6 @@
 <script setup>
 import { useSpace, account } from '@composables'
 
-import { TransitionPresets, useTransition } from '@vueuse/core'
-
 const props = defineProps({
   width: { type: Number, default: 1000 },
   height: { type: Number, default: 1000 },
@@ -47,6 +45,15 @@ const { space, area, join } = useSpace()
         :fill="account.color"
         r="8"
       )
+    line(
+      v-if="space.my?.pos"
+      :stroke="account.color"
+      stroke-width="4"
+      :x1="space.my.mouse.x * width"
+      :y1="space.my.mouse.y * height"
+      :x2="space.my.pos.x * width"
+      :y2="space.my.pos.y * height"
+    )
     g.guests
       g.guest(v-for="guest in space.guests" :key="guest" )
         space-guest.transition-all.ease-out.duration-200(
