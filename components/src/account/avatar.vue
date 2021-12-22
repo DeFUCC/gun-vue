@@ -1,31 +1,20 @@
 <script setup >
-import { gunAvatar } from "gun-avatar"
-import { account } from '@composables'
+import { account, gunAvatar, color } from '@composables'
 const props = defineProps({
-  size: { type: Number, default: 40, },
-});
-const pic = ref("");
-watchEffect(() => {
-  if (account.pub && account.pub.includes(".") && props.size >= 10) {
-    pic.value = gunAvatar(account.pub, 32);
-  }
+  size: { type: Number, default: 42, },
+  border: { type: Number, default: 2, },
 });
 </script>
 
 <template lang="pug">
-.avatar.bg-local.rounded-full.overflow-hidden(
-  v-if="account.pub",
-  :title="account.pub",
-  :style="{ background: `url(${pic})` }"
+.avatar(
 )
-.p-0(v-else)
-  la-user
+  img.border.rounded-full.overflow-hidden.transition-all.duration-500.ease-out(
+    :style="{ borderColor: account.blink ? color.deep.hex(account.pub) : 'transparent', borderWidth: `${border}px` }"
+    :title="account.pub",
+    v-if="account.pub",
+    :src="gunAvatar(account.pub, size)"
+  )
+  .p-2(v-else)
+    la-user
 </template>
-
-<style scoped>
-.avatar {
-  background-size: cover;
-  width: 32px;
-  height: 32px;
-}
-</style>

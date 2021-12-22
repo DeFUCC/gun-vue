@@ -5,6 +5,7 @@
 
 import { gun, SEA } from "./gun";
 import { reactive, computed } from "vue";
+import { color } from "./color";
 
 /**
  * @typedef {Reactive} Account - A reactive object to handle current user account
@@ -23,11 +24,11 @@ export const account = reactive({
   initiated: false,
   is: null,
   pub: computed(() => account?.is?.pub),
+  color: computed(() => (account.pub ? color.deep.hex(account.pub) : "gray")),
   profile: {},
   pulse: 0,
   pulser: null,
   blink: false,
-  space: gun.user().get("space"),
   user: gun.user(),
 });
 
