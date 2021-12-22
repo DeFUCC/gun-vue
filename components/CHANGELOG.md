@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.1.15
+
+### Patch Changes
+
+- Space is a place to gather. You get a position there and may move at any place at any moment.
+- Updated dependencies
+  - @gun-vue/composables@0.1.15
+
 ## 0.1.14
 
 ### Patch Changes

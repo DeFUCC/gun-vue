@@ -1,5 +1,13 @@
 # @gun-vue/demo
 
+## 0.1.18
+
+### Patch Changes
+
+- Updated dependencies
+  - @gun-vue/components@0.1.15
+  - @gun-vue/composables@0.1.15
+
 ## 0.1.17
 
 ### Patch Changes
