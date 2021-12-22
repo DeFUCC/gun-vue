@@ -39,12 +39,6 @@ const { space, area, join } = useSpace()
       fill="none"
       stroke-width="0"
       )
-    g.me(:transform="`translate(${space.my.mouse.x * width} ${space.my.mouse.y * height})`")
-      circle(
-        style="filter:url(#shadowButton)"
-        :fill="account.color"
-        r="8"
-      )
     line(
       v-if="space.my?.pos"
       :stroke="account.color"
@@ -54,6 +48,12 @@ const { space, area, join } = useSpace()
       :x2="space.my.pos.x * width"
       :y2="space.my.pos.y * height"
     )
+    g.mouse(:transform="`translate(${space.my.mouse.x * width} ${space.my.mouse.y * height})`")
+      circle(
+        style="filter:url(#shadowButton)"
+        :fill="account.color"
+        r="8"
+      )
     g.guests
       g.guest(v-for="guest in space.guests" :key="guest" )
         space-guest.transition-all.ease-out.duration-200(

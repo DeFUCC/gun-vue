@@ -22,6 +22,9 @@ export function useSvgMouse() {
     });
   });
 
+  onBeforeUnmount(() => {
+    document.removeEventListener("mousemove", getCursorPosition);
+  });
   function getCursorPosition(event, rect = area.value) {
     const svgElement = rect.closest("svg");
     if (!svgElement) return;
