@@ -4,7 +4,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['close', 'browse'])
 import { useTagPosts } from '@composables';
-const text = ref()
+const add = ref(false)
 const { posts, addPost } = useTagPosts(toRef(props, 'tag'))
 </script>
 
@@ -18,7 +18,10 @@ const { posts, addPost } = useTagPosts(toRef(props, 'tag'))
       la-times
   .flex.flex-wrap
     post-card(v-for="(item, hash) in posts" :key="hash" :hash="hash" :post="item" @click="emit('browse', hash)")
-  post-form(@submit="addPost($event)")
+    button.button(@click="add = !add")
+      la-plus(v-if="!add")
+      la-times(v-else)
+  post-form(v-if="add" @submit="addPost($event)")
 </template>
 
 <style scoped>

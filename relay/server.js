@@ -1,6 +1,6 @@
 import express from "express";
 import Gun from "gun";
-// require("zenbase/src/index.js");
+import "zenbase";
 
 export default {
   initiated: false,
@@ -19,10 +19,10 @@ export default {
       file: "store",
       radisk: store,
       web: server,
-      // secret: "gun-vue-demo",
-      // portal: "https://siasky.net",
-      // debug: true,
-      // until: 2 * 1000,
+      secret: "gun-vue-demo",
+      portal: "https://siasky.net",
+      debug: false,
+      until: 2 * 1000,
     });
     app.use(express.static(path));
     const db = gun.get(host);
