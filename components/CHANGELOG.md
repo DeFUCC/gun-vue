@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.2.1
+
+### Patch Changes
+
+- 96f3812: log tree with worker sort
+- Updated dependencies [96f3812]
+  - @gun-vue/composables@0.2.1
+
 ## 0.2.0
 
 ### Minor Changes
