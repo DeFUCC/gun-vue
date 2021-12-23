@@ -86,7 +86,6 @@ export function logEvent(event = "text", data) {
   }
   const tree = new DateTree(gun.get("log"), "minute");
   let theData = { event, d: data };
-  console.log(theData);
   tree.get(new Date()).put(theData);
 }
 
