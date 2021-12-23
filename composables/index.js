@@ -4,7 +4,7 @@ export * from "./use/password";
 export * from "./use/hash";
 export * from "./use/crypto";
 
-export * from "./use/dateTree";
+export * from "./use/log";
 export * from "./use/tags";
 
 export * from "./use/relay";
@@ -13,6 +13,5 @@ export * from "./use/mouse";
 export * from "./use/color";
 export * from "./use/room";
 export * from "./use/file";
-export * from "./use/log";
 
 export * from "gun-avatar";

@@ -4,7 +4,7 @@ defineEmits(['submit'])
 
 const add = reactive({
   youtube: false,
-  text: false,
+  content: false,
 })
 
 </script>
@@ -15,15 +15,15 @@ form.flex.flex-col.p-2.mt-8.border-1.rounded-2xl.bg-light-700(action="javascript
   input(v-model="post.description" placeholder="Description")
 
   .flex.flex-wrap
-    button.button(@click="add.text = !add.text" :class="{ active: add.text }")
+    button.button(@click="add.content = !add.content" :class="{ active: add.content }")
       mdi-text-long
     button.button(@click="add.youtube = !add.youtube" :class="{ active: add.youtube }")
       la-youtube  
 
   input(v-if="add.youtube" v-model="post.youtube" placeholder="Youtube video ID")
-  textarea(v-if="add.text" v-model="post.text" placeholder="Main text content (with **markdown** support)")
+  textarea(v-if="add.content" v-model="post.content" placeholder="Main text content (with **markdown** support)")
 
-  button.button(:disabled="!post.title && !post.description && !post.text" type="submit" @click="$emit('submit', post); post = {}") Submit
+  button.button(:disabled="!post.title && !post.description && !post.content" type="submit" @click="$emit('submit', post); post = {}") Submit
 </template>
 
 <style scoped>

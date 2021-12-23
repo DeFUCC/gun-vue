@@ -122,6 +122,7 @@ export function useTagPosts(tag = ref("tag")) {
     const { text, hash } = await hashObj(obj);
     gun.get(`#${tag.value}`).get(`${hash}`).put(text);
     logEvent("new-post", {
+      event: "new-post",
       feed: tag.value,
       hash: hash,
     });
@@ -137,20 +138,23 @@ export function useTagPosts(tag = ref("tag")) {
 ${yml}
 ---
       `,
-      "Markdown",
+      "text/markdown",
       tag.value + ".md"
     );
   }
 
   function loadPosts(event) {
     uploadText(event, (file) => {
-      const yamlBlockPattern = /^(?:\-\-\-)(.*?)(?:\-\-\-|\.\.\.)/s;
+      const yamlBlockPattern =
+        /^(?:\-\-\-)(.*?)(?:\-\-\-|\.\.\.)(?:\n*\s*)(.*)/s;
       const yml = yamlBlockPattern.exec(file.trim());
-      console.log(yml[1]);
       const frontmatter = yml[1];
+      console.log(frontmatter);
       if (!frontmatter) return;
       let feed = yaml.parse(frontmatter);
-      feed.posts.forEach((post) => addPost(post));
+      if (Array.isArray(feed?.posts)) {
+        feed?.posts.forEach((post) => addPost(post));
+      }
     });
   }
 

@@ -1,21 +1,34 @@
 <script setup>
-import { useDateTree } from '@composables'
+import { useLog, formatDate, color, safeHash } from '@composables'
 const props = defineProps({
-  root: { type: String, default: 'log' },
+  name: { type: String, default: 'log' },
   from: { type: String, default: "2021-01-01" },
   to: { type: String, default: "2023-01-01" },
 })
-const { dateTree, putNow } = useDateTree(props);
+const { sorted, putNow, count } = useLog(props);
 const message = ref()
+const input = ref()
+
+onMounted(() => {
+  input.value.focus()
+})
+
 </script>
 
 <template lang='pug'>
 .flex.flex-col.m-2.p-4.rounded-2xl.shadow-lg
   .flex.flex-col
-    .p-2.flex.items-center(v-for="(data,date) in dateTree" :key="date")
-      .mx-1.text-sm.whitespace-nowrap {{ date }}
-      .mx-1 {{ data.data }}
-  form.p-4.flex.flex-wrap(action="javascript:void(0)")
-    input.p-4.rounded-xl.mr-4(v-model="message")
-    button.button(@click="message && putNow(message); message = ''") Update
+    form.p-4.flex.flex-wrap(action="javascript:void(0)")
+      input.p-4.rounded-xl.mr-4(v-model="message" autofocus ref="input")
+      button.button(@click="message && putNow(message); message = ''") Say now
+    .p-1.flex.items-center(v-for="data in sorted" :key="data") 
+      .mx-1.px-2.rounded-xl(:style="{ backgroundColor: color.deep.hex(data[1].event) }") {{ data[1].event }}
+      .flex-1(v-if="data[1].event == 'now'") {{ data[1].data }}
+      router-link.mx-1.flex-1.p-1.rounded-xl(
+        v-if="data[1].event == 'new-post'" :to="'/tags/' + data[1].feed + '/' + safeHash(data[1].hash)" 
+        :style="{ backgroundColor: color.light.hex(data[1]?.hash || 0) }"
+        ) {{ '#' + data[1].feed }}/{{ safeHash(data[1].hash) }}
+      .mx-1.text-sm {{ formatDate(data[0]).ms }} 
+    .p-2.mt-4.opacity-20 Total {{ count }} log records
+
 </template>
