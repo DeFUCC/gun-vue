@@ -1,7 +1,11 @@
 <script setup>
-import { useDataTree } from '@composables'
-
-const { dateTree, putNow } = useDataTree();
+import { useDateTree } from '@composables'
+const props = defineProps({
+  root: { type: String, default: 'log' },
+  from: { type: String, default: "2021-01-01" },
+  to: { type: String, default: "2023-01-01" },
+})
+const { dateTree, putNow } = useDateTree(props);
 const message = ref()
 </script>
 
@@ -13,5 +17,5 @@ const message = ref()
       .mx-1 {{ data.data }}
   form.p-4.flex.flex-wrap(action="javascript:void(0)")
     input.p-4.rounded-xl.mr-4(v-model="message")
-    button.button(@click="putNow(message)") Say it today 
+    button.button(@click="message && putNow(message); message = ''") Update
 </template>

@@ -2,7 +2,7 @@ export const routes = {
   "/": "Home",
   "/space/": "Space",
   "/tags/": "Tags",
-  "/tree": "Tree",
+  "/log/": "Log",
   "/account/": "Account",
   "/graph/": "Graph",
 };

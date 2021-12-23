@@ -6,12 +6,13 @@
 import { DateTree } from "gun-util";
 import { gun } from "./gun";
 
-export function useDataTree(
-  treeRoot = gun.get("tree"),
+export function useDateTree({
+  name = "tree",
   from = "2021-01-01",
-  until = "2023-01-01"
-) {
-  const tree = new DateTree(treeRoot, "hour");
+  until = "2023-01-01",
+} = {}) {
+  const treeRoot = gun.get(name);
+  const tree = new DateTree(treeRoot, "minute");
 
   const dateTree = reactive({});
 
@@ -24,8 +25,9 @@ export function useDataTree(
 
   function putNow(data) {
     if (!data) return;
-    tree.get(new Date()).put({ event: "put", data });
+    tree.get(new Date()).put({ event: "now", data });
   }
+
   return { dateTree, putNow };
 }
 

@@ -1,5 +1,5 @@
 <script setup>
-import { useAccount, safeJSONParse, useFileUpload, uploadJSON } from '@composables'
+import { useAccount, safeJSONParse, useFileUpload, uploadText } from '@composables'
 
 const current = ref('pass')
 const pair = ref()
@@ -49,7 +49,7 @@ const { account, auth } = useAccount()
       type="file",
       accept="application/json",
       ref="file"
-      @change="uploadJSON($event, file => pair = file)"
+      @change="uploadText($event, file => pair = file)"
     )
   .flex.flex-wrap
     transition(name="fade")

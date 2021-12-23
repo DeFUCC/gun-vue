@@ -4,5 +4,5 @@
 
 <template lang='pug'>
 .flex.flex-col
-  date-tree
+  log-tree
 </template>

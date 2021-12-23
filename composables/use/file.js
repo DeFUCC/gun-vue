@@ -43,7 +43,7 @@ export function downloadJSON(pair) {
  * @param {Function} callback - a function to handle the loaded file from the reader
  */
 
-export function uploadJSON(event, callback) {
+export function uploadText(event, callback) {
   let file = event.target.files[0];
   if (file.size > 1000) return;
   let reader = new FileReader();

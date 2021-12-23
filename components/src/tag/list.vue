@@ -3,7 +3,7 @@ import { useTags } from '@composables'
 
 const { search, slug, tags, addTag } = useTags()
 
-const emit = defineEmits(['tag'])
+defineEmits(['tag'])
 
 </script>
 
