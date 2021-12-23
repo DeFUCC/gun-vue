@@ -19,6 +19,7 @@ export const peers = ["https://etogun.glitch.me/gun"];
 /** Established Gun instance for database operations */
 export const gun = Gun({
   peers,
+  localStorage: false,
 });
 
 /** Secondary Gun instance for key management */

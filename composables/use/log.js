@@ -24,7 +24,7 @@ export function useLog({
   until = "2023-01-01",
 } = {}) {
   const treeRoot = gun.get(name);
-  const tree = new DateTree(treeRoot, "second");
+  const tree = new DateTree(treeRoot, "minute");
   const dateTree = reactive({});
   const sorted = ref([]);
   const count = ref(0);
@@ -84,8 +84,8 @@ export function logEvent(event = "text", data) {
     console.log("No data to log");
     return;
   }
-  const tree = new DateTree(gun.get("log"), "minute");
-  let theData = { event, d: data };
+  const tree = new DateTree(gun.get("logs"), "minute");
+  let theData = { event, ...data };
   tree.get(new Date()).put(theData);
 }
 

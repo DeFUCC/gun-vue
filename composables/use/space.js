@@ -2,6 +2,7 @@ import { gun } from "./gun";
 import { useSvgMouse } from "./mouse";
 import { account } from "./account";
 import { hashText } from "./hash";
+import { logEvent } from "./log";
 
 export function useSpace(name = "public") {
   const space = reactive({
@@ -31,6 +32,7 @@ export function useSpace(name = "public") {
     place();
     const hash = await hashText(account.pub);
     gun.get(name).get("#guests").get(hash).put(account.pub);
+    logEvent("guest", { event: "guest", space: name, pub: account.pub });
   }
 
   gun
