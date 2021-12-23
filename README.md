@@ -12,19 +12,19 @@ There are 3 packages in the [@gun-vue organization](https://www.npmjs.com/settin
 
 ### Composables
 
-[@gun-vue/composables](https://www.npmjs.com/package/@gun-vue/composables)
+[@gun-vue/composables](https://github.com/DeFUCC/gun-vue/tree/master/composables)
 
 A set of composable functions for use with Vue 3 Composition API
 
 ### Components
 
-[@gun-vue/components](https://www.npmjs.com/package/@gun-vue/components)
+[@gun-vue/components](https://github.com/DeFUCC/gun-vue/tree/master/components)
 
 A set of ready to use Vue 3 components as building blocks to implement Gun powered interactivity in seconds
 
 ## Relay
 
-[@gun-vue/relay](https://www.npmjs.com/package/@gun-vue/relay)
+[@gun-vue/relay](https://github.com/DeFUCC/gun-vue/tree/master/relay)
 
 A simple no-store Gun server for throwing to any free tier Node.js environment.
 

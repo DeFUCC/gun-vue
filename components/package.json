@@ -2,6 +2,12 @@
   "name": "@gun-vue/components",
   "version": "0.2.1",
   "license": "MIT",
+  "repository": "github:defucc/gun-vue",
+  "homepage": "https://defucc.github.io/gun-vue",
+  "funding": {
+    "type": "ko-fi",
+    "url": "https://ko-fi.com/B0B44CM90"
+  },
   "main": "dist/components.umd.js",
   "module": "dist/components.es.js",
   "files": [

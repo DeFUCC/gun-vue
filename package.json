@@ -2,6 +2,11 @@
   "name": "@gun-vue/repo",
   "private": true,
   "version": "0.1.2",
+  "funding": {
+    "type": "ko-fi",
+    "url": "https://ko-fi.com/B0B44CM90"
+  },
+  "homepage": "https://defucc.github.io/gun-vue",
   "engines": {
     "node": "16.x"
   },

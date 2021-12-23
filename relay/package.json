@@ -2,6 +2,12 @@
   "name": "@gun-vue/relay",
   "desciprion": "A no store gun peer relay for free tier hosting",
   "version": "0.2.0",
+  "repository": "github:defucc/gun-vue",
+  "homepage": "https://defucc.github.io/gun-vue",
+  "funding": {
+    "type": "ko-fi",
+    "url": "https://ko-fi.com/B0B44CM90"
+  },
   "main": "server.js",
   "type": "module",
   "scripts": {
