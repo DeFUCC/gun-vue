@@ -23,7 +23,7 @@ const { share, isSupported: canShare } = useShare()
   .flex.flex-wrap.p-2.items-center
     button.button(v-if="canShare" @click="share({ title: 'Your key pair', text: JSON.stringify(account.user._.sea) })" :class="{ active: current == 'pass' }")
       la-share
-    button.button.flex(v-if="canCopy" @click="copy(account.user._.sea)")
+    button.button.flex(v-if="canCopy" @click="copy(JSON.stringify(account.user._.sea))")
       la-copy
       transition(name="fade")
         .absolute.bg-light-200.p-4.rounded-xl(v-if="copied") Copied!

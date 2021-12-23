@@ -7,6 +7,7 @@ import { logEvent } from "./log";
 export function useSpace(name = "public") {
   const space = reactive({
     title: name,
+    joined: false,
     db: gun.get(name),
     my: {
       id: null,
@@ -30,9 +31,13 @@ export function useSpace(name = "public") {
   async function join() {
     if (!gun.user().is) return;
     place();
+    if (space.joined) return;
     const hash = await hashText(account.pub);
+    let already = await gun.get(name).get("#guests").get(hash).then();
+    if (already) return;
     gun.get(name).get("#guests").get(hash).put(account.pub);
     logEvent("guest", { event: "guest", space: name, pub: account.pub });
+    space.joined = true;
   }
 
   gun
