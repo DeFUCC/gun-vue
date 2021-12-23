@@ -18,3 +18,18 @@ It's just the beginning and not all the functions are reliably implemented yet. 
 - **Room** - private signed collaborative spaces with a certificate system for access management. (TBD)
 - **Space** - a simple demo of showing working with private user data in a shared space
 - **Tags** - hashed immutable data in the root of the db as a fun experiment, but with deep observations about freedom of speach and ways to explore the vastness of the public graph space available with Gun
+
+**And there's more!**
+
+## How to use
+
+1. Install the library: `npm i @gun-vue/composables`
+2. Import any of the functions you need: `import {useAccount} from '@gun-vue/composables'`
+3. Instantiate the function inside your Vue SFC `<script setup>`: `const {account, auth, leave} = useAccount()`
+4. Use the reactive state to drive your component:
+
+```pug
+.p-2.flex(v-for="(d,k) in account.profile" :key="d")
+      .mr-2.font-bold {{ k }}
+      .text-md {{ d }}
+```

@@ -9,7 +9,7 @@ A one liner gun js server to run in a free tier js hosting like www.glitch.com, 
 1. Install the package `npm i @gun-vue/relay`
 2. Import it and initiate.
 
-```
+```js
 import relay from "@gun-vue/relay";
 
 relay.init();
@@ -21,12 +21,11 @@ relay.init();
 
 You can use customize your server with an options object:
 
-```
+```js
 relay.init({
   host: "your.relay.url", // it's used to name the pulse timestamp of the server. Default is 'localhost'
   port: 4000, // gun server port
   store: false, // put true if you want to have Gun store data on disk
   public: "../demo/dist", // a public dir to expose your app with the express server
-})
-
+});
 ```
