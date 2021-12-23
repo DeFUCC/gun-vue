@@ -1,5 +1,11 @@
 # @gun-vue/relay
 
+## 0.2.1
+
+### Patch Changes
+
+- more info about the packages
+
 ## 0.2.0
 
 ### Minor Changes

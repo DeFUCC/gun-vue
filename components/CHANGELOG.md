@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.2.2
+
+### Patch Changes
+
+- more info about the packages
+- Updated dependencies
+  - @gun-vue/composables@0.2.2
+
 ## 0.2.1
 
 ### Patch Changes

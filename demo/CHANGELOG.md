@@ -1,5 +1,15 @@
 # @gun-vue/demo
 
+## 0.2.2
+
+### Patch Changes
+
+- more info about the packages
+- Updated dependencies
+  - @gun-vue/components@0.2.2
+  - @gun-vue/composables@0.2.2
+  - @gun-vue/relay@0.2.1
+
 ## 0.2.1
 
 ### Patch Changes
