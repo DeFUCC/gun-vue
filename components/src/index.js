@@ -22,7 +22,7 @@ export { default as PostForm } from "./post/form.vue";
 export { default as PostList } from "./post/list.vue";
 export { default as PostPage } from "./post/page.vue";
 
-export { default as DateTree } from "./date/tree.vue";
+export { default as LogTree } from "./log/tree.vue";
 
 export { default as QrShow } from "./qr/show.vue";
 export { default as QrLoad } from "./qr/load.vue";

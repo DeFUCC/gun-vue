@@ -15,12 +15,12 @@ const { posts, addPost, exportPosts, loadPosts } = useTagPosts(toRef(props, 'tag
     .text-xl.ml-2.font-bold # {{ tag }}
     button.button(@click="exportPosts()")
       la-file-download
-    label.button(for="yaml-input")
+    label.button(for="md-input")
       la-file-upload
-    input#yaml-input.hidden(
+    input#md-input.hidden(
       tabindex="-1"
       type="file",
-      accept="text/yaml",
+      accept="text/markdown",
       ref="file"
       @change="loadPosts"
     )

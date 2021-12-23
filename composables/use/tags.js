@@ -123,24 +123,33 @@ export function useTagPosts(tag = ref("tag")) {
     gun.get(`#${tag.value}`).get(`${hash}`).put(text);
     logEvent("new-post", {
       feed: tag.value,
-      content: text,
+      hash: hash,
     });
   }
 
   function exportPosts() {
+    let yml = yaml.stringify({
+      title: tag.value,
+      posts: Object.values(posts.value),
+    });
     downloadText(
-      yaml.stringify({
-        title: tag.value,
-        posts: Object.values(posts.value),
-      }),
-      "YAML",
-      tag.value + ".yaml"
+      `---
+${yml}
+---
+      `,
+      "Markdown",
+      tag.value + ".md"
     );
   }
 
   function loadPosts(event) {
     uploadText(event, (file) => {
-      let feed = yaml.parse(file);
+      const yamlBlockPattern = /^(?:\-\-\-)(.*?)(?:\-\-\-|\.\.\.)/s;
+      const yml = yamlBlockPattern.exec(file.trim());
+      console.log(yml[1]);
+      const frontmatter = yml[1];
+      if (!frontmatter) return;
+      let feed = yaml.parse(frontmatter);
       feed.posts.forEach((post) => addPost(post));
     });
   }
