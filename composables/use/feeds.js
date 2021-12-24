@@ -34,6 +34,7 @@ export function importFeed(tag, event) {
 }
 
 export async function addPost(tag, obj) {
+  const { text, hash } = await hashObj(obj);
   gun.get(`#${tag}`).get(`${hash}`).put(text);
   logEvent("new-post", {
     event: "new-post",
