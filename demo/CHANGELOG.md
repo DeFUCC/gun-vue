@@ -1,5 +1,14 @@
 # @gun-vue/demo
 
+## 0.2.3
+
+### Patch Changes
+
+- 705ac51: user and account systems are separated
+- Updated dependencies [705ac51]
+  - @gun-vue/components@0.2.3
+  - @gun-vue/composables@0.2.3
+
 ## 0.2.2
 
 ### Patch Changes

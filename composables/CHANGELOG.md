@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.2.3
+
+### Patch Changes
+
+- 705ac51: user and account systems are separated
+
 ## 0.2.2
 
 ### Patch Changes
