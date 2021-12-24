@@ -13,9 +13,12 @@ const { posts, addPost, exportPosts, loadPosts } = useTagPosts(toRef(props, 'tag
   .flex.items-center.p-2
     router-link(class="hover:underline" to="/tags/") Tags /
     .text-xl.ml-2.font-bold # {{ tag }}
+    button.button(@click="add = !add")
+      la-plus(v-if="!add")
+      la-times(v-else)
     button.button(@click="exportPosts()")
       la-file-download
-    label.button(for="md-input")
+    label.button.cursor-pointer(for="md-input")
       la-file-upload
     input#md-input.hidden(
       tabindex="-1"
@@ -27,13 +30,17 @@ const { posts, addPost, exportPosts, loadPosts } = useTagPosts(toRef(props, 'tag
     .flex-1
     .button.cursor-pointer(@click="$emit('close')")
       la-times
-  .flex.flex-wrap
-
-    post-card(v-for="(item, hash) in posts" :key="hash" :hash="hash" :post="item" @click="emit('browse', hash)")
-    button.button(@click="add = !add")
-      la-plus(v-if="!add")
-      la-times(v-else)
   post-form(v-if="add" @submit="addPost($event)")
+  .flex.flex-wrap
+    post-card(
+      :style="{ order: Date.now() - item.timestamp }"
+      v-for="(item, hash) in posts" :key="hash" 
+      :hash="hash" 
+      :post="item" 
+      @click="emit('browse', hash)"
+      )
+
+  
 </template>
 
 <style scoped>

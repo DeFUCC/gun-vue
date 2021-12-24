@@ -19,7 +19,6 @@ export function useSpace(name = "public") {
 
   gun
     .user()
-    .get("space")
     .get(name)
     .get("pos")
     .on((pos) => {
@@ -44,11 +43,13 @@ export function useSpace(name = "public") {
     .get(name)
     .get("#guests")
     .map()
-    .once((pub, hash) => {
+    .once(async (pub, hash) => {
+      const hasPos = await gun.user(pub).get(name).get("pos").then();
       space.guests[hash] = {
         pub: pub,
         blink: false,
         pulse: 0,
+        hasPos,
         pos: {
           x: 0,
           y: 0,
@@ -62,7 +63,6 @@ export function useSpace(name = "public") {
           space.guests[hash].blink = !space.guests[hash].blink;
         })
         .back()
-        .get("space")
         .get(name)
         .get("pos")
         .map()
@@ -73,7 +73,7 @@ export function useSpace(name = "public") {
 
   function place() {
     let pos = { x: mouse.normX, y: mouse.normY };
-    gun.user().get("space").get(name).get("pos").put(pos);
+    gun.user().get(name).get("pos").put(pos);
   }
 
   return { space, area, join, place };

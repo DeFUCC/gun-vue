@@ -1,5 +1,5 @@
 <script setup >
-import { gun, color } from "@composables";
+import { gun, gunAvatar, color } from "@composables";
 
 const graph = ref({});
 
@@ -13,17 +13,20 @@ onBeforeUnmount(() => {
 </script>
 
 <template lang="pug">
-article
-  .cursor-pointer.border-1.text-sm(
+article.m-4.p-2.rounded-xl.shadow-xl
+  .cursor-pointer.p-2px.text-sm(
     :style="{ backgroundColor: color.light.hex(i) }",
     v-for="(g, i) in graph",
     :key="i"
   )
     .flex(@click="g.show = !g.show")
-      .py-1(
+      .rounded-full.overflow-hidden(
         :style="{ backgroundColor: color.light.hex(i.slice(1, 88)) }",
         v-if="i[0] == '~'"
-      ) {{ i.slice(1, 6) }}...
+      ) 
+        img(
+          :src="gunAvatar(i.slice(1, 88), 16)"
+        )
       .item {{ i[0] == '~' ? i.slice(88) : i }}
     transition(name="fade")
       section(v-if="g.show")

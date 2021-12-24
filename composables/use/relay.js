@@ -19,6 +19,7 @@ import ms from "ms";
  */
 
 const relay = reactive({
+  peer: peers[0],
   host: new URL(peers[0]).hostname,
   status: "offline",
   started: 0,
@@ -26,6 +27,7 @@ const relay = reactive({
   lag: 0,
   diff: computed(() => relay.pulse - relay.started),
   age: computed(() => ms(relay.diff)),
+  delay: computed(() => Date.now() - relay.pulse),
   blink: false,
 });
 

@@ -100,9 +100,13 @@ export function useTags() {
  */
 export function useTagPosts(tag = ref("tag")) {
   const posts = computed(() => {
+    let time = {};
     const obj = reactive({});
     gun
       .get(`#${tag.value}`)
+      .on(function (d, k) {
+        time = d._[">"];
+      })
       .map()
       .on(async (d, k) => {
         let banned = await gun.get("#ban").get(k).then();
@@ -110,8 +114,9 @@ export function useTagPosts(tag = ref("tag")) {
         try {
           obj[k] = JSON.parse(d);
         } catch (e) {
-          obj[k] = d;
+          obj[k] = { content: d };
         }
+        obj[k].timestamp = time?.[k];
       });
     return obj;
   });

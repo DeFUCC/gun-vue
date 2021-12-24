@@ -1,5 +1,6 @@
 <script setup>
 const post = ref({})
+const title = ref()
 defineEmits(['submit'])
 
 const add = reactive({
@@ -7,11 +8,15 @@ const add = reactive({
   content: false,
 })
 
+onMounted(() => {
+  title.value.focus()
+})
+
 </script>
 
 <template lang='pug'>
-form.flex.flex-col.p-2.mt-8.border-1.rounded-2xl.bg-light-700(action="javascript:void(0);")
-  input(v-model="post.title" placeholder="Title")
+form.flex.flex-col.p-2.border-1.rounded-2xl.bg-light-700(action="javascript:void(0);")
+  input(v-model="post.title" placeholder="Title" autofocus ref="title")
   input(v-model="post.description" placeholder="Description")
 
   .flex.flex-wrap

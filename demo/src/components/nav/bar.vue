@@ -9,11 +9,8 @@ import { routes } from '../../pages/routes'
   :class="{ active: $route.path == l }") {{ link }}
   .flex-1
   account-icon
+  relay-icon
   util-share(:key="$route")
-  a.text-2xl.m-2(href="docs/index.html" target="_blank")
-    la-book
-  a.text-2xl.m-2(href="https://github.com/defucc/gun-vue" target="_blank")
-    la-github
 </template>
 
 <style scoped>

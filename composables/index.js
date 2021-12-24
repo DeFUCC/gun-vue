@@ -13,5 +13,7 @@ export * from "./use/mouse";
 export * from "./use/color";
 export * from "./use/room";
 export * from "./use/file";
+export * from "./use/worker";
 
 export * from "gun-avatar";
+export { default as ms } from "ms";
