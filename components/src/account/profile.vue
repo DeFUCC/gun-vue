@@ -1,6 +1,13 @@
 <script setup>
-import { useAccount, color } from '@composables'
-const { account, leave } = useAccount()
+import { account, color } from '@composables'
+
+const props = defineProps({
+  pub: { type: String, default: '' }
+})
+
+const pubKey = computed(() => props.pub || account.pub)
+const editable = computed(() => pubKey.value && account.is)
+
 const addField = ref(false)
 const newField = ref('')
 
@@ -17,11 +24,11 @@ function addNewField() {
 <template lang='pug'>
 .flex.flex-col(v-if="account.is")
   .flex.flex-col.p-2
-    user-profile-field(
+    account-profile-field(
       v-for="(d,k) in account.profile" :key="d"
       :field="k" :content="d")
     .flex.items-center
       input.p-2.rounded-lg.shadow-md(v-model="newField" v-if="addField" @keydown.enter="account.profile[newField] = ''")
-      button.button(@click="addNewField()")
+      button.button(@click="addNewField()" v-if="editable")
         la-plus
 </template>

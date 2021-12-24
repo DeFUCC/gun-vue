@@ -1,6 +1,8 @@
 import "virtual:windi.css";
+import "./styles/index.css";
+import "./styles/transitions.css";
 
-export { default as UserProfile } from "./user/profile.vue";
+export { default as AccountProfile } from "./account/profile.vue";
 export { default as UserCredentials } from "./user/credentials.vue";
 export { default as UserPassword } from "./user/password.vue";
 export { default as UserAuth } from "./user/auth.vue";

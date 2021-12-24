@@ -10,14 +10,13 @@ const pubKey = computed(() => props.pub || account.pub)
 </script>
 
 <template lang="pug">
-.avatar(
+img.border.rounded-full.overflow-hidden.transition-all.duration-500.ease-out(
+  :style="{ borderColor: pubKey == account.pub && account.blink ? color.deep.hex(account.pub) : 'transparent', borderWidth: `${border}px` }"
+  :title="pubKey",
+  v-if="pubKey",
+  :width="size"
+  :src="gunAvatar(pubKey, size * 4)"
 )
-  img.border.rounded-full.overflow-hidden.transition-all.duration-500.ease-out(
-    :style="{ borderColor: pub == account.pub && account.blink ? color.deep.hex(account.pub) : 'transparent', borderWidth: `${border}px` }"
-    :title="pubKey",
-    v-if="pubKey",
-    :src="gunAvatar(pubKey, size)"
-  )
-  .p-2(v-else)
-    la-user
+.p-2(v-else)
+  la-user
 </template>

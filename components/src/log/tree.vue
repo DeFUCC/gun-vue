@@ -31,7 +31,7 @@ const { sorted, putNow, count } = useLog(props);
         img.rounded-xl(:src="gunAvatar(data[1].pub, 24)")
         .px-2 @{{ data[1].space }}
       router-link.mx-1.p-1.rounded-xl(
-        v-if="data[1].event == 'new-post'" :to="'/tags/' + data[1].feed + '/' + safeHash(data[1].hash)" 
+        v-if="data[1].event == 'new-post'" :to="'/feeds/' + data[1].feed + '/' + safeHash(data[1].hash)" 
         :style="{ backgroundColor: color.light.hex(data[1]?.hash || 0) }"
         ) {{ '#' + data[1].feed }}/{{ safeHash(data[1].hash) }}
       .flex-1

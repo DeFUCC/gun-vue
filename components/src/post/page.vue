@@ -28,9 +28,8 @@ md.use(externalLinks, {
 .p-4.m-2.shadow-lg.rounded-2xl.bg-ligth-200(:style="{ backgroundColor: color.light.hex(hash) }")
   .flex.flex-wrap.items-center
     div(class="hover:underline text-md cursor-pointer" @click="$emit('close')") # {{ tag }}
-    .text-lg.mx-2(v-if="post.title") /
+    .text-lg.mx-2 /
     .text-lg.font-bold(v-if="post.title") {{ post.title }}
-    .text-sm.ml-4(v-if="post.empty") Post not found
     .opacity-30.ml-4 {{ post?.lastUpdated }}
     .flex-1
     button.button(@click="$emit('close')")

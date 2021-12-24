@@ -30,11 +30,11 @@ export function downloadText(text, fileType, fileName) {
  * Download full keypair as a json file
  * @param {Object} pair - a SEA keypair. If not set – the current user keypair is downloaded
  */
-export function downloadJSON(pair) {
+export function downloadJSON(pair, name = "account") {
   console.log(pair, typeof pair);
   if (typeof pair != "object") return;
   pair = JSON.stringify(pair);
-  downloadText(pair, "application/json", "account.json");
+  downloadText(pair, "application/json", name + ".json");
 }
 
 /**

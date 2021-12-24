@@ -7,13 +7,13 @@ const open = ref(false)
 </script>
 
 <template lang='pug'>
-.mx-2.text-xl.cursor-pointer.relative(@click="open = true")
+.text-xl.cursor-pointer.relative(@click="open = true")
   carbon-bare-metal-server-01
   .p-1.bottom-0.left-2.rounded-full.transition-all.duration-300.ease-in-out.opacity-50.absolute(
     :style="{ backgroundColor: relay.blink ? 'white' : 'black' }"
     )
 transition(name="fade")
-  .fixed.w-full.h-full.flex.items-center.justify-center.z-10.top-0(v-show="open")
+  .fixed.w-full.h-full.flex.items-center.justify-center.z-10.top-0.left-0(v-show="open")
     .bg-dark-100.bg-opacity-30.w-full.h-full.absolute.z-2.cursor-pointer(@click="open = false")
     .bg-light-100.w-90.rounded-3xl.flex.flex-col.z-4.text-center.break-all.relative.shadow-2xl.overflow-hidden.p-8
       button.button.absolute.right-0.top-0(@click="open = false")

@@ -39,7 +39,7 @@ const { share, isSupported: canShare } = useShare()
     button.button.flex.items-center(@click="show('qr')")
       la-qrcode
       .px-2 QR code
-    button.button.flex.items-center(@click="downloadJSON(account.user._.sea); current = null")
+    button.button.flex.items-center(@click="downloadJSON(account.user._.sea, account.profile?.name); current = null")
       la-file-code
       .px-2 JSON file
     button.button.text-green-600.flex.items-center(@click="account.user.get('safe').get('saved').put(true)" v-if="!account?.safe?.saved")

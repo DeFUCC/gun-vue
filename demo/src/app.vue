@@ -4,6 +4,7 @@
 
 <template lang="pug">
 nav-bar
+util-tools.fixed.bottom-4.right-4
 .content
   router-view(v-slot="{ Component }")
     transition(name="fade")

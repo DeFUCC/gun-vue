@@ -3,6 +3,7 @@ import { color, ms } from '@composables'
 
 const props = defineProps({
   post: { type: [Object, String], default: { text: 'empty' } },
+  timestamp: { type: Number, default: 0 },
   hash: { type: String, default: '' }
 })
 
@@ -23,5 +24,6 @@ const title = computed(() => {
     .text-lg.font-bold.truncate {{ title }}
     .text-md.truncate.overflow-hidden(v-if="post.description") {{ post.description }}
     .text-md.truncate.overflow-hidden(v-if="!post.description && post.text") {{ post.text }}
-    .text-8px {{ ms(Date.now() - post.timestamp) }}
+    .text-8px(v-if="timestamp") {{ ms(Date.now() - timestamp) }}
+    slot
 </template>

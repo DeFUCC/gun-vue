@@ -1,7 +1,7 @@
 <script setup>
 const props = defineProps({
   hash: { type: String, default: '' },
-  tag: { type: String, default: '' }
+  feed: { type: String, default: '' }
 })
 import { unsafeHash } from '@composables';
 const unHash = computed(() => {
@@ -10,5 +10,5 @@ const unHash = computed(() => {
 </script>
 
 <template lang='pug'>
-post-page(:hash="unHash" :tag="tag" @close="$router.push(`/tags/${tag}/`)")
+post-page(:hash="unHash" :tag="feed" @close="$router.push(`/feeds/${feed}/`)")
 </template>

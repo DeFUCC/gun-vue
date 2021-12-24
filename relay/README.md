@@ -23,9 +23,9 @@ You can use customize your server with an options object:
 
 ```js
 relay.init({
-  host: "your.relay.url", // it's used to name the pulse timestamp of the server. Default is 'localhost'
-  port: 4000, // gun server port
-  store: false, // put true if you want to have Gun store data on disk
-  public: "../demo/dist", // a public dir to expose your app with the express server
+  host: "localhost", // it's used to name the pulse timestamp of the server. Set your peer ule without a protocol, like  'relay.some-site.com'
+  port: 4200, // gun server port. You may use a more standard 8080.
+  store: false, // put true if you want to have Gun store data on disk.
+  path: "public", // a public directory to expose your app with the express server. Insert a path like '../demo/dist'
 });
 ```

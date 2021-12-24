@@ -1,13 +1,13 @@
 <script setup>
 const props = defineProps({
-  tag: { type: String, default: 'tag' }
+  feed: { type: String, default: 'feed' }
 })
 import { safeHash } from '@composables';
 </script>
 
 <template lang='pug'>
 .flex.flex-col
-  post-list(:tag="tag" @close="$router.push('/tags/')" @browse="$router.push(`/tags/${tag}/${safeHash($event)}`)")
+  post-list(:tag="feed" @close="$router.push('/feeds/')" @browse="$router.push(`/feeds/${feed}/${safeHash($event)}`)")
   router-view
 </template>
 

@@ -1,6 +1,6 @@
 <script setup>
 const props = defineProps({
-  tag: { type: String, default: 'tag' }
+  feed: { type: String, default: 'feed' }
 })
 </script>
 

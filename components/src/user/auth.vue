@@ -1,5 +1,5 @@
 <script setup>
-import { useAccount, safeJSONParse, useFileUpload, uploadText } from '@composables'
+import { useAccount, safeJSONParse, useFileUpload, uploadText, SEA, color } from '@composables'
 
 const current = ref('pass')
 const pair = ref()
@@ -28,39 +28,54 @@ watch(pair, (p) => {
 
 const { account, auth } = useAccount()
 
+const newPair = ref(null)
+
+async function generatePair() {
+  newPair.value = await SEA.pair()
+}
+
+generatePair()
+
 </script>
 
 <template lang='pug'>
-.flex.flex-col(v-if="!account.is")
-  .flex.flex-wrap.p-2.items-center(v-if="!account.is")
-    .p-2 Authenticate with your saved key
-    button.m-1.p-2.shadow-lg.rounded-full.cursor-pointer(@click="show('key')")
-      la-key
-    label.m-1.p-2.shadow-lg.rounded-full.cursor-pointer(for="qr-input")
-      la-qrcode
-    label.m-1.p-2.shadow-lg.rounded-full.cursor-pointer(for="json-input")
-      la-file-code
-  .hidden
-    qr-load(
-      @loaded="pair = $event"
-    )
-    input#json-input(
-      tabindex="-1"
-      type="file",
-      accept="application/json",
-      ref="file"
-      @change="uploadText($event, file => pair = file)"
-    )
-  .flex.flex-wrap
-    transition(name="fade")
-      textarea.p-2.text-sm.flex-1(
-        rows="6",
-        cols="20"
-        v-if="current == 'key'",
-        v-model="pair",
-        key="text"
-        placeholder="Paste your crypto pair here"
-        )
-
-  button.button(@click="auth()" v-if="!account.is") Auth
+.flex.bg-light-200.p-4(v-if="!account.is")
+  .flex.flex-col.mr-2.flex-1.items-center
+    .font-bold Use your saved key to authenticate
+    button.button.cursor-pointer.flex.items-center(@click="show('key')")
+      la-key.text-xl
+      .p-1.ml-1.font-bold Paste
+    label.button.cursor-pointer.flex.items-center(for="qr-input")
+      la-qrcode.text-xl
+      .p-1.ml-1.font-bold QR
+    label.button.cursor-pointer.flex.items-center(for="json-input")
+      la-file-code.text-xl
+      .p-1.ml-1.font-bold JSON
+    .hidden
+      qr-load(
+        @loaded="pair = $event"
+      )
+      input#json-input(
+        tabindex="-1"
+        type="file",
+        accept="application/json",
+        ref="file"
+        @change="uploadText($event, file => pair = file)"
+      )
+    .flex.flex-wrap
+      transition(name="fade")
+        textarea.p-2.text-sm.flex-1(
+          rows="6",
+          cols="20"
+          v-if="current == 'key'",
+          v-model="pair",
+          key="text"
+          placeholder="Paste your crypto pair here"
+          )
+  .flex.flex-col.items-center.flex-1
+    .font-bold.flex.items-center.flex-wrap.mb-3 Or generate a new one
+    account-avatar(v-if="newPair" :pub="newPair.pub" :size="100")
+    button.button.flex.items-center(@click="generatePair()") 
+      fad-random-1dice.text-2xl
+    button.button.w-full(@click="auth(newPair)" v-if="newPair && !account.is" :style="{ backgroundColor: color.deep.hex(newPair.pub) }") Auth
 </template>

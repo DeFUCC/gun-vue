@@ -3,20 +3,20 @@ const props = defineProps({
   tag: { type: String, default: 'tag' }
 })
 const emit = defineEmits(['close', 'browse'])
-import { useTagPosts, uploadText } from '@composables';
+import { useTagPosts, exportFeed, importFeed, addPost } from '@composables';
 const add = ref(false)
-const { posts, addPost, exportPosts, loadPosts } = useTagPosts(toRef(props, 'tag'))
+const { posts, timestamps } = useTagPosts(toRef(props, 'tag'))
 </script>
 
 <template lang='pug'>
 .m-4.shadow-lg.p-4
   .flex.items-center.p-2
-    router-link(class="hover:underline" to="/tags/") Tags /
+    router-link(class="hover:underline" to="/feeds/") Tags /
     .text-xl.ml-2.font-bold # {{ tag }}
     button.button(@click="add = !add")
       la-plus(v-if="!add")
       la-times(v-else)
-    button.button(@click="exportPosts()")
+    button.button(@click="exportFeed(tag, posts)")
       la-file-download
     label.button.cursor-pointer(for="md-input")
       la-file-upload
@@ -25,21 +25,21 @@ const { posts, addPost, exportPosts, loadPosts } = useTagPosts(toRef(props, 'tag
       type="file",
       accept="text/markdown",
       ref="file"
-      @change="loadPosts"
+      @change="importFeed(tag, $event)"
     )
     .flex-1
     .button.cursor-pointer(@click="$emit('close')")
       la-times
-  post-form(v-if="add" @submit="addPost($event)")
+  post-form(v-if="add" @submit="addPost(tag, $event)")
   .flex.flex-wrap
     post-card(
-      :style="{ order: Date.now() - item.timestamp }"
+      :style="{ order: Date.now() - timestamps[hash].toFixed() }"
       v-for="(item, hash) in posts" :key="hash" 
       :hash="hash" 
+      :timestamp="timestamps[hash]"
       :post="item" 
       @click="emit('browse', hash)"
       )
-
   
 </template>
 

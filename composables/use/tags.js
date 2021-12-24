@@ -99,13 +99,14 @@ export function useTags() {
  * @returns {useTagPosts}
  */
 export function useTagPosts(tag = ref("tag")) {
+  const timestamps = ref({});
+
   const posts = computed(() => {
-    let time = {};
     const obj = reactive({});
     gun
       .get(`#${tag.value}`)
       .on(function (d, k) {
-        time = d._[">"];
+        timestamps.value = d._[">"];
       })
       .map()
       .on(async (d, k) => {
@@ -116,54 +117,13 @@ export function useTagPosts(tag = ref("tag")) {
         } catch (e) {
           obj[k] = { content: d };
         }
-        obj[k].timestamp = time?.[k];
       });
     return obj;
   });
 
   const count = computed(() => Object.keys(posts.value).length);
 
-  async function addPost(obj) {
-    const { text, hash } = await hashObj(obj);
-    gun.get(`#${tag.value}`).get(`${hash}`).put(text);
-    logEvent("new-post", {
-      event: "new-post",
-      feed: tag.value,
-      hash: hash,
-    });
-  }
-
-  function exportPosts() {
-    let yml = yaml.stringify({
-      title: tag.value,
-      posts: Object.values(posts.value),
-    });
-    downloadText(
-      `---
-${yml}
----
-      `,
-      "text/markdown",
-      tag.value + ".md"
-    );
-  }
-
-  function loadPosts(event) {
-    uploadText(event, (file) => {
-      const yamlBlockPattern =
-        /^(?:\-\-\-)(.*?)(?:\-\-\-|\.\.\.)(?:\n*\s*)(.*)/s;
-      const yml = yamlBlockPattern.exec(file.trim());
-      const frontmatter = yml[1];
-      console.log(frontmatter);
-      if (!frontmatter) return;
-      let feed = yaml.parse(frontmatter);
-      if (Array.isArray(feed?.posts)) {
-        feed?.posts.forEach((post) => addPost(post));
-      }
-    });
-  }
-
-  return { posts, count, addPost, exportPosts, loadPosts };
+  return { posts, timestamps, count };
 }
 
 export function useTagPost(tag = ref(""), hash = ref("")) {
