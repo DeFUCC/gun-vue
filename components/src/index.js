@@ -1,6 +1,6 @@
 import "virtual:windi.css";
 
-export { default as AccountProfile } from "./account/profile.vue";
+export { default as AccountProfile } from "./account/profile/index.vue";
 export { default as AccountCredentials } from "./account/credentials.vue";
 export { default as AccountPassword } from "./account/password.vue";
 export { default as AccountAuth } from "./account/auth.vue";

@@ -25,11 +25,17 @@ export const account = reactive({
   is: null,
   pub: computed(() => account?.is?.pub),
   color: computed(() => (account.pub ? color.deep.hex(account.pub) : "gray")),
-  profile: {},
+  profile: {
+    name: "",
+  },
   pulse: 0,
   pulser: null,
   blink: false,
   user: gun.user(),
+  safe: {
+    saved: null,
+    password: null,
+  },
 });
 
 /**
@@ -57,7 +63,7 @@ export function useAccount() {
     });
   }
 
-  return { account, auth, leave };
+  return { account, auth, leave, updateProfile };
 }
 
 /**
@@ -103,9 +109,17 @@ function loadProfile() {
     .on((data, key) => {
       account.profile[key] = data;
     });
+
+  gun
+    .user()
+    .get("safe")
+    .map()
+    .on((d, k) => {
+      account.safe[k] = d;
+    });
 }
 
-function updateProfile(field, data) {
+export function updateProfile(field, data) {
   if (field && data !== undefined) {
     gun.user().get("profile").get(field).put(data);
   }
