@@ -47,7 +47,7 @@ const { share, isSupported: canShare } = useShare()
       .px-2 My key pair is stored safely 
   .flex.w-full.justify-center.mt-4(v-if="current")
     transition-group(name="fade")
-      account-password.flex-1(key="pass", v-if="current == 'pass'")
+      user-password.flex-1(key="pass", v-if="current == 'pass'")
       textarea.p-2.text-sm.flex-1(
         rows="6",
         v-if="current == 'key'",

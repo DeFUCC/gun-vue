@@ -24,9 +24,7 @@ article.m-4.p-2.rounded-xl.shadow-xl
         :style="{ backgroundColor: color.light.hex(i.slice(1, 88)) }",
         v-if="i[0] == '~'"
       ) 
-        img(
-          :src="gunAvatar(i.slice(1, 88), 16)"
-        )
+        account-avatar(:pub="i.slice(1, 88)" :size="16")
       .item {{ i[0] == '~' ? i.slice(88) : i }}
     transition(name="fade")
       section(v-if="g.show")

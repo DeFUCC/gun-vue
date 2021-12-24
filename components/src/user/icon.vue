@@ -13,5 +13,5 @@ transition(name="fade")
     .bg-light-100.w-90.rounded-3xl.flex.flex-col.items-center.z-4.text-center.break-all.relative.shadow-2xl.overflow-hidden
       button.button.absolute.right-2.bottom-2(@click="open = false")
         la-times
-      account-home
+      user-home
 </template>

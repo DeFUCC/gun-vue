@@ -3,6 +3,5 @@ export const routes = {
   "/space/": "Space",
   "/tags/": "Tags",
   "/log/": "Log",
-  "/account/": "Account",
   "/graph/": "Graph",
 };

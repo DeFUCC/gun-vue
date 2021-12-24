@@ -14,7 +14,7 @@
                 a.m-1(href="https://github.com/defucc/gun-vue" target="_blank")
                     la-github
     .flex.flex-wrap.shadow-lg.m-2.rounded-3xl.bg-light-300.overflow-hidden
-        account-home
+        user-home
 </template>
 
 <style scoped>

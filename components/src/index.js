@@ -1,12 +1,13 @@
 import "virtual:windi.css";
 
-export { default as AccountProfile } from "./account/profile/index.vue";
-export { default as AccountCredentials } from "./account/credentials.vue";
-export { default as AccountPassword } from "./account/password.vue";
-export { default as AccountAuth } from "./account/auth.vue";
-export { default as AccountHome } from "./account/home.vue";
+export { default as UserProfile } from "./user/profile.vue";
+export { default as UserCredentials } from "./user/credentials.vue";
+export { default as UserPassword } from "./user/password.vue";
+export { default as UserAuth } from "./user/auth.vue";
+export { default as UserHome } from "./user/home.vue";
+export { default as UserIcon } from "./user/icon.vue";
 
-export { default as RelayPulse } from "./relay/pulse.vue";
+export { default as RelayIcon } from "./relay/icon.vue";
 
 export { default as RoomProfile } from "./room/profile.vue";
 

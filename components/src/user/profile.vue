@@ -17,7 +17,7 @@ function addNewField() {
 <template lang='pug'>
 .flex.flex-col(v-if="account.is")
   .flex.flex-col.p-2
-    account-profile-field(
+    user-profile-field(
       v-for="(d,k) in account.profile" :key="d"
       :field="k" :content="d")
     .flex.items-center

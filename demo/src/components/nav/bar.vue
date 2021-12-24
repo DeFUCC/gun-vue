@@ -8,7 +8,7 @@ import { routes } from '../../pages/routes'
   :to="l" 
   :class="{ active: $route.path == l }") {{ link }}
   .flex-1
-  account-icon
+  user-icon
   relay-icon
   util-share(:key="$route")
 </template>
