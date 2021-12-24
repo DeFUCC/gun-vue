@@ -3,5 +3,5 @@ export const routes = {
   "/space/": "Space",
   "/feeds/": "Feeds",
   "/log/": "Log",
-  "/graph/": "Graph",
+  "/users/": "Users",
 };

@@ -1,8 +1,6 @@
 <script setup>
-import { useAccount, downloadJSON } from '@composables'
+import { user, downloadJSON } from '@composables'
 const current = ref('pass')
-
-const { account, updateProfile } = useAccount()
 
 function show(option) {
   if (current.value != option) {
@@ -21,14 +19,14 @@ const { share, isSupported: canShare } = useShare()
 </script>
 
 <template lang='pug'>
-.flex.flex-col.items-stretch(v-if="account.is && !account.safe?.saved")
+.flex.flex-col.items-stretch(v-if="user.is && !user.safe?.saved")
   slot
     .mt-4.mx-6 Please make sure to safely store your cryptographic keypair to be able to use it again later
   .flex.flex-wrap.p-4.items-center
-    button.button.flex.items-center(v-if="canShare" @click="share({ title: 'Your key pair', text: JSON.stringify(account.user._.sea) })" :class="{ active: current == 'pass' }")
+    button.button.flex.items-center(v-if="canShare" @click="share({ title: 'Your key pair', text: JSON.stringify(user.pair()) })" :class="{ active: current == 'pass' }")
       la-share
       .px-1 Share
-    button.button.flex.items-center(v-if="canCopy" @click="copy(JSON.stringify(account.user._.sea))")
+    button.button.flex.items-center(v-if="canCopy" @click="copy(JSON.stringify(user.pair()))")
       la-copy
       transition(name="fade")
         .px-2(v-if="copied") Copied!
@@ -39,10 +37,10 @@ const { share, isSupported: canShare } = useShare()
     button.button.flex.items-center(@click="show('qr')")
       la-qrcode
       .px-2 QR code
-    button.button.flex.items-center(@click="downloadJSON(account.user._.sea, account.profile?.name); current = null")
+    button.button.flex.items-center(@click="downloadJSON(user.pair(), user?.name); current = null")
       la-file-code
       .px-2 JSON file
-    button.button.text-green-600.flex.items-center(@click="account.user.get('safe').get('saved').put(true)" v-if="!account?.safe?.saved")
+    button.button.text-green-600.flex.items-center(@click="user.db.get('safe').get('saved').put(true)" v-if="!user?.safe?.saved")
       la-lock
       .px-2 My key pair is stored safely 
   .flex.w-full.justify-center.mt-4(v-if="current")
@@ -51,10 +49,10 @@ const { share, isSupported: canShare } = useShare()
       textarea.p-2.text-sm.flex-1(
         rows="6",
         v-if="current == 'key'",
-        :value="JSON.stringify(account.user._.sea)",
+        :value="JSON.stringify(user.pair())",
         key="text"
       )
-      qr-show.max-w-600px(v-if="current == 'qr'" key="qr" :data="JSON.stringify(account.user._.sea)")
+      qr-show.max-w-600px(v-if="current == 'qr'" key="qr" :data="JSON.stringify(user.pair())")
 </template>
 
 <style scoped>

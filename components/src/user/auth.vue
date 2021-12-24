@@ -1,5 +1,5 @@
 <script setup>
-import { useAccount, safeJSONParse, useFileUpload, uploadText, SEA, color } from '@composables'
+import { useUser, safeJSONParse, useFileUpload, uploadText, SEA, color } from '@composables'
 
 const current = ref('pass')
 const pair = ref()
@@ -26,7 +26,7 @@ watch(pair, (p) => {
   }
 })
 
-const { account, auth } = useAccount()
+const { user, auth } = useUser()
 
 const newPair = ref(null)
 
@@ -39,7 +39,7 @@ generatePair()
 </script>
 
 <template lang='pug'>
-.flex.bg-light-200.p-4(v-if="!account.is")
+.flex.bg-light-200.p-4(v-if="!user.is")
   .flex.flex-col.mr-2.flex-1.items-center
     .font-bold Use your saved key to authenticate
     button.button.cursor-pointer.flex.items-center(@click="show('key')")
@@ -77,5 +77,5 @@ generatePair()
     account-avatar(v-if="newPair" :pub="newPair.pub" :size="100")
     button.button.flex.items-center(@click="generatePair()") 
       fad-random-1dice.text-2xl
-    button.button.w-full(@click="auth(newPair)" v-if="newPair && !account.is" :style="{ backgroundColor: color.deep.hex(newPair.pub) }") Auth
+    button.button.w-full(@click="auth(newPair)" v-if="newPair && !user.is" :style="{ backgroundColor: color.deep.hex(newPair.pub) }") Auth
 </template>

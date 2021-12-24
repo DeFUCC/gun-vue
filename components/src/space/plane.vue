@@ -1,5 +1,5 @@
 <script setup>
-import { useSpace, account } from '@composables'
+import { useSpace, user } from '@composables'
 
 const props = defineProps({
   width: { type: Number, default: 1000 },
@@ -41,7 +41,7 @@ const { space, area, join } = useSpace()
       )
     line(
       v-if="space.my?.pos"
-      :stroke="account.color"
+      :stroke="user.color"
       stroke-width="4"
       :x1="space.my.mouse.x * width"
       :y1="space.my.mouse.y * height"
@@ -51,7 +51,7 @@ const { space, area, join } = useSpace()
     g.mouse(:transform="`translate(${space.my.mouse.x * width} ${space.my.mouse.y * height})`")
       circle(
         style="filter:url(#shadowButton)"
-        :fill="account.color"
+        :fill="user.color"
         r="8"
       )
     g.guests

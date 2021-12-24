@@ -1,6 +1,6 @@
 import { gun } from "./gun";
 import { useSvgMouse } from "./mouse";
-import { account } from "./account";
+import { user } from "./user";
 import { hashText } from "./hash";
 import { logEvent } from "./log";
 
@@ -31,11 +31,11 @@ export function useSpace(name = "public") {
     if (!gun.user().is) return;
     place();
     if (space.joined) return;
-    const hash = await hashText(account.pub);
+    const hash = await hashText(user.pub);
     let already = await gun.get(name).get("#guests").get(hash).then();
     if (already) return;
-    gun.get(name).get("#guests").get(hash).put(account.pub);
-    logEvent("guest", { event: "guest", space: name, pub: account.pub });
+    gun.get(name).get("#guests").get(hash).put(user.pub);
+    logEvent("guest", { event: "guest", space: name, pub: user.pub });
     space.joined = true;
   }
 

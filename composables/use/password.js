@@ -1,5 +1,5 @@
 import { gun, SEA } from "./gun";
-import { account } from "./account";
+import { auth } from "./user";
 
 export function usePass() {
   const pass = reactive({
@@ -53,7 +53,7 @@ export async function hasPass(pub) {
 export async function logWithPass(pub, password) {
   let encPair = await gun.get(`~${pub}`).get("pass").get("pair").then();
   let pair = await SEA.decrypt(encPair, password);
-  account.auth(pair);
+  auth(pair);
 }
 
 export async function setPassword(text) {

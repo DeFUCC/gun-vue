@@ -9,7 +9,6 @@ import { routes } from '../../pages/routes'
   :class="{ active: $route.path == l }") {{ link }}
   .flex-1
   user-icon
-  relay-icon
   util-share(:key="$route")
 </template>
 
