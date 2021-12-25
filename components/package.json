@@ -19,7 +19,7 @@
   "dependencies": {
     "@gun-vue/composables": "workspace:^",
     "@qrcode/svg": "^1.0.0-beta.2",
-    "@vueuse/core": "7.4.0",
+    "@vueuse/core": "7.4.1",
     "gun-avatar": "1.4.0",
     "jsqr": "^1.4.0",
     "markdown-it": "^12.3.0",
@@ -32,7 +32,7 @@
   "devDependencies": {
     "pug": "^3.0.2",
     "unplugin-icons": "^0.12.23",
-    "unplugin-vue-components": "^0.17.9",
+    "unplugin-vue-components": "^0.17.10",
     "vite": "^2.7.6",
     "vite-plugin-windicss": "^1.6.1",
     "windicss": "^3.4.0"
