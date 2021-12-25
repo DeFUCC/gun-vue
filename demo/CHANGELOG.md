@@ -1,5 +1,14 @@
 # @gun-vue/demo
 
+## 0.2.4
+
+### Patch Changes
+
+- layered routing as a way to persist data better
+- Updated dependencies
+  - @gun-vue/components@0.2.4
+  - @gun-vue/composables@0.2.4
+
 ## 0.2.3
 
 ### Patch Changes
