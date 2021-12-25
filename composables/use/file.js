@@ -45,15 +45,17 @@ export function downloadJSON(pair, name = "account") {
 
 export function uploadText(event, callback) {
   let file = event.target.files[0];
-  if (file.size > 1000) return;
+  const maxBytes = 20000000;
+  if (file.size > maxBytes) {
+    console.error("File is bigger than " + niceBytes(maxBytes)) + " limit";
+    return;
+  }
   let reader = new FileReader();
   reader.readAsText(file);
   reader.onload = () => {
     callback(reader.result);
   };
 }
-
-import { reactive, computed } from "vue";
 
 //// https://github.com/itsabdessalam/encodeit/blob/develop/src/components/FileUploader.vue
 // to be upgraded with this code https://github.com/powerbot15/image-compressor/blob/master/image-compressor.js
@@ -243,4 +245,17 @@ export function useFileUpload() {
     state,
     handleChange,
   };
+}
+
+const units = ["bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+
+function niceBytes(x) {
+  let l = 0,
+    n = parseInt(x, 10) || 0;
+
+  while (n >= 1024 && ++l) {
+    n = n / 1024;
+  }
+
+  return n.toFixed(n < 10 && l > 0 ? 1 : 0) + " " + units[l];
 }

@@ -20,7 +20,7 @@
     "@gun-vue/composables": "workspace:^",
     "@qrcode/svg": "^1.0.0-beta.2",
     "@vueuse/core": "7.4.0",
-    "gun-avatar": "^1.3.5",
+    "gun-avatar": "1.4.0",
     "jsqr": "^1.4.0",
     "markdown-it": "^12.3.0",
     "markdown-it-external-links": "^0.0.6",

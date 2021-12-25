@@ -70,10 +70,10 @@ generatePair()
           v-if="current == 'key'",
           v-model="pair",
           key="text"
-          placeholder="Paste your crypto pair here"
+          placeholder="Paste your key pair here"
           )
   .flex.flex-col.items-center.flex-1
-    .font-bold.flex.items-center.flex-wrap.mb-3 Or generate a new one
+    .font-bold.flex.items-center.flex-wrap.mb-3 Generate new
     account-avatar(v-if="newPair" :pub="newPair.pub" :size="100")
     button.button.flex.items-center(@click="generatePair()") 
       fad-random-1dice.text-2xl

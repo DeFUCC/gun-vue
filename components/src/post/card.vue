@@ -1,6 +1,8 @@
 <script setup>
 import { color, ms } from '@composables'
 
+const emit = defineEmits(['upvote'])
+
 const props = defineProps({
   post: { type: [Object, String], default: { text: 'empty' } },
   timestamp: { type: Number, default: 0 },
@@ -19,11 +21,14 @@ const title = computed(() => {
 </script>
 
 <template lang='pug'>
-.p-2.shadow-md.m-1.rounded-lg.cursor-pointer.flex.items-center(:style="{ backgroundColor: color.light.hex(hash) }")
+.p-2.shadow-md.m-1.rounded-lg.cursor-pointer.flex.flex-col.items-center.relative(:style="{ backgroundColor: color.light.hex(hash) }")
   .flex.flex-col.p-2.max-w-64
     .text-lg.font-bold.truncate {{ title }}
     .text-md.truncate.overflow-hidden(v-if="post.description") {{ post.description }}
     .text-md.truncate.overflow-hidden(v-if="!post.description && post.text") {{ post.text }}
-    .text-8px(v-if="timestamp") {{ ms(Date.now() - timestamp) }}
+  .flex() 
+    button.button.flex.items-center(@click.stop.prevent="$emit('upvote')" v-if="timestamp")
+      .p-0.mr-1 {{ ms(Date.now() - timestamp) }}
+      la-thumbs-up
     slot
 </template>

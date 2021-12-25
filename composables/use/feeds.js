@@ -1,13 +1,16 @@
 import yaml from "yaml";
 import { logEvent } from "./log";
 import { gun } from "./gun";
-import { hashObj } from "./hash";
+import { hashObj, hashText } from "./hash";
 import { downloadText, uploadText } from "./file";
 
-export function exportFeed(tag, posts) {
+export async function exportFeed(tag, posts) {
+  let checkSum = await hashText(posts);
   let yml = yaml.stringify({
     title: tag,
-    posts: Object.values(posts),
+    type: "feed",
+    postsHash: checkSum,
+    posts: posts,
   });
 
   downloadText(
@@ -27,18 +30,21 @@ export function importFeed(tag, event) {
     const frontmatter = yml[1];
     if (!frontmatter) return;
     let feed = yaml.parse(frontmatter);
-    if (Array.isArray(feed?.posts)) {
-      feed?.posts.forEach((post) => addPost(tag, post));
+    console.log(feed);
+    for (let hash in feed?.posts) {
+      addPost(tag, feed.posts[hash]);
     }
   });
 }
 
-export async function addPost(tag, obj) {
+export async function addPost(tag, obj, log = false) {
   const { text, hash } = await hashObj(obj);
   gun.get(`#${tag}`).get(`${hash}`).put(text);
-  logEvent("new-post", {
-    event: "new-post",
-    feed: tag,
-    hash: hash,
-  });
+  if (log) {
+    logEvent("new-post", {
+      event: "new-post",
+      feed: tag,
+      hash: hash,
+    });
+  }
 }

@@ -7,6 +7,7 @@ export * from "./use/crypto";
 
 export * from "./use/log";
 export * from "./use/tags";
+export * from "./use/post";
 export * from "./use/feeds";
 
 export * from "./use/relay";

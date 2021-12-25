@@ -10,36 +10,47 @@ const { posts, timestamps } = useTagPosts(toRef(props, 'tag'))
 
 <template lang='pug'>
 .m-4.shadow-lg.p-4
-  .flex.items-center.p-2
-    router-link(class="hover:underline" to="/feeds/") Tags /
+  .flex.flex-wrap.items-center.p-2
+    router-link(class="hover:underline" to="/feeds/")  
+      la-stream.text-2xl
     .text-xl.ml-2.font-bold # {{ tag }}
     button.button(@click="add = !add")
-      la-plus(v-if="!add")
-      la-times(v-else)
-    button.button(@click="exportFeed(tag, posts)")
-      la-file-download
-    label.button.cursor-pointer(for="md-input")
-      la-file-upload
-    input#md-input.hidden(
-      tabindex="-1"
-      type="file",
-      accept="text/markdown",
-      ref="file"
-      @change="importFeed(tag, $event)"
-    )
+      transition(name="fade")
+        .flex.items-center(v-if="!add")
+          la-plus
+          .ml-1 Add post
+        .flex.items-center(v-else)
+          la-times
+          .ml- Cancel
     .flex-1
+    .px-4.flex
+      button.button.flex.items-center(@click="exportFeed(tag, posts)")
+        la-file-download
+        .ml-1 Export
+      label.button.cursor-pointer.flex.items-center(for="md-input")
+        la-file-upload
+        .ml-1 Import
+      input#md-input.hidden(
+        tabindex="-1"
+        type="file",
+        accept="text/markdown",
+        ref="file"
+        @change="importFeed(tag, $event)"
+      )
     .button.cursor-pointer(@click="$emit('close')")
       la-times
-  post-form(v-if="add" @submit="addPost(tag, $event)")
+  post-form(v-if="add" @submit="addPost(tag, $event); add = false")
   .flex.flex-wrap
-    post-card(
-      :style="{ order: Date.now() - timestamps[hash].toFixed() }"
-      v-for="(item, hash) in posts" :key="hash" 
-      :hash="hash" 
-      :timestamp="timestamps[hash]"
-      :post="item" 
-      @click="emit('browse', hash)"
-      )
+    transition-group(name="list")
+      post-card(
+        :style="{ order: Date.now() - timestamps[hash].toFixed() }"
+        v-for="(item, hash) in posts" :key="hash" 
+        :hash="hash" 
+        :timestamp="timestamps[hash]"
+        :post="item" 
+        @click="emit('browse', hash)"
+        @upvote="addPost(tag, item)"
+        )
   
 </template>
 
