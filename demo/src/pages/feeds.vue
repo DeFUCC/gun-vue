@@ -5,5 +5,6 @@ const { tags } = useTags()
 
 <template lang='pug'>
 .flex.flex-col
-  .p-4.text-center.opacity-20.text-xl.text-shadow-md Open one of {{ tags.count }} feeds
+  tag-list.m-2.p-2.shadow-md.rounded-xl(@tag="$router.push($event)")
+  router-view
 </template>

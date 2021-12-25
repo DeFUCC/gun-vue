@@ -16,16 +16,15 @@ const title = computed(() => {
     return props.post?.title
   }
 })
-
-
 </script>
 
 <template lang='pug'>
-.p-2.shadow-md.m-1.rounded-lg.cursor-pointer.flex.flex-col.items-center.relative(:style="{ backgroundColor: color.light.hex(hash) }")
+.shadow-md.m-1.rounded-lg.cursor-pointer.flex.flex-wrap.items-center.relative(:style="{ backgroundColor: color.light.hex(hash) }")
   .flex.flex-col.p-2.max-w-64
     .text-lg.font-bold.truncate {{ title }}
     .text-md.truncate.overflow-hidden(v-if="post.description") {{ post.description }}
     .text-md.truncate.overflow-hidden(v-if="!post.description && post.text") {{ post.text }}
+  .flex-1
   .flex() 
     button.button.flex.items-center(@click.stop.prevent="$emit('upvote')" v-if="timestamp")
       .p-0.mr-1 {{ ms(Date.now() - timestamp) }}
