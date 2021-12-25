@@ -32,12 +32,12 @@ export function importFeed(tag, event) {
     let feed = yaml.parse(frontmatter);
     console.log(feed);
     for (let hash in feed?.posts) {
-      addPost(tag, feed.posts[hash]);
+      addPost(tag, feed.posts[hash], false);
     }
   });
 }
 
-export async function addPost(tag, obj, log = false) {
+export async function addPost(tag, obj, log = true) {
   const { text, hash } = await hashObj(obj);
   gun.get(`#${tag}`).get(`${hash}`).put(text);
   if (log) {

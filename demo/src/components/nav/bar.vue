@@ -6,7 +6,7 @@ import { routes } from '../../pages/routes'
 .flex.flex-wrap.items-center.p-2.bg-light-900.shadow-md
   router-link.p-2.rounded-xl.cursor-pointer(v-for="(link,l) in routes" :key="link" 
   :to="l" 
-  :class="{ active: $route.path == l }") {{ link }}
+  :class="{ active: $route.path.includes(l) }") {{ link }}
   .flex-1
   user-icon
   util-share(:key="$route")

@@ -1,7 +1,7 @@
 {
   "source": {
     "includePattern": ".+\\.js(doc|x)?$",
-    "include": ["."],
+    "include": ["composables"],
     "exclude": ["node_modules"],
     "excludePattern": ".*/node_modules.*"
   },
