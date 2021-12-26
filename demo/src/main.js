@@ -10,10 +10,6 @@ import routes from "~pages";
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
-  scrollBehavior(to, from, savedPosition) {
-    // always scroll to top
-    return { top: 0 };
-  },
 });
 
 const app = createApp(App);

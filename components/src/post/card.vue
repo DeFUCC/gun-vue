@@ -6,6 +6,7 @@ const emit = defineEmits(['upvote'])
 const props = defineProps({
   post: { type: [Object, String], default: { text: 'empty' } },
   timestamp: { type: Number, default: 0 },
+  ban: { type: Number, default: 0 },
   hash: { type: String, default: '' }
 })
 
@@ -26,8 +27,11 @@ const title = computed(() => {
     .text-md.truncate.overflow-hidden(v-if="!post.description && post.text") {{ post.text }}
   .flex-1
   .flex() 
-    button.button.flex.items-center(@click.stop.prevent="$emit('upvote')" v-if="timestamp")
+    button.button.flex.items-center(@click.stop.prevent="$emit('upvote')")
       .p-0.mr-1 {{ ms(Date.now() - timestamp) }}
       la-thumbs-up
+    button.button.flex.items-center(@click.stop.prevent="$emit('downvote')")
+      .p-0.mr-1(v-if="ban > 0") {{ ms(Date.now() - ban) }}
+      la-thumbs-down
     slot
 </template>

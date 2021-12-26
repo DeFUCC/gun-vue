@@ -15,13 +15,13 @@ onMounted(() => {
 
 <template lang='pug'>
 .flex.flex-col
-  .p-2.relative
-    input.w-full.p-4.rounded-xl.shadow-inner.text-lg(
+  .relative
+    input.w-full.p-2.rounded-xl.shadow-inner.text-lg(
       v-model="search" 
       placeholder="Search for a feed"
       ref="input"
       )
-    .absolute.right-8.top-6 {{ tags.results.length }}/{{ tags.count }}
+    .absolute.right-6.top-2 {{ tags.results.length }}/{{ tags.count }}
   .flex.flex-wrap
     transition-group(name="fade")
       tag-label.tag(

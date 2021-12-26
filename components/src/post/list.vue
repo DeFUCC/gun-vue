@@ -39,10 +39,10 @@ const { posts, timestamps } = useTagPosts(toRef(props, 'tag'))
   .px-4.mt-4.flex.justify-center
     button.button.flex.items-center(@click="exportFeed(tag, posts)")
       la-file-download
-      .ml-1 Export
+      .ml-1 Export Feed
     label.button.cursor-pointer.flex.items-center(for="md-input")
       la-file-upload
-      .ml-1 Import
+      .ml-1 Import Feed
     input#md-input.hidden(
       tabindex="-1"
       type="file",
