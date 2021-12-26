@@ -20,14 +20,6 @@ const encPair = computed(() => {
   return pass.safe?.enc
 })
 
-const mdPair = computed(() => {
-  return `---
-user: ${user.name}
-encryptedPair: ${encPair.value}
----
-`
-})
-
 </script>
 
 <template lang='pug'>
@@ -51,9 +43,9 @@ encryptedPair: ${encPair.value}
     button.button.flex.items-center(@click="show('qr')")
       la-qrcode
       .px-2 QR
-    button.button.flex.items-center(@click="downloadText(mdPair, 'text/markdown', (user.name || 'account') + '.md'); current = null")
+    button.button.flex.items-center(@click="downloadText(encPair, 'text/txt', (user.name || 'account') + '.txt'); current = null")
       la-file-code
-      .px-2 MD
+      .px-2 TXT
     button.button.text-green-600.flex.items-center(@click="user.db.get('safe').get('saved').put(true)" v-if="!user?.safe?.saved")
       la-lock
       .px-2 My key pair is stored safely 
@@ -62,10 +54,10 @@ encryptedPair: ${encPair.value}
       textarea.p-2.text-sm.flex-1(
         rows="6",
         v-if="current == 'key'",
-        :value="JSON.stringify(encPair)",
+        :value="encPair",
         key="text"
       )
-      qr-show.max-w-600px(v-if="current == 'qr'" key="qr" :data="JSON.stringify(encPair)")
+      qr-show.max-w-600px(v-if="current == 'qr'" key="qr" :data="encPair")
 </template>
 
 <style scoped>
