@@ -105,16 +105,7 @@ export function leave() {
   }, 500);
 }
 
-async function hasPass(pub) {
-  return await gun.get(`~${pub}`).get("pass").get("pair").then();
-}
-
-async function getFromPass(pub, password) {
-  let encPair = await gun.get(`~${pub}`).get("pass").get("pair").then();
-  return await SEA.decrypt(encPair, password);
-}
-
-function isMine(soul) {
+export function isMine(soul) {
   if (!soul) return;
   return soul.slice(1, 88) == user.pub;
 }

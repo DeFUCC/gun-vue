@@ -1,7 +1,7 @@
 export * from "./use/gun";
 export * from "./use/user";
 export * from "./use/account";
-export * from "./use/password";
+export * from "./use/passphrase";
 export * from "./use/hash";
 export * from "./use/crypto";
 

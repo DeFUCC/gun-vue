@@ -4,7 +4,7 @@ import "./styles/transitions.css";
 
 export { default as AccountProfile } from "./account/profile.vue";
 export { default as UserCredentials } from "./user/credentials.vue";
-export { default as UserPassword } from "./user/password.vue";
+export { default as UserPassphrase } from "./user/passphrase.vue";
 export { default as UserAuth } from "./user/auth.vue";
 export { default as UserHome } from "./user/home.vue";
 export { default as UserIcon } from "./user/icon.vue";

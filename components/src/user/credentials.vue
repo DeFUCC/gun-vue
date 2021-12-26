@@ -1,5 +1,5 @@
 <script setup>
-import { user, downloadJSON } from '@composables'
+import { user, downloadText, pass } from '@composables'
 const current = ref('pass')
 
 function show(option) {
@@ -16,17 +16,31 @@ import { useClipboard, useShare } from '@vueuse/core'
 const { text, copy, copied, isSupported: canCopy } = useClipboard()
 const { share, isSupported: canShare } = useShare()
 
+const encPair = computed(() => {
+  return pass.safe?.enc
+})
+
+const mdPair = computed(() => {
+  return `---
+user: ${user.name}
+encryptedPair: ${encPair.value}
+---
+`
+})
+
 </script>
 
 <template lang='pug'>
 .flex.flex-col.items-stretch(v-if="user.is && !user.safe?.saved")
   slot
     .mt-4.mx-6 Please make sure to safely store your cryptographic keypair to be able to use it again later
-  .flex.flex-wrap.p-4.items-center
-    button.button.flex.items-center(v-if="canShare" @click="share({ title: 'Your key pair', text: JSON.stringify(user.pair()) })" :class="{ active: current == 'pass' }")
+  .flex.flex-col.mt-4
+    user-passphrase
+  .flex.flex-wrap.p-4.items-center(v-if="pass.safe?.enc")
+    button.button.flex.items-center(v-if="canShare" @click="share({ title: 'Your key pair', text: encPair })" :class="{ active: current == 'pass' }")
       la-share
       .px-1 Share
-    button.button.flex.items-center(v-if="canCopy" @click="copy(JSON.stringify(user.pair()))")
+    button.button.flex.items-center(v-if="canCopy" @click="copy(encPair)")
       la-copy
       transition(name="fade")
         .px-2(v-if="copied") Copied!
@@ -36,23 +50,22 @@ const { share, isSupported: canShare } = useShare()
       .px-2 Text
     button.button.flex.items-center(@click="show('qr')")
       la-qrcode
-      .px-2 QR code
-    button.button.flex.items-center(@click="downloadJSON(user.pair(), user?.name); current = null")
+      .px-2 QR
+    button.button.flex.items-center(@click="downloadText(mdPair, 'text/markdown', (user.name || 'account') + '.md'); current = null")
       la-file-code
-      .px-2 JSON file
+      .px-2 MD
     button.button.text-green-600.flex.items-center(@click="user.db.get('safe').get('saved').put(true)" v-if="!user?.safe?.saved")
       la-lock
       .px-2 My key pair is stored safely 
   .flex.w-full.justify-center.mt-4(v-if="current")
     transition-group(name="fade")
-      user-password.flex-1(key="pass", v-if="current == 'pass'")
       textarea.p-2.text-sm.flex-1(
         rows="6",
         v-if="current == 'key'",
-        :value="JSON.stringify(user.pair())",
+        :value="JSON.stringify(encPair)",
         key="text"
       )
-      qr-show.max-w-600px(v-if="current == 'qr'" key="qr" :data="JSON.stringify(user.pair())")
+      qr-show.max-w-600px(v-if="current == 'qr'" key="qr" :data="JSON.stringify(encPair)")
 </template>
 
 <style scoped>
