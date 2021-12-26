@@ -3,7 +3,7 @@ import { routes } from '../../pages/routes'
 </script>
 
 <template lang="pug">
-.flex.flex-wrap.items-center.p-2.bg-light-900.shadow-md
+.flex.flex-wrap.items-center.p-2.bg-light-900.shadow-md.z-400.sticky.w-full
   router-link.p-2.rounded-xl.cursor-pointer(v-for="(link,l) in routes" :key="link" 
   :to="l" 
   :class="{ active: $route.path.includes(l) }") {{ link }}
