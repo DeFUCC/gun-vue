@@ -15,7 +15,7 @@ onMounted(() => {
 </script>
 
 <template lang='pug'>
-form.flex.flex-col.p-2.border-1.rounded-2xl.bg-light-700(action="javascript:void(0);")
+form.flex.flex-col.p-2.border-1.rounded-2xl(action="javascript:void(0);")
   input(v-model="post.title" placeholder="Title" autofocus ref="title")
   input(v-model="post.description" placeholder="Description")
 

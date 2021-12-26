@@ -25,16 +25,16 @@ md.use(externalLinks, {
 </script>
 
 <template lang='pug'>
-.p-4.shadow-lg.bg-ligth-200(:style="{ backgroundColor: color.light.hex(hash) }")
-  .flex.flex-wrap.items-center
-    div(class="hover:underline text-md cursor-pointer" @click="$emit('close')") # {{ tag }}
-    .opacity-30.ml-4 {{ post?.lastUpdated }}
-    .flex-1
-    button.button(@click="$emit('close')")
-      la-angle-up
-  .flex.flex-col.p-2(v-if="!post.empty")
-    .text-lg.font-bold(v-if="post.title") {{ post.title }}
-    .my-2(v-if="post.description") {{ post.description }} 
+.pt-4
+  .flex.items-center.px-4
+    .flex.flex-wrap.items-center
+      div(class="hover:underline text-md cursor-pointer" @click="$emit('close')") # {{ tag }}
+      .opacity-30.ml-4 {{ post?.lastUpdated }}
+      .flex-1
+  .flex.flex-col.px-4(v-if="!post.empty")
+    .p-4
+      .text-2xl.font-bold(v-if="post.title") {{ post.title }}
+      .my-2(v-if="post.description") {{ post.description }} 
     embed-youtube(v-if="post.youtube" :video="post.youtube")
     .text-md.markdown.bg-light-200.rounded-2xl.m-1.p-2.leading-relaxed.max-w-65ch.breal-all(v-if="post.content" v-html="md.render(post.content)") 
     

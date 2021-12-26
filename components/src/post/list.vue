@@ -3,13 +3,13 @@ const props = defineProps({
   tag: { type: String, default: 'tag' }
 })
 const emit = defineEmits(['close', 'browse'])
-import { useTagPosts, exportFeed, importFeed, addPost } from '@composables';
+import { useTagPosts, exportFeed, importFeed, addPost, color } from '@composables';
 const add = ref(false)
 const { posts, timestamps } = useTagPosts(toRef(props, 'tag'))
 </script>
 
 <template lang='pug'>
-.shadow-lg.p-4.rounded-2xl.bg-light-400
+.shadow-lg.rounded-2xl.bg-light-400.overflow-x-hidden.overflow-y-scroll(:style="{ backgroundColor: color.light.hex(tag) }")
   .flex.flex-wrap.items-center.p-2
     .text-xl.ml-2.font-bold # {{ tag }}
     .flex-1
@@ -22,10 +22,9 @@ const { posts, timestamps } = useTagPosts(toRef(props, 'tag'))
           la-times
           .ml- Cancel
 
-    router-link(class="hover:underline button cursor-pointer" to="/feeds/")  
-      la-angle-up
+
   post-form(v-if="add" @submit="addPost(tag, $event); add = false")
-  .flex.flex-col
+  .flex.flex-col.overflow-y-scroll.h-70vh
     transition-group(name="list")
       post-card(
         :style="{ order: Date.now() - timestamps[hash].toFixed() }"
