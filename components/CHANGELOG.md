@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.2.5
+
+### Patch Changes
+
+- d4d0825: direct links and encrypted pairs for users to handle
+- Updated dependencies [d4d0825]
+  - @gun-vue/composables@0.2.5
+
 ## 0.2.4
 
 ### Patch Changes
