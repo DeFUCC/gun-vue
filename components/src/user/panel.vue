@@ -7,8 +7,9 @@ const { user, leave } = useUser()
 .p-4.flex.items-center(
   v-if="user.is"
   :style="{ backgroundColor: color.deep.hex(user.pub) }"
-  ) 
-  account-avatar
+  )
+  router-link(:to="`/users/${user.pub}`")
+    account-avatar
   .text-2xl.mx-2.font-bold {{ user?.name }}
   .flex-1 
   util-pulse(:blink="user.blink")
