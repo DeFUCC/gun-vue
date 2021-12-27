@@ -48,6 +48,7 @@ importers:
   composables:
     specifiers:
       '@vueuse/core': 7.4.1
+      base32: ^0.0.6
       color-hash: ^2.0.1
       fuse.js: ^6.5.3
       gun: ^0.2020.1235
@@ -60,6 +61,7 @@ importers:
       yaml: ^1.10.2
     dependencies:
       '@vueuse/core': 7.4.1_vue@3.2.26
+      base32: 0.0.6
       color-hash: 2.0.1
       fuse.js: 6.5.3
       gun: 0.2020.1235
@@ -772,6 +774,14 @@ packages:
     resolution: {integrity: sha512-cHFU8XeRyx0GgmoWi5qHMCVRiqU6J3MHWxVgun7jggCBUpVzm1Ir7M9dYr2whjSNc3tFeXfQ/oZjQu/4u55h9A==}
     dependencies:
       to-data-view: 1.1.0
+    dev: false
+
+  /base32/0.0.6:
+    resolution: {integrity: sha1-eQOLy1rsLY8ivMHChAKST1Cm0qw=}
+    engines: {node: '>0.4'}
+    hasBin: true
+    dependencies:
+      optimist: 0.6.1
     dev: false
 
   /base64-js/1.5.1:
@@ -2357,6 +2367,10 @@ packages:
       kind-of: 6.0.3
     dev: true
 
+  /minimist/0.0.10:
+    resolution: {integrity: sha1-3j+YVD2/lggr5IrRoMfNqDYwHc8=}
+    dev: false
+
   /minimist/1.2.5:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
     dev: true
@@ -2481,6 +2495,13 @@ packages:
     dependencies:
       mimic-fn: 2.1.0
     dev: true
+
+  /optimist/0.6.1:
+    resolution: {integrity: sha1-2j6nRob6IaGaERwybpDrFaAZZoY=}
+    dependencies:
+      minimist: 0.0.10
+      wordwrap: 0.0.3
+    dev: false
 
   /os-tmpdir/1.0.2:
     resolution: {integrity: sha1-u+Z0BseaqFxc/sdm/lc0VV36EnQ=}
@@ -3662,6 +3683,11 @@ packages:
       assert-never: 1.2.1
       babel-walk: 3.0.0-canary-5
     dev: true
+
+  /wordwrap/0.0.3:
+    resolution: {integrity: sha1-o9XabNXAvAAI03I0u68b7WMFkQc=}
+    engines: {node: '>=0.4.0'}
+    dev: false
 
   /wrap-ansi/6.2.0:
     resolution: {integrity: sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==}

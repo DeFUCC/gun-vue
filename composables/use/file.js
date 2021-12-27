@@ -27,23 +27,12 @@ export function downloadText(text, fileType, fileName) {
 }
 
 /**
- * Download full keypair as a json file
- * @param {Object} pair - a SEA keypair. If not set – the current user keypair is downloaded
- */
-export function downloadJSON(pair, name = "account") {
-  console.log(pair, typeof pair);
-  if (typeof pair != "object") return;
-  pair = JSON.stringify(pair);
-  downloadText(pair, "application/json", name + ".json");
-}
-
-/**
  * Upload and parse JSON keypair
  * @param {Event} event - `$event` from the `@change` handler
  * @param {Function} callback - a function to handle the loaded file from the reader
  */
 
-export function uploadText(event, callback) {
+export function uploadText(event, callback = (r) => console.log(r)) {
   let file = event.target.files[0];
   const maxBytes = 20000000;
   if (file.size > maxBytes) {

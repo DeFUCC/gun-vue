@@ -78,12 +78,14 @@ function init() {
  * @param {Object} pair
  */
 
-export async function auth(pair) {
-  if (!pair || !pair.pub || !pair.priv) {
-    pair = await SEA.pair();
-    console.log("new user was created");
+export async function auth(pair, cb = () => {}) {
+  if (!isPair(pair)) {
+    // pair = await SEA.pair();
+    console.log("incorrect pair", pair);
+    return;
   }
   gun.user().auth(pair, async () => {
+    cb();
     console.log("user is authenticated");
   });
 }
@@ -114,4 +116,15 @@ export function updateProfile(field, data) {
   if (field && data !== undefined) {
     gun.user().get("profile").get(field).put(data);
   }
+}
+
+export function isPair(pair) {
+  return (
+    pair &&
+    typeof pair == "object" &&
+    pair.pub &&
+    pair.epub &&
+    pair.priv &&
+    pair.epriv
+  );
 }
