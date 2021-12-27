@@ -24,7 +24,7 @@ function addNewField() {
 </script>
 
 <template lang='pug'>
-.flex.flex-col(v-if="user.is")
+.flex.flex-col
   .flex.flex-col.p-2
     account-profile-field(
       v-for="(d,k) in account.profile" :key="d"

@@ -1,9 +1,10 @@
-<script setup>import { gun } from '@composables';
+<script setup>
+import { gun, useAccount } from '@composables';
 
 const guests = reactive({})
 
 gun.get('public').get('#guests').map().on((d, k) => {
-  guests[k] = d
+  guests[k] = useAccount(ref(d))
 })
 </script>
 
@@ -13,7 +14,8 @@ gun.get('public').get('#guests').map().on((d, k) => {
   .flex.flex-wrap
     router-link.p-1(
       v-for="guest in guests" :key="guest"
-      :to="`/users/${guest}`"
-      )
-      account-avatar(:pub="guest" :size="54")
+      :to="`/users/${guest.account.pub}`"
+      :style="{ opacity: guest.account.pulse && Date.now() - guest.account.pulse < 30000 ? 1 : 0.1 }"
+      ) 
+      account-avatar(:pub="guest.account.pub" :size="54")
 </template>
