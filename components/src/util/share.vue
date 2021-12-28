@@ -9,10 +9,10 @@ const { share, isSupported: canShare } = useShare()
 </script>
 
 <template lang='pug'>
-.mx-2.text-xl.cursor-pointer(@click="open = true")
-  ic-twotone-ios-share
+.m-3.text-xl.cursor-pointer(@click="open = true")
+  la-share
 transition(name="fade")
-  .fixed.w-full.h-full.flex.items-center.justify-center.z-10.top-0(v-if="open")
+  .fixed.w-full.h-full.flex.items-center.justify-center.z-10.top-0.left-0(v-if="open")
     .bg-dark-100.bg-opacity-30.w-full.h-full.absolute.z-2.cursor-pointer(@click="open = false")
     .bg-light-100.w-90.rounded-4xl.p-4.flex.flex-col.items-center.z-4.text-center.break-all.relative.shadow-2xl
       button.button.absolute.right-2.top-2(@click="open = false")

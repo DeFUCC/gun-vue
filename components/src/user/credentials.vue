@@ -18,54 +18,74 @@ import { useClipboard, useShare } from '@vueuse/core'
 const { text, copy, copied, isSupported: canCopy } = useClipboard()
 const { share, isSupported: canShare } = useShare()
 
+const safePair = ref(true)
+
 const encPair = computed(() => {
-  return pass?.safe?.enc
+  return safePair.value ? pass?.safe?.enc : JSON.stringify(user.pair())
 })
 
 </script>
 
 <template lang='pug'>
-.flex.flex-col.items-stretch.pb-4(v-if="user.is && !user.safe?.saved") {{ pass.b32 }}
+.flex.flex-col.items-stretch.pb-4.border-1.border-dark-100.border-opacity-10(v-if="user.is && !user.safe?.saved")
   slot
     .mt-4.mx-6 Please make sure to safely store your cryptographic keypair to be able to use it again later
   .flex.flex-col.mt-4
-    user-passphrase
-  .flex.flex-wrap.p-4.items-center(v-if="encPair")
-    button.button.items-center(v-if="canShare" @click="share({ title: 'Your key pair', text: encPair })" :class="{ active: current == 'pass' }")
-      la-share
-      .px-1 Share
-    button.button.items-center(v-if="canCopy" @click="copy(encPair)")
-      la-copy
-      transition(name="fade")
-        .px-2(v-if="copied") Copied!
-        .px-2(v-else) Copy
-    button.button.items-center(@click="show('key')")
-      la-envelope-open-text
-      .px-2 Text
-    button.button.items-center(@click="show('links')")
-      la-link
-      .px-2 Links
-    button.button.items-center(@click="show('qr')")
-      la-qrcode
-      .px-2 QR
-    button.button.items-center(@click="downloadText(encPair, 'text/txt', (user.name || 'account') + '.txt'); current = null")
-      la-file-code
-      .px-2 TXT
+    .flex.items-center.px-4
+      .ml-1.flex.flex-col.items-center
+        la-asterisk.m-1
+        la-check.text-green-600.m-1(v-if="pass.safe?.enc")
+      input.p-2(
+        v-model="pass.input",
+        :type="pass.show ? 'text' : 'password'"
+        :placeholder="`Enter a passphrase`"
+      )
+      button.button(
+        @click="pass.set()",
+        v-if="pass.input.length >= pass.minLength"
+      ) Set
+      button.button(@click="pass.show = !pass.show")
+        la-eye
+  .flex.p-4.items-center(v-if="encPair")
+    .flex.flex-col.w-34.items-center(:style="{ color: safePair ? 'green' : 'red' }")
+      button.button.text-2xl(@click="safePair = !safePair")
+        la-lock(v-if="safePair")
+        la-unlock(v-else)
+      .text-sm {{ safePair ? 'Encrypted' : 'Plain Text' }}
+      .text-m Key Pair
+    .flex.flex-wrap
+      button.button.items-center(v-if="canShare" @click="share({ title: 'Your key pair', text: encPair })" :class="{ active: current == 'pass' }")
+        la-share
+        .px-1 Share
+      button.button.items-center(v-if="canCopy" @click="copy(encPair)")
+        la-copy
+        transition(name="fade")
+          .px-2(v-if="copied") Copied!
+          .px-2(v-else) Copy
+      a.button.items-center(@click="show('links')" target="_blank" :href="safePair ? pass.links.pass : pass.links.pair" )
+        la-link
+        .px-2 Link
+      button.button.items-center(@click="show('qr')")
+        la-qrcode
+        .px-2 QR
+      button.button.items-center(@click="show('key')")
+        la-envelope-open-text
+        .px-2 Text
+      button.button.items-center(@click="downloadText(encPair, 'application/json', (user.name || 'account') + '.json'); current = null")
+        la-file-code
+        .px-2 JSON
   .flex.w-full.justify-center.mt-4(v-if="current")
     transition-group(name="fade")
-      .flex.flex-col(v-if="current == 'links'")
-        a.text-xl.text-bold(key="link" target="_blank" :href="pass.links.pass") Login with password
-        a.text-xl.text-bold(key="link" target="_blank" :href="pass.links.pair") Login with keypair
       textarea.p-2.text-sm.flex-1(
-        rows="6",
+        rows="9",
         v-if="current == 'key'",
         :value="encPair",
         key="text"
       )
-      qr-show.max-w-600px(v-if="current == 'qr'" key="qr" :data="pass.links.pair")
+      qr-show.max-w-600px(v-if="current == 'qr'" key="qr" :data="safePair ? pass.links.pass : pass.links.pair")
   button.button.text-green-600.flex.items-center.justify-center(@click="user.db.get('safe').get('saved').put(true)" v-if="!user?.safe?.saved")
     la-lock
-    .px-2 OK, I have my key now
+    .px-2 OK, I've safely stored my key 
 </template>
 
 <style scoped>

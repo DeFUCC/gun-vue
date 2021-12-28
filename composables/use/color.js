@@ -13,7 +13,7 @@ export const color = {
   }),
   deep: new ColorHash({
     saturation: [0.5, 0.7, 0.9],
-    lightness: [0.2, 0.3, 0.4],
+    lightness: [0.5, 0.6, 0.7],
   }),
   dark: new ColorHash({
     saturation: [0.02, 0.05, 0.08],

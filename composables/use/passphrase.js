@@ -9,6 +9,7 @@ import base32 from "base32";
 export const pass = reactive({
   input: "",
   show: false,
+  safePair: false,
   minLength: 5,
   safe: {},
   dec: {},
