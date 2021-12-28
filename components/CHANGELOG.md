@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.2.7
+
+### Patch Changes
+
+- Added simpleMDE as aa markdown editor. + over 200 kb of js code. Now demo app is over 1000 kB. It's still not very much code and it may be easily splitted into chunks. But I love the idea of being able to pack the whole app into one html file for ease of p2p distribution. even twice the size is OK for modern nets. (And caching)
+- Updated dependencies
+  - @gun-vue/composables@0.2.7
+
 ## 0.2.6
 
 ### Patch Changes
