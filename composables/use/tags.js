@@ -5,14 +5,9 @@
 
 import { gun, SEA } from "./gun";
 import { hashObj, hashText } from "./hash";
-import { downloadText } from "./file";
-import { logEvent } from "./log";
-import { uploadText } from "./file";
 
 import slugify from "slugify";
 import Fuse from "fuse.js";
-import ms from "ms";
-import yaml from "yaml";
 
 /**
  * @typedef useTags

@@ -2,22 +2,17 @@ import yaml from "yaml";
 import { logEvent } from "./log";
 import { gun } from "./gun";
 import { hashObj, hashText } from "./hash";
-import { downloadText, uploadText } from "./file";
+import { downloadText, createMd, parseMd, uploadText } from "./file";
 
 export async function exportFeed(tag, posts) {
   let checkSum = await hashText(posts);
-  let yml = yaml.stringify({
-    title: tag,
-    type: "feed",
-    postsHash: checkSum,
-    posts: posts,
-  });
-
   downloadText(
-    `---
-${yml}
----
-    `,
+    createMd("", {
+      title: tag,
+      type: "feed",
+      postsHash: checkSum,
+      posts: posts,
+    }),
     "text/markdown",
     tag + ".md"
   );
@@ -25,14 +20,9 @@ ${yml}
 
 export function importFeed(tag, event) {
   uploadText(event, (file) => {
-    const yamlBlockPattern = /^(?:\-\-\-)(.*?)(?:\-\-\-|\.\.\.)(?:\n*\s*)(.*)/s;
-    const yml = yamlBlockPattern.exec(file.trim());
-    const frontmatter = yml[1];
-    if (!frontmatter) return;
-    let feed = yaml.parse(frontmatter);
-    console.log(feed);
-    for (let hash in feed?.posts) {
-      addPost(tag, feed.posts[hash], false);
+    let { frontmatter } = parseMd(file);
+    for (let hash in frontmatter?.posts) {
+      addPost(tag, frontmatter.posts[hash], false);
     }
   });
 }

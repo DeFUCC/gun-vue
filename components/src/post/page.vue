@@ -31,17 +31,16 @@ md.use(externalLinks, {
       div(class="hover:underline text-md cursor-pointer" @click="$emit('close')") # {{ tag }}
       .opacity-30.ml-4 {{ post?.lastUpdated }}
       .flex-1
+      button.button()
+        la-markdown
   .flex.flex-col.px-4(v-if="!post.empty")
     .p-4
       .text-2xl.font-bold(v-if="post.title") {{ post.title }}
       .my-2(v-if="post.description") {{ post.description }} 
     embed-youtube(v-if="post.youtube" :video="post.youtube")
-    .text-md.markdown.bg-light-200.rounded-2xl.m-1.p-2.leading-relaxed.max-w-65ch.breal-all(v-if="post.content" v-html="md.render(post.content)") 
+    .text-md.markdown-body.bg-light-200.rounded-2xl.m-1.p-2.leading-relaxed.max-w-65ch.breal-all(v-if="post.content" v-html="md.render(post.content)") 
     
 </template>
 
-<style scoped>
-a {
-  @apply underline-current;
-}
+<style>
 </style>

@@ -75,7 +75,7 @@ generatePair()
   .flex.flex-col.items-center.flex-1
     .font-bold.flex.items-center.flex-wrap.mb-3 Generate new
     account-avatar(v-if="newPair" :pub="newPair.pub" :size="100")
-    button.button.flex.items-center(@click="generatePair()") 
+    button.button.items-center(@click="generatePair()") 
       fad-random-1dice.text-2xl
     button.button.w-full(@click="auth(newPair)" v-if="newPair && !user.is" :style="{ backgroundColor: color.deep.hex(newPair.pub) }") Auth
 </template>

@@ -6,7 +6,8 @@ A Composition API `use` functions set for Gun.js and Vue 3 raectivity system
 
 It's just the beginning and not all the functions are reliably implemented yet. So you're welcome to collaborate on existing and new features of the library.
 
-- **Account** - the `gun.user()` system management
+- **User** - the `gun.user()` system management
+- **Account** - user profile interface
 - **Color** - the `color-hash` interface to generate colors for hashes and pubs
 - **Crypto** - the main cryptographic primitives like e2e encrypted messaging and more
 - **Date Tree** - the very performant concept of Date Tree graphs from [gun-util](https://github.com/diatche/gun-util#DateTree) made reactive and easy to use
@@ -25,11 +26,18 @@ It's just the beginning and not all the functions are reliably implemented yet. 
 
 1. Install the library: `npm i @gun-vue/composables`
 2. Import any of the functions you need: `import {useAccount} from '@gun-vue/composables'`
-3. Instantiate the function inside your Vue SFC `<script setup>`: `const {account, auth, leave} = useAccount()`
-4. Use the reactive state to drive your component:
+3. Instantiate the function inside your Vue SFC
+
+```js
+<script setup>const {(account, auth, leave)} = useAccount()</script>
+```
+
+4. Use the reactive state in your template to drive the component:
 
 ```pug
-.p-2.flex(v-for="(d,k) in account.profile" :key="d")
-      .mr-2.font-bold {{ k }}
-      .text-md {{ d }}
+<template>
+.p-2.flex(v-for="(data,field) in account.profile" :key="data")
+      .mr-2.font-bold {{ field }}
+      .text-md {{ data }}
+</template>
 ```

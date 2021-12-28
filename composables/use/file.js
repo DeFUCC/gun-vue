@@ -3,6 +3,33 @@
  * @module File
  * */
 
+import yaml from "yaml";
+
+export function createMd(content, frontmatter) {
+  let front = "";
+  if (typeof frontmatter == "object") {
+    let yml = yaml.stringify(frontmatter);
+    front = `---
+${yml}
+---
+`;
+    return front + content;
+  }
+}
+
+export function parseMd(file) {
+  const yamlBlockPattern = /^(?:\-\-\-)(.*?)(?:\-\-\-|\.\.\.)(?:\n*\s*)(.*)/s;
+  const yml = yamlBlockPattern.exec(file.trim());
+  let frontmatter = yml[1];
+  if (frontmatter) {
+    try {
+      frontmatter = yaml.parse(frontmatter);
+    } catch {}
+  }
+  let content = yml[2];
+  return { frontmatter, content };
+}
+
 /**
  * A method to download any text as a file
  * @param {String} text - the text to download

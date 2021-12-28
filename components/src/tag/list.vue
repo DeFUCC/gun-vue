@@ -1,5 +1,5 @@
 <script setup>
-import { useTags } from '@composables'
+import { useTags, useColor } from '@composables'
 
 const { search, slug, tags, addTag } = useTags()
 
@@ -10,6 +10,8 @@ const input = ref()
 onMounted(() => {
   input.value.focus()
 })
+
+const color = useColor('deep')
 
 </script>
 
@@ -22,31 +24,38 @@ onMounted(() => {
       ref="input"
       )
     .absolute.right-6.top-2 {{ tags.results.length }}/{{ tags.count }}
-  .flex.flex-wrap
+  .flex.flex-wrap.justify-evenly
     transition-group(name="fade")
       tag-label.tag(
         v-for="(result,r) in tags.results" :key="r"
         @click="$emit('tag', result.item?.tag); search = ''"
         :style="{ opacity: 1 - result.score }"
+        :showEmpty="true"
         :tag="result.item?.tag"
+        :hash="result.item.hash"
         )
-      .tag.new(
+      .tag.flex.font-bold.border-1.border-dark-300(
         key="new"
         v-if="search && tags.minScore > 0.00001"
         @click="addTag(search)"
-      ) {{ slug }} +
-  //- .flex.flex-wrap(v-if="!search")
-  //-   transition-group(name="fade")
-  //-     tag-label.tag(
-  //-       v-for="(tag,r) in tags.all" :key="r"
-  //-       @click="$emit('tag', tag.tag); search = ''"
-  //-       :tag="tag.tag"
-  //-       )
+      ) 
+        .p-1 {{ slug }} 
+        .flex-1 
+        .p-1 +
+  .flex.flex-wrap.mt-8.justify-center
+    transition-group(name="fade")
+      tag-label.tag(
+        :color="color.hex(tag.hash || 0)"
+        v-for="(tag,r) in tags.all" :key="r"
+        @click="$emit('tag', tag.tag); search = ''"
+        :tag="tag.tag"
+        :hash="tag.hash"
+        )
 </template> 
 
 <style scoped>
 .tag {
-  @apply cursor-pointer rounded-xl shadow-md py-2 px-4;
+  @apply cursor-pointer flex-grow bg-light-700 rounded-md shadow-md m-1 py-2 px-2 hover:bg-light-200;
   &.new {
     @apply bg-dark-100 text-white;
   }

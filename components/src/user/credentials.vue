@@ -31,24 +31,24 @@ const encPair = computed(() => {
   .flex.flex-col.mt-4
     user-passphrase
   .flex.flex-wrap.p-4.items-center(v-if="encPair")
-    button.button.flex.items-center(v-if="canShare" @click="share({ title: 'Your key pair', text: encPair })" :class="{ active: current == 'pass' }")
+    button.button.items-center(v-if="canShare" @click="share({ title: 'Your key pair', text: encPair })" :class="{ active: current == 'pass' }")
       la-share
       .px-1 Share
-    button.button.flex.items-center(v-if="canCopy" @click="copy(encPair)")
+    button.button.items-center(v-if="canCopy" @click="copy(encPair)")
       la-copy
       transition(name="fade")
         .px-2(v-if="copied") Copied!
         .px-2(v-else) Copy
-    button.button.flex.items-center(@click="show('key')")
+    button.button.items-center(@click="show('key')")
       la-envelope-open-text
       .px-2 Text
-    button.button.flex.items-center(@click="show('links')")
+    button.button.items-center(@click="show('links')")
       la-link
       .px-2 Links
-    button.button.flex.items-center(@click="show('qr')")
+    button.button.items-center(@click="show('qr')")
       la-qrcode
       .px-2 QR
-    button.button.flex.items-center(@click="downloadText(encPair, 'text/txt', (user.name || 'account') + '.txt'); current = null")
+    button.button.items-center(@click="downloadText(encPair, 'text/txt', (user.name || 'account') + '.txt'); current = null")
       la-file-code
       .px-2 TXT
   .flex.w-full.justify-center.mt-4(v-if="current")

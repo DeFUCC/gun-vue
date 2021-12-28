@@ -20,9 +20,9 @@ transition(name="fade")
       qr-show.min-w-20em(:data="location.href")
       .text-sm {{ location.href }}
       .flex.text-lg  
-        button.button.flex.text-lg.font-normal.items-center(v-if="canCopy")
+        button.button.text-lg.font-normal.items-center(v-if="canCopy")
           la-copy(@click="copy(location.href)")
           .ml-2(v-if="copied") Copied!
-        button.button.flex.text-lg.font-normal.items-center(v-if="canShare")
+        button.button.text-lg.font-normal.items-center(v-if="canShare")
           la-share(@click="share({ title: 'Look at this', text: 'A gun-vue page', url: location.href })")
 </template>
