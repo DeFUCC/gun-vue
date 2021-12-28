@@ -4,10 +4,10 @@ const props = defineProps({
 })
 const emit = defineEmits(['close', 'browse'])
 
-import { useTagPosts, exportFeed, importFeed, addPost, importPost, color } from '@composables';
+import { useFeed, exportFeed, importFeed, addPost, importPost, color } from '@composables';
 
 const add = ref(false)
-const { posts, timestamps } = useTagPosts(toRef(props, 'tag'))
+const { posts, timestamps } = useFeed(toRef(props, 'tag'))
 
 
 

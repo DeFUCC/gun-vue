@@ -1,7 +1,7 @@
 <script setup>
-import { useTags, useColor } from '@composables'
+import { useFeeds, useColor } from '@composables'
 
-const { search, slug, tags, addTag } = useTags()
+const { search, slug, tags, addTag } = useFeeds()
 
 defineEmits(['tag'])
 

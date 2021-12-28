@@ -1,6 +1,6 @@
 <script setup>
-import { useTags } from '@composables'
-const { tags } = useTags()
+import { useFeeds } from '@composables'
+const { tags } = useFeeds()
 </script>
 
 <template lang='pug'>

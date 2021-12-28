@@ -4,8 +4,8 @@ const props = defineProps({
   tag: { type: String, default: 'tag' },
   showEmpty: { type: Boolean, default: false }
 })
-import { color, useTagPosts } from '@composables';
-const { count } = useTagPosts(toRef(props, 'tag'))
+import { color, useFeed } from '@composables';
+const { count } = useFeed(toRef(props, 'tag'))
 
 </script>
 
