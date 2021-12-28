@@ -5,7 +5,13 @@
 
 import yaml from "yaml";
 
-export function createMd(content, frontmatter) {
+/**
+ *  Create markdown with frontmatter
+ * @param {Object} md -  {frontmatter,content}
+ * @returns Markdown file ready to download
+ */
+
+export function createMd({ frontmatter = null, content = "" } = md) {
   let front = "";
   if (typeof frontmatter == "object") {
     let yml = yaml.stringify(frontmatter);
@@ -17,6 +23,11 @@ ${yml}
   }
 }
 
+/**
+ * Parse text content of a markdown file into an object
+ * @param {String} file - Text form of an uploaded file
+ * @returns {Md} - An object with md frontmatter and content
+ */
 export function parseMd(file) {
   const yamlBlockPattern = /^(?:\-\-\-)(.*?)(?:\-\-\-|\.\.\.)(?:\n*\s*)(.*)/s;
   const yml = yamlBlockPattern.exec(file.trim());

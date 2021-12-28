@@ -7,11 +7,14 @@ import { downloadText, createMd, parseMd, uploadText } from "./file";
 export async function exportFeed(tag, posts) {
   let checkSum = await hashText(posts);
   downloadText(
-    createMd("", {
-      title: tag,
-      type: "feed",
-      postsHash: checkSum,
-      posts: posts,
+    createMd({
+      content: "",
+      frontmatter: {
+        title: tag,
+        type: "feed",
+        postsHash: checkSum,
+        posts: posts,
+      },
     }),
     "text/markdown",
     tag + ".md"
@@ -34,7 +37,15 @@ export async function addPost(tag, obj, log = true) {
     logEvent("new-post", {
       event: "new-post",
       feed: tag,
-      hash: hash,
+      hash,
     });
   }
+}
+
+export function importPost(tag, event) {
+  uploadText(event, (file) => {
+    let { frontmatter, content } = parseMd(file);
+    let post = { ...frontmatter, content };
+    addPost(tag, post, false);
+  });
 }

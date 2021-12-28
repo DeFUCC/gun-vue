@@ -4,7 +4,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['close', 'browse'])
 
-import { useTagPosts, exportFeed, importFeed, addPost, color } from '@composables';
+import { useTagPosts, exportFeed, importFeed, addPost, importPost, color } from '@composables';
 
 const add = ref(false)
 const { posts, timestamps } = useTagPosts(toRef(props, 'tag'))
@@ -25,6 +25,8 @@ const { posts, timestamps } = useTagPosts(toRef(props, 'tag'))
         la-file-upload
         .ml-1 Import
     .flex-1
+    label.button.cursor-pointer.flex.items-center(for="import-post")
+      la-markdown
     button.button(@click="add = !add")
       transition(name="fade")
         .flex.items-center(v-if="!add")
@@ -47,12 +49,19 @@ const { posts, timestamps } = useTagPosts(toRef(props, 'tag'))
         @click="emit('browse', hash)"
         @upvote="addPost(tag, item)"
         )
-    input#md-input.hidden(
+    input#import-feed.hidden(
       tabindex="-1"
       type="file",
       accept="text/markdown",
       ref="file"
       @change="importFeed(tag, $event)"
+    )
+    input#import-post.hidden(
+      tabindex="-1"
+      type="file",
+      accept="text/markdown",
+      ref="file"
+      @change="importPost(tag, $event)"
     )
 </template>
 

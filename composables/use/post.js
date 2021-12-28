@@ -1,13 +1,8 @@
-import { gun, SEA } from "./gun";
-import { hashObj, hashText } from "./hash";
-import { downloadText } from "./file";
-import { logEvent } from "./log";
-import { uploadText } from "./file";
+import { gun } from "./gun";
 
-import slugify from "slugify";
-import Fuse from "fuse.js";
+import { downloadText, createMd } from "./file";
+
 import ms from "ms";
-import yaml from "yaml";
 
 export function useTagPost(tag = ref(""), hash = ref("")) {
   const post = computed(() => {
@@ -15,6 +10,7 @@ export function useTagPost(tag = ref(""), hash = ref("")) {
       empty: true,
       tag,
       hash,
+      data: {},
     });
 
     gun
@@ -30,13 +26,28 @@ export function useTagPost(tag = ref(""), hash = ref("")) {
         let banned = await gun.get("#ban").get(k).then();
         if (tag.value != "ban" && banned) return;
         try {
-          Object.assign(obj, JSON.parse(d));
+          Object.assign(obj.data, JSON.parse(d));
         } catch (e) {
-          obj["string"] = d;
+          obj.data.string = d;
         }
         obj.empty = false;
       });
     return obj;
   });
-  return post;
+
+  async function download() {
+    let frontmatter = {
+      ...post.value.data,
+    };
+    delete frontmatter.content;
+    downloadText(
+      createMd({
+        frontmatter,
+        content: post.value.data?.content,
+      }),
+      "text/markdown",
+      (post.value.data?.title || "post") + ".md"
+    );
+  }
+  return { post, download };
 }
