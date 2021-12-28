@@ -123,6 +123,24 @@ export function useFeed(tag = ref("tag")) {
   return { posts, timestamps, count };
 }
 
+export async function addPost(tag, obj, log = true) {
+  const { text, hash } = await hashObj(obj);
+  gun.get(`#${tag}`).get(`${hash}`).put(text);
+  if (log) {
+    logEvent("new-post", {
+      event: "new-post",
+      feed: tag,
+      hash,
+    });
+  }
+}
+
+/**
+ * Export the feed as a Markdown .md file
+ * @param {String} tag
+ * @param {Object} posts
+ */
+
 export async function exportFeed(tag, posts) {
   let checkSum = await hashText(posts);
   downloadText(
@@ -144,21 +162,9 @@ export function importFeed(tag, event) {
   uploadText(event, (file) => {
     let { frontmatter } = parseMd(file);
     for (let hash in frontmatter?.posts) {
-      addPost(tag, frontmatter.posts[hash], false);
+      addPost(tag, frontmatter.posts[hash]);
     }
   });
-}
-
-export async function addPost(tag, obj, log = true) {
-  const { text, hash } = await hashObj(obj);
-  gun.get(`#${tag}`).get(`${hash}`).put(text);
-  if (log) {
-    logEvent("new-post", {
-      event: "new-post",
-      feed: tag,
-      hash,
-    });
-  }
 }
 
 export function importPost(tag, event) {

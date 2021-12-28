@@ -4,6 +4,8 @@
 
 <template lang='pug'>
 .flex.flex-col
-  .p-2 Users
-  router-view
+  router-link.px-8.py-2.bg-light-900.font-bold(to="/users/") Users
+  router-view(v-slot="{ Component }")
+    transition(name="fade")
+      component(:is="Component")
 </template> 

@@ -24,8 +24,16 @@ const color = useColor('deep')
       ref="input"
       )
     .absolute.right-6.top-2 {{ tags.results.length }}/{{ tags.count }}
-  .flex.flex-wrap.justify-evenly
+  .flex.flex-wrap.absolute.top-30.bg-light-300.left-2.right-2.p-2.rounded-2xl.shadow-xl(v-if="search")
     transition-group(name="fade")
+      .tag.flex.font-bold.border-1.border-dark-300(
+        key="new"
+        v-if="search && tags.minScore > 0.00001"
+        @click="addTag(search)"
+        ) 
+        .p-1 {{ slug }} 
+        .flex-1 
+        .p-1 +
       tag-label.tag(
         v-for="(result,r) in tags.results" :key="r"
         @click="$emit('tag', result.item?.tag); search = ''"
@@ -34,15 +42,8 @@ const color = useColor('deep')
         :tag="result.item?.tag"
         :hash="result.item.hash"
         )
-      .tag.flex.font-bold.border-1.border-dark-300(
-        key="new"
-        v-if="search && tags.minScore > 0.00001"
-        @click="addTag(search)"
-      ) 
-        .p-1 {{ slug }} 
-        .flex-1 
-        .p-1 +
-  .flex.flex-wrap.mt-8.justify-center
+
+  .flex.flex-wrap.mt-8
     transition-group(name="fade")
       tag-label.tag(
         :color="color.hex(tag.hash || 0)"

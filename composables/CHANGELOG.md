@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.2.6
+
+### Patch Changes
+
+- Feeds of tags, Markdown import and export for feeds and posts, space guests profiles
+
 ## 0.2.5
 
 ### Patch Changes

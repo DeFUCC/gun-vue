@@ -7,7 +7,7 @@ export * from "./use/crypto";
 
 export * from "./use/log";
 export * from "./use/post";
-export * from "./use/feeds";
+export * from "./use/feed";
 
 export * from "./use/relay";
 export * from "./use/space";

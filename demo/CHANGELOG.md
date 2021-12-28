@@ -1,5 +1,14 @@
 # @gun-vue/demo
 
+## 0.2.6
+
+### Patch Changes
+
+- Feeds of tags, Markdown import and export for feeds and posts, space guests profiles
+- Updated dependencies
+  - @gun-vue/components@0.2.6
+  - @gun-vue/composables@0.2.6
+
 ## 0.2.5
 
 ### Patch Changes
