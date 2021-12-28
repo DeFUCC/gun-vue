@@ -6,13 +6,20 @@ const props = defineProps({
   height: { type: Number, default: 1000 },
   pad: { type: Number, default: 50 },
 })
+defineEmits(['user'])
 
 const { space, area, join } = useSpace()
 
+const selected = ref()
 </script>
 
 <template lang='pug'>
-.flex.flex-col.items-center
+.flex.flex-col.items-center.relative
+  transition-group(name="fade")
+    .absolute.top-0.left-0.bottom-0.right-0.bg-dark-100.bg-opacity-40(key="back" v-if="selected" @click="selected = null") 
+    .absolute.bg-light-200.top-4.break-all.p-4.shadow-xl.flex.flex-col.items-center.rounded-2xl(key="modal" v-if="selected")
+      account-avatar.cursor-pointer(:pub="selected" :size="160" @click="$emit('user', selected)")
+      account-profile(:pub="selected")
   svg(
     style="cursor:none;"
     @click="join()"
@@ -55,9 +62,10 @@ const { space, area, join } = useSpace()
         r="8"
       )
     g.guests
-      g.guest(v-for="guest in space.guests" :key="guest" )
+      g.guest.cursor-pointer(v-for="guest in space.guests" :key="guest" )
         space-guest.transition-all.ease-out.duration-600(
           v-bind="guest"
+          @click="selected = guest.pub"
           :style="{ transform: `translate(${guest?.pos?.x * width}px, ${guest?.pos?.y * height}px)` }"
         )
 
