@@ -4,7 +4,13 @@ import 'simplemde/dist/simplemde.min.css'
 
 let simplemde
 onMounted(() => {
-  simplemde = new SimpleMDE({ element: document.getElementById("myMD") });
+  simplemde = new SimpleMDE({
+    element: document.getElementById("myMD"),
+    autosave: {
+      enabled: true,
+      uniqueId: 'new-post-content'
+    },
+  });
   title.value.focus()
 })
 
