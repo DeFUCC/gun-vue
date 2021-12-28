@@ -1,16 +1,27 @@
 <script setup>
+import SimpleMDE from 'simplemde'
+import 'simplemde/dist/simplemde.min.css'
+
+let simplemde
+onMounted(() => {
+  simplemde = new SimpleMDE({ element: document.getElementById("myMD") });
+  title.value.focus()
+})
+
 const post = ref({})
 const title = ref()
-defineEmits(['submit'])
+const emit = defineEmits(['submit'])
 
 const add = reactive({
   youtube: false,
   content: false,
 })
 
-onMounted(() => {
-  title.value.focus()
-})
+function submit() {
+  const contents = { ...post.value, content: simplemde.value() }
+  emit('submit', contents)
+  post.value = {}
+}
 
 </script>
 
@@ -26,9 +37,9 @@ form.flex.flex-col.p-2.border-1.rounded-2xl(action="javascript:void(0);")
       la-youtube  
 
   input(v-if="add.youtube" v-model="post.youtube" placeholder="Youtube video ID")
-  textarea(v-if="add.content" v-model="post.content" placeholder="Main text content (with **markdown** support)")
+  textarea#myMD(v-show="add.content" ref="md"  placeholder="Main text content (with **markdown** support)")
 
-  button.button(:disabled="!post.title && !post.description && !post.content" type="submit" @click="$emit('submit', post); post = {}") Submit
+  button.button(:disabled="!post.title && !post.description && !post.content" type="submit" @click="submit()") Submit
 </template>
 
 <style scoped>

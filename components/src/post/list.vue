@@ -15,26 +15,22 @@ const { posts, timestamps } = useFeed(toRef(props, 'tag'))
 
 <template lang='pug'>
 .shadow-lg.rounded-2xl.bg-light-400.overflow-x-hidden.fixed.top-16vh.h-82vh(:style="{ backgroundColor: color.light.hex(tag) }")
-  .flex.flex-wrap.items-center.p-2
+  .flex.flex-wrap.items-center.p-2.text-xl
     .text-xl.ml-2.font-bold # {{ tag }}
     .flex.justify-center
-      button.button.items-center(@click="exportFeed(tag, posts)")
+      button.button.items-center(title="Download feed" @click="exportFeed(tag, posts)")
         la-file-download
-        .ml-1 Export 
-      label.button.cursor-pointer.flex.items-center(for="md-input")
+      label.button.cursor-pointer.flex.items-center(title="Upload feed" for="md-input")
         la-file-upload
-        .ml-1 Import
     .flex-1
     label.button.cursor-pointer.flex.items-center(for="import-post")
       la-markdown
     button.button(@click="add = !add")
       transition(name="fade")
-        .flex.items-center(v-if="!add")
+        .flex.items-center(title="Add post" v-if="!add")
           la-plus
-          .ml-1 Add post
         .flex.items-center(v-else)
           la-times
-          .ml- Cancel
 
 
   post-form.absolute.top-20.z-300.left-2.right-2.bg-light-300.shadow-xl.m-2(v-if="add" @submit="addPost(tag, $event); add = false")

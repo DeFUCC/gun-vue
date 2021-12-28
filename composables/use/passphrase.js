@@ -15,16 +15,10 @@ export const pass = reactive({
   dec: {},
   links: {
     pass: computed(() => {
-      return (
-        window.location.origin + "#/auth/" + base32.encode(pass.safe?.enc || "")
-      );
+      return genLink(pass.safe?.enc);
     }),
     pair: computed(() => {
-      return (
-        window.location.origin +
-        "#/auth/" +
-        base32.encode(JSON.stringify(user.pair()) || "")
-      );
+      return genLink(JSON.stringify(user.pair()));
     }),
   },
 
@@ -34,6 +28,15 @@ export const pass = reactive({
     pass.show = false;
   },
 });
+
+function genLink(text = "") {
+  return (
+    window.location.origin +
+    window.location.pathname +
+    "#/auth/" +
+    base32.encode(text)
+  );
+}
 
 let initiated = false;
 
