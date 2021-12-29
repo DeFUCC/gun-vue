@@ -1,5 +1,6 @@
 <script setup>
 import { useUser, safeJSONParse, useFileUpload, uploadText, SEA, color } from '@composables'
+import { useRefHistory } from '@vueuse/core'
 
 const current = ref('pass')
 const pair = ref()
@@ -29,6 +30,7 @@ watch(pair, (p) => {
 const { user, auth } = useUser()
 
 const newPair = ref(null)
+const { history, undo, redo } = useRefHistory(newPair)
 
 async function generatePair() {
   newPair.value = await SEA.pair()
@@ -74,8 +76,11 @@ generatePair()
           )
   .flex.flex-col.items-center.flex-1
     .font-bold.flex.items-center.flex-wrap.mb-3 Generate new
-    account-avatar(v-if="newPair" :pub="newPair.pub" :size="100")
-    button.button.items-center(@click="generatePair()") 
-      fad-random-1dice.text-2xl
-    button.button.w-full(@click="auth(newPair)" v-if="newPair && !user.is" :style="{ backgroundColor: color.deep.hex(newPair.pub) }") Auth
-</template>
+    account-avatar(v-if="newPair" :pub="newPair.pub" :size="200")
+    .flex 
+      button.button.items-center(v-if="history.length > 2" @click="undo()") 
+        la-undo.text-2xl
+      button.button.items-center(@click="generatePair()") 
+        fad-random-1dice.text-3xl
+    button.button.w-full.flex.justify-center(@click="auth(newPair)" v-if="newPair && !user.is" :style="{ backgroundColor: color.deep.hex(newPair.pub) }") Authenticate with this key 
+</template> 
