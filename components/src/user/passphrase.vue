@@ -1,11 +1,10 @@
 <script setup>
 import { usePassphrase } from '@composables'
-const { pass } = usePassphrase()
+const { pass } = usePassphrase();
 
 </script>
 
 <template lang='pug'>
-
 .flex.items-center.px-4
   la-asterisk
   .mx-2(v-if="pass.safe?.enc")
