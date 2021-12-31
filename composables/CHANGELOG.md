@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.2.8
+
+### Patch Changes
+
+- Started building social graph. Now you can mate another user. Links show in the public space.
+
 ## 0.2.7
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @gun-vue/demo
 
+## 0.2.8
+
+### Patch Changes
+
+- Started building social graph. Now you can mate another user. Links show in the public space.
+- Updated dependencies
+  - @gun-vue/components@0.2.8
+  - @gun-vue/composables@0.2.8
+
 ## 0.2.7
 
 ### Patch Changes
