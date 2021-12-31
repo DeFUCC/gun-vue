@@ -16,6 +16,23 @@ export function useSpace(name = 'public') {
     },
     guests: {},
     mates: {},
+    links: computed(() => {
+      let arr = []
+      for (let pub1 in space.mates) {
+        for (let pub2 in space.mates[pub1]) {
+          if (space.mates[pub1][pub2]) {
+            if (space.guests[pub1]?.pos && space.guests[pub2]?.pos) {
+              arr.push({
+                user: pub1,
+                from: space.guests[pub1]?.pos,
+                to: space.guests[pub2]?.pos,
+              })
+            }
+          }
+        }
+      }
+      return arr
+    }),
   })
 
   gun
@@ -50,11 +67,12 @@ export function useSpace(name = 'public') {
         .get('mates')
         .map()
         .on((d, k) => {
-          console.log('mates: ', `${pub} & ${k}`, d)
+          space.mates[pub] = space.mates[pub] || {}
+          space.mates[pub][k] = d
         })
 
       const hasPos = await gun.user(pub).get(name).get('pos').then()
-      space.guests[hash] = {
+      space.guests[pub] = {
         pub: pub,
         blink: false,
         pulse: 0,
@@ -68,15 +86,15 @@ export function useSpace(name = 'public') {
         .user(pub)
         .get('pulse')
         .on((d) => {
-          space.guests[hash].pulse = d
-          space.guests[hash].blink = !space.guests[hash].blink
+          space.guests[pub].pulse = d
+          space.guests[pub].blink = !space.guests[pub].blink
         })
         .back()
         .get(name)
         .get('pos')
         .map()
         .on((d, k) => {
-          space.guests[hash].pos[k] = d
+          space.guests[pub].pos[k] = d
         })
     })
 
