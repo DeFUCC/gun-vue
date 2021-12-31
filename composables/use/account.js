@@ -10,7 +10,7 @@
  * @property {Object} profile - An object with all the `gun.user().get('profile')` data
  * @property {Number} pulse - latest timestamp from the user
  * @property {Boolean} blink - A boolean that toggles on every timestamp received
- * @property {Gun ref} db - `gun.user(pub)` ref to query any additional user data
+ * @property {gun} db - `gun.user(pub)` ref to query any additional user data
  */
 
 import { gun } from './gun'
