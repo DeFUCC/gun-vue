@@ -15,7 +15,7 @@ const plane = ref()
 
 const { width, height } = useElementBounding(plane)
 
-const arrowHeadSize = 8
+const arrowHeadSize = 6
 
 const arrows = computed(() => {
   const arr = []
@@ -27,6 +27,7 @@ const arrows = computed(() => {
       link.to.y * height.value,
       {
         padEnd: 24,
+        padStart: 18,
       }
     )
     const [sx, sy, c1x, c1y, c2x, c2y, ex, ey, ae] = arrow
@@ -40,7 +41,11 @@ const arrows = computed(() => {
 .flex.flex-col.items-center.relative.h-100vh(ref="plane")
   transition-group(name="fade")
     .absolute.top-0.left-0.bottom-0.right-0.bg-dark-100.bg-opacity-40(key="back" v-if="selected" @click="selected = null") 
-    .absolute.bg-light-200.top-4.break-all.p-4.shadow-xl.flex.flex-col.items-center.rounded-2xl(key="modal" v-if="selected")
+    .absolute.bg-light-200.top-4.break-all.p-4.shadow-xl.flex.flex-col.items-center.rounded-2xl(key="join" v-if="!space.joined" @click="join()")
+      .text-2xl(v-if="user.is") Click anywhere to join the space
+      .text-2xl(v-else) Authenticate to join the space
+        user-auth
+    .absolute.bg-light-200.top-4.break-all.p-4.shadow-xl.flex.flex-col.items-center.rounded-2xl(key="modal" v-if="selected"  @click="selected = null")
       account-avatar.cursor-pointer(:pub="selected" :size="160" @click="$emit('user', selected)")
       account-mate(:pub="selected")
       account-profile(:pub="selected")
@@ -74,9 +79,8 @@ const arrows = computed(() => {
       path(
         :d="`M ${a.sx} ${a.sy} C ${a.c1x} ${a.c1y}, ${a.c2x} ${a.c2y}, ${a.ex} ${a.ey}`"
         :stroke="color.deep.hex(a.link.user)"
-        stroke-width="2"
+        stroke-width="1"
         fill="none"
-        stroke-dasharray="6"
         stroke-linecap="round"
       )
       polygon(
@@ -87,13 +91,13 @@ const arrows = computed(() => {
     line(
       v-if="space.my?.pos"
       :stroke="user.color"
-      stroke-width="4"
+      stroke-width="2"
       stroke-linecap="round"
       :x1="space.my.mouse.x * width"
       :y1="space.my.mouse.y * height"
       :x2="space.my.pos.x * width"
       :y2="space.my.pos.y * height"
-      stroke-dasharray="1 32"
+      stroke-dasharray="4 16"
     )
     g.mouse(:transform="`translate(${space.my.mouse.x * width} ${space.my.mouse.y * height})`")
       circle(

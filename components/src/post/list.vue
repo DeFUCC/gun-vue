@@ -14,7 +14,7 @@ const { posts, timestamps, downloadPosts, uploadPosts, publishPost, uploadPost, 
 </script>
 
 <template lang='pug'>
-.shadow-lg.rounded-2xl.bg-light-400.overflow-x-hidden.fixed.top-16vh.h-82vh(:style="{ backgroundColor: color.light.hex(tag) }")
+.shadow-lg.rounded-2xl.bg-light-400(:style="{ backgroundColor: color.light.hex(tag) }")
   .flex.flex-wrap.items-center.p-2.text-xl
     .text-xl.ml-2.font-bold # {{ tag }}
     .flex.justify-center
@@ -34,10 +34,11 @@ const { posts, timestamps, downloadPosts, uploadPosts, publishPost, uploadPost, 
 
 
   post-form.absolute.top-20.z-300.left-2.right-2.bg-light-300.shadow-xl.m-2(v-if="add" @submit="publishPost($event); add = false")
-  .flex.flex-col.overflow-y-scroll.fixed.bottom-5.top-60.left-3.right-3
+  .flex.flex-col.overflow-y-scroll.overflow-x-hidden.fixed.bottom-5.top-60.left-3.right-3.w-96wv
     transition-group(name="list")
-      post-card(
+      post-card.max-w-40em(
         :style="{ order: Date.now() - timestamps[hash].toFixed() }"
+        style="flex: 1 1 200px"
         v-for="(item, hash) in posts" :key="hash" 
         :hash="hash" 
         :timestamp="timestamps[hash]"

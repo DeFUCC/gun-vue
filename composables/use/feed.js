@@ -154,7 +154,6 @@ export function useFeed(tag = ref("tag")) {
 
 export function useBanned(hash) {
   const banned = ref(false);
-  console.log(hash);
   gun
     .get("#ban")
     .get(hash)

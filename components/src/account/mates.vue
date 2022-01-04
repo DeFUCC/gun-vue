@@ -9,11 +9,13 @@ import { gun } from '@composables';
 
 const links = ref({})
 
-watchEffect(() => {
+watch(() => props.pub, (pub) => {
   links.value = {}
-  gun.user(props.pub).get('mates').map().on((d, k) => {
+  gun.user(pub).get('mates').map().on((d, k) => {
     links.value[k] = d
   })
+}, {
+  immediate: true
 })
 
 const mates = computed(() => {

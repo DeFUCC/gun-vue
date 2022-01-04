@@ -4,5 +4,5 @@
 
 <template lang='pug'>
 .flex.flex-col
-  user-home
+  user-home(@browse="$router.push(`/users/${$event}`)")
 </template>

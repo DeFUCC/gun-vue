@@ -17,5 +17,5 @@ gun.get('public').get('#guests').map().on((d, k) => {
       :to="`/users/${guest.account.pub}`"
       :style="{ opacity: guest.account.pulse && Date.now() - guest.account.pulse < 30000 ? 1 : 0.5 }"
       ) 
-      account-avatar.shadow-md(:pub="guest.account.pub" :size="54")
+      account-badge(:pub="guest.account.pub")
 </template>

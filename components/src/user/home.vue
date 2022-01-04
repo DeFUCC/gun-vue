@@ -1,6 +1,8 @@
 <script setup>
 import { useUser } from '@composables';
 
+const emit = defineEmits(['browse'])
+
 const { user } = useUser()
 </script>
 
@@ -13,6 +15,6 @@ const { user } = useUser()
   .flex.flex-col(v-else)
     user-panel
     user-profile
-    account-mates(:pub="user.pub")
+    account-mates(:pub="user.pub"  @browse="$emit('browse', $event)")
     user-credentials.absolute.bg-light-400.top-38.left-2.right-2.rounded-3xl.shadow-xl
 </template>

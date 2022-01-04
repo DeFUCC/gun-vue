@@ -73,6 +73,10 @@ export function useSpace(name = "public") {
           space.mates[pub][k] = d;
         });
 
+      if (pub == user.pub) {
+        space.joined = true;
+      }
+
       const hasPos = await gun.user(pub).get(name).get("pos").then();
       space.guests[pub] = {
         pub: pub,
