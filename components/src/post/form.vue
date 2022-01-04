@@ -6,10 +6,6 @@ let simplemde
 onMounted(() => {
   simplemde = new SimpleMDE({
     element: document.getElementById("myMD"),
-    autosave: {
-      enabled: true,
-      uniqueId: 'new-post-content'
-    },
   });
   title.value.focus()
 })
@@ -27,6 +23,7 @@ function submit() {
   const contents = { ...post.value, content: simplemde.value() }
   emit('submit', contents)
   post.value = {}
+  simplemde.value('')
 }
 
 </script>

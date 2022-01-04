@@ -2,8 +2,8 @@
 import { useLog, formatDate, color, safeHash, gunAvatar } from '@composables'
 const props = defineProps({
   name: { type: String, default: 'logs' },
-  from: { type: String, default: "2021-01-01" },
-  to: { type: String, default: "2023-01-01" },
+  after: { type: String, default: "2021-01-01" },
+  before: { type: String, default: "2023-01-01" },
 })
 const { sorted, putNow, count } = useLog(props);
 // const message = ref()

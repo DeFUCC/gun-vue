@@ -6,6 +6,20 @@
 import { gun, SEA } from "./gun";
 import { color } from "./color";
 
+/**
+ * @typedef User - An interface to the current gun user
+ * @property {Boolean} initiated - `true` if useUser has been run at least once
+ * @property {Object} is - Reactive `gun.user().is`
+ * @property {String} pub - Current user public key
+ * @property {String} color - a HEX color for the given pub
+ * @property {Number} pulse - Last received pulse timestamp
+ * @property {Number} pulser - An id for pulse `setInterval`
+ * @property {Boolean} blink - Toggles with every pulse received
+ * @property {Object} db - `gun.user()` reference
+ * @property {Object} safe - safe account indicators
+ * @property {Function} pair - use `user.pair()` to get curent user key pair
+ */
+
 export const user = reactive({
   initiated: false,
   is: null,
@@ -24,6 +38,18 @@ export const user = reactive({
     return gun.user()._.sea;
   },
 });
+
+/**
+ * @typedef useUser
+ * @property {User} user - the user interface
+ * @property {Function} auth - auth with a pair
+ * @property {Function} leave - log out
+ */
+
+/**
+ * Get access to current logged in user
+ * @returns {useUser}
+ */
 
 export function useUser() {
   if (!user.is) {
@@ -112,11 +138,23 @@ export function isMine(soul) {
   return soul.slice(1, 88) == user.pub;
 }
 
+/**
+ * Update a profile field
+ * @param {String} field
+ * @param {Any} data
+ */
+
 export function updateProfile(field, data) {
   if (field && data !== undefined) {
     gun.user().get("profile").get(field).put(data);
   }
 }
+
+/**
+ * Check if the object is a proper SEA pair
+ * @param {Object} pair - an object to check
+ * @returns {Boolean}
+ */
 
 export function isPair(pair) {
   return (

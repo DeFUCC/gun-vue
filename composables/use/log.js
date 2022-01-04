@@ -5,6 +5,7 @@
 
 import { DateTree } from "gun-util";
 import ms from "ms";
+import { newWorker } from "./worker";
 import { gun } from "./gun";
 
 function sortByDate(e) {
@@ -19,9 +20,9 @@ function sortByDate(e) {
 }
 
 export function useLog({
-  name = "tree",
-  from = "2021-01-01",
-  until = "2023-01-01",
+  name = "logs",
+  after = "2021-01-01",
+  before = "2023-01-01",
 } = {}) {
   const treeRoot = gun.get(name);
   const tree = new DateTree(treeRoot, "minute");
@@ -32,21 +33,6 @@ export function useLog({
   let query;
 
   onMounted(() => {
-    var newWorker = function (funcObj) {
-      // Build a worker from an anonymous function body
-      var blobURL = URL.createObjectURL(
-          new Blob(["onmessage=", funcObj.toString()], {
-            type: "application/javascript",
-          })
-        ),
-        worker = new Worker(blobURL);
-
-      // Won't be needing this anymore
-      URL.revokeObjectURL(blobURL);
-
-      return worker;
-    };
-
     var w = newWorker(sortByDate);
 
     query = tree.on(
@@ -54,7 +40,7 @@ export function useLog({
         if (!d?.event) return;
         dateTree[date] = d;
       },
-      { gte: from, lt: until }
+      { gte: after, lt: before }
     );
 
     watchEffect(() => {
