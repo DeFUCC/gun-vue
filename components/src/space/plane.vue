@@ -41,11 +41,11 @@ const arrows = computed(() => {
 .flex.flex-col.items-center.relative.h-100vh(ref="plane")
   transition-group(name="fade")
     .absolute.top-0.left-0.bottom-0.right-0.bg-dark-100.bg-opacity-40(key="back" v-if="selected" @click="selected = null") 
-    .absolute.bg-light-200.top-4.break-all.p-4.shadow-xl.flex.flex-col.items-center.rounded-2xl(key="join" v-if="!space.joined" @click="join()")
-      .text-2xl(v-if="user.is") Click anywhere to join the space
+    .fixed.bg-light-200.top-4.break-all.shadow-xl.flex.flex-col.items-center.rounded-2xl.cursor-pointer(key="join" v-if="!space.joined"  @click="user.is ? join() : $router.push('/my/')"  style="top:40%;")
+      .text-2xl.p-4(v-if="user.is") Click here to join the space
       .text-2xl(v-else) Authenticate to join the space
-        user-auth
-    .absolute.bg-light-200.top-4.break-all.p-4.shadow-xl.flex.flex-col.items-center.rounded-2xl(key="modal" v-if="selected"  @click="selected = null")
+
+    .absolute.bg-light-200.top-4.break-all.p-4.shadow-xl.flex.flex-col.items-center.rounded-2xl(key="modal" v-if="selected")
       account-avatar.cursor-pointer(:pub="selected" :size="160" @click="$emit('user', selected)")
       account-mate(:pub="selected")
       account-profile(:pub="selected")
