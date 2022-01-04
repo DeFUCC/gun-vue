@@ -4,6 +4,8 @@ const props = defineProps({
   pub: { type: String, default: '' }
 })
 
+const emit = defineEmits(['browse'])
+
 const { account } = useAccount(toRefs(props).pub);
 </script>
 
@@ -12,5 +14,5 @@ const { account } = useAccount(toRefs(props).pub);
   account-avatar(:pub="pub" :size="120")
   account-profile(:pub="pub")
   account-mate(:pub="pub")
-  account-mates(:pub="pub")
+  account-mates(:pub="pub" @browse="$emit('browse', $event)")
 </template>
