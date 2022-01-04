@@ -4,10 +4,10 @@ const props = defineProps({
 })
 const emit = defineEmits(['close', 'browse'])
 
-import { useFeed, exportFeed, importFeed, addPost, importPost, color } from '@composables';
+import { useFeed, color } from '@composables';
 
 const add = ref(false)
-const { posts, timestamps } = useFeed(toRef(props, 'tag'))
+const { posts, timestamps, downloadPosts, uploadPosts, publishPost, uploadPost, banPost } = useFeed(toRef(props, 'tag'))
 
 
 
@@ -18,9 +18,9 @@ const { posts, timestamps } = useFeed(toRef(props, 'tag'))
   .flex.flex-wrap.items-center.p-2.text-xl
     .text-xl.ml-2.font-bold # {{ tag }}
     .flex.justify-center
-      button.button.items-center(title="Download feed" @click="exportFeed(tag, posts)")
+      button.button.items-center(title="Download feed" @click="downloadPosts()")
         la-file-download
-      label.button.cursor-pointer.flex.items-center(title="Upload feed" for="md-input")
+      label.button.cursor-pointer.flex.items-center(title="Upload feed" for="import-feed")
         la-file-upload
     .flex-1
     label.button.cursor-pointer.flex.items-center(for="import-post")
@@ -33,7 +33,7 @@ const { posts, timestamps } = useFeed(toRef(props, 'tag'))
           la-times
 
 
-  post-form.absolute.top-20.z-300.left-2.right-2.bg-light-300.shadow-xl.m-2(v-if="add" @submit="addPost(tag, $event); add = false")
+  post-form.absolute.top-20.z-300.left-2.right-2.bg-light-300.shadow-xl.m-2(v-if="add" @submit="publishPost($event); add = false")
   .flex.flex-col.overflow-y-scroll.fixed.bottom-5.top-60.left-3.right-3
     transition-group(name="list")
       post-card(
@@ -43,21 +43,22 @@ const { posts, timestamps } = useFeed(toRef(props, 'tag'))
         :timestamp="timestamps[hash]"
         :post="item" 
         @click="emit('browse', hash)"
-        @upvote="addPost(tag, item)"
+        @upvote="publishPost(item)"
+        @downvote="banPost(item)"
         )
     input#import-feed.hidden(
       tabindex="-1"
       type="file",
       accept="text/markdown",
       ref="file"
-      @change="importFeed(tag, $event)"
+      @change="uploadPosts($event)"
     )
     input#import-post.hidden(
       tabindex="-1"
       type="file",
       accept="text/markdown",
       ref="file"
-      @change="importPost(tag, $event)"
+      @change="uploadPost($event)"
     )
 </template>
 

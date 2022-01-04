@@ -120,7 +120,48 @@ export function useFeed(tag = ref("tag")) {
 
   const count = computed(() => Object.keys(posts.value).length);
 
-  return { posts, timestamps, count };
+  function downloadPosts() {
+    exportFeed(tag.value, posts.value);
+  }
+
+  function uploadPosts(ev) {
+    importFeed(tag.value, ev);
+  }
+
+  function uploadPost(ev) {
+    importPost(tag.value, ev);
+  }
+
+  function publishPost(post) {
+    addPost(tag.value, post);
+  }
+
+  function banPost(post) {
+    addPost("ban", post);
+  }
+
+  return {
+    posts,
+    timestamps,
+    count,
+    downloadPosts,
+    uploadPosts,
+    uploadPost,
+    publishPost,
+    banPost,
+  };
+}
+
+export function useBanned(hash) {
+  const banned = ref(false);
+  console.log(hash);
+  gun
+    .get("#ban")
+    .get(hash)
+    .on((d) => {
+      banned.value = d;
+    });
+  return banned;
 }
 
 export async function addPost(tag, obj, log = true) {

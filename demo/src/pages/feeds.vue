@@ -5,7 +5,7 @@ const { tags } = useFeeds()
 
 <template lang='pug'>
 .flex.flex-col
-  tag-list.m-2.p-2.shadow-md.rounded-xl(@tag="$router.push($event)")
+  feed-list.m-2.p-2.shadow-md.rounded-xl(@tag="$router.push($event)")
   router-view(v-slot="{ Component }")
     transition(name="fade")
       component(:is="Component")
