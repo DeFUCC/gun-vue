@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.2.9
+
+### Patch Changes
+
+- mate links visualized and editable
+
 ## 0.2.8
 
 ### Patch Changes

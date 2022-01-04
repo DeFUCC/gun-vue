@@ -56,3 +56,7 @@ export function useAccount(pub = ref()) {
 
   return { account };
 }
+
+export function addProfileField(name) {
+  gun.user().get("profile").get(name).put(null);
+}

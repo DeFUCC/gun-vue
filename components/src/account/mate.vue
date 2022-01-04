@@ -17,11 +17,13 @@ function toggleMate() {
   dbMate.put(!isMate.value)
 }
 
-
 </script>
 
 <template lang="pug">
-.flex.flex-col
-  .p-2 {{ isMate ? 'Mate' : 'Not mate' }}
-  button.button(@click="toggleMate()") {{ isMate ? 'Unmate' : 'Mate' }}
+.flex.items-center(v-if="user.is && user.pub != pub")
+  button.button.text-3xl(@click="toggleMate()")
+    la-user-plus(v-if="isMate")
+    la-user(v-else)
+    la-plus(v-if="!isMate")
+    la-times(v-else)
 </template>

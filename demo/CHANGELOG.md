@@ -1,5 +1,14 @@
 # @gun-vue/demo
 
+## 0.2.9
+
+### Patch Changes
+
+- mate links visualized and editable
+- Updated dependencies
+  - @gun-vue/components@0.2.9
+  - @gun-vue/composables@0.2.9
+
 ## 0.2.8
 
 ### Patch Changes

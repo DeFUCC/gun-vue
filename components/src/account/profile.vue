@@ -1,5 +1,5 @@
 <script setup>
-import { useAccount, user, color } from '@composables'
+import { useAccount } from '@composables'
 
 const props = defineProps({
   pub: { type: String, default: '' }

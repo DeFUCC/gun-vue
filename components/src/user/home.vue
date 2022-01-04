@@ -12,6 +12,7 @@ const { user } = useUser()
     user-create
   .flex.flex-col(v-else)
     user-panel
-    user-profile.sticky
+    user-profile
+    account-mates(:pub="user.pub")
     user-credentials.absolute.bg-light-400.top-38.left-2.right-2.rounded-3xl.shadow-xl
 </template>

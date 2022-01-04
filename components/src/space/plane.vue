@@ -4,8 +4,6 @@ import { getArrow } from 'curved-arrows'
 import { useElementBounding } from '@vueuse/core'
 
 const props = defineProps({
-  width: { type: Number, default: 1000 },
-  height: { type: Number, default: 1000 },
   pad: { type: Number, default: 50 },
 })
 defineEmits(['user'])
@@ -13,13 +11,9 @@ defineEmits(['user'])
 const { space, area, join } = useSpace()
 
 const selected = ref();
-const svg = ref()
+const plane = ref()
 
-const { x, y, top, right, bottom, left, width, height } = useElementBounding(svg)
-
-watchEffect(() => {
-  console.log(width.value, height.value)
-})
+const { width, height } = useElementBounding(plane)
 
 const arrowHeadSize = 8
 
@@ -43,7 +37,7 @@ const arrows = computed(() => {
 </script>
 
 <template lang='pug'>
-.flex.flex-col.items-center.relative.h-100vh(ref="svg")
+.flex.flex-col.items-center.relative.h-100vh(ref="plane")
   transition-group(name="fade")
     .absolute.top-0.left-0.bottom-0.right-0.bg-dark-100.bg-opacity-40(key="back" v-if="selected" @click="selected = null") 
     .absolute.bg-light-200.top-4.break-all.p-4.shadow-xl.flex.flex-col.items-center.rounded-2xl(key="modal" v-if="selected")
