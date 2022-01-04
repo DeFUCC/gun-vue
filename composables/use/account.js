@@ -13,43 +13,46 @@
  * @property {gun} db - `gun.user(pub)` ref to query any additional user data
  */
 
-import { gun } from './gun'
-import { color } from './color'
+import { gun } from "./gun";
+import { color } from "./color";
 
 /**
  * A user's account
- * @param {Ref} pub - reactive public key in a ref
+ * @param {Ref} pub - The public key as a string or a ref
  * @returns {Account}
  */
 
 export function useAccount(pub = ref()) {
+  if (typeof pub == "string") {
+    pub = ref(pub);
+  }
   const account = computed(() => {
     const obj = reactive({
       pub,
-      color: computed(() => (pub.value ? color.deep.hex(pub.value) : 'gray')),
+      color: computed(() => (pub.value ? color.deep.hex(pub.value) : "gray")),
       profile: {
-        name: '',
+        name: "",
       },
       pulse: 0,
       blink: false,
       db: gun.user(pub.value),
-    })
+    });
 
     gun
       .user(pub.value)
-      .get('pulse')
+      .get("pulse")
       .on((d) => {
-        obj.blink = !obj.blink
-        obj.pulse = d
+        obj.blink = !obj.blink;
+        obj.pulse = d;
       })
       .back()
-      .get('profile')
+      .get("profile")
       .map()
       .on((data, key) => {
-        obj.profile[key] = data
-      })
-    return obj
-  })
+        obj.profile[key] = data;
+      });
+    return obj;
+  });
 
-  return { account }
+  return { account };
 }
