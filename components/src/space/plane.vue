@@ -1,5 +1,7 @@
 <script setup>
 import { useSpace, user, color } from '@composables'
+import { getArrow } from 'curved-arrows'
+import { useElementBounding } from '@vueuse/core'
 
 const props = defineProps({
   width: { type: Number, default: 1000 },
@@ -11,17 +13,44 @@ defineEmits(['user'])
 const { space, area, join } = useSpace()
 
 const selected = ref();
+const svg = ref()
+
+const { x, y, top, right, bottom, left, width, height } = useElementBounding(svg)
+
+watchEffect(() => {
+  console.log(width.value, height.value)
+})
+
+const arrowHeadSize = 8
+
+const arrows = computed(() => {
+  const arr = []
+  space.links.forEach(link => {
+    let arrow = getArrow(
+      link.from.x * width.value,
+      link.from.y * height.value,
+      link.to.x * width.value,
+      link.to.y * height.value,
+      {
+        padEnd: 24,
+      }
+    )
+    const [sx, sy, c1x, c1y, c2x, c2y, ex, ey, ae] = arrow
+    arr.push({ link, sx, sy, c1x, c1y, c2x, c2y, ex, ey, ae })
+  })
+  return arr
+})
 </script>
 
 <template lang='pug'>
-.flex.flex-col.items-center.relative
+.flex.flex-col.items-center.relative.h-100vh(ref="svg")
   transition-group(name="fade")
     .absolute.top-0.left-0.bottom-0.right-0.bg-dark-100.bg-opacity-40(key="back" v-if="selected" @click="selected = null") 
     .absolute.bg-light-200.top-4.break-all.p-4.shadow-xl.flex.flex-col.items-center.rounded-2xl(key="modal" v-if="selected")
       account-avatar.cursor-pointer(:pub="selected" :size="160" @click="$emit('user', selected)")
       account-mate(:pub="selected")
       account-profile(:pub="selected")
-  svg(
+  svg.h-full(
     style="cursor:none;"
     @click="join()"
     version="1.1",
@@ -47,14 +76,30 @@ const selected = ref();
       fill="none"
       stroke-width="0"
       )
+    g.arrows(v-for="a in arrows" :key="a" opacity="0.8")
+      path(
+        :d="`M ${a.sx} ${a.sy} C ${a.c1x} ${a.c1y}, ${a.c2x} ${a.c2y}, ${a.ex} ${a.ey}`"
+        :stroke="color.deep.hex(a.link.user)"
+        stroke-width="2"
+        fill="none"
+        stroke-dasharray="6"
+        stroke-linecap="round"
+      )
+      polygon(
+        :points="`0,${-arrowHeadSize} ${arrowHeadSize * 2},0, 0,${arrowHeadSize}`"
+        :transform="`translate(${a.ex}, ${a.ey}) rotate(${a.ae})`"
+        :fill="color.deep.hex(a.link.user)"
+      )
     line(
       v-if="space.my?.pos"
       :stroke="user.color"
       stroke-width="4"
+      stroke-linecap="round"
       :x1="space.my.mouse.x * width"
       :y1="space.my.mouse.y * height"
       :x2="space.my.pos.x * width"
       :y2="space.my.pos.y * height"
+      stroke-dasharray="1 32"
     )
     g.mouse(:transform="`translate(${space.my.mouse.x * width} ${space.my.mouse.y * height})`")
       circle(
@@ -62,18 +107,6 @@ const selected = ref();
         :fill="user.color"
         r="8"
       )
-    g.links
-      g.link(v-for="link in space.links" :key="link")
-        line(
-          :stroke="color.deep.hex(link.user)"
-          stroke-width="6"
-          stroke-opacity="0.4"
-          stroke-linecap="round"
-          :x1="link.from?.x * width"
-          :y1="link.from?.y * height"
-          :x2="link.to?.x * width"
-          :y2="link.to?.y * height"
-        )
     g.guests
       g.guest.cursor-pointer(v-for="guest in space.guests" :key="guest" )
         space-guest.transition-all.ease-out.duration-600(

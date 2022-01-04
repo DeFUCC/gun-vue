@@ -19,7 +19,6 @@ const { state, handleFile } = useFileUpload()
 watch(() => state.output, output => pair.value = output)
 
 watch(pair, (p) => {
-  console.log(p)
   if (p && typeof p == 'string' && p.substring(0, 3) == 'SEA') {
     passphrase.value = ''
   }

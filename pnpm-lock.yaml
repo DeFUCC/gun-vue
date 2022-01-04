@@ -17,6 +17,7 @@ importers:
       '@gun-vue/composables': workspace:^
       '@qrcode/svg': ^1.0.0-beta.2
       '@vueuse/core': 7.5.1
+      curved-arrows: ^0.1.0
       gun-avatar: 1.4.0
       jsqr: ^1.4.0
       markdown-it: ^12.3.0
@@ -33,6 +34,7 @@ importers:
       '@gun-vue/composables': link:../composables
       '@qrcode/svg': 1.0.0-beta.2
       '@vueuse/core': 7.5.1_vue@3.2.26
+      curved-arrows: 0.1.0
       gun-avatar: 1.4.0
       jsqr: 1.4.0
       markdown-it: 12.3.0
@@ -1089,6 +1091,11 @@ packages:
       csv-stringify: 5.6.5
       stream-transform: 2.1.3
     dev: true
+
+  /curved-arrows/0.1.0:
+    resolution: {integrity: sha512-FchrDNr8b3ijJOycRM3iT0tc7d5NJSJ5e1fPZibTv73N2yXcgIbSi858R+QfCPRbrjqSWXnR8OaUUu9w+TxTRg==}
+    engines: {node: '>=10'}
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}

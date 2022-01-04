@@ -25,7 +25,8 @@
     "markdown-it": "^12.3.0",
     "markdown-it-external-links": "^0.0.6",
     "simplemde": "^1.11.2",
-    "vue": "^3.2.26"
+    "vue": "^3.2.26",
+    "curved-arrows": "^0.1.0"
   },
   "peerDependencies": {
     "vue": "3.x"
