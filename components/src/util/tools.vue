@@ -3,7 +3,7 @@
 </script>
 
 <template lang='pug'>
-.flex.z-10.bg-light-100.rounded-2xl.bg-opacity-60
+.flex.justify-center
   router-link.button(to="/log/")
     la-info-circle
   router-link.button(to="/graph/")

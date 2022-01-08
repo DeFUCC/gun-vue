@@ -27,7 +27,7 @@ const encPair = computed(() => {
 </script>
 
 <template lang='pug'>
-.flex.flex-col.items-stretch.pb-4.border-1.border-dark-100.border-opacity-10(v-if="user.is && !user.safe?.saved")
+.flex.flex-col.items-stretch.pb-4.border-1.border-dark-100.border-opacity-10.max-w-120.mx-auto(v-if="user.is && !user.safe?.saved")
   slot
     .mt-4.mx-6 Please make sure to safely store your cryptographic keypair to be able to use it again later
   .flex.flex-col.mt-4.bg-light-700.p-4.m-2.shadow-lg.rounded-xl
@@ -90,9 +90,6 @@ const encPair = computed(() => {
         key="text"
       )
       qr-show.max-w-600px(v-if="current == 'qr'" key="qr" :data="safePair ? pass.links.pass : pass.links.pair")
-  button.button.text-green-600.flex.items-center.justify-center(@click="user.db.get('safe').get('saved').put(true)" v-if="!user?.safe?.saved")
-    la-lock
-    .px-2 OK, I've safely stored my key 
 </template>
 
 <style scoped>

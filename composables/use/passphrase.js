@@ -42,15 +42,12 @@ let initiated = false;
 
 export function usePassphrase() {
   if (!initiated) {
-    onMounted(() => {
-      gun
-        .user()
-        .get("safe")
-        .map()
-        .on((d, k) => {
-          pass.safe[k] = d;
-        });
-    });
+    user.db
+      .get("safe")
+      .map()
+      .on((d, k) => {
+        pass.safe[k] = d;
+      });
 
     watchEffect(async () => {
       if (!pass.show) {
@@ -84,8 +81,8 @@ async function logWithPass(pub, passphrase) {
 async function setPassphrase(text) {
   let encPair = await SEA.encrypt(user.pair(), text);
   let encPass = await SEA.encrypt(text, user.pair());
-  gun.user().get("safe").get("enc").put(encPair);
-  gun.user().get("safe").get("pass").put(encPass);
+  user.db.get("safe").get("enc").put(encPair);
+  user.db.get("safe").get("pass").put(encPass);
 }
 
 export function usePassLink(data, passPhrase) {

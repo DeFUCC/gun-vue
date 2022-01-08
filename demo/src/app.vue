@@ -4,11 +4,13 @@
 <template lang="pug">
 nav-bar
 
-.p-0
+.p-0.min-h-75vh
   router-view(v-slot="{ Component }")
     transition(name="fade")
       component(:is="Component")
-util-tools.fixed.bottom-2
+.flex.flex-col.items-center.z-10.bg-dark-100.p-4.bg-opacity-30
+  util-tools
+  .text-sm.mt-4 MIT 2022
 </template>
 
 <style>

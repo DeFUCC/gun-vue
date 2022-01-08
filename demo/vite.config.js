@@ -12,7 +12,7 @@ import WindiCSS from "vite-plugin-windicss";
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
-    port: 3040,
+    port: 3042,
   },
   publicDir: "public",
   plugins: [

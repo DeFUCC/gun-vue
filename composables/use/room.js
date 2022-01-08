@@ -10,7 +10,6 @@ export const room = reactive({
   guests: [],
 });
 
-export function useRoom(title) {
-  room.title = title;
-  return room;
-}
+gun2.on("auth", async () => {
+  room.hosting = true;
+});
