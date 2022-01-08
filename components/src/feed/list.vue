@@ -54,7 +54,7 @@ const color = useColor('deep')
         )
 </template> 
 
-<style scoped>
+<style lang="postcss" scoped>
 .tag {
   @apply cursor-pointer flex-grow bg-light-700 rounded-md shadow-md m-1 py-2 px-2 hover:bg-light-200;
   &.new {

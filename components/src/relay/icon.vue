@@ -12,7 +12,7 @@ const open = ref(false)
   .p-1.bottom-0.left-2.rounded-full.transition-all.duration-300.ease-in-out.opacity-50.absolute(
     :style="{ backgroundColor: relay.blink ? 'white' : 'black' }"
     )
-util-modal(:open="open" @close="open = false")
+ui-modal(:open="open" @close="open = false")
   .h-1.w-42.mb-2.rounded-full.transition-all.duration-300.ease-in-out.opacity-40(
     :style="{ backgroundColor: relay.blink ? 'white' : 'black' }"
     )

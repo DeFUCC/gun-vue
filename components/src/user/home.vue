@@ -14,6 +14,6 @@ const { user } = useUser()
     user-panel
     user-profile
     account-mates(:pub="user.pub"  @browse="$emit('browse', $event)")
-    util-modal(:open="user.is && !user.safe?.saved" @close="user.db.get('safe').get('saved').put(true)")
+    ui-modal(:open="user.is && !user.safe?.saved" @close="user.db.get('safe').get('saved').put(true)")
       user-credentials
 </template>

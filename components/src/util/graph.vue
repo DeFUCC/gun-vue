@@ -13,7 +13,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template lang="pug">
-article.m-4.p-2.rounded-xl.shadow-xl
+article
   .p-2px.text-sm(
     :style="{ backgroundColor: color.light.hex(i) }",
     v-for="(g, i) in graph",

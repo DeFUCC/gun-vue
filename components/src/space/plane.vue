@@ -40,13 +40,13 @@ const arrows = computed(() => {
 <template lang='pug'>
 .flex.flex-col.items-center.relative.h-100vh(ref="plane")
 
-  util-modal(:open="!!selected" @close="selected = null")
+  ui-modal(:open="!!selected" @close="selected = null")
     account-avatar.cursor-pointer(:pub="selected" :size="160" @click="$emit('user', selected)")
     account-mate(:pub="selected")
     account-profile(:pub="selected")
-  util-modal(:open="!space.joined && user.is" @close="join()")
+  ui-modal(:open="!space.joined && user.is" @close="join()")
     .text-2xl.p-4(v-if="user.is") Click here to join the space
-  util-modal(:open="!user.is")
+  ui-modal(:open="!user.is")
     user-home(@browse="$router.push(`/users/${$event}`)")
 
 

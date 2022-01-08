@@ -7,7 +7,8 @@ const props = defineProps({
   post: { type: [Object, String], default: { text: 'empty' } },
   timestamp: { type: Number, default: 0 },
   ban: { type: Number, default: 0 },
-  hash: { type: String, default: '' }
+  hash: { type: String, default: '' },
+  tag: { type: String, default: '' },
 })
 
 const title = computed(() => {
@@ -29,6 +30,7 @@ const banned = useBanned(props.hash)
     .text-md.truncate.overflow-hidden(v-if="!post.description && post.text") {{ post.text }}
   .flex-1
   .flex(style="flex: 1 1 2%")
+    post-star(:hash="hash" :tag="tag")
     button.button.items-center(@click.stop.prevent="$emit('upvote')")
       .p-0.mr-1.text-sm {{ ms(Date.now() - timestamp) }}
       mdi-watering-can-outline
