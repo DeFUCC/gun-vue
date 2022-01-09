@@ -1,5 +1,14 @@
 # @gun-vue/demo
 
+## 0.2.10
+
+### Patch Changes
+
+- Star any post and have it listed in your account
+- Updated dependencies
+  - @gun-vue/components@0.2.10
+  - @gun-vue/composables@0.2.10
+
 ## 0.2.9
 
 ### Patch Changes

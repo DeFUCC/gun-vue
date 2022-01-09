@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.2.10
+
+### Patch Changes
+
+- Star any post and have it listed in your account
+
 ## 0.2.9
 
 ### Patch Changes
