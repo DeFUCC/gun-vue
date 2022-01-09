@@ -15,6 +15,7 @@
 
 import { gun } from "./gun";
 import { color } from "./color";
+import ms from "ms";
 
 /**
  * A user's account
@@ -34,6 +35,14 @@ export function useAccount(pub = ref()) {
         name: "",
       },
       pulse: 0,
+      lastSeen: computed(() => {
+        let time = Date.now() - obj.pulse;
+        if (time > 10000) {
+          return ms(time);
+        } else {
+          return "online";
+        }
+      }),
       blink: false,
       db: gun.user(pub.value),
     });

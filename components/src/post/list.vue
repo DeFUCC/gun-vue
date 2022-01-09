@@ -34,7 +34,7 @@ const { posts, timestamps, downloadPosts, uploadPosts, publishPost, uploadPost, 
 
 
   post-form.absolute.top-20.z-300.left-2.right-2.bg-light-300.shadow-xl.m-2(v-if="add" @submit="publishPost($event); add = false")
-  .flex.flex-col.overflow-y-scroll.overflow-x-hidden.fixed.bottom-5.top-60.left-3.right-3.w-96wv
+  .flex.flex-col.overflow-y-scroll.overflow-x-hidden.fixed.bottom-5.top-25vh.left-3.right-3.w-96wv
     transition-group(name="list")
       post-card.max-w-40em(
         :style="{ order: Date.now() - timestamps[hash].toFixed() }"

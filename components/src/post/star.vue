@@ -8,18 +8,18 @@ const props = defineProps({
 
 const starred = ref(false)
 
-user.db.get('feeds').get(`#${props.tag}`).get(props.hash).on((d, k) => {
+user.db.get('feeds').get(`${props.tag}`).get(props.hash).on((d, k) => {
   starred.value = d
 })
 
 function toggleStar(tag = props.tag, hash = props.hash) {
-  user.db.get('feeds').get(`#${props.tag}`).get(props.hash).put(!starred.value)
+  user.db.get('feeds').get(`${props.tag}`).get(props.hash).put(!starred.value)
 }
 
 </script>
 
 <template lang='pug'>
-button.button(@click.stop.prevent="toggleStar()")
+button.button(@click.stop.prevent="toggleStar()" v-if="user.is")
   la-star(v-if="!starred")
   la-star-solid(v-else)
 </template>

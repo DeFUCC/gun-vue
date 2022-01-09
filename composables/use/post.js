@@ -5,12 +5,15 @@ import { downloadText, createMd } from "./file";
 import ms from "ms";
 
 export function useTagPost(tag = ref(""), hash = ref("")) {
+  tag = ref(tag);
+  hash = ref(hash);
   const post = computed(() => {
     const obj = reactive({
       empty: true,
       tag,
       hash,
       data: {},
+      download,
     });
 
     gun
@@ -49,5 +52,5 @@ export function useTagPost(tag = ref(""), hash = ref("")) {
       (post.value.data?.title || "post") + ".md"
     );
   }
-  return { post, download };
+  return post;
 }

@@ -11,7 +11,7 @@ const props = defineProps({
 
 defineEmits(['close'])
 
-const { post, download } = useTagPost(toRef(props, 'tag'), toRef(props, 'hash'))
+const post = useTagPost(toRef(props, 'tag'), toRef(props, 'hash'))
 
 const md = new markdown({
   linkify: true,
@@ -31,7 +31,7 @@ md.use(externalLinks, {
     .ml-1 / {{ post.data?.title }} 
     .opacity-30.ml-4 {{ post?.lastUpdated }}
     .flex-1
-    button.button(@click="download()")
+    button.button(@click="post.download()")
       la-markdown
   .flex.flex-col.p-4.h-full.absolute.break-all.overscroll-y-contain.overflow-y-scroll.overflow-x-hidden(v-if="!post.empty")
     .p-4.mt-4
