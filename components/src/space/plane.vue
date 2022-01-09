@@ -8,6 +8,8 @@ const props = defineProps({
 })
 defineEmits(['user'])
 
+const TIMEOUT = 30000
+
 const { space, area, join } = useSpace()
 
 const selected = ref();
@@ -19,7 +21,8 @@ const arrowHeadSize = 6
 
 const arrows = computed(() => {
   const arr = []
-  space.links.forEach(link => {
+  Object.values(space.links).forEach(link => {
+    if (link.presence > TIMEOUT) return
     let arrow = getArrow(
       link.from.x * width.value,
       link.from.y * height.value,
@@ -31,7 +34,10 @@ const arrows = computed(() => {
       }
     )
     const [sx, sy, c1x, c1y, c2x, c2y, ex, ey, ae] = arrow
-    arr.push({ link, sx, sy, c1x, c1y, c2x, c2y, ex, ey, ae })
+    arr.push({
+      link, sx, sy, c1x, c1y, c2x, c2y, ex, ey, ae,
+      d: `M ${sx} ${sy} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${ex} ${ey}`
+    })
   })
   return arr
 })
@@ -76,9 +82,9 @@ const arrows = computed(() => {
       fill="none"
       stroke-width="0"
       )
-    g.arrows(v-for="a in arrows" :key="a" opacity="0.8")
+    g.arrows(v-for="(a,n) in arrows" :key="a" opacity="0.8")
       path(
-        :d="`M ${a.sx} ${a.sy} C ${a.c1x} ${a.c1y}, ${a.c2x} ${a.c2y}, ${a.ex} ${a.ey}`"
+        :d="a.d"
         :stroke="color.deep.hex(a.link.user)"
         stroke-width="1"
         fill="none"
@@ -109,6 +115,7 @@ const arrows = computed(() => {
     g.guests
       g.guest.cursor-pointer(v-for="guest in space.guests" :key="guest" )
         space-guest.transition-all.ease-out.duration-600(
+          v-if="guest.hasPos"
           v-bind="guest"
           @click="selected = guest.pub"
           :style="{ transform: `translate(${guest?.pos?.x * width}px, ${guest?.pos?.y * height}px)` }"

@@ -18,4 +18,5 @@ const { account } = useAccount(toRefs(props).pub);
   .p-4
     .text-lg.ml-2.mb-2.font-bold Mates
     account-mates(:pub="pub" @browse="$emit('browse', $event)")
+    account-stars(:pub="pub")
 </template>
