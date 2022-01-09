@@ -1,8 +1,29 @@
+/**
+ * Get and handle a particular post by it's tag and hash
+ * @module Post
+ */
+
 import { gun } from "./gun";
 
 import { downloadText, createMd } from "./file";
 
 import ms from "ms";
+
+/**
+ * @typedef {Object} Post
+ * @property {Boolean} empty - whether the post has contents
+ * @property {String} tag - the tag under which the post was published
+ * @property {String} hash - the hash of the contents
+ * @property {Object} data - the contents of the post
+ * @property {Function} download - use this function to download the post as a Markdown file
+ */
+
+/**
+ *
+ * @param {String} tag
+ * @param {String} hash
+ * @returns {Post}
+ */
 
 export function useTagPost(tag = ref(""), hash = ref("")) {
   tag = ref(tag);

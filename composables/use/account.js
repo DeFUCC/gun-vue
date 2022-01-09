@@ -10,12 +10,15 @@
  * @property {Object} profile - An object with all the `gun.user().get('profile')` data
  * @property {Number} pulse - latest timestamp from the user
  * @property {Boolean} blink - A boolean that toggles on every timestamp received
+ * @property {Sting} lastSeen - Shows 'online' if recent pulse is less then 10s ago or a human readable time string
  * @property {gun} db - `gun.user(pub)` ref to query any additional user data
  */
 
 import { gun } from "./gun";
 import { color } from "./color";
 import ms from "ms";
+
+const TIMEOUT = 10000;
 
 /**
  * A user's account
@@ -37,7 +40,7 @@ export function useAccount(pub = ref()) {
       pulse: 0,
       lastSeen: computed(() => {
         let time = Date.now() - obj.pulse;
-        if (time > 10000) {
+        if (time > TIMEOUT) {
           return ms(time);
         } else {
           return "online";
