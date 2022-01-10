@@ -9,8 +9,8 @@
     "url": "https://ko-fi.com/B0B44CM90"
   },
   "type": "module",
-  "main": "dist/index.mjs",
   "module": "dist/index.mjs",
+  "exports": "./dist/index.mjs",
   "files": [
     "dist"
   ],
