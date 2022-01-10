@@ -26,7 +26,6 @@
     "@iconify/json": "^2.0.21",
     "@vitejs/plugin-vue": "^2.0.1",
     "pug": "3.0.2",
-    "unplugin-auto-import": "^0.5.5",
     "unplugin-icons": "^0.13.0",
     "unplugin-vue-components": "^0.17.11",
     "vite": "^2.7.10",

@@ -1,4 +1,6 @@
-<script setup>import { useAccount, ms } from '@composables';
+<script setup>
+import { useAccount, ms } from '@composables';
+import { toRefs } from 'vue'
 
 const props = defineProps({
   pub: { type: String, default: '' }

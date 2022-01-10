@@ -1,5 +1,6 @@
 <script setup>
 import { color, ms, useBanned } from '@composables'
+import { computed } from 'vue'
 
 const emit = defineEmits(['upvote', 'downvote'])
 

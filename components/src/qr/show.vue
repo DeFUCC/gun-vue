@@ -1,5 +1,6 @@
 <script setup>
 import qrcode from "@qrcode/svg";
+import { computed } from 'vue'
 
 const props = defineProps({
   data: String,
