@@ -25,7 +25,7 @@ export default defineConfig({
     }),
     WindiCSS({
       scan: {
-        dirs: ["../components/src", "src"],
+        dirs: ["src"],
         include: ["index.md"],
         exclude: ["**/examples/**/*", "/node_modules/"],
         fileExtensions: ["vue", "ts", "md"],

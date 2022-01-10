@@ -36,7 +36,7 @@ export default defineConfig({
       scan: {
         dirs: ["src"],
         include: ["index.md"],
-        exclude: ["**/examples/**/*", "/node_modules/"],
+        exclude: ["/node_modules/"],
         fileExtensions: ["vue", "ts", "md"],
       },
     }),
