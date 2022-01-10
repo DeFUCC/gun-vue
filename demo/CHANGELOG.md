@@ -1,5 +1,14 @@
 # @gun-vue/demo
 
+## 0.2.11
+
+### Patch Changes
+
+- got rid of autoimport of vue reactivity elements – the code is more transparent to read
+- Updated dependencies
+  - @gun-vue/components@0.2.11
+  - @gun-vue/composables@0.2.11
+
 ## 0.2.10
 
 ### Patch Changes
