@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.2.12
+
+### Patch Changes
+
+- module
+
 ## 0.2.11
 
 ### Patch Changes

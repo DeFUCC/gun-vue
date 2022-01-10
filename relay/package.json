@@ -8,8 +8,8 @@
     "type": "ko-fi",
     "url": "https://ko-fi.com/B0B44CM90"
   },
-  "main": "server.js",
   "type": "module",
+  "main": "server.js",
   "scripts": {
     "start": "node start.js"
   },
