@@ -1,5 +1,11 @@
 # @gun-vue/components
 
+## 0.3.6
+
+### Patch Changes
+
+- ssr-friendly user-icon
+
 ## 0.3.5
 
 ### Patch Changes

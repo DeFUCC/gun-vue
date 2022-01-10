@@ -1,5 +1,5 @@
 <script setup >
-import { user, gunAvatar, useColor } from '@composables'
+import { useUser, gunAvatar, useColor } from '@composables'
 import { computed } from 'vue'
 
 const props = defineProps({
@@ -9,6 +9,8 @@ const props = defineProps({
 });
 
 const colorDeep = useColor('deep')
+
+const { user } = useUser()
 
 const pubKey = computed(() => props.pub || user.pub)
 </script>
