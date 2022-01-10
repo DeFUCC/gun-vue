@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.3.7
+
+### Patch Changes
+
+- ssr
+
 ## 0.3.5
 
 ### Patch Changes

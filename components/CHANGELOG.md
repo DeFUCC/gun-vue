@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.3.7
+
+### Patch Changes
+
+- ssr
+- Updated dependencies
+  - @gun-vue/composables@0.3.7
+
 ## 0.3.6
 
 ### Patch Changes
