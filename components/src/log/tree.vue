@@ -7,6 +7,7 @@ const props = defineProps({
 })
 const { sorted, putNow, count } = useLog(props);
 
+const emit = defineEmits(['browse'])
 
 </script>
 
@@ -19,8 +20,8 @@ const { sorted, putNow, count } = useLog(props);
       .flex.rounded-xl(v-if="data[1].event == 'guest'" :style="{ backgroundColor: color.deep.hex(data[1]?.pub || 0) }")
         img.rounded-xl(:src="gunAvatar(data[1].pub, 24)")
         .px-2 @{{ data[1].space }}
-      router-link.mx-1.p-1.rounded-xl(
-        v-if="data[1].event == 'new-post'" :to="'/feeds/' + data[1].feed + '/' + safeHash(data[1].hash)" 
+      .mx-1.p-1.rounded-xl(
+        v-if="data[1].event == 'new-post'" @click="$emit('browse', '/feeds/' + data[1].feed + '/' + safeHash(data[1].hash))"
         :style="{ backgroundColor: color.light.hex(data[1]?.hash || 0) }"
         ) {{ '#' + data[1].feed }}/{{ safeHash(data[1].hash) }}
       .flex-1

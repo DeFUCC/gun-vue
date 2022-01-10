@@ -1,8 +1,10 @@
 <script setup>
+
 import { useUser, useColor } from '@composables'
 const { user, leave } = useUser()
 
 const colorDeep = useColor('deep')
+const emit = defineEmits(['browse'])
 </script>
 
 <template lang='pug'>
@@ -10,8 +12,7 @@ const colorDeep = useColor('deep')
   v-if="user.is"
   :style="{ backgroundColor: colorDeep.hex(user.pub) }"
   )
-  router-link(:to="`/users/${user.pub}`")
-    account-avatar
+  account-avatar(@click="$emit('browse', user.pub)")
   .text-2xl.mx-2.font-bold {{ user?.name }}
   account-mate(:pub="user.pub")
   .flex-1 

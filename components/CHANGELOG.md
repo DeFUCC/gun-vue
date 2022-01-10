@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.3.8
+
+### Patch Changes
+
+- no router-links in components
+- Updated dependencies
+  - @gun-vue/composables@0.3.8
+
 ## 0.3.7
 
 ### Patch Changes

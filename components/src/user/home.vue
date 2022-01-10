@@ -11,7 +11,7 @@ const { user } = useUser()
   user-login(v-if="!user.is")
 
   .flex.flex-col(v-else)
-    user-panel
+    user-panel(@browse="$emit('browse', $event)")
     user-profile
     account-mates(:pub="user.pub"  @browse="$emit('browse', $event)")
     ui-modal(:open="user.is && !user.safe?.saved" @close="user.db.get('safe').get('saved').put(true)")
