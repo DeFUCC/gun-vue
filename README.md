@@ -10,7 +10,7 @@ Gun-vue – is where the peer-to-peer javascript database Gun meets the reactivi
 
 Gun is a CRDT distributed graph database, Vue is a reactive JS UI framework, SEA is web-browser cryptography adapter and together they evolve into an ecosystem of multiple app levels.
 
-We're committed to give all the basic tools for everyone to participate in exploring this new universe. You can find your own way in it for yourself.
+The project is committed to give all the basic tools for everyone to participate in exploring this new universe. You can find your own way in it for yourself.
 
 There are 3 packages in the [@gun-vue npmjs org](https://www.npmjs.com/org/gun-vue) for you to install and use.
 
