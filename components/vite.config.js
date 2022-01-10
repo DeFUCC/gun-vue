@@ -42,11 +42,18 @@ export default defineConfig({
     },
   },
   build: {
+    sourcemap: true,
     lib: {
       entry: path.resolve(dirname, "/src/index.js"),
       name: "components",
-      formats: ["es"],
-      fileName: () => "index.mjs",
+      formats: ["es", "cjs"],
+      fileName: (format) => {
+        if (format == "es") {
+          return "index.mjs";
+        } else {
+          return "index.cjs";
+        }
+      },
     },
     rollupOptions: {
       external: ["vue"],

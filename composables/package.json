@@ -1,6 +1,6 @@
 {
   "name": "@gun-vue/composables",
-  "version": "0.3.1",
+  "version": "0.3.4",
   "license": "MIT",
   "repository": "github:defucc/gun-vue",
   "homepage": "https://defucc.github.io/gun-vue",
@@ -9,7 +9,15 @@
     "url": "https://ko-fi.com/B0B44CM90"
   },
   "type": "module",
-  "main": "dist/index.js",
+  "module": "./dist/index.mjs",
+  "main": "./dist/index.cjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./*": "./*"
+  },
   "files": [
     "dist"
   ],

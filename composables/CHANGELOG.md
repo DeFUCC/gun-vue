@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.3.4
+
+### Patch Changes
+
+- ESM and CJS versions with map files
+
 ## 0.3.1
 
 ### Patch Changes
