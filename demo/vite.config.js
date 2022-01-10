@@ -2,7 +2,11 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import Components from "unplugin-vue-components/vite";
 import Pages from "vite-plugin-pages";
-import path from "path";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
@@ -46,7 +50,7 @@ export default defineConfig({
   ],
   build: {
     target: "esnext",
-    brotliSize: false,
+    brotliSize: true,
     assetsInlineLimit: 100000000,
     chunkSizeWarningLimit: 100000000,
     cssCodeSplit: false,
@@ -59,9 +63,9 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "/"),
-      "@components": path.resolve(__dirname, "../components/src"),
-      "@composables": path.resolve(__dirname, "../composables/index"),
+      "@": path.resolve(dirname, "/"),
+      "@components": path.resolve(dirname, "../components/src"),
+      "@composables": path.resolve(dirname, "../composables/index"),
     },
   },
 });

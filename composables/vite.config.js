@@ -1,10 +1,15 @@
-const path = require("path");
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { defineConfig } from "vite";
 
-module.exports = {
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+
+export default defineConfig({
   plugins: [moduleExclude("text-encoding")],
   build: {
     lib: {
-      entry: path.resolve(__dirname, "index.js"),
+      entry: path.resolve(dirname, "index.js"),
       name: "gun-vue-composables",
     },
     sourcemap: "inline",
@@ -33,7 +38,7 @@ module.exports = {
       "gun/lib/rindexed",
     ],
   },
-};
+});
 
 function moduleExclude(match) {
   const m = (id) => id.indexOf(match) > -1;

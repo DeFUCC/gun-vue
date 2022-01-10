@@ -3,7 +3,7 @@
  * @module DataTree
  */
 
-import { reactive, ref, onMounted, watchEffect } from "vue";
+import { reactive, ref, onMounted, watchEffect, onBeforeUnmount } from "vue";
 import { DateTree } from "gun-util";
 import ms from "ms";
 import { newWorker } from "./worker";

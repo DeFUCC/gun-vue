@@ -1,10 +1,15 @@
-const path = require("path");
 import { defineConfig } from "vite";
 import WindiCSS from "vite-plugin-windicss";
 import vue from "@vitejs/plugin-vue";
 import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
 import Components from "unplugin-vue-components/vite";
+
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 export default defineConfig({
   plugins: [
@@ -38,14 +43,14 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "/"),
-      "@components": path.resolve(__dirname, "src"),
-      "@composables": path.resolve(__dirname, "../composables/index"),
+      "@": path.resolve(dirname, "/"),
+      "@components": path.resolve(dirname, "src"),
+      "@composables": path.resolve(dirname, "../composables/index"),
     },
   },
   build: {
     lib: {
-      entry: path.resolve(__dirname, "/src/index.js"),
+      entry: path.resolve(dirname, "/src/index.js"),
       name: "components",
     },
     rollupOptions: {

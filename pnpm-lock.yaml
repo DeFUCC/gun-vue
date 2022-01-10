@@ -16,6 +16,7 @@ importers:
     specifiers:
       '@gun-vue/composables': workspace:^
       '@qrcode/svg': ^1.0.0-beta.2
+      '@vitejs/plugin-vue': ^2.0.1
       '@vueuse/core': 7.5.3
       curved-arrows: ^0.1.0
       gun-avatar: 1.5.0
@@ -42,6 +43,7 @@ importers:
       simplemde: 1.11.2
       vue: 3.2.26
     devDependencies:
+      '@vitejs/plugin-vue': 2.0.1_vite@2.7.10+vue@3.2.26
       pug: 3.0.2
       unplugin-icons: 0.13.0_vite@2.7.10
       unplugin-vue-components: 0.17.11_vite@2.7.10+vue@3.2.26
