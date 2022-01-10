@@ -1,5 +1,6 @@
 <script setup>
 import { useFeeds, useColor } from '@composables'
+import { ref, onMounted } from 'vue'
 
 const { search, slug, tags, addTag } = useFeeds()
 

@@ -1,6 +1,7 @@
 <script setup>
 import { useUser, SEA, color } from '@composables'
 import { useRefHistory } from '@vueuse/core'
+import { ref } from 'vue'
 
 const { user, auth } = useUser()
 

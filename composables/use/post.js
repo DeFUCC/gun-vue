@@ -4,7 +4,7 @@
  */
 
 import { gun } from "./gun";
-
+import { computed, reactive, ref } from "vue";
 import { downloadText, createMd } from "./file";
 
 import ms from "ms";

@@ -1,5 +1,6 @@
 <script setup>
 import { useUser } from '@composables';
+import { ref } from 'vue'
 
 useUser()
 const open = ref(false)

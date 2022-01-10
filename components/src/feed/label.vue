@@ -1,4 +1,6 @@
 <script setup>
+import { toRef } from 'vue'
+
 const props = defineProps({
   hash: { type: String, default: '0' },
   tag: { type: String, default: 'tag' },

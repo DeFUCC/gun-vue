@@ -1,6 +1,6 @@
 <script setup>
 import { gun, useAccount } from '@composables';
-
+import { reactive, ref } from 'vue'
 const guests = reactive({})
 
 gun.get('public').get('#guests').map().on((d, k) => {

@@ -1,4 +1,5 @@
 import { useMousePressed, useMouseInElement } from "@vueuse/core";
+import { ref, reactive, onMounted, onBeforeUnmount, watch } from "vue";
 
 export function useSvgMouse() {
   const area = ref(null);
@@ -25,6 +26,7 @@ export function useSvgMouse() {
   onBeforeUnmount(() => {
     document.removeEventListener("mousemove", getCursorPosition);
   });
+
   function getCursorPosition(event, rect = area.value) {
     const svgElement = rect.closest("svg");
     if (!svgElement) return;

@@ -1,6 +1,7 @@
 <script setup>
 import { useUser, safeJSONParse, useFileUpload, uploadText, SEA, color } from '@composables'
 import { useRefHistory } from '@vueuse/core'
+import { ref, watch } from 'vue'
 
 const current = ref('pass')
 const pair = ref()

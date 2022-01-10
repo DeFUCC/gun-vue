@@ -4,6 +4,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['close', 'browse'])
 
+import { ref } from 'vue'
 import { useFeed, color } from '@composables';
 
 const add = ref(false)

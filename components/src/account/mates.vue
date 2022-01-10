@@ -4,7 +4,7 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['browse'])
-
+import { ref, watch, computed } from 'vue'
 import { gun } from '@composables';
 
 const links = ref({})

@@ -2,6 +2,7 @@
 import { useSpace, user, color } from '@composables'
 import { getArrow } from 'curved-arrows'
 import { useElementBounding } from '@vueuse/core'
+import { ref, computed } from 'vue'
 
 const props = defineProps({
   pad: { type: Number, default: 50 },

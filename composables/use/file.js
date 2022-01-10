@@ -4,6 +4,7 @@
  * */
 
 import yaml from "yaml";
+import { computed, reactive } from "vue";
 
 /**
  *  Create markdown with frontmatter

@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import Pages from "vite-plugin-pages";
 import path from "path";
@@ -27,14 +26,6 @@ export default defineConfig({
         exclude: ["**/examples/**/*", "/node_modules/"],
         fileExtensions: ["vue", "ts", "md"],
       },
-    }),
-    AutoImport({
-      // targets to transform
-      include: [
-        /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
-        /\.vue\??/, // .vue
-      ],
-      imports: ["vue"],
     }),
     Icons({
       /* options */

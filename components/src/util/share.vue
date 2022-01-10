@@ -1,6 +1,6 @@
 <script setup>
 import { useBrowserLocation, useClipboard, useShare } from '@vueuse/core'
-
+import { ref } from 'vue'
 const location = useBrowserLocation()
 
 const open = ref(false)

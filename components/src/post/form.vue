@@ -1,4 +1,5 @@
 <script setup>
+import { reactive, ref, onMounted } from 'vue'
 import SimpleMDE from 'simplemde'
 import 'simplemde/dist/simplemde.min.css'
 

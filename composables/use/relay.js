@@ -3,7 +3,7 @@
  */
 
 import { gun, peers } from "./gun";
-import { reactive, watch } from "vue";
+import { computed, reactive, watch } from "vue";
 import ms from "ms";
 
 /**

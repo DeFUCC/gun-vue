@@ -3,6 +3,7 @@ import { useSvgMouse } from "./mouse";
 import { user } from "./user";
 import { hashText } from "./hash";
 import { logEvent } from "./log";
+import { computed, reactive, watch } from "vue";
 
 export function useSpace(spaceName = "public") {
   const space = reactive({

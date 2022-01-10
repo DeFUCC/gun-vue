@@ -7,6 +7,7 @@ import { logEvent } from "./log";
 import { gun } from "./gun";
 import { hashObj, hashText } from "./hash";
 import { downloadText, createMd, parseMd, uploadText } from "./file";
+import { computed, reactive, ref } from "vue";
 
 import slugify from "slugify";
 import Fuse from "fuse.js";

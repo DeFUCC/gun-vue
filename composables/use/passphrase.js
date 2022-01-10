@@ -1,7 +1,7 @@
 /**
  * @module Passphrase
  */
-
+import { computed, reactive, watchEffect } from "vue";
 import { gun, SEA } from "./gun";
 import { auth, isPair, user } from "./user";
 import base32 from "base32";

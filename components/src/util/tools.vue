@@ -1,4 +1,5 @@
 <script setup>
+import { reactive } from 'vue'
 const show = reactive({
   graph: false,
   log: false,

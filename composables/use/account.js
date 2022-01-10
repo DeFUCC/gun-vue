@@ -17,6 +17,7 @@
 import { gun } from "./gun";
 import { color } from "./color";
 import ms from "ms";
+import { computed, reactive, ref } from "vue";
 
 const TIMEOUT = 10000;
 

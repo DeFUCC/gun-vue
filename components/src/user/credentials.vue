@@ -1,5 +1,6 @@
 <script setup>
 import { user, downloadText, usePassphrase } from '@composables'
+import { ref, computed } from 'vue'
 const current = ref('pass')
 
 function show(option) {

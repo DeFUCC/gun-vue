@@ -1,5 +1,6 @@
 <script setup >
 import { user, gunAvatar, color } from '@composables'
+import { computed } from 'vue'
 const props = defineProps({
   pub: { type: String, default: '' },
   size: { type: Number, default: 42, },

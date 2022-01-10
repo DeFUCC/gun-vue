@@ -1,4 +1,5 @@
 <script setup>
+import { reactive } from 'vue'
 import { gun, safeHash, useTagPost } from '@composables';
 
 const props = defineProps({

@@ -5,6 +5,7 @@
 
 import { gun, SEA } from "./gun";
 import { color } from "./color";
+import { computed, reactive } from "vue";
 
 /**
  * @typedef User - An interface to the current gun user
