@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.3.5
+
+### Patch Changes
+
+- Gun is packed into useGun() function and the lib should be SSR-friendly now
+
 ## 0.3.4
 
 ### Patch Changes
