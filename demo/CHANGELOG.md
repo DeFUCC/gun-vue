@@ -1,5 +1,17 @@
 # @gun-vue/demo
 
+## 0.3.0
+
+### Minor Changes
+
+- Consistent structure of module packages. Seems to be the first truly embeddable components package
+
+### Patch Changes
+
+- Updated dependencies
+  - @gun-vue/components@0.3.0
+  - @gun-vue/composables@0.3.0
+
 ## 0.2.12
 
 ### Patch Changes
