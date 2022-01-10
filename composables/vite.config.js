@@ -11,6 +11,8 @@ export default defineConfig({
     lib: {
       entry: path.resolve(dirname, "index.js"),
       name: "gun-vue-composables",
+      formats: ["es"],
+      fileName: () => "index.js",
     },
     sourcemap: "inline",
     rollupOptions: {

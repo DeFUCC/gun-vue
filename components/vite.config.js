@@ -32,14 +32,7 @@ export default defineConfig({
         }),
       ],
     }),
-    WindiCSS({
-      scan: {
-        dirs: ["src"],
-        include: ["index.md"],
-        exclude: ["/node_modules/"],
-        fileExtensions: ["vue", "ts", "md"],
-      },
-    }),
+    WindiCSS(),
   ],
   resolve: {
     alias: {
@@ -52,6 +45,8 @@ export default defineConfig({
     lib: {
       entry: path.resolve(dirname, "/src/index.js"),
       name: "components",
+      formats: ["es"],
+      fileName: () => "index.js",
     },
     rollupOptions: {
       external: ["vue"],

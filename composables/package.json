@@ -9,8 +9,7 @@
     "url": "https://ko-fi.com/B0B44CM90"
   },
   "type": "module",
-  "main": "dist/composables.umd.js",
-  "module": "dist/composables.es.js",
+  "main": "dist/index.js",
   "files": [
     "dist"
   ],

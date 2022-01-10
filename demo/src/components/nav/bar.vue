@@ -14,7 +14,8 @@ const show = reactive({
 <template lang="pug">
 router-link.fixed.top-0.left-0.z-1000(to="/")
   img.w-24.transition-all.duration-500.ease-in-out(src="/gun-vue-logo.svg")
-.flex.flex-wrap.items-center.p-2.bg-light-900.shadow-md.z-400.sticky.w-full.pl-24.border-b-2(:style="{ borderColor: user.color }")
+.flex.flex-wrap.items-center.p-2.bg-light-900.shadow-md.z-400.sticky.w-full.border-b-2(:style="{ borderColor: user.color }")
+  .w-24
   router-link.p-2.rounded-xl.cursor-pointer(v-for="(link,l) in routes" :key="link" 
   :to="l" 
   :class="{ active: $route.path.includes(l) }") {{ link }}
