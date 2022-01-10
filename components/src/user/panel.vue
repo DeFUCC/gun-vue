@@ -1,12 +1,14 @@
 <script setup>
-import { useUser, color } from '@composables'
+import { useUser, useColor } from '@composables'
 const { user, leave } = useUser()
+
+const colorDeep = useColor('deep')
 </script>
 
 <template lang='pug'>
 .p-4.flex.items-center(
   v-if="user.is"
-  :style="{ backgroundColor: color.deep.hex(user.pub) }"
+  :style="{ backgroundColor: colorDeep.hex(user.pub) }"
   )
   router-link(:to="`/users/${user.pub}`")
     account-avatar

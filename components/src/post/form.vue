@@ -47,7 +47,7 @@ form.flex.flex-col.p-2.border-1.rounded-2xl(action="javascript:void(0);")
   button.button(:disabled="!post.title && !post.description && !post.content" type="submit" @click="submit()") Submit
 </template>
 
-<style scoped>
+<style lang="postcss" scoped>
 input,
 textarea {
   @apply p-2 rounded-xl m-1;

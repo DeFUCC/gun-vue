@@ -1,11 +1,12 @@
 <script setup>
+import { ref } from 'vue'
+import { useUser } from '@composables';
 
 const props = defineProps({
   pub: { type: String, default: '' }
 })
 
-import { ref } from 'vue'
-import { gun, user } from '@composables';
+const { user } = useUser()
 
 const isMate = ref(false)
 

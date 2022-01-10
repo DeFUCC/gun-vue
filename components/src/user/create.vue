@@ -1,7 +1,9 @@
 <script setup>
-import { useUser, SEA, color } from '@composables'
+import { useUser, SEA, useColor } from '@composables'
 import { useRefHistory } from '@vueuse/core'
 import { ref } from 'vue'
+
+const colorDeep = useColor('deep')
 
 const { user, auth } = useUser()
 
@@ -27,5 +29,5 @@ generatePair()
         la-undo.text-2xl
       button.button.items-center(@click="generatePair()") 
         fad-random-1dice.text-3xl
-    button.button.w-full.flex.justify-center.items-center(@click="auth(newPair)" v-if="newPair && !user.is" :style="{ backgroundColor: color.deep.hex(newPair.pub) }") Authenticate
+    button.button.w-full.flex.justify-center.items-center(@click="auth(newPair)" v-if="newPair && !user.is" :style="{ backgroundColor: colorDeep.hex(newPair.pub) }") Authenticate
 </template> 

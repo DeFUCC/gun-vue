@@ -1,8 +1,12 @@
 <script setup >
-import { gun, color } from "@composables";
+import { useGun, useColor } from "@composables";
 import { ref, onBeforeUnmount } from 'vue'
 
 const graph = ref({});
+
+const colorLight = useColor('light')
+
+const gun = useGun()
 
 const timer = setInterval(() => {
   graph.value = { ...gun._.graph };
@@ -16,7 +20,7 @@ onBeforeUnmount(() => {
 <template lang="pug">
 article
   .p-2px.text-sm(
-    :style="{ backgroundColor: color.light.hex(i) }",
+    :style="{ backgroundColor: colorLight.hex(i) }",
     v-for="(g, i) in graph",
     :key="i"
   )

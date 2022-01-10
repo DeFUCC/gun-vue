@@ -1,5 +1,5 @@
 <script setup>
-import { useSpace, user, color } from '@composables'
+import { useSpace, useUser, useColor } from '@composables'
 import { getArrow } from 'curved-arrows'
 import { useElementBounding } from '@vueuse/core'
 import { ref, computed } from 'vue'
@@ -8,6 +8,10 @@ const props = defineProps({
   pad: { type: Number, default: 50 },
 })
 defineEmits(['user'])
+
+const { user } = useUser()
+
+const colorDeep = useColor('deep')
 
 const TIMEOUT = 30000
 
@@ -86,7 +90,7 @@ const arrows = computed(() => {
     g.arrows(v-for="(a,n) in arrows" :key="a" opacity="0.8")
       path(
         :d="a.d"
-        :stroke="color.deep.hex(a.link.user)"
+        :stroke="colorDeep.hex(a.link.user)"
         stroke-width="1"
         fill="none"
         stroke-linecap="round"
@@ -94,7 +98,7 @@ const arrows = computed(() => {
       polygon(
         :points="`0,${-arrowHeadSize} ${arrowHeadSize * 2},0, 0,${arrowHeadSize}`"
         :transform="`translate(${a.ex}, ${a.ey}) rotate(${a.ae})`"
-        :fill="color.deep.hex(a.link.user)"
+        :fill="colorDeep.hex(a.link.user)"
       )
     line(
       v-if="space.my?.pos"

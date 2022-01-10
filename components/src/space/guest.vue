@@ -1,5 +1,5 @@
 <script setup>
-import { color, gunAvatar } from "@composables";
+import { useColor, gunAvatar } from "@composables";
 import { computed } from 'vue'
 const props = defineProps(
   {
@@ -9,19 +9,24 @@ const props = defineProps(
     blink: { type: Boolean, default: false }
   })
 const age = computed(() => Date.now() - Number(props.pulse))
+
+const TIMEOUT = 10000
+
+const colorDeep = useColor()
+const color = computed(() => colorDeep.hex(props.pub))
 </script>
 
 <template lang='pug'>
 g.guest(
-  :opacity="age > 5000 ? 0.1 : 1"
+  :opacity="age > TIMEOUT ? 0.1 : 1"
 )
-  circle.transition-all.duration-1000.ease-out(
+  circle.transition.duration-1000.ease-out(
     style="filter:url(#shadowButton)"
     :r="26"
-    :fill="color.deep.hex(pub)"
+    :fill="color"
     stroke-width="8"
     stroke-opacity="0.5"
-    :stroke="blink ? color.deep.hex(pub) : 'transparent'"
+    :stroke="blink ? color : 'transparent'"
   )
   image(:xlink:href="gunAvatar(pub, 100)" x="-25" y="-25" height="50" width="50" clip-path="url(#mask)")
 </template>

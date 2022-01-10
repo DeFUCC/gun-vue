@@ -3,14 +3,17 @@
  * @module Feeds
  */
 
-import { logEvent } from "./log";
-import { gun } from "./gun";
-import { hashObj, hashText } from "./hash";
-import { downloadText, createMd, parseMd, uploadText } from "./file";
 import { computed, reactive, ref } from "vue";
 
 import slugify from "slugify";
 import Fuse from "fuse.js";
+
+import { logEvent } from "./log";
+import { useGun } from "./gun";
+import { hashObj, hashText } from "./hash";
+import { downloadText, createMd, parseMd, uploadText } from "./file";
+
+const gun = useGun();
 
 /**
  * @typedef useFeeds
@@ -97,6 +100,7 @@ export function useFeeds() {
  * @returns {useFeed}
  */
 export function useFeed(tag = ref("tag")) {
+  tag = ref(tag);
   const timestamps = ref({});
 
   const posts = computed(() => {

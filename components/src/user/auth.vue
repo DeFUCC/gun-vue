@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, safeJSONParse, useFileUpload, uploadText, SEA, color } from '@composables'
+import { useUser, safeJSONParse, useFileUpload, uploadText, SEA } from '@composables'
 import { useRefHistory } from '@vueuse/core'
 import { ref, watch } from 'vue'
 

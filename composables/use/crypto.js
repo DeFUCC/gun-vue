@@ -5,7 +5,7 @@
 
 // https://github.com/amark/gun/wiki/Snippets
 
-import { SEA, gun } from "./gun";
+import { SEA } from "./gun";
 
 /**
  * @typedef {Object} Entity
@@ -22,7 +22,7 @@ import { SEA, gun } from "./gun";
  * @param {SEAPair} receiver - SEA Pair of the sender – `epriv` key will be used to encrypt the data
  * @returns {String} Encrypted data string to be sent
  */
-export async function encFor(data, receiver, sender = gun.user()._.sea) {
+export async function encFor(data, receiver, sender) {
   const secret = await SEA.secret(receiver.epub, sender);
   const encryptedData = await SEA.encrypt(data, secret);
   return encryptedData;
@@ -37,7 +37,7 @@ export async function encFor(data, receiver, sender = gun.user()._.sea) {
  * @param {SEAPair} receiver - SEA Pair of the receiver – `epriv` key will be used to encrypt the data
  * @returns {String} Decrypted data
  */
-export async function decFrom(data, sender, receiver = gun.user()._.sea) {
+export async function decFrom(data, sender, receiver) {
   const secret = await SEA.secret(sender.epub, receiver);
   const decryptedData = await SEA.decrypt(data, secret);
   return decryptedData;

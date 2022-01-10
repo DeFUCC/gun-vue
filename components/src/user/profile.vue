@@ -1,6 +1,8 @@
 <script setup>
-import { useAccount, user, addProfileField, color } from '@composables'
+import { useAccount, useUser, addProfileField } from '@composables'
 import { ref } from 'vue'
+
+const { user } = useUser()
 
 const { account } = useAccount(user.pub)
 

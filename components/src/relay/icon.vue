@@ -10,7 +10,7 @@ const open = ref(false)
 <template lang='pug'>
 .text-xl.cursor-pointer.relative(@click="open = true")
   carbon-bare-metal-server-01.-mt-2
-  .p-1.bottom-0.left-2.rounded-full.transition-all.duration-300.ease-in-out.opacity-50.absolute(
+  .p-1.bottom-0.left-2.rounded-full.transition.duration-300ms.ease-in-out.opacity-50.absolute(
     :style="{ backgroundColor: relay.blink ? 'white' : 'black' }"
     )
 ui-modal(:open="open" @close="open = false")

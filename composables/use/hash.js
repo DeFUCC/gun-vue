@@ -3,7 +3,7 @@
  * @module Hash
  */
 
-import { gun, SEA } from "./gun";
+import { SEA } from "./gun";
 
 export async function hashText(text) {
   let hash = await SEA.work(text, null, null, { name: "SHA-256" });

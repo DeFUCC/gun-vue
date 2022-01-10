@@ -1,13 +1,16 @@
 <script setup>
-import { gun, color } from '@composables';
+import { useGun, useColor } from '@composables';
 import { ref, watchEffect } from 'vue'
 
 const props = defineProps({
   pub: { type: String, default: '' }
 })
 
-
 const name = ref('')
+
+const colorDeep = useColor('deep')
+
+const gun = useGun()
 
 watchEffect(() => {
   gun.user(props.pub).get('profile').get('name').on(d => {
@@ -17,8 +20,9 @@ watchEffect(() => {
 
 </script>
 
-<template lang='pug'>
-.p-1.flex.items-center.rounded-3xl.bg-light-900.m-1.cursor-pointer.shadow(:style="{ backgroundColor: color.deep.hex(pub) }")
+<template lang="pug">
+.p-1.flex.items-center.rounded-3xl.bg-light-900.m-1.cursor-pointer.shadow(:style="{ backgroundColor: colorDeep.hex(pub) }")
   account-avatar(:pub="pub" :size="30")
-  .mx-2.font-bold.text-sm(v-if="name") {{ name }}
+  .mx-2.font-bold.text-sm(v-if="name")
+    | {{ name }}
 </template>

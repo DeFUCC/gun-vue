@@ -14,27 +14,30 @@
  * @property {gun} db - `gun.user(pub)` ref to query any additional user data
  */
 
-import { gun } from "./gun";
-import { color } from "./color";
+import { useGun, gun } from "./gun";
+import { useColor } from "./color";
 import ms from "ms";
 import { computed, reactive, ref } from "vue";
 
 const TIMEOUT = 10000;
 
+const colorDeep = useColor("deep");
+
 /**
  * A user's account
- * @param {Ref} pub - The public key as a string or a ref
+ * @param {ref} pub - The public key as a string or a ref
  * @returns {Account}
  */
 
 export function useAccount(pub = ref()) {
+  const gun = useGun();
   if (typeof pub == "string") {
     pub = ref(pub);
   }
   const account = computed(() => {
     const obj = reactive({
       pub,
-      color: computed(() => (pub.value ? color.deep.hex(pub.value) : "gray")),
+      color: computed(() => (pub.value ? colorDeep.hex(pub.value) : "gray")),
       profile: {
         name: "",
       },

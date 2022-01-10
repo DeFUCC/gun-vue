@@ -2,9 +2,11 @@
  * @module Relay
  */
 
-import { gun, peers } from "./gun";
+import { useGun, peers } from "./gun";
 import { computed, reactive, watch } from "vue";
 import ms from "ms";
+
+const gun = useGun();
 
 /**
  * @typedef {reactive} Relay Peer server status reactive object

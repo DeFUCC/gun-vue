@@ -12,18 +12,31 @@ import "gun/lib/rindexed";
 // import "gun/lib/webrtc";
 import "gun/nts";
 
-export const peers = ["https://etogun.glitch.me/gun"];
+export let peers = ["https://etogun.glitch.me/gun"];
 // export const peers = ["http://192.168.1.100:4200/gun"];
 // export const peers = ["http://localhost:4200/gun"];
 
 /** Established Gun instance for database operations */
-export const gun = Gun({
-  peers,
-  localStorage: false,
-});
+export let gun;
 
 /** Secondary Gun instance for key management */
-export const gun2 = Gun({ peers, localStorage: false });
+export let gun2;
+
+export function useGun(peer = peers) {
+  if (!gun || peer != peers) {
+    peers = peer;
+    gun = Gun({ peers, localStorage: false });
+  }
+  return gun;
+}
+
+export function useGun2(peer = peers) {
+  if (!gun2 || peer != peers) {
+    peers = peer;
+    gun2 = Gun({ peers, localStorage: false });
+  }
+  return { gun2 };
+}
 
 /**
  * SEA library

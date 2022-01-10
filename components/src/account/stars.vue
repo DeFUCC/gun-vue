@@ -1,12 +1,14 @@
 <script setup>
 import { reactive } from 'vue'
-import { gun, safeHash, useTagPost } from '@composables';
+import { useGun, safeHash, useTagPost } from '@composables';
 
 const props = defineProps({
   pub: { type: String, default: '' }
 })
 
 const posts = reactive({})
+
+const gun = useGun()
 
 gun.user(props.pub).get('feeds').map().once(function (list, tag) {
 

@@ -1,6 +1,8 @@
 <script setup>
-import { gun, user } from '@composables'
+import { useUser } from '@composables'
 import { ref } from 'vue'
+
+const { user } = useUser()
 
 const props = defineProps({
   tag: { type: String, default: '' },
@@ -8,13 +10,14 @@ const props = defineProps({
 })
 
 const starred = ref(false)
+const myStar = user.db.get('feeds').get(`${props.tag}`).get(props.hash)
 
-user.db.get('feeds').get(`${props.tag}`).get(props.hash).on((d, k) => {
+myStar.on((d, k) => {
   starred.value = d
 })
 
 function toggleStar(tag = props.tag, hash = props.hash) {
-  user.db.get('feeds').get(`${props.tag}`).get(props.hash).put(!starred.value)
+  myStar.put(!starred.value)
 }
 
 </script>

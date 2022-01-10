@@ -3,9 +3,11 @@
  * @module User
  * */
 
-import { gun, SEA } from "./gun";
-import { color } from "./color";
+import { gun, useGun } from "./gun";
+import { useColor } from "./color";
 import { computed, reactive } from "vue";
+
+const colorDeep = useColor("deep");
 
 /**
  * @typedef User - An interface to the current gun user
@@ -26,17 +28,16 @@ export const user = reactive({
   is: null,
   name: "",
   pub: computed(() => user?.is?.pub),
-  color: computed(() => (user.pub ? color.deep.hex(user.pub) : "gray")),
+  color: computed(() => (user.pub ? colorDeep.hex(user.pub) : "gray")),
   pulse: 0,
   pulser: null,
   blink: false,
-  db: gun.user(),
   safe: {
     saved: null,
     password: null,
   },
   pair() {
-    return gun.user()._.sea;
+    return gun?.user?.()?._?.sea;
   },
 });
 
@@ -53,7 +54,10 @@ export const user = reactive({
  */
 
 export function useUser() {
-  if (!user.is) {
+  useGun();
+  user.db = gun.user();
+
+  if (!user.initiated) {
     gun.user().recall({ sessionStorage: true }, () => {
       console.log("user was recalled");
       init();
@@ -64,6 +68,7 @@ export function useUser() {
       console.log("user authenticated");
     });
   }
+  user.initiated = true;
 
   return { user, auth, leave };
 }

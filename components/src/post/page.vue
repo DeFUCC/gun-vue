@@ -1,9 +1,8 @@
 <script setup>
-import { color } from '@composables';
+import { useColor } from '@composables';
 import { useTagPost } from '@composables';
 import markdown from 'markdown-it'
 import externalLinks from 'markdown-it-external-links'
-import { toRef } from 'vue'
 
 const props = defineProps({
   tag: { type: String, default: '' },
@@ -12,7 +11,9 @@ const props = defineProps({
 
 defineEmits(['close'])
 
-const post = useTagPost(toRef(props, 'tag'), toRef(props, 'hash'))
+const colorLight = useColor('light')
+
+const post = useTagPost(props.tag, props.hash)
 
 const md = new markdown({
   linkify: true,
@@ -26,8 +27,8 @@ md.use(externalLinks, {
 </script>
 
 <template lang='pug'>
-.rounded-2xl.overflow-hidden.flex.flex-col(:style="{ backgroundColor: color.light.hex(hash) }")
-  .flex.flex-wrap.items-center.w-full.z-204.pl-4(:style="{ backgroundColor: color.light.hex(hash) }")
+.rounded-2xl.overflow-hidden.flex.flex-col(:style="{ backgroundColor: colorLight.hex(hash) }")
+  .flex.flex-wrap.items-center.w-full.z-204.pl-4(:style="{ backgroundColor: colorLight.hex(hash) }")
     div(class="hover:underline text-md cursor-pointer" @click="$emit('close')") # {{ tag }}
     .ml-1 / {{ post.data?.title }} 
     .opacity-30.ml-4 {{ post?.lastUpdated }}

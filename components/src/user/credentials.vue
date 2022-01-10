@@ -1,7 +1,9 @@
 <script setup>
-import { user, downloadText, usePassphrase } from '@composables'
+import { useUser, downloadText, usePassphrase } from '@composables'
 import { ref, computed } from 'vue'
 const current = ref('pass')
+
+const { user } = useUser()
 
 function show(option) {
   if (current.value != option) {

@@ -3,11 +3,13 @@ const props = defineProps({
   pub: { type: String, default: '' }
 })
 
-const emit = defineEmits(['browse'])
+defineEmits(['browse'])
 import { ref, watch, computed } from 'vue'
-import { gun } from '@composables';
+import { useGun } from '@composables';
 
 const links = ref({})
+
+const gun = useGun()
 
 watch(() => props.pub, (pub) => {
   links.value = {}

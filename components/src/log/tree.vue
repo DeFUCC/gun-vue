@@ -29,7 +29,7 @@ const { sorted, putNow, count } = useLog(props);
 
 </template>
 
-<style scoped>
+<style lang="postcss" scoped>
 .row:nth-child(2n) {
   @apply bg-light-900;
 }

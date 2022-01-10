@@ -2,9 +2,11 @@
  * @module Passphrase
  */
 import { computed, reactive, watchEffect } from "vue";
-import { gun, SEA } from "./gun";
+import { useGun, SEA } from "./gun";
 import { auth, isPair, user } from "./user";
 import base32 from "base32";
+
+const gun = useGun();
 
 export const pass = reactive({
   input: "",

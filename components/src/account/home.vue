@@ -1,14 +1,13 @@
 <script setup>
-import { useAccount, ms } from '@composables';
-import { toRefs } from 'vue'
+import { useAccount } from '@composables';
 
 const props = defineProps({
   pub: { type: String, default: '' }
 })
 
-const emit = defineEmits(['browse'])
+defineEmits(['browse'])
 
-const { account } = useAccount(toRefs(props).pub);
+const { account } = useAccount(props.pub);
 </script>
 
 <template lang='pug'>

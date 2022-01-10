@@ -1,22 +1,21 @@
 <script setup>
-import { toRef } from 'vue'
+import { ref } from 'vue'
+import { useFeed, useColor } from '@composables';
+
 const props = defineProps({
   tag: { type: String, default: 'tag' }
 })
 const emit = defineEmits(['close', 'browse'])
 
-import { ref } from 'vue'
-import { useFeed, color } from '@composables';
+const colorLight = useColor('light')
 
 const add = ref(false)
-const { posts, timestamps, downloadPosts, uploadPosts, publishPost, uploadPost, banPost } = useFeed(toRef(props, 'tag'))
-
-
+const { posts, timestamps, downloadPosts, uploadPosts, publishPost, uploadPost, banPost } = useFeed(props.tag)
 
 </script>
 
 <template lang='pug'>
-.shadow-lg.rounded-2xl.bg-light-400(:style="{ backgroundColor: color.light.hex(tag) }")
+.shadow-lg.rounded-2xl.bg-light-400(:style="{ backgroundColor: colorLight.hex(tag) }")
   .flex.flex-wrap.items-center.p-2.text-xl
     .text-xl.ml-2.font-bold # {{ tag }}
     .flex.justify-center

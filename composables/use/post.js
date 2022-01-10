@@ -3,11 +3,13 @@
  * @module Post
  */
 
-import { gun } from "./gun";
 import { computed, reactive, ref } from "vue";
+import ms from "ms";
+import { useGun } from "./gun";
+
 import { downloadText, createMd } from "./file";
 
-import ms from "ms";
+const gun = useGun();
 
 /**
  * @typedef {Object} Post
