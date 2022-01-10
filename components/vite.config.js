@@ -46,7 +46,7 @@ export default defineConfig({
       entry: path.resolve(dirname, "/src/index.js"),
       name: "components",
       formats: ["es"],
-      fileName: () => "index.js",
+      fileName: () => "index.mjs",
     },
     rollupOptions: {
       external: ["vue"],

@@ -1,5 +1,11 @@
 # @gun-vue/components
 
+## 0.3.2
+
+### Patch Changes
+
+- mjs
+
 ## 0.3.1
 
 ### Patch Changes
