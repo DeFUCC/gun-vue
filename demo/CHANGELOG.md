@@ -1,5 +1,14 @@
 # @gun-vue/demo
 
+## 0.3.1
+
+### Patch Changes
+
+- ESM only exports
+- Updated dependencies
+  - @gun-vue/components@0.3.1
+  - @gun-vue/composables@0.3.1
+
 ## 0.3.0
 
 ### Minor Changes
