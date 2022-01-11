@@ -1,13 +1,12 @@
-import { useGun } from "./gun";
-import { useSvgMouse } from "./mouse";
-import { user } from "./user";
-import { hashText } from "./hash";
-import { logEvent } from "./log";
+import { useGun } from "./useGun";
+import { useSvgMouse } from "./useMouse";
+import { user } from "./useUser";
+import { hashText } from "./useHash";
+import { logEvent } from "./useLog";
 import { computed, reactive, watch } from "vue";
 
-const gun = useGun();
-
 export function useSpace(spaceName = "public") {
+  const gun = useGun();
   const space = reactive({
     title: spaceName,
     joined: false,

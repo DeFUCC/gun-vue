@@ -3,8 +3,8 @@
  * @module User
  * */
 
-import { gun, useGun } from "./gun";
-import { useColor } from "./color";
+import { gun, useGun } from "./useGun";
+import { useColor } from "./useColor";
 import { computed, reactive } from "vue";
 
 const colorDeep = useColor("deep");

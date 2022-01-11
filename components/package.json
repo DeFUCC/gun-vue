@@ -9,17 +9,17 @@
     "url": "https://ko-fi.com/B0B44CM90"
   },
   "type": "module",
-  "module": "./dist/index.mjs",
-  "main": "./dist/index.cjs",
+  "module": "./dist/components.es.js",
+  "main": "./dist/components.es.js",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "import": "./dist/components.es.js"
     },
     "./*": "./*"
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "build": "vite build"

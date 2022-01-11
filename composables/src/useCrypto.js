@@ -5,7 +5,7 @@
 
 // https://github.com/amark/gun/wiki/Snippets
 
-import { SEA } from "./gun";
+import { SEA } from "./useGun";
 
 /**
  * @typedef {Object} Entity

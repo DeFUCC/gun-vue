@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, downloadText, usePassphrase } from '@composables'
+import { useUser, downloadText, usePass } from '@composables'
 import { ref, computed } from 'vue'
 const current = ref('pass')
 
@@ -13,7 +13,7 @@ function show(option) {
   }
 }
 
-const { pass } = usePassphrase()
+const { pass } = usePass()
 
 import { useClipboard, useShare } from '@vueuse/core'
 

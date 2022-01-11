@@ -9,12 +9,11 @@
     "url": "https://ko-fi.com/B0B44CM90"
   },
   "type": "module",
-  "module": "./dist/index.mjs",
-  "main": "./dist/index.cjs",
+  "module": "./dist/composables.es.js",
+  "main": "./dist/composables.es.js",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/composables.es.js"
     },
     "./*": "./*"
   },

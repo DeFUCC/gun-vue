@@ -8,12 +8,10 @@ import { computed, reactive, ref } from "vue";
 import slugify from "slugify";
 import Fuse from "fuse.js";
 
-import { logEvent } from "./log";
-import { useGun } from "./gun";
-import { hashObj, hashText } from "./hash";
-import { downloadText, createMd, parseMd, uploadText } from "./file";
-
-const gun = useGun();
+import { logEvent } from "./useLog";
+import { gun, useGun } from "./useGun";
+import { hashObj, hashText } from "./useHash";
+import { downloadText, createMd, parseMd, uploadText } from "./useFile";
 
 /**
  * @typedef useFeeds
@@ -28,6 +26,8 @@ const gun = useGun();
  * @returns {useFeeds}
  */
 export function useFeeds() {
+  const gun = useGun();
+
   const search = ref();
   const slug = computed(() => slugify(search.value));
 
@@ -100,6 +100,7 @@ export function useFeeds() {
  * @returns {useFeed}
  */
 export function useFeed(tag = ref("tag")) {
+  const gun = useGun();
   tag = ref(tag);
   const timestamps = ref({});
 

@@ -2,7 +2,14 @@
   "$schema": "https://unpkg.com/@changesets/config@1.6.3/schema.json",
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "linked": [["@gun-vue/components", "@gun-vue/composables", "@gun-vue/demo"]],
+  "linked": [
+    [
+      "@gun-vue/components",
+      "@gun-vue/composables",
+      "@gun-vue/demo",
+      "@gun-vue/site"
+    ]
+  ],
   "access": "public",
   "baseBranch": "master",
   "updateInternalDependencies": "patch",

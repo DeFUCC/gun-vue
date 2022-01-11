@@ -1,0 +1,38 @@
+{
+  "name": "@gun-vue/site",
+  "private": true,
+  "version": "0.3.10",
+  "description": "test vitepress site for gun-vue",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build"
+  },
+  "keywords": [
+    "vitepress",
+    "gun",
+    "gun-vue"
+  ],
+  "author": "davay42",
+  "license": "MIT",
+  "dependencies": {
+    "@vueuse/core": "7.5.3",
+    "@gun-vue/components": "workspace:^",
+    "vue": "^3.2.26"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.0.22",
+    "markdown-it-classy": "^0.2.0",
+    "markdown-it-container": "^3.0.0",
+    "markdown-it-external-links": "^0.0.6",
+    "pug": "3.0.2",
+    "unplugin-auto-import": "^0.5.5",
+    "unplugin-icons": "^0.13.0",
+    "unplugin-vue-components": "^0.17.11",
+    "vite": "^2.7.10",
+    "vite-aliases": "^0.8.7",
+    "vite-plugin-windicss": "^1.6.2",
+    "vitepress": "0.21.4",
+    "vitepress-tags": "^0.4.0"
+  }
+}

@@ -1,6 +1,7 @@
 <script setup>
-import { useGun, useColor } from '@composables';
 import { ref, watchEffect } from 'vue'
+import { useGun, useColor } from '@composables';
+import AccountAvatar from './avatar.vue'
 
 const props = defineProps({
   pub: { type: String, default: '' }

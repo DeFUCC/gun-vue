@@ -11,11 +11,10 @@
     "node": "16.x"
   },
   "scripts": {
-    "dev": "cd demo && pnpm run dev",
-    "lib": "cd composables && pnpm run build",
-    "comp": "cd components && pnpm run build",
-    "demo": "cd demo && pnpm run build",
-    "start": "cd relay && pnpm run start",
+    "demo": "cd demo && pnpm run dev",
+    "site": "cd site && pnpm run dev",
+    "build": "cd composables && pnpm run build && cd .. && cd components && pnpm run build && cd .. && cd demo && pnpm run build && cd .. && cd site && pnpm run build",
+    "relay": "cd relay && pnpm run start",
     "deploy": "cd demo && pnpm run deploy",
     "ch": "pnpm changeset",
     "v": "pnpm changeset version",
@@ -25,6 +24,7 @@
   "devDependencies": {
     "@changesets/cli": "^2.19.0",
     "jsdoc": "^3.6.7",
-    "minami": "^1.2.3"
+    "minami": "^1.2.3",
+    "pug": "^3.0.2"
   }
 }

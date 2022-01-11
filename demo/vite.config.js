@@ -65,7 +65,7 @@ export default defineConfig({
     alias: {
       "@": path.resolve(dirname, "/"),
       "@components": path.resolve(dirname, "../components/src"),
-      "@composables": path.resolve(dirname, "../composables/index"),
+      "@composables": path.resolve(dirname, "../composables/src/index"),
     },
   },
 });

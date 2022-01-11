@@ -1,6 +1,6 @@
 <script setup>
-import { usePassphrase } from '@composables'
-const { pass } = usePassphrase();
+import { usePass } from '@composables'
+const { pass } = usePass();
 
 </script>
 

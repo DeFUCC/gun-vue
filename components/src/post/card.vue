@@ -1,6 +1,8 @@
 <script setup>
-import { color, ms, useBanned } from '@composables'
+import { useColor, ms, useBanned } from '@composables'
 import { computed } from 'vue'
+
+const colorLight = useColor('light')
 
 const emit = defineEmits(['upvote', 'downvote'])
 
@@ -24,7 +26,7 @@ const banned = useBanned(props.hash)
 </script>
 
 <template lang='pug'>
-.shadow-md.m-1.rounded-lg.cursor-pointer.flex.flex-wrap.items-center(:style="{ backgroundColor: color.light.hex(hash) }")
+.shadow-md.m-1.rounded-lg.cursor-pointer.flex.flex-wrap.items-center(:style="{ backgroundColor: colorLight.hex(hash) }")
   .flex.flex-col.p-2.overflow-hidden(style="flex: 1 0 60%")
     .text-lg.font-bold.truncate {{ title }}
     .text-md.truncate(v-if="post.description") {{ post.description }}

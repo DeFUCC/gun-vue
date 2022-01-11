@@ -1,4 +1,4 @@
-import { useGun2 } from "./gun";
+import { useGun2 } from "./useGun";
 import { reactive } from "vue";
 
 const { gun2 } = useGun2();

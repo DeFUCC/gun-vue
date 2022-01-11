@@ -9,21 +9,22 @@ export default defineConfig({
   plugins: [moduleExclude("text-encoding")],
   build: {
     lib: {
-      entry: path.resolve(dirname, "index.js"),
-      name: "gun-vue-composables",
-      formats: ["es", "cjs"],
-      fileName: (format) => {
-        if (format == "es") {
-          return "index.mjs";
-        } else {
-          return "index.cjs";
-        }
-      },
+      entry: path.resolve(dirname, "./src/index.js"),
+      name: "composables",
+      formats: ["es"],
     },
-    sourcemap: true,
+    sourcemap: false,
     rollupOptions: {
+      manualChunks: (id) => {
+        if (id.includes("node_modules")) {
+          return "vendor";
+        }
+        // return path.parse(id).name;
+      },
       external: ["vue"],
       output: {
+        minifyInternalExports: false,
+        chunkFileNames: "[name].js",
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {

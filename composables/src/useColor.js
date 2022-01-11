@@ -1,8 +1,6 @@
 import ColorHash from "color-hash";
 
-export { ColorHash };
-
-export const color = {
+const color = {
   light: new ColorHash({
     saturation: [0.05, 0.08, 0.22],
     lightness: [0.85, 0.87, 0.9],
@@ -22,5 +20,8 @@ export const color = {
 };
 
 export function useColor(palette = "deep") {
+  if (typeof palette == "object") {
+    return new ColorHash(palette);
+  }
   return color[palette];
 }

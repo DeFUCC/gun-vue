@@ -2,11 +2,9 @@
  * @module Passphrase
  */
 import { computed, reactive, watchEffect } from "vue";
-import { useGun, SEA } from "./gun";
-import { auth, isPair, user } from "./user";
+import { gun, useGun, SEA } from "./useGun";
+import { auth, isPair, user } from "./useUser";
 import base32 from "base32";
-
-const gun = useGun();
 
 export const pass = reactive({
   input: "",
@@ -42,9 +40,11 @@ function genLink(text = "") {
 
 let initiated = false;
 
-export function usePassphrase() {
+export function usePass() {
   if (!initiated) {
-    user.db
+    const gun = useGun();
+    gun
+      .user()
       .get("safe")
       .map()
       .on((d, k) => {

@@ -13,9 +13,7 @@ const dirname = path.dirname(filename);
 
 export default defineConfig({
   plugins: [
-    vue({
-      customElement: true,
-    }),
+    vue(),
     Icons({
       /* options */
     }),
@@ -38,26 +36,29 @@ export default defineConfig({
     alias: {
       "@": path.resolve(dirname, "/"),
       "@components": path.resolve(dirname, "src"),
-      "@composables": path.resolve(dirname, "../composables/index"),
+      "@composables": path.resolve(dirname, "../composables/src/index"),
     },
   },
   build: {
-    sourcemap: true,
     lib: {
       entry: path.resolve(dirname, "/src/index.js"),
       name: "components",
-      formats: ["es", "cjs"],
-      fileName: (format) => {
-        if (format == "es") {
-          return "index.mjs";
-        } else {
-          return "index.cjs";
-        }
-      },
+      formats: ["es"],
     },
     rollupOptions: {
+      manualChunks: (id) => {
+        if (id.includes("node_modules")) {
+          return "vendor";
+        }
+        if (id.includes("composables")) {
+          return "composables";
+        }
+        // return path.parse(id).name;
+      },
       external: ["vue"],
       output: {
+        minifyInternalExports: false,
+        chunkFileNames: "[name].js",
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {

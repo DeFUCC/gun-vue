@@ -5,11 +5,9 @@
 
 import { computed, reactive, ref } from "vue";
 import ms from "ms";
-import { useGun } from "./gun";
+import { useGun } from "./useGun";
 
-import { downloadText, createMd } from "./file";
-
-const gun = useGun();
+import { downloadText, createMd } from "./useFile";
 
 /**
  * @typedef {Object} Post
@@ -28,6 +26,8 @@ const gun = useGun();
  */
 
 export function useTagPost(tag = ref(""), hash = ref("")) {
+  const gun = useGun();
+
   tag = ref(tag);
   hash = ref(hash);
   const post = computed(() => {

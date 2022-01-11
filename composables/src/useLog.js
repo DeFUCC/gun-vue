@@ -6,10 +6,8 @@
 import { reactive, ref, onMounted, watchEffect, onBeforeUnmount } from "vue";
 import { DateTree } from "gun-util";
 import ms from "ms";
-import { newWorker } from "./worker";
-import { useGun } from "./gun";
-
-const gun = useGun();
+import { newWorker } from "./useWorker";
+import { gun, useGun } from "./useGun";
 
 function sortByDate(e) {
   const arr = Object.entries(e.data);
@@ -27,6 +25,7 @@ export function useLog({
   after = "2021-01-01",
   before = "2023-01-01",
 } = {}) {
+  const gun = useGun();
   const treeRoot = gun.get(name);
   const tree = new DateTree(treeRoot, "minute");
   const dateTree = reactive({});

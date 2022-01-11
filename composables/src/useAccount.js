@@ -14,8 +14,8 @@
  * @property {gun} db - `gun.user(pub)` ref to query any additional user data
  */
 
-import { useGun, gun } from "./gun";
-import { useColor } from "./color";
+import { useGun, gun } from "./useGun";
+import { useColor } from "./useColor";
 import ms from "ms";
 import { computed, reactive, ref } from "vue";
 
