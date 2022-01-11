@@ -26,8 +26,9 @@ export { default as RoomProfile } from "./room/profile.vue";
 export { default as SpacePlane } from "./space/plane.vue";
 export { default as SpaceGuest } from "./space/guest.vue";
 
-export { default as TagList } from "./feed/list.vue";
-export { default as TagLabel } from "./feed/label.vue";
+export { default as FeedList } from "./feed/list.vue";
+export { default as FeedLabel } from "./feed/label.vue";
+export { default as FeedBlock } from "./feed/block.vue";
 
 export { default as PostCard } from "./post/card.vue";
 export { default as PostForm } from "./post/form.vue";

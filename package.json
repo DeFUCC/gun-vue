@@ -18,7 +18,7 @@
     "start": "cd relay && pnpm run start",
     "deploy": "cd demo && pnpm run deploy",
     "ch": "pnpm changeset",
-    "v": "pnpm changeset version",
+    "v": "cd composables && pnpm run build && cd .. && cd components && pnpm run build && cd .. && pnpm changeset version",
     "publish": "pnpm changeset publish",
     "doc": "jsdoc -c jsdoc.json"
   },
