@@ -9,7 +9,7 @@ const emit = defineEmits(['close'])
 transition(name="fade")
   .fixed.w-full.h-full.flex.items-center.justify-center.top-0.left-0(v-if="open")
     .bg-dark-200.bg-opacity-30.w-full.h-full.absolute.z-2.cursor-pointer(@click="$emit('close')")
-    .bg-light-100.rounded-3xl.flex.flex-col.z-2.text-center.relative.shadow-2xl.overflow-hidden.bottom-0.top-3vh.overflow-y-scroll.max-h-80vh.min-w-80.max-w-160.mx-2
+    .bg-light-100.rounded-3xl.flex.flex-col.z-2.relative.shadow-2xl.overflow-hidden.bottom-0.top-3vh.overflow-y-scroll.max-h-80vh.min-w-80.max-w-160.mx-2
       button.button.absolute.right-0.top-0(@click="$emit('close')")
         la-times
       slot
