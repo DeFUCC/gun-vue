@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.3.10
+
+### Patch Changes
+
+- feed-block is out for tests
+- Updated dependencies
+  - @gun-vue/composables@0.3.10
+
 ## 0.3.9
 
 ### Patch Changes
