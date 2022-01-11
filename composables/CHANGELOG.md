@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.3.9
+
+### Patch Changes
+
+- comment system started
+
 ## 0.3.8
 
 ### Patch Changes

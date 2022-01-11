@@ -1,7 +1,7 @@
 {
   "name": "@gun-vue/demo",
   "private": true,
-  "version": "0.3.8",
+  "version": "0.3.9",
   "homepage": "https://defucc.github.io/gun-vue",
   "engines": {
     "node": "16.x"
