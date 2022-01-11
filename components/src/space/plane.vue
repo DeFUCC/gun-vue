@@ -49,7 +49,7 @@ const arrows = computed(() => {
 </script>
 
 <template lang='pug'>
-.flex.flex-col.items-center.relative.h-100vh(ref="plane")
+.flex.flex-col.items-center.relative.h-screen(ref="plane")
 
   ui-modal(:open="!!selected" @close="selected = null")
     account-avatar.cursor-pointer(:pub="selected" :size="160" @click="$emit('user', selected)")
