@@ -11,14 +11,10 @@
   "module": "./dist/components.es.js",
   "main": "./dist/components.es.js",
   "exports": {
-    ".": {
-      "import": "./dist/components.es.js"
-    },
-    "./*": "./*"
+    ".": "./dist/components.es.js"
   },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "build": "vite build"
