@@ -13,11 +13,10 @@
   "scripts": {
     "demo": "cd demo && pnpm run dev",
     "site": "cd site && pnpm run dev",
-    "build": "cd composables && pnpm run build && cd .. && cd components && pnpm run build && cd .. && cd demo && pnpm run build && cd .. && cd site && pnpm run build",
-    "doc": "jsdoc -c jsdoc.json",
+    "build": "jsdoc -c jsdoc.json && cd composables && pnpm run build && cd .. && cd components && pnpm run build && cd .. && cd demo && pnpm run build && cd .. && cd site && pnpm run build",
     "ch": "pnpm changeset",
     "v": "pnpm changeset version",
-    "publish": "cd composables && pnpm run build && cd .. && cd components && pnpm run build && cd .. && pnpm changeset publish",
+    "publish": "pnpm run build && pnpm changeset publish",
     "deploy": "sh deploy.sh",
     "relay": "cd relay && pnpm run start"
   },
