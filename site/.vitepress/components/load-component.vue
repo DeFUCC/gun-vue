@@ -1,4 +1,5 @@
 <script setup>
+// https://vitepress.vuejs.org/guide/using-vue.html#browser-api-access-restrictions
 import { shallowRef, onMounted } from 'vue'
 
 const props = defineProps({

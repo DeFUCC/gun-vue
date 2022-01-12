@@ -17,6 +17,8 @@ function sortByDate(e) {
   postMessage({ sorted, count: arr.length });
 }
 
+// https://vitejs.dev/guide/features.html#web-workers
+
 /**
  * Create a new worker for a function
  * It should contain a `postMessage` method to reply to any incoming `postMessage` from the main script

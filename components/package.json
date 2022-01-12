@@ -8,7 +8,6 @@
     "type": "ko-fi",
     "url": "https://ko-fi.com/B0B44CM90"
   },
-  "type": "module",
   "module": "./dist/components.es.js",
   "main": "./dist/components.es.js",
   "exports": {
