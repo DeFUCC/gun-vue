@@ -23,7 +23,6 @@
   "devDependencies": {
     "@changesets/cli": "^2.19.0",
     "jsdoc": "^3.6.7",
-    "minami": "^1.2.3",
-    "pug": "^3.0.2"
+    "minami": "^1.2.3"
   }
 }

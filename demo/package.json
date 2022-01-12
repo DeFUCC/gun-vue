@@ -23,7 +23,7 @@
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
-    "@iconify/json": "^2.0.22",
+    "@iconify/json": "^2.0.23",
     "@vitejs/plugin-vue": "^2.0.1",
     "pug": "3.0.2",
     "unplugin-icons": "^0.13.0",

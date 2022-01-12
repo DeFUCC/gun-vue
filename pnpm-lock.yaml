@@ -7,12 +7,10 @@ importers:
       '@changesets/cli': ^2.19.0
       jsdoc: ^3.6.7
       minami: ^1.2.3
-      pug: ^3.0.2
     devDependencies:
       '@changesets/cli': 2.19.0
       jsdoc: 3.6.7
       minami: 1.2.3
-      pug: 3.0.2
 
   components:
     specifiers:
@@ -87,7 +85,7 @@ importers:
       '@gun-vue/components': workspace:^
       '@gun-vue/composables': workspace:^
       '@gun-vue/relay': workspace:^
-      '@iconify/json': ^2.0.22
+      '@iconify/json': ^2.0.23
       '@vitejs/plugin-vue': ^2.0.1
       '@vueuse/core': 7.5.3
       ola: ^1.2.1
@@ -109,7 +107,7 @@ importers:
       vue: 3.2.26
       vue-router: 4.0.12_vue@3.2.26
     devDependencies:
-      '@iconify/json': 2.0.22
+      '@iconify/json': 2.0.23
       '@vitejs/plugin-vue': 2.0.1_vite@2.7.10+vue@3.2.26
       pug: 3.0.2
       unplugin-icons: 0.13.0_vite@2.7.10
@@ -132,13 +130,13 @@ importers:
   site:
     specifiers:
       '@gun-vue/components': workspace:^
-      '@iconify/json': ^2.0.22
+      '@iconify/json': ^2.0.23
       '@vueuse/core': 7.5.3
       markdown-it-classy: ^0.2.0
       markdown-it-container: ^3.0.0
       markdown-it-external-links: ^0.0.6
       pug: 3.0.2
-      unplugin-auto-import: ^0.5.5
+      unplugin-auto-import: ^0.5.9
       unplugin-icons: ^0.13.0
       unplugin-vue-components: ^0.17.11
       vite: ^2.7.10
@@ -152,7 +150,7 @@ importers:
       '@vueuse/core': 7.5.3_vue@3.2.26
       vue: 3.2.26
     devDependencies:
-      '@iconify/json': 2.0.22
+      '@iconify/json': 2.0.23
       markdown-it-classy: 0.2.0
       markdown-it-container: 3.0.0
       markdown-it-external-links: 0.0.6
@@ -539,8 +537,8 @@ packages:
       - '@algolia/client-search'
     dev: true
 
-  /@iconify/json/2.0.22:
-    resolution: {integrity: sha512-GzYh4m77Yc7Iyw3FH8z3p7Z8nmtlX/ZquqsLGUJItgqIJWRy2Eob4A0ZmnUo8PUophryjrIueqQbagUMPJ7Jvg==}
+  /@iconify/json/2.0.23:
+    resolution: {integrity: sha512-8256GUsz9P8MBf/+jL7qfommw+soUMxOozaVqrB/yE3EaJdnYSx+tvqKODxIJGWGYbE2N/O4hgOO9SucXSkj8g==}
     dependencies:
       '@iconify/types': 1.0.12
       pathe: 0.0.2

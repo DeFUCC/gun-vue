@@ -33,7 +33,7 @@ export default {
       db.get("pulse").put(Date.now());
     }, 500);
 
-    console.log("Server started at " + host + ":" + port + "/gun");
+    console.log("Server started at http://" + host + ":" + port + "/gun");
 
     return { app, db };
   },
