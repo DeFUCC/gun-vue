@@ -8,7 +8,7 @@
   "plugins": ["plugins/markdown"],
   "recurseDepth": 10,
   "opts": {
-    "destination": "./_build/docs/",
+    "destination": "./_public/docs/",
     "recurse": true,
     "readme": "README.md",
     "template": "node_modules/minami"

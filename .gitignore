@@ -2,10 +2,10 @@ node_modules
 .DS_Store
 dist
 _dist
-_public
+_public/demo
+_public/docs
 dist-ssr
 *.local
 radata
 docs
 demo/public/site
-_build
