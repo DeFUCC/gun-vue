@@ -1,5 +1,11 @@
 # @gun-vue/components
 
+## 0.5.2
+
+### Patch Changes
+
+- embed vue for experiments with codepen
+
 ## 0.5.1
 
 ### Patch Changes
