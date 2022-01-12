@@ -1,4 +1,14 @@
-## @gun-vue/components
+## Demo
+
+<a href="/demo/" target="_blank" >Demo</a>
+
+## Docs
+
+<a href="/docs/" target="_blank" >Docs</a>
+
+## Components
+
+Pluggable Vue components
 
 ### User icon
 
@@ -13,4 +23,4 @@ import '@gun-vue/components/dist/style.css'
 import LoadComponent from './.vitepress/components/load-component.vue'
 </script>
 
-## World
+## Composables

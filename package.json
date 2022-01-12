@@ -14,12 +14,12 @@
     "demo": "cd demo && pnpm run dev",
     "site": "cd site && pnpm run dev",
     "build": "cd composables && pnpm run build && cd .. && cd components && pnpm run build && cd .. && cd demo && pnpm run build && cd .. && cd site && pnpm run build",
-    "relay": "cd relay && pnpm run start",
-    "deploy": "cd demo && pnpm run deploy",
+    "doc": "jsdoc -c jsdoc.json",
     "ch": "pnpm changeset",
     "v": "pnpm changeset version",
     "publish": "cd composables && pnpm run build && cd .. && cd components && pnpm run build && cd .. && pnpm changeset publish",
-    "doc": "jsdoc -c jsdoc.json"
+    "deploy": "sh deploy.sh",
+    "relay": "cd relay && pnpm run start"
   },
   "devDependencies": {
     "@changesets/cli": "^2.19.0",

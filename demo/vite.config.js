@@ -49,6 +49,7 @@ export default defineConfig({
     }),
   ],
   build: {
+    outDir: "../build/demo/",
     target: "esnext",
     brotliSize: true,
     assetsInlineLimit: 100000000,
