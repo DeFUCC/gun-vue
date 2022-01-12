@@ -5,8 +5,9 @@
   "description": "test vitepress site for gun-vue",
   "main": "index.js",
   "scripts": {
-    "dev": "vitepress dev",
-    "build": "vitepress build",
+    "dev": "pnpm run doc && vitepress dev",
+    "doc": "jsdoc2md ../composables/src/*.js > docs.md",
+    "build": "pnpm run doc && vitepress build",
     "serve": "vitepress serve --port=5500"
   },
   "keywords": [
@@ -22,6 +23,7 @@
     "vue": "^3.2.26"
   },
   "devDependencies": {
+    "jsdoc-to-markdown": "^7.1.0",
     "@iconify/json": "^2.0.23",
     "markdown-it-classy": "^0.2.0",
     "markdown-it-container": "^3.0.0",

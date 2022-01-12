@@ -8,7 +8,7 @@ import { computed, reactive } from "vue";
 
 /**
  *  Create markdown with frontmatter
- * @param {Object} md -  {frontmatter,content}
+ * @param {Object} md -  frontmatter,content
  * @returns Markdown file ready to download
  */
 

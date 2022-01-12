@@ -13,7 +13,7 @@
   "scripts": {
     "demo": "cd demo && pnpm run dev",
     "site": "cd site && pnpm run dev",
-    "build": "jsdoc -c jsdoc.json && cd composables && pnpm run build && cd .. && cd components && pnpm run build && cd .. && cd demo && pnpm run build && cd .. && cd site && pnpm run build",
+    "build": "cd composables && pnpm run build && cd .. && cd components && pnpm run build && cd .. && cd demo && pnpm run build && cd .. && cd site && pnpm run build",
     "ch": "pnpm changeset",
     "v": "pnpm changeset version",
     "publish": "pnpm run build && pnpm changeset publish",

@@ -25,7 +25,7 @@ const colorDeep = useColor("deep");
 
 /**
  * A user's account
- * @param {ref} pub - The public key as a string or a ref
+ * @param {ref} pub - The public key of a user as a string or a ref
  * @returns {Account}
  */
 
