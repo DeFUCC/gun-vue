@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.5.0
+
+### Minor Changes
+
+- A pretty concise workpace that builds up to a vitepress web-site. Docs, demo and all the info is gathered in the \_dist folder and is published to the fancy https://gun-vue.js.org - that deserves a 0.5 version status!
+
 ## 0.4.0
 
 ### Minor Changes

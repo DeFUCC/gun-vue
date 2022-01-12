@@ -1,5 +1,16 @@
 # @gun-vue/site
 
+## 0.5.0
+
+### Minor Changes
+
+- A pretty concise workpace that builds up to a vitepress web-site. Docs, demo and all the info is gathered in the \_dist folder and is published to the fancy https://gun-vue.js.org - that deserves a 0.5 version status!
+
+### Patch Changes
+
+- Updated dependencies
+  - @gun-vue/components@0.5.0
+
 ## 0.4.2
 
 ### Patch Changes
