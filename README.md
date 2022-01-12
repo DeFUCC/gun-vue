@@ -44,7 +44,7 @@ Try them all yourself in the vite demo app.
 
 Try them all yourself in the demo vitepress site.
 
-[defucc.github.io/gun-vue](https://github.com/DeFUCC/gun-vue/tree/master/site)
+[@gun-vue/site](https://github.com/DeFUCC/gun-vue/tree/master/site)
 
 ## TO DO
 
