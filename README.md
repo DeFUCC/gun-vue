@@ -38,7 +38,7 @@ A simple no-store Gun server to throw at any free tier Node.js environment.
 
 Try them all yourself in the vite demo app.
 
-[defucc.github.io/gun-vue](https://github.com/DeFUCC/gun-vue/tree/master/demo)
+[@gun-vue/demo](https://github.com/DeFUCC/gun-vue/tree/master/demo)
 
 ## Demo vitepress site
 
