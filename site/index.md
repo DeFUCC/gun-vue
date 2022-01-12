@@ -37,7 +37,7 @@ See the full list in the docs and in the source
 
 The most straightforward way of using the `@gun-vue/components` is to mount them in your Vue 3 + Vite app. It then will build a small set of files that can be easily deployed at any host (centralised or distributed).
 
-### [Demo app](/demo/)
+### Try now <a href="/demo/">Demo app</a>
 
 Here's the demo app empowered with some `vite` plugins like `vite-plugin-pages` and `windicss`. It elaborates the client-side routing to connect the pieces together and make urls a powerful tool to share data across gun network.
 

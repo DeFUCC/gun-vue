@@ -60,7 +60,6 @@ export function useUser() {
   if (!user.initiated) {
     gun.user().recall({ sessionStorage: true }, () => {
       console.log("user was recalled");
-      init();
     });
 
     gun.on("auth", () => {
@@ -74,7 +73,6 @@ export function useUser() {
 }
 
 function init() {
-  if (user.initiated) return;
   user.is = gun.user().is;
   if (user.pulser) {
     clearInterval(user.pulser);
