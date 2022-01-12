@@ -2,7 +2,9 @@
 
 Gun-vue – is where the peer-to-peer javascript database Gun meets the reactivity system of Vue 3. Pluggable components for UX designers. Easily importable composables for UI developers. Relay peer for p2p network enthusiasts. Demos and docs for beginners. Open source for everyone! ✊
 
-### [Watch a youtube video showcase](https://www.youtube.com/watch?v=4hpVRgVQvsY)
+### [Watch a youtube video review of the build process](https://www.youtube.com/watch?v=4hpVRgVQvsY)
+
+### [Gun-vue.js.org and v0.5.0 video presentation](https://www.youtube.com/watch?v=ALKkBhj1IIE)
 
 ### [gun-vue.js.org](https://gun-vue.js.org)
 

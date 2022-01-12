@@ -14,15 +14,13 @@
     "demo": "cd demo && pnpm run dev",
     "site": "cd site && pnpm run dev",
     "build": "cd composables && pnpm run build && cd .. && cd components && pnpm run build && cd .. && cd demo && pnpm run build && cd .. && cd site && pnpm run build",
-    "ch": "pnpm changeset",
-    "v": "pnpm changeset version",
+    "change": "pnpm changeset",
+    "version": "pnpm changeset version",
     "publish": "pnpm run build && pnpm changeset publish",
     "deploy": "sh deploy.sh",
     "relay": "cd relay && pnpm run start"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.19.0",
-    "jsdoc": "^3.6.7",
-    "minami": "^1.2.3"
+    "@changesets/cli": "^2.19.0"
   }
 }

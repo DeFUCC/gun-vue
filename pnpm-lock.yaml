@@ -5,12 +5,8 @@ importers:
   .:
     specifiers:
       '@changesets/cli': ^2.19.0
-      jsdoc: ^3.6.7
-      minami: ^1.2.3
     devDependencies:
       '@changesets/cli': 2.19.0
-      jsdoc: 3.6.7
-      minami: 1.2.3
 
   components:
     specifiers:
@@ -2848,10 +2844,6 @@ packages:
   /min-indent/1.0.1:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
     engines: {node: '>=4'}
-    dev: true
-
-  /minami/1.2.3:
-    resolution: {integrity: sha1-mbbc37LwpU2hycj3qjoyd4eq+fg=}
     dev: true
 
   /minimatch/3.0.4:
