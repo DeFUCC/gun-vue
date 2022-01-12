@@ -57,7 +57,7 @@ A user's account
 
 | Param | Type | Description |
 | --- | --- | --- |
-| pub | <code>ref</code> | The public key as a string or a ref |
+| pub | <code>ref</code> | The public key of a user as a string or a ref |
 
 <a name="module_Account..Account"></a>
 
@@ -72,7 +72,7 @@ the user account interface
 | pub | <code>Ref</code> | The pub key used to build the account |
 | color | <code>Computed</code> | The user account color derived from the pub key |
 | profile | <code>Object</code> | An object with all the `gun.user().get('profile')` data |
-| pulse | <code>Number</code> | latest timestamp from the user |
+| pulse | <code>Number</code> | latest timestamp from the user. It's emitted every second. Offline timeout is set to 10 seconds. |
 | blink | <code>Boolean</code> | A boolean that toggles on every timestamp received |
 | lastSeen | <code>Sting</code> | Shows 'online' if recent pulse is less then 10s ago or a human readable time string |
 | db | <code>gun</code> | `gun.user(pub)` ref to query any additional user data |

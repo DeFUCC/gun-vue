@@ -5,9 +5,9 @@
   "description": "test vitepress site for gun-vue",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm run doc && vitepress dev",
+    "dev": "npm run doc && vitepress dev",
     "doc": "jsdoc2md ../composables/src/*.js > docs.md",
-    "build": "pnpm run doc && vitepress build",
+    "build": "npm run doc && vitepress build",
     "serve": "vitepress serve --port=5500"
   },
   "keywords": [

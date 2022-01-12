@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node start.js",
     "dev": "vite --host",
-    "build": "vite  build --base=./",
+    "build": "vite  build --base=./ --emptyOutDir",
     "preview": "vite preview --host",
     "deploy": "sh deploy.sh"
   },

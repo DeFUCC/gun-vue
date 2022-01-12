@@ -8,7 +8,7 @@
  * @property {Ref} pub - The pub key used to build the account
  * @property {Computed} color - The user account color derived from the pub key
  * @property {Object} profile - An object with all the `gun.user().get('profile')` data
- * @property {Number} pulse - latest timestamp from the user
+ * @property {Number} pulse - latest timestamp from the user. It's emitted every second. Offline timeout is set to 10 seconds.
  * @property {Boolean} blink - A boolean that toggles on every timestamp received
  * @property {Sting} lastSeen - Shows 'online' if recent pulse is less then 10s ago or a human readable time string
  * @property {gun} db - `gun.user(pub)` ref to query any additional user data

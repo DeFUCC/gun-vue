@@ -11,7 +11,7 @@ Easy to use Vue 3 Composition API composable functions to be used in a Vue `<scr
 
 See the full list in the docs and the source
 
-### Read <a href="/docs/" target="_blank" style="font-weight:bold" >Documentation</a>
+### Read [Documentation](/docs)
 
 ## Demo
 
