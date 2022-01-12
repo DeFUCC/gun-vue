@@ -1,5 +1,11 @@
 # @gun-vue/site
 
+## 0.4.2
+
+### Patch Changes
+
+- site is the root project
+
 ## 0.4.1
 
 ### Patch Changes
