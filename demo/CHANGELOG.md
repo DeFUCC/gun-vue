@@ -1,5 +1,14 @@
 # @gun-vue/demo
 
+## 0.5.1
+
+### Patch Changes
+
+- readme for npm
+- Updated dependencies
+  - @gun-vue/components@0.5.1
+  - @gun-vue/composables@0.5.1
+
 ## 0.5.0
 
 ### Minor Changes
