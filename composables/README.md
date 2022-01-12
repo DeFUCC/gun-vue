@@ -1,4 +1,4 @@
-![@gun-vue logo](https://raw.githubusercontent.com/davay42/gun-vue/master/demo/public/gun-vue-logo.svg)
+![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/_public/media/svg/composables.svg)
 
 # Gun + Vue 3 composables collection
 

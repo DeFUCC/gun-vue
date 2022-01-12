@@ -14,17 +14,23 @@ The project is committed to give all the basic tools for everyone to participate
 
 There are 3 packages in the [@gun-vue npmjs org](https://www.npmjs.com/org/gun-vue) for you to install and use.
 
+![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/_public/media/svg/composables.svg)
+
 ## Composables
 
 [@gun-vue/composables](https://github.com/DeFUCC/gun-vue/tree/master/composables)
 
 A set of composable functions for use with Vue 3 Composition API
 
+![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/_public/media/svg/components.svg)
+
 ## Components
 
 [@gun-vue/components](https://github.com/DeFUCC/gun-vue/tree/master/components)
 
 A set of ready to use Vue 3 components as building blocks to implement Gun powered interactivity in seconds
+
+![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/_public/media/svg/relay.svg)
 
 ## Relay
 
@@ -33,6 +39,8 @@ A set of ready to use Vue 3 components as building blocks to implement Gun power
 A simple no-store Gun server to throw at any free tier Node.js environment.
 
 ---
+
+![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/_public/media/svg/demo.svg)
 
 ## Demo vite app
 
