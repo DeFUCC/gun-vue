@@ -2,7 +2,9 @@
 
 Gun-vue – is where the peer-to-peer javascript database Gun meets the reactivity system of Vue 3. Pluggable components for UX designers. Easily importable composables for UI developers. Relay peer for p2p network enthusiasts. Demos and docs for beginners. Open source for everyone! ✊
 
-[Watch a youtube video showcase](https://www.youtube.com/watch?v=4hpVRgVQvsY)
+### [Watch a youtube video showcase](https://www.youtube.com/watch?v=4hpVRgVQvsY)
+
+### [gun-vue.js.org](https://gun-vue.js.org)
 
 # @gun-vue
 
@@ -46,7 +48,7 @@ Try them all yourself in the vite demo app.
 
 ## [@gun-vue/site](https://github.com/DeFUCC/gun-vue/tree/master/site)
 
-The main [gun-vue.js.org] site
+The main [gun-vue.js.org](https://gun-vue.js.org) site
 
 ## TO DO LIST
 
