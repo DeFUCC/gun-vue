@@ -1,5 +1,11 @@
 # @gun-vue/components
 
+## 0.4.1
+
+### Patch Changes
+
+- all styles are in place
+
 ## 0.4.0
 
 ### Minor Changes
