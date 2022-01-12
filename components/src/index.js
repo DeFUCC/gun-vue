@@ -50,4 +50,4 @@ export { default as UtilGraph } from "./util/graph.vue";
 export { default as UtilShare } from "./util/share.vue";
 export { default as Utiltools } from "./util/tools.vue";
 
-export * as use from "@composables";
+export * from "@composables";
