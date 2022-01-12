@@ -1,8 +1,8 @@
-![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/_public/media/svg/relay.svg)
-
-# Simple Gun relay peer
+# Simple Gun DB relay peer
 
 A one liner gun js server to run in a free tier js hosting like www.glitch.com, www.heroku.com or others
+
+![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/_public/media/svg/relay.svg)
 
 ## How to use
 
