@@ -14,27 +14,25 @@ The project is committed to give all the basic tools for everyone to participate
 
 There are 3 packages in the [@gun-vue npmjs org](https://www.npmjs.com/org/gun-vue) for you to install and use.
 
-![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/_public/media/svg/composables.svg)
+[![@gun-vue composables](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/_public/media/svg/composables.svg)](<(https://github.com/DeFUCC/gun-vue/tree/master/composables)>)
 
-## Composables
-
-[@gun-vue/composables](https://github.com/DeFUCC/gun-vue/tree/master/composables)
+## [@gun-vue/composables](https://github.com/DeFUCC/gun-vue/tree/master/composables)
 
 A set of composable functions for use with Vue 3 Composition API
 
-![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/_public/media/svg/components.svg)
+---
 
-## Components
+[![@gun-vue components](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/_public/media/svg/components.svg)](<(https://github.com/DeFUCC/gun-vue/tree/master/components)>)
 
-[@gun-vue/components](https://github.com/DeFUCC/gun-vue/tree/master/components)
+## [@gun-vue/components](https://github.com/DeFUCC/gun-vue/tree/master/components)
 
 A set of ready to use Vue 3 components as building blocks to implement Gun powered interactivity in seconds
 
-![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/_public/media/svg/relay.svg)
+---
 
-## Relay
+[![@gun-vue relay](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/_public/media/svg/relay.svg)](<(https://github.com/DeFUCC/gun-vue/tree/master/relay)>)
 
-[@gun-vue/relay](https://github.com/DeFUCC/gun-vue/tree/master/relay)
+## [@gun-vue/relay](https://github.com/DeFUCC/gun-vue/tree/master/relay)
 
 A simple no-store Gun server to throw at any free tier Node.js environment.
 
@@ -42,18 +40,14 @@ A simple no-store Gun server to throw at any free tier Node.js environment.
 
 ![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/_public/media/svg/demo.svg)
 
-## Demo vite app
+## [@gun-vue/demo](https://github.com/DeFUCC/gun-vue/tree/master/demo)
 
 Try them all yourself in the vite demo app.
 
-[@gun-vue/demo](https://github.com/DeFUCC/gun-vue/tree/master/demo)
+## [@gun-vue/site](https://github.com/DeFUCC/gun-vue/tree/master/site)
 
-## Demo vitepress site
+The main [gun-vue.js.org] site
 
-Try them all yourself in the demo vitepress site.
-
-[@gun-vue/site](https://github.com/DeFUCC/gun-vue/tree/master/site)
-
-## TO DO
+## TO DO LIST
 
 We use different tools for development process organisation. I'm using Taskade it for everyone to have fun with building p2p apps. Jump in our project! https://www.taskade.com/d/XtaACTKmN4KqSC1v?share=view&view=hsVKduBWoYMa9S7a
