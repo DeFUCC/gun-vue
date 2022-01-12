@@ -5,3 +5,4 @@ dist-ssr
 *.local
 radata
 docs
+demo/public/site

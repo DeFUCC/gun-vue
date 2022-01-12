@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "vitepress dev",
-    "build": "vitepress build"
+    "build": "vitepress build",
+    "serve": "vitepress serve --port=5500"
   },
   "keywords": [
     "vitepress",

@@ -18,11 +18,4 @@
         a.button.m-1.flex.items-center(href="https://github.com/defucc/gun-vue" target="_blank")
           la-github.mr-4.text-3xl
           .text-xl GitHub monorepo
-
 </template>
-
-<style scoped>
-.card {
-  @apply bg-light-300 shadow-md m-4 rounded-xl overflow-hidden;
-}
-</style>

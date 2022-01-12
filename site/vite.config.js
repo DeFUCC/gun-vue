@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   server: {
-    port: 3323,
+    port: 3324,
   },
   optimizeDeps: {
     include: ["vue", "@vueuse/core", "@gun-vue/components"],
