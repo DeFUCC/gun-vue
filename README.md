@@ -1,10 +1,10 @@
 ![@gun-vue logo](https://raw.githubusercontent.com/davay42/gun-vue/master/demo/public/gun-vue-logo.svg)
 
+### [gun-vue.js.org](https://gun-vue.js.org)
+
 Gun-vue – is where the peer-to-peer javascript database Gun meets the reactivity system of Vue 3. Pluggable components for UX designers. Easily importable composables for UI developers. Relay peer for p2p network enthusiasts. Demos and docs for beginners. Open source for everyone! ✊
 
-# @gun-vue
-
-### [gun-vue.js.org](https://gun-vue.js.org)
+# [@gun-vue](https://www.npmjs.com/org/gun-vue)
 
 @gun-vue is a collection of essential building blocks to create a variety of decentralized apps for online and offline collaboration. It's a moment when we can feel the nature of distributed networking and have fun together!
 
