@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.5.4
+
+### Patch Changes
+
+- All dev environment is set up and running quite fast and reliable. Managing 5 projects in one monorepo is quite fun. 😅
+- Updated dependencies
+  - @gun-vue/composables@0.5.4
+
 ## 0.5.3
 
 ### Patch Changes

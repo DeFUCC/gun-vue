@@ -1,3 +1,7 @@
+---
+home: true
+---
+
 ![@gun-vue logo](/media/svg/logo.svg)
 
 ## Gun DB + Vue UI

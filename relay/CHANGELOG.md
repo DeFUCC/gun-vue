@@ -1,5 +1,11 @@
 # @gun-vue/relay
 
+## 0.3.1
+
+### Patch Changes
+
+- All dev environment is set up and running quite fast and reliable. Managing 5 projects in one monorepo is quite fun. 😅
+
 ## 0.3.0
 
 ### Minor Changes
