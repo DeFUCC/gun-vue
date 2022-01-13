@@ -23,6 +23,6 @@ img.border.rounded-full.overflow-hidden.transition.duration-500.ease-out(
   :width="size"
   :src="gunAvatar(pubKey, size * 4)"
 )
-.p-2(v-else)
+.p-2(v-else :style="{ fontSize: size + 'px' }")
   la-user
 </template>

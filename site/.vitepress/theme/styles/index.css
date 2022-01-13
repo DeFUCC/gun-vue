@@ -1,0 +1,7 @@
+.content p {
+  margin: 1em 0;
+}
+
+html, body {
+  scroll-behavior: smooth;
+}

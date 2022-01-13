@@ -1,10 +1,12 @@
-# @gun-vue/composables
+![](/media/svg/composables.svg)
 
-## Vue 3 composable functions for fast P2P UI building
+## Composables
 
 ### How to install?
 
-`pnpm i @gun-vue/composables`
+```shell
+pnpm i @gun-vue/composables
+```
 
 ### How to use?
 
@@ -14,6 +16,4 @@ import { useUser } from "@gun-vue/composables";
 const user = useUser();
 ```
 
-### Documentation
-
-[Full docs](./docs)
+### [Full Documentation](docs)

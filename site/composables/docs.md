@@ -51,7 +51,7 @@ Basic account management
 <a name="module_Account.useAccount"></a>
 
 ### Account.useAccount(pub) ⇒ <code>Account</code>
-A user's account
+Load and handle user's account by a public key
 
 **Kind**: static method of [<code>Account</code>](#module_Account)  
 
@@ -59,6 +59,14 @@ A user's account
 | --- | --- | --- |
 | pub | <code>ref</code> | The public key of a user as a string or a ref |
 
+**Example**  
+```js
+import { useAccount } from '@gun-vue/composables'
+
+const pub = 'XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc'
+
+const { account } = useAccount(pub)
+```
 <a name="module_Account..Account"></a>
 
 ### Account~Account : <code>Object</code>
@@ -77,6 +85,21 @@ the user account interface
 | lastSeen | <code>Sting</code> | Shows 'online' if recent pulse is less then 10s ago or a human readable time string |
 | db | <code>gun</code> | `gun.user(pub)` ref to query any additional user data |
 
+**Example**  
+```js
+{
+"pub": "XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc",
+"color": "#f55c3d",
+"profile": {
+   "name": "Accord",
+   "Message": "Use your imagination!",
+   "Money": "$ 20000000000"
+},
+"pulse": 1642077216809,
+"lastSeen": "online",
+"blink": true
+}
+```
 <a name="module_Crypto"></a>
 
 ## Crypto

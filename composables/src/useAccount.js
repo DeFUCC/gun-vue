@@ -12,6 +12,19 @@
  * @property {Boolean} blink - A boolean that toggles on every timestamp received
  * @property {Sting} lastSeen - Shows 'online' if recent pulse is less then 10s ago or a human readable time string
  * @property {gun} db - `gun.user(pub)` ref to query any additional user data
+ * @example
+ * {
+ * "pub": "XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc",
+ * "color": "#f55c3d",
+ * "profile": {
+ *    "name": "Accord",
+ *    "Message": "Use your imagination!",
+ *    "Money": "$ 20000000000"
+ * },
+ * "pulse": 1642077216809,
+ * "lastSeen": "online",
+ * "blink": true
+ * }
  */
 
 import { useGun, gun } from "./useGun";
@@ -24,9 +37,15 @@ const TIMEOUT = 10000;
 const colorDeep = useColor("deep");
 
 /**
- * A user's account
+ * Load and handle user's account by a public key
  * @param {ref} pub - The public key of a user as a string or a ref
  * @returns {Account}
+ * @example
+ * import { useAccount } from '@gun-vue/composables'
+ *
+ * const pub = 'XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc'
+ *
+ * const { account } = useAccount(pub)
  */
 
 export function useAccount(pub = ref()) {

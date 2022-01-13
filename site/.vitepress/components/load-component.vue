@@ -4,7 +4,7 @@ import { shallowRef, onMounted } from 'vue'
 
 const props = defineProps({
   component: { type: String, default: 'FeedBlock' },
-  props: { type: Object, default: {} }
+  pr: { type: Object, default: {} }
 })
 
 const comp = shallowRef(null)
@@ -17,5 +17,7 @@ onMounted(() => {
 </script>
 
 <template >
-  <Component v-if="comp" :is="comp" v-bind="props.props"></Component>
+  <div>
+    <Component v-if="comp" :is="comp" v-bind="pr"></Component>
+  </div>
 </template>
