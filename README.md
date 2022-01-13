@@ -2,13 +2,9 @@
 
 Gun-vue – is where the peer-to-peer javascript database Gun meets the reactivity system of Vue 3. Pluggable components for UX designers. Easily importable composables for UI developers. Relay peer for p2p network enthusiasts. Demos and docs for beginners. Open source for everyone! ✊
 
-### [Watch a youtube video review of the build process](https://www.youtube.com/watch?v=4hpVRgVQvsY)
-
-### [Gun-vue.js.org and v0.5.0 video presentation](https://www.youtube.com/watch?v=ALKkBhj1IIE)
+# @gun-vue
 
 ### [gun-vue.js.org](https://gun-vue.js.org)
-
-# @gun-vue
 
 @gun-vue is a collection of essential building blocks to create a variety of decentralized apps for online and offline collaboration. It's a moment when we can feel the nature of distributed networking and have fun together!
 
@@ -16,7 +12,7 @@ Gun is a CRDT distributed graph database, Vue is a reactive JS UI framework, SEA
 
 The project is committed to give all the basic tools for everyone to participate in exploring this new universe. You can find your own way in it for yourself.
 
-There are 3 packages in the [@gun-vue npmjs org](https://www.npmjs.com/org/gun-vue) for you to install and use.
+There are 3 packages in the [@gun-vue npmjs org](https://www.npmjs.com/org/gun-vue) for you to install and use:
 
 ## [@gun-vue/components](https://github.com/DeFUCC/gun-vue/tree/master/components)
 
@@ -54,6 +50,10 @@ The main [gun-vue.js.org](https://gun-vue.js.org) site
 
 ---
 
-## TO DO LIST
+### [Watch a youtube video review of the build process](https://www.youtube.com/watch?v=4hpVRgVQvsY)
 
-We use different tools for development process organisation. I'm using Taskade it for everyone to have fun with building p2p apps. Jump in our project! https://www.taskade.com/d/XtaACTKmN4KqSC1v?share=view&view=hsVKduBWoYMa9S7a
+### [Gun-vue.js.org and v0.5.0 video presentation](https://www.youtube.com/watch?v=ALKkBhj1IIE)
+
+### To do list
+
+We manage tasks for the build at this [Taskade project](https://www.taskade.com/d/XtaACTKmN4KqSC1v?share=view&view=hsVKduBWoYMa9S7a).
