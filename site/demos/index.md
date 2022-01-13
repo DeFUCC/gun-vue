@@ -6,7 +6,7 @@ The most straightforward way of using the `@gun-vue/components` is to mount them
 
 Here's the demo app empowered with some `vite` plugins like `vite-plugin-pages` and `windicss`. It elaborates the client-side routing to connect the pieces together and make urls a powerful tool to share data across gun network.
 
-**[Vite app](/demo/)**
+### Try <a href="/demo/" target="_blank">Vite app</a>
 
 ## Vitepress SSR web-site
 

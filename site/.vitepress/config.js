@@ -25,6 +25,9 @@ export default defineConfig({
         allow: [".."],
       },
     },
+    build: {
+      chunkSizeWarningLimit: 3000000,
+    },
   },
   themeConfig: {
     logo: "/media/gun-vue-logo.svg",
