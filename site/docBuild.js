@@ -1,3 +1,5 @@
+// https://github.com/jsdoc2md/jsdoc-to-markdown/wiki/Create-a-README-template
+
 const jsdoc2md = require("jsdoc-to-markdown");
 const fs = require("fs");
 const path = require("path");

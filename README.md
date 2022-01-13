@@ -16,7 +16,7 @@ There are 3 packages in the [@gun-vue npmjs org](https://www.npmjs.com/org/gun-v
 
 ## [@gun-vue/components](https://github.com/DeFUCC/gun-vue/tree/master/components)
 
-<a href="https://www.npmjs.com/package/@gun-vue/components" target="_blank"><img src="https://img.shields.io/npm/v/@gun-vue/components?color=E23C92&label=NPM" alt="NPM version"></a>
+<a href="https://www.npmjs.com/package/@gun-vue/components" target="_blank"><img src="https://img.shields.io/npm/v/@gun-vue/components?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
 
 A set of ready to use Vue 3 components as building blocks to implement Gun powered interactivity in seconds
 
@@ -24,7 +24,7 @@ A set of ready to use Vue 3 components as building blocks to implement Gun power
 
 ## [@gun-vue/composables](https://github.com/DeFUCC/gun-vue/tree/master/composables)
 
-<a href="https://www.npmjs.com/package/@gun-vue/composables" target="_blank"><img src="https://img.shields.io/npm/v/@gun-vue/composables?color=E23C92&label=NPM" alt="NPM version"></a>
+<a href="https://www.npmjs.com/package/@gun-vue/composables" target="_blank"><img src="https://img.shields.io/npm/v/@gun-vue/composables?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
 
 A set of composable functions for use with Vue 3 Composition API
 
@@ -32,7 +32,7 @@ A set of composable functions for use with Vue 3 Composition API
 
 ## [@gun-vue/relay](https://github.com/DeFUCC/gun-vue/tree/master/relay)
 
-<a href="https://www.npmjs.com/package/@gun-vue/relay" target="__blank"><img src="https://img.shields.io/npm/v/@gun-vue/relay?color=E23C92&label=NPM" alt="NPM version"></a>
+<a href="https://www.npmjs.com/package/@gun-vue/relay" target="__blank"><img src="https://img.shields.io/npm/v/@gun-vue/relay?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
 
 A simple no-store Gun server to throw at any free tier Node.js environment.
 
