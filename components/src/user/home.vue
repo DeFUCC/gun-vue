@@ -4,6 +4,7 @@ import { useUser } from '@composables';
 const emit = defineEmits(['browse'])
 
 const { user } = useUser()
+
 </script>
 
 <template lang='pug'>

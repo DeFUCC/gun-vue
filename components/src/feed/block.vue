@@ -1,12 +1,9 @@
 <script setup>
 import { ref } from 'vue'
-import UiLayer from '../ui/layer.vue'
-import PostList from '../post/list.vue'
-import PostPage from '../post/page.vue'
 
 let pathname = location.pathname != '/' ? location.pathname : ''
 const url = ref(location.host + pathname)
-const hash = ref(null)
+const hash = ref(null);
 </script>
 
 <template lang='pug'>

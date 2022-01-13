@@ -40,7 +40,7 @@ async function decode() {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.my-4.flex-1.items-center.bg-light-700.rounded-3xl.p-4.shadow-lg
   .font-bold.text-xl I already have an account
   .text-md Login with a saved key
@@ -55,28 +55,29 @@ async function decode() {
       la-file-code.text-xl
       .p-1.ml-1.font-bold JSON
   form.flex(v-if="passphrase !== null")
-    input.py-1.px-4.m-1.rounded-xl(autofocus type="text" v-model="passphrase" placeholder="Enter the password")
+    input.py-1.px-4.m-1.rounded-xl(
+      autofocus type="text" 
+      v-model="passphrase" 
+      placeholder="Enter the password"
+      )
     button.button.text-2xl(@click="decode()" type="submit")
       la-sign-in-alt
   .hidden
-    qr-load(
-      @loaded="pair = $event"
-    )
+    qr-load(@loaded="pair = $event")
     input#json-input(
-      tabindex="-1"
-      type="file",
-      accept="application/json",
-      ref="file"
+      tabindex="-1" 
+      type="file" 
+      accept="application/json" 
+      ref="file" 
       @change="uploadText($event, file => pair = file)"
-    )
+      )
   .flex.flex-wrap
     transition(name="fade")
       textarea.p-2.text-sm.flex-1.w-full(
-        rows="6",
-        cols="40"
-        v-if="current == 'key'",
-        v-model="pair",
-        key="text"
+        rows="6" cols="40" 
+        v-if="current == 'key'" 
+        v-model="pair" 
+        key="text" 
         placeholder="Paste your key pair here"
         )
 </template> 

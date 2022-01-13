@@ -26,6 +26,15 @@ export default defineConfig({
       },
     },
   },
+  themeConfig: {
+    nav: [
+      { text: "Home", link: "/" },
+      { text: "Composables", link: "/composables/" },
+      { text: "Components", link: "/components/" },
+      { text: "Demo", link: "/demo/" },
+      { text: "Relay", link: "/relay/" },
+    ],
+  },
   head: [
     ["meta", { name: "author", content: metaData?.author }],
     ["meta", { name: "keywords", content: metaData?.tags }],

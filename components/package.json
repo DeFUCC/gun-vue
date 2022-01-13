@@ -11,7 +11,10 @@
   "module": "./dist/components.es.js",
   "main": "./dist/components.es.js",
   "exports": {
-    ".": "./dist/components.es.js"
+    ".": {
+      "import": "./dist/components.es.js"
+    },
+    "./*": "./*"
   },
   "files": [
     "dist"

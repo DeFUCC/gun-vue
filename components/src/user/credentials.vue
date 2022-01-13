@@ -33,29 +33,7 @@ const encPair = computed(() => {
 .flex.flex-col.items-stretch.pb-4.border-1.border-dark-100.border-opacity-10.max-w-120.mx-auto(v-if="user.is && !user.safe?.saved")
   slot
     .mt-4.mx-6 Please make sure to safely store your cryptographic keypair to be able to use it again later
-  .flex.flex-col.mt-4.bg-light-700.p-4.m-2.shadow-lg.rounded-xl
-    .flex.items-center.mb-4
-      .mx-2
-        la-asterisk
-      .px-1 Enter a passphrase to encrypt your key with
-    .flex.items-center.px-4
-      .ml-1.flex.flex-col.items-center
-
-        la-check.text-green-600.m-1(v-if="pass.safe?.enc")
-      input.p-2.mx-4.rounded-xl.w-full(
-        v-model="pass.input",
-        :type="pass.show ? 'text' : 'password'"
-        :placeholder="`Your passphrase of ${pass.minLength} or more letters`"
-      )
-      button.button.items-center(
-        @click="pass.set()",
-        v-if="pass.input.length >= pass.minLength"
-      ) 
-        la-check
-        .ml-2 Set
-      button.button.items-center(v-if="pass?.safe?.enc" @click="pass.show = !pass.show")
-        la-eye
-        .ml-2 Show
+  user-pass
   .flex.p-4.items-center(v-if="encPair")
     .flex.flex-col.w-34.items-center(:style="{ color: safePair ? 'green' : 'red' }")
       button.button.text-2xl(@click="safePair = !safePair")

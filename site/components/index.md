@@ -1,6 +1,6 @@
 ## Components
 
-Pluggable Vue components
+Pluggable Gun DB + Vue UI components
 
 ### User icon
 

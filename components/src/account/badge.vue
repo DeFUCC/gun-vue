@@ -1,7 +1,6 @@
 <script setup>
 import { ref, watchEffect } from 'vue'
-import { useGun, useColor } from '@composables';
-import AccountAvatar from './avatar.vue'
+import { useGun, useColor } from '@composables'
 
 const props = defineProps({
   pub: { type: String, default: '' }
@@ -17,7 +16,7 @@ watchEffect(() => {
   gun.user(props.pub).get('profile').get('name').on(d => {
     name.value = d
   })
-})
+});
 
 </script>
 
