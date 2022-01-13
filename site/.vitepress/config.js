@@ -30,16 +30,17 @@ export default defineConfig({
     logo: "/media/gun-vue-logo.svg",
     repo: "https://github.com/DeFUCC/gun-vue",
     nav: [
+      { text: "Components", link: "/components/" },
       {
         text: "Composables",
         link: "/composables/",
       },
-      { text: "Components", link: "/components/" },
       {
         text: "Demos",
         link: "/demos/",
       },
       { text: "Relay", link: "/relay/" },
+      { text: "Blog", link: "/blog/" },
     ],
   },
   head: [

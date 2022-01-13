@@ -17,7 +17,15 @@ onMounted(() => {
 </script>
 
 <template >
-  <div>
+  <div class="comp">
     <Component v-if="comp" :is="comp" v-bind="pr"></Component>
   </div>
 </template>
+
+<style scoped>
+.comp {
+  margin: 1em;
+  border: 1px dotted purple;
+  border-radius: 6px;
+}
+</style>

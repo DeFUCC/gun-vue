@@ -4,7 +4,7 @@ import DefaultTheme from "vitepress/theme";
 import "./styles/index.css";
 import "@gun-vue/components/dist/style.css";
 
-import GunVue from "../components/load-component.vue";
+import GunVue from "./components/GunVue.vue";
 
 export default {
   ...DefaultTheme,

@@ -1,6 +1,4 @@
-<script setup>import { useAccount } from '@composables';
-
-const { account } = useAccount('XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc')
+<script setup>
 
 </script>
 

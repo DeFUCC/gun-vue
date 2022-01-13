@@ -19,6 +19,7 @@ const { space, area, join } = useSpace()
 
 const selected = ref();
 const plane = ref()
+const enter = ref(false)
 
 const { width, height } = useElementBounding(plane)
 
@@ -49,16 +50,16 @@ const arrows = computed(() => {
 </script>
 
 <template lang='pug'>
-.flex.flex-col.items-center.relative.h-screen(ref="plane")
-
-  ui-modal(:open="!!selected" @close="selected = null")
-    account-avatar.cursor-pointer(:pub="selected" :size="160" @click="$emit('user', selected)")
-    account-mate(:pub="selected")
-    account-profile(:pub="selected")
-  ui-modal(:open="!space.joined && user.is" @close="join()")
-    .text-2xl.p-4(v-if="user.is") Click here to join the space
-  ui-modal(:open="!user.is")
-    user-home(@browse="$router.push(`/users/${$event}`)")
+.flex.flex-col.items-center.relative(ref="plane" @click="enter = true")
+  .flex.flex-col.items-center(v-show="enter")
+    ui-modal(:open="!!selected" @close="selected = null")
+      account-avatar.cursor-pointer(:pub="selected" :size="160" @click="$emit('user', selected)")
+      account-mate(:pub="selected")
+      account-profile(:pub="selected")
+    ui-modal(:open="!space.joined && user.is" @close="join()")
+      .text-2xl.p-4(v-if="user.is") Click here to join the space
+    ui-modal(:open="!user.is")
+      user-home(@browse="$router.push(`/users/${$event}`)" @close="enter = false")
 
 
   svg.h-full(
