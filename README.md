@@ -40,13 +40,13 @@ A simple no-store Gun server to throw at any free tier Node.js environment.
 
 ## [@gun-vue/demo](https://github.com/DeFUCC/gun-vue/tree/master/demo)
 
-Try them all yourself in the vite demo app.
+The main [gun-vue.js.org](https://gun-vue.js.org) site is an example Vite SPA
 
 ---
 
-## [@gun-vue/site](https://github.com/DeFUCC/gun-vue/tree/master/site)
+## [@gun-vue/docs](https://github.com/DeFUCC/gun-vue/tree/master/docs)
 
-The main [gun-vue.js.org](https://gun-vue.js.org) site
+The docs at [gun-vue.js.org/docs](https://gun-vue.js.org/docs) is an example Vitepress SSR web-site using `@gun-vue/components`
 
 ---
 
