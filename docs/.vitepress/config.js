@@ -1,7 +1,7 @@
 import { defineConfig } from "vitepress";
 
 const metaData = {
-  title: "Gun-vue",
+  title: "Gun-vue docs",
   description:
     "The Vue.js + GunDb component library for easy p2p app creativity",
   site: "https://gun-vue.js.org",
@@ -14,11 +14,10 @@ const metaData = {
 };
 
 export default defineConfig({
-  // base: "./",
+  base: "/docs/",
   title: metaData.title,
-  outDir: "../_dist/",
+  outDir: "../demo/public/docs",
   vite: {
-    publicDir: "../_public",
     server: {
       port: 3324,
       fs: {
