@@ -12,8 +12,8 @@
   },
   "scripts": {
     "demo": "cd demo && pnpm run dev",
-    "site": "cd site && pnpm run dev",
-    "build": "cd composables && pnpm run build && cd .. && cd components && pnpm run build && cd .. && cd demo && pnpm run build && cd .. && cd site && pnpm run build",
+    "docs": "cd docs && pnpm run dev",
+    "build": "cd composables && pnpm run build && cd .. && cd components && pnpm run build && cd .. && cd docs && pnpm run build && cd .. && cd demo && pnpm run build ",
     "change": "pnpm changeset",
     "version": "pnpm changeset version",
     "publish": "pnpm run build && pnpm changeset publish",
