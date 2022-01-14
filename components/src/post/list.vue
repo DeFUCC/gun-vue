@@ -29,12 +29,11 @@ const { posts, timestamps, downloadPosts, uploadPosts, publishPost, uploadPost, 
         .flex-1 
         label.button.cursor-pointer.flex.items-center(for="import-post")
           la-markdown
-        button.button(@click="add = !add")
-          transition(name="fade")
-            .flex.items-center(title="Add post" v-if="!add")
-              la-plus
-            .flex.items-center(v-else)
-              la-times
+        button.absolute.right-2.bottom-2.text-3xl.bg-fuchsia-400.rounded-full.shadow-xl.p-3(@click="add = !add")
+          .flex.items-center
+            transition(name="fade")
+              la-plus(title="Add post" v-if="!add")
+              la-times(v-else)
 
   ui-modal(:open="add" @close="add = false")
     post-form(@submit="publishPost($event); add = false")

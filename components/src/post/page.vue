@@ -27,23 +27,20 @@ md.use(externalLinks, {
 </script>
 
 <template lang='pug'>
-.rounded-2xl.overflow-hidden.flex.flex-col.max-w-160.mx-auto(:style="{ backgroundColor: colorLight.hex(hash) }")
+.rounded-2xl.flex.flex-col.max-w-160.mx-auto(:style="{ backgroundColor: colorLight.hex(hash) }")
   .flex.flex-wrap.items-center.w-full.pl-4(:style="{ backgroundColor: colorLight.hex(hash) }")
     div(class="hover:underline text-md cursor-pointer" @click="$emit('close')") # {{ tag }}
-    .ml-1 / {{ post.data?.title }} 
+    .ml-1 / {{ post?.data?.title }} 
     .opacity-30.ml-4 {{ post?.lastUpdated }}
     .flex-1
     button.button(@click="post.download()")
       la-markdown
   .px-8.pb-2
-    .text-2xl.font-bold(v-if="post.data.title") {{ post.data.title }}
-    .my-2(v-if="post.data.description") {{ post.data.description }} 
-  .flex.flex-col.p-4.h-full.break-all.overscroll-y-contain.overflow-y-scroll.overflow-x-hidden(v-if="!post.empty")
+    .text-2xl.font-bold(v-if="post?.data?.title") {{ post?.data?.title }}
+    .my-2(v-if="post?.data?.description") {{ post?.data?.description }} 
+  .flex.flex-col.p-4.h-full(v-if="!post.empty")
 
-    embed-youtube(v-if="post.data.youtube" :video="post.data.youtube")
-    .text-md.markdown-body.bg-light-200.rounded-2xl.m-1.p-2.leading-relaxed.max-w-65ch(v-if="post.data.content" v-html="md.render(post.data.content)") 
+    embed-youtube(v-if="post?.data?.youtube" :video="post?.data?.youtube")
+    .text-md.markdown-body.bg-light-200.rounded-2xl.m-1.p-2.leading-relaxed.max-w-120(v-if="post?.data.content" v-html="md.render(post?.data?.content)") 
     
 </template>
-
-<style>
-</style>

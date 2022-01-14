@@ -4,18 +4,24 @@
 
 <template lang="pug">
 nav-bar
-p {{ account }}
-.p-0.min-h-75vh
+.p-0.flex-1
   router-view(v-slot="{ Component }")
     transition(name="fade")
       component(:is="Component")
-.flex.flex-col.items-center.bg-dark-100.p-4.bg-opacity-30.-z-10
+.flex.flex-col.items-center.bg-dark-100.p-4.bg-opacity-30
   util-tools
   .text-sm.mt-4 MIT 2022
 </template>
 
-<style>
+<style lang="postcss">
 html {
   scroll-behavior: smooth;
+  hyphens: auto;
+}
+body {
+  @apply bg-light-400 dark_bg-dark-100;
+}
+#app {
+  @apply min-h-100vh flex flex-col;
 }
 </style>

@@ -13,7 +13,7 @@ export default defineConfig({
       name: "composables",
       formats: ["es"],
     },
-    sourcemap: false,
+    sourcemap: true,
     rollupOptions: {
       manualChunks: (id) => {
         if (id.includes("node_modules")) {

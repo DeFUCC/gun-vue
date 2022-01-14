@@ -30,7 +30,7 @@ gun.user(props.pub).get('feeds').map().once(function (list, tag) {
   .p-2(v-for="(feed,tag) in posts" :key="tag")
     transition-group(name="list")
       .text-lg.font-bold(v-if="Object.values(feed).length > 0") # {{ tag }}
-      post-card.my-2(v-for="(post, hash) in feed" :key="hash" :post="post.data" :hash="hash"
+      post-card.my-2(v-for="(post, hash) in feed" :key="hash" :post="post?.data" :hash="hash"
         :tag="tag"
         :timestamp="post.timestamp"
         @click="$router.push(`/feeds/${tag}/${safeHash(hash)}`)"

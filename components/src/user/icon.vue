@@ -16,7 +16,6 @@ const open = ref(false)
 <template lang="pug">
 .mx-2.text-xl.cursor-pointer
   account-avatar(:size="size" :border="2" @click="open = true")
-  transition(name="fade")
-    ui-layer(:open="open" @close="open = false")
-      user-home
+  ui-layer(:open="open" @close="open = false")
+    user-home
 </template>
