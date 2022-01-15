@@ -1,6 +1,6 @@
 # Gun DB + Vue UI composables collection
 
-A Composition API `use` functions set for Gun.js and Vue 3 raectivity system
+A Composition API `use` functions set for Gun.js and Vue 3 reactivity system
 
 ![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/_public/media/svg/composables.svg)
 
