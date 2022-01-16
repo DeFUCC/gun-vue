@@ -24,8 +24,9 @@ onMounted(() => {
 
 <style scoped>
 .comp {
+  position: relative;
   margin: 1em;
-  border: 1px dotted purple;
+  border: 2px dotted purple;
   border-radius: 6px;
 }
 </style>

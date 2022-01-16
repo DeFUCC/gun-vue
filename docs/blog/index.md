@@ -1,25 +1,22 @@
+---
+title: Blog
+posts:
+  - title: My previous gun + vue project review
+    date: 2021-03-02
+    youtube: U_sX0qwaeLk
+  - title: Vite-gun starter
+    date: 2021-11-27
+    youtube: HC4MfirOPq0
+  - title: Early setup video
+    date: 2021-21-19
+    youtube: 4hpVRgVQvsY
+  - title: v.0.5.0 video review
+    date: 2021-01-12
+    youtube: ALKkBhj1IIE
+    text: |
+      The project structure is pretty established to evolve transparently
+---
+
 ## Blog
 
-### v.0.5.0 video review
-
-12.01.2022
-
-<GunVue component="EmbedYoutube" :pr="{video:'ALKkBhj1IIE'}" />
-
-### Early setup video
-
-19.21.2021
-
-<GunVue component="EmbedYoutube" :pr="{video:'4hpVRgVQvsY'}" />
-
-### Vite-gun starter
-
-27.11.2021
-
-<GunVue component="EmbedYoutube" :pr="{video:'HC4MfirOPq0'}" />
-
-### My previous gun + vue project review
-
-02.03.2021
-
-<GunVue component="EmbedYoutube" :pr="{video:'U_sX0qwaeLk'}" />
+<Blog :posts="$frontmatter.posts" />

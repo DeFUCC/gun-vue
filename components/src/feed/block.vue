@@ -7,7 +7,7 @@ const hash = ref(null);
 </script>
 
 <template lang='pug'>
-.p-4 
+.p-0
   post-list.m-4(:tag="url" :key="url" @browse="hash = $event" @close="hash = null")
   ui-layer(:open="hash" @close="hash = null")
     post-page(:hash="hash" :tag="url" v-if="hash" :key="hash")

@@ -32,7 +32,7 @@
     "markdown-it": "^12.3.2",
     "markdown-it-external-links": "^0.0.6",
     "simplemde": "^1.11.2",
-    "vue": "^3.2.26"
+    "vue": "^3.2.27"
   },
   "peerDependencies": {
     "vue": "3.x"
@@ -41,8 +41,8 @@
     "@vitejs/plugin-vue": "^2.0.1",
     "pug": "^3.0.2",
     "unplugin-icons": "^0.13.0",
-    "unplugin-vue-components": "^0.17.11",
-    "vite": "^2.7.10",
+    "unplugin-vue-components": "^0.17.13",
+    "vite": "^2.7.12",
     "vite-plugin-windicss": "^1.6.2",
     "windicss": "^3.4.2"
   }

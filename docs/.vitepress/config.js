@@ -17,17 +17,6 @@ export default defineConfig({
   base: "/docs/",
   title: metaData.title,
   outDir: "../demo/public/docs",
-  vite: {
-    server: {
-      port: 3324,
-      fs: {
-        allow: [".."],
-      },
-    },
-    build: {
-      chunkSizeWarningLimit: 3000000,
-    },
-  },
   themeConfig: {
     logo: "/media/gun-vue-logo.svg",
     repo: "https://github.com/DeFUCC/gun-vue",

@@ -55,4 +55,4 @@ export * from "@composables";
 
 // dirty hack to get rid of a warning during build
 import { resolveComponent } from "vue";
-resolveComponent();
+let res = resolveComponent;

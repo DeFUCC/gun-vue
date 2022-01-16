@@ -20,7 +20,7 @@ WIP, no docs for now. Refer to [@gun-vue repo](https://github.com/davay42/gun-vu
 A small blinking button, that shows basic stats for current Gun relay in use
 
 ```html
-<relay-icon :size="120" />
+<relay-icon />
 ```
 
 <GunVue component="RelayIcon" />
