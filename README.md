@@ -57,3 +57,13 @@ The docs at [gun-vue.js.org/docs](https://gun-vue.js.org/docs) is an example Vit
 ### To do list
 
 We manage tasks for the build at this [Taskade project](https://www.taskade.com/d/XtaACTKmN4KqSC1v?share=view&view=hsVKduBWoYMa9S7a).
+
+## How to build the workspace repo yourself
+
+1. Clone the repo
+2. Use [pnpm](https://pnpm.io/) to install all the dependencies in the workspaces
+   ```bash
+   npm i -G pnpm
+   pnpm i
+   ```
+3. Use `demo` and `docs` scripts in the root `package.json` to run corresponding dev servers. Use `npm run build` to build the whole project to the `_dist` folder.
