@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.5.5
+
+### Patch Changes
+
+- bump deps and cleaner styles
+- Updated dependencies
+  - @gun-vue/composables@0.5.5
+
 ## 0.5.4
 
 ### Patch Changes

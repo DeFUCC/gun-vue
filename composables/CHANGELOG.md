@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.5.5
+
+### Patch Changes
+
+- bump deps and cleaner styles
+
 ## 0.5.4
 
 ### Patch Changes
