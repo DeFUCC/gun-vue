@@ -113,17 +113,7 @@ importers:
       vite-plugin-windicss: 1.6.2_vite@2.7.10
       windicss: 3.4.2
 
-  relay:
-    specifiers:
-      express: ^4.17.2
-      gun: ^0.2020.1235
-      zenbase: ^2.1.6
-    dependencies:
-      express: 4.17.2
-      gun: 0.2020.1235
-      zenbase: 2.1.6
-
-  site:
+  docs:
     specifiers:
       '@gun-vue/components': workspace:^
       '@iconify/json': ^2.0.23
@@ -153,7 +143,7 @@ importers:
       markdown-it-container: 3.0.0
       markdown-it-external-links: 0.0.6
       pug: 3.0.2
-      unplugin-auto-import: 0.5.9_@vueuse+core@7.5.3+vite@2.7.10
+      unplugin-auto-import: 0.5.11_@vueuse+core@7.5.3+vite@2.7.10
       unplugin-icons: 0.13.0_vite@2.7.10
       unplugin-vue-components: 0.17.11_vite@2.7.10+vue@3.2.26
       vite: 2.7.10
@@ -161,6 +151,16 @@ importers:
       vite-plugin-windicss: 1.6.2_vite@2.7.10
       vitepress: 0.21.4
       vitepress-tags: 0.4.0
+
+  relay:
+    specifiers:
+      express: ^4.17.2
+      gun: ^0.2020.1235
+      zenbase: ^2.1.6
+    dependencies:
+      express: 4.17.2
+      gun: 0.2020.1235
+      zenbase: 2.1.6
 
 packages:
 
@@ -952,8 +952,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /array-back/6.2.0:
-    resolution: {integrity: sha512-mixVv03GOOn/ubHE4STQ+uevX42ETdk0JoMVEjNkSOCT7WgERh7C8/+NyhWYNpE3BN69pxFyJIBcF7CxWz/+4A==}
+  /array-back/6.2.2:
+    resolution: {integrity: sha512-gUAZ7HPyb4SJczXAMUXMGAvI976JoK3qEx9v1FTmeYuJj0IBiaKttG1ydtGKdkfqWkIkouke7nG8ufGy77+Cvw==}
     engines: {node: '>=12.17'}
     dev: true
 
@@ -2503,7 +2503,7 @@ packages:
     resolution: {integrity: sha512-yjIiZa6LFOgd0dyFW/R+3unnVUhhbU1CeBhisgjBPRHkar83rkgDtTMRdgQotSvt+pGlmknZqfwR5AQuMh9/6w==}
     engines: {node: '>=12.17'}
     dependencies:
-      array-back: 6.2.0
+      array-back: 6.2.2
       cache-point: 2.0.0
       collect-all: 1.0.4
       file-set: 4.0.2
@@ -2518,7 +2518,7 @@ packages:
     resolution: {integrity: sha512-ij3Az5y2dp+ajMxYnEJH7kjKK5v6+yZ3Cg/KtRdoT15pIm6qTk/W8q72QdNLZ9jQm/U2/ifENFXXTOe6xIxGeA==}
     engines: {node: '>=14'}
     dependencies:
-      array-back: 6.2.0
+      array-back: 6.2.2
       lodash.omit: 4.5.0
       lodash.pick: 4.4.0
       reduce-extract: 1.0.0
@@ -2531,7 +2531,7 @@ packages:
     engines: {node: '>=12.17'}
     hasBin: true
     dependencies:
-      array-back: 6.2.0
+      array-back: 6.2.2
       command-line-tool: 0.8.0
       config-master: 3.1.0
       dmd: 6.0.0
@@ -2558,7 +2558,7 @@ packages:
       requizzle: 0.2.3
       strip-json-comments: 3.1.1
       taffydb: 2.6.2
-      underscore: 1.13.1
+      underscore: 1.13.2
     dev: true
 
   /json-parse-even-better-errors/2.3.1:
@@ -4018,8 +4018,8 @@ packages:
       which-boxed-primitive: 1.0.2
     dev: true
 
-  /underscore/1.13.1:
-    resolution: {integrity: sha512-hzSoAVtJF+3ZtiFX0VgfFPHEDRm7Y/QPjGyNo4TVdnDTdft3tr8hEkD25a1jC+TjTuE7tkHGKkhwCgs9dgBB2g==}
+  /underscore/1.13.2:
+    resolution: {integrity: sha512-ekY1NhRzq0B08g4bGuX4wd2jZx5GnKz6mKSqFL4nqBlfyMGiG10gDFhDTMEfYmDL6Jy0FUIZp7wiRB+0BP7J2g==}
     dev: true
 
   /universalify/0.1.2:
@@ -4032,8 +4032,8 @@ packages:
     engines: {node: '>= 0.8'}
     dev: false
 
-  /unplugin-auto-import/0.5.9_@vueuse+core@7.5.3+vite@2.7.10:
-    resolution: {integrity: sha512-PUKmTbbyTf1G4OLb7+8NZ9Ky+UuslbwiGu9GwgejAKWJcNXTPQexrWHpiOo7goo/cWQ+fya/SxHF+Y6zeDDFxw==}
+  /unplugin-auto-import/0.5.11_@vueuse+core@7.5.3+vite@2.7.10:
+    resolution: {integrity: sha512-MJ3POLe/IysRHF4yd32FkKDoxqSRoiuIHm89ys67B8FLuz2Pvh9poeqTVe6IhJsNxwv0+GSdFfj5Dpq24lhm4g==}
     engines: {node: '>=14'}
     peerDependencies:
       '@vueuse/core': '*'
