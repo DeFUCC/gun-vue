@@ -29,29 +29,28 @@ const { posts, timestamps, downloadPosts, uploadPosts, publishPost, uploadPost, 
         .flex-1 
         label.button.cursor-pointer.flex.items-center(for="import-post")
           la-markdown
-        button.absolute.right-2.bottom-2.text-3xl.bg-fuchsia-400.rounded-full.shadow-xl.p-3(@click="add = !add")
-          .flex.items-center
-            transition(name="fade")
-              la-plus(title="Add post" v-if="!add")
-              la-times(v-else)
-
-  ui-modal(:open="add" @close="add = false")
-    post-form(@submit="publishPost($event); add = false")
+  .flex.flex-col
+    button.transition.text-xl.rounded-xl.bg-light-800.hover_bg-fuchsia-400.shadow-xl.p-2.m-2.flex.items-center.justify-center(@click="add = !add")
+      transition(name="fade")
+        la-plus(title="Add post" v-if="!add")
+        la-times(v-else)
+    transition(name="fade")
+      post-form(v-if="add" @submit="publishPost($event); add = false")
   .flex.flex-col
     transition-group(name="fade")
-      slot
-        post-card(
-          :style="{ order: Date.now() - timestamps[hash].toFixed() }"
-          style="flex: 1 1"
-          v-for="(item, hash) in posts" :key="hash" 
-          :hash="hash"
-          :tag="tag"
-          :timestamp="timestamps[hash]"
-          :post="item" 
-          @click="emit('browse', hash)"
-          @upvote="publishPost(item)"
-          @downvote="banPost(item)"
-          )
+      post-card(
+        :style="{ order: Date.now() - timestamps[hash].toFixed() }"
+        style="flex: 1 1"
+        v-for="(item, hash) in posts" :key="hash" 
+        :hash="hash"
+        :tag="tag"
+        :timestamp="timestamps[hash]"
+        :post="item" 
+        @click="emit('browse', hash)"
+        @upvote="publishPost(item)"
+        @downvote="banPost(item)"
+        )
+
     input#import-feed.hidden(
       tabindex="-1"
       type="file",

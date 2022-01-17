@@ -40,6 +40,22 @@ watch(() => state.output, file => {
   }
 })
 
+const youtube = ref()
+
+watch(youtube, link => {
+  post.value.youtube = youtubeLinkParser(link)
+})
+
+function youtubeLinkParser(url) {
+  var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+  var match = url.match(regExp);
+  if (match && match[2].length == 11) {
+    return match[2];
+  } else {
+    return null;
+  }
+}
+
 </script>
 
 <template lang='pug'>
@@ -55,9 +71,10 @@ form.flex.flex-col.p-2.border-1.rounded-2xl(action="javascript:void(0);")
     label.button.cursor-pointer(for="image_upload")
       la-image
     input#image_upload.hidden(type="file" @change="handleChange")
+    p {{ post }}
   .flex.flex-col
     img(v-if="state.output?.content" :src="state.output?.content")
-    input(v-if="add.youtube" v-model="post.youtube" placeholder="Youtube video ID" accept=".png .jpg .jpeg")
+    input(v-if="add.youtube" v-model="youtube" placeholder="Youtube video ID" accept=".png .jpg .jpeg")
   .flex.flex-col(v-show="add.content")
     textarea#myMD(ref="md"  placeholder="Main text content (with **markdown** support)")
 
