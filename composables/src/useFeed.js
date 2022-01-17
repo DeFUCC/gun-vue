@@ -70,11 +70,11 @@ export function useFeeds() {
     .get("#tags")
     .map()
     .on((d, k) => {
-      let data;
+      if (!d) return;
       try {
-        data = JSON.parse(d);
+        data = JSON.parse(d); //ignore objects
       } catch (e) {
-        tags.list[k] = d;
+        tags.list[k] = d; // assumes tag is a plain string
       }
     });
 
