@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.5.6
+
+### Patch Changes
+
+- aa7bd12: picture uploads
+
 ## 0.5.5
 
 ### Patch Changes

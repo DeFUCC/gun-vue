@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.5.6
+
+### Patch Changes
+
+- aa7bd12: picture uploads
+- Updated dependencies [aa7bd12]
+  - @gun-vue/composables@0.5.6
+
 ## 0.5.5
 
 ### Patch Changes
