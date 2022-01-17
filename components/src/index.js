@@ -2,54 +2,54 @@ import "virtual:windi.css";
 import "./styles/index.css";
 import "./styles/transitions.css";
 
-export { default as AccountProfile } from "./Account/Profile.vue";
-export { default as AccountAvatar } from "./Account/Avatar.vue";
-export { default as AccountBadge } from "./Account/Badge.vue";
-export { default as AccountHome } from "./Account/Home.vue";
-export { default as AccountMate } from "./Account/Mate.vue";
-export { default as AccountMates } from "./Account/Mates.vue";
-export { default as AccountStars } from "./Account/Stars.vue";
+export { default as AccountProfile } from "./account/Profile.vue";
+export { default as AccountAvatar } from "./account/Avatar.vue";
+export { default as AccountBadge } from "./account/Badge.vue";
+export { default as AccountHome } from "./account/Home.vue";
+export { default as AccountMate } from "./account/Mate.vue";
+export { default as AccountMates } from "./account/Mates.vue";
+export { default as AccountStars } from "./account/Stars.vue";
 
-export { default as UserCredentials } from "./User/Credentials.vue";
-export { default as UserPassphrase } from "./User/Pass.vue";
-export { default as UserAuth } from "./User/Auth.vue";
-export { default as UserLogin } from "./User/Login.vue";
-export { default as UserHome } from "./User/Home.vue";
-export { default as UserIcon } from "./User/Icon.vue";
-export { default as UserPanel } from "./User/Panel.vue";
-export { default as UserProfile } from "./User/Profile.vue";
-export { default as UserProfileField } from "./User/Profile/Field.vue";
+export { default as UserCredentials } from "./user/Credentials.vue";
+export { default as UserPassphrase } from "./user/Pass.vue";
+export { default as UserAuth } from "./user/Auth.vue";
+export { default as UserLogin } from "./user/Login.vue";
+export { default as UserHome } from "./user/Home.vue";
+export { default as UserIcon } from "./user/Icon.vue";
+export { default as UserPanel } from "./user/Panel.vue";
+export { default as UserProfile } from "./user/Profile.vue";
+export { default as UserProfileField } from "./user/Profile/Field.vue";
 
-export { default as RelayIcon } from "./Relay/Icon.vue";
+export { default as RelayIcon } from "./relay/Icon.vue";
 
-export { default as RoomProfile } from "./Room/Profile.vue";
+export { default as RoomProfile } from "./room/Profile.vue";
 
-export { default as SpacePlane } from "./Space/Plane.vue";
-export { default as SpaceGuest } from "./Space/Guest.vue";
+export { default as SpacePlane } from "./space/Plane.vue";
+export { default as SpaceGuest } from "./space/Guest.vue";
 
-export { default as FeedList } from "./Feed/List.vue";
-export { default as FeedLabel } from "./Feed/Label.vue";
-export { default as FeedBlock } from "./Feed/Block.vue";
+export { default as FeedList } from "./feed/List.vue";
+export { default as FeedLabel } from "./feed/Label.vue";
+export { default as FeedBlock } from "./feed/Block.vue";
 
-export { default as PostCard } from "./Post/Card.vue";
-export { default as PostForm } from "./Post/Form.vue";
-export { default as PostList } from "./Post/List.vue";
-export { default as PostPage } from "./Post/Page.vue";
-export { default as PostStar } from "./Post/Star.vue";
+export { default as PostCard } from "./post/Card.vue";
+export { default as PostForm } from "./post/Form.vue";
+export { default as PostList } from "./post/List.vue";
+export { default as PostPage } from "./post/Page.vue";
+export { default as PostStar } from "./post/Star.vue";
 
-export { default as LogTree } from "./Log/Tree.vue";
+export { default as LogTree } from "./log/Tree.vue";
 
-export { default as QrShow } from "./Qr/Show.vue";
-export { default as QrLoad } from "./Qr/Load.vue";
+export { default as QrShow } from "./qr/Show.vue";
+export { default as QrLoad } from "./qr/Load.vue";
 
-export { default as EmbedYoutube } from "./Embed/Youtube.vue";
+export { default as EmbedYoutube } from "./embed/Youtube.vue";
 
-export { default as UiModal } from "./Ui/Modal.vue";
+export { default as UiModal } from "./ui/Modal.vue";
 
-export { default as UtilPulse } from "./Util/pulse.vue";
-export { default as UtilGraph } from "./Util/graph.vue";
-export { default as UtilShare } from "./Util/share.vue";
-export { default as Utiltools } from "./Util/tools.vue";
+export { default as UtilPulse } from "./util/pulse.vue";
+export { default as UtilGraph } from "./util/graph.vue";
+export { default as UtilShare } from "./util/share.vue";
+export { default as Utiltools } from "./util/tools.vue";
 
 export * from "@composables";
 
