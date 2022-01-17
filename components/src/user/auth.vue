@@ -1,6 +1,5 @@
 <script setup>
-import { useUser, safeJSONParse, useFileUpload, uploadText, SEA } from '@composables'
-import { useRefHistory } from '@vueuse/core'
+import { useUser, safeJSONParse, uploadText, SEA } from '@composables'
 import { ref, watch } from 'vue'
 
 const current = ref('pass')
@@ -14,10 +13,6 @@ function show(option) {
     current.value = null;
   }
 }
-
-const { state, handleFile } = useFileUpload()
-
-watch(() => state.output, output => pair.value = output)
 
 watch(pair, (p) => {
   if (p && typeof p == 'string' && p.substring(0, 3) == 'SEA') {

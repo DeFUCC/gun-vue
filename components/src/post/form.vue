@@ -1,7 +1,9 @@
 <script setup>
-import { reactive, ref, onMounted } from 'vue'
+import { reactive, ref, onMounted, watch } from 'vue'
 import SimpleMDE from 'simplemde'
 import 'simplemde/dist/simplemde.min.css'
+
+import { usePictureUpload } from '@composables/src/useFile'
 
 let simplemde
 onMounted(() => {
@@ -27,6 +29,17 @@ function submit() {
   simplemde.value('')
 }
 
+const { state, handleChange } = usePictureUpload({
+  picSize: 800,
+  preserveRatio: true
+})
+
+watch(() => state.output, file => {
+  if (file?.content) {
+    post.value.picture = file.content
+  }
+})
+
 </script>
 
 <template lang='pug'>
@@ -38,9 +51,13 @@ form.flex.flex-col.p-2.border-1.rounded-2xl(action="javascript:void(0);")
     button.button(@click="add.content = !add.content" :class="{ active: add.content }")
       mdi-text-long
     button.button(@click="add.youtube = !add.youtube" :class="{ active: add.youtube }")
-      la-youtube  
-
-  input(v-if="add.youtube" v-model="post.youtube" placeholder="Youtube video ID")
+      la-youtube
+    label.button.cursor-pointer(for="image_upload")
+      la-image
+    input#image_upload.hidden(type="file" @change="handleChange")
+  .flex.flex-col
+    img(v-if="state.output?.content" :src="state.output?.content")
+    input(v-if="add.youtube" v-model="post.youtube" placeholder="Youtube video ID" accept=".png .jpg .jpeg")
   .flex.flex-col(v-show="add.content")
     textarea#myMD(ref="md"  placeholder="Main text content (with **markdown** support)")
 

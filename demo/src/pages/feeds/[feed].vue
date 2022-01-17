@@ -13,11 +13,12 @@ onMounted(() => {
 </script>
 
 <template lang='pug'>
-ui-layer(:open="open" @close="$router.push('/feeds/')")
-  post-list.w-full(:tag="feed" @close="$router.push('/feeds/')" @browse="$router.push(`/feeds/${feed}/${safeHash($event)}`)")
-router-view(v-slot="{ Component }")
-  transition(name="fade")
-    component(:is="Component")
+.p-0
+  ui-layer(:open="open" @close="$router.push('/feeds/')")
+    post-list.w-full(:tag="feed" @close="$router.push('/feeds/')" @browse="$router.push(`/feeds/${feed}/${safeHash($event)}`)")
+  router-view(v-slot="{ Component }")
+    transition(name="slide")
+      component(:is="Component")
 </template>
 
 <style scoped>

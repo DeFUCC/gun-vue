@@ -39,7 +39,7 @@ md.use(externalLinks, {
     .text-2xl.font-bold(v-if="post?.data?.title") {{ post?.data?.title }}
     .my-2(v-if="post?.data?.description") {{ post?.data?.description }} 
   .flex.flex-col.p-4.h-full(v-if="!post.empty")
-
+    img(v-if="post?.data?.picture" :src="post?.data?.picture")
     embed-youtube(v-if="post?.data?.youtube" :video="post?.data?.youtube")
     .text-md.markdown-body.bg-light-200.rounded-2xl.m-1.p-2.leading-relaxed.max-w-120(v-if="post?.data.content" v-html="md.render(post?.data?.content)") 
     

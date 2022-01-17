@@ -27,7 +27,9 @@ const banned = useBanned(props.hash)
 
 <template lang='pug'>
 .shadow-md.m-1.rounded-lg.cursor-pointer.flex.flex-wrap.items-center(:style="{ backgroundColor: colorLight.hex(hash) }")
-  .flex.flex-col.p-2.overflow-hidden(style="flex: 1 0 60%")
+  img.w-20.max-h-20(v-if="post.picture" :src="post.picture")
+  .flex.flex-col.p-2.overflow-hidden(style="flex: 1 0 50%")
+
     .text-lg.font-bold.truncate {{ title }}
     .text-md.truncate(v-if="post.description") {{ post.description }}
     .text-md.truncate.overflow-hidden(v-if="!post.description && post.text") {{ post.text }}

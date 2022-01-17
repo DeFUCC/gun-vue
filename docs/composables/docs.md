@@ -208,8 +208,8 @@ Export the feed as a Markdown .md file
 
 | Name | Type | Description |
 | --- | --- | --- |
-| search | <code>Ref</code> | a ref to bind to an input element |
-| slug | <code>Computed</code> | a slugified search query - url safe verion to be used as a tag |
+| search | <code>ref</code> | a ref to bind to an input element |
+| slug | <code>computed</code> | a slugified search query - url safe verion to be used as a tag |
 | tags | <code>Tags</code> | the object to handle all the tags |
 | addTag | <code>function</code> | add a slug tag to the list |
 
@@ -231,11 +231,15 @@ File handling functions
 
 
 * [File](#module_File)
-    * [.createMd(md)](#module_File.createMd) ⇒
-    * [.parseMd(file)](#module_File.parseMd) ⇒ <code>Md</code>
-    * [.downloadText(text, fileType, fileName)](#module_File.downloadText)
-    * [.uploadText(event, callback)](#module_File.uploadText)
-    * [.useFileUpload()](#module_File.useFileUpload) ⇒ <code>Object</code>
+    * _static_
+        * [.createMd(md)](#module_File.createMd) ⇒
+        * [.parseMd(file)](#module_File.parseMd) ⇒ <code>Md</code>
+        * [.downloadText(text, fileType, fileName)](#module_File.downloadText)
+        * [.uploadText(event, callback)](#module_File.uploadText)
+        * [.usePictureUpload(Options)](#module_File.usePictureUpload) ⇒ <code>PictureUploadData</code>
+    * _inner_
+        * [~PictureUploadOptions](#module_File..PictureUploadOptions) : <code>Object</code>
+        * [~PictureUploadData](#module_File..PictureUploadData) : <code>Object</code>
 
 <a name="module_File.createMd"></a>
 
@@ -286,11 +290,50 @@ Upload and parse JSON keypair
 | event | <code>Event</code> | `$event` from the `@change` handler |
 | callback | <code>function</code> | a function to handle the loaded file from the reader |
 
-<a name="module_File.useFileUpload"></a>
+<a name="module_File.usePictureUpload"></a>
 
-### File.useFileUpload() ⇒ <code>Object</code>
+### File.usePictureUpload(Options) ⇒ <code>PictureUploadData</code>
+Process an uploaded picture by rendering in into a canvas with given size. Returns a base64 encoded image to be stored and displayed as `img.src`
+
 **Kind**: static method of [<code>File</code>](#module_File)  
-**Returns**: <code>Object</code> - - The reactive state of the upload and a handleChange function to put it to @change="handleChange" of the file input  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| Options | <code>PictureUploadOptions</code> | uploader options |
+
+**Example**  
+```js
+const src = ref(null)
+
+const {state, handleUpload} = usePictureUpload({
+ preserveRatio: true,
+})
+
+watch(()=>state.output, file => src.value = file.content)
+```
+<a name="module_File..PictureUploadOptions"></a>
+
+### File~PictureUploadOptions : <code>Object</code>
+**Kind**: inner typedef of [<code>File</code>](#module_File)  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| preserveRatio | <code>Boolean</code> | should we preserve the original picture aspect ratio? Default: `false` |
+| picSize | <code>Number</code> | width of the rendered picture |
+| maxSize | <code>Number</code> | maximum size of an uploaded picture |
+
+<a name="module_File..PictureUploadData"></a>
+
+### File~PictureUploadData : <code>Object</code>
+**Kind**: inner typedef of [<code>File</code>](#module_File)  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| state | <code>reactive</code> | a reactive object with the state of the upload |
+| handleUpload | <code>function</code> | handler function to use with `@change="handleUpload"` on an `<input type="file">` element |
+
 <a name="module_Gun"></a>
 
 ## Gun

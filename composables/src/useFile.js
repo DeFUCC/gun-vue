@@ -4,7 +4,7 @@
  * */
 
 import yaml from "yaml";
-import { computed, reactive } from "vue";
+import { computed, reactive, ref } from "vue";
 
 /**
  *  Create markdown with frontmatter
@@ -91,56 +91,48 @@ export function uploadText(event, callback = (r) => console.log(r)) {
 // https://zocada.com/compress-resize-images-javascript-browser/
 
 /**
- *
- * @returns {{Reactive,Function}} - The reactive state of the upload and a handleChange function to put it to @change="handleChange" of the file input
+ * @typedef {Object} PictureUploadOptions
+ * @property {Boolean} preserveRatio - should we preserve the original picture aspect ratio? Default: `false`
+ * @property {Number} picSize - width of the rendered picture
+ * @property {Number} maxSize - maximum size of an uploaded picture
  */
 
-export function useFileUpload() {
-  const status = {
-    initial: 0,
-    loading: 1,
-    success: 2,
-    failed: 3,
-  };
-  const notifications = [
-    {
-      title: "Success",
-      color: "#50c0b4",
-    },
-    {
-      title: "Warning",
-      color: "#f59938",
-    },
-    { title: "Danger", color: "#e2342f" },
-  ];
+/**
+ * @typedef {Object} PictureUploadData
+ * @property {reactive} state - a reactive object with the state of the upload
+ * @property {Function} handleUpload - handler function to use with `@change="handleUpload"` on an `<input type="file">` element
+ */
 
-  const options = {
-    maxFileSize: 10240000,
-  };
+/**
+ * Process an uploaded picture by rendering in into a canvas with given size. Returns a base64 encoded image to be stored and displayed as `img.src`
+ * @param {PictureUploadOptions} Options - uploader options
+ * @returns {PictureUploadData}
+ * @example
+ * const src = ref(null)
+ *
+ * const {state, handleUpload} = usePictureUpload({
+ *  preserveRatio: true,
+ * })
+ *
+ * watch(()=>state.output, file => src.value = file.content)
+ */
 
+export function usePictureUpload({
+  preserveRatio = false,
+  picSize = 100,
+  maxSize = 10240000,
+} = {}) {
   const state = reactive({
     errors: [],
     status: null,
     output: {},
-    isInitial: computed(() => {
-      return state.status === status.initial;
-    }),
-    isLoading: computed(() => {
-      return state.status === status.loading;
-    }),
-    isSuccess: computed(() => {
-      return state.status === status.success;
-    }),
-    isFailed: computed(() => {
-      return state.status === status.failed;
-    }),
   });
 
   function handleChange(event) {
     const fileList = event.target.files;
     reset();
     if (!fileList.length) return;
-    state.status = status.loading;
+    state.status = "loading";
     [...fileList].map((file) => processFile(file));
   }
 
@@ -149,9 +141,9 @@ export function useFileUpload() {
       state.output = {
         name: sanitizeFileName(file.name),
         content: res,
-        size: Math.round((res.length * 3) / 4),
+        size: niceBytes(Math.round((res.length * 3) / 4)),
       };
-      state.status = status.success;
+      state.status = "success";
     });
     return null;
   }
@@ -167,19 +159,15 @@ export function useFileUpload() {
           getMimeTypeSignature(e.target.result)
         );
 
-        if (
-          bytesToMegabytes(file.size) > bytesToMegabytes(options.maxFileSize)
-        ) {
+        if (bytesToMegabytes(file.size) > bytesToMegabytes(maxSize)) {
           state.errors.push({
             message: "File size is too large!",
-            type: notifications[1],
           });
         }
 
         if (isValidMimeType === false) {
           state.errors.push({
             message: "File type is not supported!",
-            type: notifications[2],
           });
         }
 
@@ -194,17 +182,20 @@ export function useFileUpload() {
 
       readerBase64.onloadend = () => {
         const img = new Image();
+        img.src = readerBase64.result;
         img.onload = () => {
-          const canvas = document.createElement("canvas");
-          canvas.width = canvas.height = 100;
-          const context = canvas.getContext("2d");
-          //  const naturalAspect = img.naturalWidth / img.naturalHeight
+          const naturalAspect = preserveRatio
+            ? img.naturalWidth / img.naturalHeight
+            : 1;
 
+          const canvas = document.createElement("canvas");
+          canvas.width = picSize;
+          canvas.height = picSize / naturalAspect;
+
+          const context = canvas.getContext("2d");
           context.drawImage(img, 0, 0, canvas.width, canvas.height);
           resolve(canvas.toDataURL());
         };
-        let res = readerBase64.result;
-        img.src = res;
       };
 
       reader.onerror = (error) => reject(error);
@@ -214,7 +205,7 @@ export function useFileUpload() {
 
   // Resets upload
   function reset() {
-    state.status = status.initial;
+    state.status = "";
     state.errors = [];
     state.output = {};
   }
@@ -225,7 +216,8 @@ export function useFileUpload() {
     return value;
   }
 
-  // Checks mime type
+  // Checks mime type (more at https://mimesniff.spec.whatwg.org/#matching-an-image-type-pattern )
+  // More info https://stackoverflow.com/questions/18299806/how-to-check-file-mime-type-with-javascript-before-upload
   function checkMimetype(signature) {
     const signatures = [
       "89504E47", // image/png
@@ -236,6 +228,7 @@ export function useFileUpload() {
       "FFD8FFE2",
       "FFD8FFE3",
       "FFD8FFE8",
+      "FFD8FFED",
       "3C3F786D", // svg/xml
       "3C737667",
     ];
@@ -253,17 +246,17 @@ export function useFileUpload() {
 
   // Sanitizes file's name
   function sanitizeFileName(name) {
-    return name
-      .replace(/\.[^/.]+$/, "")
-      .replace(/[^a-z0-9]/gi, "_")
-      .toLowerCase();
+    return (
+      name
+        .replace(/\.[^/.]+$/, "")
+        // .replace(/[^a-z0-9]/gi, "_")
+        .toLowerCase()
+    );
   }
 
   function flashErrors(errors) {
     if (errors.length === 2) {
-      console.error(
-        "File upload failed due to size and type!" + notifications[2]
-      );
+      console.error("File upload failed due to size and type!");
     } else {
       console.error(errors[0].message + errors[0].type);
     }
@@ -284,6 +277,5 @@ function niceBytes(x) {
   while (n >= 1024 && ++l) {
     n = n / 1024;
   }
-
   return n.toFixed(n < 10 && l > 0 ? 1 : 0) + " " + units[l];
 }

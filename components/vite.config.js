@@ -12,6 +12,11 @@ const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 export default defineConfig({
+  server: {
+    fs: {
+      allow: [".."],
+    },
+  },
   plugins: [
     vue(),
     Icons({

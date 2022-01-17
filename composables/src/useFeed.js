@@ -15,8 +15,8 @@ import { downloadText, createMd, parseMd, uploadText } from "./useFile";
 
 /**
  * @typedef useFeeds
- * @property {Ref} search - a ref to bind to an input element
- * @property {Computed} slug - a slugified search query - url safe verion to be used as a tag
+ * @property {ref} search - a ref to bind to an input element
+ * @property {computed} slug - a slugified search query - url safe verion to be used as a tag
  * @property {Tags} tags - the object to handle all the tags
  * @property {Function} addTag - add a slug tag to the list
  */

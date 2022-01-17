@@ -16,7 +16,7 @@
 		"baseUrl": "./",
 		"paths": {
 			"@/*": ["./*"],
-			"@composables": ["../composables/src/index"],
+			"@composables": ["../composables/src/"],
 		}
 	},
 	"include": ["./src"]
