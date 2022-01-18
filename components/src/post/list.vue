@@ -46,9 +46,9 @@ const { posts, timestamps, downloadPosts, uploadPosts, publishPost, uploadPost, 
       input#import-feed.hidden(
         tabindex="-1"
         type="file",
-        accept="text/markdown",
+        accept=".zip",
         ref="file"
-        @change="uploadPosts($event)"
+        @change="uploadPosts($event.target.files[0])"
       )
 </template>
 

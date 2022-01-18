@@ -7,7 +7,7 @@ import { computed, reactive, ref } from "vue";
 import ms from "ms";
 import { useGun } from "./useGun";
 
-import { downloadText, createMd } from "./useFile";
+import { downloadFile, createMd } from "./useFile";
 
 /**
  * @typedef {Object} Post
@@ -66,7 +66,7 @@ export function useTagPost(tag = ref(""), hash = ref("")) {
       ...post.value.data,
     };
     delete frontmatter.content;
-    downloadText(
+    downloadFile(
       createMd({
         frontmatter,
         content: post.value.data?.content,

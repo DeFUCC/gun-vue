@@ -17,8 +17,7 @@ export function createMd({ frontmatter = null, content = "" } = md) {
   if (typeof frontmatter == "object") {
     let yml = yaml.stringify(frontmatter);
     front = `---
-${yml}
----
+${yml}---
 `;
     return front + content;
   }
@@ -53,8 +52,15 @@ export function parseMd(file) {
  * @param {String} fileName - the full file name like "myKey.json"
  */
 
-export function downloadText(text, fileType, fileName) {
-  var blob = new Blob([text], { type: fileType });
+export function downloadFile(text, fileType, fileName) {
+  let blob;
+
+  if (typeof text == "string") {
+    blob = new Blob([text], { type: fileType });
+  } else {
+    blob = text;
+    console.log(typeof text);
+  }
 
   var a = document.createElement("a");
   a.download = fileName;

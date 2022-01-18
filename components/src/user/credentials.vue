@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, downloadText, usePass } from '@composables'
+import { useUser, downloadFile, usePass } from '@composables'
 import { ref, computed } from 'vue'
 const current = ref('pass')
 
@@ -59,7 +59,7 @@ const encPair = computed(() => {
       button.button.items-center(@click="show('key')")
         la-envelope-open-text
         .px-2 Text
-      button.button.items-center(@click="downloadText(encPair, 'application/json', (user.name || 'account') + '.json'); current = null")
+      button.button.items-center(@click="downloadFile(encPair, 'application/json', (user.name || 'account') + '.json'); current = null")
         la-file-code
         .px-2 JSON
   .flex.w-full.justify-center.mt-4(v-if="current")

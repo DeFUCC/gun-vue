@@ -42,8 +42,6 @@ function submit() {
   reset()
 }
 
-
-
 const { state, handleChange } = usePictureUpload({
   picSize: 800,
   preserveRatio: true

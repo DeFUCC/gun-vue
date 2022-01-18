@@ -11,7 +11,7 @@ import Fuse from "fuse.js";
 import { logEvent } from "./useLog";
 import { gun, useGun } from "./useGun";
 import { hashObj, hashText } from "./useHash";
-import { downloadText, createMd, parseMd, uploadText } from "./useFile";
+import { downloadFile, createMd, parseMd, uploadText } from "./useFile";
 
 /**
  * @typedef useFeeds
@@ -131,7 +131,7 @@ export function useFeed(tag = ref("tag")) {
   }
 
   function uploadPosts(ev) {
-    importFeed(tag.value, ev);
+    importFeedZip(tag.value, ev);
   }
 
   function uploadPost(ev) {
@@ -169,16 +169,9 @@ export function useBanned(hash) {
   return banned;
 }
 
-export async function addPost(tag, obj, log = true) {
+export async function addPost(tag, obj) {
   const { text, hash } = await hashObj(obj);
   gun.get(`#${tag}`).get(`${hash}`).put(text);
-  if (log) {
-    logEvent("new-post", {
-      event: "new-post",
-      feed: tag,
-      hash,
-    });
-  }
 }
 
 /**
@@ -189,7 +182,7 @@ export async function addPost(tag, obj, log = true) {
 
 export async function exportFeed(tag, posts) {
   let checkSum = await hashText(posts);
-  downloadText(
+  downloadFile(
     createMd({
       content: "",
       frontmatter: {
@@ -205,17 +198,45 @@ export async function exportFeed(tag, posts) {
 }
 
 /**
- *
- * @param {*} tag
- * @param {*} posts
+ * Export a list of posts as a zip file
+ * @param {String} tag - Name of the tag
+ * @param {Object} posts - Posts to export
  */
-import * as JSZip from "@zip.js/zip.js";
-export async function exportFeedZip(tag, posts) {
+import JSZip from "jszip";
+export function exportFeedZip(tag, posts) {
   if (!posts) return;
-  console.log(tag);
+  const zip = new JSZip();
   for (let hash in posts) {
-    console.log(posts[hash]);
+    let content = posts[hash]?.content;
+    delete posts[hash]?.content;
+    zip.file(
+      `${posts[hash]?.title || hash}.md`,
+      createMd({
+        content: content,
+        frontmatter: posts[hash],
+      }),
+      "text/markdown",
+      tag + ".md"
+    );
   }
+  zip.generateAsync({ type: "blob" }).then((content) => {
+    downloadFile(content, "application/zip", `${tag}.zip`);
+  });
+}
+
+export function importFeedZip(tag, file) {
+  JSZip.loadAsync(file).then((zip) => {
+    zip.forEach(async (path, entry) => {
+      if (path.endsWith(".md")) {
+        let title = path.slice(0, -3);
+        let md = await entry.async("string");
+        let { frontmatter, content } = parseMd(md);
+        frontmatter.title = frontmatter?.title || title;
+        let post = { ...frontmatter, content };
+        addPost(tag, post);
+      }
+    });
+  });
 }
 
 /**

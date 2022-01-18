@@ -247,7 +247,7 @@ File handling functions
     * _static_
         * [.createMd(md)](#module_File.createMd) ⇒
         * [.parseMd(file)](#module_File.parseMd) ⇒ <code>Md</code>
-        * [.downloadText(text, fileType, fileName)](#module_File.downloadText)
+        * [.downloadFile(text, fileType, fileName)](#module_File.downloadFile)
         * [.uploadText(event, callback)](#module_File.uploadText)
         * [.usePictureUpload(Options)](#module_File.usePictureUpload) ⇒ <code>PictureUploadData</code>
     * _inner_
@@ -278,9 +278,9 @@ Parse text content of a markdown file into an object
 | --- | --- | --- |
 | file | <code>String</code> | Text form of an uploaded file |
 
-<a name="module_File.downloadText"></a>
+<a name="module_File.downloadFile"></a>
 
-### File.downloadText(text, fileType, fileName)
+### File.downloadFile(text, fileType, fileName)
 A method to download any text as a file
 
 **Kind**: static method of [<code>File</code>](#module_File)  
