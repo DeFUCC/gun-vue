@@ -33,7 +33,7 @@ const add = reactive({
 })
 
 const hasContent = computed(() => {
-  return post.value.title || post.value.description || post.value.content || post.value.picture
+  return post.value.title || post.value.description || post.value.content || post.value.cover
 })
 
 function submit() {
@@ -51,7 +51,7 @@ const { state, handleChange } = usePictureUpload({
 
 watch(() => state.output, file => {
   if (file?.content) {
-    post.value.picture = file.content
+    post.value.cover = file.content
   }
 })
 
@@ -99,6 +99,17 @@ function reset() {
   simplemde.value('')
   youtube.value = null
 }
+
+
+const { state: iconState, handleChange: handleIcon } = usePictureUpload({
+  picSize: 400,
+})
+
+watch(() => iconState.output, file => {
+  if (file?.content) {
+    post.value.icon = file.content
+  }
+})
 </script>
 
 <template lang='pug'>
@@ -117,10 +128,14 @@ function reset() {
       la-eye-slash(v-else)
     button.button.text-xl( @click="reset()")
       la-trash-alt
-  .flex.relative.my-4(v-if="add.form && post.picture")
+  .flex.relative.my-4(v-if="add.form && post.cover")
     button.button.absolute.text-2xl.right-2.opacity-60.hover_opacity-100
-      la-trash-alt(@click="post.picture = null")
-    img( :src="post.picture")
+      la-trash-alt(@click="post.cover = null")
+    img( :src="post.cover")
+  .flex.relative.max-w-100px.items-center.justify-center(v-if="post.icon")
+    button.button.absolute.text-3xl.opacity-10.hover_opacity-100
+      la-trash-alt(@click="post.icon = null")
+    img.rounded-full(:src="post.icon")
   transition(name="fade")
     form.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl.mb-6(action="javascript:void(0);" v-show="add.form")
 
@@ -128,7 +143,10 @@ function reset() {
       input(v-model="post.description" placeholder="Description")
 
       .flex.flex-wrap.text-xl
-        label.button.cursor-pointer(for="image_upload" :class="{ active: post.picture }")
+        label.button.cursor-pointer(for="icon_upload" :class="{ active: post.icon }")
+          la-info-circle
+        input#icon_upload.hidden(type="file" @change="handleIcon" accept="image/*")
+        label.button.cursor-pointer(for="image_upload" :class="{ active: post.cover }")
           la-image
         input#image_upload.hidden(type="file" @change="handleChange" accept="image/*")
         button.button(@click="add.youtube = !add.youtube" :class="{ active: post.youtube }")
