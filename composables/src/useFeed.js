@@ -224,17 +224,19 @@ export function exportFeedZip(tag, posts) {
   });
 }
 
-export function importFeedZip(tag, file) {
-  JSZip.loadAsync(file).then((zip) => {
-    zip.forEach(async (path, entry) => {
-      if (path.endsWith(".md")) {
-        let title = path.slice(0, -3);
-        let md = await entry.async("string");
-        let { frontmatter, content } = parseMd(md);
-        frontmatter.title = frontmatter?.title || title;
-        let post = { ...frontmatter, content };
-        addPost(tag, post);
-      }
+export function importFeedZip(tag, files) {
+  [...files].forEach((file) => {
+    JSZip.loadAsync(file).then((zip) => {
+      zip.forEach(async (path, entry) => {
+        if (path.endsWith(".md")) {
+          let title = path.slice(0, -3);
+          let md = await entry.async("string");
+          let { frontmatter, content } = parseMd(md);
+          frontmatter.title = frontmatter?.title || title;
+          let post = { ...frontmatter, content };
+          addPost(tag, post);
+        }
+      });
     });
   });
 }

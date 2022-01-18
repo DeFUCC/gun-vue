@@ -13,6 +13,10 @@ const colorLight = useColor('light')
 
 const { posts, timestamps, downloadPosts, uploadPosts, publishPost, uploadPost, banPost } = useFeed(props.tag)
 
+
+function dropFiles(ev, a) {
+  console.log(ev, a)
+}
 </script>
 
 <template lang='pug'>
@@ -40,7 +44,7 @@ const { posts, timestamps, downloadPosts, uploadPosts, publishPost, uploadPost, 
       button.button.items-center(title="Download feed" @click="downloadPosts()")
         la-file-download
         .ml-2 Download
-      label.button.cursor-pointer.flex.items-center(title="Upload feed" for="import-feed")
+      label.button.cursor-pointer.flex.items-center(title="Upload feed" for="import-feed" @drop.stop.prevent="dropFiles")
         la-file-upload
         .ml-2 Upload
       input#import-feed.hidden(
@@ -48,7 +52,8 @@ const { posts, timestamps, downloadPosts, uploadPosts, publishPost, uploadPost, 
         type="file",
         accept=".zip",
         ref="file"
-        @change="uploadPosts($event.target.files[0])"
+        multiple
+        @change="uploadPosts($event.target.files)"
       )
 </template>
 
