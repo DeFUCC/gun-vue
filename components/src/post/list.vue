@@ -12,7 +12,7 @@ const emit = defineEmits(['close', 'browse'])
 
 const colorLight = useColor('light')
 
-const { posts, timestamps, downloadPosts, uploadPosts, publishPost, banPost } = useFeed(props.tag, { host: props.host })
+const { posts, timestamps, downloadPosts, uploadPosts } = useFeed(props.tag, { host: props.host })
 
 
 function dropFiles(ev, a) {
@@ -40,7 +40,6 @@ function dropFiles(ev, a) {
         :post="item" 
         :host="host"
         @click="emit('browse', hash)"
-        @downvote="banPost(item)"
         )
   .flex.bg-dark-500.bg-opacity-40.p-4
     .flex.justify-center

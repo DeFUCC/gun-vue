@@ -8,7 +8,6 @@ import { computed, reactive, ref } from "vue";
 import slugify from "slugify";
 import Fuse from "fuse.js";
 
-import { logEvent } from "./useLog";
 import { gun, useGun } from "./useGun";
 import { hashObj, hashText } from "./useHash";
 import { downloadFile, createMd, parseMd, uploadText } from "./useFile";
@@ -136,27 +135,12 @@ export function useFeed(tag = ref("tag"), { host = "" } = {}) {
     importFeedZip(tag.value, ev);
   }
 
-  function uploadPost(ev) {
-    importPost(tag.value, ev);
-  }
-
-  function publishPost(post) {
-    addPost(tag.value, post);
-  }
-
-  function banPost(post) {
-    addPost("ban", post);
-  }
-
   return {
     posts,
     timestamps,
     count,
     downloadPosts,
     uploadPosts,
-    uploadPost,
-    publishPost,
-    banPost,
   };
 }
 
@@ -203,7 +187,12 @@ export async function exportFeed(tag, posts) {
  * Export a list of posts as a zip file
  * @param {String} tag - Name of the tag
  * @param {Object} posts - Posts to export
+ * @example
+ * import {exportFeedZip} from '@gun-vue/components'
+ * exportFeedZip('myTag',posts)
  */
+
+// https://github.com/Stuk/jszip
 import JSZip from "jszip";
 export function exportFeedZip(tag, posts) {
   if (!posts) return;
@@ -233,6 +222,13 @@ export function exportFeedZip(tag, posts) {
   });
 }
 
+/**
+ * Upload zip files and add all the MD files from it to the tag
+ * @param {String} tag - a tag to add the posts to
+ * @param {FileList} files - File list from the input `@change` event
+ * @example @lang html
+ * <input type="file" @change="importFeedZip( 'myTag', $event.target.files )" />
+ */
 export function importFeedZip(tag, files) {
   [...files].forEach((file) => {
     JSZip.loadAsync(file).then((zip) => {

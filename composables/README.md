@@ -4,7 +4,7 @@
 
 A Composition API `use` functions set for Gun.js and Vue 3 reactivity system
 
-![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/_public/media/svg/composables.svg)
+![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/docs/public/media/svg/composables.svg)
 
 It's just the beginning and not all the functions are reliably implemented yet. So you're welcome to collaborate on existing and new features of the library.
 
@@ -26,20 +26,30 @@ It's just the beginning and not all the functions are reliably implemented yet. 
 
 ## How to use
 
-1. Install the library: `npm i @gun-vue/composables`
-2. Import any of the functions you need: `import {useAccount} from '@gun-vue/composables'`
+1. Install the library:
+
+```shell
+npm i @gun-vue/composables
+```
+
+2. Import any of the functions you need:
+
+```js
+import { useAccount } from "@gun-vue/composables";
+```
+
 3. Instantiate the function inside your Vue SFC
 
 ```js
-<script setup>const {(account, auth, leave)} = useAccount()</script>
+
+const {(account, auth, leave)} = useAccount()
+
 ```
 
 4. Use the reactive state in your template to drive the component:
 
-```pug
-<template>
-.p-2.flex(v-for="(data,field) in account.profile" :key="data")
-      .mr-2.font-bold {{ field }}
-      .text-md {{ data }}
-</template>
+```html
+<div v-for="(data,field) in account.profile" :key="data">
+  {{ field }} - {{ data }}
+</div>
 ```

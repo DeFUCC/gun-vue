@@ -62,8 +62,10 @@ We manage tasks for the build at this [Taskade project](https://www.taskade.com/
 
 1. Clone the repo
 2. Use [pnpm](https://pnpm.io/) to install all the dependencies in the workspaces
-   ```bash
-   npm i -G pnpm
-   pnpm i
-   ```
+
+```bash
+npm i -G pnpm
+pnpm i
+```
+
 3. Use `demo` and `docs` scripts in the root `package.json` to run corresponding dev servers. Use `npm run build` to build the whole project to the `_dist` folder.
