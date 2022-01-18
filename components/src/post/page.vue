@@ -27,7 +27,7 @@ md.use(externalLinks, {
 </script>
 
 <template lang='pug'>
-.rounded-2xl.flex.flex-col.max-w-160.mx-auto(:style="{ backgroundColor: colorLight.hex(hash) }")
+.rounded-2xl.flex.flex-col.max-w-160.mx-auto.w-full(:style="{ backgroundColor: colorLight.hex(hash) }")
   .flex.flex-wrap.items-center.w-full.px-4.py-2.sticky.top-0.shadow-xl(:style="{ backgroundColor: colorLight.hex(hash) }")
     .hover_underline.text-md.cursor-pointer.font-bold.flex(@click="$emit('close')") 
       .p-0 #
@@ -48,7 +48,7 @@ md.use(externalLinks, {
     embed-youtube.mb-6.shadow-xl(v-if="post?.data?.youtube" :video="post?.data?.youtube")
     .text-md.markdown-body.bg-light-200.rounded-2xl.m-1.px-4.py-6.leading-relaxed(v-if="post?.data.content" v-html="md.render(post?.data?.content)") 
   .flex.bg-dark-100.bg-opacity-50.p-4
-    post-star(:tag="tag" :hash="hash")
+    post-action-star(:tag="tag" :hash="hash")
     button.button.items-center(@click="post.download()")
       la-markdown.ml-1
       .font-bold.ml-2.mr-1 Download

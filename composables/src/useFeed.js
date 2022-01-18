@@ -99,10 +99,12 @@ export function useFeeds() {
  * @param {ref} tag - A vue ref to watch - generated from props by `toRef(props,'tag')`
  * @returns {useFeed}
  */
-export function useFeed(tag = ref("tag")) {
+export function useFeed(tag = ref("tag"), { host = "" } = {}) {
   const gun = useGun();
   tag = ref(tag);
   const timestamps = ref({});
+
+  const ban = host ? gun.user(host).get("bannedPosts") : gun.get("#ban");
 
   const posts = computed(() => {
     const obj = reactive({});
@@ -113,7 +115,7 @@ export function useFeed(tag = ref("tag")) {
       })
       .map()
       .on(async (d, k) => {
-        let banned = await gun.get("#ban").get(k).then();
+        let banned = await ban.get(k).then();
         if (tag.value != "ban" && banned) return;
         try {
           obj[k] = JSON.parse(d);

@@ -1,0 +1,27 @@
+<script setup>
+import { ref } from 'vue'
+import { gun } from '@composables'
+
+const props = defineProps({
+  tag: { type: String, default: '' },
+  hash: { type: String, default: '' },
+  host: { type: String, default: '' },
+})
+
+const banned = ref(false)
+
+gun.get('#ban').get(props.hash).on(d => {
+  if (d) banned.value = true
+})
+
+async function banPost() {
+  let post = await gun.get(`#${props.tag}`).get(props.hash).then()
+  gun.get('#ban').get(props.hash).put(post)
+}
+
+</script>
+
+<template lang='pug'>
+button.button.items-center(@click.stop.prevent="banPost()" :style="{ color: banned ? 'red' : 'inherit' }")
+  la-trash-alt
+</template>

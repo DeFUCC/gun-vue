@@ -35,7 +35,10 @@ export { default as PostCard } from "./post/Card.vue";
 export { default as PostForm } from "./post/Form.vue";
 export { default as PostList } from "./post/List.vue";
 export { default as PostPage } from "./post/Page.vue";
-export { default as PostStar } from "./post/Star.vue";
+
+export { default as PostActionStar } from "./post/action/Star.vue";
+export { default as PostActionUpdate } from "./post/action/Update.vue";
+export { default as PostActionBan } from "./post/action/Ban.vue";
 
 export { default as LogTree } from "./log/Tree.vue";
 
@@ -46,10 +49,10 @@ export { default as EmbedYoutube } from "./embed/Youtube.vue";
 
 export { default as UiModal } from "./ui/Modal.vue";
 
-export { default as UtilPulse } from "./util/pulse.vue";
-export { default as UtilGraph } from "./util/graph.vue";
-export { default as UtilShare } from "./util/share.vue";
-export { default as Utiltools } from "./util/tools.vue";
+export { default as UtilPulse } from "./util/Pulse.vue";
+export { default as UtilGraph } from "./util/Graph.vue";
+export { default as UtilShare } from "./util/Share.vue";
+export { default as Utiltools } from "./util/Tools.vue";
 
 export * from "@composables";
 
