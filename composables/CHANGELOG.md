@@ -1,5 +1,12 @@
 # @gun-vue/composables
 
+## 0.5.7
+
+### Patch Changes
+
+- detachable post actions components
+- 2e21ea7: posts in zip files export and import
+
 ## 0.5.6
 
 ### Patch Changes
