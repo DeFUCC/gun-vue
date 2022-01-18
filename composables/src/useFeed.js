@@ -222,10 +222,13 @@ export function exportFeedZip(tag, posts) {
     );
   }
   zip.generateAsync({ type: "blob" }).then((content) => {
+    let now = new Date();
+    const offset = now.getTimezoneOffset();
+    now = new Date(now.getTime() - offset * 60 * 1000);
     downloadFile(
       content,
       "application/zip",
-      `${tag}-${new Date().toISOString().split("T")[0]}.zip`
+      `${tag}-${now.toISOString().split("T")[0]}.zip`
     );
   });
 }
