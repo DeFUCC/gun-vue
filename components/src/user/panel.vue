@@ -12,8 +12,9 @@ const emit = defineEmits(['browse'])
   v-if="user.is"
   :style="{ backgroundColor: colorDeep.hex(user.pub) }"
   )
-  account-avatar(@click="$emit('browse', user.pub)")
-  .text-2xl.mx-2.font-bold {{ user?.name }}
+  .flex.items-center(@click="$emit('browse', user.pub)")
+    account-avatar
+    .text-2xl.mx-2.font-bold {{ user?.name }}
   account-mate(:pub="user.pub")
   .flex-1 
   util-pulse(:blink="user.blink")

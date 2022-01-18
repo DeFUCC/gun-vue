@@ -23,7 +23,7 @@ router-link.fixed.top-0.left-0.z-1000(to="/")
   ion-share-outline.mr-2(@click="show.share = !show.share")
   ui-modal(:open="show.share" @close="show.share = false")
     util-share
-  user-icon
+  user-icon(@browse="$router.push(`/users/${$event}`)")
 </template>
 
 <style lang="postcss" scoped>

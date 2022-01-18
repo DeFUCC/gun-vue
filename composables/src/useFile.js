@@ -32,14 +32,18 @@ ${yml}
 export function parseMd(file) {
   const yamlBlockPattern = /^(?:\-\-\-)(.*?)(?:\-\-\-|\.\.\.)(?:\n*\s*)(.*)/s;
   const yml = yamlBlockPattern.exec(file.trim());
-  let frontmatter = yml[1];
-  if (frontmatter) {
+  let frontmatter, content;
+
+  if (yml) {
+    frontmatter = yml[1];
+    content = yml?.[2];
     try {
       frontmatter = yaml.parse(frontmatter);
     } catch {}
+    return { frontmatter, content };
+  } else {
+    return { content: file.trim() };
   }
-  let content = yml[2];
-  return { frontmatter, content };
 }
 
 /**

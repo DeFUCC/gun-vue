@@ -16,7 +16,6 @@ defineProps(['video']);
 
 <style scoped>
 .iframe-container {
-  margin: 0;
   overflow: hidden;
   /* 16:9 aspect ratio */
   padding-top: 56.25%;

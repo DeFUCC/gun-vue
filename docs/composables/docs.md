@@ -167,6 +167,7 @@ Immutable hashed lists of data
         * [.useFeeds()](#module_Feeds.useFeeds) ⇒ <code>useFeeds</code>
         * [.useFeed(tag)](#module_Feeds.useFeed) ⇒ <code>useFeed</code>
         * [.exportFeed(tag, posts)](#module_Feeds.exportFeed)
+        * [.importFeed(tag, event)](#module_Feeds.importFeed)
     * _inner_
         * [~useFeeds](#module_Feeds..useFeeds)
         * [~useFeed](#module_Feeds..useFeed)
@@ -186,7 +187,7 @@ Use a list of immutable data from a #tag
 
 | Param | Type | Description |
 | --- | --- | --- |
-| tag | <code>Ref</code> | A vue ref to watch - generated from props by `toRef(props,'tag')` |
+| tag | <code>ref</code> | A vue ref to watch - generated from props by `toRef(props,'tag')` |
 
 <a name="module_Feeds.exportFeed"></a>
 
@@ -199,6 +200,18 @@ Export the feed as a Markdown .md file
 | --- | --- |
 | tag | <code>String</code> | 
 | posts | <code>Object</code> | 
+
+<a name="module_Feeds.importFeed"></a>
+
+### Feeds.importFeed(tag, event)
+Import feed from a markdown file
+
+**Kind**: static method of [<code>Feeds</code>](#module_Feeds)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| tag | <code>String</code> |  |
+| event | <code>Event</code> | the event from the file input |
 
 <a name="module_Feeds..useFeeds"></a>
 
@@ -221,7 +234,7 @@ Export the feed as a Markdown .md file
 
 | Name | Type | Description |
 | --- | --- | --- |
-| list | <code>Reactive</code> | the reactive list of hashed data |
+| list | <code>reactive</code> | the reactive list of hashed data |
 | addToTag | <code>function</code> | stringifies an object and puts it into an immutable #tag graph |
 
 <a name="module_File"></a>

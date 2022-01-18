@@ -34,9 +34,9 @@
     "unplugin-vue-components": "^0.17.13",
     "vite": "^2.7.12",
     "vite-aliases": "^0.8.7",
-    "vite-plugin-windicss": "^1.6.2",
+    "vite-plugin-windicss": "^1.6.3",
     "vitepress": "0.21.5",
     "vitepress-tags": "^0.4.0",
-    "windicss": "^3.4.2"
+    "windicss": "^3.4.3"
   }
 }

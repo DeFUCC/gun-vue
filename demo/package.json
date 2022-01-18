@@ -30,7 +30,7 @@
     "unplugin-vue-components": "^0.17.13",
     "vite": "^2.7.12",
     "vite-plugin-pages": "^0.20.0",
-    "vite-plugin-windicss": "^1.6.2",
-    "windicss": "^3.4.2"
+    "vite-plugin-windicss": "^1.6.3",
+    "windicss": "^3.4.3"
   }
 }

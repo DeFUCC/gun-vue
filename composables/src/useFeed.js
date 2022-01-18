@@ -90,13 +90,13 @@ export function useFeeds() {
 
 /**
  * @typedef useFeed
- * @property {Reactive} list -  the reactive list of hashed data
+ * @property {reactive} list -  the reactive list of hashed data
  * @property {Function} addToTag - stringifies an object and puts it into an immutable #tag graph
  */
 
 /**
  * Use a list of immutable data from a #tag
- * @param {Ref} tag - A vue ref to watch - generated from props by `toRef(props,'tag')`
+ * @param {ref} tag - A vue ref to watch - generated from props by `toRef(props,'tag')`
  * @returns {useFeed}
  */
 export function useFeed(tag = ref("tag")) {
@@ -127,7 +127,7 @@ export function useFeed(tag = ref("tag")) {
   const count = computed(() => Object.keys(posts.value).length);
 
   function downloadPosts() {
-    exportFeed(tag.value, posts.value);
+    exportFeedZip(tag.value, posts.value);
   }
 
   function uploadPosts(ev) {
@@ -203,6 +203,26 @@ export async function exportFeed(tag, posts) {
     tag + ".md"
   );
 }
+
+/**
+ *
+ * @param {*} tag
+ * @param {*} posts
+ */
+import * as JSZip from "@zip.js/zip.js";
+export async function exportFeedZip(tag, posts) {
+  if (!posts) return;
+  console.log(tag);
+  for (let hash in posts) {
+    console.log(posts[hash]);
+  }
+}
+
+/**
+ * Import feed from a markdown file
+ * @param {String} tag
+ * @param {Event} event - the event from the file input
+ */
 
 export function importFeed(tag, event) {
   uploadText(event, (file) => {

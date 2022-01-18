@@ -1,33 +1,48 @@
 <script setup>
-import { reactive, ref, onMounted, watch } from 'vue'
+import { reactive, ref, onMounted, watch, computed, nextTick } from 'vue'
 import SimpleMDE from 'simplemde'
 import 'simplemde/dist/simplemde.min.css'
 
-import { usePictureUpload } from '@composables/src/useFile'
+import { usePictureUpload, addPost, useColor, uploadText, parseMd } from '@composables'
+
+const props = defineProps({
+  tag: { type: String, default: 'null' }
+})
+
+const colorDeep = useColor('deep')
+
+const addColor = computed(() => {
+  return colorDeep.hex(props.tag)
+})
 
 let simplemde
 onMounted(() => {
   simplemde = new SimpleMDE({
     element: document.getElementById("myMD"),
   });
-  title.value.focus()
+  title?.value?.focus()
 })
 
 const post = ref({})
 const title = ref()
-const emit = defineEmits(['submit'])
 
 const add = reactive({
+  form: false,
   youtube: false,
   content: false,
 })
 
+const hasContent = computed(() => {
+  return post.value.title || post.value.description || post.value.content || post.value.picture
+})
+
 function submit() {
   const contents = { ...post.value, content: simplemde.value() }
-  emit('submit', contents)
-  post.value = {}
-  simplemde.value('')
+  addPost(props.tag, contents)
+  reset()
 }
+
+
 
 const { state, handleChange } = usePictureUpload({
   picSize: 800,
@@ -43,7 +58,14 @@ watch(() => state.output, file => {
 const youtube = ref()
 
 watch(youtube, link => {
-  post.value.youtube = youtubeLinkParser(link)
+  if (link) {
+    post.value.youtube = youtubeLinkParser(link)
+  } else {
+    post.value.youtube = null
+    youtube.value = null
+    add.youtube = false
+  }
+
 })
 
 function youtubeLinkParser(url) {
@@ -56,29 +78,78 @@ function youtubeLinkParser(url) {
   }
 }
 
+function importPost(event) {
+  uploadText(event, (file) => {
+    let { frontmatter, content } = parseMd(file);
+    post.value = { ...post.value, ...frontmatter }
+    if (content) {
+      add.content = true
+      nextTick(() => {
+        simplemde.value(content)
+      })
+
+    }
+  });
+}
+
+function reset() {
+  add.form = false
+  post.value = {}
+  simplemde.value('')
+  youtube.value = null
+}
+
+
 </script>
 
 <template lang='pug'>
-form.flex.flex-col.p-2.border-1.rounded-2xl(action="javascript:void(0);")
-  input(v-model="post.title" placeholder="Title" autofocus ref="title")
-  input(v-model="post.description" placeholder="Description")
+.flex.flex-col
+  button.text-xl.plus.transition.rounded-xl.bg-light-800.shadow-lg.p-2.m-2.flex.items-center.justify-center.flex-1(@click="add.form = !add.form" v-if="!hasContent")
+    transition(name="fade" mode="out-in")
+      la-plus(v-if="!add.form")
+      la-times(v-else)
+    .font-bold.ml-2 New post
+  .flex.justify-center.text-xl(v-if="hasContent")
+    button.plus.button.flex-1.justify-center( type="submit" @click="submit()")
+      la-check
+      .font-bold.ml-2 Submit
+    button.plus.button.items-center.justify-center(@click="add.form = !add.form")
+      la-pen(v-if="!add.form")
+      la-eye-slash(v-else)
+    button.button.text-xl( @click="reset()")
+      la-trash-alt
+  transition(name="fade")
+    form.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl.mb-6(action="javascript:void(0);" v-show="add.form")
+      .flex.relative(v-if="post.picture")
+        button.button.absolute.text-2xl.right-2.opacity-60.hover_opacity-100
+          la-trash-alt(@click="post.picture = null")
+        img( :src="post.picture")
+      input(v-model="post.title" placeholder="Title" autofocus ref="title")
+      input(v-model="post.description" placeholder="Description")
 
-  .flex.flex-wrap
-    button.button(@click="add.content = !add.content" :class="{ active: add.content }")
-      mdi-text-long
-    button.button(@click="add.youtube = !add.youtube" :class="{ active: add.youtube }")
-      la-youtube
-    label.button.cursor-pointer(for="image_upload")
-      la-image
-    input#image_upload.hidden(type="file" @change="handleChange")
-    p {{ post }}
-  .flex.flex-col
-    img(v-if="state.output?.content" :src="state.output?.content")
-    input(v-if="add.youtube" v-model="youtube" placeholder="Youtube video ID" accept=".png .jpg .jpeg")
-  .flex.flex-col(v-show="add.content")
-    textarea#myMD(ref="md"  placeholder="Main text content (with **markdown** support)")
+      .flex.flex-wrap
+        label.button.cursor-pointer(for="image_upload" :class="{ active: post.picture }")
+          la-image
+        input#image_upload.hidden(type="file" @change="handleChange" accept=".png, .jpg, .jpeg")
+        button.button(@click="add.youtube = !add.youtube" :class="{ active: post.youtube }")
+          la-youtube
+        input(v-if="add.youtube" v-model="youtube" placeholder="Paste a Youtube video link")
+        button.button(@click="add.content = !add.content" :class="{ active: add.content }")
+          mdi-text-long
+        label.button.cursor-pointer.flex.items-center(for="import-post")
+          la-markdown
+        input#import-post.hidden(
+          tabindex="-1"
+          type="file",
+          accept="text/markdown",
+          ref="file"
+          @change="importPost($event)"
+        )
+      .flex.flex-col
+        embed-youtube(v-if="post.youtube" :video="post.youtube")
+      .flex.flex-col(v-show="add.content")
+        textarea#myMD(ref="md"  placeholder="Main text content (with **markdown** support)")
 
-  button.button(:disabled="!post.title && !post.description && !post.content" type="submit" @click="submit()") Submit
 </template>
 
 <style lang="postcss" scoped>
@@ -90,6 +161,10 @@ button:disabled {
   @apply opacity-40;
 }
 .active {
-  @apply bg-light-900 shadow-lg;
+  background-color: v-bind(addColor);
+}
+
+.plus:hover {
+  background-color: v-bind(addColor);
 }
 </style>

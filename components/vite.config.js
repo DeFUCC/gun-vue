@@ -37,13 +37,6 @@ export default defineConfig({
     }),
     WindiCSS(),
   ],
-  resolve: {
-    alias: {
-      "@": path.resolve(dirname, "/"),
-      "@components": path.resolve(dirname, "src"),
-      "@composables": path.resolve(dirname, "../composables/"),
-    },
-  },
   build: {
     lib: {
       entry: path.resolve(dirname, "/src/index.js"),
@@ -70,6 +63,13 @@ export default defineConfig({
           vue: "Vue",
         },
       },
+    },
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve(dirname, "/"),
+      "@components": path.resolve(dirname, "src"),
+      "@composables": path.resolve(dirname, "../composables/src/"),
     },
   },
 });

@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import { useFeed, useColor } from '@composables';
+import { useColor } from '@composables';
+import { useFeed } from '@composables/useFeed.js'
 
 
 const props = defineProps({
@@ -10,7 +11,6 @@ const emit = defineEmits(['close', 'browse'])
 
 const colorLight = useColor('light')
 
-const add = ref(false)
 const { posts, timestamps, downloadPosts, uploadPosts, publishPost, uploadPost, banPost } = useFeed(props.tag)
 
 </script>
@@ -27,15 +27,8 @@ const { posts, timestamps, downloadPosts, uploadPosts, publishPost, uploadPost, 
           label.button.cursor-pointer.flex.items-center(title="Upload feed" for="import-feed")
             la-file-upload
         .flex-1 
-        label.button.cursor-pointer.flex.items-center(for="import-post")
-          la-markdown
-  .flex.flex-col
-    button.transition.text-xl.rounded-xl.bg-light-800.hover_bg-fuchsia-400.shadow-xl.p-2.m-2.flex.items-center.justify-center(@click="add = !add")
-      transition(name="fade")
-        la-plus(title="Add post" v-if="!add")
-        la-times(v-else)
-    transition(name="fade")
-      post-form(v-if="add" @submit="publishPost($event); add = false")
+
+  post-form(:tag="tag")
   .flex.flex-col
     transition-group(name="fade")
       post-card(
@@ -57,13 +50,6 @@ const { posts, timestamps, downloadPosts, uploadPosts, publishPost, uploadPost, 
       accept="text/markdown",
       ref="file"
       @change="uploadPosts($event)"
-    )
-    input#import-post.hidden(
-      tabindex="-1"
-      type="file",
-      accept="text/markdown",
-      ref="file"
-      @change="uploadPost($event)"
     )
 </template>
 
