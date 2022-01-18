@@ -222,7 +222,11 @@ export function exportFeedZip(tag, posts) {
     );
   }
   zip.generateAsync({ type: "blob" }).then((content) => {
-    downloadFile(content, "application/zip", `${tag}.zip`);
+    downloadFile(
+      content,
+      "application/zip",
+      `${tag}-${new Date().toISOString().split("T")[0]}.zip`
+    );
   });
 }
 
