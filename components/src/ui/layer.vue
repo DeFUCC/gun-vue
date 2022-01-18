@@ -8,7 +8,7 @@ const emit = defineEmits(['close'])
 <template lang="pug">
 
 .fixed.w-full.h-full.top-0.left-0.flex.justify-end.items-stretch.z-500(v-show="open")
-  transition(name="fade")
+  transition(name="fade" mode="out-in")
     .bg-dark-200.bg-opacity-30.w-full.h-full.absolute.z-2.cursor-pointer(@click="$emit('close')" v-if="open")
       button.button.absolute.right-0.top-1vh(@click="$emit('close')")
         la-times

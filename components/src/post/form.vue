@@ -60,6 +60,7 @@ const youtube = ref()
 watch(youtube, link => {
   if (link) {
     post.value.youtube = youtubeLinkParser(link)
+    add.youtube = false
   } else {
     post.value.youtube = null
     youtube.value = null
@@ -98,8 +99,6 @@ function reset() {
   simplemde.value('')
   youtube.value = null
 }
-
-
 </script>
 
 <template lang='pug'>
@@ -108,7 +107,7 @@ function reset() {
     transition(name="fade" mode="out-in")
       la-plus(v-if="!add.form")
       la-times(v-else)
-    .font-bold.ml-2 New post
+    .font-bold.ml-2 Add
   .flex.justify-center.text-xl(v-if="hasContent")
     button.plus.button.flex-1.justify-center( type="submit" @click="submit()")
       la-check
@@ -118,19 +117,20 @@ function reset() {
       la-eye-slash(v-else)
     button.button.text-xl( @click="reset()")
       la-trash-alt
+  .flex.relative.my-4(v-if="add.form && post.picture")
+    button.button.absolute.text-2xl.right-2.opacity-60.hover_opacity-100
+      la-trash-alt(@click="post.picture = null")
+    img( :src="post.picture")
   transition(name="fade")
     form.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl.mb-6(action="javascript:void(0);" v-show="add.form")
-      .flex.relative(v-if="post.picture")
-        button.button.absolute.text-2xl.right-2.opacity-60.hover_opacity-100
-          la-trash-alt(@click="post.picture = null")
-        img( :src="post.picture")
-      input(v-model="post.title" placeholder="Title" autofocus ref="title")
+
+      input.font-bold.text-xl(v-model="post.title" placeholder="Title" autofocus ref="title")
       input(v-model="post.description" placeholder="Description")
 
-      .flex.flex-wrap
+      .flex.flex-wrap.text-xl
         label.button.cursor-pointer(for="image_upload" :class="{ active: post.picture }")
           la-image
-        input#image_upload.hidden(type="file" @change="handleChange" accept=".png, .jpg, .jpeg")
+        input#image_upload.hidden(type="file" @change="handleChange" accept="image/*")
         button.button(@click="add.youtube = !add.youtube" :class="{ active: post.youtube }")
           la-youtube
         input(v-if="add.youtube" v-model="youtube" placeholder="Paste a Youtube video link")
@@ -145,7 +145,7 @@ function reset() {
           ref="file"
           @change="importPost($event)"
         )
-      .flex.flex-col
+      .flex.flex-col.my-6.shadow-xl
         embed-youtube(v-if="post.youtube" :video="post.youtube")
       .flex.flex-col(v-show="add.content")
         textarea#myMD(ref="md"  placeholder="Main text content (with **markdown** support)")

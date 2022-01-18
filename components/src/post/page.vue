@@ -27,7 +27,7 @@ md.use(externalLinks, {
 </script>
 
 <template lang='pug'>
-.rounded-2xl.flex.flex-col.max-w-160.mx-auto.overscroll-contain.min-h-full(:style="{ backgroundColor: colorLight.hex(hash) }")
+.rounded-2xl.flex.flex-col.max-w-160.mx-auto(:style="{ backgroundColor: colorLight.hex(hash) }")
   .flex.flex-wrap.items-center.w-full.pl-4(:style="{ backgroundColor: colorLight.hex(hash) }")
     div(class="hover:underline text-md cursor-pointer" @click="$emit('close')") # {{ tag }}
     .ml-1 / {{ post?.data?.title }} 
@@ -44,6 +44,6 @@ md.use(externalLinks, {
     post-star(:tag="tag" :hash="hash")
     button.button.items-center(@click="post.download()")
       la-markdown.ml-1
-      .font-bold.ml-2.mr-1 Download post
+      .font-bold.ml-2.mr-1 Download
     
 </template>
