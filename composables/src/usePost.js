@@ -7,7 +7,8 @@ import { computed, reactive, ref } from "vue";
 import ms from "ms";
 import { useGun } from "./useGun";
 
-import { downloadFile, createMd } from "./useFile";
+import { createMd } from "./useFile";
+import { useZip } from "./useZip";
 
 /**
  * @typedef {Object} Post
@@ -36,7 +37,9 @@ export function useTagPost(tag = ref(""), hash = ref("")) {
       tag,
       hash,
       data: {},
-      download,
+      download() {
+        downloadPost(post);
+      },
     });
 
     gun
@@ -61,19 +64,20 @@ export function useTagPost(tag = ref(""), hash = ref("")) {
     return obj;
   });
 
-  async function download() {
-    let frontmatter = {
-      ...post.value.data,
-    };
-    delete frontmatter.content;
-    downloadFile(
-      createMd({
-        frontmatter,
-        content: post.value.data?.content,
-      }),
-      "text/markdown",
-      (post.value.data?.title || "post") + ".md"
-    );
-  }
   return post;
+}
+
+async function downloadPost(post) {
+  post = ref(post);
+  let frontmatter = {
+    ...post.value.data,
+  };
+
+  const { title } = frontmatter;
+
+  const { zipPost, downloadZip } = useZip();
+
+  await zipPost(frontmatter);
+
+  downloadZip({ title });
 }

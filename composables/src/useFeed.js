@@ -7,10 +7,12 @@ import { computed, reactive, ref } from "vue";
 
 import slugify from "slugify";
 import Fuse from "fuse.js";
+import JSZip from "jszip";
 
 import { gun, useGun } from "./useGun";
 import { hashObj, hashText } from "./useHash";
 import { downloadFile, createMd, parseMd, uploadText } from "./useFile";
+import { useZip } from "./useZip";
 
 /**
  * @typedef useFeeds
@@ -192,34 +194,18 @@ export async function exportFeed(tag, posts) {
  * exportFeedZip('myTag',posts)
  */
 
-// https://github.com/Stuk/jszip
-import JSZip from "jszip";
-export function exportFeedZip(tag, posts) {
+export async function exportFeedZip(tag, posts) {
   if (!posts) return;
-  const zip = new JSZip();
+
+  const { zip, zipPost, downloadZip } = useZip();
+
   for (let hash in posts) {
-    let content = posts[hash]?.content;
-    delete posts[hash]?.content;
-    zip.file(
-      `${posts[hash]?.title || hash}.md`,
-      createMd({
-        content: content,
-        frontmatter: posts[hash],
-      }),
-      "text/markdown",
-      tag + ".md"
-    );
+    let frontmatter = {
+      ...posts[hash],
+    };
+    await zipPost(frontmatter);
   }
-  zip.generateAsync({ type: "blob" }).then((content) => {
-    let now = new Date();
-    const offset = now.getTimezoneOffset();
-    now = new Date(now.getTime() - offset * 60 * 1000);
-    downloadFile(
-      content,
-      "application/zip",
-      `${tag}-${now.toISOString().split("T")[0]}.zip`
-    );
-  });
+  downloadZip({ title: `#${tag}` });
 }
 
 /**
