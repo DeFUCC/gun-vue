@@ -11,22 +11,13 @@ import { createMd } from "./useFile";
 import { useZip } from "./useZip";
 
 /**
- * @typedef {Object} Post
- * @property {Boolean} empty - whether the post has contents
- * @property {String} tag - the tag under which the post was published
- * @property {String} hash - the hash of the contents
- * @property {Object} data - the contents of the post
- * @property {Function} download - use this function to download the post as a Markdown file
- */
-
-/**
- *
+ * An interface to manage a post
  * @param {String} tag
  * @param {String} hash
  * @returns {Post}
  */
 
-export function useTagPost(tag = ref(""), hash = ref("")) {
+export function usePost(tag = ref(""), hash = ref("")) {
   const gun = useGun();
 
   tag = ref(tag);
@@ -67,7 +58,16 @@ export function useTagPost(tag = ref(""), hash = ref("")) {
   return post;
 }
 
-async function downloadPost(post) {
+/**
+ * @typedef {Object} Post
+ * @property {Boolean} empty - whether the post has contents
+ * @property {String} tag - the tag under which the post was published
+ * @property {String} hash - the hash of the contents
+ * @property {Object} data - the contents of the post
+ * @property {Function} download - use this function to download the post as a Markdown file
+ */
+
+export async function downloadPost(post) {
   post = ref(post);
   let frontmatter = {
     ...post.value.data,

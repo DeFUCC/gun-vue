@@ -1,6 +1,6 @@
 <script setup>
 import { reactive } from 'vue'
-import { useGun, safeHash, useTagPost } from '@composables';
+import { useGun, safeHash, usePost } from '@composables';
 
 const props = defineProps({
   pub: { type: String, default: '' }
@@ -17,7 +17,7 @@ gun.user(props.pub).get('feeds').map().once(function (list, tag) {
       delete posts?.[tag]?.[k]
     } else {
       posts[tag] = posts[tag] || {}
-      posts[tag][k] = useTagPost(tag, k)
+      posts[tag][k] = usePost(tag, k)
     }
   })
 })

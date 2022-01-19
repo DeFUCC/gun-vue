@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue'
 import { useColor } from '@composables';
 import { useFeed } from '@composables/useFeed.js'
 
@@ -14,10 +13,6 @@ const colorLight = useColor('light')
 
 const { posts, timestamps, downloadPosts, uploadPosts } = useFeed(props.tag, { host: props.host })
 
-
-function dropFiles(ev, a) {
-  console.log(ev, a)
-}
 </script>
 
 <template lang='pug'>
@@ -46,7 +41,7 @@ function dropFiles(ev, a) {
       button.button.items-center(title="Download feed" @click="downloadPosts()")
         la-file-download
         .ml-2 Download
-      label.button.cursor-pointer.flex.items-center(title="Upload feed" for="import-feed" @drop.stop.prevent="dropFiles")
+      label.button.cursor-pointer.flex.items-center(title="Upload feed" for="import-feed")
         la-file-upload
         .ml-2 Upload
       input#import-feed.hidden(

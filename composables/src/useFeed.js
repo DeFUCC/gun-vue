@@ -91,14 +91,9 @@ export function useFeeds() {
 }
 
 /**
- * @typedef useFeed
- * @property {reactive} list -  the reactive list of hashed data
- * @property {Function} addToTag - stringifies an object and puts it into an immutable #tag graph
- */
-
-/**
  * Use a list of immutable data from a #tag
  * @param {ref} tag - A vue ref to watch - generated from props by `toRef(props,'tag')`
+ * @param {Object} options - Options for the feed
  * @returns {useFeed}
  */
 export function useFeed(tag = ref("tag"), { host = "" } = {}) {
@@ -131,11 +126,11 @@ export function useFeed(tag = ref("tag"), { host = "" } = {}) {
   const count = computed(() => Object.keys(posts.value).length);
 
   function downloadPosts() {
-    exportFeedZip(tag.value, posts.value);
+    downloadFeed(tag.value, posts.value);
   }
 
   function uploadPosts(ev) {
-    importFeedZip(tag.value, ev);
+    uploadFeed(tag.value, ev);
   }
 
   return {
@@ -146,6 +141,13 @@ export function useFeed(tag = ref("tag"), { host = "" } = {}) {
     uploadPosts,
   };
 }
+
+/**
+ * @typedef useFeed
+ * @property {ref} posts -  the reactive list of hashed data
+ * @property {ref} timestamps - reactive timestamps list for all posts in a list
+ * @property {computed} count - the number of posts in a feed
+ */
 
 export function useBanned(hash) {
   const banned = ref(false);
@@ -191,11 +193,11 @@ export async function exportFeed(tag, posts) {
  * @param {String} tag - Name of the tag
  * @param {Object} posts - Posts to export
  * @example
- * import {exportFeedZip} from '@gun-vue/components'
- * exportFeedZip('myTag',posts)
+ * import {downloadFeed} from '@gun-vue/components'
+ * downloadFeed('myTag',posts)
  */
 
-export async function exportFeedZip(tag, posts) {
+export async function downloadFeed(tag, posts) {
   if (!posts) return;
 
   const { zip, zipPost, downloadZip } = useZip();
@@ -214,9 +216,9 @@ export async function exportFeedZip(tag, posts) {
  * @param {String} tag - a tag to add the posts to
  * @param {FileList} files - File list from the input `@change` event
  * @example @lang html
- * <input type="file" @change="importFeedZip( 'myTag', $event.target.files )" />
+ * <input type="file" @change="uploadFeed( 'myTag', $event.target.files )" />
  */
-export function importFeedZip(tag, files) {
+export function uploadFeed(tag, files) {
   [...files].forEach(async (file) => {
     const zip = await JSZip.loadAsync(file);
     zip.forEach(async (path, entry) => {

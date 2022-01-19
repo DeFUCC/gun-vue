@@ -1,6 +1,6 @@
 <script setup>
 import { useColor } from '@composables';
-import { useTagPost } from '@composables';
+import { usePost } from '@composables';
 import markdown from 'markdown-it'
 import externalLinks from 'markdown-it-external-links'
 
@@ -13,7 +13,7 @@ defineEmits(['close'])
 
 const colorLight = useColor('light')
 
-const post = useTagPost(props.tag, props.hash)
+const post = usePost(props.tag, props.hash)
 
 const md = new markdown({
   linkify: true,
