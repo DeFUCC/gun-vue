@@ -53,6 +53,9 @@ const user = useUser();
 </dd>
 <dt><a href="#module_Worker">Worker</a></dt>
 <dd></dd>
+<dt><a href="#module_useZip">useZip</a></dt>
+<dd><p>Read and write zip files</p>
+</dd>
 </dl>
 
 <a name="module_Account"></a>
@@ -1023,6 +1026,55 @@ Example sorter function for a dated list object
   <tbody>
 <tr>
     <td>e</td><td><code>Object</code></td><td><p>the worker post event with a <code>data</code> object with a list of records to sort by the date keys</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_useZip"></a>
+
+## useZip
+Read and write zip files
+
+
+* [useZip](#module_useZip)
+    * _static_
+        * [.useZip()](#module_useZip.useZip) ⇒ <code>useZip</code>
+    * _inner_
+        * [~useZip](#module_useZip..useZip)
+
+<a name="module_useZip.useZip"></a>
+
+### useZip.useZip() ⇒ <code>useZip</code>
+Zip file creation toolbox
+
+**Kind**: static method of [<code>useZip</code>](#module_useZip)  
+<a name="module_useZip..useZip"></a>
+
+### useZip~useZip
+**Kind**: inner typedef of [<code>useZip</code>](#module_useZip)  
+**Properties**
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>zip</td><td><code>JSZip</code></td><td><p>a JSZip instance</p>
+</td>
+    </tr><tr>
+    <td>zipPost</td><td><code>function</code></td><td><p>treats a post with md contents and cover and icon images and adds them to the zip</p>
+</td>
+    </tr><tr>
+    <td>addMd</td><td><code>function</code></td><td><p>add a MD file to the zip</p>
+</td>
+    </tr><tr>
+    <td>addFile</td><td><code>function</code></td><td><p>add a binary file to the zip</p>
+</td>
+    </tr><tr>
+    <td>downloadZip</td><td><code>function</code></td><td><p>initiate the download of the zip file</p>
 </td>
     </tr>  </tbody>
 </table>

@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.5.8
+
+### Patch Changes
+
+- 7ea9cb6: zip is easy now
+- Updated dependencies [7ea9cb6]
+  - @gun-vue/composables@0.5.8
+
 ## 0.5.7
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.5.8
+
+### Patch Changes
+
+- 7ea9cb6: zip is easy now
+
 ## 0.5.7
 
 ### Patch Changes
