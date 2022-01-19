@@ -22,6 +22,12 @@ export let gun;
 /** Secondary Gun instance for key management */
 export let gun2;
 
+/**
+ * A Gun instance for DB manipulations
+ * @param {Array} peer - an array of Gun peers (should be only one for now)
+ * @returns {Gun}
+ */
+
 export function useGun(peer = peers) {
   if (!gun || peer != peers) {
     peers = peer;
@@ -30,12 +36,18 @@ export function useGun(peer = peers) {
   return gun;
 }
 
+/**
+ * get a secondary Gun instance to manages certificates
+ * @param {Array} peer - an array of Gun peers (should be only one for now)
+ * @returns {Gun}
+ */
+
 export function useGun2(peer = peers) {
   if (!gun2 || peer != peers) {
     peers = peer;
     gun2 = Gun({ peers, localStorage: false });
   }
-  return { gun2 };
+  return gun2;
 }
 
 /**

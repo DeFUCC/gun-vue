@@ -288,3 +288,7 @@ export function detectMimeType(b64) {
     }
   }
 }
+
+// DRAG AND DROP
+//https://medium.com/devschacht/https-medium-com-kasimoka-joseph-zimmerman-drag-drop-file-uploader-vanilla-js-de850d74aa2f
+//https://github.com/quarklemotion/html5-file-selector/blob/master/src/Html5FileSelector.js

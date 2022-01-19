@@ -29,3 +29,8 @@ console.log(templateData);
 //   });
 //   fs.writeFileSync(path.resolve(outputDir, `${className}.md`), output);
 // }
+
+//https://github.com/jsdoc2md/jsdoc-to-markdown/wiki/Create-a-custom-partial
+//https://github.com/jsdoc2md/jsdoc-to-markdown/wiki
+//https://github.com/jsdoc2md/jsdoc-to-markdown/blob/0f0eba1c249a8893153ff9ba715bad6c708b2bfa/docs/API.md#module_jsdoc-to-markdown--JsdocToMarkdown+render
+//https://github.com/jsdoc2md/dmd/blob/master/partials/shared/signature/sig-name.hbs

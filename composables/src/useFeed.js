@@ -166,30 +166,8 @@ export async function addPost(tag, obj) {
 }
 
 /**
- * Export the feed as a Markdown .md file
- * @param {String} tag
- * @param {Object} posts
- */
-
-export async function exportFeed(tag, posts) {
-  let checkSum = await hashText(posts);
-  downloadFile(
-    createMd({
-      content: "",
-      frontmatter: {
-        title: tag,
-        type: "feed",
-        postsHash: checkSum,
-        posts: posts,
-      },
-    }),
-    "text/markdown",
-    tag + ".md"
-  );
-}
-
-/**
  * Export a list of posts as a zip file
+ * @async
  * @param {String} tag - Name of the tag
  * @param {Object} posts - Posts to export
  * @example

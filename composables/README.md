@@ -1,10 +1,10 @@
 # Gun DB + Vue UI composables collection
 
-[gun-vue.js.org](https://gun-vue.js.org)
-
 A Composition API `use` functions set for Gun.js and Vue 3 reactivity system
 
 ![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/docs/public/media/svg/composables.svg)
+
+[gun-vue.js.org](https://gun-vue.js.org)
 
 It's just the beginning and not all the functions are reliably implemented yet. So you're welcome to collaborate on existing and new features of the library.
 
@@ -53,3 +53,5 @@ const {(account, auth, leave)} = useAccount()
   {{ field }} - {{ data }}
 </div>
 ```
+
+[FULL DOCS ONLINE](https://gun-vue.js.org/docs)

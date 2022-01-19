@@ -1,5 +1,5 @@
 /**
- * 2D space for meetings
+ * A 2D-space
  * @module useSpace
  */
 
@@ -11,9 +11,19 @@ import { logEvent } from "./useLog";
 import { computed, reactive, watch } from "vue";
 
 /**
- * Get a space to navigate
+ * @typedef {Object} useSpace
+ * @property {reactive} space
+ * @property {ref} area
+ * @property {Function} join
+ * @property {Function} place
+ */
+
+/**
+ *  A space to navigate with mouse clicks
  * @param {String} spaceName
  * @returns {useSpace}
+ * @example
+ * const {space, area, join, place} = useSpace()
  */
 
 export function useSpace(spaceName = "public") {
@@ -129,11 +139,3 @@ export function useSpace(spaceName = "public") {
 
   return { space, area, join, place };
 }
-
-/**
- * @typedef {Object} useSpace
- * @property {reactive} space
- * @property {ref} area
- * @property {Function} join
- * @property {Function} place
- */

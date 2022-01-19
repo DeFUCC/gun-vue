@@ -17,7 +17,30 @@ const user = useUser();
 ```
 
 
-{{>main-index~}}
+
+{{#modules~}}
+{{#if @first~}}
+{{>heading-indent}}Modules
+
+<table>
+  <thead>
+    <tr>
+      <th>Module</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+{{/if~}}
+    <tr>
+    <td><a href="#{{{toLowerCase name}}}" >{{name}}</a></td>
+    <td>{{{md (inlineLinks description)}}}</td>
+    </tr>
+{{#if @last~}}
+  </tbody>
+</table>
+
+{{/if~}}
+{{/modules}}
+
 {{#orphans ~}}
 {{>header~}}
 {{>body}}
@@ -25,7 +48,7 @@ const user = useUser();
 {{>separator~}}
 
 {{#children inherited=undefined ~}}
-{{>header~}}
+{{>heading-indent}}{{>sig-name}}
 {{>body}}
 {{>member-index~}}
 {{>separator~}}

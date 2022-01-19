@@ -6,6 +6,27 @@
 import { useMousePressed, useMouseInElement } from "@vueuse/core";
 import { ref, reactive, onMounted, onBeforeUnmount, watch } from "vue";
 
+/**
+ * @typedef {Object} useMouse
+ * @property {ref} area - an area to mount the mouse to
+ * @property {Mouse} mouse - the reactive mouse parameters
+ */
+
+/**
+ * @typedef {reactive} Mouse
+ * @property {Number} x - absolute X coordinate to place a marker to
+ * @property {Number} y - absolute Y coordinate to place a marker to
+ * @property {Number} normX - [0-1] relative X coordinate
+ * @property {Number} normY - [0-1] relative Y coordinate
+ * @property {Boolean} pressed - is mouse pressed?
+ * @property {Boolean} inside - is mouse inside the area?
+ */
+
+/**
+ * Correct mouse position in an SVG space
+ * @returns {useMouse}
+ */
+
 export function useSvgMouse() {
   const area = ref(null);
 
