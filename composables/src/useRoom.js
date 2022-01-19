@@ -1,8 +1,6 @@
 import { useGun2 } from "./useGun";
 import { reactive } from "vue";
 
-const { gun2 } = useGun2();
-
 export const room = reactive({
   pub: "",
   title: "",
@@ -12,6 +10,9 @@ export const room = reactive({
   guests: [],
 });
 
-gun2.on("auth", async () => {
-  room.hosting = true;
-});
+export function useRoom() {
+  const gun2 = useGun2();
+  gun2.on("auth", async () => {
+    room.hosting = true;
+  });
+}
