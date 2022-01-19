@@ -1,6 +1,6 @@
 /**
  * Gun DB initialization and basic methods
- * @module Gun
+ * @module useGun
  */
 
 import Gun from "gun/gun";

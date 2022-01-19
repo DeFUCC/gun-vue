@@ -1,5 +1,6 @@
 /**
- * @module Worker
+ * Worker wrapper for heavy functions
+ * @module useWorker
  */
 
 /**

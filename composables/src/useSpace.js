@@ -1,9 +1,20 @@
+/**
+ * 2D space for meetings
+ * @module useSpace
+ */
+
 import { useGun } from "./useGun";
 import { useSvgMouse } from "./useMouse";
 import { user } from "./useUser";
 import { hashText } from "./useHash";
 import { logEvent } from "./useLog";
 import { computed, reactive, watch } from "vue";
+
+/**
+ * Get a space to navigate
+ * @param {String} spaceName
+ * @returns {useSpace}
+ */
 
 export function useSpace(spaceName = "public") {
   const gun = useGun();
@@ -118,3 +129,11 @@ export function useSpace(spaceName = "public") {
 
   return { space, area, join, place };
 }
+
+/**
+ * @typedef {Object} useSpace
+ * @property {reactive} space
+ * @property {ref} area
+ * @property {Function} join
+ * @property {Function} place
+ */

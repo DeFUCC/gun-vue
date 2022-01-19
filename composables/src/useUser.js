@@ -1,6 +1,6 @@
 /**
  * Basic user management
- * @module User
+ * @module useUser
  * */
 
 import { gun, useGun } from "./useGun";

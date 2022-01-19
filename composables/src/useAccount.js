@@ -1,6 +1,6 @@
 /**
  * Basic account management
- * @module Account
+ * @module useAccount
  * */
 
 /**

@@ -16,67 +16,88 @@ import { useUser } from "@gun-vue/composables";
 const user = useUser();
 ```
 
+
 ## Modules
 
 <dl>
-<dt><a href="#module_Account">Account</a></dt>
+<dt><a href="#module_useAccount">useAccount</a></dt>
 <dd><p>Basic account management</p>
 </dd>
-<dt><a href="#module_Crypto">Crypto</a></dt>
+<dt><a href="#module_useColor">useColor</a></dt>
+<dd><p>Deterministic colors derived from oub keys, hashes or any other string data</p>
+</dd>
+<dt><a href="#module_useCrypto">useCrypto</a></dt>
 <dd><p>SEA cryptography abstraction</p>
 </dd>
-<dt><a href="#module_Feeds">Feeds</a></dt>
+<dt><a href="#module_useFeed">useFeed</a></dt>
 <dd><p>Immutable hashed lists of data</p>
 </dd>
-<dt><a href="#module_File">File</a></dt>
+<dt><a href="#module_useFile">useFile</a></dt>
 <dd><p>File handling functions</p>
 </dd>
-<dt><a href="#module_Gun">Gun</a></dt>
+<dt><a href="#module_useGun">useGun</a></dt>
 <dd><p>Gun DB initialization and basic methods</p>
 </dd>
-<dt><a href="#module_Hash">Hash</a></dt>
+<dt><a href="#module_useHash">useHash</a></dt>
 <dd><p>Working with hashes</p>
 </dd>
-<dt><a href="#module_DataTree">DataTree</a></dt>
+<dt><a href="#module_useLog">useLog</a></dt>
 <dd><p>Reactive version of <code>gun-util</code> Date tree</p>
 </dd>
-<dt><a href="#module_Passphrase">Passphrase</a></dt>
-<dd></dd>
-<dt><a href="#module_Post">Post</a></dt>
+<dt><a href="#module_useMd">useMd</a></dt>
+<dd><p>Handle Markdown files</p>
+</dd>
+<dt><a href="#module_useMouse">useMouse</a></dt>
+<dd><p>Handle mouse movement inside an SVG</p>
+</dd>
+<dt><a href="#module_usePass">usePass</a></dt>
+<dd><p>Manage user&#39;s password and credentials</p>
+</dd>
+<dt><a href="#module_usePost">usePost</a></dt>
 <dd><p>Get and handle a particular post by it&#39;s tag and hash</p>
 </dd>
-<dt><a href="#module_Relay">Relay</a></dt>
-<dd></dd>
-<dt><a href="#module_User">User</a></dt>
+<dt><a href="#module_useRelay">useRelay</a></dt>
+<dd><p>Relay connection management</p>
+</dd>
+<dt><a href="#module_useSpace">useSpace</a></dt>
+<dd><p>2D space for meetings</p>
+</dd>
+<dt><a href="#module_useUser">useUser</a></dt>
 <dd><p>Basic user management</p>
 </dd>
-<dt><a href="#module_Worker">Worker</a></dt>
-<dd></dd>
+<dt><a href="#module_useWorker">useWorker</a></dt>
+<dd><p>Worker wrapper for heavy functions</p>
+</dd>
 <dt><a href="#module_useZip">useZip</a></dt>
 <dd><p>Read and write zip files</p>
 </dd>
 </dl>
 
-<a name="module_Account"></a>
+## Typedefs
 
-## Account
+<dl>
+<dt><a href="#useSpace">useSpace</a> : <code>Object</code></dt>
+<dd></dd>
+</dl>
 
+<a name="module_useAccount"></a>
+
+## useAccount
 Basic account management
 
-- [Account](#module_Account)
-  - _static_
-    - [.useAccount(pub)](#module_Account.useAccount) ⇒ <code>Account</code>
-  - _inner_
-    - [~Account](#module_Account..Account) : <code>Object</code>
 
-<a name="module_Account.useAccount"></a>
+* [useAccount](#module_useAccount)
+    * _static_
+        * [.useAccount(pub)](#module_useAccount.useAccount) ⇒ <code>Account</code>
+    * _inner_
+        * [~Account](#module_useAccount..Account) : <code>Object</code>
 
-### Account.useAccount(pub) ⇒ <code>Account</code>
+<a name="module_useAccount.useAccount"></a>
 
+### useAccount.useAccount(pub) ⇒ <code>Account</code>
 Load and handle user's account by a public key
 
-**Kind**: static method of [<code>Account</code>](#module_Account)
-
+**Kind**: static method of [<code>useAccount</code>](#module_useAccount)  
 <table>
   <thead>
     <tr>
@@ -90,24 +111,20 @@ Load and handle user's account by a public key
     </tr>  </tbody>
 </table>
 
-**Example**
-
+**Example**  
 ```js
-import { useAccount } from "@gun-vue/composables";
+import { useAccount } from '@gun-vue/composables'
 
-const pub =
-  "XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc";
+const pub = 'XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc'
 
-const { account } = useAccount(pub);
+const { account } = useAccount(pub)
 ```
+<a name="module_useAccount..Account"></a>
 
-<a name="module_Account..Account"></a>
-
-### Account~Account : <code>Object</code>
-
+### useAccount~Account : <code>Object</code>
 the user account interface
 
-**Kind**: inner typedef of [<code>Account</code>](#module_Account)  
+**Kind**: inner typedef of [<code>useAccount</code>](#module_useAccount)  
 **Properties**
 
 <table>
@@ -141,8 +158,7 @@ the user account interface
     </tr>  </tbody>
 </table>
 
-**Example**
-
+**Example**  
 ```js
 {
 "pub": "XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc",
@@ -157,32 +173,62 @@ the user account interface
 "blink": true
 }
 ```
+<hr />
 
-<a name="module_Crypto"></a>
+<a name="module_useColor"></a>
 
-## Crypto
+## useColor
+Deterministic colors derived from oub keys, hashes or any other string data
 
+<a name="module_useColor.useColor"></a>
+
+### useColor.useColor(palette) ⇒ <code>ColorHash</code>
+Get a color generator of a certain palette
+
+**Kind**: static method of [<code>useColor</code>](#module_useColor)  
+**Returns**: <code>ColorHash</code> - Color-Hash instance  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>palette</td><td><code>&#x27;light&#x27;</code> | <code>&#x27;regular&#x27;</code> | <code>&#x27;deep&#x27;</code> | <code>&#x27;dark&#x27;</code></td>
+    </tr>  </tbody>
+</table>
+
+**Example**  
+```js
+import {useColor} from '@gun-vue/composables'
+const colorDeep = useColor('deep')
+const color = colorDeep.hex('any text data')
+```
+<hr />
+
+<a name="module_useCrypto"></a>
+
+## useCrypto
 SEA cryptography abstraction
 
-- [Crypto](#module_Crypto)
-  - _static_
-    - [.encFor(data, sender, receiver)](#module_Crypto.encFor) ⇒ <code>String</code>
-    - [.decFrom(data, sender, receiver)](#module_Crypto.decFrom) ⇒ <code>String</code>
-  - _inner_
-    - [~Entity](#module_Crypto..Entity) : <code>Object</code>
 
-<a name="module_Crypto.encFor"></a>
+* [useCrypto](#module_useCrypto)
+    * _static_
+        * [.encFor(data, sender, receiver)](#module_useCrypto.encFor) ⇒ <code>String</code>
+        * [.decFrom(data, sender, receiver)](#module_useCrypto.decFrom) ⇒ <code>String</code>
+    * _inner_
+        * [~Entity](#module_useCrypto..Entity) : <code>Object</code>
 
-### Crypto.encFor(data, sender, receiver) ⇒ <code>String</code>
+<a name="module_useCrypto.encFor"></a>
 
+### useCrypto.encFor(data, sender, receiver) ⇒ <code>String</code>
 Encrypt data for one receiver entity
-
 1. Generates encryption secret using bob's epub and current user pair
 2. Enctypts data with this secret
 
-**Kind**: static method of [<code>Crypto</code>](#module_Crypto)  
-**Returns**: <code>String</code> - Encrypted data string to be sent
-
+**Kind**: static method of [<code>useCrypto</code>](#module_useCrypto)  
+**Returns**: <code>String</code> - Encrypted data string to be sent  
 <table>
   <thead>
     <tr>
@@ -202,18 +248,15 @@ Encrypt data for one receiver entity
     </tr>  </tbody>
 </table>
 
-<a name="module_Crypto.decFrom"></a>
+<a name="module_useCrypto.decFrom"></a>
 
-### Crypto.decFrom(data, sender, receiver) ⇒ <code>String</code>
-
+### useCrypto.decFrom(data, sender, receiver) ⇒ <code>String</code>
 Decrypt a private message from an entity
-
 1. Generates secret using senders `epub` and current user pair
 2. Decrypts the data with this secret
 
-**Kind**: static method of [<code>Crypto</code>](#module_Crypto)  
-**Returns**: <code>String</code> - Decrypted data
-
+**Kind**: static method of [<code>useCrypto</code>](#module_useCrypto)  
+**Returns**: <code>String</code> - Decrypted data  
 <table>
   <thead>
     <tr>
@@ -233,11 +276,10 @@ Decrypt a private message from an entity
     </tr>  </tbody>
 </table>
 
-<a name="module_Crypto..Entity"></a>
+<a name="module_useCrypto..Entity"></a>
 
-### Crypto~Entity : <code>Object</code>
-
-**Kind**: inner typedef of [<code>Crypto</code>](#module_Crypto)  
+### useCrypto~Entity : <code>Object</code>
+**Kind**: inner typedef of [<code>useCrypto</code>](#module_useCrypto)  
 **Properties**
 
 <table>
@@ -256,39 +298,37 @@ Decrypt a private message from an entity
     </tr>  </tbody>
 </table>
 
-<a name="module_Feeds"></a>
+<hr />
 
-## Feeds
+<a name="module_useFeed"></a>
 
+## useFeed
 Immutable hashed lists of data
 
-- [Feeds](#module_Feeds)
-  - _static_
-    - [.useFeeds()](#module_Feeds.useFeeds) ⇒ <code>useFeeds</code>
-    - [.useFeed(tag)](#module_Feeds.useFeed) ⇒ <code>useFeed</code>
-    - [.exportFeed(tag, posts)](#module_Feeds.exportFeed)
-    - [.downloadFeed(tag, posts)](#module_Feeds.downloadFeed)
-    - [.uploadFeed(tag, files)](#module_Feeds.uploadFeed)
-    - [.importFeed(tag, event)](#module_Feeds.importFeed)
-  - _inner_
-    - [~useFeeds](#module_Feeds..useFeeds)
-    - [~useFeed](#module_Feeds..useFeed)
 
-<a name="module_Feeds.useFeeds"></a>
+* [useFeed](#module_useFeed)
+    * _static_
+        * [.useFeeds()](#module_useFeed.useFeeds) ⇒ <code>useFeeds</code>
+        * [.useFeed(tag, options)](#module_useFeed.useFeed) ⇒ <code>useFeed</code>
+        * [.exportFeed(tag, posts)](#module_useFeed.exportFeed)
+        * [.downloadFeed(tag, posts)](#module_useFeed.downloadFeed)
+        * [.uploadFeed(tag, files)](#module_useFeed.uploadFeed)
+    * _inner_
+        * [~useFeeds](#module_useFeed..useFeeds)
+        * [~useFeed](#module_useFeed..useFeed)
 
-### Feeds.useFeeds() ⇒ <code>useFeeds</code>
+<a name="module_useFeed.useFeeds"></a>
 
+### useFeed.useFeeds() ⇒ <code>useFeeds</code>
 Toolkit to deal with the available tags
 
-**Kind**: static method of [<code>Feeds</code>](#module_Feeds)  
-<a name="module_Feeds.useFeed"></a>
+**Kind**: static method of [<code>useFeed</code>](#module_useFeed)  
+<a name="module_useFeed.useFeed"></a>
 
-### Feeds.useFeed(tag) ⇒ <code>useFeed</code>
-
+### useFeed.useFeed(tag, options) ⇒ <code>useFeed</code>
 Use a list of immutable data from a #tag
 
-**Kind**: static method of [<code>Feeds</code>](#module_Feeds)
-
+**Kind**: static method of [<code>useFeed</code>](#module_useFeed)  
 <table>
   <thead>
     <tr>
@@ -299,17 +339,18 @@ Use a list of immutable data from a #tag
 <tr>
     <td>tag</td><td><code>ref</code></td><td><p>A vue ref to watch - generated from props by <code>toRef(props,&#39;tag&#39;)</code></p>
 </td>
+    </tr><tr>
+    <td>options</td><td><code>Object</code></td><td><p>Options for the feed</p>
+</td>
     </tr>  </tbody>
 </table>
 
-<a name="module_Feeds.exportFeed"></a>
+<a name="module_useFeed.exportFeed"></a>
 
-### Feeds.exportFeed(tag, posts)
-
+### useFeed.exportFeed(tag, posts)
 Export the feed as a Markdown .md file
 
-**Kind**: static method of [<code>Feeds</code>](#module_Feeds)
-
+**Kind**: static method of [<code>useFeed</code>](#module_useFeed)  
 <table>
   <thead>
     <tr>
@@ -324,14 +365,12 @@ Export the feed as a Markdown .md file
     </tr>  </tbody>
 </table>
 
-<a name="module_Feeds.downloadFeed"></a>
+<a name="module_useFeed.downloadFeed"></a>
 
-### Feeds.downloadFeed(tag, posts)
-
+### useFeed.downloadFeed(tag, posts)
 Export a list of posts as a zip file
 
-**Kind**: static method of [<code>Feeds</code>](#module_Feeds)
-
+**Kind**: static method of [<code>useFeed</code>](#module_useFeed)  
 <table>
   <thead>
     <tr>
@@ -348,21 +387,17 @@ Export a list of posts as a zip file
     </tr>  </tbody>
 </table>
 
-**Example**
-
+**Example**  
 ```js
-import { downloadFeed } from "@gun-vue/components";
-downloadFeed("myTag", posts);
+import {downloadFeed} from '@gun-vue/components'
+downloadFeed('myTag',posts)
 ```
+<a name="module_useFeed.uploadFeed"></a>
 
-<a name="module_Feeds.uploadFeed"></a>
-
-### Feeds.uploadFeed(tag, files)
-
+### useFeed.uploadFeed(tag, files)
 Upload zip files and add all the MD files from it to the tag
 
-**Kind**: static method of [<code>Feeds</code>](#module_Feeds)
-
+**Kind**: static method of [<code>useFeed</code>](#module_useFeed)  
 <table>
   <thead>
     <tr>
@@ -379,40 +414,14 @@ Upload zip files and add all the MD files from it to the tag
     </tr>  </tbody>
 </table>
 
-**Example**
-
+**Example**  
 ```html
 <input type="file" @change="uploadFeed( 'myTag', $event.target.files )" />
 ```
+<a name="module_useFeed..useFeeds"></a>
 
-<a name="module_Feeds.importFeed"></a>
-
-### Feeds.importFeed(tag, event)
-
-Import feed from a markdown file
-
-**Kind**: static method of [<code>Feeds</code>](#module_Feeds)
-
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>tag</td><td><code>String</code></td><td></td>
-    </tr><tr>
-    <td>event</td><td><code>Event</code></td><td><p>the event from the file input</p>
-</td>
-    </tr>  </tbody>
-</table>
-
-<a name="module_Feeds..useFeeds"></a>
-
-### Feeds~useFeeds
-
-**Kind**: inner typedef of [<code>Feeds</code>](#module_Feeds)  
+### useFeed~useFeeds
+**Kind**: inner typedef of [<code>useFeed</code>](#module_useFeed)  
 **Properties**
 
 <table>
@@ -437,11 +446,10 @@ Import feed from a markdown file
     </tr>  </tbody>
 </table>
 
-<a name="module_Feeds..useFeed"></a>
+<a name="module_useFeed..useFeed"></a>
 
-### Feeds~useFeed
-
-**Kind**: inner typedef of [<code>Feeds</code>](#module_Feeds)  
+### useFeed~useFeed
+**Kind**: inner typedef of [<code>useFeed</code>](#module_useFeed)  
 **Properties**
 
 <table>
@@ -452,83 +460,40 @@ Import feed from a markdown file
   </thead>
   <tbody>
 <tr>
-    <td>list</td><td><code>reactive</code></td><td><p>the reactive list of hashed data</p>
+    <td>posts</td><td><code>ref</code></td><td><p>the reactive list of hashed data</p>
 </td>
     </tr><tr>
-    <td>addToTag</td><td><code>function</code></td><td><p>stringifies an object and puts it into an immutable #tag graph</p>
+    <td>timestamps</td><td><code>ref</code></td><td><p>reactive timestamps list for all posts in a list</p>
+</td>
+    </tr><tr>
+    <td>count</td><td><code>computed</code></td><td><p>the number of posts in a feed</p>
 </td>
     </tr>  </tbody>
 </table>
 
-<a name="module_File"></a>
+<hr />
 
-## File
+<a name="module_useFile"></a>
 
+## useFile
 File handling functions
 
-- [File](#module_File)
-  - _static_
-    - [.createMd(md)](#module_File.createMd) ⇒
-    - [.parseMd(file)](#module_File.parseMd) ⇒ <code>Md</code>
-    - [.downloadFile(text, fileType, fileName)](#module_File.downloadFile)
-    - [.uploadText(event, callback)](#module_File.uploadText)
-    - [.usePictureUpload(Options)](#module_File.usePictureUpload) ⇒ <code>PictureUploadData</code>
-  - _inner_
-    - [~PictureUploadOptions](#module_File..PictureUploadOptions) : <code>Object</code>
-    - [~PictureUploadData](#module_File..PictureUploadData) : <code>Object</code>
 
-<a name="module_File.createMd"></a>
+* [useFile](#module_useFile)
+    * _static_
+        * [.downloadFile(text, fileType, fileName)](#module_useFile.downloadFile)
+        * [.uploadText(event, callback)](#module_useFile.uploadText)
+        * [.usePictureUpload(Options)](#module_useFile.usePictureUpload) ⇒ <code>PictureUploadData</code>
+    * _inner_
+        * [~PictureUploadOptions](#module_useFile..PictureUploadOptions) : <code>Object</code>
+        * [~PictureUploadData](#module_useFile..PictureUploadData) : <code>Object</code>
 
-### File.createMd(md) ⇒
+<a name="module_useFile.downloadFile"></a>
 
-Create markdown with frontmatter
-
-**Kind**: static method of [<code>File</code>](#module_File)  
-**Returns**: Markdown file ready to download
-
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>md</td><td><code>Object</code></td><td><p>frontmatter,content</p>
-</td>
-    </tr>  </tbody>
-</table>
-
-<a name="module_File.parseMd"></a>
-
-### File.parseMd(file) ⇒ <code>Md</code>
-
-Parse text content of a markdown file into an object
-
-**Kind**: static method of [<code>File</code>](#module_File)  
-**Returns**: <code>Md</code> - - An object with md frontmatter and content
-
-<table>
-  <thead>
-    <tr>
-      <th>Param</th><th>Type</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-<tr>
-    <td>file</td><td><code>String</code></td><td><p>Text form of an uploaded file</p>
-</td>
-    </tr>  </tbody>
-</table>
-
-<a name="module_File.downloadFile"></a>
-
-### File.downloadFile(text, fileType, fileName)
-
+### useFile.downloadFile(text, fileType, fileName)
 A method to download any text as a file
 
-**Kind**: static method of [<code>File</code>](#module_File)
-
+**Kind**: static method of [<code>useFile</code>](#module_useFile)  
 <table>
   <thead>
     <tr>
@@ -548,14 +513,12 @@ A method to download any text as a file
     </tr>  </tbody>
 </table>
 
-<a name="module_File.uploadText"></a>
+<a name="module_useFile.uploadText"></a>
 
-### File.uploadText(event, callback)
-
+### useFile.uploadText(event, callback)
 Upload and parse JSON keypair
 
-**Kind**: static method of [<code>File</code>](#module_File)
-
+**Kind**: static method of [<code>useFile</code>](#module_useFile)  
 <table>
   <thead>
     <tr>
@@ -572,14 +535,12 @@ Upload and parse JSON keypair
     </tr>  </tbody>
 </table>
 
-<a name="module_File.usePictureUpload"></a>
+<a name="module_useFile.usePictureUpload"></a>
 
-### File.usePictureUpload(Options) ⇒ <code>PictureUploadData</code>
-
+### useFile.usePictureUpload(Options) ⇒ <code>PictureUploadData</code>
 Process an uploaded picture by rendering in into a canvas with given size. Returns a base64 encoded image to be stored and displayed as `img.src`
 
-**Kind**: static method of [<code>File</code>](#module_File)
-
+**Kind**: static method of [<code>useFile</code>](#module_useFile)  
 <table>
   <thead>
     <tr>
@@ -593,26 +554,20 @@ Process an uploaded picture by rendering in into a canvas with given size. Retur
     </tr>  </tbody>
 </table>
 
-**Example**
-
+**Example**  
 ```js
-const src = ref(null);
+const src = ref(null)
 
-const { state, handleUpload } = usePictureUpload({
-  preserveRatio: true,
-});
+const {state, handleUpload} = usePictureUpload({
+ preserveRatio: true,
+})
 
-watch(
-  () => state.output,
-  (file) => (src.value = file.content)
-);
+watch(()=>state.output, file => src.value = file.content)
 ```
+<a name="module_useFile..PictureUploadOptions"></a>
 
-<a name="module_File..PictureUploadOptions"></a>
-
-### File~PictureUploadOptions : <code>Object</code>
-
-**Kind**: inner typedef of [<code>File</code>](#module_File)  
+### useFile~PictureUploadOptions : <code>Object</code>
+**Kind**: inner typedef of [<code>useFile</code>](#module_useFile)  
 **Properties**
 
 <table>
@@ -634,11 +589,10 @@ watch(
     </tr>  </tbody>
 </table>
 
-<a name="module_File..PictureUploadData"></a>
+<a name="module_useFile..PictureUploadData"></a>
 
-### File~PictureUploadData : <code>Object</code>
-
-**Kind**: inner typedef of [<code>File</code>](#module_File)  
+### useFile~PictureUploadData : <code>Object</code>
+**Kind**: inner typedef of [<code>useFile</code>](#module_useFile)  
 **Properties**
 
 <table>
@@ -657,73 +611,69 @@ watch(
     </tr>  </tbody>
 </table>
 
-<a name="module_Gun"></a>
+<hr />
 
-## Gun
+<a name="module_useGun"></a>
 
+## useGun
 Gun DB initialization and basic methods
 
-- [Gun](#module_Gun)
-  - _static_
-    - [.gun](#module_Gun.gun)
-    - [.gun2](#module_Gun.gun2)
-  - _inner_
-    - [~SEA](#module_Gun..SEA)
-    - [~soul()](#module_Gun..soul)
-    - [~genUUID()](#module_Gun..genUUID)
 
-<a name="module_Gun.gun"></a>
+* [useGun](#module_useGun)
+    * _static_
+        * [.gun](#module_useGun.gun)
+        * [.gun2](#module_useGun.gun2)
+    * _inner_
+        * [~SEA](#module_useGun..SEA)
+        * [~soul()](#module_useGun..soul)
+        * [~genUUID()](#module_useGun..genUUID)
 
-### Gun.gun
+<a name="module_useGun.gun"></a>
 
+### useGun.gun
 Established Gun instance for database operations
 
-**Kind**: static property of [<code>Gun</code>](#module_Gun)  
-<a name="module_Gun.gun2"></a>
+**Kind**: static property of [<code>useGun</code>](#module_useGun)  
+<a name="module_useGun.gun2"></a>
 
-### Gun.gun2
-
+### useGun.gun2
 Secondary Gun instance for key management
 
-**Kind**: static property of [<code>Gun</code>](#module_Gun)  
-<a name="module_Gun..SEA"></a>
+**Kind**: static property of [<code>useGun</code>](#module_useGun)  
+<a name="module_useGun..SEA"></a>
 
-### Gun~SEA
-
+### useGun~SEA
 SEA library
 
-**Kind**: inner constant of [<code>Gun</code>](#module_Gun)  
-<a name="module_Gun..soul"></a>
+**Kind**: inner constant of [<code>useGun</code>](#module_useGun)  
+<a name="module_useGun..soul"></a>
 
-### Gun~soul()
-
+### useGun~soul()
 **Get a soul for any given node**
 A wrapper for `Gun.node.soul`
 
-**Kind**: inner method of [<code>Gun</code>](#module_Gun)  
-<a name="module_Gun..genUUID"></a>
+**Kind**: inner method of [<code>useGun</code>](#module_useGun)  
+<a name="module_useGun..genUUID"></a>
 
-### Gun~genUUID()
-
+### useGun~genUUID()
 **Generate a random UUID**
 A wrapper for `Gun.text.random`
 
-**Kind**: inner method of [<code>Gun</code>](#module_Gun)  
-<a name="module_Hash"></a>
+**Kind**: inner method of [<code>useGun</code>](#module_useGun)  
+<hr />
 
-## Hash
+<a name="module_useHash"></a>
 
+## useHash
 Working with hashes
 
-<a name="module_Hash.getShortHash"></a>
+<a name="module_useHash.getShortHash"></a>
 
-### Hash.getShortHash(text, seed) ⇒ <code>String</code>
-
+### useHash.getShortHash(text, seed) ⇒ <code>String</code>
 Calculate a hex hash for any string data
 
-**Kind**: static method of [<code>Hash</code>](#module_Hash)  
-**Returns**: <code>String</code> - The hex encoded SHA-1 hash
-
+**Kind**: static method of [<code>useHash</code>](#module_useHash)  
+**Returns**: <code>String</code> - The hex encoded SHA-1 hash  
 <table>
   <thead>
     <tr>
@@ -738,34 +688,156 @@ Calculate a hex hash for any string data
     </tr>  </tbody>
 </table>
 
-<a name="module_DataTree"></a>
+<hr />
 
-## DataTree
+<a name="module_useLog"></a>
 
+## useLog
 Reactive version of `gun-util` Date tree
 
-<a name="module_Passphrase"></a>
+<hr />
 
-## Passphrase
+<a name="module_useMd"></a>
 
-<a name="module_Post"></a>
+## useMd
+Handle Markdown files
 
-## Post
 
+* [useMd](#module_useMd)
+    * [.createMd(md)](#module_useMd.createMd) ⇒
+    * [.parseMd(file)](#module_useMd.parseMd) ⇒ <code>Md</code>
+
+<a name="module_useMd.createMd"></a>
+
+### useMd.createMd(md) ⇒
+Create markdown with frontmatter
+
+**Kind**: static method of [<code>useMd</code>](#module_useMd)  
+**Returns**: Markdown file ready to download  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>md</td><td><code>Object</code></td><td><p>frontmatter,content</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_useMd.parseMd"></a>
+
+### useMd.parseMd(file) ⇒ <code>Md</code>
+Parse text content of a markdown file into an object
+
+**Kind**: static method of [<code>useMd</code>](#module_useMd)  
+**Returns**: <code>Md</code> - - An object with md frontmatter and content  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>file</td><td><code>String</code></td><td><p>Text form of an uploaded file</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<hr />
+
+<a name="module_useMouse"></a>
+
+## useMouse
+Handle mouse movement inside an SVG
+
+<hr />
+
+<a name="module_usePass"></a>
+
+## usePass
+Manage user's password and credentials
+
+
+* [usePass](#module_usePass)
+    * _static_
+        * [.usePass()](#module_usePass.usePass) ⇒ <code>usePass</code>
+    * _inner_
+        * [~Pass](#module_usePass..Pass) : <code>reactive</code>
+        * [~usePass](#module_usePass..usePass) : <code>Object</code>
+
+<a name="module_usePass.usePass"></a>
+
+### usePass.usePass() ⇒ <code>usePass</code>
+Manage password of a user
+
+**Kind**: static method of [<code>usePass</code>](#module_usePass)  
+<a name="module_usePass..Pass"></a>
+
+### usePass~Pass : <code>reactive</code>
+**Kind**: inner typedef of [<code>usePass</code>](#module_usePass)  
+**Properties**
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>safe</td><td><code>Object</code></td>
+    </tr><tr>
+    <td>dec</td><td><code>Object</code></td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_usePass..usePass"></a>
+
+### usePass~usePass : <code>Object</code>
+**Kind**: inner typedef of [<code>usePass</code>](#module_usePass)  
+**Properties**
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>pass</td><td><code>Pass</code></td><td><p>the reactive password object</p>
+</td>
+    </tr><tr>
+    <td>setPass</td><td><code>function</code></td><td></td>
+    </tr><tr>
+    <td>logWithPass</td><td><code>function</code></td><td></td>
+    </tr>  </tbody>
+</table>
+
+<hr />
+
+<a name="module_usePost"></a>
+
+## usePost
 Get and handle a particular post by it's tag and hash
 
-- [Post](#module_Post)
-  - _static_
-    - [.usePost(tag, hash)](#module_Post.usePost) ⇒ <code>Post</code>
-  - _inner_
-    - [~Post](#module_Post..Post) : <code>Object</code>
 
-<a name="module_Post.usePost"></a>
+* [usePost](#module_usePost)
+    * _static_
+        * [.usePost(tag, hash)](#module_usePost.usePost) ⇒ <code>Post</code>
+    * _inner_
+        * [~Post](#module_usePost..Post) : <code>Object</code>
 
-### Post.usePost(tag, hash) ⇒ <code>Post</code>
+<a name="module_usePost.usePost"></a>
 
-**Kind**: static method of [<code>Post</code>](#module_Post)
+### usePost.usePost(tag, hash) ⇒ <code>Post</code>
+An interface to manage a post
 
+**Kind**: static method of [<code>usePost</code>](#module_usePost)  
 <table>
   <thead>
     <tr>
@@ -780,11 +852,10 @@ Get and handle a particular post by it's tag and hash
     </tr>  </tbody>
 </table>
 
-<a name="module_Post..Post"></a>
+<a name="module_usePost..Post"></a>
 
-### Post~Post : <code>Object</code>
-
-**Kind**: inner typedef of [<code>Post</code>](#module_Post)  
+### usePost~Post : <code>Object</code>
+**Kind**: inner typedef of [<code>usePost</code>](#module_usePost)  
 **Properties**
 
 <table>
@@ -812,24 +883,26 @@ Get and handle a particular post by it's tag and hash
     </tr>  </tbody>
 </table>
 
-<a name="module_Relay"></a>
+<hr />
 
-## Relay
+<a name="module_useRelay"></a>
 
-- [Relay](#module_Relay)
-  - _static_
-    - [.useRelay(host)](#module_Relay.useRelay) ⇒ <code>Relay</code>
-  - _inner_
-    - [~Relay](#module_Relay..Relay) : <code>reactive</code>
+## useRelay
+Relay connection management
 
-<a name="module_Relay.useRelay"></a>
 
-### Relay.useRelay(host) ⇒ <code>Relay</code>
+* [useRelay](#module_useRelay)
+    * _static_
+        * [.useRelay(host)](#module_useRelay.useRelay) ⇒ <code>Relay</code>
+    * _inner_
+        * [~Relay](#module_useRelay..Relay) : <code>reactive</code>
 
+<a name="module_useRelay.useRelay"></a>
+
+### useRelay.useRelay(host) ⇒ <code>Relay</code>
 Peer server status monitor
 
-**Kind**: static method of [<code>Relay</code>](#module_Relay)
-
+**Kind**: static method of [<code>useRelay</code>](#module_useRelay)  
 <table>
   <thead>
     <tr>
@@ -842,19 +915,16 @@ Peer server status monitor
     </tr>  </tbody>
 </table>
 
-**Example**
-
+**Example**  
 ```js
-const relay = useRelay();
+const relay = useRelay()
 ```
+<a name="module_useRelay..Relay"></a>
 
-<a name="module_Relay..Relay"></a>
-
-### Relay~Relay : <code>reactive</code>
-
+### useRelay~Relay : <code>reactive</code>
 Peer server status reactive object
 
-**Kind**: inner typedef of [<code>Relay</code>](#module_Relay)  
+**Kind**: inner typedef of [<code>useRelay</code>](#module_useRelay)  
 **Properties**
 
 <table>
@@ -891,38 +961,62 @@ Peer server status reactive object
     </tr>  </tbody>
 </table>
 
-<a name="module_User"></a>
+<hr />
 
-## User
+<a name="module_useSpace"></a>
 
+## useSpace
+2D space for meetings
+
+<a name="module_useSpace.useSpace"></a>
+
+### useSpace.useSpace(spaceName) ⇒ [<code>useSpace</code>](#useSpace)
+Get a space to navigate
+
+**Kind**: static method of [<code>useSpace</code>](#module_useSpace)  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>spaceName</td><td><code>String</code></td>
+    </tr>  </tbody>
+</table>
+
+<hr />
+
+<a name="module_useUser"></a>
+
+## useUser
 Basic user management
 
-- [User](#module_User)
-  - _static_
-    - [.useUser()](#module_User.useUser) ⇒ <code>useUser</code>
-    - [.auth(pair)](#module_User.auth)
-    - [.leave()](#module_User.leave)
-    - [.updateProfile(field, data)](#module_User.updateProfile)
-    - [.isPair(pair)](#module_User.isPair) ⇒ <code>Boolean</code>
-  - _inner_
-    - [~User](#module_User..User)
-    - [~useUser](#module_User..useUser)
 
-<a name="module_User.useUser"></a>
+* [useUser](#module_useUser)
+    * _static_
+        * [.useUser()](#module_useUser.useUser) ⇒ <code>useUser</code>
+        * [.auth(pair)](#module_useUser.auth)
+        * [.leave()](#module_useUser.leave)
+        * [.updateProfile(field, data)](#module_useUser.updateProfile)
+        * [.isPair(pair)](#module_useUser.isPair) ⇒ <code>Boolean</code>
+    * _inner_
+        * [~User](#module_useUser..User)
+        * [~useUser](#module_useUser..useUser)
 
-### User.useUser() ⇒ <code>useUser</code>
+<a name="module_useUser.useUser"></a>
 
+### useUser.useUser() ⇒ <code>useUser</code>
 Get access to current logged in user
 
-**Kind**: static method of [<code>User</code>](#module_User)  
-<a name="module_User.auth"></a>
+**Kind**: static method of [<code>useUser</code>](#module_useUser)  
+<a name="module_useUser.auth"></a>
 
-### User.auth(pair)
-
+### useUser.auth(pair)
 Authenticate with a SEA key pair
 
-**Kind**: static method of [<code>User</code>](#module_User)
-
+**Kind**: static method of [<code>useUser</code>](#module_useUser)  
 <table>
   <thead>
     <tr>
@@ -935,21 +1029,18 @@ Authenticate with a SEA key pair
     </tr>  </tbody>
 </table>
 
-<a name="module_User.leave"></a>
+<a name="module_useUser.leave"></a>
 
-### User.leave()
-
+### useUser.leave()
 Log out the user
 
-**Kind**: static method of [<code>User</code>](#module_User)  
-<a name="module_User.updateProfile"></a>
+**Kind**: static method of [<code>useUser</code>](#module_useUser)  
+<a name="module_useUser.updateProfile"></a>
 
-### User.updateProfile(field, data)
-
+### useUser.updateProfile(field, data)
 Update a profile field
 
-**Kind**: static method of [<code>User</code>](#module_User)
-
+**Kind**: static method of [<code>useUser</code>](#module_useUser)  
 <table>
   <thead>
     <tr>
@@ -964,14 +1055,12 @@ Update a profile field
     </tr>  </tbody>
 </table>
 
-<a name="module_User.isPair"></a>
+<a name="module_useUser.isPair"></a>
 
-### User.isPair(pair) ⇒ <code>Boolean</code>
-
+### useUser.isPair(pair) ⇒ <code>Boolean</code>
 Check if the object is a proper SEA pair
 
-**Kind**: static method of [<code>User</code>](#module_User)
-
+**Kind**: static method of [<code>useUser</code>](#module_useUser)  
 <table>
   <thead>
     <tr>
@@ -985,11 +1074,10 @@ Check if the object is a proper SEA pair
     </tr>  </tbody>
 </table>
 
-<a name="module_User..User"></a>
+<a name="module_useUser..User"></a>
 
-### User~User
-
-**Kind**: inner typedef of [<code>User</code>](#module_User)  
+### useUser~User
+**Kind**: inner typedef of [<code>useUser</code>](#module_useUser)  
 **Properties**
 
 <table>
@@ -1032,11 +1120,10 @@ Check if the object is a proper SEA pair
     </tr>  </tbody>
 </table>
 
-<a name="module_User..useUser"></a>
+<a name="module_useUser..useUser"></a>
 
-### User~useUser
-
-**Kind**: inner typedef of [<code>User</code>](#module_User)  
+### useUser~useUser
+**Kind**: inner typedef of [<code>useUser</code>](#module_useUser)  
 **Properties**
 
 <table>
@@ -1058,25 +1145,27 @@ Check if the object is a proper SEA pair
     </tr>  </tbody>
 </table>
 
-<a name="module_Worker"></a>
+<hr />
 
-## Worker
+<a name="module_useWorker"></a>
 
-- [Worker](#module_Worker)
-  - _static_
-    - [.newWorker](#module_Worker.newWorker)
-  - _inner_
-    - [~sortByDate(e)](#module_Worker..sortByDate)
+## useWorker
+Worker wrapper for heavy functions
 
-<a name="module_Worker.newWorker"></a>
 
-### Worker.newWorker
+* [useWorker](#module_useWorker)
+    * _static_
+        * [.newWorker](#module_useWorker.newWorker)
+    * _inner_
+        * [~sortByDate(e)](#module_useWorker..sortByDate)
 
+<a name="module_useWorker.newWorker"></a>
+
+### useWorker.newWorker
 Create a new worker for a function
 It should contain a `postMessage` method to reply to any incoming `postMessage` from the main script
 
-**Kind**: static constant of [<code>Worker</code>](#module_Worker)
-
+**Kind**: static constant of [<code>useWorker</code>](#module_useWorker)  
 <table>
   <thead>
     <tr>
@@ -1089,14 +1178,12 @@ It should contain a `postMessage` method to reply to any incoming `postMessage` 
     </tr>  </tbody>
 </table>
 
-<a name="module_Worker..sortByDate"></a>
+<a name="module_useWorker..sortByDate"></a>
 
-### Worker~sortByDate(e)
-
+### useWorker~sortByDate(e)
 Example sorter function for a dated list object
 
-**Kind**: inner method of [<code>Worker</code>](#module_Worker)
-
+**Kind**: inner method of [<code>useWorker</code>](#module_useWorker)  
 <table>
   <thead>
     <tr>
@@ -1110,29 +1197,29 @@ Example sorter function for a dated list object
     </tr>  </tbody>
 </table>
 
+<hr />
+
 <a name="module_useZip"></a>
 
 ## useZip
-
 Read and write zip files
 
-- [useZip](#module_useZip)
-  - _static_
-    - [.useZip()](#module_useZip.useZip) ⇒ <code>useZip</code>
-  - _inner_
-    - [~useZip](#module_useZip..useZip)
+
+* [useZip](#module_useZip)
+    * _static_
+        * [.useZip()](#module_useZip.useZip) ⇒ <code>useZip</code>
+    * _inner_
+        * [~useZip](#module_useZip..useZip)
 
 <a name="module_useZip.useZip"></a>
 
 ### useZip.useZip() ⇒ <code>useZip</code>
-
 Zip file creation toolbox
 
 **Kind**: static method of [<code>useZip</code>](#module_useZip)  
 <a name="module_useZip..useZip"></a>
 
 ### useZip~useZip
-
 **Kind**: inner typedef of [<code>useZip</code>](#module_useZip)  
 **Properties**
 
@@ -1160,3 +1247,43 @@ Zip file creation toolbox
 </td>
     </tr>  </tbody>
 </table>
+
+<hr />
+
+<a name="useSpace"></a>
+
+## useSpace : <code>Object</code>
+**Kind**: global typedef  
+**Properties**
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>space</td><td><code>reactive</code></td>
+    </tr><tr>
+    <td>area</td><td><code>ref</code></td>
+    </tr><tr>
+    <td>join</td><td><code>function</code></td>
+    </tr><tr>
+    <td>place</td><td><code>function</code></td>
+    </tr>  </tbody>
+</table>
+
+<hr />
+
+<style scoped>
+  hr {
+    height: 1px;
+    background-color: #3333;
+    margin: 2em 0 8em 0;
+  }
+
+  h3 {
+    margin-top: 3em;
+  }
+</style>

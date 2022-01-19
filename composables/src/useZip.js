@@ -6,8 +6,8 @@
 // https://github.com/Stuk/jszip
 
 import JSZip from "jszip";
-import { base64FileType } from ".";
-import { downloadFile, createMd, base64Extension } from "./useFile";
+import { downloadFile, base64Extension, base64FileType } from "./useFile";
+import { createMd } from "./useMd";
 
 /**
  * Zip file creation toolbox

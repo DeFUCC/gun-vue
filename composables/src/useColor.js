@@ -1,3 +1,8 @@
+/**
+ * Deterministic colors derived from oub keys, hashes or any other string data
+ * @module useColor
+ * */
+
 import ColorHash from "color-hash";
 
 const color = {
@@ -18,6 +23,16 @@ const color = {
     lightness: [0.18, 0.2, 0.3],
   }),
 };
+
+/**
+ * Get a color generator of a certain palette
+ * @param {('light'|'regular'|'deep'|'dark')} palette
+ * @returns {ColorHash} Color-Hash instance
+ * @example
+ * import {useColor} from '@gun-vue/composables'
+ * const colorDeep = useColor('deep')
+ * const color = colorDeep.hex('any text data')
+ */
 
 export function useColor(palette = "deep") {
   if (typeof palette == "object") {

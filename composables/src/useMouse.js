@@ -1,3 +1,8 @@
+/**
+ * Handle mouse movement inside an SVG
+ * @module useMouse
+ * */
+
 import { useMousePressed, useMouseInElement } from "@vueuse/core";
 import { ref, reactive, onMounted, onBeforeUnmount, watch } from "vue";
 

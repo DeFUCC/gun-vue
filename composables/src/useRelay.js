@@ -1,5 +1,6 @@
 /**
- * @module Relay
+ * Relay connection management
+ * @module useRelay
  */
 
 import { useGun, peers } from "./useGun";
@@ -44,7 +45,8 @@ watch(
  * @param {URL} host
  * @returns {Relay}
  *
- * @example const relay = useRelay()
+ * @example
+ * const relay = useRelay()
  */
 export function useRelay() {
   const gun = useGun();

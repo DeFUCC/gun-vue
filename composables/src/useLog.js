@@ -1,6 +1,6 @@
 /**
  * Reactive version of `gun-util` Date tree
- * @module DataTree
+ * @module useLog
  */
 
 import { reactive, ref, onMounted, watchEffect, onBeforeUnmount } from "vue";

@@ -1,6 +1,6 @@
 /**
  * Immutable hashed lists of data
- * @module Feeds
+ * @module useFeed
  */
 
 import { computed, reactive, ref } from "vue";
@@ -11,9 +11,9 @@ import JSZip from "jszip";
 
 import { gun, useGun } from "./useGun";
 import { hashObj, hashText } from "./useHash";
-import { downloadFile, createMd, parseMd, uploadText } from "./useFile";
+import { downloadFile, detectMimeType } from "./useFile";
+import { createMd, parseMd } from "./useMd";
 import { useZip } from "./useZip";
-import { detectMimeType } from ".";
 
 /**
  * @typedef useFeeds
@@ -245,28 +245,5 @@ export function uploadFeed(tag, files) {
         addPost(tag, post);
       }
     });
-  });
-}
-
-/**
- * Import feed from a markdown file
- * @param {String} tag
- * @param {Event} event - the event from the file input
- */
-
-export function importFeed(tag, event) {
-  uploadText(event, (file) => {
-    let { frontmatter } = parseMd(file);
-    for (let hash in frontmatter?.posts) {
-      addPost(tag, frontmatter.posts[hash]);
-    }
-  });
-}
-
-export function importPost(tag, event) {
-  uploadText(event, (file) => {
-    let { frontmatter, content } = parseMd(file);
-    let post = { ...frontmatter, content };
-    addPost(tag, post);
   });
 }

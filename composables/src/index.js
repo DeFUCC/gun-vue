@@ -16,6 +16,7 @@ export * from "./useColor";
 export * from "./useRoom";
 export * from "./useFile";
 export * from "./useZip";
+export * from "./useMd";
 export * from "./useWorker";
 
 export * from "gun-avatar";

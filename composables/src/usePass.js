@@ -1,10 +1,18 @@
 /**
- * @module Passphrase
+ * Manage user's password and credentials
+ * @module usePass
  */
+
 import { computed, reactive, watchEffect } from "vue";
 import { gun, useGun, SEA } from "./useGun";
 import { auth, isPair, user } from "./useUser";
 import base32 from "base32";
+
+/**
+ * @typedef {reactive} Pass
+ * @property {Object} safe
+ * @property {Object} dec
+ */
 
 export const pass = reactive({
   input: "",
@@ -23,7 +31,7 @@ export const pass = reactive({
   },
 
   set() {
-    setPassphrase(pass.input);
+    setPass(pass.input);
     pass.input = "";
     pass.show = false;
   },
@@ -39,6 +47,11 @@ function genLink(text = "") {
 }
 
 let initiated = false;
+
+/**
+ * Manage password of a user
+ * @returns {usePass}
+ */
 
 export function usePass() {
   if (!initiated) {
@@ -67,8 +80,15 @@ export function usePass() {
   }
   initiated = true;
 
-  return { pass, setPassphrase, logWithPass };
+  return { pass, setPass, logWithPass };
 }
+
+/**
+ * @typedef {Object} usePass
+ * @property {Pass} pass - the reactive password object
+ * @property {Function} setPass
+ * @property {Function} logWithPass
+ */
 
 export async function hasPass(pub) {
   return await gun.get(`~${pub}`).get("safe").get("enc").then();
@@ -80,7 +100,7 @@ async function logWithPass(pub, passphrase) {
   auth(pair);
 }
 
-async function setPassphrase(text) {
+async function setPass(text) {
   let encPair = await SEA.encrypt(user.pair(), text);
   let encPass = await SEA.encrypt(text, user.pair());
   user.db.get("safe").get("enc").put(encPair);

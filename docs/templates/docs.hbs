@@ -17,4 +17,33 @@ const user = useUser();
 ```
 
 
-{{>main}}
+{{>main-index~}}
+{{#orphans ~}}
+{{>header~}}
+{{>body}}
+{{>member-index~}}
+{{>separator~}}
+
+{{#children inherited=undefined ~}}
+{{>header~}}
+{{>body}}
+{{>member-index~}}
+{{>separator~}}
+{{>members~}}
+{{/children~}}
+
+<hr />
+
+{{/orphans~}}
+
+<style scoped>
+  hr {
+    height: 1px;
+    background-color: #3333;
+    margin: 2em 0 8em 0;
+  }
+
+  h3 {
+    margin-top: 3em;
+  }
+</style>

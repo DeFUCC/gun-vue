@@ -1,6 +1,6 @@
 /**
  * Working with hashes
- * @module Hash
+ * @module useHash
  */
 
 import { SEA } from "./useGun";
