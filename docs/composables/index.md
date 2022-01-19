@@ -250,6 +250,7 @@ Immutable hashed lists of data
         * [.useFeeds()](#module_Feeds.useFeeds) ⇒ <code>useFeeds</code>
         * [.useFeed(tag)](#module_Feeds.useFeed) ⇒ <code>useFeed</code>
         * [.exportFeed(tag, posts)](#module_Feeds.exportFeed)
+        * [.exportFeedZip(tag, posts)](#module_Feeds.exportFeedZip)
         * [.importFeedZip(tag, files)](#module_Feeds.importFeedZip)
         * [.importFeed(tag, event)](#module_Feeds.importFeed)
     * _inner_
@@ -301,6 +302,33 @@ Export the feed as a Markdown .md file
     </tr>  </tbody>
 </table>
 
+<a name="module_Feeds.exportFeedZip"></a>
+
+### Feeds.exportFeedZip(tag, posts)
+Export a list of posts as a zip file
+
+**Kind**: static method of [<code>Feeds</code>](#module_Feeds)  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>tag</td><td><code>String</code></td><td><p>Name of the tag</p>
+</td>
+    </tr><tr>
+    <td>posts</td><td><code>Object</code></td><td><p>Posts to export</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+**Example**  
+```js
+import {exportFeedZip} from '@gun-vue/components'
+exportFeedZip('myTag',posts)
+```
 <a name="module_Feeds.importFeedZip"></a>
 
 ### Feeds.importFeedZip(tag, files)
