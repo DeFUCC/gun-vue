@@ -290,7 +290,7 @@ function niceBytes(x) {
   return n.toFixed(n < 10 && l > 0 ? 1 : 0) + " " + units[l];
 }
 
-function base64MimeType(encoded) {
+export function base64MimeType(encoded) {
   var result = null;
   if (typeof encoded !== "string") {
     return result;
@@ -300,4 +300,31 @@ function base64MimeType(encoded) {
     result = mime[1];
   }
   return result;
+}
+
+export function base64FileType(encoded) {
+  return encoded.match(/[^:]\w+\/[\w-+\d.]+(?=;|,)/)?.[0];
+}
+
+export function base64Extension(encoded) {
+  return encoded.substring(
+    encoded.indexOf("/") + 1,
+    encoded.indexOf(";base64")
+  );
+}
+
+var signatures = {
+  JVBERi0: "application/pdf",
+  R0lGODdh: "image/gif",
+  R0lGODlh: "image/gif",
+  iVBORw0KGgo: "image/png",
+  "/9j/": "image/jpg",
+};
+
+export function detectMimeType(b64) {
+  for (var s in signatures) {
+    if (b64.indexOf(s) === 0) {
+      return signatures[s];
+    }
+  }
 }

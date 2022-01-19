@@ -13,6 +13,7 @@ import { gun, useGun } from "./useGun";
 import { hashObj, hashText } from "./useHash";
 import { downloadFile, createMd, parseMd, uploadText } from "./useFile";
 import { useZip } from "./useZip";
+import { detectMimeType } from ".";
 
 /**
  * @typedef useFeeds
@@ -216,18 +217,31 @@ export async function exportFeedZip(tag, posts) {
  * <input type="file" @change="importFeedZip( 'myTag', $event.target.files )" />
  */
 export function importFeedZip(tag, files) {
-  [...files].forEach((file) => {
-    JSZip.loadAsync(file).then((zip) => {
-      zip.forEach(async (path, entry) => {
-        if (path.endsWith(".md")) {
-          let title = path.slice(0, -3);
-          let md = await entry.async("string");
-          let { frontmatter, content } = parseMd(md);
-          frontmatter.title = frontmatter?.title || title;
-          let post = { ...frontmatter, content };
-          addPost(tag, post);
+  [...files].forEach(async (file) => {
+    const zip = await JSZip.loadAsync(file);
+    zip.forEach(async (path, entry) => {
+      if (path.endsWith("index.md")) {
+        let title = path.slice(0, -9);
+        let md = await entry.async("string");
+        let { frontmatter, content } = parseMd(md);
+        frontmatter.title = frontmatter?.title || title;
+        if (frontmatter.icon) {
+          const icon = await zip
+            .file(`${title}/${frontmatter.icon}`)
+            .async("base64");
+          const iconMime = detectMimeType(icon);
+          frontmatter.icon = `data:${iconMime};base64,${icon}`;
         }
-      });
+        if (frontmatter.cover) {
+          const cover = await zip
+            .file(`${title}/${frontmatter.cover}`)
+            .async("base64");
+          const coverMime = detectMimeType(cover);
+          frontmatter.cover = `data:${coverMime};base64,${cover}`;
+        }
+        let post = { ...frontmatter, content };
+        addPost(tag, post);
+      }
     });
   });
 }

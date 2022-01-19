@@ -1,17 +1,25 @@
+/**
+ * Read and write zip files
+ * @module useZip
+ * */
+
 // https://github.com/Stuk/jszip
 
 import JSZip from "jszip";
-import { downloadFile, createMd } from "./useFile";
+import { base64FileType } from ".";
+import { downloadFile, createMd, base64Extension } from "./useFile";
+
+/**
+ * Zip file creation toolbox
+ * @returns {useZip}
+ */
 
 export function useZip() {
   const zip = new JSZip();
 
   async function addFile({ title, file, folder = "." } = {}) {
-    const fileType = file.match(/[^:]\w+\/[\w-+\d.]+(?=;|,)/)[0];
-    const extension = file.substring(
-      file.indexOf("/") + 1,
-      file.indexOf(";base64")
-    );
+    const fileType = base64FileType(file);
+    const extension = base64Extension(file);
     const blob = await fetch(file).then((res) => res.blob());
     const fileName = `${title}.${extension}`;
     zip.file(`${folder}/${fileName}`, blob, fileType);
@@ -69,3 +77,12 @@ export function useZip() {
 
   return { zip, zipPost, addMd, addFile, downloadZip };
 }
+
+/**
+ * @typedef useZip
+ * @property {JSZip} zip - a JSZip instance
+ * @property {Function} zipPost - treats a post with md contents and cover and icon images and adds them to the zip
+ * @property {Function} addMd - add a MD file to the zip
+ * @property {Function} addFile - add a binary file to the zip
+ * @property {Function} downloadZip - initiate the download of the zip file
+ */
