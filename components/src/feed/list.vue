@@ -4,7 +4,7 @@ import { ref, onMounted } from 'vue'
 
 defineEmits(['tag'])
 
-const colorDeep = useColor('deep')
+const colorDeep = useColor('light')
 
 const { search, slug, tags, addTag } = useFeeds()
 
@@ -30,7 +30,7 @@ onMounted(() => {
       feed-label.tag(v-for="(result,r) in tags.results" :key="r" @click="$emit('tag', result.item?.tag); search = ''" :style="{ opacity: 1 - result.score }" :showEmpty="true" :tag="result.item?.tag" :hash="result.item.hash")
   .flex.flex-wrap.mt-8
     transition-group(name="fade")
-      feed-label.tag(:color="colorDeep.hex(tag.hash || 0)" v-for="(tag,r) in tags.all" :key="r" @click="$emit('tag', tag.tag); search = ''" :tag="tag.tag" :hash="tag.hash")
+      .flex.items-center.justify-center.text-center.p-2.m-2px.rounded-sm.font-bold.capitalize.cursor-pointer.hover_shadow-lg.transition.duration-300ms(style="flex: 1 1 140px" :style="{ backgroundColor: colorDeep.hex(tag.hash || 0) }" v-for="(tag,r) in tags.all" :key="r" @click="$emit('tag', tag.tag); search = ''") {{ tag.tag }}
 </template> 
 
 <style lang="postcss" scoped>
