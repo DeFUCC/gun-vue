@@ -16,7 +16,7 @@ export function createMd({ frontmatter = null, content = "" } = md) {
   if (typeof frontmatter == "object") {
     let yml = yaml.stringify(frontmatter);
     front = `---
- ${yml}---
+${yml}---
  `;
     return front + content;
   }
