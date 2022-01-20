@@ -17,6 +17,19 @@ import ms from "ms";
  * @property {Number} diff age of the session in ms
  * @property {String} age age of the session in human readable format
  * @property {Boolean} blink a Boolean toggled every time the new pulse comes to drive animations
+ * @example
+ * {
+ * "peer": "https://etogun.glitch.me/gun",
+ * "host": "6db1edbb5aae",
+ * "status": "running",
+ * "started": 1642666725795,
+ * "pulse": 1642677007483,
+ * "lag": 8,
+ * "diff": 10281688,
+ * "age": "3h",
+ * "delay": 22,
+ * "blink": true
+ * }
  */
 
 const relay = reactive({
@@ -46,6 +59,8 @@ watch(
  * @returns {Relay}
  *
  * @example
+ * import { useRelay } from '@gun-vue/composables';
+ *
  * const relay = useRelay()
  */
 export function useRelay() {

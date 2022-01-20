@@ -129,9 +129,8 @@ Basic account management
         * [~Account](#module_useAccount..Account) : <code>Object</code>
 
 ### useAccount(pub) ⇒ <code>Account</code>
-Load and handle user's account by a public key
+  Load and handle user's account by a public key
 
-**Kind**: static method of [<code>useAccount</code>](#module_useAccount)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -146,9 +145,8 @@ const pub = 'XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzN
 const { account } = useAccount(pub)
 ```
 ### Account : <code>Object</code>
-the user account interface
+  the user account interface
 
-**Kind**: inner typedef of [<code>useAccount</code>](#module_useAccount)  
 **Properties**
 
 | Name | Type | Description |
@@ -184,10 +182,10 @@ the user account interface
 Deterministic colors derived from oub keys, hashes or any other string data
 
 ### useColor(palette) ⇒ <code>ColorHash</code>
-Get a color generator of a certain palette
+  Get a color generator of a certain palette
 
-**Kind**: static method of [<code>useColor</code>](#module_useColor)  
 **Returns**: <code>ColorHash</code> - Color-Hash instance  
+**See**: https://github.com/zenozeng/color-hash  
 
 | Param | Type |
 | --- | --- |
@@ -198,6 +196,7 @@ Get a color generator of a certain palette
 import {useColor} from '@gun-vue/composables'
 const colorDeep = useColor('deep')
 const color = colorDeep.hex('any text data')
+// color == '#e052ae'
 ```
 <hr />
 
@@ -215,11 +214,10 @@ SEA cryptography abstraction
         * [~Entity](#module_useCrypto..Entity) : <code>Object</code>
 
 ### encFor(data, sender, receiver) ⇒ <code>String</code>
-Encrypt data for one receiver entity
+  Encrypt data for one receiver entity
 1. Generates encryption secret using bob's epub and current user pair
 2. Enctypts data with this secret
 
-**Kind**: static method of [<code>useCrypto</code>](#module_useCrypto)  
 **Returns**: <code>String</code> - Encrypted data string to be sent  
 
 | Param | Type | Description |
@@ -229,11 +227,10 @@ Encrypt data for one receiver entity
 | receiver | <code>SEAPair</code> | SEA Pair of the sender – `epriv` key will be used to encrypt the data |
 
 ### decFrom(data, sender, receiver) ⇒ <code>String</code>
-Decrypt a private message from an entity
+  Decrypt a private message from an entity
 1. Generates secret using senders `epub` and current user pair
 2. Decrypts the data with this secret
 
-**Kind**: static method of [<code>useCrypto</code>](#module_useCrypto)  
 **Returns**: <code>String</code> - Decrypted data  
 
 | Param | Type | Description |
@@ -243,8 +240,7 @@ Decrypt a private message from an entity
 | receiver | <code>SEAPair</code> | SEA Pair of the receiver – `epriv` key will be used to encrypt the data |
 
 ### Entity : <code>Object</code>
-**Kind**: inner typedef of [<code>useCrypto</code>](#module_useCrypto)  
-**Properties**
+  **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -270,13 +266,11 @@ Immutable hashed lists of data
         * [~useFeed](#module_useFeed..useFeed)
 
 ### useFeeds() ⇒ <code>useFeeds</code>
-Toolkit to deal with the available tags
+  Toolkit to deal with the available tags
 
-**Kind**: static method of [<code>useFeed</code>](#module_useFeed)  
 ### useFeed(tag, options) ⇒ <code>useFeed</code>
-Use a list of immutable data from a #tag
+  Use a list of immutable data from a #tag
 
-**Kind**: static method of [<code>useFeed</code>](#module_useFeed)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -284,9 +278,8 @@ Use a list of immutable data from a #tag
 | options | <code>Object</code> | Options for the feed |
 
 ### downloadFeed(tag, posts)
-Export a list of posts as a zip file
+  Export a list of posts as a zip file
 
-**Kind**: static method of [<code>useFeed</code>](#module_useFeed)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -299,9 +292,8 @@ import {downloadFeed} from '@gun-vue/components'
 downloadFeed('myTag',posts)
 ```
 ### uploadFeed(tag, files)
-Upload zip files and add all the MD files from it to the tag
+  Upload zip files and add all the MD files from it to the tag
 
-**Kind**: static method of [<code>useFeed</code>](#module_useFeed)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -313,8 +305,7 @@ Upload zip files and add all the MD files from it to the tag
 <input type="file" @change="uploadFeed( 'myTag', $event.target.files )" />
 ```
 ### useFeeds
-**Kind**: inner typedef of [<code>useFeed</code>](#module_useFeed)  
-**Properties**
+  **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -324,8 +315,7 @@ Upload zip files and add all the MD files from it to the tag
 | addTag | <code>function</code> | add a slug tag to the list |
 
 ### useFeed
-**Kind**: inner typedef of [<code>useFeed</code>](#module_useFeed)  
-**Properties**
+  **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -351,9 +341,8 @@ File handling functions
         * [~PictureUploadData](#module_useFile..PictureUploadData) : <code>Object</code>
 
 ### downloadFile(text, fileType, fileName)
-A method to download any text as a file
+  A method to download any text as a file
 
-**Kind**: static method of [<code>useFile</code>](#module_useFile)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -362,9 +351,8 @@ A method to download any text as a file
 | fileName | <code>String</code> | the full file name like "myKey.json" |
 
 ### uploadText(event, callback)
-Upload and parse JSON keypair
+  Upload and parse JSON keypair
 
-**Kind**: static method of [<code>useFile</code>](#module_useFile)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -372,9 +360,8 @@ Upload and parse JSON keypair
 | callback | <code>function</code> | a function to handle the loaded file from the reader |
 
 ### usePictureUpload(Options) ⇒ <code>PictureUploadData</code>
-Process an uploaded picture by rendering in into a canvas with given size. Returns a base64 encoded image to be stored and displayed as `img.src`
+  Process an uploaded picture by rendering in into a canvas with given size. Returns a base64 encoded image to be stored and displayed as `img.src`
 
-**Kind**: static method of [<code>useFile</code>](#module_useFile)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -391,8 +378,7 @@ const {state, handleUpload} = usePictureUpload({
 watch(()=>state.output, file => src.value = file.content)
 ```
 ### PictureUploadOptions : <code>Object</code>
-**Kind**: inner typedef of [<code>useFile</code>](#module_useFile)  
-**Properties**
+  **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -401,8 +387,7 @@ watch(()=>state.output, file => src.value = file.content)
 | maxSize | <code>Number</code> | maximum size of an uploaded picture |
 
 ### PictureUploadData : <code>Object</code>
-**Kind**: inner typedef of [<code>useFile</code>](#module_useFile)  
-**Properties**
+  **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -429,45 +414,38 @@ Gun DB initialization and basic methods
         * [~genUUID()](#module_useGun..genUUID)
 
 ### gun
-Established Gun instance for database operations
+  Established Gun instance for database operations
 
-**Kind**: static property of [<code>useGun</code>](#module_useGun)  
 ### gun2
-Secondary Gun instance for key management
+  Secondary Gun instance for key management
 
-**Kind**: static property of [<code>useGun</code>](#module_useGun)  
 ### useGun(peer) ⇒ <code>Gun</code>
-A Gun instance for DB manipulations
+  A Gun instance for DB manipulations
 
-**Kind**: static method of [<code>useGun</code>](#module_useGun)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | peer | <code>Array</code> | an array of Gun peers (should be only one for now) |
 
 ### useGun2(peer) ⇒ <code>Gun</code>
-get a secondary Gun instance to manages certificates
+  get a secondary Gun instance to manages certificates
 
-**Kind**: static method of [<code>useGun</code>](#module_useGun)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | peer | <code>Array</code> | an array of Gun peers (should be only one for now) |
 
 ### SEA
-SEA library
+  SEA library
 
-**Kind**: inner constant of [<code>useGun</code>](#module_useGun)  
 ### soul()
-**Get a soul for any given node**
+  **Get a soul for any given node**
 A wrapper for `Gun.node.soul`
 
-**Kind**: inner method of [<code>useGun</code>](#module_useGun)  
 ### genUUID()
-**Generate a random UUID**
+  **Generate a random UUID**
 A wrapper for `Gun.text.random`
 
-**Kind**: inner method of [<code>useGun</code>](#module_useGun)  
 <hr />
 
 <a name="module_useHash"></a>
@@ -476,9 +454,8 @@ A wrapper for `Gun.text.random`
 Working with hashes
 
 ### getShortHash(text, seed) ⇒ <code>String</code>
-Calculate a hex hash for any string data
+  Calculate a hex hash for any string data
 
-**Kind**: static method of [<code>useHash</code>](#module_useHash)  
 **Returns**: <code>String</code> - The hex encoded SHA-1 hash  
 
 | Param | Type |
@@ -506,9 +483,8 @@ Handle Markdown files
     * [.parseMd(file)](#module_useMd.parseMd) ⇒ <code>Md</code>
 
 ### createMd(md) ⇒
-Create markdown with frontmatter
+  Create markdown with frontmatter
 
-**Kind**: static method of [<code>useMd</code>](#module_useMd)  
 **Returns**: Markdown file ready to download  
 
 | Param | Type | Description |
@@ -516,9 +492,8 @@ Create markdown with frontmatter
 | md | <code>Object</code> | frontmatter,content |
 
 ### parseMd(file) ⇒ <code>Md</code>
-Parse text content of a markdown file into an object
+  Parse text content of a markdown file into an object
 
-**Kind**: static method of [<code>useMd</code>](#module_useMd)  
 **Returns**: <code>Md</code> - - An object with md frontmatter and content  
 
 | Param | Type | Description |
@@ -541,12 +516,10 @@ Handle mouse movement inside an SVG
         * [~Mouse](#module_useMouse..Mouse) : <code>reactive</code>
 
 ### useSvgMouse() ⇒ <code>useMouse</code>
-Correct mouse position in an SVG space
+  Correct mouse position in an SVG space
 
-**Kind**: static method of [<code>useMouse</code>](#module_useMouse)  
 ### useMouse : <code>Object</code>
-**Kind**: inner typedef of [<code>useMouse</code>](#module_useMouse)  
-**Properties**
+  **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -554,8 +527,7 @@ Correct mouse position in an SVG space
 | mouse | <code>Mouse</code> | the reactive mouse parameters |
 
 ### Mouse : <code>reactive</code>
-**Kind**: inner typedef of [<code>useMouse</code>](#module_useMouse)  
-**Properties**
+  **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -582,12 +554,10 @@ Manage user's password and credentials
         * [~usePass](#module_usePass..usePass) : <code>Object</code>
 
 ### usePass() ⇒ <code>usePass</code>
-Manage password of a user
+  Manage password of a user
 
-**Kind**: static method of [<code>usePass</code>](#module_usePass)  
 ### Pass : <code>reactive</code>
-**Kind**: inner typedef of [<code>usePass</code>](#module_usePass)  
-**Properties**
+  **Properties**
 
 | Name | Type |
 | --- | --- |
@@ -595,8 +565,7 @@ Manage password of a user
 | dec | <code>Object</code> | 
 
 ### usePass : <code>Object</code>
-**Kind**: inner typedef of [<code>usePass</code>](#module_usePass)  
-**Properties**
+  **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -619,18 +588,20 @@ Get and handle a particular post by it's tag and hash
         * [~Post](#module_usePost..Post) : <code>Object</code>
 
 ### usePost(tag, hash) ⇒ <code>Post</code>
-An interface to manage a post
+  An interface to manage a post
 
-**Kind**: static method of [<code>usePost</code>](#module_usePost)  
 
 | Param | Type |
 | --- | --- |
 | tag | <code>String</code> | 
 | hash | <code>String</code> | 
 
+**Example**  
+```js
+const post = usePost( 'tag', postHash )
+```
 ### Post : <code>Object</code>
-**Kind**: inner typedef of [<code>usePost</code>](#module_usePost)  
-**Properties**
+  **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -655,9 +626,8 @@ Relay connection management
         * [~Relay](#module_useRelay..Relay) : <code>reactive</code>
 
 ### useRelay(host) ⇒ <code>Relay</code>
-Peer server status monitor
+  Peer server status monitor
 
-**Kind**: static method of [<code>useRelay</code>](#module_useRelay)  
 
 | Param | Type |
 | --- | --- |
@@ -665,12 +635,13 @@ Peer server status monitor
 
 **Example**  
 ```js
+import { useRelay } from '@gun-vue/composables';
+
 const relay = useRelay()
 ```
 ### Relay : <code>reactive</code>
-Peer server status reactive object
+  Peer server status reactive object
 
-**Kind**: inner typedef of [<code>useRelay</code>](#module_useRelay)  
 **Properties**
 
 | Name | Type | Description |
@@ -684,6 +655,21 @@ Peer server status reactive object
 | age | <code>String</code> | age of the session in human readable format |
 | blink | <code>Boolean</code> | a Boolean toggled every time the new pulse comes to drive animations |
 
+**Example**  
+```js
+{
+"peer": "https://etogun.glitch.me/gun",
+"host": "6db1edbb5aae",
+"status": "running",
+"started": 1642666725795,
+"pulse": 1642677007483,
+"lag": 8,
+"diff": 10281688,
+"age": "3h",
+"delay": 22,
+"blink": true
+}
+```
 <hr />
 
 <a name="module_useSpace"></a>
@@ -699,9 +685,8 @@ A 2D-space
         * [~useSpace](#module_useSpace..useSpace) : <code>Object</code>
 
 ### useSpace(spaceName) ⇒ <code>useSpace</code>
-A space to navigate with mouse clicks
+  A space to navigate with mouse clicks
 
-**Kind**: static method of [<code>useSpace</code>](#module_useSpace)  
 
 | Param | Type |
 | --- | --- |
@@ -712,8 +697,7 @@ A space to navigate with mouse clicks
 const {space, area, join, place} = useSpace()
 ```
 ### useSpace : <code>Object</code>
-**Kind**: inner typedef of [<code>useSpace</code>](#module_useSpace)  
-**Properties**
+  **Properties**
 
 | Name | Type |
 | --- | --- |
@@ -742,26 +726,22 @@ Basic user management
         * [~useUser](#module_useUser..useUser)
 
 ### useUser() ⇒ <code>useUser</code>
-Get access to current logged in user
+  Get access to current logged in user
 
-**Kind**: static method of [<code>useUser</code>](#module_useUser)  
 ### auth(pair)
-Authenticate with a SEA key pair
+  Authenticate with a SEA key pair
 
-**Kind**: static method of [<code>useUser</code>](#module_useUser)  
 
 | Param | Type |
 | --- | --- |
 | pair | <code>Object</code> | 
 
 ### leave()
-Log out the user
+  Log out the user
 
-**Kind**: static method of [<code>useUser</code>](#module_useUser)  
 ### updateProfile(field, data)
-Update a profile field
+  Update a profile field
 
-**Kind**: static method of [<code>useUser</code>](#module_useUser)  
 
 | Param | Type |
 | --- | --- |
@@ -769,17 +749,15 @@ Update a profile field
 | data | <code>Any</code> | 
 
 ### isPair(pair) ⇒ <code>Boolean</code>
-Check if the object is a proper SEA pair
+  Check if the object is a proper SEA pair
 
-**Kind**: static method of [<code>useUser</code>](#module_useUser)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | pair | <code>Object</code> | an object to check |
 
 ### User
-**Kind**: inner typedef of [<code>useUser</code>](#module_useUser)  
-**Properties**
+  **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -795,8 +773,7 @@ Check if the object is a proper SEA pair
 | pair | <code>function</code> | use `user.pair()` to get curent user key pair |
 
 ### useUser
-**Kind**: inner typedef of [<code>useUser</code>](#module_useUser)  
-**Properties**
+  **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -819,19 +796,17 @@ Worker wrapper for heavy functions
         * [~sortByDate(e)](#module_useWorker..sortByDate)
 
 ### newWorker
-Create a new worker for a function
+  Create a new worker for a function
 It should contain a `postMessage` method to reply to any incoming `postMessage` from the main script
 
-**Kind**: static constant of [<code>useWorker</code>](#module_useWorker)  
 
 | Param | Type |
 | --- | --- |
 | funcObj | <code>function</code> | 
 
 ### sortByDate(e)
-Example sorter function for a dated list object
+  Example sorter function for a dated list object
 
-**Kind**: inner method of [<code>useWorker</code>](#module_useWorker)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -844,20 +819,48 @@ Example sorter function for a dated list object
 ## useZip
 Read and write zip files
 
+**See**: https://github.com/Stuk/jszip  
 
 * [useZip](#module_useZip)
     * _static_
         * [.useZip()](#module_useZip.useZip) ⇒ <code>useZip</code>
+            * [~addFile(options)](#module_useZip.useZip..addFile) ⇒ <code>String</code>
     * _inner_
         * [~useZip](#module_useZip..useZip)
 
 ### useZip() ⇒ <code>useZip</code>
-Zip file creation toolbox
+  Zip file creation toolbox
 
-**Kind**: static method of [<code>useZip</code>](#module_useZip)  
+**Example**  
+```js
+import {useZip} from '@gun-vue/composables'
+const { zip, zipPost, addMd, addFile, downloadZip } = useZip()
+```
+<a name="module_useZip.useZip..addFile"></a>
+
+#### addFile(options) ⇒ <code>String</code>
+Add a binary file to the zip
+
+**Kind**: inner method of [<code>useZip</code>](#module_useZip.useZip)  
+**Returns**: <code>String</code> - the resulting filename  
+
+| Param | Type |
+| --- | --- |
+| options | <code>Object</code> | 
+
+**Example**  
+```js
+if (post.cover) { // a base64 encoded picture
+  const fileName = await addFile({
+    title: "cover",
+    file: post.cover,
+    folder: post.title,
+  });
+  post.cover = fileName;
+}
+```
 ### useZip
-**Kind**: inner typedef of [<code>useZip</code>](#module_useZip)  
-**Properties**
+  **Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |

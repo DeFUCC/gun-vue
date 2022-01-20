@@ -5,3 +5,13 @@
 html, body {
   scroll-behavior: smooth;
 }
+
+a {
+  font-weight: bold
+}
+
+.content h4 {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 2em;
+}

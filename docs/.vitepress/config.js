@@ -19,7 +19,7 @@ export default defineConfig({
   outDir: "../demo/public/docs",
   themeConfig: {
     logo: "/media/gun-vue-logo.svg",
-    repo: "https://github.com/DeFUCC/gun-vue",
+    // repo: "https://github.com/DeFUCC/gun-vue",
     nav: [
       { text: "Components", link: "/components/" },
       {
@@ -27,8 +27,8 @@ export default defineConfig({
         link: "/composables/",
       },
       {
-        text: "Demos",
-        link: "/demos/",
+        text: "Demo",
+        link: "/demo/",
       },
       { text: "Relay", link: "/relay/" },
       { text: "Blog", link: "/blog/" },

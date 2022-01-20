@@ -1,5 +1,6 @@
 <script setup>
 
+
 </script>
 
 <template lang="pug">
@@ -10,7 +11,6 @@ nav-bar
       component(:is="Component")
 .flex.flex-col.items-center.bg-dark-100.p-4.bg-opacity-30
   util-tools
-  .text-sm.mt-4 MIT 2022
 </template>
 
 <style lang="postcss">

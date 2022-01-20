@@ -28,10 +28,12 @@ const color = {
  * Get a color generator of a certain palette
  * @param {('light'|'regular'|'deep'|'dark')} palette
  * @returns {ColorHash} Color-Hash instance
+ * @see https://github.com/zenozeng/color-hash
  * @example
  * import {useColor} from '@gun-vue/composables'
  * const colorDeep = useColor('deep')
  * const color = colorDeep.hex('any text data')
+ * // color == '#e052ae'
  */
 
 export function useColor(palette = "deep") {

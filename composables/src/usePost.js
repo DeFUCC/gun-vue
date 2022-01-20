@@ -14,6 +14,8 @@ import { useZip } from "./useZip";
  * @param {String} tag
  * @param {String} hash
  * @returns {Post}
+ * @example
+ * const post = usePost( 'tag', postHash )
  */
 
 export function usePost(tag = ref(""), hash = ref("")) {
@@ -68,15 +70,15 @@ export function usePost(tag = ref(""), hash = ref("")) {
 
 export async function downloadPost(post) {
   post = ref(post);
-  let frontmatter = {
+  let postData = {
     ...post.value.data,
   };
 
-  const { title } = frontmatter;
+  const { title } = postData;
 
   const { zipPost, downloadZip } = useZip();
 
-  await zipPost(frontmatter);
+  await zipPost(postData);
 
   downloadZip({ title });
 }

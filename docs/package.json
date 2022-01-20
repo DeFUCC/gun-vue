@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run doc && vitepress dev",
-    "doc": "jsdoc2md --partial jsdoc2md/sig-name.hbs --helper jsdoc2md/helpers.js --template jsdoc2md/docs.hbs --files ../composables/src/*.js > ./composables/index.md ",
+    "doc": "cd jsdoc2md && sh docs.sh",
     "build": "npm run doc && vitepress build",
     "serve": "vitepress serve --port=5500"
   },
