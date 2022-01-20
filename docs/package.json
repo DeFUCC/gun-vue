@@ -1,8 +1,9 @@
 {
-  "name": "@gun-vue/site",
+  "name": "@gun-vue/docs",
   "private": true,
   "version": "0.5.8",
-  "description": "test vitepress site for gun-vue",
+  "homepage": "https://gun-vue.js.org",
+  "description": "Documentation for gun-vue build with Vitepress",
   "main": "index.js",
   "scripts": {
     "dev": "npm run doc && vitepress dev",
@@ -15,7 +16,11 @@
     "gun",
     "gun-vue"
   ],
-  "author": "davay42",
+  "author": "davay42 <davay@defucc.me>",
+  "funding": {
+    "type": "ko-fi",
+    "url": "https://ko-fi.com/davay"
+  },
   "license": "MIT",
   "dependencies": {
     "@gun-vue/components": "workspace:^",

@@ -3,10 +3,10 @@
   "desciprion": "A no store gun peer relay for free tier hosting",
   "version": "0.3.1",
   "repository": "github:defucc/gun-vue",
-  "homepage": "https://defucc.github.io/gun-vue",
+  "homepage": "https://gun-vue.js.org",
   "funding": {
     "type": "ko-fi",
-    "url": "https://ko-fi.com/B0B44CM90"
+    "url": "https://ko-fi.com/davay"
   },
   "type": "module",
   "main": "server.js",

@@ -3,10 +3,11 @@
   "version": "0.5.8",
   "license": "MIT",
   "repository": "github:defucc/gun-vue",
-  "homepage": "https://defucc.github.io/gun-vue",
+  "homepage": "https://gun-vue.js.org",
+  "author": "davay42 <davay@defucc.me>",
   "funding": {
     "type": "ko-fi",
-    "url": "https://ko-fi.com/B0B44CM90"
+    "url": "https://ko-fi.com/davay"
   },
   "module": "./dist/components.es.js",
   "main": "./dist/components.es.js",
