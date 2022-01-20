@@ -37,9 +37,11 @@ export function parseMd(file) {
     content = yml?.[2];
     try {
       frontmatter = yaml.parse(frontmatter);
-    } catch {}
+    } catch {
+      frontmatter = {};
+    }
     return { frontmatter, content };
   } else {
-    return { content: file.trim() };
+    return { frontmatter: {}, content: file.trim() };
   }
 }

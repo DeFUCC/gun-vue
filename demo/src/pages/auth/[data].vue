@@ -13,7 +13,6 @@ const status = ref('')
 const input = ref()
 onMounted(() => {
   status.value = usePassLink(props.data)
-  console.log(input.value)
 })
 watch(user, user => {
   if (user.is) {

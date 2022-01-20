@@ -16,7 +16,7 @@ async function imageDataFromFile(file) {
     const result = await asyncListenEvent(reader, "load");
     return imageDataFromUrl(result?.target?.result);
   } else {
-    console.log("err");
+    console.log("File is not an image");
   }
 }
 

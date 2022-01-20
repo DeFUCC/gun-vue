@@ -19,7 +19,6 @@ export function downloadFile(text, fileType, fileName) {
     blob = new Blob([text], { type: fileType });
   } else {
     blob = text;
-    console.log(typeof text);
   }
 
   var a = document.createElement("a");

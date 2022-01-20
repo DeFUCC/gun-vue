@@ -204,6 +204,7 @@ export function uploadFeed(tag, files) {
         let title = path.slice(0, -9);
         let md = await entry.async("string");
         let { frontmatter, content } = parseMd(md);
+        frontmatter = frontmatter || {};
         frontmatter.title = frontmatter?.title || title;
         if (frontmatter.icon) {
           const icon = await zip
