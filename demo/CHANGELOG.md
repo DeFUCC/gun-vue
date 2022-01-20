@@ -1,5 +1,15 @@
 # @gun-vue/demo
 
+## 0.5.9
+
+### Patch Changes
+
+- great docs setup. Solid foundation with zip file interchange.
+- Updated dependencies
+- Updated dependencies [ae65b2e]
+  - @gun-vue/components@0.5.9
+  - @gun-vue/composables@0.5.9
+
 ## 0.5.8
 
 ### Patch Changes

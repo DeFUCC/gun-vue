@@ -1,5 +1,12 @@
 # @gun-vue/composables
 
+## 0.5.9
+
+### Patch Changes
+
+- great docs setup. Solid foundation with zip file interchange.
+- ae65b2e: better docs
+
 ## 0.5.8
 
 ### Patch Changes
