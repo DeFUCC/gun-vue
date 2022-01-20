@@ -50,7 +50,7 @@ const arrows = computed(() => {
 </script>
 
 <template lang='pug'>
-.flex.flex-col.items-center.relative(ref="plane" @click="enter = true")
+.flex.flex-col.items-center.relative.h-70vh(ref="plane" @click="enter = true")
   .flex.flex-col.items-center(v-show="enter")
     ui-modal(:open="!!selected" @close="selected = null")
       account-avatar.cursor-pointer(:pub="selected" :size="160" @click="$emit('user', selected)")
@@ -62,7 +62,7 @@ const arrows = computed(() => {
       user-home(@browse="$router.push(`/users/${$event}`)" @close="enter = false")
 
 
-  svg.h-full(
+  svg(
     style="cursor:none;"
     @click="join()"
     version="1.1",

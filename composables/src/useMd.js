@@ -6,9 +6,15 @@
 import yaml from "yaml";
 
 /**
+ * @typedef {Object} Md
+ * @property {Object} frontmatter
+ * @property {object} content
+ */
+
+/**
  *  Create markdown with frontmatter
- * @param {Object} md -  frontmatter,content
- * @returns Markdown file ready to download
+ * @param {Md} md -  frontmatter,content
+ * @returns Markdown text file ready to download
  */
 
 export function createMd({ frontmatter = null, content = "" } = md) {

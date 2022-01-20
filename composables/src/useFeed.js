@@ -11,8 +11,8 @@ import JSZip from "jszip";
 
 import { gun, useGun } from "./useGun";
 import { hashObj, hashText } from "./useHash";
-import { downloadFile, detectMimeType } from "./useFile";
-import { createMd, parseMd } from "./useMd";
+import { detectMimeType } from "./useFile";
+import { parseMd } from "./useMd";
 import { useZip } from "./useZip";
 
 /**
@@ -95,6 +95,10 @@ export function useFeeds() {
  * @param {ref} tag - A vue ref to watch - generated from props by `toRef(props,'tag')`
  * @param {Object} options - Options for the feed
  * @returns {useFeed}
+ * @example
+ * import { useFeed } from '@gun-vue/composables'
+ *
+ * const { posts, timestamps, count, uploadPosts, downloadPosts} = useFeed('MyTag')
  */
 export function useFeed(tag = ref("tag"), { host = "" } = {}) {
   const gun = useGun();
@@ -147,6 +151,8 @@ export function useFeed(tag = ref("tag"), { host = "" } = {}) {
  * @property {ref} posts -  the reactive list of hashed data
  * @property {ref} timestamps - reactive timestamps list for all posts in a list
  * @property {computed} count - the number of posts in a feed
+ * @property {Function} downloadPosts - Download all posts in a zip file
+ * @property {Function} uploadPosts - upload a zip file with posts
  */
 
 export function useBanned(hash) {
@@ -160,6 +166,18 @@ export function useBanned(hash) {
   return banned;
 }
 
+/**
+ * Add a new post to a tag
+ * @param {String} tag
+ * @param {Object} obj
+ * @example
+ * import { addPost } from '@gun-vue/composables'
+ *
+ * addPost('MyTag', {
+ *  title: 'New post'
+ * })
+ */
+
 export async function addPost(tag, obj) {
   const { text, hash } = await hashObj(obj);
   gun.get(`#${tag}`).get(`${hash}`).put(text);
@@ -172,6 +190,7 @@ export async function addPost(tag, obj) {
  * @param {Object} posts - Posts to export
  * @example
  * import {downloadFeed} from '@gun-vue/components'
+ *
  * downloadFeed('myTag',posts)
  */
 
@@ -193,6 +212,8 @@ export async function downloadFeed(tag, posts) {
  * Upload zip files and add all the MD files from it to the tag
  * @param {String} tag - a tag to add the posts to
  * @param {FileList} files - File list from the input `@change` event
+ * @example
+ * import { uploadFeed } from '@gun-vue/composables'
  * @example @lang html
  * <input type="file" @change="uploadFeed( 'myTag', $event.target.files )" />
  */

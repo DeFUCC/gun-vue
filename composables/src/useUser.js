@@ -21,6 +21,28 @@ const colorDeep = useColor("deep");
  * @property {Object} db - `gun.user()` reference
  * @property {Object} safe - safe account indicators
  * @property {Function} pair - use `user.pair()` to get curent user key pair
+ * @example
+ * { 
+ *  "initiated": true, 
+ *  "is": { 
+ *    "pub": "XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc", 
+ *    "epub": "wAvPlMAg4jvUvK4sPpVyF1CAWnRCMu1YpHnoDrVDg-o.l79QDmdPCLEiO0F_WkB3zYLpJt-lANtyhNmHSM4bTes", 
+ *    "alias": "XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc" 
+ *  }, 
+ *  "name": "Accord", 
+ *  "pub": "XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc", 
+ *  "color": "#f55c3d", 
+ *  "pulse": 1642708061615, 
+ *  "pulser": 12, 
+ *  "blink": false, 
+ *  "safe": { 
+ *    "saved": true, 
+ *    "password": null, 
+ *    "enc": "SEA{\"ct\":\"E+6GViU9dTuidruOCNAoBITE+AlGNRgiABplSbL5fh4v1P+fhF33MuBwKd3ssBNi2kJ1sCzvS/YLmzivECA5ARZPGVbgXTSj8AE9kCz0Ac/8ushlsfBNdt8s3+a3OPVxMIevnT01uqcgr75Zp4TugIg/YuB5WltA9RHsgWEMlo+X+tRGaqG5rfw4sAmTSV0P8evMgM9rN/Un5t/WeDbvIPNXqZEmtxwAhMUZwOJWZckNZmNwpxnelFO0BwmauWfzkXuqGeSxNhMeaZi+VoRDMUvTjT68DLBnVoOhFhcdco+RW8AJfktZHZ4GF2IzFnQmTGpUd2LfvIY/Yn1eNJH7iQ5w41ChiYB/zhgQCOc5ur51PV6swAuN595vUNn7+0J1JRSNGzW2V/4j4YR4IEsAoqOtdn2Y21ga/CFdrE0=\",\"iv\":\"LtODTV+LBzhWHqUcptUO\",\"s\":\"XCL9Uj1YlPcV\"}", 
+ *  "pass": "SEA{\"ct\":\"8wNClMx/ebfou+gGWdf+bbx0TAgc9RU=\",\"iv\":\"NPgHkI+Ke+i/mw+3chlr\",\"s\":\"3VzGv06Y4fQ+\"}" 
+ *  } 
+ * }
+
  */
 
 export const user = reactive({
@@ -51,6 +73,10 @@ export const user = reactive({
 /**
  * Get access to current logged in user
  * @returns {useUser}
+ * @example
+ * import { useUser } from '@gun-vue/composables'
+ *
+ * const { user, auth, leave } = useUser()
  */
 
 export function useUser() {
@@ -106,6 +132,13 @@ function init() {
 /**
  * Authenticate with a SEA key pair
  * @param {Object} pair
+ * @example
+ * import { auth, SEA } from '@gun-vue/composables'
+ *
+ * async function login() {
+ *    const pair = await SEA.pair()
+ *    auth(pair)
+ * }
  */
 
 export async function auth(pair, cb = () => {}) {
@@ -122,6 +155,10 @@ export async function auth(pair, cb = () => {}) {
 
 /**
  * Log out the user
+ * @example
+ * import { leave } from '@gun-vue/composables'
+ *
+ * leave()
  **/
 
 export function leave() {
@@ -143,9 +180,26 @@ export function isMine(soul) {
 }
 
 /**
+ * Add a field to the User profile
+ * @param {String} name
+ * @example
+ * import { addProfileField } from '@gun-vue/composables'
+ *
+ * addProfileField( 'city' )
+ */
+
+export function addProfileField(title) {
+  gun.user().get("profile").get(title).put("");
+}
+
+/**
  * Update a profile field
  * @param {String} field
  * @param {Any} data
+ * @example
+ * import { updateProfile } from '@gun-vue/composables'
+ *
+ * updateProfile( 'city', 'Moscow' )
  */
 
 export function updateProfile(field, data) {

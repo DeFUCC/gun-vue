@@ -41,18 +41,21 @@ const colorDeep = useColor("deep");
  * @param {ref} pub - The public key of a user as a string or a ref
  * @returns {Account}
  * @example
- * import { useAccount } from '@gun-vue/composables'
+ * import { ref } from 'vue'
+ * import { useAccount, SEA } from '@gun-vue/composables'
  *
- * const pub = 'XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc'
+ * const pub = ref()
+ *
+ * async function generatePair() {
+ *  pub.value = await SEA.pair()
+ * }
  *
  * const { account } = useAccount(pub)
  */
 
 export function useAccount(pub = ref()) {
   const gun = useGun();
-  if (typeof pub == "string") {
-    pub = ref(pub);
-  }
+  pub = ref(pub);
   const account = computed(() => {
     const obj = reactive({
       pub,
@@ -90,8 +93,4 @@ export function useAccount(pub = ref()) {
   });
 
   return { account };
-}
-
-export function addProfileField(name) {
-  gun.user().get("profile").get(name).put(null);
 }

@@ -138,9 +138,14 @@ Basic account management
 
 **Example**  
 ```js
-import { useAccount } from '@gun-vue/composables'
+import { ref } from 'vue'
+import { useAccount, SEA } from '@gun-vue/composables'
 
-const pub = 'XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc'
+const pub = ref()
+
+async function generatePair() {
+ pub.value = await SEA.pair()
+}
 
 const { account } = useAccount(pub)
 ```
@@ -259,6 +264,7 @@ Immutable hashed lists of data
     * _static_
         * [.useFeeds()](#module_useFeed.useFeeds) ⇒ <code>useFeeds</code>
         * [.useFeed(tag, options)](#module_useFeed.useFeed) ⇒ <code>useFeed</code>
+        * [.addPost(tag, obj)](#module_useFeed.addPost)
         * [.downloadFeed(tag, posts)](#module_useFeed.downloadFeed)
         * [.uploadFeed(tag, files)](#module_useFeed.uploadFeed)
     * _inner_
@@ -277,6 +283,29 @@ Immutable hashed lists of data
 | tag | <code>ref</code> | A vue ref to watch - generated from props by `toRef(props,'tag')` |
 | options | <code>Object</code> | Options for the feed |
 
+**Example**  
+```js
+import { useFeed } from '@gun-vue/composables'
+
+const { posts, timestamps, count, uploadPosts, downloadPosts} = useFeed('MyTag')
+```
+### addPost(tag, obj)
+  Add a new post to a tag
+
+
+| Param | Type |
+| --- | --- |
+| tag | <code>String</code> | 
+| obj | <code>Object</code> | 
+
+**Example**  
+```js
+import { addPost } from '@gun-vue/composables'
+
+addPost('MyTag', {
+ title: 'New post'
+})
+```
 ### downloadFeed(tag, posts)
   Export a list of posts as a zip file
 
@@ -289,6 +318,7 @@ Immutable hashed lists of data
 **Example**  
 ```js
 import {downloadFeed} from '@gun-vue/components'
+
 downloadFeed('myTag',posts)
 ```
 ### uploadFeed(tag, files)
@@ -300,6 +330,10 @@ downloadFeed('myTag',posts)
 | tag | <code>String</code> | a tag to add the posts to |
 | files | <code>FileList</code> | File list from the input `@change` event |
 
+**Example**  
+```js
+import { uploadFeed } from '@gun-vue/composables'
+```
 **Example**  
 ```html
 <input type="file" @change="uploadFeed( 'myTag', $event.target.files )" />
@@ -322,6 +356,8 @@ downloadFeed('myTag',posts)
 | posts | <code>ref</code> | the reactive list of hashed data |
 | timestamps | <code>ref</code> | reactive timestamps list for all posts in a list |
 | count | <code>computed</code> | the number of posts in a feed |
+| downloadPosts | <code>function</code> | Download all posts in a zip file |
+| uploadPosts | <code>function</code> | upload a zip file with posts |
 
 <hr />
 
@@ -414,19 +450,25 @@ Gun DB initialization and basic methods
         * [~genUUID()](#module_useGun..genUUID)
 
 ### gun
-  Established Gun instance for database operations
+  The main Gun instance for database operations
 
 ### gun2
   Secondary Gun instance for key management
 
 ### useGun(peer) ⇒ <code>Gun</code>
-  A Gun instance for DB manipulations
+  Instantiate a Gun instance for DB manipulations
 
 
 | Param | Type | Description |
 | --- | --- | --- |
 | peer | <code>Array</code> | an array of Gun peers (should be only one for now) |
 
+**Example**  
+```js
+import { useGun } from '@gun-vue/composables'
+
+const gun = useGun()
+```
 ### useGun2(peer) ⇒ <code>Gun</code>
   get a secondary Gun instance to manages certificates
 
@@ -479,17 +521,20 @@ Handle Markdown files
 
 
 * [useMd](#module_useMd)
-    * [.createMd(md)](#module_useMd.createMd) ⇒
-    * [.parseMd(file)](#module_useMd.parseMd) ⇒ <code>Md</code>
+    * _static_
+        * [.createMd(md)](#module_useMd.createMd) ⇒
+        * [.parseMd(file)](#module_useMd.parseMd) ⇒ <code>Md</code>
+    * _inner_
+        * [~Md](#module_useMd..Md) : <code>Object</code>
 
 ### createMd(md) ⇒
   Create markdown with frontmatter
 
-**Returns**: Markdown file ready to download  
+**Returns**: Markdown text file ready to download  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| md | <code>Object</code> | frontmatter,content |
+| md | <code>Md</code> | frontmatter,content |
 
 ### parseMd(file) ⇒ <code>Md</code>
   Parse text content of a markdown file into an object
@@ -499,6 +544,14 @@ Handle Markdown files
 | Param | Type | Description |
 | --- | --- | --- |
 | file | <code>String</code> | Text form of an uploaded file |
+
+### Md : <code>Object</code>
+  **Properties**
+
+| Name | Type |
+| --- | --- |
+| frontmatter | <code>Object</code> | 
+| content | <code>object</code> | 
 
 <hr />
 
@@ -584,6 +637,7 @@ Get and handle a particular post by it's tag and hash
 * [usePost](#module_usePost)
     * _static_
         * [.usePost(tag, hash)](#module_usePost.usePost) ⇒ <code>Post</code>
+        * [.downloadPost(post)](#module_usePost.downloadPost)
     * _inner_
         * [~Post](#module_usePost..Post) : <code>Object</code>
 
@@ -600,6 +654,22 @@ Get and handle a particular post by it's tag and hash
 ```js
 const post = usePost( 'tag', postHash )
 ```
+### downloadPost(post)
+  Download the post as a zip file with MD contents and icon and cover pictures if present
+
+
+| Param | Type |
+| --- | --- |
+| post | <code>Post</code> | 
+
+**Example**  
+```js
+import { downloadPost, usePost } from '@gun-vue/composables'
+
+const post = usePost( postTag, postHash )
+
+downloadPost(post)
+```
 ### Post : <code>Object</code>
   **Properties**
 
@@ -613,20 +683,20 @@ const post = usePost( 'tag', postHash )
 
 **Example**  
 ```js
-{ 
- "empty": false, 
- "tag": "ds", 
- "hash": "C8trDBYNyvxVedHK4Q0IuUarc/k2/iiv8opPfoAU0xA=", 
- "data": { 
-   "cover": "data:image/png;base64,..........", 
-   "icon": "data:image/png;base64,..........", 
-   "title": "OSS", 
-   "description": "New live album by tsoop", 
-   "youtube": "K2MwpOd8vEI", 
-   "content": "It's mostly op-z + op-1 with my own Unity visuals based on [Chromatone](https://chromatone.center) system.\n\n### 2021\nFirst played live at April 20th **2021**.\n\n### Into 2022\nIt's an ongoing live album to be recorded throughout the **2022**." 
-}, 
- "timestamp": 1642590655747, 
- "lastUpdated": "1d" 
+{
+ "empty": false,
+ "tag": "ds",
+ "hash": "C8trDBYNyvxVedHK4Q0IuUarc/k2/iiv8opPfoAU0xA=",
+ "data": {
+   "cover": "data:image/png;base64,..........",
+   "icon": "data:image/png;base64,..........",
+   "title": "OSS",
+   "description": "New live album by tsoop",
+   "youtube": "K2MwpOd8vEI",
+   "content": "It's mostly op-z + op-1 with my own Unity visuals based on [Chromatone](https://chromatone.center) system.\n\n### 2021\nFirst played live at April 20th **2021**.\n\n### Into 2022\nIt's an ongoing live album to be recorded throughout the **2022**."
+},
+ "timestamp": 1642590655747,
+ "lastUpdated": "1d"
 }
 ```
 <hr />
@@ -737,6 +807,7 @@ Basic user management
         * [.useUser()](#module_useUser.useUser) ⇒ <code>useUser</code>
         * [.auth(pair)](#module_useUser.auth)
         * [.leave()](#module_useUser.leave)
+        * [.addProfileField(name)](#module_useUser.addProfileField)
         * [.updateProfile(field, data)](#module_useUser.updateProfile)
         * [.isPair(pair)](#module_useUser.isPair) ⇒ <code>Boolean</code>
     * _inner_
@@ -746,6 +817,12 @@ Basic user management
 ### useUser() ⇒ <code>useUser</code>
   Get access to current logged in user
 
+**Example**  
+```js
+import { useUser } from '@gun-vue/composables'
+
+const { user, auth, leave } = useUser()
+```
 ### auth(pair)
   Authenticate with a SEA key pair
 
@@ -754,9 +831,38 @@ Basic user management
 | --- | --- |
 | pair | <code>Object</code> | 
 
+**Example**  
+```js
+import { auth, SEA } from '@gun-vue/composables'
+
+async function login() {
+   const pair = await SEA.pair()
+   auth(pair)
+}
+```
 ### leave()
   Log out the user
 
+**Example**  
+```js
+import { leave } from '@gun-vue/composables'
+
+leave()
+```
+### addProfileField(name)
+  Add a field to the User profile
+
+
+| Param | Type |
+| --- | --- |
+| name | <code>String</code> | 
+
+**Example**  
+```js
+import { addProfileField } from '@gun-vue/composables'
+
+addProfileField( 'city' )
+```
 ### updateProfile(field, data)
   Update a profile field
 
@@ -766,6 +872,12 @@ Basic user management
 | field | <code>String</code> | 
 | data | <code>Any</code> | 
 
+**Example**  
+```js
+import { updateProfile } from '@gun-vue/composables'
+
+updateProfile( 'city', 'Moscow' )
+```
 ### isPair(pair) ⇒ <code>Boolean</code>
   Check if the object is a proper SEA pair
 
@@ -790,6 +902,29 @@ Basic user management
 | safe | <code>Object</code> | safe account indicators |
 | pair | <code>function</code> | use `user.pair()` to get curent user key pair |
 
+**Example**  
+```js
+{ 
+ "initiated": true, 
+ "is": { 
+   "pub": "XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc", 
+   "epub": "wAvPlMAg4jvUvK4sPpVyF1CAWnRCMu1YpHnoDrVDg-o.l79QDmdPCLEiO0F_WkB3zYLpJt-lANtyhNmHSM4bTes", 
+   "alias": "XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc" 
+ }, 
+ "name": "Accord", 
+ "pub": "XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc", 
+ "color": "#f55c3d", 
+ "pulse": 1642708061615, 
+ "pulser": 12, 
+ "blink": false, 
+ "safe": { 
+   "saved": true, 
+   "password": null, 
+   "enc": "SEA{\"ct\":\"E+6GViU9dTuidruOCNAoBITE+AlGNRgiABplSbL5fh4v1P+fhF33MuBwKd3ssBNi2kJ1sCzvS/YLmzivECA5ARZPGVbgXTSj8AE9kCz0Ac/8ushlsfBNdt8s3+a3OPVxMIevnT01uqcgr75Zp4TugIg/YuB5WltA9RHsgWEMlo+X+tRGaqG5rfw4sAmTSV0P8evMgM9rN/Un5t/WeDbvIPNXqZEmtxwAhMUZwOJWZckNZmNwpxnelFO0BwmauWfzkXuqGeSxNhMeaZi+VoRDMUvTjT68DLBnVoOhFhcdco+RW8AJfktZHZ4GF2IzFnQmTGpUd2LfvIY/Yn1eNJH7iQ5w41ChiYB/zhgQCOc5ur51PV6swAuN595vUNn7+0J1JRSNGzW2V/4j4YR4IEsAoqOtdn2Y21ga/CFdrE0=\",\"iv\":\"LtODTV+LBzhWHqUcptUO\",\"s\":\"XCL9Uj1YlPcV\"}", 
+ "pass": "SEA{\"ct\":\"8wNClMx/ebfou+gGWdf+bbx0TAgc9RU=\",\"iv\":\"NPgHkI+Ke+i/mw+3chlr\",\"s\":\"3VzGv06Y4fQ+\"}" 
+ } 
+}
+```
 ### useUser
   **Properties**
 

@@ -16,16 +16,20 @@ export let peers = ["https://etogun.glitch.me/gun"];
 // export const peers = ["http://192.168.1.100:4200/gun"];
 // export const peers = ["http://localhost:4200/gun"];
 
-/** Established Gun instance for database operations */
+/** The main Gun instance for database operations */
 export let gun;
 
 /** Secondary Gun instance for key management */
 export let gun2;
 
 /**
- * A Gun instance for DB manipulations
+ * Instantiate a Gun instance for DB manipulations
  * @param {Array} peer - an array of Gun peers (should be only one for now)
  * @returns {Gun}
+ * @example
+ * import { useGun } from '@gun-vue/composables'
+ *
+ * const gun = useGun()
  */
 
 export function useGun(peer = peers) {
