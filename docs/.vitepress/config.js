@@ -26,11 +26,11 @@ export default defineConfig({
         text: "Composables",
         link: "/composables/",
       },
-      {
-        text: "Demo",
-        link: "/demo/",
-      },
       { text: "Relay", link: "/relay/" },
+      {
+        text: "Apps",
+        link: "/apps/",
+      },
       { text: "Blog", link: "/blog/" },
     ],
   },
