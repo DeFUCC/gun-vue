@@ -20,5 +20,5 @@ features:
   - title: Synchronized state 🗄
     details: All the components and composables use the same instance of Gun and are always in sync with each other
   - title: All-in-one solution ⚙️
-    details: We try to implement all the usefull js tools to make building p2p apps fun and easy
+    details: We try to implement all the useful JS tools to make building p2p apps fun and easy
 ---
