@@ -27,15 +27,16 @@ const icon = ref()
 const cover = ref()
 
 watchEffect(async () => {
-  icon.value = await loadFromHash('icons', props.post?.icon)
-  cover.value = await loadFromHash('covers', props.post?.cover)
+  const d = { ...props.post }
+  icon.value = await loadFromHash('icons', d?.icon)
+  cover.value = await loadFromHash('covers', d?.cover)
 })
 
 
 </script>
 
 <template lang='pug'>
-.shadow-md.m-1.rounded-lg.cursor-pointer.flex.flex-wrap.items-center.bg-cover.bg-center(:style="{ backgroundImage: `url(${cover || post?.base64})`, backgroundColor: colorLight.hex(hash), paddingTop: cover || post?.base64 ? '100px' : '5px' }") 
+.shadow-md.m-1.rounded-lg.cursor-pointer.flex.flex-wrap.items-center.bg-cover.bg-center(:style="{ backgroundImage: `url(${cover || post?.base64})`, backgroundColor: colorLight.hex(hash), paddingTop: cover || post?.base64 ? '140px' : '5px' }") 
   .flex.flex-wrap.items-center.w-full.backdrop-blur-md.rounded-lg.m-1(:style="{ backgroundColor: colorLight.hex(hash) }")
 
     img.w-20.max-h-20.rounded-full.m-2(v-if="icon" :src="icon")

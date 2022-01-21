@@ -24,11 +24,12 @@ const { posts, timestamps, downloadPosts, uploadPosts } = useFeed(props.tag, { h
     la-times.cursor-pointer(@click="$emit('close')")
   post-form(:tag="tag")
   .flex.flex-col
-    transition-group(name="fade")
+    transition-group(name="list")
       post-card(
         :style="{ order: Date.now() - timestamps[hash].toFixed() }"
         style="flex: 1 1"
-        v-for="(item, hash) in posts" :key="hash" 
+        v-for="(item, hash) in posts" 
+        :key="hash" 
         :hash="hash"
         :tag="tag"
         :post="item" 
