@@ -5,9 +5,9 @@
 
 import { computed, reactive, ref } from "vue";
 import ms from "ms";
-import { useGun } from "./useGun";
-
+import { useGun, gun } from "./useGun";
 import { useZip } from "./useZip";
+import { hashObj } from "./useHash";
 
 /**
  * An interface to manage a post
@@ -108,4 +108,33 @@ export async function downloadPost(post) {
   await zipPost(postData);
 
   downloadZip({ title });
+}
+
+/**
+ * Add a new post to a tag
+ * @param {String} tag
+ * @param {Object} obj
+ * @example
+ * import { addPost } from '@gun-vue/composables'
+ *
+ * addPost('MyTag', {
+ *  title: 'New post'
+ * })
+ */
+
+export async function addPost(tag, obj) {
+  console.log(tag, obj);
+  const { text, hash } = await hashObj(obj);
+  gun.get(`#${tag}`).get(`${hash}`).put(text);
+}
+
+/**
+ * Update a timestamp of an immutable object by resetting it back on itself. Essentially you get the object and put it back again.
+ * @param {String} tag
+ * @param {String} hash
+ */
+
+export async function refreshPost(tag, hash) {
+  let data = await gun.get(`#${tag}`).get(hash).then();
+  gun.get(`#${tag}`).get(hash).put(data);
 }

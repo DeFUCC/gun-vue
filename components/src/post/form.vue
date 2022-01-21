@@ -1,9 +1,7 @@
 <script setup>
-import { reactive, ref, onMounted, watch, computed, nextTick } from 'vue'
-import SimpleMDE from 'simplemde'
-import 'simplemde/dist/simplemde.min.css'
+import { reactive, ref, onMounted, watch, computed } from 'vue'
 
-import { usePictureUpload, addPost, useColor, uploadText, parseMd } from '@composables'
+import { addPost, useColor } from '@composables'
 
 const props = defineProps({
   tag: { type: String, default: 'null' }
@@ -15,16 +13,13 @@ const addColor = computed(() => {
   return colorDeep.hex(props.tag)
 })
 
-let simplemde
+const titleInput = ref()
+
 onMounted(() => {
-  simplemde = new SimpleMDE({
-    element: document.getElementById("myMD"),
-  });
-  title?.value?.focus()
+  titleInput?.value?.focus()
 })
 
-const post = ref({})
-const title = ref()
+const postData = ref({})
 
 const add = reactive({
   form: false,
@@ -33,81 +28,21 @@ const add = reactive({
 })
 
 const hasContent = computed(() => {
-  return post.value.title || post.value.description || post.value.content || post.value.cover
+  return postData.value.title || postData.value.description || postData.value.content || postData.value.cover
 })
 
+
 function submit() {
-  const contents = { ...post.value, content: simplemde.value() }
+  const contents = { ...postData.value }
   addPost(props.tag, contents)
   reset()
 }
 
-const { state, handleChange } = usePictureUpload({
-  picSize: 800,
-  preserveRatio: true
-})
-
-watch(() => state.output, file => {
-  if (file?.content) {
-    post.value.cover = file.content
-  }
-})
-
-const youtube = ref()
-
-watch(youtube, link => {
-  if (link) {
-    post.value.youtube = youtubeLinkParser(link)
-    add.youtube = false
-  } else {
-    post.value.youtube = null
-    youtube.value = null
-    add.youtube = false
-  }
-
-})
-
-function youtubeLinkParser(url) {
-  var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
-  var match = url.match(regExp);
-  if (match && match[2].length == 11) {
-    return match[2];
-  } else {
-    return null;
-  }
-}
-
-function importPost(event) {
-  uploadText(event, (file) => {
-    let { frontmatter, content } = parseMd(file);
-    post.value = { ...post.value, ...frontmatter }
-    if (content) {
-      add.content = true
-      nextTick(() => {
-        simplemde.value(content)
-      })
-
-    }
-  });
-}
-
 function reset() {
   add.form = false
-  post.value = {}
-  simplemde.value('')
-  youtube.value = null
+  postData.value = {}
 }
 
-
-const { state: iconState, handleChange: handleIcon } = usePictureUpload({
-  picSize: 400,
-})
-
-watch(() => iconState.output, file => {
-  if (file?.content) {
-    post.value.icon = file.content
-  }
-})
 </script>
 
 <template lang='pug'>
@@ -126,45 +61,16 @@ watch(() => iconState.output, file => {
       la-eye-slash(v-else)
     button.button.text-xl( @click="reset()")
       la-trash-alt
-  .flex.relative.my-4(v-if="add.form && post.cover")
-    button.button.absolute.text-2xl.right-2.opacity-60.hover_opacity-100
-      la-trash-alt(@click="post.cover = null")
-    img( :src="post.cover")
-  .flex.relative.max-w-100px.items-center.justify-center(v-if="post.icon")
-    button.button.absolute.text-3xl.opacity-10.hover_opacity-100
-      la-trash-alt(@click="post.icon = null")
-    img.rounded-full(:src="post.icon")
   transition(name="fade")
-    form.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl.mb-6(action="javascript:void(0);" v-show="add.form")
-
-      input.font-bold.text-xl(v-model="post.title" placeholder="Title" autofocus ref="title")
-      input(v-model="post.description" placeholder="Description")
-
+    form.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl.mb-6(action="javascript:void(0);" v-if="add.form")
+      input.font-bold.text-xl(v-model="postData.title" placeholder="Title" autofocus ref="titleInput")
+      input(v-model="postData.description" placeholder="Description")
       .flex.flex-wrap.text-xl
-        label.button.cursor-pointer(for="icon_upload" :class="{ active: post.icon }")
+        post-form-picture(@update="postData.icon = $event" field="icon" :options="{ picSize: 400, preserveRatio: false }")
           la-info-circle
-        input#icon_upload.hidden(type="file" @change="handleIcon" accept="image/*")
-        label.button.cursor-pointer(for="image_upload" :class="{ active: post.cover }")
-          la-image
-        input#image_upload.hidden(type="file" @change="handleChange" accept="image/*")
-        button.button(@click="add.youtube = !add.youtube" :class="{ active: post.youtube }")
-          la-youtube
-        input(v-if="add.youtube" v-model="youtube" placeholder="Paste a Youtube video link")
-        button.button(@click="add.content = !add.content" :class="{ active: add.content }")
-          mdi-text-long
-        label.button.cursor-pointer.flex.items-center(for="import-post")
-          la-markdown
-        input#import-post.hidden(
-          tabindex="-1"
-          type="file",
-          accept="text/markdown",
-          ref="file"
-          @change="importPost($event)"
-        )
-      .flex.flex-col.my-6.shadow-xl
-        embed-youtube(v-if="post.youtube" :video="post.youtube")
-      .flex.flex-col(v-show="add.content")
-        textarea#myMD(ref="md"  placeholder="Main text content (with **markdown** support)")
+        post-form-picture(@update="postData.cover = $event")
+        post-form-youtube(@update="postData.youtube = $event")
+        post-form-text(@update="postData.content = $event")
 
 </template>
 

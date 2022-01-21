@@ -28,7 +28,7 @@ const banned = useBanned(props.hash)
 
 <template lang='pug'>
 .shadow-md.m-1.rounded-lg.cursor-pointer.flex.flex-wrap.items-center.bg-cover.bg-center(:style="{ backgroundImage: `url(${post.cover})`, backgroundColor: colorLight.hex(hash), paddingTop: post.cover ? '100px' : '5px' }")
-  .flex.flex-wrap.items-center.w-full.opacity-96.backdrop-blur-md.rounded-lg.m-1(:style="{ backgroundColor: colorLight.hex(hash) }")
+  .flex.flex-wrap.items-center.w-full.backdrop-blur-md.rounded-lg.m-1(:style="{ backgroundColor: colorLight.hex(hash) }")
 
     img.w-20.max-h-20.rounded-full.m-2(v-if="post.icon" :src="post.icon")
     .flex.flex-col.p-2.overflow-hidden(style="flex: 1 0 50%")

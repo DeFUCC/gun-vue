@@ -10,10 +10,11 @@ import Fuse from "fuse.js";
 import JSZip from "jszip";
 
 import { gun, useGun } from "./useGun";
-import { hashObj, hashText } from "./useHash";
+import { hashText } from "./useHash";
 import { detectMimeType } from "./useFile";
 import { parseMd } from "./useMd";
 import { useZip } from "./useZip";
+import { addPost } from "./usePost";
 
 /**
  * @typedef useFeeds
@@ -100,7 +101,7 @@ export function useFeeds() {
  *
  * const { posts, timestamps, count, uploadPosts, downloadPosts} = useFeed('MyTag')
  */
-export function useFeed(tag = ref("tag"), { host = "" } = {}) {
+export function useFeed(tag = "tag", { host = "" } = {}) {
   const gun = useGun();
   tag = ref(tag);
   const timestamps = ref({});
@@ -164,23 +165,6 @@ export function useBanned(hash) {
       banned.value = d;
     });
   return banned;
-}
-
-/**
- * Add a new post to a tag
- * @param {String} tag
- * @param {Object} obj
- * @example
- * import { addPost } from '@gun-vue/composables'
- *
- * addPost('MyTag', {
- *  title: 'New post'
- * })
- */
-
-export async function addPost(tag, obj) {
-  const { text, hash } = await hashObj(obj);
-  gun.get(`#${tag}`).get(`${hash}`).put(text);
 }
 
 /**
