@@ -264,7 +264,6 @@ Immutable hashed lists of data
     * _static_
         * [.useFeeds()](#module_useFeed.useFeeds) ⇒ <code>useFeeds</code>
         * [.useFeed(tag, options)](#module_useFeed.useFeed) ⇒ <code>useFeed</code>
-        * [.addPost(tag, obj)](#module_useFeed.addPost)
         * [.downloadFeed(tag, posts)](#module_useFeed.downloadFeed)
         * [.uploadFeed(tag, files)](#module_useFeed.uploadFeed)
     * _inner_
@@ -288,23 +287,6 @@ Immutable hashed lists of data
 import { useFeed } from '@gun-vue/composables'
 
 const { posts, timestamps, count, uploadPosts, downloadPosts} = useFeed('MyTag')
-```
-### addPost(tag, obj)
-  Add a new post to a tag
-
-
-| Param | Type |
-| --- | --- |
-| tag | <code>String</code> | 
-| obj | <code>Object</code> | 
-
-**Example**  
-```js
-import { addPost } from '@gun-vue/composables'
-
-addPost('MyTag', {
- title: 'New post'
-})
 ```
 ### downloadFeed(tag, posts)
   Export a list of posts as a zip file
@@ -638,6 +620,8 @@ Get and handle a particular post by it's tag and hash
     * _static_
         * [.usePost(tag, hash)](#module_usePost.usePost) ⇒ <code>Post</code>
         * [.downloadPost(post)](#module_usePost.downloadPost)
+        * [.addPost(tag, obj)](#module_usePost.addPost)
+        * [.refreshPost(tag, hash)](#module_usePost.refreshPost)
     * _inner_
         * [~Post](#module_usePost..Post) : <code>Object</code>
 
@@ -670,6 +654,32 @@ const post = usePost( postTag, postHash )
 
 downloadPost(post)
 ```
+### addPost(tag, obj)
+  Add a new post to a tag
+
+
+| Param | Type |
+| --- | --- |
+| tag | <code>String</code> | 
+| obj | <code>Object</code> | 
+
+**Example**  
+```js
+import { addPost } from '@gun-vue/composables'
+
+addPost('MyTag', {
+ title: 'New post'
+})
+```
+### refreshPost(tag, hash)
+  Update a timestamp of an immutable object by resetting it back on itself. Essentially you get the object and put it back again.
+
+
+| Param | Type |
+| --- | --- |
+| tag | <code>String</code> | 
+| hash | <code>String</code> | 
+
 ### Post : <code>Object</code>
   **Properties**
 
