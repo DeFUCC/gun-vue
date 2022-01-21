@@ -7,7 +7,7 @@ import { computed, reactive, ref } from "vue";
 import ms from "ms";
 import { useGun, gun } from "./useGun";
 import { useZip } from "./useZip";
-import { hashObj } from "./useHash";
+import { hashObj, hashText, safeHash } from "./useHash";
 
 /**
  * An interface to manage a post
@@ -18,43 +18,38 @@ import { hashObj } from "./useHash";
  * const post = usePost( 'tag', postHash )
  */
 
-export function usePost(tag = ref(""), hash = ref("")) {
+export function usePost(tag = "null", hash = "") {
   const gun = useGun();
 
-  tag = ref(tag);
-  hash = ref(hash);
-  const post = computed(() => {
-    const obj = reactive({
-      empty: true,
-      tag,
-      hash,
-      data: {},
-      download() {
-        downloadPost(post);
-      },
-    });
-
-    gun
-      .get(`#${tag.value}`)
-      .on((d, k) => {
-        obj.timestamp = d._[">"][hash.value];
-        if (obj.timestamp) {
-          obj.lastUpdated = ms(Date.now() - obj.timestamp);
-        }
-      })
-      .get(hash.value)
-      .on(async (d, k) => {
-        let banned = await gun.get("#ban").get(k).then();
-        if (tag.value != "ban" && banned) return;
-        try {
-          Object.assign(obj.data, JSON.parse(d));
-        } catch (e) {
-          obj.data.string = d;
-        }
-        obj.empty = false;
-      });
-    return obj;
+  const post = reactive({
+    empty: true,
+    tag,
+    hash,
+    data: {},
+    download() {
+      downloadPost(post);
+    },
   });
+
+  gun
+    .get(`#${tag}`)
+    .on((d, k) => {
+      post.timestamp = d._[">"][hash];
+      if (post.timestamp) {
+        post.lastUpdated = ms(Date.now() - post.timestamp);
+      }
+    })
+    .get(hash)
+    .on(async (d, k) => {
+      let banned = await gun.get("#ban").get(k).then();
+      if (tag != "ban" && banned) return;
+      try {
+        Object.assign(post.data, JSON.parse(d));
+      } catch (e) {
+        post.data.base64 = d;
+      }
+      post.empty = false;
+    });
 
   return post;
 }
@@ -101,19 +96,71 @@ export async function downloadPost(post) {
     ...post.value.data,
   };
 
-  const { title } = postData;
+  let { title } = postData;
 
-  const { zipPost, downloadZip } = useZip();
+  const { zipPost, addFile, downloadZip } = useZip();
 
-  await zipPost(postData);
+  let singleFile = false
 
+  if (title && !postData.base64) {
+    await zipPost(postData);
+  } else {
+    
+    title = 'file'
+    singleFile = true
+    const hash = await hashText(postData.base64)
+    await addFile({
+      title: safeHash(hash),
+      file: postData.base64,
+    })
+  }
+  
   downloadZip({ title });
+}
+
+export async function loadFromHash(category, hash) {
+  if (
+    category &&
+    hash &&
+    typeof hash == "string" &&
+    hash.length == 44 &&
+    hash.slice(0, 5) != "data:"
+  ) {
+    return await gun.get(`#${category}`).get(hash).then();
+  }
+  return hash;
+}
+
+async function saveToHash(category, file) {
+  if (category && file && file.slice(0, 5) == "data:") {
+    const hash = await hashText(file);
+    gun.get(`#${category}`).get(`${hash}`).put(file);
+    return hash;
+  } else {
+    return file;
+  }
+}
+
+/**
+ * Parse a post string from db
+ * @param {String} data Stringified data from the hashed post
+ * @returns {Object} Post object
+ */
+
+export async function parsePost(data) {
+  let post;
+  try {
+    post = JSON.parse(data);
+  } catch (e) {
+    post = { base64: data };
+  }
+  return post;
 }
 
 /**
  * Add a new post to a tag
  * @param {String} tag
- * @param {Object} obj
+ * @param {Object} post
  * @example
  * import { addPost } from '@gun-vue/composables'
  *
@@ -122,9 +169,12 @@ export async function downloadPost(post) {
  * })
  */
 
-export async function addPost(tag, obj) {
-  console.log(tag, obj);
-  const { text, hash } = await hashObj(obj);
+export async function addPost(tag, post) {
+  const { icon, cover, content } = post;
+  post.icon = await saveToHash("icons", post.icon);
+  post.cover = await saveToHash("covers", post.cover);
+  // post.content = await saveHashed("texts", post.content);
+  const { text, hash } = await hashObj(post);
   gun.get(`#${tag}`).get(`${hash}`).put(text);
 }
 

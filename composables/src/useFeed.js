@@ -14,7 +14,7 @@ import { hashText } from "./useHash";
 import { detectMimeType } from "./useFile";
 import { parseMd } from "./useMd";
 import { useZip } from "./useZip";
-import { addPost } from "./usePost";
+import { addPost, parsePost } from "./usePost";
 
 /**
  * @typedef useFeeds
@@ -93,7 +93,7 @@ export function useFeeds() {
 
 /**
  * Use a list of immutable data from a #tag
- * @param {ref} tag - A vue ref to watch - generated from props by `toRef(props,'tag')`
+ * @param {String} tag - A vue ref to watch - generated from props by `toRef(props,'tag')`
  * @param {Object} options - Options for the feed
  * @returns {useFeed}
  * @example
@@ -103,39 +103,33 @@ export function useFeeds() {
  */
 export function useFeed(tag = "tag", { host = "" } = {}) {
   const gun = useGun();
-  tag = ref(tag);
+
   const timestamps = ref({});
 
   const ban = host ? gun.user(host).get("bannedPosts") : gun.get("#ban");
 
-  const posts = computed(() => {
-    const obj = reactive({});
-    gun
-      .get(`#${tag.value}`)
-      .on(function (d, k) {
-        timestamps.value = d._[">"];
-      })
-      .map()
-      .on(async (d, k) => {
-        let banned = await ban.get(k).then();
-        if (tag.value != "ban" && banned) return;
-        try {
-          obj[k] = JSON.parse(d);
-        } catch (e) {
-          obj[k] = { content: d };
-        }
-      });
-    return obj;
-  });
+  const posts = reactive({});
 
-  const count = computed(() => Object.keys(posts.value).length);
+  gun
+    .get(`#${tag}`)
+    .on(function (d, k) {
+      timestamps.value = d._[">"];
+    })
+    .map()
+    .on(async (d, k) => {
+      let banned = await ban.get(k).then();
+      if (tag != "ban" && banned) return;
+      posts[k] = await parsePost(d);
+    });
+
+  const count = computed(() => Object.keys(posts || {}).length);
 
   function downloadPosts() {
-    downloadFeed(tag.value, posts.value);
+    downloadFeed(tag, posts);
   }
 
   function uploadPosts(ev) {
-    uploadFeed(tag.value, ev);
+    uploadFeed(tag, ev);
   }
 
   return {
@@ -204,6 +198,9 @@ export async function downloadFeed(tag, posts) {
 export function uploadFeed(tag, files) {
   [...files].forEach(async (file) => {
     const zip = await JSZip.loadAsync(file);
+    if (zip.comment) {
+      console.info("Zip file comment: " + zip.comment);
+    }
     zip.forEach(async (path, entry) => {
       if (path.endsWith("index.md")) {
         let title = path.slice(0, -9);
@@ -220,8 +217,8 @@ export function uploadFeed(tag, files) {
         }
         if (frontmatter.cover) {
           const cover = await zip
-            .file(`${title}/${frontmatter.cover}`)
-            .async("base64");
+            ?.file(`${title}/${frontmatter.cover}`)
+            ?.async("base64");
           const coverMime = detectMimeType(cover);
           frontmatter.cover = `data:${coverMime};base64,${cover}`;
         }

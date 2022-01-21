@@ -279,7 +279,7 @@ Immutable hashed lists of data
 
 | Param | Type | Description |
 | --- | --- | --- |
-| tag | <code>ref</code> | A vue ref to watch - generated from props by `toRef(props,'tag')` |
+| tag | <code>String</code> | A vue ref to watch - generated from props by `toRef(props,'tag')` |
 | options | <code>Object</code> | Options for the feed |
 
 **Example**  
@@ -620,7 +620,8 @@ Get and handle a particular post by it's tag and hash
     * _static_
         * [.usePost(tag, hash)](#module_usePost.usePost) ⇒ <code>Post</code>
         * [.downloadPost(post)](#module_usePost.downloadPost)
-        * [.addPost(tag, obj)](#module_usePost.addPost)
+        * [.parsePost(data)](#module_usePost.parsePost) ⇒ <code>Object</code>
+        * [.addPost(tag, post)](#module_usePost.addPost)
         * [.refreshPost(tag, hash)](#module_usePost.refreshPost)
     * _inner_
         * [~Post](#module_usePost..Post) : <code>Object</code>
@@ -654,14 +655,23 @@ const post = usePost( postTag, postHash )
 
 downloadPost(post)
 ```
-### addPost(tag, obj)
+### parsePost(data) ⇒ <code>Object</code>
+  Parse a post string from db
+
+**Returns**: <code>Object</code> - Post object  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| data | <code>String</code> | Stringified data from the hashed post |
+
+### addPost(tag, post)
   Add a new post to a tag
 
 
 | Param | Type |
 | --- | --- |
 | tag | <code>String</code> | 
-| obj | <code>Object</code> | 
+| post | <code>Object</code> | 
 
 **Example**  
 ```js

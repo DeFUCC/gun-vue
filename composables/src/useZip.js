@@ -6,7 +6,10 @@
 
 import JSZip from "jszip";
 import { downloadFile, base64Extension, base64FileType } from "./useFile";
+import { SEA } from "./useGun";
 import { createMd } from "./useMd";
+import { loadFromHash } from "./usePost";
+import { user } from "./useUser";
 
 /**
  * @typedef useZip
@@ -58,9 +61,10 @@ export function useZip() {
   }
 
   async function zipPost(post = {}) {
-    const { icon, cover, content, title } = post;
+    let { icon, cover, content, title } = post;
     delete post?.content;
 
+    cover = await loadFromHash("covers", cover);
     if (cover) {
       const fileName = await addFile({
         title: "cover",
@@ -70,6 +74,7 @@ export function useZip() {
       post.cover = fileName;
     }
 
+    icon = await loadFromHash("icons", icon);
     if (icon) {
       const fileName = await addFile({
         title: "icon",
@@ -88,18 +93,24 @@ export function useZip() {
     });
   }
 
-  async function downloadZip({ title } = {}) {
-    const blob = await zip.generateAsync({ type: "blob" });
-
+  async function downloadZip({ title = '', addDate = true } = {}) {
     let now = new Date();
     const offset = now.getTimezoneOffset();
     now = new Date(now.getTime() - offset * 60 * 1000);
+    const date = now.toISOString().split("T")[0];
 
-    downloadFile(
-      blob,
-      "application/zip",
-      `${title}-${now.toISOString().split("T")[0]}.zip`
-    );
+    const blob = await zip.generateAsync({
+      type: "blob",
+      comment: `Exported from ${title} at ${location} on ${date}`,
+      compression: "DEFLATE",
+      compressionOptions: {
+        level: 9,
+      },
+    });
+
+    const fileName = `${title}-${date}.zip`
+
+    downloadFile(blob, "application/zip", fileName);
   }
 
   return { zip, zipPost, addMd, addFile, downloadZip };

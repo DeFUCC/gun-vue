@@ -1,6 +1,6 @@
 <script setup>
-import { useColor } from '@composables';
-import { usePost } from '@composables';
+import { ref, watchEffect } from 'vue'
+import { useColor, loadFromHash, usePost } from '@composables';
 import markdown from 'markdown-it'
 import externalLinks from 'markdown-it-external-links'
 
@@ -16,6 +16,16 @@ const colorLight = useColor('light')
 const post = usePost(props.tag, props.hash)
 
 
+const icon = ref()
+const cover = ref()
+
+watchEffect(async () => {
+  const d = { ...post.data }
+  icon.value = await loadFromHash('icons', d?.icon)
+  cover.value = await loadFromHash('covers', d?.cover || d?.base64)
+})
+
+
 const md = new markdown({
   linkify: true,
   typographer: true,
@@ -29,7 +39,7 @@ md.use(externalLinks, {
 
 <template lang='pug'>
 .rounded-2xl.flex.flex-col.max-w-160.mx-auto.w-full(:style="{ backgroundColor: colorLight.hex(hash) }")
-  .flex.flex-wrap.items-center.w-full.px-4.py-2.sticky.top-0.shadow-xl(:style="{ backgroundColor: colorLight.hex(hash) }")
+  .flex.flex-wrap.items-center.w-full.px-4.py-2.sticky.top-0.shadow-xl(:style="{ backgroundColor: colorLight.hex(hash) }")  
     .hover_underline.text-md.cursor-pointer.font-bold.flex(@click="$emit('close')") 
       .p-0 #
       .ml-1 {{ tag }}
@@ -39,9 +49,9 @@ md.use(externalLinks, {
     .flex-1
     button( @click="$emit('close')") 
       la-times
-  img(v-if="post?.data?.cover" :src="post?.data?.cover")
+  img(v-if="cover" :src="cover")
   .flex.flex-wrap.items-center.mt-6
-    img.w-20.h-20.rounded-full.m-2(v-if="post?.data?.icon" :src="post?.data?.icon")
+    img.w-20.h-20.rounded-full.m-2(v-if="icon" :src="icon")
     .px-8.pb-2
       .text-2xl.font-bold(v-if="post?.data?.title") {{ post?.data?.title }}
       .my-2(v-if="post?.data?.description") {{ post?.data?.description }} 

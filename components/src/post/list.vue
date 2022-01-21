@@ -1,7 +1,6 @@
 <script setup>
-import { useColor } from '@composables';
+import { useColor, gun } from '@composables';
 import { useFeed } from '@composables/useFeed.js'
-
 
 const props = defineProps({
   tag: { type: String, default: 'tag' },
