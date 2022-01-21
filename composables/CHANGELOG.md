@@ -1,5 +1,12 @@
 # @gun-vue/composables
 
+## 0.5.10
+
+### Patch Changes
+
+- 7bbd9d2: meeting space with links in real time
+- hashed content-addressed icons and covers are browsable too
+
 ## 0.5.9
 
 ### Patch Changes
