@@ -39,7 +39,7 @@ watchEffect(async () => {
 .shadow-md.m-1.rounded-lg.cursor-pointer.flex.flex-wrap.items-center.bg-cover.bg-center(:style="{ backgroundImage: `url(${cover || post?.base64})`, backgroundColor: colorLight.hex(hash), paddingTop: cover || post?.base64 ? '140px' : '5px' }") 
   .flex.flex-wrap.items-center.w-full.backdrop-blur-md.rounded-lg.m-1(:style="{ backgroundColor: colorLight.hex(hash) }")
 
-    img.w-20.max-h-20.rounded-full.m-2(v-if="icon" :src="icon")
+    img.w-20.max-h-20.rounded-full.m-2(v-if="post.icon" :src="icon")
     .flex.flex-col.p-2.overflow-hidden(style="flex: 1 0 50%")
 
       .text-lg.font-bold.truncate {{ title }}

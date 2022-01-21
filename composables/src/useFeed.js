@@ -44,7 +44,7 @@ export function useFeeds() {
           tag: tags.list[t],
         });
       }
-      return arr;
+      return arr.sort((a, b) => (a.tag < b.tag ? -1 : 1));
     }),
     count: computed(() => tags.all.length),
     fuse: computed(() => {

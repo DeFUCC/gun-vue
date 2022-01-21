@@ -19,8 +19,8 @@ const color = {
     lightness: [0.5, 0.6, 0.7],
   }),
   dark: new ColorHash({
-    saturation: [0.02, 0.05, 0.08],
-    lightness: [0.18, 0.2, 0.3],
+    saturation: [0.02, 0.5, 0.6],
+    lightness: [0.18, 0.2, 0.5],
   }),
 };
 
