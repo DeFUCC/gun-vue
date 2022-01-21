@@ -8,9 +8,12 @@ const props = defineProps(
     pulse: { type: Number, default: 0 },
     blink: { type: Boolean, default: false }
   })
-const age = computed(() => Date.now() - Number(props.pulse))
 
 const TIMEOUT = 10000
+
+const age = computed(() => Date.now() - Number(props.pulse))
+
+const isOffline = computed(() => age > TIMEOUT)
 
 const colorDeep = useColor()
 const color = computed(() => colorDeep.hex(props.pub))
@@ -18,7 +21,7 @@ const color = computed(() => colorDeep.hex(props.pub))
 
 <template lang='pug'>
 g.guest(
-  :opacity="age > TIMEOUT ? 0.1 : 1"
+  :opacity="isOffline ? 0.1 : 1"
 )
   circle.transition.duration-1000.ease-out(
     style="filter:url(#shadowButton)"

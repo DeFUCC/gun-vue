@@ -33,6 +33,7 @@ const hasContent = computed(() => {
 
 
 function submit() {
+  if (!hasContent.value) return
   const contents = { ...postData.value }
   addPost(props.tag, contents)
   reset()
@@ -47,20 +48,11 @@ function reset() {
 
 <template lang='pug'>
 .flex.flex-col
-  button.text-xl.plus.transition.rounded-xl.bg-light-800.shadow-lg.p-2.m-2.flex.items-center.justify-center.flex-1(@click="add.form = !add.form" v-if="!hasContent")
+  button.text-xl.plus.transition.rounded-xl.bg-light-800.shadow-lg.p-2.m-2.flex.items-center.justify-center.flex-1(@click="add.form = !add.form" v-if="!add.form")
     transition(name="fade" mode="out-in")
       la-plus(v-if="!add.form")
       la-times(v-else)
     .font-bold.ml-2 Add
-  .flex.justify-center.text-xl(v-if="hasContent")
-    button.plus.button.flex-1.justify-center( type="submit" @click="submit()")
-      la-check
-      .font-bold.ml-2 Submit
-    button.plus.button.items-center.justify-center(@click="add.form = !add.form")
-      la-pen(v-if="!add.form")
-      la-eye-slash(v-else)
-    button.button.text-xl( @click="reset()")
-      la-trash-alt
   transition(name="fade")
     form.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl.mb-6(action="javascript:void(0);" v-if="add.form")
       input.font-bold.text-xl(v-model="postData.title" placeholder="Title" autofocus ref="titleInput")
@@ -71,6 +63,15 @@ function reset() {
         post-form-picture(@update="postData.cover = $event")
         post-form-youtube(@update="postData.youtube = $event")
         post-form-text(@update="postData.content = $event")
+      .flex.justify-center.text-xl
+        button.plus.button.flex-1.justify-center( :disabled="!hasContent" type="submit" @click="submit()")
+          la-check
+          .font-bold.ml-2 Submit
+        button.plus.button.items-center.justify-center(@click="add.form = !add.form")
+          la-pen(v-if="!add.form")
+          la-eye-slash(v-else)
+        button.button.text-xl( @click="reset()")
+          la-trash-alt
 
 </template>
 

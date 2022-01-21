@@ -15,7 +15,7 @@ const colorDeep = useColor('deep')
 
 const TIMEOUT = 30000
 
-const { space, area, join } = useSpace()
+const { space, guests, area, join } = useSpace()
 
 const selected = ref();
 const plane = ref()
@@ -88,18 +88,18 @@ const arrows = computed(() => {
       fill="none"
       stroke-width="0"
       )
-    g.arrows(v-for="(a,n) in arrows" :key="a" opacity="0.8")
+    g.arrows(v-for="(arrow,n) in arrows" :key="arrow" opacity="0.8")
       path(
-        :d="a.d"
-        :stroke="colorDeep.hex(a.link.user)"
+        :d="arrow.d"
+        :stroke="colorDeep.hex(arrow.link.user)"
         stroke-width="1"
         fill="none"
         stroke-linecap="round"
       )
       polygon(
         :points="`0,${-arrowHeadSize} ${arrowHeadSize * 2},0, 0,${arrowHeadSize}`"
-        :transform="`translate(${a.ex}, ${a.ey}) rotate(${a.ae})`"
-        :fill="colorDeep.hex(a.link.user)"
+        :transform="`translate(${arrow.ex}, ${arrow.ey}) rotate(${arrow.ae})`"
+        :fill="colorDeep.hex(arrow.link.user)"
       )
     line(
       v-if="space.my?.pos"
@@ -119,7 +119,7 @@ const arrows = computed(() => {
         r="8"
       )
     g.guests
-      g.guest.cursor-pointer(v-for="guest in space.guests" :key="guest" )
+      g.guest.cursor-pointer(v-for="guest in guests" :key="guest" )
         space-guest.transition-all.ease-out.duration-600(
           v-if="guest.hasPos"
           v-bind="guest"
