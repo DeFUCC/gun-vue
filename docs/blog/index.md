@@ -10,12 +10,12 @@ posts:
   - title: Early setup video
     date: 2021-11-19
     youtube: 4hpVRgVQvsY
-  - title: GunVue v.0.5.0 video review
+  - title: GunVue v.0.5.0 video overview
     date: 2022-01-12
     youtube: ALKkBhj1IIE
     text: |
-      The project structure is pretty established to evolve transparently
-  - title: GunVue v.0.6.0 release review
+      The project structure is pretty established to evolve transparently. Next need to polish the existing functionality before expanding use cases further.
+  - title: GunVue v.0.6.0 release overview
     date: 2022-01-22
     youtube: oTZ7HVrxjLs
     text: |
