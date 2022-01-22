@@ -7,12 +7,11 @@ const emit = defineEmits(['close'])
 </script>
 
 <template lang="pug">
-.fixed.w-full.h-full.top-0.left-0.z-500(v-show="open")
-  transition(name="fade" mode="out-in")
-    .bg-dark-200.bg-opacity-30.w-full.h-full.absolute.z-2.cursor-pointer(@click="$emit('close')" v-if="open")
-  transition(name="fade" mode="out-in")
-    .layer(v-if="open")
-      button.button.fixed.right-4.bottom-4(v-if="closeButton" @click="$emit('close')")
+transition(name="fade")
+  .fixed.w-full.h-full.top-0.left-0.z-500(v-show="open")
+    .bg-dark-200.bg-opacity-30.w-full.h-full.absolute.z-2.cursor-pointer(key="bg" @click="$emit('close')" v-if="open")
+    .layer(v-if="open" key="layer")
+      button.button.fixed.right-4.bottom-4( v-if="closeButton" @click="$emit('close')")
         la-times
       slot
 </template>

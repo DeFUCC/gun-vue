@@ -9,6 +9,4 @@ const generate = ref(false)
   .flex.justify-center.mt-4(v-if="!generate") or
   user-auth(v-if="!generate")
   user-create(v-else)
-
-
 </template>

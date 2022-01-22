@@ -43,10 +43,10 @@ const { posts, timestamps, downloadPosts, downloading, uploadPosts } = useFeed(p
     button.button.items-center.mr-4(title="Download feed" @click="downloadPosts()")
       la-file-download(v-if="!downloading")
       la-redo-alt.animate-spin(v-else)
-      .ml-2.mr-1 Download Zip
+      .ml-2.mr-1 Download
     label.button.cursor-pointer.items-center(title="Upload feed" for="import-feed")
       la-file-upload
-      .ml-2.mr-1 Upload Zip
+      .ml-2.mr-1 Upload
     input#import-feed.hidden(
       tabindex="-1"
       type="file",

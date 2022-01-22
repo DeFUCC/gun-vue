@@ -69,5 +69,5 @@ md.use(externalLinks, {
       button.button.items-center(@click="post.download()")
         la-file-download(v-if="!post.downloading")
         la-redo-alt.animate-spin(v-else)
-        .ml-2 Download Zip
+        .ml-2 Download
 </template>

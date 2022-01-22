@@ -19,9 +19,9 @@ const open = ref(false)
     .p-1.bottom-0.left-2.rounded-full.transition.duration-300ms.ease-in-out.opacity-50.absolute(
       :style="{ backgroundColor: relay.blink ? 'white' : 'black' }"
       )
-  ui-layer(:open="open" @close="open = false")
+  ui-layer.flex.flex-col.items-center(:open="open" @close="open = false")
     .p-4
-      .h-1.w-42.mb-2.rounded-full.transition-all.duration-300.ease-in-out.opacity-40(
+      .h-2.w-full.mb-2.rounded-full.transition-all.duration-300.ease-in-out.opacity-40(
         :style="{ backgroundColor: relay.blink ? 'white' : 'black' }"
         )
       .flex.flex-col.items-start

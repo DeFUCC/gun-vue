@@ -9,6 +9,7 @@ const props = defineProps({
 const src = computed(() => {
   if (!props.data) return;
   return qrcode(props.data, {
+    size: 400,
     margin: 4,
   });
 });

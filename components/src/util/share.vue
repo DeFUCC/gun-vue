@@ -9,14 +9,14 @@ const { share, isSupported: canShare } = useShare()
 </script>
 
 <template lang='pug'>
-.flex.flex-col.items-center
+.flex.flex-col.items-center.pb-4
   qr-show.min-w-20em(:data="location.href")
-  .text-sm {{ location.href }}
-  .flex.text-lg  
-    button.button.text-lg.font-normal.items-center(v-if="canCopy")
-      la-copy(@click="copy(location.href)")
-      .ml-2(v-if="copied") Copied!
-
-    button.button.text-lg.font-normal.items-center(v-if="canShare")
-      la-share(@click="share({ title: 'Look at this', text: 'A gun-vue page', url: location.href })")
+  .flex.flex-wrap.items-center
+    .text-sm.mr-2 {{ location.href }}
+    .flex.text-lg  
+      button.button.text-lg.font-normal.items-center(v-if="canCopy")
+        la-copy(@click="copy(location.href)")
+        .ml-2(v-if="copied") Copied!
+      button.button.text-lg.font-normal.items-center(v-if="canShare")
+        la-share(@click="share({ title: 'Look at this', text: 'A gun-vue page', url: location.href })")
 </template>

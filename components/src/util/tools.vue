@@ -21,7 +21,7 @@ const show = reactive({
   button.button.m-2
     relay-icon(text="Relay")
 
-  ui-layer(:open="show.share" @close="show.share = false")
+  ui-layer.flex.flex-col.items-center(:open="show.share" @close="show.share = false")
     util-share
   ui-layer(:open="show.log" @close="show.log = false")
     log-tree
