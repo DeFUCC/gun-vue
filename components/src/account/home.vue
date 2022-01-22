@@ -5,7 +5,7 @@ const props = defineProps({
   pub: { type: String, default: '' }
 })
 
-defineEmits(['browse'])
+defineEmits(['browse', 'feed', 'post'])
 
 const { account } = useAccount(props.pub);
 </script>
@@ -24,5 +24,5 @@ const { account } = useAccount(props.pub);
     .text-lg.ml-2.mb-2.font-bold Mates
     account-mate(:pub="pub")
     account-mates(:pub="pub" @browse="$emit('browse', $event)")
-    account-stars(:pub="pub")
+    account-stars(:pub="pub" @feed="$emit('feed', $event)")
 </template>

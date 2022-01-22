@@ -6,6 +6,8 @@ const props = defineProps({
   pub: { type: String, default: '' }
 })
 
+const emit = defineEmits(['feed'])
+
 const posts = reactive({})
 
 const gun = useGun()
@@ -27,17 +29,23 @@ gun.user(props.pub).get('feeds').map().once(function (list, tag) {
 <template lang='pug'>
 .flex.flex-col(v-if="Object.keys(posts).length > 0")
   h4.p-2.text-xl.mt-4.font-bold Starred posts
-  .p-2(v-for="(feed,tag) in posts" :key="tag")
+  .p-2(v-for="(feed, tag) in posts" :key="tag")
     transition-group(name="list")
-      .text-lg.font-bold(v-if="Object.values(feed).length > 0") # {{ tag }}
-      post-card.my-2(
-        v-for="(post, hash) in feed" 
-        :key="hash" 
-        :post="post?.data" 
-        :hash="hash"
-        :tag="tag"
-        :timestamp="post.timestamp"
-        @click="$router.push(`/feeds/${tag}/${safeHash(hash)}`)"
-        )
+      .text-lg.font-bold.cursor-pointer(
+        :key="tag"
+        @click="$emit('feed', tag)" 
+        v-if="Object.values(feed).length > 0"
+        ) # {{ tag }}
+    .flex.flex-wrap
+      transition-group(name="list")
+        post-card.my-2(
+          v-for="(post, hash) in feed" 
+          :key="hash" 
+          :post="post?.data" 
+          :hash="hash"
+          :tag="tag"
+          :timestamp="post.timestamp"
+          @click="$emit('feed', `${tag}/${safeHash(hash)}`)"
+          )
 
 </template>

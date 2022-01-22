@@ -19,8 +19,7 @@ const show = reactive({
     mdi-graph-outline
     .ml-2 Graph
   button.button.m-2
-    relay-icon
-    .ml-2 Relay
+    relay-icon(text="Relay")
 
   ui-layer(:open="show.share" @close="show.share = false")
     util-share

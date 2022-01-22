@@ -19,5 +19,5 @@ defineEmits(['browse'])
 .mx-2.text-xl.cursor-pointer
   account-avatar(:size="size" :border="2" @click="open = true")
   ui-layer(:open="open" @close="open = false")
-    user-home(@browse="$emit('browse', $event)")
+    user-home(@browse="$emit('browse', $event)" @close="open = false")
 </template>

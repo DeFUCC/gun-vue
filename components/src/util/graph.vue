@@ -18,7 +18,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template lang="pug">
-article.overflow-hidden
+article.overflow-hidden.m-4.rounded-xl
   .p-2px.text-sm(
     :style="{ backgroundColor: colorLight.hex(i) }",
     v-for="(g, i) in graph",

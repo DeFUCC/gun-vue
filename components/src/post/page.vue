@@ -65,7 +65,7 @@ md.use(externalLinks, {
 
   .flex.p-4.bg-dark-50.bg-opacity-60
     .flex.items-center.mr-4
-      post-action-star.text-2xl(:tag="tag" :hash="hash")
+      post-action-star.text-xl(:tag="tag" :hash="hash")
       button.button.items-center(@click="post.download()")
         la-file-download(v-if="!post.downloading")
         la-redo-alt.animate-spin(v-else)

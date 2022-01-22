@@ -8,5 +8,10 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-account-home(:pub="pub" @browse="$router.push(`/users/${$event}`)" :key="pub")
+account-home(
+  :pub="pub" 
+  @browse="$router.push(`/users/${$event}`)" 
+  :key="pub"
+  @feed="$router.push(`/feeds/${$event}`)"
+  )
 </template>
