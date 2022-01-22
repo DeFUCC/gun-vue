@@ -47,7 +47,7 @@ function reset() {
 </script>
 
 <template lang='pug'>
-.flex.flex-col
+.flex.flex-col.w-full.max-w-620px
   button.text-xl.plus.transition.rounded-xl.bg-light-800.shadow-lg.p-2.m-2.flex.items-center.justify-center.flex-1(@click="add.form = !add.form" v-if="!add.form")
     transition(name="fade" mode="out-in")
       la-plus(v-if="!add.form")
@@ -56,7 +56,7 @@ function reset() {
   transition(name="fade")
     form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl.mb-6(action="javascript:void(0);" v-if="add.form")
       input.font-bold.text-xl(v-model="postData.title" placeholder="Title" autofocus ref="titleInput")
-      textarea(v-model="postData.description" placeholder="Description")
+      textarea.text-1rem(v-model="postData.description" placeholder="Description")
       .flex.flex-wrap.text-xl
         post-form-picture(@update="postData.icon = $event" field="icon" :options="{ picSize: 400, preserveRatio: false }")
           la-info-circle
