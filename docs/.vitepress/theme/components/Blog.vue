@@ -7,7 +7,7 @@ const props = defineProps({
 
 const sorted = computed(() => {
   return [...props.posts].sort((a, b) => {
-    if (a.date > b.date) { return 1 } else { return -1 }
+    if (new Date(a.date).getTime() < new Date(b.date).getTime()) { return 1 } else { return -1 }
   })
 })
 </script>
@@ -18,6 +18,6 @@ const sorted = computed(() => {
     .my-1.mx-0.text-xl.font-bold {{ post.title }}
     .flex-1
     .text-sm {{ new Intl.DateTimeFormat('en-US').format(new Date(post.date)) }}
-  .p-2(v-if="post.text") {{ post.text }}
+  .p-2(v-if="post.text" v-html="post.text") 
   GunVue(component="EmbedYoutube" :pr="{ video: post.youtube }")
 </template>
