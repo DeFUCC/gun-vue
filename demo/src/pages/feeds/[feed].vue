@@ -17,7 +17,7 @@ onMounted(() => {
   ui-layer(:open="open" :closeButton="false"  @close="$router.push('/feeds/')")
     post-list.w-full(:tag="feed" :key="feed" @close="$router.push('/feeds/')" @browse="$router.push(`/feeds/${feed}/${safeHash($event)}`)")
   router-view(v-slot="{ Component }")
-    transition(name="slide")
+    transition(name="fade")
       component(:is="Component")
 </template>
 

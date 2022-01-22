@@ -36,18 +36,32 @@ watchEffect(async () => {
 </script>
 
 <template lang='pug'>
-.shadow-md.m-1.rounded-lg.cursor-pointer.flex.flex-wrap.items-center.bg-cover.bg-center(:style="{ backgroundImage: `url(${cover || post?.base64})`, backgroundColor: colorLight.hex(hash), paddingTop: cover || post?.base64 ? '140px' : '5px' }") 
-  .flex.flex-wrap.items-center.w-full.backdrop-blur-md.rounded-lg.m-1(:style="{ backgroundColor: colorLight.hex(hash) }")
-
+.card(:style="{ backgroundImage: `url(${cover || post?.base64})`, backgroundColor: colorDeep.hex(hash), paddingTop: cover || post?.base64 ? '140px' : '5px' }") 
+  .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-md.rounded-lg.mt-2(:style="{ backgroundColor: colorLight.hex(hash) }")
     img.w-20.max-h-20.rounded-full.m-2(v-if="post.icon" :src="icon")
-    .flex.flex-col.p-2.overflow-hidden(style="flex: 1 0 50%")
-
-      .text-lg.font-bold.truncate {{ title }}
-      .text-md.truncate(v-if="post.description") {{ post.description }}
+    .flex.flex-col.p-2.overflow-hidden.flex-1(style="flex: 1 0 120px")
+      .flex.items-center.my-2
+        .text-xl.font-bold {{ title }}
+      .text-md.truncate.mb-2(v-if="post.description") {{ post.description }}
+      .flex.text-2xl.mb-2.mt-1
+        la-youtube.mx-1(v-if="post.youtube")
+        mdi-text-long.mx-1(v-if="post.content")
       .text-md.truncate.overflow-hidden(v-if="!post.description && post.text") {{ post.text }}
     .flex-1
-    .flex.bg-light-900.rounded-xl(style="flex: 1 1 2%")
+    .flex.rounded-xl.p-1.text-xl(style="flex: 0 1")
       post-action-star(:hash="hash" :tag="tag")
       post-action-update(:hash="hash" :tag="tag")
       post-action-ban(:hash="hash" :tag="tag" :host="host")
 </template>
+
+
+<style lang="postcss" scoped>
+.card {
+  @apply transition duration-300ms ease-out min-w-50 shadow-md m-3 p-2 rounded-2xl cursor-pointer flex flex-wrap items-end bg-cover bg-center;
+  filter: grayscale(20%) brightness(90%);
+}
+.card:hover {
+  @apply shadow-xl;
+  filter: grayscale(0%) brightness(100%);
+}
+</style>

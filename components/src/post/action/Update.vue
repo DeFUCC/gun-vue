@@ -18,7 +18,7 @@ gun
 </script>
 
 <template lang='pug'>
-button.button.items-center(@click.stop.prevent="refreshPost(tag, hash)")
+button.m-1.button.items-center(@click.stop.prevent="refreshPost(tag, hash)")
   .p-0.mr-1.text-sm {{ ms(Date.now() - timestamp) }}
   mdi-watering-can-outline
 </template>

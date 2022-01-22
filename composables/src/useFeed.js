@@ -44,7 +44,9 @@ export function useFeeds() {
           tag: tags.list[t],
         });
       }
-      return arr.sort((a, b) => (a.tag < b.tag ? -1 : 1));
+      return arr.sort((a, b) =>
+        a && b && a.tag.toLowerCase() < b.tag.toLowerCase() ? -1 : 1
+      );
     }),
     count: computed(() => tags.all.length),
     fuse: computed(() => {
@@ -124,8 +126,11 @@ export function useFeed(tag = "tag", { host = "" } = {}) {
 
   const count = computed(() => Object.keys(posts || {}).length);
 
-  function downloadPosts() {
-    downloadFeed(tag, posts);
+  const downloading = ref(false);
+
+  async function downloadPosts() {
+    downloading.value = true;
+    downloading.value = !(await downloadFeed(tag, posts));
   }
 
   function uploadPosts(ev) {
@@ -137,6 +142,7 @@ export function useFeed(tag = "tag", { host = "" } = {}) {
     timestamps,
     count,
     downloadPosts,
+    downloading,
     uploadPosts,
   };
 }
@@ -183,7 +189,8 @@ export async function downloadFeed(tag, posts) {
     };
     await zipPost(frontmatter);
   }
-  downloadZip({ title: `#${tag}` });
+  await downloadZip({ title: `#${tag}` });
+  return true;
 }
 
 /**

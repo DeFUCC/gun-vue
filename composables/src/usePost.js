@@ -23,11 +23,14 @@ export function usePost(tag = "null", hash = "") {
 
   const post = reactive({
     empty: true,
+    downloading: false,
     tag,
     hash,
     data: {},
-    download() {
-      downloadPost(post);
+    async download() {
+      post.downloading = true;
+      await downloadPost(post);
+      post.downloading = false;
     },
   });
 
@@ -100,22 +103,22 @@ export async function downloadPost(post) {
 
   const { zipPost, addFile, downloadZip } = useZip();
 
-  let singleFile = false
+  let singleFile = false;
 
   if (title && !postData.base64) {
     await zipPost(postData);
   } else {
-    
-    title = 'file'
-    singleFile = true
-    const hash = await hashText(postData.base64)
+    title = "file";
+    singleFile = true;
+    const hash = await hashText(postData.base64);
     await addFile({
       title: safeHash(hash),
       file: postData.base64,
-    })
+    });
   }
-  
-  downloadZip({ title });
+
+  await downloadZip({ title });
+  return true;
 }
 
 export async function loadFromHash(category, hash) {

@@ -23,7 +23,7 @@ function toggleStar(tag = props.tag, hash = props.hash) {
 </script>
 
 <template lang='pug'>
-button.button.items-center(@click.stop.prevent="toggleStar()" v-if="user.is")
+button.m-1.button.items-center(@click.stop.prevent="toggleStar()" v-if="user.is")
   la-star(v-if="!starred")
   la-star-solid(v-else)
 </template>

@@ -38,7 +38,7 @@ watch(picture, pic => {
 <template lang='pug'>
 .flex.flex-wrap
   input.hidden(type="file" v-if="!picture" :id="id"  @change="handleChange" accept="image/*")
-  label.button.cursor-pointer(@click="add = true" :class="{ active: picture }" :for="id")
+  label.m-1.button.cursor-pointer(@click="add = true" :class="{ active: picture }" :for="id")
     slot
       la-image
   ui-modal(:open="add" @close="add = false")

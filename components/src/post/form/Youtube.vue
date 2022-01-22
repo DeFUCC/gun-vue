@@ -31,7 +31,7 @@ function youtubeLinkParser(url) {
 
 <template lang='pug'>
 .flex.flex-wrap
-  button.button(@click="add = !add" :class="{ active: id }")
+  button.button.m-1(@click="add = !add" :class="{ active: id }")
     la-youtube
   ui-modal(:open="add" @close="add = false")
     .text-lg Add a youtube video

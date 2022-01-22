@@ -49,14 +49,16 @@ function importPostFile(event) {
 
 <template lang='pug'>
 .flex
-  button.button(@click="add = true" :class="{ active: text }")
+  button.m-1.button(@click="add = true" :class="{ active: text }")
     mdi-text-long
-  ui-modal(:open="add" @close="add = false")
-    .flex.flex-wrap
-      button.button(@click="add = false")
+  ui-layer(:open="add" @close="add = false")
+    .flex.flex-col.text-left.p-4(v-show="add")
+      textarea#myMD(ref="md" @change="update" placeholder="Main text content (with **markdown** support)")
+    .flex.flex-wrap.bg-dark-100.p-4
+      button.button.m-1(@click="add = false")
         la-check
-
-      label.button.cursor-pointer.flex.items-center(for="import-post")
+        .text-xl.ml-2 Save
+      label.m-1.button.cursor-pointer.flex.items-center(for="import-post")
         la-markdown
       input#import-post.hidden(
         tabindex="-1"
@@ -66,10 +68,8 @@ function importPostFile(event) {
         @change="importPostFile($event)"
       )
       .flex-1
-      button.button(@click="add = false; text = ''")
+      button.button.m-1(@click="add = false; text = ''")
         la-trash
-    .flex.flex-col(v-show="add")
-      textarea#myMD(ref="md" @change="update" placeholder="Main text content (with **markdown** support)")
 </template>
 
 <style lang="postcss" scoped>

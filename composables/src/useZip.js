@@ -93,7 +93,7 @@ export function useZip() {
     });
   }
 
-  async function downloadZip({ title = '', addDate = true } = {}) {
+  async function downloadZip({ title = "", addDate = true } = {}) {
     let now = new Date();
     const offset = now.getTimezoneOffset();
     now = new Date(now.getTime() - offset * 60 * 1000);
@@ -108,9 +108,10 @@ export function useZip() {
       },
     });
 
-    const fileName = `${title}-${date}.zip`
+    const fileName = `${title}-${date}.zip`;
 
     downloadFile(blob, "application/zip", fileName);
+    return true;
   }
 
   return { zip, zipPost, addMd, addFile, downloadZip };
