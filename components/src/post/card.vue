@@ -39,7 +39,7 @@ watchEffect(async () => {
 .card(:style="{ backgroundImage: `url(${cover || post?.base64})`, backgroundColor: colorDeep.hex(hash), paddingTop: cover || post?.base64 ? '140px' : '5px' }") 
   .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-md.rounded-lg.mt-2(:style="{ backgroundColor: colorLight.hex(hash) }")
     img.w-20.max-h-20.rounded-full.m-2(v-if="post.icon" :src="icon")
-    .flex.flex-col.p-2.overflow-hidden.flex-1(style="flex: 1 0 120px")
+    .flex.flex-col.p-2.overflow-hidden.flex-1(style="flex: 1 1 220px")
       .flex.items-center.my-2
         .text-xl.font-bold {{ title }}
       .text-md.truncate.mb-2(v-if="post.description") {{ post.description }}
@@ -57,7 +57,7 @@ watchEffect(async () => {
 
 <style lang="postcss" scoped>
 .card {
-  @apply transition duration-300ms ease-out min-w-50 shadow-md m-3 p-2 rounded-2xl cursor-pointer flex flex-wrap items-end bg-cover bg-center;
+  @apply transition duration-300ms ease-out min-w-280px shadow-md m-3 p-2 rounded-2xl cursor-pointer flex flex-wrap items-end bg-cover bg-center;
   filter: grayscale(20%) brightness(90%);
 }
 .card:hover {

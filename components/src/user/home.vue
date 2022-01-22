@@ -8,7 +8,7 @@ const { user } = useUser()
 </script>
 
 <template lang='pug'>
-.flex.flex-col.items-stretch.w-full.max-h-90vh.overflow-y-scroll
+.flex.flex-col.items-stretch.w-full
   user-login(v-if="!user.is")
 
   .flex.flex-col(v-else)

@@ -19,7 +19,7 @@ const emit = defineEmits(['close'])
 
 <style lang="postcss" scoped>
 .layer {
-  @apply top-10vh bg-light-100 rounded-3xl z-200 shadow-2xl overflow-y-scroll max-h-88vh left-0 mx-2 right-0 relative z-500;
+  @apply top-10vh bg-light-100 rounded-3xl z-200 shadow-2xl overflow-y-scroll overscroll-contain max-h-88vh left-0 mx-2 right-0 relative z-500;
   overscroll-behavior-y: none;
 }
 </style>

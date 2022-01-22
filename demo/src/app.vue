@@ -17,11 +17,11 @@ nav-bar
 html {
   scroll-behavior: smooth;
   hyphens: auto;
-  overscroll-behavior-y: none;
+  overscroll-behavior-y: contain;
 }
 body {
   @apply bg-light-400 dark_bg-dark-100;
-  overscroll-behavior-y: none;
+  overscroll-behavior-y: contain;
 }
 #app {
   @apply min-h-100vh flex flex-col;
