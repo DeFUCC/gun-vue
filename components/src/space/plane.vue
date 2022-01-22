@@ -50,7 +50,7 @@ const arrows = computed(() => {
 </script>
 
 <template lang='pug'>
-.flex.flex-col.items-center.relative.h-70vh(ref="plane" @click="enter = true")
+.flex.flex-col.items-center.relative.h-70vh(ref="plane")
   .flex.flex-col.items-center(v-show="enter")
     ui-modal(:open="!!selected" @close="selected = null")
       account-avatar.cursor-pointer(:pub="selected" :size="160" @click="$emit('user', selected)")
@@ -58,13 +58,13 @@ const arrows = computed(() => {
       account-profile(:pub="selected")
     ui-modal(:open="!space.joined && user.is" @close="join()")
       .text-2xl.p-4(v-if="user.is") Click here to join the space
-    ui-modal(:open="!user.is")
+    ui-modal(:open="enter && !user.is" @close="enter = false")
       user-home(@browse="$router.push(`/users/${$event}`)" @close="enter = false")
 
 
   svg(
     style="cursor:none;"
-    @click="join()"
+    @click="join(); enter = true"
     version="1.1",
     baseProfile="full",
     :viewBox="`${-pad} ${-pad} ${width + 2 * pad} ${height + 2 * pad}`",
@@ -88,7 +88,7 @@ const arrows = computed(() => {
       fill="none"
       stroke-width="0"
       )
-    g.arrows(v-for="(arrow,n) in arrows" :key="arrow" opacity="0.8")
+    g.arrows(v-for="(arrow, n) in arrows" :key="arrow" opacity="0.8")
       path(
         :d="arrow.d"
         :stroke="colorDeep.hex(arrow.link.user)"
