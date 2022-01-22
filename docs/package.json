@@ -24,11 +24,11 @@
   "license": "MIT",
   "dependencies": {
     "@gun-vue/components": "workspace:^",
-    "@vueuse/core": "7.5.3",
-    "vue": "^3.2.27"
+    "@vueuse/core": "7.5.4",
+    "vue": "^3.2.28"
   },
   "devDependencies": {
-    "@iconify/json": "^2.0.25",
+    "@iconify/json": "^2.0.27",
     "jsdoc-to-markdown": "^7.1.0",
     "markdown-it-classy": "^0.2.0",
     "markdown-it-container": "^3.0.0",
@@ -36,11 +36,11 @@
     "pug": "3.0.2",
     "unplugin-auto-import": "^0.5.11",
     "unplugin-icons": "^0.13.0",
-    "unplugin-vue-components": "^0.17.13",
-    "vite": "^2.7.12",
+    "unplugin-vue-components": "^0.17.14",
+    "vite": "^2.7.13",
     "vite-aliases": "^0.8.7",
     "vite-plugin-windicss": "^1.6.3",
-    "vitepress": "0.21.5",
+    "vitepress": "0.21.6",
     "vitepress-tags": "^0.4.0",
     "windicss": "^3.4.3"
   }
