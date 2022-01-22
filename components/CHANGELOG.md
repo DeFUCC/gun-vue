@@ -1,5 +1,18 @@
 # @gun-vue/components
 
+## 0.6.0
+
+### Minor Changes
+
+- Stability +10
+
+### Patch Changes
+
+- 3693fce: better feeds design
+- Updated dependencies
+- Updated dependencies [3693fce]
+  - @gun-vue/composables@0.6.0
+
 ## 0.5.10
 
 ### Patch Changes
