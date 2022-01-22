@@ -40,13 +40,13 @@ async function decode() {
   .font-bold.text-xl I already have an account
   .text-md Login with a saved key
   .flex
-    button.button.cursor-pointer.flex.items-center(@click="show('key')")
+    button.button.m-2.cursor-pointer.flex.items-center(@click="show('key')")
       la-key.text-xl
       .p-1.ml-1.font-bold Paste
-    label.button.cursor-pointer.flex.items-center(for="qr-input")
+    label.button.m-2.cursor-pointer.flex.items-center(for="qr-input")
       la-qrcode.text-xl
       .p-1.ml-1.font-bold QR
-    label.button.cursor-pointer.flex.items-center(for="json-input")
+    label.button.m-2.cursor-pointer.flex.items-center(for="json-input")
       la-file-code.text-xl
       .p-1.ml-1.font-bold JSON
   form.flex(v-if="passphrase !== null")
