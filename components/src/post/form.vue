@@ -49,7 +49,7 @@ function reset() {
 <template lang='pug'>
 .flex.flex-col.w-full.max-w-620px.items-center
   transition(name="fade" mode="out-in")
-    button.fixed.z-200.top-9vh.text-xl.p-4.plus.transition.rounded-3xl.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center.flex-1(@click="add.form = !add.form")
+    button.absolute.z-200.top-2vh.text-xl.p-4.plus.transition.rounded-3xl.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center.flex-1(@click="add.form = !add.form")
       transition(name="fade" mode="out-in")
         la-plus(v-if="!add.form")
         la-times(v-else)

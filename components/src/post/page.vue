@@ -50,8 +50,8 @@ md.use(externalLinks, {
     button.button( @click="$emit('close')") 
       la-times
   .flex.flex-wrap
-    .p-0(style="flex: 5 1 600px" v-if="cover")
-      img.sticky.top-6vh(:src="cover")
+    .p-0(style="flex: 4 1 500px" v-if="cover")
+      img.sticky.top-5vh.max-h-72vh(:src="cover")
     .flex-1.z-20.flex.flex-wrap(style="flex: 10 1 300px")
       .flex.flex-wrap.items-start.w-full.justify-start.my-4.z-25.rounded-xl.m-2(style="flex: 1 1 240px; backdrop-filter: blur(10px);" :style="{ backgroundColor: colorLight + '99' }" v-if="icon || post?.data?.title || post?.data?.description")
         .px-8.pb-2.sticky.top-8vh.w-full
@@ -63,7 +63,7 @@ md.use(externalLinks, {
         embed-youtube.mb-6.shadow-xl.flex-1(v-if="post?.data?.youtube" :video="post?.data?.youtube")
         .text-md.markdown-body.bg-light-200.rounded-2xl.m-1.px-4.py-6.leading-relaxed.max-w-55ch(v-if="post?.data.content" v-html="md.render(post?.data?.content)") 
 
-  .flex.p-4.bg-dark-50.bg-opacity-60
+  .flex.p-4.bg-dark-50.bg-opacity-40
     .flex.items-center.mr-4
       post-action-star.text-xl(:tag="tag" :hash="hash")
       button.button.items-center(@click="post.download()")

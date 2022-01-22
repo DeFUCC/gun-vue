@@ -2,6 +2,8 @@
 
 ## Composables
 
+GunVue is a collection of utility functions based on [Vue 3 Composition API](https://v3.vuejs.org/guide/composition-api-introduction.html). We assume you are already familiar with the basic ideas of Composition API and [script setup](https://learnvue.co/2021/05/explaining-the-new-script-setup-type-in-vue-3-major-takeaways-from-the-rfc/#using-script-setup-with-a-normal-script) before you continue.
+
 ### How to install?
 
 ```shell
