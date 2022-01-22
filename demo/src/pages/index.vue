@@ -8,7 +8,7 @@
     .flex.flex-col.ml-8.max-w-120
       .font-bold.text-3xl.mb-4 @gun-vue
       .my-4 Gun-vue is a collection of essential building blocks to create a variety of decentralized apps for online and offline collaboration. It's a moment when we can feel the nature of distributed networking and have fun together!
-      .my-2 All the data in the app is stored only on the client side - right in your browser. And it's reactively synced between all simultaneous visitors by Gun. So plaese share a link to this page with your friend to have a more profound demo experience. 
+      .my-2 All the data in the app is stored only on the client side - right in your browser. And it's reactively synced between all simultaneous visitors by Gun. So it's better to share a link to this page with your friend to have a more profound demo experience. 
       .my-4 We're building basic components and data structures as a foundation for various Vue 3 apps to built by anyone. Feel free to play with it and to make any contributions! 
       .flex.flex-wrap
         a.button.m-1.flex.items-center(href="/docs/" target="_blank")

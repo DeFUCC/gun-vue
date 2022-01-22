@@ -4,9 +4,11 @@ const generate = ref(false)
 </script>
 
 <template lang='pug'>
-.flex.flex-col
+.flex.flex-col.p-4
+  button.text-xl.flex.justify-center.bg-light-900.hover_bg-light-50.p-4.rounded-2xl.shadow-lg.hover_shadow-xl.transition.duration-200.ease-out(@click="generate = true" v-if="!generate") Create a new account
+
   user-auth(v-if="!generate")
   user-create(v-else)
-  button.button.text-xl.flex.justify-center(@click="generate = true" v-if="!generate") Generate a new account
+
 
 </template>

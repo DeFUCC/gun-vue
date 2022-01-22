@@ -9,20 +9,24 @@ const show = reactive({
 
 <template lang='pug'>
 .flex.justify-center
-  button.button(@click="show.share = !show.share")
+  button.button.m-2(@click="show.share = !show.share")
     ion-share-outline
-  button.button(@click="show.log = !show.log")
+    .ml-2 Share
+  button.button.m-2(@click="show.log = !show.log")
     la-info-circle
-  button.button(@click="show.graph = !show.graph")
+    .ml-2 Log
+  button.button.m-2(@click="show.graph = !show.graph")
     mdi-graph-outline
-  button.button
+    .ml-2 Graph
+  button.button.m-2
     relay-icon
+    .ml-2 Relay
 
-  ui-modal(:open="show.share" @close="show.share = false")
+  ui-layer(:open="show.share" @close="show.share = false")
     util-share
-  ui-modal(:open="show.log" @close="show.log = false")
+  ui-layer(:open="show.log" @close="show.log = false")
     log-tree
-  ui-modal(:open="show.graph" @close="show.graph = false")
+  ui-layer(:open="show.graph" @close="show.graph = false")
     util-graph
 
 </template>
