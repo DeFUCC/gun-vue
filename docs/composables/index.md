@@ -70,6 +70,11 @@ const user = useUser();
 </td>
     </tr>
 <tr>
+    <td><a href="#usemates" >useMates</a></td>
+    <td><p>Connections between accounts</p>
+</td>
+    </tr>
+<tr>
     <td><a href="#usemd" >useMd</a></td>
     <td><p>Handle Markdown files</p>
 </td>
@@ -495,6 +500,67 @@ Working with hashes
 
 ## useLog
 Reactive version of `gun-util` Date tree
+
+<hr />
+
+<a name="module_useMates"></a>
+
+## useMates
+Connections between accounts
+
+
+* [useMates](#module_useMates)
+    * _static_
+        * [.useMates(pub)](#module_useMates.useMates) ⇒ <code>useMates</code>
+        * [.getFirstEmoji(text)](#module_useMates.getFirstEmoji) ⇒ <code>String</code>
+        * [.isEmoji(text)](#module_useMates.isEmoji) ⇒ <code>Boolean</code>
+        * [.useMate(pub)](#module_useMates.useMate) ⇒ <code>useMate</code>
+    * _inner_
+        * [~useMates](#module_useMates..useMates) : <code>reactive</code>
+        * [~useMate](#module_useMates..useMate) : <code>Object</code>
+
+### useMates(pub) ⇒ <code>useMates</code>
+  Get a reactive list of the user's mates
+
+
+| Param | Type |
+| --- | --- |
+| pub | <code>String</code> | 
+
+### getFirstEmoji(text) ⇒ <code>String</code>
+  Break the string into graphemes and return the first one if it's an emoji
+
+**Returns**: <code>String</code> - Emoji  
+
+| Param | Type |
+| --- | --- |
+| text | <code>String</code> | 
+
+### isEmoji(text) ⇒ <code>Boolean</code>
+  Check if the text has emojis
+
+
+| Param | Type |
+| --- | --- |
+| text | <code>String</code> | 
+
+### useMate(pub) ⇒ <code>useMate</code>
+  Make mates with some account by current user
+
+
+| Param | Type |
+| --- | --- |
+| pub | <code>String</code> | 
+
+### useMates : <code>reactive</code>
+  ### useMate : <code>Object</code>
+  **Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| emoji | <code>ref</code> | change it in an input |
+| isMate | <code>ref</code> | reactive state of connection |
+| toggleMate | <code>function</code> | toggle the link with current `emoji` ref |
 
 <hr />
 

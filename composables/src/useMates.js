@@ -70,7 +70,7 @@ export function getFirstEmoji(text) {
 /**
  * Check if the text has emojis
  * @param {String} text
- * @returns
+ * @returns {Boolean}
  */
 
 export function isEmoji(text) {

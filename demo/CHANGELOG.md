@@ -1,5 +1,17 @@
 # @gun-vue/demo
 
+## 0.6.1
+
+### Patch Changes
+
+- ceb689f: Nested posts can go into deeper and deeper into the hashed graph. Very fun experience. And also noew we got bi-directional links between accounts with emojis as an expression of relations.
+- Updated dependencies [063314f]
+- Updated dependencies [309d059]
+- Updated dependencies [ceb689f]
+  - @gun-vue/relay@0.3.2
+  - @gun-vue/composables@0.6.1
+  - @gun-vue/components@0.6.1
+
 ## 0.6.0
 
 ### Minor Changes

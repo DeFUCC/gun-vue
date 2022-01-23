@@ -1,5 +1,13 @@
 # @gun-vue/site
 
+## 0.6.1
+
+### Patch Changes
+
+- Updated dependencies [309d059]
+- Updated dependencies [ceb689f]
+  - @gun-vue/components@0.6.1
+
 ## 0.6.0
 
 ### Minor Changes
