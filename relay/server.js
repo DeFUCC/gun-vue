@@ -1,6 +1,6 @@
 import express from "express";
 import Gun from "gun";
-import "zenbase";
+// import "zenbase";
 import qr from "qrcode-terminal";
 import ip from "ip";
 
@@ -19,10 +19,10 @@ export default {
       file: "store",
       radisk: store,
       web: server,
-      secret: "gun-vue-demo",
-      portal: "https://siasky.net",
-      debug: false,
-      until: 2 * 1000,
+      // secret: "gun-vue-demo",
+      // portal: "https://siasky.net",
+      // debug: false,
+      // until: 2 * 1000,
     });
     app.use(express.static(path));
     const db = gun.get(host);
@@ -34,7 +34,9 @@ export default {
     }, 500);
     let link = "http://" + host + ":" + port;
     console.log("Server started at " + link + "/gun");
+    console.log("----------");
     qr.generate(link);
+    console.log("----------");
     return { app, db };
   },
 };
