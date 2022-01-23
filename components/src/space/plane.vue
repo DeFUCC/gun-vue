@@ -52,15 +52,15 @@ const arrows = computed(() => {
 <template lang='pug'>
 .flex.flex-col.items-center.relative.h-70vh(ref="plane")
   .flex.flex-col.items-center(v-show="enter")
+
     ui-layer.flex.flex-col.items-center(:open="!!selected" @close="selected = null")
-      .p-4
-        account-avatar.cursor-pointer(:pub="selected" :size="160" @click="$emit('user', selected)")
-        account-mate(:pub="selected")
-        account-profile(:pub="selected")
+      account-home.min-w-320px(:pub="selected")
+
     ui-layer.flex.flex-col.items-center(:open="!space.joined && user.is" @close="join()")
       .text-2xl.p-4(v-if="user.is") Click here to join the space
+
     ui-layer.flex.flex-col.items-center(:open="enter && !user.is" @close="enter = false")
-      user-home.max-w-100(@browse="$router.push(`/users/${$event}`)" @close="enter = false")
+      user-home(@browse="$router.push(`/users/${$event}`)" @close="enter = false")
 
 
   svg(

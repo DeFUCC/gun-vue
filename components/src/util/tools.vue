@@ -8,7 +8,7 @@ const show = reactive({
 </script>
 
 <template lang='pug'>
-.flex.justify-center
+.flex.justify-center.flex-wrap
   button.button.m-2(@click="show.share = !show.share")
     ion-share-outline
     .ml-2 Share
