@@ -6,16 +6,11 @@ const props = defineProps({
 
 defineEmits(['browse'])
 
-import { useColor, useMates } from '@composables';
+import { useColor, useMates, isEmoji } from '@composables';
 
-const colorDeep = useColor('deep')
+const colorDeep = useColor('light')
 
 const mates = useMates(props.pub)
-
-function isEmoji(text) {
-  return /\p{Extended_Pictographic}/u.test(text)
-}
-
 
 </script>
 
