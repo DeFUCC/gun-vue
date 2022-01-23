@@ -70,7 +70,9 @@ md.use(externalLinks, {
           img.w-20.h-20.rounded-full.my-4(v-if="icon" :src="icon" :style="{ borderColor: colorDeep }")
           .text-2xl.font-bold(v-if="post?.data?.title") {{ post?.data?.title }}
           .my-2(v-if="post?.data?.description") {{ post?.data?.description }} 
-
+          a.button.my-1.flex.break-all.items-center(v-if="post.data?.link" @click.stop :title="post.data?.link" :href="post.data?.link" target="_blank")
+            la-link.mr-2
+            .text-xs {{ post.data?.link }}
       .my-4.mx-2.z-20.max-w-90vw(style="flex: 100 1 320px" v-if="post?.data?.youtube || post?.data?.content")
         embed-youtube.mb-6.shadow-xl.flex-1(v-if="post?.data?.youtube" :video="post?.data?.youtube")
         .text-md.markdown-body.bg-light-200.rounded-2xl.m-1.px-4.py-6.leading-relaxed.max-w-55ch(v-if="post?.data.content" v-html="md.render(post?.data?.content)")

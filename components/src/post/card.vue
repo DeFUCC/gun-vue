@@ -40,12 +40,14 @@ watchEffect(async () => {
   .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-md.rounded-lg.mt-2(:style="{ backgroundColor: colorLight.hex(hash) }")
     img.w-20.max-h-20.rounded-full.m-2(v-if="post.icon" :src="icon")
     .flex.flex-col.p-2.overflow-hidden.flex-1(style="flex: 1 1 220px")
-      .flex.items-center.my-2
+      .flex.items-center.my-2.flex-wrap
         .text-xl.font-bold {{ title }}
-      .text-md.truncate.mb-2(v-if="post.description") {{ post.description }}
-      .flex.text-2xl.mb-2.mt-1
         la-youtube.mx-1(v-if="post.youtube")
         mdi-text-long.mx-1(v-if="post.content")
+        a.button.ml-2(v-if="post.link" @click.stop :title="post.link" :href="post.link" target="_blank")
+          la-link.mx-1
+      .text-md.truncate.mb-2(v-if="post.description") {{ post.description }}
+
       .text-md.truncate.overflow-hidden(v-if="!post.description && post.text") {{ post.text }}
     .flex-1
     .flex.rounded-xl.p-1.text-xl(style="flex: 0 1")

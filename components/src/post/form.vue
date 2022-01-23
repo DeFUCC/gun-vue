@@ -52,11 +52,12 @@ function reset() {
 <template lang='pug'>
 form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl.mb-6(action="javascript:void(0);")
   input.font-bold.text-xl(v-model="postData.title" placeholder="Title" autofocus ref="titleInput")
-  textarea.text-1rem(v-model="postData.description" placeholder="Description")
+  textarea.text-1rem.leading-relaxed(v-model="postData.description" placeholder="Description")
   .flex.flex-wrap.text-xl
     post-form-picture(@update="postData.icon = $event" field="icon" :options="{ picSize: 400, preserveRatio: false }")
       la-info-circle
     post-form-picture(@update="postData.cover = $event")
+    post-form-link(@update="postData.link = $event")
     post-form-youtube(@update="postData.youtube = $event")
     post-form-text(@update="postData.content = $event")
   .flex.justify-center.text-xl.p-2
