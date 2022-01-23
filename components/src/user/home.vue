@@ -18,7 +18,7 @@ function isSafe() {
   .flex.flex-col(v-else)
     user-panel(@browse="$emit('browse', $event); $emit('close')")
     user-profile
-    account-mates(:pub="user.pub"  @browse="$emit('browse', $event)")
+    account-mates.p-4(:pub="user.pub"  @browse="$emit('browse', $event)")
     ui-layer.flex.flex-col.items-center(:open="user.is && !user.safe?.saved" closeButton @close="isSafe()")
       user-credentials(@close="isSafe()")
 </template>

@@ -21,7 +21,7 @@ watchEffect(() => {
 </script>
 
 <template lang="pug">
-.p-1.flex.items-center.rounded-3xl.bg-light-900.m-1.cursor-pointer.shadow(:style="{ backgroundColor: colorDeep.hex(pub) }")
+.p-1.flex.items-center.rounded-3xl.bg-light-900.cursor-pointer.shadow(:style="{ backgroundColor: colorDeep.hex(pub) }")
   account-avatar(:pub="pub" :size="30")
   .mx-2.font-bold.text-sm(v-if="name") {{ name }}
   slot

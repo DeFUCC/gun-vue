@@ -16,5 +16,5 @@ const src = computed(() => {
 </script>
 
 <template lang='pug'>
-.min-w-16.flex-1(v-html="src")
+.min-w-16.flex.flex-col.items-center(v-html="src")
 </template>

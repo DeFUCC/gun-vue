@@ -28,6 +28,7 @@ gun.user(props.pub).get('feeds').map().once(function (list, tag) {
 
 <template lang='pug'>
 .flex.flex-col(v-if="Object.keys(posts).length > 0")
+  .text-lg.ml-2.mb-2.font-bold Stars
   .p-2(v-for="(feed, tag) in posts" :key="tag")
     transition-group(name="list")
       .text-lg.font-bold.cursor-pointer(

@@ -19,5 +19,5 @@ defineEmits(['browse'])
 .mx-2.text-xl.cursor-pointer
   account-avatar(:size="size" :border="2" @click="open = true")
   ui-layer.flex.flex-col.items-center(:open="open" @close="open = false")
-    user-home(@browse="$emit('browse', $event)" @close="open = false")
+    user-home.max-w-600px(@browse="$emit('browse', $event)" @close="open = false")
 </template>

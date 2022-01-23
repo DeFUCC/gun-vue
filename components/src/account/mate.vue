@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { useUser, getFirstEmoji } from '@composables';
 
 const props = defineProps({
@@ -21,6 +21,7 @@ function toggleMate() {
   dbMate.put(isMate.value ? false : getFirstEmoji(emoji.value))
 }
 
+
 </script>
 
 <template lang="pug">
@@ -29,5 +30,5 @@ function toggleMate() {
     la-plus(v-if="!isMate")
     la-times(v-else)
     .ml-1 {{ isMate ? isMate : '👋' }}
-    input.w-2ch(type="text" v-model="emoji" placeholder="👋" @click.stop.prevent)
+    input.w-2ch.ml-2.p-1.rounded-lg.shadow-inner(type="text" v-model="emoji" placeholder="" @click.stop.prevent)
 </template>

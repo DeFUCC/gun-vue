@@ -110,7 +110,7 @@ const arrows = computed(() => {
         :transform="`translate(${arrow.ex}, ${arrow.ey}) rotate(${arrow.ae})`"
         :fill="colorDeep.hex(arrow.link.user)"
       )
-      text.text-4xl(
+      text.text-2xl(
         :transform="`translate(${arrow.sx}, ${arrow.sy}) rotate(${0})`"
       ) {{ arrow.emoji }}
     line(

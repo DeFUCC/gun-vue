@@ -1,5 +1,5 @@
 import { reactive, watch, computed } from "vue";
-import { useGun, user } from "@composables";
+import { useGun, user } from "./";
 import GB from "grapheme-breaker-mjs";
 
 export function useMates(pub) {

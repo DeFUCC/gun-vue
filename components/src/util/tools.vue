@@ -9,9 +9,7 @@ const show = reactive({
 
 <template lang='pug'>
 .flex.justify-center.flex-wrap
-  button.button.m-2(@click="show.share = !show.share")
-    ion-share-outline
-    .ml-2 Share
+  util-share
   button.button.m-2(@click="show.log = !show.log")
     la-info-circle
     .ml-2 Log
@@ -21,8 +19,7 @@ const show = reactive({
   button.button.m-2
     relay-icon(text="Relay")
 
-  ui-layer.flex.flex-col.items-center(:open="show.share" @close="show.share = false")
-    util-share
+
   ui-layer(:open="show.log" @close="show.log = false")
     log-tree
   ui-layer(:open="show.graph" @close="show.graph = false")
