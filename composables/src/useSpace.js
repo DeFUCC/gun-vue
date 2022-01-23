@@ -9,6 +9,7 @@ import { user } from "./useUser";
 import { hashText } from "./useHash";
 import { logEvent } from "./useLog";
 import { computed, reactive, watchEffect } from "vue";
+import { getFirstEmoji } from ".";
 
 /**
  * @typedef {Object} useSpace
@@ -133,12 +134,14 @@ export function useSpace(spaceName = "public", TIMEOUT = 10000) {
               presence: age,
               user: pub1,
               mate: pub2,
+              emoji: getFirstEmoji(space.mates[pub1][pub2]),
+
               from: g1.pos,
               to: g2.pos,
             };
-          } else {
-            delete space.links[pub1 + pub2];
           }
+        } else {
+          delete space.links[pub1 + pub2];
         }
       }
     }

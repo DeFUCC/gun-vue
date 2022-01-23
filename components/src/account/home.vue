@@ -17,12 +17,13 @@ const { account } = useAccount(props.pub);
     .flex.flex-col.ml-4
       .text-2xl.font-bold {{ account.profile?.name }}
       .mt-2 {{ account.lastSeen }}
+      account-mate(:pub="pub")
     .flex-1
 
   account-profile.p-4(:pub="pub")
   .p-4
-    .text-lg.ml-2.mb-2.font-bold Mates
-    account-mate(:pub="pub")
+    .text-lg.ml-2.mb-2.font-bold {{ account.profile?.name }}'s mates
     account-mates(:pub="pub" @browse="$emit('browse', $event)")
+    h4.p-2.text-xl.mt-4.font-bold {{ account.profile?.name }}'s posts
     account-stars(:pub="pub" @feed="$emit('feed', $event)")
 </template>

@@ -36,12 +36,13 @@ const arrows = computed(() => {
       link.to.y * height.value,
       {
         padEnd: 24,
-        padStart: 18,
+        padStart: 24,
       }
     )
-    const [sx, sy, c1x, c1y, c2x, c2y, ex, ey, ae] = arrow
+    const [sx, sy, c1x, c1y, c2x, c2y, ex, ey, ae, as] = arrow
     arr.push({
-      link, sx, sy, c1x, c1y, c2x, c2y, ex, ey, ae,
+      emoji: link.emoji,
+      link, sx, sy, c1x, c1y, c2x, c2y, ex, ey, ae, as,
       d: `M ${sx} ${sy} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${ex} ${ey}`
     })
   })
@@ -54,8 +55,15 @@ const arrows = computed(() => {
   .flex.flex-col.items-center(v-show="enter")
 
     ui-layer.flex.flex-col.items-center(:open="!!selected" @close="selected = null")
-      account-home.min-w-320px(:pub="selected")
+      .p-4.flex.flex-wrap
+        //- account-home.min-w-320px(:pub="selected")
+        .p-0
+          account-avatar.cursor-pointer(:pub="selected" :size="160" @click="$emit('user', selected)")
+          account-profile(:pub="selected")
+        .p-0
+          account-mate(:pub="selected")
 
+          button.button.text-xl(@click="$emit('user', selected)") Go to profile
     ui-layer.flex.flex-col.items-center(:open="!space.joined && user.is" @close="join()")
       .text-2xl.p-4(v-if="user.is") Click here to join the space
 
@@ -102,6 +110,9 @@ const arrows = computed(() => {
         :transform="`translate(${arrow.ex}, ${arrow.ey}) rotate(${arrow.ae})`"
         :fill="colorDeep.hex(arrow.link.user)"
       )
+      text.text-4xl(
+        :transform="`translate(${arrow.sx}, ${arrow.sy}) rotate(${0})`"
+      ) {{ arrow.emoji }}
     line(
       v-if="space.my?.pos"
       :stroke="user.color"

@@ -9,6 +9,7 @@ export * from "./useCrypto";
 export * from "./useLog";
 export * from "./usePost";
 export * from "./useFeed";
+export * from "./useMates";
 
 export * from "./useRelay";
 export * from "./useSpace";
