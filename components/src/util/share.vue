@@ -14,7 +14,7 @@ const { share, isSupported: canShare } = useShare()
     ion-share-outline
     slot
       .ml-2 Share 
-  ui-layer.flex.flex-col.items-center.text-center(:open="open" @close="open = false")
+  ui-layer.text-center(:open="open" @close="open = false")
     qr-show(:data="location.href")
     .flex.flex-col.items-center.mb-4.-mt-8
       .text-md.mx-4.my-2.break-all.max-w-420px {{ location.href }}

@@ -1066,6 +1066,7 @@ Read and write zip files
     * _static_
         * [.useZip()](#module_useZip.useZip) ⇒ <code>useZip</code>
             * [~addFile(options)](#module_useZip.useZip..addFile) ⇒ <code>String</code>
+            * [~zipPost(post)](#module_useZip.useZip..zipPost)
     * _inner_
         * [~useZip](#module_useZip..useZip)
 
@@ -1077,6 +1078,11 @@ Read and write zip files
 import {useZip} from '@gun-vue/composables'
 const { zip, zipPost, addMd, addFile, downloadZip } = useZip()
 ```
+
+* [.useZip()](#module_useZip.useZip) ⇒ <code>useZip</code>
+    * [~addFile(options)](#module_useZip.useZip..addFile) ⇒ <code>String</code>
+    * [~zipPost(post)](#module_useZip.useZip..zipPost)
+
 <a name="module_useZip.useZip..addFile"></a>
 
 #### addFile(options) ⇒ <code>String</code>
@@ -1100,6 +1106,17 @@ if (post.cover) { // a base64 encoded picture
   post.cover = fileName;
 }
 ```
+<a name="module_useZip.useZip..zipPost"></a>
+
+#### zipPost(post)
+Zips the whole post object
+
+**Kind**: inner method of [<code>useZip</code>](#module_useZip.useZip)  
+
+| Param | Type |
+| --- | --- |
+| post | <code>Object</code> | 
+
 ### useZip
   **Properties**
 

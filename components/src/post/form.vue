@@ -87,7 +87,7 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl.mb-6(action="javascript:
       //-   la-eye-slash(v-else)
       button.m-1.button.text-xl( @click="reset()")
         la-trash-alt
-  ui-layer.flex.flex-col.items-center(:open="add.youtube" @close="add.youtube = false" :offset="'22vh'")
+  ui-layer(:open="add.youtube" @close="add.youtube = false" :offset="'22vh'")
     post-form-youtube(v-model:id="postData.youtube")
   ui-layer(:open="add.content" @close="add.content = false")
     post-form-text(v-model:text="postData.content")

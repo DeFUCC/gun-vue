@@ -54,7 +54,7 @@ const arrows = computed(() => {
 .flex.flex-col.items-center.relative.h-70vh(ref="plane")
   .flex.flex-col.items-center(v-show="enter")
 
-    ui-layer.flex.flex-col.items-center(:open="!!selected" @close="selected = null")
+    ui-layer(:open="!!selected" @close="selected = null")
       .p-4.flex.flex-wrap
         //- account-home.min-w-320px(:pub="selected")
         .p-0
@@ -64,10 +64,10 @@ const arrows = computed(() => {
           account-mate(:pub="selected")
 
           button.button.text-xl(@click="$emit('user', selected)") Go to profile
-    ui-layer.flex.flex-col.items-center(:open="!space.joined && user.is" @close="join()")
+    ui-layer(:open="!space.joined && user.is" @close="join()")
       .text-2xl.p-4(v-if="user.is") Click here to join the space
 
-    ui-layer.flex.flex-col.items-center(:open="enter && !user.is" @close="enter = false")
+    ui-layer(:open="enter && !user.is" @close="enter = false")
       user-home(@browse="$router.push(`/users/${$event}`)" @close="enter = false")
 
 
