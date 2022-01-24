@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.6.2
+
+### Patch Changes
+
+- Better bi-directional user links, refined posts UI, add posts to posts -> endless graph journeys are here
+
 ## 0.6.1
 
 ### Patch Changes

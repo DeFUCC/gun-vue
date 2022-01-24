@@ -1,5 +1,13 @@
 # @gun-vue/site
 
+## 0.6.2
+
+### Patch Changes
+
+- Better bi-directional user links, refined posts UI, add posts to posts -> endless graph journeys are here
+- Updated dependencies
+  - @gun-vue/components@0.6.2
+
 ## 0.6.1
 
 ### Patch Changes
