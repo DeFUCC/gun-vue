@@ -16,7 +16,6 @@ const colorDeep = computed(() => useColor('deep').hex(props.hash))
 
 const post = usePost(props.tag, props.hash)
 
-
 const icon = ref()
 const cover = ref()
 
@@ -25,8 +24,6 @@ watchEffect(async () => {
   icon.value = await loadFromHash('icons', d?.icon)
   cover.value = await loadFromHash('covers', d?.cover || d?.base64)
 })
-
-
 </script>
 
 <template lang='pug'>
