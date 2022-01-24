@@ -4,6 +4,8 @@
  * */
 
 import yaml from "yaml";
+import markdown from "markdown-it";
+import externalLinks from "markdown-it-external-links";
 
 /**
  * @typedef {Object} Md
@@ -50,4 +52,16 @@ export function parseMd(file) {
   } else {
     return { frontmatter: {}, content: file.trim() };
   }
+}
+
+export function useMd() {
+  const md = new markdown({
+    linkify: true,
+    typographer: true,
+  });
+
+  md.use(externalLinks, {
+    externalTarget: "_blank",
+  });
+  return md;
 }

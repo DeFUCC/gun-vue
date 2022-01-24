@@ -1,8 +1,8 @@
 <script setup>
 import { ref, watchEffect, computed } from 'vue'
-import { useColor, loadFromHash, usePost } from '@composables';
-import markdown from 'markdown-it'
-import externalLinks from 'markdown-it-external-links'
+import { useColor, loadFromHash, usePost, useMd } from '@composables';
+
+const md = useMd()
 
 const props = defineProps({
   tag: { type: String, default: '' },
@@ -26,15 +26,6 @@ watchEffect(async () => {
   cover.value = await loadFromHash('covers', d?.cover || d?.base64)
 })
 
-
-const md = new markdown({
-  linkify: true,
-  typographer: true,
-})
-
-md.use(externalLinks, {
-  externalTarget: '_blank'
-})
 
 </script>
 

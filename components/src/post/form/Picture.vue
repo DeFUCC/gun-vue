@@ -41,7 +41,7 @@ watch(picture, pic => {
   label.m-1.button.cursor-pointer(@click="add = true" :class="{ active: picture }" :for="id")
     slot
       la-image
-  ui-modal(:open="add" @close="add = false")
+  ui-layer(:open="add" @close="add = false")
     button.button.absolute.text-2xl.right-2.opacity-60.hover_opacity-100
       la-trash-alt(@click="picture = null; add = false")
     img(:src="picture")

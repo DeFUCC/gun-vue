@@ -22,7 +22,7 @@
           .text-xl Contribute code
         a.button.m-2.flex.items-center(href="https://ko-fi.com/davay" target="_blank")
           cib-ko-fi.mr-4.text-3xl
-          .text-xl Support me
+          .text-xl Sponsor us
 
 
 </template>

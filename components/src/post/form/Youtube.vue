@@ -33,10 +33,11 @@ function youtubeLinkParser(url) {
 .flex.flex-wrap
   button.button.m-1(@click="add = !add" :class="{ active: id }")
     la-youtube
-  ui-modal(:open="add" @close="add = false")
-    .text-lg Add a youtube video
-    input.text-sm.p-4.my-4(v-if="add" v-model="youtube" placeholder="Paste a Youtube video link")
-    embed-youtube.min-w-60vw(v-if="id" :video="id")
+  ui-layer(:open="add" @close="add = false" :offset="'22vh'")
+    .p-4.w-max-320px
+      .text-lg Add a youtube video
+      input.text-sm.p-4.my-4(v-if="add" v-model="youtube" placeholder="Paste a Youtube video link")
+      embed-youtube.min-w-60vw(v-if="id" :video="id")
 </template>
 
 <style lang="postcss" scoped>

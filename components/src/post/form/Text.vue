@@ -57,9 +57,10 @@ function importPostFile(event) {
     .flex.flex-wrap.bg-dark-100.p-4
       button.button.m-1(@click="add = false")
         la-check
-        .text-xl.ml-2 Save
+        .ml-2 Add to post
       label.m-1.button.cursor-pointer.flex.items-center(for="import-post")
         la-markdown
+        .ml-2 Load
       input#import-post.hidden(
         tabindex="-1"
         type="file",
