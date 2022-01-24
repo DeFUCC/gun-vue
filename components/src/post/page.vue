@@ -40,9 +40,10 @@ watchEffect(async () => {
     .flex-1
     button.p-2( @click="$emit('close')") 
       la-times
+
   .flex.px-2.w-full.flex-wrap(:style="{ backgroundColor: colorDeep + '20' }")
     util-share
-    button.button.transition.bg-light-800.m-2.flex.items-center.justify-center(@click="post.download()")
+    button.button.m-2.flex.items-center(@click="post.download()")
       la-file-download(v-if="!post.downloading")
       la-redo-alt.animate-spin(v-else)
       .ml-2 Download
@@ -51,20 +52,41 @@ watchEffect(async () => {
     post-action-update(:hash="hash" :tag="tag")
     post-action-ban(:hash="hash" :tag="tag")
 
-
   .flex.flex-wrap.items-stretch
     .p-0(style="flex: 4 1 300px" v-if="cover")
       img.sticky.top-5vh(:src="cover")
+
     .flex-1.z-20.flex.flex-wrap(style="flex: 10 1 300px")
-      .flex.flex-wrap.items-start.w-full.justify-start.my-4.z-25.rounded-xl.m-2(style="flex: 1 1 240px; backdrop-filter: blur(10px);" :style="{ backgroundColor: colorLight + '99' }" v-if="icon || post?.data?.title || post?.data?.statement")
-        .px-8.pb-2.sticky.top-8vh.w-full
-          img.w-20.h-20.rounded-full.my-4(v-if="icon" :src="icon" :style="{ borderColor: colorDeep }")
-          .text-2xl.font-bold(v-if="post?.data?.title") {{ post?.data?.title }}
-          .my-2(v-if="post?.data?.statement") {{ post?.data?.statement }} 
+      .flex.flex-wrap.items-start.w-full.justify-start.my-4.z-25.rounded-xl.m-2.backdrop-filter.backdrop-blur-md(
+        style="flex: 1 1 240px" 
+        :style="{ backgroundColor: colorLight + '99' }" 
+        v-if="icon || post?.data?.title || post?.data?.statement"
+        )
+        .p-2.sticky.top-8vh.w-full.flex.flex-wrap.items-center
+          img.w-20.h-20.rounded-full.m-2(
+            style="flex:0 1 40px"
+            v-if="icon" 
+            :src="icon" 
+            :style="{ borderColor: colorDeep }"
+            )
+          .text-2xl.font-bold.m-2(
+            style="flex:1 1 120px"
+            v-if="post?.data?.title"
+            ) {{ post?.data?.title }}
+          .m-2(v-if="post?.data?.statement") {{ post?.data?.statement }} 
           ui-link(:url="post.data?.link" v-if="post.data?.link")
-      .my-4.mx-2.z-20.max-w-90vw(style="flex: 100 1 320px" v-if="post?.data?.youtube || post?.data?.content")
-        embed-youtube.mb-6.shadow-xl.flex-1(v-if="post?.data?.youtube" :video="post?.data?.youtube")
-        .text-md.markdown-body.bg-light-200.rounded-2xl.m-1.px-4.py-6.leading-relaxed.max-w-55ch(v-if="post?.data.content" v-html="md.render(post?.data?.content)")
+
+      .my-4.mx-2.z-20.max-w-90vw(
+        style="flex: 100 1 320px" 
+        v-if="post?.data?.youtube || post?.data?.content"
+        )
+        embed-youtube.mb-6.shadow-xl.flex-1(
+          v-if="post?.data?.youtube" 
+          :video="post?.data?.youtube"
+          )
+        .text-md.markdown-body.bg-light-200.rounded-2xl.m-1.px-4.py-4.leading-relaxed.max-w-55ch(
+          v-if="post?.data.content" 
+          v-html="md.render(post?.data?.content)")
       .mt-2.mb-4.z-20.mx-4(style="flex: 1 1 400px") 
 
         post-list(:tag="hash" :header="false" @browse="$emit('browse', $event)")

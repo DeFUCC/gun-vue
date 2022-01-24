@@ -19,7 +19,7 @@ const mates = useMates(props.pub)
   .text-lg.ml-2.mb-2.font-bold(v-if="Object.keys(mates).length > 0") Mates
   .flex.flex-wrap(v-if="Object.keys(mates).length > 0")
     transition-group(name="fade")
-      .flex.items-center.rounded-full.m-1.shadow-md.hover_shadow-lg.transition.duration-100ms.ease-out.filter.grayscale-60.hover_grayscale-0(
+      .flex.items-center.rounded-full.m-1.shadow-sm.hover_shadow-md.transition.duration-100ms.ease-out.filter.grayscale-10.hover_grayscale-0(
         v-for="(link, linkPub) in mates" 
         :key="linkPub" 
         :style="{ backgroundColor: colorDeep.hex(pub) }"

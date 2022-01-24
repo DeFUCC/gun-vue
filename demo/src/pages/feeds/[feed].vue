@@ -9,7 +9,6 @@ const open = ref(false)
 
 onMounted(() => {
   open.value = true
-  console.log(props.feed)
 })
 
 const path = computed(() => {
