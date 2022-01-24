@@ -43,6 +43,7 @@ export default defineConfig({
       name: "components",
       formats: ["es"],
     },
+    sourcemap: true,
     rollupOptions: {
       manualChunks: (id) => {
         if (id.includes("node_modules")) {

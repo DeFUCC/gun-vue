@@ -6,7 +6,7 @@
 
 import JSZip from "jszip";
 import { downloadFile, base64Extension, base64FileType } from "./useFile";
-import { SEA } from "./useGun";
+import { genUUID, SEA } from "./useGun";
 import { createMd } from "./useMd";
 import { loadFromHash } from "./usePost";
 import { user } from "./useUser";
@@ -60,9 +60,18 @@ export function useZip() {
     zip.file(`${title}/index.md`, createMd(md), "text/markdown");
   }
 
+  /**
+   * Zips the whole post object
+   * @param {Object} post
+   * @async
+   */
+
   async function zipPost(post = {}) {
-    let { icon, cover, content, title } = post;
+    let { icon, cover, content, title, statement } = post;
     delete post?.content;
+    if (!title) {
+      title = statement.split(0, 12) || genUUID();
+    }
 
     cover = await loadFromHash("covers", cover);
     if (cover) {

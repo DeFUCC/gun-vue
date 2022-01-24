@@ -10,7 +10,7 @@ const emit = defineEmits(['close'])
 <template lang="pug">
 transition(name="fade")
   .fixed.w-full.h-full.top-0.left-0.z-500(v-show="open")
-    .bg-dark-200.bg-opacity-30.w-full.h-full.absolute.z-2.cursor-pointer(key="bg" @click="$emit('close')" v-if="open")
+    .bg-dark-200.bg-opacity-30.w-full.h-full.absolute.z-2.cursor-pointer.backdrop-filter.backdrop-blur-sm(key="bg" @click="$emit('close')" v-if="open")
     .layer(:style="{ top: offset || '10vh' }" v-if="open" key="layer")
       button.button.fixed.right-4.bottom-4( v-if="closeButton" @click="$emit('close')")
         la-times

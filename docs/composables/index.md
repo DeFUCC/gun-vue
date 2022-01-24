@@ -779,7 +779,7 @@ addPost('MyTag', {
    "cover": "data:image/png;base64,..........",
    "icon": "data:image/png;base64,..........",
    "title": "OSS",
-   "description": "New live album by tsoop",
+   "statement": "New live album by tsoop",
    "youtube": "K2MwpOd8vEI",
    "content": "It's mostly op-z + op-1 with my own Unity visuals based on [Chromatone](https://chromatone.center) system.\n\n### 2021\nFirst played live at April 20th **2021**.\n\n### Into 2022\nIt's an ongoing live album to be recorded throughout the **2022**."
 },

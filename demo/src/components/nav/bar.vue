@@ -20,7 +20,6 @@ router-link.fixed.top-0.left-0.z-1000(to="/")
   :to="l" 
   :class="{ active: $route.path.includes(l) }") {{ link }}
   .flex-1
-  ion-share-outline.mr-2(@click="show.share = !show.share")
   ui-layer.flex.flex-col.items-center(:open="show.share" @close="show.share = false")
     util-share
   user-icon(@browse="$router.push(`/users/${$event}`)")

@@ -1,19 +1,19 @@
 <script setup>
-import { reactive, ref, onMounted, watch, computed, nextTick } from 'vue'
-const add = ref()
-const youtube = ref()
-const id = ref()
+import { ref, watch } from 'vue'
+const link = ref()
 
-const emit = defineEmits(['update']);
+const emit = defineEmits(['update:id']);
 
-watch(youtube, link => {
-  if (link) {
-    id.value = youtubeLinkParser(link)
+const props = defineProps({
+  id: { type: String }
+})
 
+watch(link, lnk => {
+  if (lnk) {
+    emit('update:id', youtubeLinkParser(lnk))
   } else {
-    id.value = null
+    emit('update:id', null)
   }
-  emit('update', id.value)
 })
 
 
@@ -30,14 +30,12 @@ function youtubeLinkParser(url) {
 </script>
 
 <template lang='pug'>
-.flex.flex-wrap
-  button.button.m-1(@click="add = !add" :class="{ active: id }")
+.p-4.text-lg
+  .flex.items-center.mb-2
     la-youtube
-  ui-layer(:open="add" @close="add = false" :offset="'22vh'")
-    .p-4.w-max-320px
-      .text-lg Add a youtube video
-      input.text-sm.p-4.my-4(v-if="add" v-model="youtube" placeholder="Paste a Youtube video link")
-      embed-youtube.min-w-60vw(v-if="id" :video="id")
+    .text-xl.ml-2.font-bold Add a youtube video
+  input.p-4.my-4.w-full.border-1.border-dark-300(v-model="link" autofocus placeholder="Paste a Youtube video link")
+  embed-youtube.min-w-80vw.mt-2(v-if="id" :video="id")
 </template>
 
 <style lang="postcss" scoped>

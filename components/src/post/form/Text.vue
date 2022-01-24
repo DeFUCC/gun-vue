@@ -4,33 +4,36 @@ import SimpleMDE from 'simplemde'
 import 'simplemde/dist/simplemde.min.css'
 import { uploadText, parseMd } from '@composables'
 
-const emit = defineEmits(['update', 'frontmatter'])
+const emit = defineEmits(['update:text', 'frontmatter'])
+
+const props = defineProps({
+  text: { type: String }
+})
 
 let simplemde
 
 const add = ref(false)
-const text = ref('')
 
-watch(add, value => {
-  if (value) {
-    nextTick(() => {
-      if (!simplemde) {
-        simplemde = new SimpleMDE({
-          element: document.getElementById("myMD"),
-        });
-        simplemde.value(text.value)
-        simplemde.codemirror.on("change", function () {
-          text.value = simplemde.value()
-        });
-      }
-    })
-  } else {
-    simplemde.toTextArea();
-    simplemde = null;
+const text = computed({
+  get() {
+    return props.text
+  },
+  set(value) {
+    emit('update:text', value)
   }
 })
 
-watch(text, value => emit('update', value))
+nextTick(() => {
+  if (!simplemde) {
+    simplemde = new SimpleMDE({
+      element: document.getElementById("myMD"),
+    });
+    simplemde.value(text.value)
+    simplemde.codemirror.on("change", function () {
+      text.value = simplemde.value()
+    });
+  }
+})
 
 function importPostFile(event) {
   uploadText(event, (file) => {
@@ -41,36 +44,33 @@ function importPostFile(event) {
       nextTick(() => {
         simplemde.value(content)
       })
-
     }
   });
 }
 </script>
 
 <template lang='pug'>
-.flex
-  button.m-1.button(@click="add = true" :class="{ active: text }")
-    mdi-text-long
-  ui-layer(:open="add" @close="add = false")
-    .flex.flex-col.text-left.p-4(v-show="add")
-      textarea#myMD(ref="md" @change="update" placeholder="Main text content (with **markdown** support)")
-    .flex.flex-wrap.bg-dark-100.p-4
-      button.button.m-1(@click="add = false")
-        la-check
-        .ml-2 Add to post
-      label.m-1.button.cursor-pointer.flex.items-center(for="import-post")
-        la-markdown
-        .ml-2 Load
-      input#import-post.hidden(
-        tabindex="-1"
-        type="file",
-        accept="text/markdown",
-        ref="file"
-        @change="importPostFile($event)"
-      )
-      .flex-1
-      button.button.m-1(@click="add = false; text = ''")
-        la-trash
+.flex.flex-col
+  .flex.flex-col.text-left.p-4
+    textarea#myMD(ref="md"  placeholder="Main text content (with **markdown** support)")
+  .flex.flex-wrap.bg-dark-100.p-4
+    button.button.m-1(@click="add = false")
+      la-check
+      .ml-2 Add to post
+    label.m-1.button.cursor-pointer.flex.items-center(for="import-post")
+      la-markdown
+      .ml-2 Load
+    input#import-post.hidden(
+      tabindex="-1"
+      type="file",
+      accept="text/markdown",
+      ref="file"
+      @change="importPostFile($event)"
+    )
+    .flex-1
+    button.button.m-1(@click="add = false; text = ''")
+      la-trash
+      .ml-2 Reset
 </template>
 
 <style lang="postcss" scoped>

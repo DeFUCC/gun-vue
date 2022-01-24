@@ -11,7 +11,7 @@ const { account } = useAccount(props.pub);
 </script>
 
 <template lang='pug'>
-.flex.flex-col.m-2.rounded-3xl.overflow-hidden.shadow-xl
+.flex.flex-col.rounded-3xl.overflow-hidden.shadow-xl
   .p-4.flex.items-center(:style="{ backgroundColor: account.color }")
     account-avatar(:pub="pub" :size="120")
     .flex.flex-col.ml-4
