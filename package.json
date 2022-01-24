@@ -21,6 +21,6 @@
     "relay": "cd relay && pnpm run start"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.19.0"
+    "@changesets/cli": "^2.20.0"
   }
 }
