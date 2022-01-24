@@ -1,6 +1,6 @@
 <script setup>
 import { useColor, gun } from '@composables';
-import { useFeed } from '@composables/useFeed.js'
+import { useFeed } from '@composables'
 import { ref, computed } from 'vue'
 
 const props = defineProps({
