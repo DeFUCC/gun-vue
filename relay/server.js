@@ -25,9 +25,15 @@ export default {
       radisk: store,
       web: server,
     });
+
+    let link = "http://" + host + ":" + port;
+
     app.use(express.static(path));
 
     const db = gun.get(host);
+    db.get("host").put(host);
+    db.get("port").put(port);
+    db.get("link").put(link);
     db.get("store").put(store);
     db.get("status").put("running");
     db.get("started").put(Date.now());
@@ -36,7 +42,6 @@ export default {
       db.get("pulse").put(Date.now());
     }, 500);
 
-    let link = "http://" + host + ":" + port;
     console.log("Server started at " + link);
     console.log("Data store is " + store);
     console.log("Gun peer link is " + link + "/gun");

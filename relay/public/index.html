@@ -13,32 +13,36 @@
     <link rel="stylesheet" href="/styles.css" />
   
     <script defer type="module">
-      import  'https://cdn.skypack.dev/gun';
+      import 'https://cdn.skypack.dev/gun';
       import ms from 'https://cdn.skypack.dev/ms';
+      import qrcodeSvg from 'https://cdn.skypack.dev/@qrcode/svg'
       import { createApp, reactive } from 'https://cdn.skypack.dev/petite-vue';
      
 
       const gun = GUN([window.location.href+'gun']);
       const db = gun.get(window.location.hostname);
 
-      const Relay = reactive({
-
+      const relay = reactive({
         status: "connecting",
         pulse:0,
         started: 0,
+        store: false,
+        host: '',
+        message: '',
         ms,
+        talk(ev) {
+          db.get('message').put(ev.target.value)
+        },
         listen() {
-    
           db.map().on((d,k) => {
-            Relay[k] = d
+            relay[k] = d
           });
-
         }
       });
 
-      Relay.listen();
+      relay.listen();
 
-      createApp({ Relay }).mount();
+      createApp({ relay, qrcodeSvg }).mount();
     </script>
 
     <template id="player-template">
@@ -46,14 +50,17 @@
     </template>
   </head>
   <body v-scope>
-    <header>
-      <h2>Gun relay peer</h2>
-      <h5>started: {{Relay.ms(Relay.pulse-Relay.started)}} </h5>
-      <h5>{{Relay.status}}: {{(Relay.pulse-Relay.started)/1000}}s</h5>
-      
+    <header style="font-size: 1.2rem; line-height: 1rem">
+      <h2>Gun-vue relay peer</h2>
+      <h3><a href="https://gun-vue.js.org/docs/relay/">@gun-vue/relay</a></h3>
+      <h4>Status: {{relay.status}} {{relay.ms(relay.pulse-relay.started)}} </h4>
+      <h4>Age: {{(relay.pulse-relay.started)/1000}} s</h4>
+      <h4>Peer link: <a :href="relay.link + '/gun'">{{relay.link}}/gun</a></h4>
     </header>
     <main>
-      <code>{{Relay}}</code>
+      <h4>Talk box</h4>
+      <textarea cols="35" rows="10" v-model="relay.message" @change="relay.talk" @keyup="relay.talk" ></textarea>
+      <div v-html="qrcodeSvg(relay.link)"></div>
     </main>
   </body>
 </html>

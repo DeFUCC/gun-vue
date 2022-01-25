@@ -1,6 +1,7 @@
 /**
  * A 2D-space
  * @module useSpace
+ * @todo draggable handles https://dev.to/abolz/roll-your-own-svg-drag-and-drop-in-vuejs-2c7o
  */
 
 import { useGun } from "./useGun";
@@ -32,7 +33,7 @@ import { useElementBounding } from "@vueuse/core";
  * const { space, plane, links, width, height, guests, area, join } = useSpace({
  * TIMEOUT: 10000,
  * spaceName: 'Space title'
-})
+ * })
  */
 
 export function useSpace({
@@ -125,7 +126,7 @@ export function useSpace({
         });
     });
 
-  const seeds = {};
+  const seeds = {}; //random seeds to scatter the arrows a little - depends on the `randomness` option
 
   watchEffect(() => {
     for (let pub1 in mates) {
