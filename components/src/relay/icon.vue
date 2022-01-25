@@ -30,5 +30,7 @@ const open = ref(false)
           input.ml-2.opacity-60.cursor-not-allowed(disabled v-model="relay.peer")
         .p-0 Delay: {{ relay.delay }} ms
         .p-0 Pulse drift: {{ relay.lag }} ms
-
+        .p-0 Active wires: {{ relay.activeWires }} / {{ relay.totalConnections }}
+        .p-0 Data storage is {{ relay.store ? 'enabled' : 'disabled' }}
+ 
 </template>

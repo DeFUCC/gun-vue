@@ -36,7 +36,6 @@
         host: '',
         message: '',
         activeWires: 0,
-        hosts: [],
         ms,
         talk(ev) {
           db.get('message').put(ev.target.value)
@@ -45,9 +44,6 @@
           db.map().on((d,k) => {
             relay[k] = d
           });
-          db.get('hosts').map().once((d,k)=> {
-            relay.hosts[k] = d
-          })
         }
       });
 
@@ -64,7 +60,6 @@
       <h4>Active wires: {{relay.activeWires}} / {{relay.totalConnections}}</h4>
       <h4>Peer link: <a :href="relay.link + '/gun'">{{relay.link}}/gun</a></h4>
       <h4>Data storage: {{relay.store}} </h4>
-      <h4>{{relay.hosts}}</h4>
     </header>
     <main>
       <h4>Talk box</h4>
