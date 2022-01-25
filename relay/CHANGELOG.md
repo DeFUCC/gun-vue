@@ -1,5 +1,12 @@
 # @gun-vue/relay
 
+## 0.3.3
+
+### Patch Changes
+
+- 15be2fa: Optionally show a QR code with the link to the peer in the terminal. Useful for android phone or other device environment. If host isn't set the script auto detects local ip and renders a link for the local p2p relay.
+- 4593c09: Server stats page improved
+
 ## 0.3.2
 
 ### Patch Changes

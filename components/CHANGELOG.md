@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.6.3
+
+### Patch Changes
+
+- 759ac0f: Space tech debt payed. Quite clean composable and navigatable space component. Links are more pronounced.
+- Updated dependencies [759ac0f]
+  - @gun-vue/composables@0.6.3
+
 ## 0.6.2
 
 ### Patch Changes
