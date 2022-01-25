@@ -15,10 +15,13 @@ import { useElementBounding } from "@vueuse/core";
 
 /**
  * @typedef {Object} useSpace
- * @property {reactive} space
- * @property {ref} area
- * @property {Function} join
- * @property {Function} place
+ * @property {reactive} space The main object
+ * @property {reactive} guests Active guests
+ * @property {reactive} links Links between active guests
+ * @property {ref} width Width of the plane
+ * @property {ref} height Height of the plane
+ * @property {ref} area The SVG element for mouse events capture
+ * @property {Function} join Join the space with the current user
  */
 
 /**
@@ -26,16 +29,19 @@ import { useElementBounding } from "@vueuse/core";
  * @param {String} spaceName
  * @returns {useSpace}
  * @example
- * const {space, area, join, place} = useSpace()
+ * const { space, plane, links, width, height, guests, area, join } = useSpace({
+ * TIMEOUT: 10000,
+ * spaceName: 'Space title'
+})
  */
 
 export function useSpace({
   spaceName = "public",
   TIMEOUT = 10000,
-  pad = 50,
   randomness = 0.1,
 } = {}) {
   const gun = useGun();
+
   const space = reactive({
     title: spaceName,
     joined: false,
@@ -45,39 +51,13 @@ export function useSpace({
       mouse: computed(() => ({ x: mouse.normX, y: mouse.normY })),
       pos: null,
     },
-    guests: {},
-    mates: {},
-    links: {},
-    arrows: {},
   });
 
   const plane = ref();
-
-  const { width, height } = useElementBounding(plane);
-
-  gun
-    .user()
-    .get(spaceName)
-    .get("pos")
-    .on((pos) => {
-      space.my.pos = pos;
-    });
-
-  const { area, mouse } = useSvgMouse();
-
-  async function join() {
-    if (!gun.user().is) return;
-    place();
-    if (space.joined) return;
-    const hash = await hashText(user.pub);
-    // let already = await gun.get(spaceName).get("#guests").get(hash).then();
-    // if (already) return;
-    gun.get(spaceName).get("#guests").get(hash).put(user.pub);
-    logEvent("guest", { event: "guest", space: spaceName, pub: user.pub });
-    space.joined = true;
-  }
-
   const allGuests = reactive({});
+  const mates = reactive({});
+  const links = reactive({});
+
   const guests = computed(() => {
     const obj = {};
     for (let g in allGuests) {
@@ -87,6 +67,18 @@ export function useSpace({
     }
     return obj;
   });
+
+  const { width, height } = useElementBounding(plane);
+
+  const { area, mouse } = useSvgMouse();
+
+  gun
+    .user()
+    .get(spaceName)
+    .get("pos")
+    .on((pos) => {
+      space.my.pos = pos;
+    });
 
   gun
     .get(spaceName)
@@ -119,8 +111,8 @@ export function useSpace({
         .get("mates")
         .map()
         .on((d, k) => {
-          space.mates[pub] = space.mates[pub] || {};
-          space.mates[pub][k] = d;
+          mates[pub] = mates[pub] || {};
+          mates[pub][k] = d;
         })
         .back()
         .back()
@@ -136,63 +128,78 @@ export function useSpace({
   const seeds = {};
 
   watchEffect(() => {
-    for (let pub1 in space.mates) {
+    for (let pub1 in mates) {
       seeds[pub1] = seeds[pub1] || {};
 
-      for (let pub2 in space.mates[pub1]) {
+      for (let pub2 in mates[pub1]) {
         let seed = (seeds[pub1][pub2] =
           seeds[pub1][pub2] || Math.random() * randomness);
 
-        if (space.mates[pub1][pub2]) {
-          const linkData = space.mates[pub1][pub2];
+        if (mates[pub1][pub2]) {
+          const linkData = mates[pub1][pub2];
           let g1 = allGuests[pub1];
           let g2 = allGuests[pub2];
           let age = Date.now() * 2 - g1?.pulse - g2?.pulse;
           if (g1 && g2 && g1?.hasPos && g2?.hasPos && age < TIMEOUT) {
-            let arrowArray = getArrow(
-              g1.pos.x * width.value,
-              g1.pos.y * height.value,
-              g2.pos.x * width.value,
-              g2.pos.y * height.value,
-              {
-                padEnd: 20,
-                padStart: 10,
-              }
-            );
-            const [sx, sy, c1x, c1y, c2x, c2y, ex, ey, ae, as] = arrowArray;
-            let arrow = {
-              sx,
-              sy,
-              c1x: c1x * (1 - seed + 2 * seed),
-              c1y: c1y * (1 - seed + 2 * seed),
-              c2x: c2x * (1 - seed + 2 * seed),
-              c2y: c2y * (1 - seed + 2 * seed),
-              ex,
-              ey,
-              ae,
-              as,
-            };
-
-            space.links[pub1 + pub2] = {
+            links[pub1 + pub2] = {
               user: pub1,
               mate: pub2,
               emoji: getFirstEmoji(linkData),
               from: g1.pos,
               to: g2.pos,
-              arrow,
+              arrow: generateArrow(g1.pos, g2.pos, seed),
             };
           }
         } else {
-          delete space.links[pub1 + pub2];
+          delete links[pub1 + pub2];
         }
       }
     }
   });
+
+  function generateArrow(pos1, pos2, seed = 0) {
+    let arrowArray = getArrow(
+      pos1.x * width.value,
+      pos1.y * height.value,
+      pos2.x * width.value,
+      pos2.y * height.value,
+      {
+        padEnd: 20,
+        padStart: 10,
+      }
+    );
+    const [sx, sy, c1x, c1y, c2x, c2y, ex, ey, ae, as] = arrowArray;
+    let arrow = {
+      sx,
+      sy,
+      c1x: c1x * (1 - seed + 2 * seed),
+      c1y: c1y * (1 - seed + 2 * seed),
+      c2x: c2x * (1 - seed + 2 * seed),
+      c2y: c2y * (1 - seed + 2 * seed),
+      ex,
+      ey,
+      ae,
+      as,
+    };
+    return arrow;
+  }
+
+  async function join() {
+    if (!gun.user().is) return;
+    place();
+    if (space.joined) return;
+    const hash = await hashText(user.pub);
+    // let already = await gun.get(spaceName).get("#guests").get(hash).then();
+    // if (already) return;
+    gun.get(spaceName).get("#guests").get(hash).put(user.pub);
+    logEvent("guest", { event: "guest", space: spaceName, pub: user.pub });
+    space.joined = true;
+  }
 
   function place() {
     let pos = { x: mouse.normX, y: mouse.normY };
     gun.user().get(spaceName).get("pos").put(pos);
   }
 
-  return { space, guests, plane, width, height, area, join, place };
+  return { space, guests, links, plane, width, height, area, join };
 }

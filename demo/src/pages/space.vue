@@ -8,7 +8,7 @@ const slug = computed(() => slugify(name.value))
 <template lang='pug'>
 .flex.flex-col.items-center
   .p-2.flex.items-center
-    input.p-4(type="text" v-model="name")
+    input.p-3.rounded-2xl.shadow-md(type="text" v-model="name" placeholder="Enter a space name" @keyup.enter="$router.push(`/space/${slug}`)")
     button.button.mx-4.text-xl(@click="$router.push(`/space/${slug}`)") Go
   router-view(v-slot="{ Component }")
     transition(name="fade")

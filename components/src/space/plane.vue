@@ -13,7 +13,7 @@ const { user } = useUser()
 
 const colorDeep = useColor('deep')
 
-const { space, plane, width, height, guests, area, join } = useSpace({
+const { space, plane, links, width, height, guests, area, join } = useSpace({
   TIMEOUT: 10000,
   spaceName: props.name
 })
@@ -30,13 +30,14 @@ const enter = ref(false)
   ui-layer(:open="!!selected" @close="selected = null" :offset="'20vh'")
     account-home(:pub="selected")
 
-  ui-layer(:open="!space.joined && user.is" :back="false" :offset="'20vh'")
-    .text-2xl.p-8.top-8vh.cursor-pointer.bg-light-700(v-if="user.is" @click="join()") Click here to join the space
-
   ui-layer(:open="enter && !user.is" @close="enter = false" :offset="'20vh'")
     user-home(@browse="$router.push(`/users/${$event}`)" @close="enter = false")
 
-
+  .text-2xl.p-8.top-15vh.cursor-pointer.bg-light-700.absolute.rounded-3xl.shadow-xl.border-4(
+    v-if="!space.joined && user.is" 
+    @click="join()"
+    :style="{ borderColor: user.color }"
+    ) Click here to join the space
   svg.h-80vh.w-98vw(
     ref="plane"
     style="cursor:none;"
@@ -64,6 +65,14 @@ const enter = ref(false)
       fill="none"
       stroke-width="0"
       )
+    g.title
+      text(
+        :x="width / 2"
+        :y="20"
+        font-weight="bold"
+        font-size="4rem"
+        opacity="0.1"
+      ) {{ name }}
     g.pointer
       line(
         v-if="space.my?.pos"
@@ -84,7 +93,7 @@ const enter = ref(false)
         )
     g.arrows
       space-arrow(
-        v-for="(link, key) in space.links"
+        v-for="(link, key) in links"
         :link="link" 
         :key="key")
 

@@ -8,7 +8,7 @@ const show = reactive({
 </script>
 
 <template lang='pug'>
-.flex.justify-center.flex-wrap
+.flex.justify-center.flex-wrap.relative
   util-share
   button.button.m-2(@click="show.log = !show.log")
     la-info-circle

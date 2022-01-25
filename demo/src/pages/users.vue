@@ -23,7 +23,7 @@ function getOrder(pulse) {
 
 <template lang='pug'>
 .flex.flex-col
-  router-link.px-8.py-2.bg-light-900.font-bold(to="/users/") Users
+  router-link.px-4.py-4.bg-light-900.font-bold(to="/users/") Public space users
   .flex.flex-wrap
     transition-group(name="fade")
       router-link.p-1(
@@ -31,7 +31,7 @@ function getOrder(pulse) {
         :to="`/users/${guest.account.pub}`"
         :style="{ opacity: guest.account.pulse && time - guest.account.pulse < 30000 ? 1 : 0.5, order: getOrder(guest.account.pulse) }"
         ) 
-        account-badge(:pub="guest.account.pub")
+        account-badge.shadow-md(:pub="guest.account.pub")
   router-view(v-slot="{ Component }")
     transition(name="fade")
       component(:is="Component")
