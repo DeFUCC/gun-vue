@@ -13,8 +13,8 @@ import "gun/lib/rindexed";
 import "gun/nts";
 
 export let peers = ["https://etogun.glitch.me/gun"];
-// export const peers = ["http://192.168.1.100:4200/gun"];
-// export const peers = ["http://localhost:4200/gun"];
+// export let peers = ["http://192.168.1.42:4200/gun"];
+// export let peers = ["http://localhost:4200/gun"];
 
 /** The main Gun instance for database operations */
 export let gun;

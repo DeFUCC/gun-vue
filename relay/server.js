@@ -15,9 +15,8 @@ export default {
     if (this.initiated) return;
     this.initiated = true;
 
-    if (!host) host = ip.address();
-
     var app = express();
+    app.use(express.static(path));
     var server = app.listen(port);
 
     const gun = Gun({
@@ -26,11 +25,29 @@ export default {
       web: server,
     });
 
-    let link = "http://" + host + ":" + port;
-
-    app.use(express.static(path));
+    if (!host) host = ip.address();
+    const link = "http://" + host + (port ? ":" + port : "");
+    let totalConnections = 0;
+    let activeWires = 0;
 
     const db = gun.get(host);
+
+    setInterval(() => {
+      db.get("pulse").put(Date.now());
+    }, 500);
+
+    gun.on("hi", (ev) => {
+      totalConnections += 1;
+      db.get("totalConnections").put(totalConnections);
+      activeWires += 1;
+      db.get("activeWires").put(activeWires);
+    });
+
+    gun.on("bye", (ev) => {
+      activeWires -= 1;
+      db.get("activeWires").put(activeWires);
+    });
+
     db.get("host").put(host);
     db.get("port").put(port);
     db.get("link").put(link);
@@ -38,13 +55,9 @@ export default {
     db.get("status").put("running");
     db.get("started").put(Date.now());
 
-    let pulse = setInterval(() => {
-      db.get("pulse").put(Date.now());
-    }, 500);
-
     console.log("Server started at " + link);
-    console.log("Data store is " + store);
     console.log("Gun peer link is " + link + "/gun");
+    console.log("Data storage is " + (store ? "enabled" : "disabled"));
 
     if (showQr) {
       console.log("----------");
