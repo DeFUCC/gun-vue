@@ -1,7 +1,6 @@
 /**
  * A 2D-space
  * @module useSpace
- * @todo draggable handles https://dev.to/abolz/roll-your-own-svg-drag-and-drop-in-vuejs-2c7o
  */
 
 import { useGun } from "./useGun";
@@ -19,9 +18,10 @@ import { useElementBounding } from "@vueuse/core";
  * @property {reactive} space The main object
  * @property {reactive} guests Active guests
  * @property {reactive} links Links between active guests
+ * @property {ref} plane The SVG element
+ * @property {ref} area The rect element for mouse events capture
  * @property {ref} width Width of the plane
  * @property {ref} height Height of the plane
- * @property {ref} area The SVG element for mouse events capture
  * @property {Function} join Join the space with the current user
  */
 
@@ -204,3 +204,7 @@ export function useSpace({
 
   return { space, guests, links, plane, width, height, area, join };
 }
+
+/**
+ * @todo draggable handles https://dev.to/abolz/roll-your-own-svg-drag-and-drop-in-vuejs-2c7o
+ */

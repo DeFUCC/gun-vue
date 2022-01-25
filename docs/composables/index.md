@@ -853,10 +853,6 @@ const relay = useRelay()
 ## useSpace
 A 2D-space
 
-**Todo**
-
-- [ ] draggable handles https://dev.to/abolz/roll-your-own-svg-drag-and-drop-in-vuejs-2c7o
-
 
 * [useSpace](#module_useSpace)
     * _static_
@@ -887,9 +883,10 @@ spaceName: 'Space title'
 | space | <code>reactive</code> | The main object |
 | guests | <code>reactive</code> | Active guests |
 | links | <code>reactive</code> | Links between active guests |
+| plane | <code>ref</code> | The SVG element |
+| area | <code>ref</code> | The rect element for mouse events capture |
 | width | <code>ref</code> | Width of the plane |
 | height | <code>ref</code> | Height of the plane |
-| area | <code>ref</code> | The SVG element for mouse events capture |
 | join | <code>function</code> | Join the space with the current user |
 
 <hr />

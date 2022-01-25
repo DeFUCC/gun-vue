@@ -1,4 +1,5 @@
 import { defineConfig } from "vitepress";
+import mdCheck from "markdown-it-checkbox";
 
 const metaData = {
   title: "Gun-vue docs",
@@ -17,6 +18,11 @@ export default defineConfig({
   base: "/docs/",
   title: metaData.title,
   outDir: "../demo/public/docs",
+  markdown: {
+    config(md) {
+      md.use(mdCheck);
+    },
+  },
   themeConfig: {
     logo: "/media/gun-vue-logo.svg",
     repo: "https://github.com/DeFUCC/gun-vue",

@@ -123,6 +123,7 @@ importers:
       '@iconify/json': ^2.0.28
       '@vueuse/core': 7.5.4
       jsdoc-to-markdown: ^7.1.0
+      markdown-it-checkbox: ^1.1.0
       markdown-it-classy: ^0.2.0
       markdown-it-container: ^3.0.0
       markdown-it-external-links: ^0.0.6
@@ -144,6 +145,7 @@ importers:
     devDependencies:
       '@iconify/json': 2.0.28
       jsdoc-to-markdown: 7.1.0
+      markdown-it-checkbox: 1.1.0
       markdown-it-classy: 0.2.0
       markdown-it-container: 3.0.0
       markdown-it-external-links: 0.0.6
@@ -2664,6 +2666,12 @@ packages:
       markdown-it: '*'
     dependencies:
       markdown-it: 10.0.0
+    dev: true
+
+  /markdown-it-checkbox/1.1.0:
+    resolution: {integrity: sha1-IM/5fzPXfRcvnc8bz8ks7MUzD6w=}
+    dependencies:
+      underscore: 1.13.2
     dev: true
 
   /markdown-it-classy/0.2.0:
