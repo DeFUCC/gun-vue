@@ -853,6 +853,10 @@ const relay = useRelay()
 ## useSpace
 A 2D-space
 
+**Todo**
+
+- [ ] draggable handles https://dev.to/abolz/roll-your-own-svg-drag-and-drop-in-vuejs-2c7o
+
 
 * [useSpace](#module_useSpace)
     * _static_
