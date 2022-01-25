@@ -8,8 +8,10 @@ import { useSvgMouse } from "./useMouse";
 import { user } from "./useUser";
 import { hashText } from "./useHash";
 import { logEvent } from "./useLog";
-import { computed, reactive, watchEffect } from "vue";
+import { computed, ref, reactive, watchEffect } from "vue";
 import { getFirstEmoji } from ".";
+import { getArrow } from "curved-arrows";
+import { useElementBounding } from "@vueuse/core";
 
 /**
  * @typedef {Object} useSpace
@@ -27,7 +29,12 @@ import { getFirstEmoji } from ".";
  * const {space, area, join, place} = useSpace()
  */
 
-export function useSpace(spaceName = "public", TIMEOUT = 10000) {
+export function useSpace({
+  spaceName = "public",
+  TIMEOUT = 10000,
+  pad = 50,
+  randomness = 0.1,
+} = {}) {
   const gun = useGun();
   const space = reactive({
     title: spaceName,
@@ -41,7 +48,12 @@ export function useSpace(spaceName = "public", TIMEOUT = 10000) {
     guests: {},
     mates: {},
     links: {},
+    arrows: {},
   });
+
+  const plane = ref();
+
+  const { width, height } = useElementBounding(plane);
 
   gun
     .user()
@@ -121,23 +133,53 @@ export function useSpace(spaceName = "public", TIMEOUT = 10000) {
         });
     });
 
+  const seeds = {};
+
   watchEffect(() => {
-    let arr = [];
     for (let pub1 in space.mates) {
+      seeds[pub1] = seeds[pub1] || {};
+
       for (let pub2 in space.mates[pub1]) {
+        let seed = (seeds[pub1][pub2] =
+          seeds[pub1][pub2] || Math.random() * randomness);
+
         if (space.mates[pub1][pub2]) {
-          let g1 = guests.value?.[pub1];
-          let g2 = guests.value?.[pub2];
-          let age = Date.now() - g1?.pulse;
+          const linkData = space.mates[pub1][pub2];
+          let g1 = allGuests[pub1];
+          let g2 = allGuests[pub2];
+          let age = Date.now() * 2 - g1?.pulse - g2?.pulse;
           if (g1 && g2 && g1?.hasPos && g2?.hasPos && age < TIMEOUT) {
+            let arrowArray = getArrow(
+              g1.pos.x * width.value,
+              g1.pos.y * height.value,
+              g2.pos.x * width.value,
+              g2.pos.y * height.value,
+              {
+                padEnd: 20,
+                padStart: 10,
+              }
+            );
+            const [sx, sy, c1x, c1y, c2x, c2y, ex, ey, ae, as] = arrowArray;
+            let arrow = {
+              sx,
+              sy,
+              c1x: c1x * (1 - seed + 2 * seed),
+              c1y: c1y * (1 - seed + 2 * seed),
+              c2x: c2x * (1 - seed + 2 * seed),
+              c2y: c2y * (1 - seed + 2 * seed),
+              ex,
+              ey,
+              ae,
+              as,
+            };
+
             space.links[pub1 + pub2] = {
-              presence: age,
               user: pub1,
               mate: pub2,
-              emoji: getFirstEmoji(space.mates[pub1][pub2]),
-
+              emoji: getFirstEmoji(linkData),
               from: g1.pos,
               to: g2.pos,
+              arrow,
             };
           }
         } else {
@@ -152,5 +194,5 @@ export function useSpace(spaceName = "public", TIMEOUT = 10000) {
     gun.user().get(spaceName).get("pos").put(pos);
   }
 
-  return { space, guests, area, join, place };
+  return { space, guests, plane, width, height, area, join, place };
 }

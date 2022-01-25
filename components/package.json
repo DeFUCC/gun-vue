@@ -27,7 +27,6 @@
     "@gun-vue/composables": "workspace:^",
     "@qrcode/svg": "^1.0.0-beta.2",
     "@vueuse/core": "7.5.4",
-    "curved-arrows": "^0.1.0",
     "gun-avatar": "1.5.0",
     "jsqr": "^1.4.0",
     "simplemde": "^1.11.2",

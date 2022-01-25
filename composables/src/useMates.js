@@ -27,7 +27,7 @@ export function useMates(pub) {
     .user(pub)
     .get("mates")
     .map()
-    .on((text, matePub) => {
+    .once((text, matePub) => {
       if (text) {
         mates[matePub] = {
           emoji: getFirstEmoji(text),

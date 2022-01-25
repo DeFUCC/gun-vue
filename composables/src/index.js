@@ -23,3 +23,4 @@ export * from "./useWorker";
 
 export * from "gun-avatar";
 export { default as ms } from "ms";
+export { default as slugify } from "slugify";
