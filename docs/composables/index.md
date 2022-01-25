@@ -870,17 +870,23 @@ A 2D-space
 
 **Example**  
 ```js
-const {space, area, join, place} = useSpace()
+const { space, plane, links, width, height, guests, area, join } = useSpace({
+TIMEOUT: 10000,
+spaceName: 'Space title'
+})
 ```
 ### useSpace : <code>Object</code>
   **Properties**
 
-| Name | Type |
-| --- | --- |
-| space | <code>reactive</code> | 
-| area | <code>ref</code> | 
-| join | <code>function</code> | 
-| place | <code>function</code> | 
+| Name | Type | Description |
+| --- | --- | --- |
+| space | <code>reactive</code> | The main object |
+| guests | <code>reactive</code> | Active guests |
+| links | <code>reactive</code> | Links between active guests |
+| width | <code>ref</code> | Width of the plane |
+| height | <code>ref</code> | Height of the plane |
+| area | <code>ref</code> | The SVG element for mouse events capture |
+| join | <code>function</code> | Join the space with the current user |
 
 <hr />
 
