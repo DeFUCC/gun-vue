@@ -28,9 +28,15 @@ const open = ref(false)
         .p-0 Server is {{ relay.status }} for {{ relay.age }}
         .p-0  Host: 
           input.ml-2.opacity-60.cursor-not-allowed(disabled v-model="relay.peer")
-        .p-0 Delay: {{ relay.delay }} ms
-        .p-0 Pulse drift: {{ relay.lag }} ms
-        .p-0 Active wires: {{ relay.activeWires }} / {{ relay.totalConnections }}
+        .num.p-0 Delay: {{ relay.delay }} ms
+        .num.p-0 Pulse drift: {{ relay.lag }} ms
+        .num.p-0 Active wires: {{ relay.activeWires }} / {{ relay.totalConnections }}
         .p-0 Data storage is {{ relay.store ? 'enabled' : 'disabled' }}
  
 </template>
+
+<style scoped>
+.num {
+  font-variant-numeric: tabular-nums;
+}
+</style>

@@ -19,6 +19,12 @@ gun
 
 <template lang='pug'>
 button.m-1.button.items-center(@click.stop.prevent="refreshPost(tag, hash)")
-  .p-0.mr-1.text-sm {{ ms(Date.now() - timestamp) }}
+  .num.p-0.mr-1.text-sm {{ ms(Date.now() - timestamp) }}
   mdi-watering-can-outline
 </template>
+
+<style scoped>
+.num {
+  font-variant-numeric: tabular-nums;
+}
+</style>

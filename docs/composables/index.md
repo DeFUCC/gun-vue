@@ -30,11 +30,6 @@ const user = useUser();
   </thead>
   <tbody>
 <tr>
-    <td><a href="#useaccount" >useAccount</a></td>
-    <td><p>Basic account management</p>
-</td>
-    </tr>
-<tr>
     <td><a href="#usecolor" >useColor</a></td>
     <td><p>Deterministic colors derived from oub keys, hashes or any other string data</p>
 </td>
@@ -57,11 +52,6 @@ const user = useUser();
 <tr>
     <td><a href="#usegun" >useGun</a></td>
     <td><p>Gun DB initialization and basic methods</p>
-</td>
-    </tr>
-<tr>
-    <td><a href="#usehash" >useHash</a></td>
-    <td><p>Working with hashes</p>
 </td>
     </tr>
 <tr>
@@ -90,7 +80,7 @@ const user = useUser();
 </td>
     </tr>
 <tr>
-    <td><a href="#usepost" >usePost</a></td>
+    <td><a href="#useposts" >usePosts</a></td>
     <td><p>Get and handle a particular post by it&#39;s tag and hash</p>
 </td>
     </tr>
@@ -122,71 +112,6 @@ const user = useUser();
 </tbody>
 </table>
 
-
-<a name="module_useAccount"></a>
-
-## useAccount
-Basic account management
-
-
-* [useAccount](#module_useAccount)
-    * _static_
-        * [.useAccount(pub)](#module_useAccount.useAccount) ⇒ <code>Account</code>
-    * _inner_
-        * [~Account](#module_useAccount..Account) : <code>Object</code>
-
-### useAccount(pub) ⇒ <code>Account</code>
-  Load and handle user's account by a public key
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| pub | <code>ref</code> | The public key of a user as a string or a ref |
-
-**Example**  
-```js
-import { ref } from 'vue'
-import { useAccount, SEA } from '@gun-vue/composables'
-
-const pub = ref()
-
-async function generatePair() {
- pub.value = await SEA.pair()
-}
-
-const { account } = useAccount(pub)
-```
-### Account : <code>Object</code>
-  the user account interface
-
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| pub | <code>Ref</code> | The pub key used to build the account |
-| color | <code>Computed</code> | The user account color derived from the pub key |
-| profile | <code>Object</code> | An object with all the `gun.user().get('profile')` data |
-| pulse | <code>Number</code> | latest timestamp from the user. It's emitted every second. Offline timeout is set to 10 seconds. |
-| blink | <code>Boolean</code> | A boolean that toggles on every timestamp received |
-| lastSeen | <code>Sting</code> | Shows 'online' if recent pulse is less then 10s ago or a human readable time string |
-| db | <code>gun</code> | `gun.user(pub)` ref to query any additional user data |
-
-**Example**  
-```js
-{
-"pub": "XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc",
-"color": "#f55c3d",
-"profile": {
-   "name": "Accord",
-   "Message": "Use your imagination!",
-   "Money": "$ 20000000000"
-},
-"pulse": 1642077216809,
-"lastSeen": "online",
-"blink": true
-}
-```
-<hr />
 
 <a name="module_useColor"></a>
 
@@ -222,6 +147,7 @@ SEA cryptography abstraction
     * _static_
         * [.encFor(data, sender, receiver)](#module_useCrypto.encFor) ⇒ <code>String</code>
         * [.decFrom(data, sender, receiver)](#module_useCrypto.decFrom) ⇒ <code>String</code>
+        * [.getShortHash(text, seed)](#module_useCrypto.getShortHash) ⇒ <code>String</code>
     * _inner_
         * [~Entity](#module_useCrypto..Entity) : <code>Object</code>
 
@@ -250,6 +176,16 @@ SEA cryptography abstraction
 | data | <code>String</code> | Encrypted private data |
 | sender | <code>Entity</code> | An object with `pub` and `epub` strings - the user.is object of the sender's account |
 | receiver | <code>SEAPair</code> | SEA Pair of the receiver – `epriv` key will be used to encrypt the data |
+
+### getShortHash(text, seed) ⇒ <code>String</code>
+  Calculate a hex hash for any string data
+
+**Returns**: <code>String</code> - The hex encoded SHA-1 hash  
+
+| Param | Type |
+| --- | --- |
+| text | <code>String</code> | 
+| seed | <code>String</code> | 
 
 ### Entity : <code>Object</code>
   **Properties**
@@ -479,23 +415,6 @@ A wrapper for `Gun.text.random`
 
 <hr />
 
-<a name="module_useHash"></a>
-
-## useHash
-Working with hashes
-
-### getShortHash(text, seed) ⇒ <code>String</code>
-  Calculate a hex hash for any string data
-
-**Returns**: <code>String</code> - The hex encoded SHA-1 hash  
-
-| Param | Type |
-| --- | --- |
-| text | <code>String</code> | 
-| seed | <code>String</code> | 
-
-<hr />
-
 <a name="module_useLog"></a>
 
 ## useLog
@@ -678,22 +597,78 @@ Manage user's password and credentials
 
 <hr />
 
-<a name="module_usePost"></a>
+<a name="module_usePosts"></a>
 
-## usePost
+## usePosts
 Get and handle a particular post by it's tag and hash
 
 
-* [usePost](#module_usePost)
+* [usePosts](#module_usePosts)
     * _static_
-        * [.usePost(tag, hash)](#module_usePost.usePost) ⇒ <code>Post</code>
-        * [.downloadPost(post)](#module_usePost.downloadPost)
-        * [.parsePost(data)](#module_usePost.parsePost) ⇒ <code>Object</code>
-        * [.addPost(tag, post)](#module_usePost.addPost)
-        * [.refreshPost(tag, hash)](#module_usePost.refreshPost)
+        * [.useFeeds()](#module_usePosts.useFeeds) ⇒ <code>useFeeds</code>
+        * [.useFeed(tag, options)](#module_usePosts.useFeed) ⇒ <code>useFeed</code>
+        * [.downloadFeed(tag, posts)](#module_usePosts.downloadFeed)
+        * [.uploadFeed(tag, files)](#module_usePosts.uploadFeed)
+        * [.usePost(tag, hash)](#module_usePosts.usePost) ⇒ <code>Post</code>
+        * [.downloadPost(post)](#module_usePosts.downloadPost)
+        * [.parsePost(data)](#module_usePosts.parsePost) ⇒ <code>Object</code>
+        * [.addPost(tag, post)](#module_usePosts.addPost)
+        * [.refreshPost(tag, hash)](#module_usePosts.refreshPost)
     * _inner_
-        * [~Post](#module_usePost..Post) : <code>Object</code>
+        * [~useFeeds](#module_usePosts..useFeeds)
+        * [~useFeed](#module_usePosts..useFeed)
+        * [~Post](#module_usePosts..Post) : <code>Object</code>
 
+### useFeeds() ⇒ <code>useFeeds</code>
+  Toolkit to deal with the available tags
+
+### useFeed(tag, options) ⇒ <code>useFeed</code>
+  Use a list of immutable data from a #tag
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| tag | <code>String</code> | A vue ref to watch - generated from props by `toRef(props,'tag')` |
+| options | <code>Object</code> | Options for the feed |
+
+**Example**  
+```js
+import { useFeed } from '@gun-vue/composables'
+
+const { posts, timestamps, count, uploadPosts, downloadPosts} = useFeed('MyTag')
+```
+### downloadFeed(tag, posts)
+  Export a list of posts as a zip file
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| tag | <code>String</code> | Name of the tag |
+| posts | <code>Object</code> | Posts to export |
+
+**Example**  
+```js
+import {downloadFeed} from '@gun-vue/components'
+
+downloadFeed('myTag',posts)
+```
+### uploadFeed(tag, files)
+  Upload zip files and add all the MD files from it to the tag
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| tag | <code>String</code> | a tag to add the posts to |
+| files | <code>FileList</code> | File list from the input `@change` event |
+
+**Example**  
+```js
+import { uploadFeed } from '@gun-vue/composables'
+```
+**Example**  
+```html
+<input type="file" @change="uploadFeed( 'myTag', $event.target.files )" />
+```
 ### usePost(tag, hash) ⇒ <code>Post</code>
   An interface to manage a post
 
@@ -757,6 +732,27 @@ addPost('MyTag', {
 | --- | --- |
 | tag | <code>String</code> | 
 | hash | <code>String</code> | 
+
+### useFeeds
+  **Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| search | <code>ref</code> | a ref to bind to an input element |
+| slug | <code>computed</code> | a slugified search query - url safe verion to be used as a tag |
+| tags | <code>Tags</code> | the object to handle all the tags |
+| addTag | <code>function</code> | add a slug tag to the list |
+
+### useFeed
+  **Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| posts | <code>ref</code> | the reactive list of hashed data |
+| timestamps | <code>ref</code> | reactive timestamps list for all posts in a list |
+| count | <code>computed</code> | the number of posts in a feed |
+| downloadPosts | <code>function</code> | Download all posts in a zip file |
+| uploadPosts | <code>function</code> | upload a zip file with posts |
 
 ### Post : <code>Object</code>
   **Properties**
@@ -899,6 +895,7 @@ Basic user management
 
 * [useUser](#module_useUser)
     * _static_
+        * [.useAccount(pub)](#module_useUser.useAccount) ⇒ <code>Account</code>
         * [.useUser()](#module_useUser.useUser) ⇒ <code>useUser</code>
         * [.auth(pair)](#module_useUser.auth)
         * [.leave()](#module_useUser.leave)
@@ -906,9 +903,31 @@ Basic user management
         * [.updateProfile(field, data)](#module_useUser.updateProfile)
         * [.isPair(pair)](#module_useUser.isPair) ⇒ <code>Boolean</code>
     * _inner_
-        * [~User](#module_useUser..User)
+        * [~Account](#module_useUser..Account) : <code>Object</code>
+        * [~User](#module_useUser..User) : <code>Object</code>
         * [~useUser](#module_useUser..useUser)
 
+### useAccount(pub) ⇒ <code>Account</code>
+  Load and handle user's account by a public key
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| pub | <code>ref</code> | The public key of a user as a string or a ref |
+
+**Example**  
+```js
+import { ref } from 'vue'
+import { useAccount, SEA } from '@gun-vue/composables'
+
+const pub = ref()
+
+async function generatePair() {
+ pub.value = await SEA.pair()
+}
+
+const { account } = useAccount(pub)
+```
 ### useUser() ⇒ <code>useUser</code>
   Get access to current logged in user
 
@@ -981,8 +1000,40 @@ updateProfile( 'city', 'Moscow' )
 | --- | --- | --- |
 | pair | <code>Object</code> | an object to check |
 
-### User
-  **Properties**
+### Account : <code>Object</code>
+  the user account interface
+
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| pub | <code>ref</code> | The pub key used to build the account |
+| color | <code>computed</code> | The user account color derived from the pub key |
+| profile | <code>Object</code> | An object with all the `gun.user().get('profile')` data |
+| pulse | <code>Number</code> | latest timestamp from the user. It's emitted every second. Offline timeout is set to 10 seconds. |
+| blink | <code>Boolean</code> | A boolean that toggles on every timestamp received |
+| lastSeen | <code>Sting</code> | Shows 'online' if recent pulse is less then 10s ago or a human readable time string |
+| db | <code>gun</code> | `gun.user(pub)` ref to query any additional user data |
+
+**Example**  
+```js
+{
+"pub": "XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc",
+"color": "#f55c3d",
+"profile": {
+   "name": "Accord",
+   "Message": "Use your imagination!",
+   "Money": "$ 20000000000"
+},
+"pulse": 1642077216809,
+"lastSeen": "online",
+"blink": true
+}
+```
+### User : <code>Object</code>
+  An interface to the current gun user
+
+**Properties**
 
 | Name | Type | Description |
 | --- | --- | --- |

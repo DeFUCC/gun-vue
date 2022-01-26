@@ -1,14 +1,11 @@
 export * from "./useGun";
 
 export * from "./useUser";
-export * from "./useAccount";
 export * from "./usePass";
-export * from "./useHash";
 export * from "./useCrypto";
 
 export * from "./useLog";
-export * from "./usePost";
-export * from "./useFeed";
+export * from "./usePosts";
 export * from "./useMates";
 
 export * from "./useRelay";

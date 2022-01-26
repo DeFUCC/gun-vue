@@ -6,7 +6,7 @@
 import { useGun } from "./useGun";
 import { useSvgMouse } from "./useMouse";
 import { user } from "./useUser";
-import { hashText } from "./useHash";
+import { hashText } from "./useCrypto";
 import { logEvent } from "./useLog";
 import { computed, ref, reactive, watchEffect } from "vue";
 import { getFirstEmoji } from ".";

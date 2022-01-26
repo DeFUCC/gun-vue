@@ -50,7 +50,7 @@ export default defineConfig({
         }),
       ],
     }),
-    // VitePWA({
+    // VitePWA({ // https://css-tricks.com/vitepwa-plugin-offline-service-worker/, https://vite-plugin-pwa.netlify.app/guide/prompt-for-update.html#runtime
     //   manifest: {
     //     name: "Gun-Vue",
     //     short_name: "@gun-vue",
