@@ -20,11 +20,10 @@ const guests = useGuests({ space: props.space })
       .p-2.bg-light-900.rounded-xl {{ guests.count[state] }}
     .flex.flex-wrap
       transition-group(name="fade")
-        account-badge.shadow-md.m-1(
-          :pub="guest.pub"         
+        account-badge.shadow-md.m-1.border-2(
           v-for="(guest, p) in guests[state]" :key="p"
+          :pub="guest.pub"
           @click="$emit('user', guest.pub)"
-          :style="{ opacity: guest.online ? 1 : 0.5, order: guest.order }"
+          :style="{ opacity: guest.online ? 1 : 0.5, order: guest.order, borderColor: guest.blink ? '#0006' : 'transparent' }"
         ) 
-
 </template> 
