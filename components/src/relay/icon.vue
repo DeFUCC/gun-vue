@@ -27,8 +27,8 @@ const open = ref(false)
       .flex.flex-col.items-start
         .p-0.flex.items-center  Host: 
           input.mx-1.p-2.rounded-lg(v-model="relay.peer")
-          button.button(@click="relay.setPeer(relay.peer)") Set
-          button.button(@click="relay.resetPeer()") Reset
+          button.button.m-1(@click="relay.setPeer(relay.peer)") Set
+          button.button.m-1(@click="relay.resetPeer()") Reset
         .p-0 Relay server is {{ relay.status }} for {{ relay.age }}
         .num.p-0 Delay: {{ relay.delay }} ms
         .num.p-0 Pulse drift: {{ relay.lag }} ms
