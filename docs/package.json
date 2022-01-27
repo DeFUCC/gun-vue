@@ -1,7 +1,7 @@
 {
   "name": "@gun-vue/docs",
   "private": true,
-  "version": "0.6.3",
+  "version": "0.6.4",
   "homepage": "https://gun-vue.js.org",
   "description": "Documentation for gun-vue build with Vitepress",
   "main": "index.js",
@@ -24,20 +24,20 @@
   "license": "MIT",
   "dependencies": {
     "@gun-vue/components": "workspace:^",
-    "@vueuse/core": "7.5.4",
+    "@vueuse/core": "7.5.5",
     "vue": "^3.2.29"
   },
   "devDependencies": {
-    "@iconify/json": "^2.0.28",
+    "@iconify/json": "^2.0.29",
     "jsdoc-to-markdown": "^7.1.0",
+    "markdown-it-checkbox": "^1.1.0",
     "markdown-it-classy": "^0.2.0",
     "markdown-it-container": "^3.0.0",
     "markdown-it-external-links": "^0.0.6",
-    "markdown-it-checkbox": "^1.1.0",
     "pug": "3.0.2",
     "unplugin-auto-import": "^0.5.11",
     "unplugin-icons": "^0.13.0",
-    "unplugin-vue-components": "^0.17.14",
+    "unplugin-vue-components": "^0.17.15",
     "vite": "^2.7.13",
     "vite-aliases": "^0.8.7",
     "vite-plugin-windicss": "^1.6.3",

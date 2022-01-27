@@ -1,5 +1,11 @@
 # @gun-vue/relay
 
+## 0.3.4
+
+### Patch Changes
+
+- Changeable relays
+
 ## 0.3.3
 
 ### Patch Changes

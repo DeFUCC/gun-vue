@@ -1,6 +1,6 @@
 {
   "name": "@gun-vue/components",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "license": "MIT",
   "repository": "github:defucc/gun-vue",
   "homepage": "https://gun-vue.js.org",
@@ -26,7 +26,7 @@
   "dependencies": {
     "@gun-vue/composables": "workspace:^",
     "@qrcode/svg": "^1.0.0-beta.2",
-    "@vueuse/core": "7.5.4",
+    "@vueuse/core": "7.5.5",
     "gun-avatar": "1.5.0",
     "jsqr": "^1.4.0",
     "simplemde": "^1.11.2",
@@ -39,7 +39,7 @@
     "@vitejs/plugin-vue": "^2.1.0",
     "pug": "^3.0.2",
     "unplugin-icons": "^0.13.0",
-    "unplugin-vue-components": "^0.17.14",
+    "unplugin-vue-components": "^0.17.15",
     "vite": "^2.7.13",
     "vite-plugin-windicss": "^1.6.3",
     "windicss": "^3.4.3"

@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.6.4
+
+### Patch Changes
+
+- Changeable relays
+
 ## 0.6.3
 
 ### Patch Changes
