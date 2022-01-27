@@ -68,7 +68,7 @@ function importPostFile(event) {
       @change="importPostFile($event)"
     )
     .flex-1
-    button.button.m-1(@click="add = false; text = ''")
+    button.button.m-1(@click="text = ''")
       la-trash
       .ml-2 Reset
 </template>

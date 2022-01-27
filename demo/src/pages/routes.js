@@ -1,5 +1,5 @@
 export const routes = {
-  "/space/": "Space",
+  "/spaces/": "Spaces",
   "/feeds/": "Feeds",
   "/users/": "Users",
   "/comments/": "Comments",

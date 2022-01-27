@@ -5,7 +5,7 @@
 
 import { useGun } from "./useGun";
 import { useSvgMouse } from "./useMouse";
-import { user } from "./useUser";
+import { user, useAccount } from "./useUser";
 import { hashText } from "./useCrypto";
 import { logEvent } from "./useLog";
 import { computed, ref, reactive, watchEffect } from "vue";
@@ -186,25 +186,76 @@ export function useSpace({
   }
 
   async function join() {
-    if (!gun.user().is) return;
-    place();
-    if (space.joined) return;
+    if (!user.pub) return;
     const hash = await hashText(user.pub);
-    // let already = await gun.get(spaceName).get("#guests").get(hash).then();
-    // if (already) return;
     gun.get(spaceName).get("#guests").get(hash).put(user.pub);
-    logEvent("guest", { event: "guest", space: spaceName, pub: user.pub });
     space.joined = true;
   }
 
-  function place() {
-    let pos = { x: mouse.normX, y: mouse.normY };
-    gun.user().get(spaceName).get("pos").put(pos);
+  function place({ x = mouse.normX, y = mouse.normY } = {}) {
+    if (!space.joined) join();
+    gun.user().get(spaceName).get("pos").put({ x, y });
   }
 
-  return { space, guests, links, plane, width, height, area, join };
+  return { space, guests, links, plane, width, height, area, join, place };
 }
 
 /**
  * @todo draggable handles https://dev.to/abolz/roll-your-own-svg-drag-and-drop-in-vuejs-2c7o
  */
+import { useThrottleFn } from "@vueuse/core";
+
+let startTime = Date.now();
+
+export function useGuests({
+  space = "publics",
+  role = "guest",
+  timeout = 10000,
+} = {}) {
+  const gun = useGun();
+  startTime = Date.now();
+
+  const guests = reactive({});
+  const online = reactive({});
+  const offline = reactive({});
+
+  gun
+    .get(space)
+    .get(`#${role}s`)
+    .map()
+    .once((d, k) => {
+      const { account } = useAccount(d);
+      guests[account.value.pub] = account;
+      guests[account.value.pub].order = computed(() =>
+        getOrder(account.value.pulse)
+      );
+      guests[account.value.pub].online = computed(() => {
+        return startTime - account.value.pulse < timeout;
+      });
+    });
+
+  watchEffect(() => {
+    for (let pub in guests) {
+      if (guests[pub].online) {
+        online[pub] = guests[pub];
+        delete offline[pub];
+      } else {
+        offline[pub] = guests[pub];
+        delete online[pub];
+      }
+    }
+  });
+
+  function getOrder(pulse, time = startTime) {
+    if (!pulse) return 1000000;
+    let age = time - pulse;
+    return age < timeout ? 1 : time - pulse;
+  }
+
+  function getOpacity(pulse, time = startTime) {
+    if (!pulse) return 0;
+    return time - pulse < timeout ? 1 : 0.5;
+  }
+
+  return { guests, online, offline, getOrder, getOpacity };
+}

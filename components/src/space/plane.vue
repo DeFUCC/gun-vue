@@ -13,7 +13,7 @@ const { user } = useUser()
 
 const colorDeep = useColor('deep')
 
-const { space, plane, links, width, height, guests, area, join } = useSpace({
+const { space, plane, links, width, height, guests, area, join, place } = useSpace({
   TIMEOUT: 10000,
   spaceName: props.name
 })
@@ -41,7 +41,7 @@ const enter = ref(false)
   svg.h-80vh.w-98vw(
     ref="plane"
     style="cursor:none;"
-    @click="join(); enter = true"
+    @click="place(); enter = true"
     version="1.1",
     baseProfile="full",
     :viewBox="`${-pad} ${-pad} ${width + 2 * pad} ${height + 2 * pad}`",
@@ -95,7 +95,9 @@ const enter = ref(false)
       space-arrow(
         v-for="(link, key) in links"
         :link="link" 
-        :key="key")
+        :key="key"
+        @user=""
+        )
 
     g.guests
       space-guest.cursor-pointer.transition-all.ease-out.duration-600(

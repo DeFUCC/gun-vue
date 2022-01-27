@@ -5,10 +5,11 @@
 }
 
 .fade-enter-active {
-  
+  transition: all 0.2s ease;
 }
 .fade-leave-active {
   opacity: 0;
+  transition: all 0.1s ease;
 }
 
 .fade-leave-to {
@@ -17,7 +18,11 @@
 
 .fade-enter-from {
   opacity: 0;
-  z-index: 2000;
+}
+
+.fade-enter-to {
+  opacity: 1;
+
 }
 
 
