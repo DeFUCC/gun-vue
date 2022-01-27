@@ -44,8 +44,8 @@ g.arrow(ref="handle")
       :cy="link.arrow.c1y"
       :r="18"
       stroke-width="2"
-      :stroke="colorDeep.hex(link.mate)"
-      :fill="colorDeep.hex(link.user)"
+      :stroke="colorDeep.hex(link.user)"
+      :fill="colorDeep.hex(link.mate)"
     )
     text.text-2xl.pointer-events-none(
       :transform="`translate(${link.arrow.c1x}, ${link.arrow.c1y}) rotate(${0})`"

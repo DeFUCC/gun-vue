@@ -3,7 +3,7 @@
  * @module useRelay
  */
 
-import { useGun, peers } from "./useGun";
+import { useGun, peer, defaultPeer } from "./useGun";
 import { computed, reactive, watch } from "vue";
 import ms from "ms";
 
@@ -33,8 +33,8 @@ import ms from "ms";
  */
 
 const relay = reactive({
-  peer: peers[0],
-  host: new URL(peers[0]).hostname,
+  peer: peer.value,
+  host: new URL(peer.value).hostname,
   status: "offline",
   started: 0,
   pulse: 0,
@@ -43,6 +43,14 @@ const relay = reactive({
   age: computed(() => ms(relay.diff)),
   delay: computed(() => Date.now() - relay.pulse),
   blink: false,
+  setPeer(url) {
+    peer.value = url;
+    window.location.reload();
+  },
+  resetPeer() {
+    peer.value = defaultPeer;
+    window.location.reload();
+  },
 });
 
 watch(

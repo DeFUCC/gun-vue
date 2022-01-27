@@ -12,7 +12,10 @@ import "gun/lib/rindexed";
 // import "gun/lib/webrtc";
 import "gun/nts";
 
-export let peers = ["https://etogun.glitch.me/gun"];
+import { useStorage } from "@vueuse/core";
+
+export const defaultPeer = "https://etogun.glitch.me/gun";
+export const peer = useStorage("peer", "https://etogun.glitch.me/gun");
 // export let peers = ["http://192.168.1.42:4200/gun"];
 // export let peers = ["http://localhost:4200/gun"];
 
@@ -32,10 +35,9 @@ export let gun2;
  * const gun = useGun()
  */
 
-export function useGun(peer = peers) {
-  if (!gun || peer != peers) {
-    peers = peer;
-    gun = Gun({ peers, localStorage: false });
+export function useGun() {
+  if (!gun) {
+    gun = Gun({ peers: [peer.value], localStorage: false });
   }
   return gun;
 }
@@ -46,10 +48,9 @@ export function useGun(peer = peers) {
  * @returns {Gun}
  */
 
-export function useGun2(peer = peers) {
-  if (!gun2 || peer != peers) {
-    peers = peer;
-    gun2 = Gun({ peers, localStorage: false });
+export function useGun2() {
+  if (!gun2) {
+    gun2 = Gun({ peers: [peer.value], localStorage: false });
   }
   return gun2;
 }

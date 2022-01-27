@@ -27,10 +27,10 @@ const enter = ref(false)
 <template lang='pug'>
 .flex.flex-col.items-center.relative
 
-  ui-layer(:open="!!selected" @close="selected = null" :offset="'20vh'")
+  ui-layer(:open="!!selected" @close="selected = null")
     account-home(:pub="selected")
 
-  ui-layer(:open="enter && !user.is" @close="enter = false" :offset="'20vh'")
+  ui-layer(:open="enter && !user.is" @close="enter = false")
     user-home(@browse="$router.push(`/users/${$event}`)" @close="enter = false")
 
   .text-2xl.p-8.top-15vh.cursor-pointer.bg-light-700.absolute.rounded-3xl.shadow-xl.border-4(
@@ -96,7 +96,7 @@ const enter = ref(false)
         v-for="(link, key) in links"
         :link="link" 
         :key="key"
-        @user=""
+        @user="selected = $event"
         )
 
     g.guests
