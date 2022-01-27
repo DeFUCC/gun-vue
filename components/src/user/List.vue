@@ -8,19 +8,23 @@ const props = defineProps({
   space: { type: String, default: 'public' }
 })
 
-const { guests, online, offline, getOpacity, getOrder } = useGuests({ space: props.space })
+const guests = useGuests({ space: props.space })
 
 </script>
 
 <template lang='pug'>
-.flex.flex-wrap.p-4
-  transition-group(name="fade")
-    .p-1(
-      v-for="(guest, p) in guests" :key="p"
-      @click="$emit('user', guest.pub)"
-      v-show="getOrder(guest.pulse) !== null"
-      :style="{ opacity: getOpacity(guest.pulse), order: guest.order }"
-      ) 
-      account-badge.shadow-md(:pub="guest.pub") 
+.flex.flex-col.p-4
+  .flex.flex-col.my-2(v-for="state in ['online', 'offline']" :key="state")
+    .flex.items-center.my-2
+      .text-xl.mr-2.capitalize {{ state }}
+      .p-2.bg-light-900.rounded-xl {{ guests.count[state] }}
+    .flex.flex-wrap
+      transition-group(name="fade")
+        account-badge.shadow-md.m-1(
+          :pub="guest.pub"         
+          v-for="(guest, p) in guests[state]" :key="p"
+          @click="$emit('user', guest.pub)"
+          :style="{ opacity: guest.online ? 1 : 0.5, order: guest.order }"
+        ) 
 
 </template> 

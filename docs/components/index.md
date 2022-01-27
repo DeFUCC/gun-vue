@@ -57,10 +57,10 @@ A powerful tool to manage current user. Click the icon and a modal window will a
 Immutable comments at any given url
 
 ```html
-<feed-block />
+<post-feed-block />
 ```
 
-<GunVue component="FeedBlock" />
+<GunVue component="PostFeedBlock" />
 
 ## Space
 

@@ -23,13 +23,13 @@ const path = computed(() => {
 </script>
 
 <template lang='pug'>
-.p-0
-  ui-layer(:open="open" :closeButton="false"  @close="$router.push('/feeds/')")
-    post-list.w-full(
-      :tag="path" 
-      @close="$router.push('/feeds/')" 
-      @browse="$router.push(`/feeds/${feed}/${safeHash($event)}`)"
-      )
+.p-2
+  post-list.w-full(
+    :key="feed"
+    :tag="path" 
+    @close="$router.push('/feeds/')" 
+    @browse="$router.push(`/feeds/${feed}/${safeHash($event)}`)"
+    )
   router-view(v-slot="{ Component }")
     transition(name="fade")
       component(:is="Component" :key="$route.fullPath" )

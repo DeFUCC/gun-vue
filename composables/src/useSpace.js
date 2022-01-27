@@ -203,7 +203,6 @@ export function useSpace({
 /**
  * @todo draggable handles https://dev.to/abolz/roll-your-own-svg-drag-and-drop-in-vuejs-2c7o
  */
-import { useThrottleFn } from "@vueuse/core";
 
 let startTime = Date.now();
 
@@ -219,17 +218,25 @@ export function useGuests({
   const online = reactive({});
   const offline = reactive({});
 
+  const count = reactive({
+    online: computed(() => Object.keys(online).length),
+    offline: computed(() => Object.keys(offline).length),
+  });
+
   gun
     .get(space)
     .get(`#${role}s`)
     .map()
     .once((d, k) => {
       const { account } = useAccount(d);
-      guests[account.value.pub] = account;
-      guests[account.value.pub].order = computed(() =>
-        getOrder(account.value.pulse)
+      const pub = account.value.pub;
+      guests[pub] = account;
+      guests[pub].order = computed(() =>
+        startTime - account.value.pulse < timeout
+          ? 1
+          : startTime - account.value.pulse
       );
-      guests[account.value.pub].online = computed(() => {
+      guests[pub].online = computed(() => {
         return startTime - account.value.pulse < timeout;
       });
     });
@@ -246,16 +253,5 @@ export function useGuests({
     }
   });
 
-  function getOrder(pulse, time = startTime) {
-    if (!pulse) return 1000000;
-    let age = time - pulse;
-    return age < timeout ? 1 : time - pulse;
-  }
-
-  function getOpacity(pulse, time = startTime) {
-    if (!pulse) return 0;
-    return time - pulse < timeout ? 1 : 0.5;
-  }
-
-  return { guests, online, offline, getOrder, getOpacity };
+  return { guests, online, offline, count };
 }

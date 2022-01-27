@@ -23,6 +23,6 @@ onMounted(() => {
     )
   router-view(v-slot="{ Component }")
     transition(name="fade")
-      component(:is="Component")
+      component(:is="Component" )
 
 </template>

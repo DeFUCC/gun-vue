@@ -1,9 +1,14 @@
 <script setup>
-// import { useFeeds } from '@composables'
-// const { tags } = useFeeds()
+import { safeHash } from '@composables'
+
 </script>
 
 <template lang='pug'>
-.flex.flex-col
-  //- .p-4.text-center.opacity-20.text-xl.text-shadow-md Open one of {{ tags.count }} feeds
+.flex.flex-col.p-2
+  post-list.w-full(
+    tag="public" 
+    :header="false"
+    @close="$router.push('/feeds/')" 
+    @browse="$router.push(`/feeds/public/${safeHash($event)}`)"
+    )
 </template>
