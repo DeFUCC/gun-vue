@@ -19,6 +19,11 @@ export const peer = useStorage("peer", "https://etogun.glitch.me/gun");
 // export let peers = ["http://192.168.1.42:4200/gun"];
 // export let peers = ["http://localhost:4200/gun"];
 
+// gunjs.herokuapp.com
+// gun-us.herokuapp.com
+// https://github.com/amark/gun/wiki/volunteer.dht
+// https://github.com/draeder/gun-relays
+
 /** The main Gun instance for database operations */
 export let gun;
 
