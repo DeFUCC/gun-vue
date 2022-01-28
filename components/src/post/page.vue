@@ -53,8 +53,8 @@ watchEffect(async () => {
     .p-0(style="flex: 4 1 300px" v-if="cover")
       img.sticky.top-5vh(:src="cover")
 
-    .flex-1.z-20.flex.flex-wrap(style="flex: 10 1 300px")
-      .flex.flex-wrap.items-start.w-full.justify-start.my-4.z-25.rounded-xl.m-2.backdrop-filter.backdrop-blur-md(
+    .flex-1.flex.flex-wrap(style="flex: 10 1 300px")
+      .flex.flex-wrap.items-start.w-full.justify-start.my-4.rounded-xl.m-2.backdrop-filter.backdrop-blur-md(
         style="flex: 1 1 240px" 
         :style="{ backgroundColor: colorLight + '99' }" 
         v-if="icon || post?.data?.title || post?.data?.statement"

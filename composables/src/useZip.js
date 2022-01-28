@@ -8,7 +8,7 @@ import JSZip from "jszip";
 import { downloadFile, base64Extension, base64FileType } from "./useFile";
 import { genUUID, SEA } from "./useGun";
 import { createMd } from "./useMd";
-import { loadFromHash } from "./usePosts";
+import { loadFromHash } from "./posts";
 import { user } from "./useUser";
 
 /**

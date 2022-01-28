@@ -5,7 +5,7 @@ export * from "./usePass";
 export * from "./useCrypto";
 
 export * from "./useLog";
-export * from "./usePosts";
+export * from "./posts";
 export * from "./useMates";
 
 export * from "./useRelay";
