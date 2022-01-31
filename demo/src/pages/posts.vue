@@ -5,7 +5,7 @@ import { safeHash } from '@composables'
 
 <template lang='pug'>
 .flex.flex-col
-  post-feed-list.m-2.p-2.shadow-md.rounded-xl(@tag="$router.push(`/feeds/${$event}`)")
+  post-feed-list.m-2.p-2.shadow-md.rounded-xl(@tag="$router.push(`/posts/${$event}`)")
   router-view(v-slot="{ Component }")
     transition(name="fade")
       component(:is="Component" )

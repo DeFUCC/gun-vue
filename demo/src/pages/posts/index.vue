@@ -8,7 +8,7 @@ import { safeHash } from '@composables'
   post-list.w-full(
     tag="public" 
     :header="false"
-    @close="$router.push('/feeds/')" 
-    @browse="$router.push(`/feeds/public/${safeHash($event)}`)"
+    @close="$router.push('/posts/')" 
+    @browse="$router.push(`/posts/public/${safeHash($event)}`)"
     )
 </template>

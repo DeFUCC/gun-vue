@@ -24,13 +24,13 @@ const path = computed(() => {
 
 <template lang='pug'>
 .flex.flex-col()
-  ui-layer(:open="true" :closeButton="false" @close="$router.push(`/feeds/${feed}/`)")
+  ui-layer(:open="true" :closeButton="false" @close="$router.push(`/posts/${feed}/`)")
     post-page.w-full(
       :hash="unHash" 
       :tag="path" 
       :key="$route.fullPath"
-      @close="$router.push(`/feeds/${feed}/`)" 
-      @browse="$router.push(`/feeds/${hash}/${safeHash($event)}/`)"
+      @close="$router.push(`/posts/${feed}/`)" 
+      @browse="$router.push(`/posts/${hash}/${safeHash($event)}/`)"
       )
 </template>
 

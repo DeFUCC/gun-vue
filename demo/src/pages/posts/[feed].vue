@@ -27,8 +27,8 @@ const path = computed(() => {
   post-list.w-full(
     :key="feed"
     :tag="path" 
-    @close="$router.push('/feeds/')" 
-    @browse="$router.push(`/feeds/${feed}/${safeHash($event)}`)"
+    @close="$router.push('/posts/')" 
+    @browse="$router.push(`/posts/${feed}/${safeHash($event)}`)"
     )
   router-view(v-slot="{ Component }")
     transition(name="fade")

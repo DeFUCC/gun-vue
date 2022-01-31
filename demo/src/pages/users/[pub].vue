@@ -19,7 +19,7 @@ onMounted(() => {
     :pub="pub" 
     @browse="$router.push(`/users/${$event}`)" 
     :key="pub"
-    @feed="$router.push(`/feeds/${$event}`)"
+    @feed="$router.push(`/posts/${$event}`)"
     )
   router-view(v-slot="{ Component }")
     transition(name="fade")
