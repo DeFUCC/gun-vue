@@ -3,12 +3,12 @@
  * @module useUser
  * */
 
-import { gun, useGun } from "./useGun";
-import { useColor } from "./useColor";
-import { computed, reactive, ref } from "vue";
-import ms from "ms";
+import { gun, useGun } from '..'
+import { useColor } from '../ui'
+import { computed, reactive, ref } from 'vue'
+import ms from 'ms'
 
-const colorDeep = useColor("deep");
+const colorDeep = useColor('deep')
 
 /**
  * @typedef {Object} Account - the user account interface
@@ -52,45 +52,45 @@ const colorDeep = useColor("deep");
  */
 
 export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
-  const gun = useGun();
-  pub = ref(pub);
+  const gun = useGun()
+  pub = ref(pub)
   const account = computed(() => {
     const obj = reactive({
       pub,
-      color: computed(() => (pub.value ? colorDeep.hex(pub.value) : "gray")),
+      color: computed(() => (pub.value ? colorDeep.hex(pub.value) : 'gray')),
       profile: {
-        name: "",
+        name: '',
       },
       pulse: 0,
       lastSeen: computed(() => {
-        let time = Date.now() - obj.pulse;
+        let time = Date.now() - obj.pulse
         if (time > TIMEOUT) {
-          return ms(time);
+          return ms(time)
         } else {
-          return "online";
+          return 'online'
         }
       }),
       blink: false,
       db: gun.user(pub.value),
-    });
+    })
 
     gun
       .user(pub.value)
-      .get("pulse")
+      .get('pulse')
       .on((d) => {
-        obj.blink = !obj.blink;
-        obj.pulse = d;
+        obj.blink = !obj.blink
+        obj.pulse = d
       })
       .back()
-      .get("profile")
+      .get('profile')
       .map()
       .on((data, key) => {
-        obj.profile[key] = data;
-      });
-    return obj;
-  });
+        obj.profile[key] = data
+      })
+    return obj
+  })
 
-  return { account };
+  return { account }
 }
 
 /**
@@ -132,9 +132,9 @@ export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
 export const user = reactive({
   initiated: false,
   is: null,
-  name: "",
+  name: '',
   pub: computed(() => user?.is?.pub),
-  color: computed(() => (user.pub ? colorDeep.hex(user.pub) : "gray")),
+  color: computed(() => (user.pub ? colorDeep.hex(user.pub) : 'gray')),
   pulse: 0,
   pulser: null,
   blink: false,
@@ -143,9 +143,9 @@ export const user = reactive({
     password: null,
   },
   pair() {
-    return gun?.user?.()?._?.sea;
+    return gun?.user?.()?._?.sea
   },
-});
+})
 
 /**
  * @typedef useUser
@@ -164,53 +164,53 @@ export const user = reactive({
  */
 
 export function useUser() {
-  useGun();
-  user.db = gun.user();
+  useGun()
+  user.db = gun.user()
 
   if (!user.initiated) {
     gun.user().recall({ sessionStorage: true }, () => {
-      console.log("user was recalled");
-    });
+      console.log('user was recalled')
+    })
 
-    gun.on("auth", () => {
-      init();
-      console.log("user authenticated");
-    });
+    gun.on('auth', () => {
+      init()
+      console.log('user authenticated')
+    })
   }
-  user.initiated = true;
+  user.initiated = true
 
-  return { user, auth, leave };
+  return { user, auth, leave }
 }
 
 function init() {
-  user.is = gun.user().is;
+  user.is = gun.user().is
   if (user.pulser) {
-    clearInterval(user.pulser);
+    clearInterval(user.pulser)
   }
   user.pulser = setInterval(() => {
-    gun.user().get("pulse").put(Date.now());
-  }, 1000);
+    gun.user().get('pulse').put(Date.now())
+  }, 1000)
 
   gun
     .user()
-    .get("pulse")
+    .get('pulse')
     .on((d) => {
-      user.blink = !user.blink;
-      user.pulse = d;
+      user.blink = !user.blink
+      user.pulse = d
     })
     .back()
-    .get("safe")
+    .get('safe')
     .map()
     .on((d, k) => {
-      user.safe[k] = d;
-    });
+      user.safe[k] = d
+    })
   gun
     .user()
-    .get("profile")
-    .get("name")
-    .on((d) => (user.name = d));
+    .get('profile')
+    .get('name')
+    .on((d) => (user.name = d))
 
-  user.initiated = true;
+  user.initiated = true
 }
 
 /**
@@ -228,13 +228,13 @@ function init() {
 export async function auth(pair, cb = () => {}) {
   if (!isPair(pair)) {
     // pair = await SEA.pair();
-    console.log("incorrect pair", pair);
-    return;
+    console.log('incorrect pair', pair)
+    return
   }
   gun.user().auth(pair, async () => {
-    cb();
-    console.log("user is authenticated");
-  });
+    cb()
+    console.log('user is authenticated')
+  })
 }
 
 /**
@@ -246,21 +246,21 @@ export async function auth(pair, cb = () => {}) {
  **/
 
 export function leave() {
-  let is = !!user.is?.pub;
-  user.initiated = false;
-  clearInterval(user.pulser);
-  gun.user().leave();
+  let is = !!user.is?.pub
+  user.initiated = false
+  clearInterval(user.pulser)
+  gun.user().leave()
   setTimeout(() => {
     if (is && !user.pair()) {
-      user.is = null;
-      console.info("User logged out");
+      user.is = null
+      console.info('User logged out')
     }
-  }, 500);
+  }, 500)
 }
 
 export function isMine(soul) {
-  if (!soul) return;
-  return soul.slice(1, 88) == user.pub;
+  if (!soul) return
+  return soul.slice(1, 88) == user.pub
 }
 
 /**
@@ -273,7 +273,7 @@ export function isMine(soul) {
  */
 
 export function addProfileField(title) {
-  gun.user().get("profile").get(title).put("");
+  gun.user().get('profile').get(title).put('')
 }
 
 /**
@@ -288,7 +288,7 @@ export function addProfileField(title) {
 
 export function updateProfile(field, data) {
   if (field && data !== undefined) {
-    gun.user().get("profile").get(field).put(data);
+    gun.user().get('profile').get(field).put(data)
   }
 }
 
@@ -301,10 +301,10 @@ export function updateProfile(field, data) {
 export function isPair(pair) {
   return (
     pair &&
-    typeof pair == "object" &&
+    typeof pair == 'object' &&
     pair.pub &&
     pair.epub &&
     pair.priv &&
     pair.epriv
-  );
+  )
 }

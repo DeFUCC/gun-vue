@@ -3,11 +3,11 @@
  * @module Feeds
  */
 
-import { computed, reactive, ref } from "vue";
-import slugify from "slugify";
-import Fuse from "fuse.js";
-import { useGun } from "../useGun";
-import { hashText } from "../useCrypto";
+import { computed, reactive, ref } from 'vue'
+import slugify from 'slugify'
+import Fuse from 'fuse.js'
+import { useGun } from '../gun/'
+import { hashText } from '../crypto/'
 
 /**
  * @typedef useFeeds
@@ -22,66 +22,66 @@ import { hashText } from "../useCrypto";
  * @returns {useFeeds}
  */
 export function useFeeds() {
-  const gun = useGun();
+  const gun = useGun()
 
-  const search = ref();
-  const slug = computed(() => slugify(search.value));
+  const search = ref()
+  const slug = computed(() => slugify(search.value))
 
   const tags = reactive({
     list: {},
     all: computed(() => {
-      const arr = [];
+      const arr = []
       for (let t in tags.list) {
         arr.push({
           hash: t,
           tag: tags.list[t],
-        });
+        })
       }
       return arr.sort((a, b) =>
-        a && b && a.tag.toLowerCase() < b.tag.toLowerCase() ? -1 : 1
-      );
+        a && b && a.tag.toLowerCase() < b.tag.toLowerCase() ? -1 : 1,
+      )
     }),
     count: computed(() => tags.all.length),
     fuse: computed(() => {
       return new Fuse(tags.all, {
         includeScore: true,
-        keys: ["tag"],
-      });
+        keys: ['tag'],
+      })
     }),
     results: computed(() => {
-      if (!search.value) return [];
-      let res = tags.fuse.search(slug.value);
-      return res;
+      if (!search.value) return []
+      let res = tags.fuse.search(slug.value)
+      return res
     }),
     minScore: computed(() => {
-      let min = 100;
+      let min = 100
       tags.results.forEach((res) => {
         if (res.score < min) {
-          min = res.score;
+          min = res.score
         }
-      });
-      return min;
+      })
+      return min
     }),
-  });
+  })
 
   gun
-    .get("#tags")
+    .get('#tags')
     .map()
     .on((d, k) => {
-      if (!d) return;
+      if (!d) return
       try {
-        data = JSON.parse(d); //ignore objects
+        data = JSON.parse(d) //ignore objects
       } catch (e) {
-        tags.list[k] = d; // assumes tag is a plain string
+        tags.list[k] = d // assumes tag is a plain string
       }
-    });
+    })
 
   async function addTag(tag = slug.value) {
-    if (!tag) return;
-    let safe = slugify(tag);
-    const hash = await hashText(safe);
-    gun.get(`#tags`).get(`${hash}`).put(safe);
+    if (!tag) return
+    let safe = slugify(tag)
+    const hash = await hashText(safe)
+    gun.get(`#tags`).get(`${hash}`).put(safe)
   }
 
-  return { search, slug, tags, addTag };
+  return { search, slug, tags, addTag }
 }

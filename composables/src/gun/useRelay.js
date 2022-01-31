@@ -3,9 +3,9 @@
  * @module useRelay
  */
 
-import { useGun, peer, defaultPeer } from "./useGun";
-import { computed, reactive, watch } from "vue";
-import ms from "ms";
+import { useGun, peer, defaultPeer } from '.'
+import { computed, reactive, watch } from 'vue'
+import ms from 'ms'
 
 /**
  * @typedef {reactive} Relay Peer server status reactive object
@@ -35,7 +35,7 @@ import ms from "ms";
 const relay = reactive({
   peer: peer.value,
   host: new URL(peer.value).hostname,
-  status: "offline",
+  status: 'offline',
   started: 0,
   pulse: 0,
   lag: 0,
@@ -44,22 +44,22 @@ const relay = reactive({
   delay: computed(() => Date.now() - relay.pulse),
   blink: false,
   setPeer(url) {
-    peer.value = url;
-    window.location.reload();
+    peer.value = url
+    window.location.reload()
   },
   resetPeer() {
-    peer.value = defaultPeer;
-    window.location.reload();
+    peer.value = defaultPeer
+    window.location.reload()
   },
-});
+})
 
 watch(
   () => relay.pulse,
   (next, prev) => {
-    relay.blink = !relay.blink;
-    relay.lag = next - prev - 500;
-  }
-);
+    relay.blink = !relay.blink
+    relay.lag = next - prev - 500
+  },
+)
 
 /**
  * Peer server status monitor
@@ -72,15 +72,15 @@ watch(
  * const relay = useRelay()
  */
 export function useRelay() {
-  const gun = useGun();
+  const gun = useGun()
   if (relay.pulse == 0) {
     gun
       .get(relay.host)
       .map()
       .on((d, k) => {
-        relay[k] = d;
-      });
+        relay[k] = d
+      })
   }
 
-  return relay;
+  return relay
 }

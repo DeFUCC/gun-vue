@@ -5,7 +5,7 @@
 
 // https://github.com/amark/gun/wiki/Snippets
 
-import { SEA } from "./useGun";
+import { SEA } from '../gun/'
 
 /**
  * @typedef {Object} Entity
@@ -23,9 +23,9 @@ import { SEA } from "./useGun";
  * @returns {String} Encrypted data string to be sent
  */
 export async function encFor(data, receiver, sender) {
-  const secret = await SEA.secret(receiver.epub, sender);
-  const encryptedData = await SEA.encrypt(data, secret);
-  return encryptedData;
+  const secret = await SEA.secret(receiver.epub, sender)
+  const encryptedData = await SEA.encrypt(data, secret)
+  return encryptedData
 }
 
 /**
@@ -38,20 +38,20 @@ export async function encFor(data, receiver, sender) {
  * @returns {String} Decrypted data
  */
 export async function decFrom(data, sender, receiver) {
-  const secret = await SEA.secret(sender.epub, receiver);
-  const decryptedData = await SEA.decrypt(data, secret);
-  return decryptedData;
+  const secret = await SEA.secret(sender.epub, receiver)
+  const decryptedData = await SEA.decrypt(data, secret)
+  return decryptedData
 }
 
 export async function hashText(text) {
-  let hash = await SEA.work(text, null, null, { name: "SHA-256" });
-  return hash;
+  let hash = await SEA.work(text, null, null, { name: 'SHA-256' })
+  return hash
 }
 
 export async function hashObj(obj) {
-  let text = JSON.stringify(obj);
-  let hash = await hashText(text);
-  return { text, hash };
+  let text = JSON.stringify(obj)
+  let hash = await hashText(text)
+  return { text, hash }
 }
 
 /**
@@ -62,55 +62,55 @@ export async function hashObj(obj) {
  * @returns {String} The hex encoded SHA-1 hash
  */
 export async function getShortHash(text, seed) {
-  return await SEA.work(text, seed, null, { name: "SHA-1", encode: "hex" });
+  return await SEA.work(text, seed, null, { name: 'SHA-1', encode: 'hex' })
 }
 
 // Buffer -> Base64 String -> Url Safe Base64 String
 export function safeHash(unsafe) {
-  if (!unsafe) return;
-  const encode_regex = /[\+=\/]/g;
-  return unsafe.replace(encode_regex, encodeChar);
+  if (!unsafe) return
+  const encode_regex = /[\+=\/]/g
+  return unsafe.replace(encode_regex, encodeChar)
 }
 
 function encodeChar(c) {
   switch (c) {
-    case "+":
-      return "-";
-    case "=":
-      return ".";
-    case "/":
-      return "_";
+    case '+':
+      return '-'
+    case '=':
+      return '.'
+    case '/':
+      return '_'
   }
 }
 
 // Url Safe Base64 String -> Base64 String -> Buffer
 export function unsafeHash(safe) {
-  if (!safe) return;
-  const decode_regex = /[\._\-]/g;
-  return safe.replace(decode_regex, decodeChar);
+  if (!safe) return
+  const decode_regex = /[\._\-]/g
+  return safe.replace(decode_regex, decodeChar)
 }
 
 function decodeChar(c) {
   switch (c) {
-    case "-":
-      return "+";
-    case ".":
-      return "=";
-    case "_":
-      return "/";
+    case '-':
+      return '+'
+    case '.':
+      return '='
+    case '_':
+      return '/'
   }
 }
 
 export function safeJSONParse(input, def) {
   // Convert null to empty object
   if (!input) {
-    return def || {};
-  } else if (Object.prototype.toString.call(input) === "[object Object]") {
-    return input;
+    return def || {}
+  } else if (Object.prototype.toString.call(input) === '[object Object]') {
+    return input
   }
   try {
-    return JSON.parse(input);
+    return JSON.parse(input)
   } catch (e) {
-    return def || {};
+    return def || {}
   }
 }

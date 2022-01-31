@@ -4,12 +4,11 @@
  * @see https://github.com/Stuk/jszip
  * */
 
-import JSZip from "jszip";
-import { downloadFile, base64Extension, base64FileType } from "./useFile";
-import { genUUID, SEA } from "./useGun";
-import { createMd } from "./useMd";
-import { loadFromHash } from "./posts";
-import { user } from "./useUser";
+import JSZip from 'jszip'
+import { downloadFile, base64Extension, base64FileType } from './useFile'
+import { genUUID, SEA } from '../gun/'
+import { createMd } from './useMd'
+import { loadFromHash } from '../posts'
 
 /**
  * @typedef useZip
@@ -29,7 +28,7 @@ import { user } from "./useUser";
  */
 
 export function useZip() {
-  const zip = new JSZip();
+  const zip = new JSZip()
 
   /**
    * Add a binary file to the zip
@@ -47,17 +46,17 @@ export function useZip() {
    * }
    */
 
-  async function addFile({ title, file, folder = "." } = {}) {
-    const fileType = base64FileType(file);
-    const extension = base64Extension(file);
-    const blob = await fetch(file).then((res) => res.blob());
-    const fileName = `${title}.${extension}`;
-    zip.file(`${folder}/${fileName}`, blob, fileType);
-    return fileName;
+  async function addFile({ title, file, folder = '.' } = {}) {
+    const fileType = base64FileType(file)
+    const extension = base64Extension(file)
+    const blob = await fetch(file).then((res) => res.blob())
+    const fileName = `${title}.${extension}`
+    zip.file(`${folder}/${fileName}`, blob, fileType)
+    return fileName
   }
 
   function addMd({ md, title } = {}) {
-    zip.file(`${title}/index.md`, createMd(md), "text/markdown");
+    zip.file(`${title}/index.md`, createMd(md), 'text/markdown')
   }
 
   /**
@@ -67,30 +66,30 @@ export function useZip() {
    */
 
   async function zipPost(post = {}) {
-    let { icon, cover, content, title, statement } = post;
-    delete post?.content;
+    let { icon, cover, content, title, statement } = post
+    delete post?.content
     if (!title) {
-      title = statement.split(0, 12) || genUUID();
+      title = statement.split(0, 12) || genUUID()
     }
 
-    cover = await loadFromHash("covers", cover);
+    cover = await loadFromHash('covers', cover)
     if (cover) {
       const fileName = await addFile({
-        title: "cover",
+        title: 'cover',
         file: cover,
         folder: title,
-      });
-      post.cover = fileName;
+      })
+      post.cover = fileName
     }
 
-    icon = await loadFromHash("icons", icon);
+    icon = await loadFromHash('icons', icon)
     if (icon) {
       const fileName = await addFile({
-        title: "icon",
+        title: 'icon',
         file: icon,
         folder: title,
-      });
-      post.icon = fileName;
+      })
+      post.icon = fileName
     }
 
     addMd({
@@ -99,29 +98,29 @@ export function useZip() {
         frontmatter: post,
         content,
       },
-    });
+    })
   }
 
-  async function downloadZip({ title = "", addDate = true } = {}) {
-    let now = new Date();
-    const offset = now.getTimezoneOffset();
-    now = new Date(now.getTime() - offset * 60 * 1000);
-    const date = now.toISOString().split("T")[0];
+  async function downloadZip({ title = '', addDate = true } = {}) {
+    let now = new Date()
+    const offset = now.getTimezoneOffset()
+    now = new Date(now.getTime() - offset * 60 * 1000)
+    const date = now.toISOString().split('T')[0]
 
     const blob = await zip.generateAsync({
-      type: "blob",
+      type: 'blob',
       comment: `Exported from ${title} at ${location} on ${date}`,
-      compression: "DEFLATE",
+      compression: 'DEFLATE',
       compressionOptions: {
         level: 9,
       },
-    });
+    })
 
-    const fileName = `${title}-${date}.zip`;
+    const fileName = `${title}-${date}.zip`
 
-    downloadFile(blob, "application/zip", fileName);
-    return true;
+    downloadFile(blob, 'application/zip', fileName)
+    return true
   }
 
-  return { zip, zipPost, addMd, addFile, downloadZip };
+  return { zip, zipPost, addMd, addFile, downloadZip }
 }
