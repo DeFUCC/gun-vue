@@ -3,13 +3,13 @@
  * @module Feed
  */
 
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, ref } from "vue";
 
-import JSZip from 'jszip'
+import JSZip from "jszip";
 
-import { detectMimeType, useZip, parseMd } from '../file/'
-import { useGun, gun } from '../gun/'
-import { parsePost } from '.'
+import { detectMimeType, useZip, parseMd } from "../file/";
+import { useGun, gun } from "../gun/";
+import { parsePost, addPost } from ".";
 
 /**
  * Use a list of immutable data from a #tag
@@ -21,38 +21,38 @@ import { parsePost } from '.'
  *
  * const { posts, timestamps, count, uploadPosts, downloadPosts} = useFeed('MyTag')
  */
-export function useFeed(tag = 'tag', { host = '' } = {}) {
-  const gun = useGun()
+export function useFeed(tag = "tag", { host = "" } = {}) {
+  const gun = useGun();
 
-  const timestamps = ref({})
+  const timestamps = ref({});
 
-  const ban = host ? gun.user(host).get('bannedPosts') : gun.get('#ban')
+  const ban = host ? gun.user(host).get("bannedPosts") : gun.get("#ban");
 
-  const posts = reactive({})
+  const posts = reactive({});
 
   gun
     .get(`#${tag}`)
     .on(function (d, k) {
-      timestamps.value = d._['>']
+      timestamps.value = d._[">"];
     })
     .map()
     .on(async (d, k) => {
-      let banned = await ban.get(k).then()
-      if (tag != 'ban' && banned) return
-      posts[k] = await parsePost(d)
-    })
+      let banned = await ban.get(k).then();
+      if (tag != "ban" && banned) return;
+      posts[k] = await parsePost(d);
+    });
 
-  const count = computed(() => Object.keys(posts || {}).length)
+  const count = computed(() => Object.keys(posts || {}).length);
 
-  const downloading = ref(false)
+  const downloading = ref(false);
 
   async function downloadPosts() {
-    downloading.value = true
-    downloading.value = !(await downloadFeed(tag, posts))
+    downloading.value = true;
+    downloading.value = !(await downloadFeed(tag, posts));
   }
 
   function uploadPosts(ev) {
-    uploadFeed(tag, ev)
+    uploadFeed(tag, ev);
   }
 
   return {
@@ -62,7 +62,7 @@ export function useFeed(tag = 'tag', { host = '' } = {}) {
     downloadPosts,
     downloading,
     uploadPosts,
-  }
+  };
 }
 
 /**
@@ -86,18 +86,18 @@ export function useFeed(tag = 'tag', { host = '' } = {}) {
  */
 
 export async function downloadFeed(tag, posts) {
-  if (!posts) return
+  if (!posts) return;
 
-  const { zip, zipPost, downloadZip } = useZip()
+  const { zip, zipPost, downloadZip } = useZip();
 
   for (let hash in posts) {
     let frontmatter = {
       ...posts[hash],
-    }
-    await zipPost(frontmatter)
+    };
+    await zipPost(frontmatter);
   }
-  await downloadZip({ title: `#${tag}` })
-  return true
+  await downloadZip({ title: `#${tag}` });
+  return true;
 }
 
 /**
@@ -110,35 +110,35 @@ export async function downloadFeed(tag, posts) {
  * <input type="file" @change="uploadFeed( 'myTag', $event.target.files )" />
  */
 export function uploadFeed(tag, files) {
-  ;[...files].forEach(async (file) => {
-    const zip = await JSZip.loadAsync(file)
+  [...files].forEach(async (file) => {
+    const zip = await JSZip.loadAsync(file);
     if (zip.comment) {
-      console.info('Zip file comment: ' + zip.comment)
+      console.info("Zip file comment: " + zip.comment);
     }
     zip.forEach(async (path, entry) => {
-      if (path.endsWith('index.md')) {
-        let title = path.slice(0, -9)
-        let md = await entry.async('string')
-        let { frontmatter, content } = parseMd(md)
-        frontmatter = frontmatter || {}
-        frontmatter.title = frontmatter?.title || title
+      if (path.endsWith("index.md")) {
+        let title = path.slice(0, -9);
+        let md = await entry.async("string");
+        let { frontmatter, content } = parseMd(md);
+        frontmatter = frontmatter || {};
+        frontmatter.title = frontmatter?.title || title;
         if (frontmatter.icon) {
           const icon = await zip
             .file(`${title}/${frontmatter.icon}`)
-            .async('base64')
-          const iconMime = detectMimeType(icon)
-          frontmatter.icon = `data:${iconMime};base64,${icon}`
+            .async("base64");
+          const iconMime = detectMimeType(icon);
+          frontmatter.icon = `data:${iconMime};base64,${icon}`;
         }
         if (frontmatter.cover) {
           const cover = await zip
             ?.file(`${title}/${frontmatter.cover}`)
-            ?.async('base64')
-          const coverMime = detectMimeType(cover)
-          frontmatter.cover = `data:${coverMime};base64,${cover}`
+            ?.async("base64");
+          const coverMime = detectMimeType(cover);
+          frontmatter.cover = `data:${coverMime};base64,${cover}`;
         }
-        let post = { ...frontmatter, content }
-        addPost(tag, post)
+        let post = { ...frontmatter, content };
+        addPost(tag, post);
       }
-    })
-  })
+    });
+  });
 }

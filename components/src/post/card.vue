@@ -1,5 +1,5 @@
 <script setup>
-import { useColor, loadFromHash } from '@composables'
+import { useColor, usePost } from '@composables'
 import { computed, ref, watchEffect } from 'vue'
 
 const colorLight = useColor('light')
@@ -23,34 +23,26 @@ const text = computed(() => {
   }
 })
 
-const icon = ref()
-const cover = ref()
-
-watchEffect(async () => {
-  const d = { ...props.post }
-  icon.value = await loadFromHash('icons', d?.icon)
-  cover.value = await loadFromHash('covers', d?.cover)
-})
-
-
+const post = usePost(props.tag, props.hash)
 
 </script>
 
 <template lang='pug'>
-.card(:style="{ backgroundImage: `url(${cover || post?.base64})`, backgroundColor: colorDeep.hex(hash), paddingTop: cover || post?.base64 ? '140px' : '5px' }") 
+.card(:style="{ backgroundImage: `url(${post.data?.cover || post?.raw})`, backgroundColor: colorDeep.hex(hash), paddingTop: post.data?.cover || post?.raw ? '140px' : '5px' }") 
   .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-lg.rounded-xl.bg-light-100.bg-opacity-90.backdrop-blur-sm.backdrop-filter.shadow-md
-    .p-0(style="flex: 1 1 40px" v-if="post.icon" )
-      img.w-20.max-h-20.rounded-full.m-2(:src="icon" width="40px")
+    .p-0(style="flex: 1 1 40px" v-if="post.data?.icon" )
+      img.w-20.max-h-20.rounded-full.m-2(:src="post.data?.icon" width="40px")
     .flex.flex-col.p-2.overflow-hidden(style="flex: 10 1 180px")
       .px-2
-        .text-xl.font-bold(v-if="post?.title") {{ post.title }}
-        .statement(v-if="post.statement") {{ post.statement }}
+        .text-xl.font-bold(v-if="post.data?.title") {{ post.title }}
+        .statement(v-if="post.data?.statement") {{ post.data?.statement }}
       .flex.items-center.flex-wrap.items-center
-        la-youtube.mx-1(v-if="post.youtube")
-        mdi-text-long.mx-1(v-if="post.content")
-        ui-link(:url="post.link" v-if="post.link")
+        la-youtube.mx-1(v-if="post.data?.youtube")
+        mdi-text-long.mx-1(v-if="post.data?.content")
+        ui-link(:url="post.data?.link" v-if="post.data?.link")
     .flex-1
     .flex.rounded-xl.p-1.bg-dark-100.bg-opacity-20(style="flex: 1 1")
+      post-action-comment(:hash="hash")
       post-action-star(:hash="hash" :tag="tag")
       post-action-update(:hash="hash" :tag="tag")
       post-action-ban(:hash="hash" :tag="tag" :host="host")
@@ -59,11 +51,11 @@ watchEffect(async () => {
 
 <style lang="postcss" scoped>
 .card {
-  @apply transition duration-300ms ease-out min-w-280px shadow-md m-2 p-1 rounded-2xl cursor-pointer flex flex-wrap items-end bg-cover bg-center;
+  @apply transition duration-300ms ease-out min-w-280px shadow-sm m-2 p-1 rounded-2xl cursor-pointer flex flex-wrap items-end bg-cover bg-center;
   filter: grayscale(10%) brightness(95%);
 }
 .card:hover {
-  @apply shadow-lg;
+  @apply shadow-md;
   filter: grayscale(0%) brightness(100%);
 }
 .statement {

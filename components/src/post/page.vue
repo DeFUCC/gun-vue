@@ -16,14 +16,6 @@ const colorDeep = computed(() => useColor('deep').hex(props.hash))
 
 const post = usePost(props.tag, props.hash)
 
-const icon = ref()
-const cover = ref()
-
-watchEffect(async () => {
-  const d = { ...post.data }
-  icon.value = await loadFromHash('icons', d?.icon)
-  cover.value = await loadFromHash('covers', d?.cover || d?.base64)
-})
 </script>
 
 <template lang='pug'>
@@ -50,20 +42,20 @@ watchEffect(async () => {
     post-action-ban(:hash="hash" :tag="tag")
 
   .flex.flex-wrap.items-stretch
-    .p-0(style="flex: 4 1 300px" v-if="cover")
-      img.sticky.top-5vh(:src="cover")
+    .p-0(style="flex: 4 1 300px" v-if="post.data?.cover")
+      img.sticky.top-5vh(:src="post.data.cover")
 
     .flex-1.flex.flex-wrap(style="flex: 10 1 300px")
       .flex.flex-wrap.items-start.w-full.justify-start.my-4.rounded-xl.m-2.backdrop-filter.backdrop-blur-md(
         style="flex: 1 1 240px" 
         :style="{ backgroundColor: colorLight + '99' }" 
-        v-if="icon || post?.data?.title || post?.data?.statement"
+        v-if="post.data?.icon || post?.data?.title || post?.data?.statement"
         )
         .p-2.sticky.top-8vh.w-full.flex.flex-wrap.items-center
           img.w-20.h-20.rounded-full.m-2(
             style="flex:0 1 40px"
-            v-if="icon" 
-            :src="icon" 
+            v-if="post.data.icon" 
+            :src="post.data.icon" 
             :style="{ borderColor: colorDeep }"
             )
           .text-2xl.font-bold.m-2(

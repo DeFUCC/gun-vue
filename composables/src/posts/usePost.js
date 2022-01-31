@@ -3,12 +3,12 @@
  * @module Post
  */
 
-import { computed, reactive, ref } from 'vue'
-import ms from 'ms'
+import { computed, reactive, ref } from "vue";
+import ms from "ms";
 
-import { useGun, gun } from '../gun/'
-import { useZip } from '../file/'
-import { hashObj, hashText, safeHash } from '../crypto'
+import { useGun, gun } from "../gun/";
+import { useZip } from "../file/";
+import { hashObj, hashText, safeHash } from "../crypto";
 
 /**
  * An interface to manage a post
@@ -19,8 +19,8 @@ import { hashObj, hashText, safeHash } from '../crypto'
  * const post = usePost( 'tag', postHash )
  */
 
-export function usePost(tag = 'null', hash = '') {
-  const gun = useGun()
+export function usePost(tag = "null", hash = "") {
+  const gun = useGun();
 
   const post = reactive({
     empty: true,
@@ -29,33 +29,44 @@ export function usePost(tag = 'null', hash = '') {
     hash,
     data: {},
     async download() {
-      post.downloading = true
-      await downloadPost(post)
-      post.downloading = false
+      post.downloading = true;
+      await downloadPost(post);
+      post.downloading = false;
     },
-  })
+  });
 
   gun
     .get(`#${tag}`)
     .on((d, k) => {
-      post.timestamp = d._['>'][hash]
+      post.timestamp = d._[">"][hash];
       if (post.timestamp) {
-        post.lastUpdated = ms(Date.now() - post.timestamp)
+        post.lastUpdated = ms(Date.now() - post.timestamp);
       }
     })
     .get(hash)
     .on(async (d, k) => {
-      let banned = await gun.get('#ban').get(k).then()
-      if (tag != 'ban' && banned) return
+      let banned = await gun.get("#ban").get(k).then();
+      if (tag != "ban" && banned) return;
       try {
-        Object.assign(post.data, JSON.parse(d))
+        Object.assign(post.data, JSON.parse(d));
       } catch (e) {
-        post.data.base64 = d
+        post.data.raw = d;
       }
-      post.empty = false
-    })
+      post.empty = false;
 
-  return post
+      ["icon", "cover"].forEach((image) => {
+        if (post.data[image]) {
+          gun
+            .get(`#${image}s`)
+            .get(post.data[image])
+            .on((d) => {
+              post.data[image] = d;
+            });
+        }
+      });
+    });
+
+  return post;
 }
 
 /**
@@ -95,53 +106,53 @@ export function usePost(tag = 'null', hash = '') {
  */
 
 export async function downloadPost(post) {
-  post = ref(post)
+  post = ref(post);
   let postData = {
     ...post.value.data,
-  }
+  };
 
-  let { title } = postData
+  let { title } = postData;
 
-  const { zipPost, addFile, downloadZip } = useZip()
+  const { zipPost, addFile, downloadZip } = useZip();
 
-  let singleFile = false
+  let singleFile = false;
 
-  if (title && !postData.base64) {
-    await zipPost(postData)
+  if (title && !postData.raw) {
+    await zipPost(postData);
   } else {
-    title = 'file'
-    singleFile = true
-    const hash = await hashText(postData.base64)
+    title = "file";
+    singleFile = true;
+    const hash = await hashText(postData.raw);
     await addFile({
       title: safeHash(hash),
-      file: postData.base64,
-    })
+      file: postData.raw,
+    });
   }
 
-  await downloadZip({ title })
-  return true
+  await downloadZip({ title });
+  return true;
 }
 
 export async function loadFromHash(category, hash) {
   if (
     category &&
     hash &&
-    typeof hash == 'string' &&
+    typeof hash == "string" &&
     hash.length == 44 &&
-    hash.slice(0, 5) != 'data:'
+    hash.slice(0, 5) != "data:"
   ) {
-    return await gun.get(`#${category}`).get(hash).then()
+    return await gun.get(`#${category}s`).get(hash).then();
   }
-  return hash
+  return hash;
 }
 
 async function saveToHash(category, file) {
-  if (category && file && file.slice(0, 5) == 'data:') {
-    const hash = await hashText(file)
-    gun.get(`#${category}`).get(`${hash}`).put(file)
-    return hash
+  if (category && file && file.slice(0, 5) == "data:") {
+    const hash = await hashText(file);
+    gun.get(`#${category}s`).get(`${hash}`).put(file);
+    return hash;
   } else {
-    return file
+    return file;
   }
 }
 
@@ -152,13 +163,13 @@ async function saveToHash(category, file) {
  */
 
 export async function parsePost(data) {
-  let post
+  let post;
   try {
-    post = JSON.parse(data)
+    post = JSON.parse(data);
   } catch (e) {
-    post = { base64: data }
+    post = { base64: data };
   }
-  return post
+  return post;
 }
 
 /**
@@ -174,12 +185,12 @@ export async function parsePost(data) {
  */
 
 export async function addPost(tag, post) {
-  const { icon, cover, content } = post
-  post.icon = await saveToHash('icons', post.icon)
-  post.cover = await saveToHash('covers', post.cover)
+  const { icon, cover, content } = post;
+  post.icon = await saveToHash("icons", post.icon);
+  post.cover = await saveToHash("covers", post.cover);
   // post.content = await saveHashed("texts", post.content);
-  const { text, hash } = await hashObj(post)
-  gun.get(`#${tag}`).get(`${hash}`).put(text)
+  const { text, hash } = await hashObj(post);
+  gun.get(`#${tag}`).get(`${hash}`).put(text);
 }
 
 /**
@@ -189,6 +200,6 @@ export async function addPost(tag, post) {
  */
 
 export async function refreshPost(tag, hash) {
-  let data = await gun.get(`#${tag}`).get(hash).then()
-  gun.get(`#${tag}`).get(hash).put(data)
+  let data = await gun.get(`#${tag}`).get(hash).then();
+  gun.get(`#${tag}`).get(hash).put(data);
 }

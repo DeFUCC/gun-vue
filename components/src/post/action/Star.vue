@@ -10,7 +10,7 @@ const props = defineProps({
 })
 
 const starred = ref(false)
-const myStar = user.db.get('feeds').get(`${props.tag}`).get(props.hash)
+const myStar = user.db.get('posts').get(`${props.tag}`).get(props.hash)
 
 myStar.on((d, k) => {
   starred.value = d
