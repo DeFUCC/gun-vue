@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.6.5
+
+### Patch Changes
+
+- a69c6e2: More stable posts to become content-addressed posts space.
+
 ## 0.6.4
 
 ### Patch Changes
