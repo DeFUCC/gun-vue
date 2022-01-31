@@ -6,9 +6,9 @@ import { safeHash } from '@composables'
 <template lang='pug'>
 .flex.flex-col.p-2
   post-list.w-full(
-    tag="public" 
+    tag="posts" 
     :header="false"
     @close="$router.push('/posts/')" 
-    @browse="$router.push(`/posts/public/${safeHash($event)}`)"
+    @browse="$router.push(`/posts/${safeHash($event)}`)"
     )
 </template>

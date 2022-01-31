@@ -12,14 +12,13 @@ import { hashObj, hashText, safeHash } from "../crypto";
 
 /**
  * An interface to manage a post
- * @param {String} tag
- * @param {String} hash
+ * @param {Object} options
  * @returns {Post}
  * @example
- * const post = usePost( 'tag', postHash )
+ * const post = usePost({ tag: 'tag', hash: postHash })
  */
 
-export function usePost(tag = "null", hash = "") {
+export function usePost({ tag = "posts", hash = "" } = {}) {
   const gun = useGun();
 
   const post = reactive({
@@ -35,6 +34,7 @@ export function usePost(tag = "null", hash = "") {
     },
   });
 
+  console.log(hash, tag);
   gun
     .get(`#${tag}`)
     .on((d, k) => {
@@ -45,13 +45,15 @@ export function usePost(tag = "null", hash = "") {
     })
     .get(hash)
     .on(async (d, k) => {
-      let banned = await gun.get("#ban").get(k).then();
-      if (tag != "ban" && banned) return;
+      // let banned = await gun.get("#ban").get(k).then();
+      // if (tag != "ban" && banned) return;
+
       try {
         Object.assign(post.data, JSON.parse(d));
       } catch (e) {
         post.data.raw = d;
       }
+
       post.empty = false;
 
       ["icon", "cover"].forEach((image) => {
@@ -65,6 +67,7 @@ export function usePost(tag = "null", hash = "") {
         }
       });
     });
+  window.gun = gun;
 
   return post;
 }
@@ -188,18 +191,8 @@ export async function addPost(tag, post) {
   const { icon, cover, content } = post;
   post.icon = await saveToHash("icons", post.icon);
   post.cover = await saveToHash("covers", post.cover);
-  // post.content = await saveHashed("texts", post.content);
+  post.content = await saveToHash("texts", post.content);
   const { text, hash } = await hashObj(post);
-  gun.get(`#${tag}`).get(`${hash}`).put(text);
-}
-
-/**
- * Update a timestamp of an immutable object by resetting it back on itself. Essentially you get the object and put it back again.
- * @param {String} tag
- * @param {String} hash
- */
-
-export async function refreshPost(tag, hash) {
-  let data = await gun.get(`#${tag}`).get(hash).then();
-  gun.get(`#${tag}`).get(hash).put(data);
+  let posted = gun.get(`#posts`).get(`${hash}`).put(text);
+  gun.get(tag).get(`${hash}`).put(true);
 }

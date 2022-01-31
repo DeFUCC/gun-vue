@@ -8,7 +8,7 @@ const props = defineProps({
 
 const comments = reactive({})
 
-const myStar = gun.get(`#${props.hash}`)
+const myStar = gun.get(`${props.hash}`)
 
 myStar.map().on((d, k) => {
   comments[k] = d

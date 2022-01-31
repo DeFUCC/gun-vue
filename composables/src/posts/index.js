@@ -1,3 +1,3 @@
 export * from "./usePost";
-export * from "./useFeed";
-export * from "./useFeeds";
+export * from "./usePosts";
+export * from "./useTags";

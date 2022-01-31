@@ -53,20 +53,19 @@ const colorLight = computed(() => useColor('light').hex(props.tag))
     )
   transition(name="fade")
     post-form(:tag="tag" v-if="add" @close="add = false")
-
-  .flex.flex-wrap(v-if="count > 0")
+  .flex.flex-wrap(v-if="count > 0") 
     transition-group(name="list")
       post-card(
-        :style="{ order: Date.now() - timestamps[hash].toFixed() }"
+        :style="{ order: Date.now() - timestamps[hash]?.toFixed?.() }"
         style="flex: 1 1 220px"
-        v-for="(item, hash) in posts" 
+        v-for="(active, hash) in posts" 
         :key="hash" 
         :hash="hash"
         :tag="tag"
-        :post="item" 
         :host="host"
         @click="emit('browse', hash)"
         )
+          p {{ timestamps[hash] }}
 
 </template>
 

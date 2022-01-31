@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue'
-import { gun, ms, refreshPost } from '@composables';
+import { gun, ms } from '@composables';
 
 const props = defineProps({
-  tag: { type: String, default: '' },
+  tag: { type: String, default: 'posts' },
   hash: { type: String, default: '' }
 })
 
@@ -15,6 +15,13 @@ gun
   .on(function (d, k, g) {
     timestamp.value = g.put['>']
   })
+
+
+async function refreshPost(tag = 'posts', hash) {
+  let data = await gun.get(`#${tag}`).get(hash).then();
+  gun.get(`#${tag}`).get(hash).put(data);
+}
+
 </script>
 
 <template lang='pug'>
