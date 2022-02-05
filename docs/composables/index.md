@@ -60,17 +60,17 @@ const user = useUser();
 </td>
     </tr>
 <tr>
+    <td><a href="#post" >Post</a></td>
+    <td><p>Get and handle a particular post by it&#39;s tag and hash</p>
+</td>
+    </tr>
+<tr>
     <td><a href="#feed" >Feed</a></td>
     <td><p>Get and handle a particular post by it&#39;s tag and hash</p>
 </td>
     </tr>
 <tr>
     <td><a href="#feeds" >Feeds</a></td>
-    <td><p>Get and handle a particular post by it&#39;s tag and hash</p>
-</td>
-    </tr>
-<tr>
-    <td><a href="#post" >Post</a></td>
     <td><p>Get and handle a particular post by it&#39;s tag and hash</p>
 </td>
     </tr>
@@ -472,6 +472,106 @@ const relay = useRelay()
 ```
 <hr />
 
+<a name="module_Post"></a>
+
+## Post
+Get and handle a particular post by it's tag and hash
+
+
+* [Post](#module_Post)
+    * _static_
+        * [.usePost(options)](#module_Post.usePost) ⇒ <code>Post</code>
+        * [.downloadPost(post)](#module_Post.downloadPost)
+        * [.parsePost(data)](#module_Post.parsePost) ⇒ <code>Object</code>
+        * [.addPost(tag, post)](#module_Post.addPost)
+    * _inner_
+        * [~Post](#module_Post..Post) : <code>Object</code>
+
+### usePost(options) ⇒ <code>Post</code>
+  An interface to manage a post
+
+
+| Param | Type |
+| --- | --- |
+| options | <code>Object</code> | 
+
+**Example**  
+```js
+const post = usePost({ tag: 'tag', hash: postHash })
+```
+### downloadPost(post)
+  Download the post as a zip file with MD contents and icon and cover pictures if present
+
+
+| Param | Type |
+| --- | --- |
+| post | <code>Post</code> | 
+
+**Example**  
+```js
+import { downloadPost, usePost } from '@gun-vue/composables'
+
+const post = usePost( postTag, postHash )
+
+downloadPost(post)
+```
+### parsePost(data) ⇒ <code>Object</code>
+  Parse a post string from db
+
+**Returns**: <code>Object</code> - Post object  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| data | <code>String</code> | Stringified data from the hashed post |
+
+### addPost(tag, post)
+  Add a new post to a tag
+
+
+| Param | Type |
+| --- | --- |
+| tag | <code>String</code> | 
+| post | <code>Object</code> | 
+
+**Example**  
+```js
+import { addPost } from '@gun-vue/composables'
+
+addPost('MyTag', {
+ title: 'New post'
+})
+```
+### Post : <code>Object</code>
+  **Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| empty | <code>Boolean</code> | whether the post has contents |
+| tag | <code>String</code> | the tag under which the post was published |
+| hash | <code>String</code> | the hash of the contents |
+| data | <code>Object</code> | the contents of the post |
+| download | <code>function</code> | use this function to download the post as a Markdown file |
+
+**Example**  
+```js
+{
+ "empty": false,
+ "tag": "ds",
+ "hash": "C8trDBYNyvxVedHK4Q0IuUarc/k2/iiv8opPfoAU0xA=",
+ "data": {
+   "cover": "data:image/png;base64,..........",
+   "icon": "data:image/png;base64,..........",
+   "title": "OSS",
+   "statement": "New live album by tsoop",
+   "youtube": "K2MwpOd8vEI",
+   "content": "It's mostly op-z + op-1 with my own Unity visuals based on [Chromatone](https://chromatone.center) system.\n\n### 2021\nFirst played live at April 20th **2021**.\n\n### Into 2022\nIt's an ongoing live album to be recorded throughout the **2022**."
+},
+ "timestamp": 1642590655747,
+ "lastUpdated": "1d"
+}
+```
+<hr />
+
 <a name="module_Feed"></a>
 
 ## Feed
@@ -571,117 +671,6 @@ Get and handle a particular post by it's tag and hash
 | tags | <code>Tags</code> | the object to handle all the tags |
 | addTag | <code>function</code> | add a slug tag to the list |
 
-<hr />
-
-<a name="module_Post"></a>
-
-## Post
-Get and handle a particular post by it's tag and hash
-
-
-* [Post](#module_Post)
-    * _static_
-        * [.usePost(tag, hash)](#module_Post.usePost) ⇒ <code>Post</code>
-        * [.downloadPost(post)](#module_Post.downloadPost)
-        * [.parsePost(data)](#module_Post.parsePost) ⇒ <code>Object</code>
-        * [.addPost(tag, post)](#module_Post.addPost)
-        * [.refreshPost(tag, hash)](#module_Post.refreshPost)
-    * _inner_
-        * [~Post](#module_Post..Post) : <code>Object</code>
-
-### usePost(tag, hash) ⇒ <code>Post</code>
-  An interface to manage a post
-
-
-| Param | Type |
-| --- | --- |
-| tag | <code>String</code> | 
-| hash | <code>String</code> | 
-
-**Example**  
-```js
-const post = usePost( 'tag', postHash )
-```
-### downloadPost(post)
-  Download the post as a zip file with MD contents and icon and cover pictures if present
-
-
-| Param | Type |
-| --- | --- |
-| post | <code>Post</code> | 
-
-**Example**  
-```js
-import { downloadPost, usePost } from '@gun-vue/composables'
-
-const post = usePost( postTag, postHash )
-
-downloadPost(post)
-```
-### parsePost(data) ⇒ <code>Object</code>
-  Parse a post string from db
-
-**Returns**: <code>Object</code> - Post object  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| data | <code>String</code> | Stringified data from the hashed post |
-
-### addPost(tag, post)
-  Add a new post to a tag
-
-
-| Param | Type |
-| --- | --- |
-| tag | <code>String</code> | 
-| post | <code>Object</code> | 
-
-**Example**  
-```js
-import { addPost } from '@gun-vue/composables'
-
-addPost('MyTag', {
- title: 'New post'
-})
-```
-### refreshPost(tag, hash)
-  Update a timestamp of an immutable object by resetting it back on itself. Essentially you get the object and put it back again.
-
-
-| Param | Type |
-| --- | --- |
-| tag | <code>String</code> | 
-| hash | <code>String</code> | 
-
-### Post : <code>Object</code>
-  **Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| empty | <code>Boolean</code> | whether the post has contents |
-| tag | <code>String</code> | the tag under which the post was published |
-| hash | <code>String</code> | the hash of the contents |
-| data | <code>Object</code> | the contents of the post |
-| download | <code>function</code> | use this function to download the post as a Markdown file |
-
-**Example**  
-```js
-{
- "empty": false,
- "tag": "ds",
- "hash": "C8trDBYNyvxVedHK4Q0IuUarc/k2/iiv8opPfoAU0xA=",
- "data": {
-   "cover": "data:image/png;base64,..........",
-   "icon": "data:image/png;base64,..........",
-   "title": "OSS",
-   "statement": "New live album by tsoop",
-   "youtube": "K2MwpOd8vEI",
-   "content": "It's mostly op-z + op-1 with my own Unity visuals based on [Chromatone](https://chromatone.center) system.\n\n### 2021\nFirst played live at April 20th **2021**.\n\n### Into 2022\nIt's an ongoing live album to be recorded throughout the **2022**."
-},
- "timestamp": 1642590655747,
- "lastUpdated": "1d"
-}
-```
 <hr />
 
 <a name="module_useSpace"></a>
