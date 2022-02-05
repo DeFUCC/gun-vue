@@ -4,7 +4,7 @@
 <template lang="pug">
 .flex.flex-col
   .flex.flex-wrap.shadow-lg.m-2.p-4.rounded-3xl.bg-light-300
-    img.w-full.max-w-64(src="/gun-vue-logo.svg")
+    img.w-full.max-w-64(src="/means-logo.svg")
     .flex.flex-col.ml-8.max-w-120
       .font-bold.text-3xl.mb-4 MEANS
       .my-4 A game of creating collaborative dictionaries
