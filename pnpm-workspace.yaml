@@ -4,5 +4,4 @@ packages:
   - "composables"
   - "components"
   - "docs"
-  - "means"
   - "."
