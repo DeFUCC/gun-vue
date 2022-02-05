@@ -38,7 +38,7 @@ export default defineConfig({
       /* options */
     }),
     Components({
-      dirs: ["src/components", "../components/src"],
+      dirs: ["src/components"],
       extensions: ["vue"],
       directoryAsNamespace: true,
       globalNamespaces: ["global"],
@@ -87,7 +87,7 @@ export default defineConfig({
     // }),
   ],
   build: {
-    outDir: "../_dist/",
+    outDir: "../demo/public/means/",
     target: "esnext",
     brotliSize: true,
     assetsInlineLimit: 100000000,
