@@ -75,6 +75,10 @@ const user = useUser();
 </td>
     </tr>
 <tr>
+    <td><a href="#room" >Room</a></td>
+    <td></td>
+    </tr>
+<tr>
     <td><a href="#usespace" >useSpace</a></td>
     <td><p>A 2D-space</p>
 </td>
@@ -670,6 +674,41 @@ Get and handle a particular post by it's tag and hash
 | slug | <code>computed</code> | a slugified search query - url safe verion to be used as a tag |
 | tags | <code>Tags</code> | the object to handle all the tags |
 | addTag | <code>function</code> | add a slug tag to the list |
+
+<hr />
+
+<a name="module_Room"></a>
+
+## Room
+
+* [Room](#module_Room)
+    * [.createRoom()](#module_Room.createRoom)
+    * [.leaveRoom()](#module_Room.leaveRoom)
+    * [.setCerts(pair)](#module_Room.setCerts)
+    * [.listRoomItems(tag, pub)](#module_Room.listRoomItems) ⇒ <code>reactive</code>
+
+### createRoom()
+  Create a new room inside the current room
+
+### leaveRoom()
+  Leave the room
+
+### setCerts(pair)
+  Set up certificates for the room
+
+
+| Param | Type |
+| --- | --- |
+| pair | <code>Object</code> | 
+
+### listRoomItems(tag, pub) ⇒ <code>reactive</code>
+  List room tag items
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| tag | <code>String</code> | path to list |
+| pub | <code>String</code> | room public key |
 
 <hr />
 

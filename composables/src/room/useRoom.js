@@ -1,3 +1,7 @@
+/**
+ * @module Room
+ */
+
 import {
   SEA,
   useGun2,
