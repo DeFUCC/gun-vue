@@ -9,7 +9,14 @@ import routes from "~pages";
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes,
+  routes: [...routes],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0, behavior: "smooth" };
+    }
+  },
 });
 
 const app = createApp(App);
@@ -19,12 +26,9 @@ app.use(router).mount("#app");
 import { room } from "@composables";
 
 router.beforeEach((to, from, next) => {
-  if (!room.isRoot && Object.keys(to.query).length == 0) {
+  if (!room.isRoot && !to.query?.room) {
     next({ ...to, query: { room: room.pub } });
   } else {
-    if (to.query.room) {
-      room.pub = to.query.room;
-    }
     next();
   }
 });

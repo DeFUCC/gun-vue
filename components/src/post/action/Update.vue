@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { gun, ms } from '@composables';
 
 const props = defineProps({
@@ -8,6 +8,8 @@ const props = defineProps({
 })
 
 const timestamp = ref(0)
+
+const msTime = computed(() => ms(Date.now() - timestamp.value || 1000))
 
 gun
   .get(`#${props.tag}`)
@@ -26,7 +28,7 @@ async function refreshPost(tag = 'posts', hash) {
 
 <template lang='pug'>
 button.m-1.button.items-center(@click.stop.prevent="refreshPost(tag, hash)")
-  .num.p-0.mr-1.text-sm {{ ms(Date.now() - timestamp) }}
+  .num.p-0.mr-1.text-sm {{ msTime }}
   mdi-watering-can-outline
 </template>
 
