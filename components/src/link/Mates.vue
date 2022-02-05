@@ -8,7 +8,7 @@ defineEmits(['browse'])
 
 import { useColor, useMates, isEmoji } from '@composables';
 
-const colorDeep = useColor('light')
+const colorDeep = useColor('pale')
 
 const mates = useMates(props.pub)
 
@@ -19,15 +19,15 @@ const mates = useMates(props.pub)
   .text-lg.ml-2.mb-2.font-bold(v-if="Object.keys(mates).length > 0") Mates
   .flex.flex-wrap(v-if="Object.keys(mates).length > 0")
     transition-group(name="fade")
-      .flex.items-center.rounded-full.m-1.shadow-sm.hover_shadow-md.transition.duration-100ms.ease-out.filter.grayscale-10.hover_grayscale-0(
+      .flex.items-center.rounded-full.m-1.shadow-sm.hover_shadow-md.transition.duration-200ms.ease-out.filter.grayscale-10.hover_grayscale-0(
         v-for="(link, linkPub) in mates" 
         :key="linkPub" 
         :style="{ backgroundColor: colorDeep.hex(pub) }"
         )
-        .pr-2.pl-4.text-2xl(
+        .px-2.text-2xl(
           v-if="isEmoji(link.emoji)"
           ) {{ link.emoji }}
-        account-badge(
+        account-badge.shadow-md(
           :pub="linkPub"  
           @click="$emit('browse', linkPub)"
           )

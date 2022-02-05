@@ -19,7 +19,7 @@ function isSafe() {
     user-panel(@browse="$emit('browse', $event); $emit('close')")
     .p-4
       user-profile
-      account-mates(:pub="user.pub"  @browse="$emit('browse', $event)")
+      link-mates(:pub="user.pub"  @browse="$emit('browse', $event)")
       button.button.my-4(@click="$emit('browse', user.pub)") Go to my page
     ui-layer(:open="user.is && !user.safe?.saved" closeButton @close="isSafe()")
       user-credentials(@close="isSafe()")

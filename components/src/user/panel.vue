@@ -15,7 +15,7 @@ const emit = defineEmits(['browse'])
   .flex.items-center(@click="$emit('browse', user.pub)")
     account-avatar
     .text-2xl.mx-2.font-bold {{ user?.name }}
-  account-mate(:pub="user.pub")
+  link-mate(:pub="user.pub")
   .flex-1 
   util-pulse(:blink="user.blink")
   button.p-2.text-2xl(@click="user.db.get('safe').get('saved').put(!user.safe.saved)")

@@ -10,6 +10,10 @@ const color = {
     saturation: [0.05, 0.08, 0.22],
     lightness: [0.85, 0.87, 0.9],
   }),
+  pale: new ColorHash({
+    saturation: [0.05, 0.42, 0.52],
+    lightness: [0.75, 0.77, 0.9],
+  }),
   regular: new ColorHash({
     saturation: [0.1, 0.5, 0.7],
     lightness: [0.3, 0.5, 0.7],
