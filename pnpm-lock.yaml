@@ -162,45 +162,6 @@ importers:
       vitepress-tags: 0.4.0
       windicss: 3.4.3
 
-  means:
-    specifiers:
-      '@gun-vue/components': workspace:^
-      '@gun-vue/composables': workspace:^
-      '@gun-vue/relay': workspace:^
-      '@iconify/json': ^2.0.29
-      '@vitejs/plugin-vue': ^2.1.0
-      '@vueuse/core': 7.5.5
-      ola: ^1.2.1
-      pug: 3.0.2
-      unplugin-icons: ^0.13.0
-      unplugin-vue-components: ^0.17.15
-      vite: ^2.7.13
-      vite-plugin-pages: ^0.20.0
-      vite-plugin-pwa: ^0.11.13
-      vite-plugin-windicss: ^1.6.3
-      vue: ^3.2.29
-      vue-router: ^4.0.12
-      windicss: ^3.4.3
-    dependencies:
-      '@gun-vue/components': link:../components
-      '@gun-vue/composables': link:../composables
-      '@gun-vue/relay': link:../relay
-      '@vueuse/core': 7.5.5_vue@3.2.29
-      ola: 1.2.1
-      vue: 3.2.29
-      vue-router: 4.0.12_vue@3.2.29
-    devDependencies:
-      '@iconify/json': 2.0.29
-      '@vitejs/plugin-vue': 2.1.0_vite@2.7.13+vue@3.2.29
-      pug: 3.0.2
-      unplugin-icons: 0.13.0_vite@2.7.13
-      unplugin-vue-components: 0.17.15_vite@2.7.13+vue@3.2.29
-      vite: 2.7.13
-      vite-plugin-pages: 0.20.0_vite@2.7.13
-      vite-plugin-pwa: 0.11.13_vite@2.7.13
-      vite-plugin-windicss: 1.6.3_vite@2.7.13
-      windicss: 3.4.3
-
   relay:
     specifiers:
       express: ^4.17.2

@@ -54,7 +54,7 @@ export default defineConfig({
         }
         // return path.parse(id).name;
       },
-      external: ["vue"],
+      // external: ["vue"],
       output: {
         minifyInternalExports: false,
         chunkFileNames: "[name].js",

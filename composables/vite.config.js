@@ -21,15 +21,10 @@ export default defineConfig({
         }
         // return path.parse(id).name;
       },
-      external: ["vue"],
+      // external: ["vue"],
       output: {
         minifyInternalExports: false,
         chunkFileNames: "[name].js",
-        // Provide global variables to use in the UMD build
-        // for externalized deps
-        globals: {
-          vue: "Vue",
-        },
       },
     },
   },
