@@ -2,6 +2,8 @@
 import { useRooms, useUser, SEA, regenerateCerts, gunAvatar } from '@composables';
 import { reactive, ref } from 'vue'
 
+defineEmits(['browse'])
+
 const { rooms, createRoom } = useRooms()
 const { user } = useUser()
 
@@ -41,5 +43,6 @@ function reset() {
       v-for="(authors, pub) in rooms" :key="pub" 
       :pub="pub"
       :authors="authors"
+      @click="$emit('browse', pub)"
       ) 
 </template> 

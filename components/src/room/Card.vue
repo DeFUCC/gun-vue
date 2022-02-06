@@ -13,7 +13,6 @@ const profile = useRoomProfile(props.pub)
 <template lang='pug'>
 .rounded-xl.shadow-md.text-sm.bg-cover.cursor-pointer.hover_shadow-lg.transition.duration-300ms.filter.brightness-95.hover_brightness-100.flex.flex-wrap(
   :style="{ backgroundImage: `url(${gunAvatar({ pub: pub, draw: 'squares', reflect: false, size: 600 })})` }"
-  @click="enterRoom(pub)"
 ) 
   .p-4.font-bold.text-xl {{ profile.name }}
   .p-4.bg-light-200.bg-opacity-40.backdrop-filter.backdrop-blur-md.flex.flex-wrap.relative.flex.gap-2.items-center(

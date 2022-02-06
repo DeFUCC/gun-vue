@@ -5,5 +5,9 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-p {{ room }}
+room-card( 
+  style="flex: 1 1 200px"
+  :pub="room"
+  @click="$emit('browse', pub)"
+  ) 
 </template>
