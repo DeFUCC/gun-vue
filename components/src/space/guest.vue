@@ -31,5 +31,5 @@ g.guest(
     stroke-opacity="0.5"
     :stroke="blink ? color : 'transparent'"
   )
-  image(:xlink:href="gunAvatar(pub, 100)" x="-25" y="-25" height="50" width="50" clip-path="url(#mask)")
+  image(:xlink:href="gunAvatar({ pub, size: 100 })" x="-25" y="-25" height="50" width="50" clip-path="url(#mask)")
 </template>

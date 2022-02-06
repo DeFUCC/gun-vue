@@ -18,7 +18,7 @@ const emit = defineEmits(['browse'])
       .mx-1.px-2.rounded-xl(:style="{ backgroundColor: color.deep.hex(data[1].event) }") {{ data[1].event }}
       .flex-1(v-if="data[1].event == 'now'") {{ data[1].data }}
       .flex.rounded-xl(v-if="data[1].event == 'guest'" :style="{ backgroundColor: color.deep.hex(data[1]?.pub || 0) }")
-        img.rounded-xl(:src="gunAvatar(data[1].pub, 24)")
+        img.rounded-xl(:src="gunAvatar({ pub: data[1].pub, size: 24 })")
         .px-2 @{{ data[1].space }}
       .mx-1.p-1.rounded-xl(
         v-if="data[1].event == 'new-post'" @click="$emit('browse', '/posts/' + data[1].feed + '/' + safeHash(data[1].hash))"

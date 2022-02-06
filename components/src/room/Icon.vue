@@ -1,5 +1,5 @@
 <script setup>
-import { useRoom, useColor, useUser } from '@composables';
+import { useRoom, useColor, useUser, gunAvatar } from '@composables';
 import { ref, watch } from 'vue'
 
 const props = defineProps({
@@ -29,19 +29,19 @@ const colorDeep = useColor('deep')
   button.button(@click="open = true" :style="{ backgroundColor: !room.isRoot ? colorDeep.hex(room.pub) : 'gray' }")
     la-home
   ui-layer.break-all(:open="open" @close="open = false")
-    .p-8(:style="{ backgroundColor: colorDeep.hex(room.pub) }")
+    .px-8.py-24(:style="{ backgroundColor: colorDeep.hex(room.pub), backgroundImage: `url(${gunAvatar({ pub: room.pub, draw: 'squares', reflect: false, size: 600 })})` }")
       .font-bold {{ profile.name }}
       .my-4.text-sm(v-if="!room.isRoot") {{ room.pub }}
     .p-8
-      input.my-2.p-2.shadow-lg(type="text" v-model="name")
+      input.my-2.p-2.shadow-lg(v-if="user.pub == room.host" type="text" v-model="name")
       .text-sm.font-mono {{ room }}
       .text-sm.font-mono {{ profile }}
       .flex.flex-col.gap-2
-        .p-2.rounded-xl.shadow-md.text-sm.font-mono(
+        .p-4.rounded-xl.shadow-md.text-sm.font-mono.bg-cover(
           v-for="r in rooms" :key="r" 
-          :style="{ backgroundColor: colorDeep.hex(r) }"
+          :style="{ backgroundColor: colorDeep.hex(r), backgroundImage: `url(${gunAvatar({ pub: r, draw: 'squares', reflect: false, size: 600 })})` }"
           @click="room.pub = r"
-          ) {{ r }}
+          ) {{ r.slice(0, 12) }}
       .flex.flex-wrap 
         button.button(@click="createRoom()" v-if="user.pub") Create
         button.button(@click="leaveRoom()" v-if="!room.isRoot") Leave

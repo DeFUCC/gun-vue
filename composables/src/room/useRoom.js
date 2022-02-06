@@ -7,7 +7,7 @@ import {
   useGun2,
   gun,
   useGun,
-  issueCert,
+  generateCerts,
   useUser,
   user,
   hashObj,
@@ -20,6 +20,7 @@ import { reactive, computed } from "vue";
 export const room = reactive({
   pub: useStorage("root-room", rootRoom),
   isRoot: computed(() => room.pub == rootRoom),
+  host: rootAdmin,
   initiated: false,
   hosting: false,
 });
@@ -63,6 +64,7 @@ export function updateRoomProfile(field, content) {
 export async function createRoom() {
   const pair = await SEA.pair();
   addHashedPersonal("rooms", pair.pub);
+  const certs = generateCerts({});
   // room.pub = pair.pub;
 }
 
@@ -72,15 +74,6 @@ export async function createRoom() {
 
 export function leaveRoom() {
   room.pub = rootRoom;
-}
-
-/**
- * Set up certificates for the room
- * @param {Object} pair
- */
-
-export function setCerts(pair) {
-  if (!pair) return;
 }
 
 /**
@@ -108,7 +101,7 @@ export async function addHashedPersonal(tag, obj, pub = room.pub, cert) {
   if (!cert && pub == rootRoom) {
     cert = rootCerts?.[`#${tag}`];
   }
-  if (!cert) {
+  if (!cert && pub != user.pub) {
     console.log("No certificate found");
     return;
   }

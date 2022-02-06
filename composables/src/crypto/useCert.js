@@ -1,13 +1,12 @@
 import { SEA } from "..";
 
 export async function issueCert({
-  tag = "word",
   pair,
+  tag = "word",
   users = "*",
-  hashed = false,
   personal = false,
 } = {}) {
-  let path = { "*": `${hashed ? "#" : ""}${tag}` };
+  let path = { "*": `${tag}` };
   if (personal) {
     path["+"] = "*";
   }
@@ -21,3 +20,11 @@ export async function issueCert({
 }
 
 window.issueCert = issueCert;
+
+export async function generateCerts({ pair, list = {} } = {}) {
+  const all = {};
+  for (let tag in list) {
+    all[tag] = await issueCert({ ...list[tag], pair });
+  }
+  return all;
+}
