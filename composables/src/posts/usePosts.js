@@ -7,8 +7,8 @@ import { computed, reactive, ref } from "vue";
 
 import JSZip from "jszip";
 
-import { detectMimeType, useZip, parseMd } from "../file/";
-import { useGun, gun } from "../gun/";
+import { detectMimeType, useZip, parseMd } from "../file";
+import { useGun, gun } from "../gun";
 import { parsePost, addPost } from ".";
 
 /**
@@ -21,25 +21,26 @@ import { parsePost, addPost } from ".";
  *
  * const { posts, timestamps, count, uploadPosts, downloadPosts} = useFeed('MyTag')
  */
-export function useFeed(tag = "tag", { host = "" } = {}) {
+export function useFeed(tag = "posts", { host = "" } = {}) {
   const gun = useGun();
 
   const timestamps = ref({});
 
-  const ban = host ? gun.user(host).get("bannedPosts") : gun.get("#ban");
+  const ban = host ? gun.user(host).get("bannedPosts") : gun.get("ban");
 
   const posts = reactive({});
 
   gun
-    .get(`#${tag}`)
+    .get(tag)
     .on(function (d, k) {
       timestamps.value = d._[">"];
     })
     .map()
     .on(async (d, k) => {
-      let banned = await ban.get(k).then();
-      if (tag != "ban" && banned) return;
-      posts[k] = await parsePost(d);
+      // console.log(k, d);
+      // let banned = await ban.get(k).then();
+      // if (tag != "ban" && banned) return;
+      posts[k] = d;
     });
 
   const count = computed(() => Object.keys(posts || {}).length);

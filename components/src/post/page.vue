@@ -14,13 +14,13 @@ defineEmits(['close', 'browse'])
 const colorLight = computed(() => useColor('light').hex(props.hash))
 const colorDeep = computed(() => useColor('deep').hex(props.hash))
 
-const post = usePost(props.tag, props.hash)
+const post = usePost({ hash: props.hash })
 
 </script>
 
 <template lang='pug'>
 .rounded-2xl.flex.flex-col.mx-auto.items-stretch.justify-center.w-full.overscroll-contain.bg-light-200
-  .z-30.flex.flex-wrap.items-center.w-full.px-4.py-2.sticky.top-0.shadow-xl.filter.grayscale-70.hover_grayscale-0.transition.duration-400ms(:style="{ backgroundColor: colorDeep }")  
+  .z-30.flex.flex-wrap.items-center.w-full.px-4.py-2.sticky.top-0.shadow-xl.filter.grayscale-70.hover_grayscale-0.transition.duration-400ms(:style="{ backgroundColor: colorDeep }") 
     .hover_underline.text-md.cursor-pointer.font-bold.flex(@click="$emit('close')") 
       .p-0 #
       .ml-1.break-all {{ tag }}
@@ -37,11 +37,11 @@ const post = usePost(props.tag, props.hash)
       la-redo-alt.animate-spin(v-else)
       .ml-2 Download
     .flex-1 
-    post-action-star.text-xl(:tag="tag" :hash="hash")
-    post-action-update(:hash="hash" :tag="tag")
-    post-action-ban(:hash="hash" :tag="tag")
+    post-action-star.text-xl(:hash="hash")
+    post-action-update(:hash="hash" )
+    post-action-ban(:hash="hash")
 
-  .flex.flex-wrap.items-stretch
+  .flex.flex-wrap.items-stretch 
     .p-0(style="flex: 4 1 300px" v-if="post.data?.cover")
       img.sticky.top-5vh(:src="post.data.cover")
 

@@ -8,9 +8,12 @@ export { default as AccountProfile } from "./account/Profile.vue";
 export { default as AccountAvatar } from "./account/Avatar.vue";
 export { default as AccountBadge } from "./account/Badge.vue";
 export { default as AccountHome } from "./account/Home.vue";
-export { default as AccountMate } from "./account/Mate.vue";
-export { default as AccountMates } from "./account/Mates.vue";
 export { default as AccountStars } from "./account/Stars.vue";
+
+// LINKs
+
+export { default as LinkMate } from "./link/Mate.vue";
+export { default as LinkMates } from "./link/Mates.vue";
 
 // USER
 
@@ -66,7 +69,3 @@ export { default as UtilShare } from "./util/Share.vue";
 export { default as Utiltools } from "./util/Tools.vue";
 
 export * from "@composables";
-
-// dirty hack to get rid of a warning during build
-import { resolveComponent } from "vue";
-let res = resolveComponent;

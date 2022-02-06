@@ -8,22 +8,12 @@ const colorDeep = useColor('deep')
 const emit = defineEmits(['upvote', 'downvote'])
 
 const props = defineProps({
-  post: { type: [Object, String], default: { text: 'empty' } },
   timestamp: { type: Number, default: 0 },
   hash: { type: String, default: '' },
-  tag: { type: String, default: '' },
   host: { type: String, default: '' }
 })
 
-const text = computed(() => {
-  if (typeof props.post == 'string') {
-    return props.post
-  } else {
-    return props.post?.text
-  }
-})
-
-const post = usePost(props.tag, props.hash)
+const post = usePost({ hash: props.hash })
 
 </script>
 
@@ -40,12 +30,13 @@ const post = usePost(props.tag, props.hash)
         la-youtube.mx-1(v-if="post.data?.youtube")
         mdi-text-long.mx-1(v-if="post.data?.content")
         ui-link(:url="post.data?.link" v-if="post.data?.link")
+        slot
     .flex-1
     .flex.rounded-xl.p-1.bg-dark-100.bg-opacity-20(style="flex: 1 1")
       post-action-comment(:hash="hash")
-      post-action-star(:hash="hash" :tag="tag")
-      post-action-update(:hash="hash" :tag="tag")
-      post-action-ban(:hash="hash" :tag="tag" :host="host")
+      post-action-star(:hash="hash" )
+      post-action-update(:hash="hash" )
+      post-action-ban(:hash="hash"  :host="host")
 </template>
 
 

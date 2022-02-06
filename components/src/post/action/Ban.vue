@@ -10,13 +10,13 @@ const props = defineProps({
 
 const banned = ref(false)
 
-gun.get('#ban').get(props.hash).on(d => {
-  if (d) banned.value = true
+gun.get('ban').get(props.hash).on(d => {
+  banned.value = d
 })
 
 async function banPost() {
-  let post = await gun.get(`#${props.tag}`).get(props.hash).then()
-  gun.get('#ban').get(props.hash).put(post)
+  let banned = await gun.get('ban').get(props.hash).then()
+  gun.get('ban').get(props.hash).put(!banned)
 }
 
 </script>

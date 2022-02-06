@@ -10,8 +10,19 @@
       .my-4 Gun-vue is a collection of essential building blocks to create a variety of decentralized apps for online and offline collaboration. It's a moment when we can feel the nature of distributed networking and have fun together!
       .my-2 All the data in the app is stored only on the client side - right in your browser. And it's reactively synced between all simultaneous visitors by Gun. So it's better to share a link to this page with your friend to have a more profound demo experience. 
 
-      .my-4 
-        router-link.text-2xl(to="/spaces") Spaces
+      .flex.flex-wrap
+
+        router-link.my-4.flex-1(to="/spaces/")
+          .text-2xl Spaces
+          p 2D meeting spaces for everyone
+
+        router-link.my-4.flex-1(to="/posts/")
+          .text-2xl Posts
+          p Immutable public posts and tags 
+
+        router-link.my-4.flex-1(to="/means")
+          .text-2xl Collaborative dictionaries
+          p 2D meeting spaces for everyone
 
       .my-4 We're building basic components and data structures as a foundation for various Vue 3 apps to built by anyone. Feel free to play with it and to make any contributions! 
       .flex.flex-wrap

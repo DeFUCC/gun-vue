@@ -3,7 +3,8 @@ import { ref, watchEffect } from 'vue'
 import { useGun, useColor } from '@composables'
 
 const props = defineProps({
-  pub: { type: String, default: '' }
+  pub: { type: String, default: '' },
+  showName: { type: Boolean, default: true }
 })
 
 const name = ref('')
@@ -21,8 +22,8 @@ watchEffect(() => {
 </script>
 
 <template lang="pug">
-.p-1.flex.items-center.rounded-3xl.bg-light-900.cursor-pointer.shadow.transition.duration-400.ease-in(:style="{ backgroundColor: colorDeep.hex(pub) }")
+.p-2px.flex.items-center.rounded-3xl.bg-light-900.cursor-pointer.shadow.transition.duration-400.ease-in(:style="{ backgroundColor: colorDeep.hex(pub) }")
   account-avatar(:pub="pub" :size="30")
-  .mx-2.font-bold.text-sm.max-w-8ch.overflow-ellipsis.overflow-hidden.whitespace-nowrap(v-if="name") {{ name }}
+  .mx-2.font-bold.text-sm.max-w-8ch.overflow-ellipsis.overflow-hidden.whitespace-nowrap(v-if="showName && name") {{ name }}
   slot
 </template>

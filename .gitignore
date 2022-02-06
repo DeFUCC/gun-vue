@@ -6,3 +6,4 @@ dist-ssr
 *.local
 radata
 demo/public/docs
+demo/public/means

@@ -19,7 +19,7 @@ gun.user(props.pub).get('feeds').map().once(function (list, tag) {
       delete posts?.[tag]?.[k]
     } else {
       posts[tag] = posts[tag] || {}
-      posts[tag][k] = usePost(tag, k)
+      posts[tag][k] = usePost({ tag, hash: k })
     }
   })
 })

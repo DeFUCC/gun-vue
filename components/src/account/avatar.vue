@@ -21,7 +21,7 @@ img.border.rounded-full.overflow-hidden.transition.duration-500.ease-out(
   :title="pubKey",
   v-if="pubKey",
   :width="size"
-  :src="gunAvatar(pubKey, size * 4)"
+  :src="gunAvatar({ pub: pubKey, size: size * 4 })"
 )
 .p-2(v-else :style="{ fontSize: size + 'px' }")
   la-user

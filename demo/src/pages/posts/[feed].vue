@@ -24,11 +24,11 @@ const path = computed(() => {
 
 <template lang='pug'>
 .p-2
-  post-list.w-full(
-    :key="feed"
-    :tag="path" 
+  post-page.w-full(
+    :key="path"
+    :hash="path" 
     @close="$router.push('/posts/')" 
-    @browse="$router.push(`/posts/${feed}/${safeHash($event)}`)"
+    @browse="$router.push(`/posts/${safeHash($event)}`)"
     )
   router-view(v-slot="{ Component }")
     transition(name="fade")
