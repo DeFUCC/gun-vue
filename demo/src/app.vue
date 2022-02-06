@@ -13,7 +13,7 @@ watchEffect(() => {
 });
 
 watch(() => room.pub, (pub) => {
-  if (pub == rootRoom) {
+  if (pub == rootRoom.pub) {
     router.push({ path: route.path, query: {} })
   } else {
     router.push({ path: route.path, query: { room: pub } })

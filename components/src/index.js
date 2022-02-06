@@ -69,7 +69,3 @@ export { default as UtilShare } from "./util/Share.vue";
 export { default as Utiltools } from "./util/Tools.vue";
 
 export * from "@composables";
-
-// dirty hack to get rid of a warning during build
-import { resolveComponent } from "vue";
-let res = resolveComponent;

@@ -12,7 +12,6 @@ export async function issueCert({
   }
   try {
     let cert = await SEA.certify(users, path, pair);
-    console.log(cert);
     return cert;
   } catch (e) {
     console.log("cert error: ", e);
@@ -21,10 +20,10 @@ export async function issueCert({
 
 window.issueCert = issueCert;
 
-export async function generateCerts({ pair, list = {} } = {}) {
+export async function generateCerts({ pair, list = [] } = {}) {
   const all = {};
-  for (let tag in list) {
-    all[tag] = await issueCert({ ...list[tag], pair });
+  for (let opt of list) {
+    all[opt.tag] = await issueCert({ ...opt, pair });
   }
   return all;
 }

@@ -37,7 +37,7 @@ export function useFeed(tag = "posts", { host = "" } = {}) {
     })
     .map()
     .on(async (d, k) => {
-      console.log(k, d);
+      // console.log(k, d);
       // let banned = await ban.get(k).then();
       // if (tag != "ban" && banned) return;
       posts[k] = d;

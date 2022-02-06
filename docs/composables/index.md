@@ -682,24 +682,38 @@ Get and handle a particular post by it's tag and hash
 ## Room
 
 * [Room](#module_Room)
+    * [.useRoom()](#module_Room.useRoom) ⇒ <code>useRoom</code>
+    * [.updateRoomProfile(field, content)](#module_Room.updateRoomProfile)
     * [.createRoom()](#module_Room.createRoom)
+    * [.enterRoom(pub)](#module_Room.enterRoom)
     * [.leaveRoom()](#module_Room.leaveRoom)
-    * [.setCerts(pair)](#module_Room.setCerts)
     * [.listRoomItems(tag, pub)](#module_Room.listRoomItems) ⇒ <code>reactive</code>
+
+### useRoom() ⇒ <code>useRoom</code>
+  Reactive room controls
+
+### updateRoomProfile(field, content)
+  Update a profile field of a room
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| field | <code>String</code> | parameter to write to |
+| content | <code>String</code> |  |
 
 ### createRoom()
   Create a new room inside the current room
 
-### leaveRoom()
-  Leave the room
-
-### setCerts(pair)
-  Set up certificates for the room
+### enterRoom(pub)
+  The right way to come inside a room
 
 
 | Param | Type |
 | --- | --- |
-| pair | <code>Object</code> | 
+| pub | <code>String</code> | 
+
+### leaveRoom()
+  Leave the room
 
 ### listRoomItems(tag, pub) ⇒ <code>reactive</code>
   List room tag items

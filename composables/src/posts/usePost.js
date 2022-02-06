@@ -34,7 +34,7 @@ export function usePost({ tag = "posts", hash = "" } = {}) {
     },
   });
 
-  console.log(hash, tag);
+  // console.log(hash, tag);
   gun
     .get(`#${tag}`)
     .on((d, k) => {
