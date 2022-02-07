@@ -16,7 +16,7 @@ const colorDeep = useColor('deep')
 .mx-2
   button.button(@click="open = true" :style="{ backgroundColor: !room.isRoot ? colorDeep.hex(room.pub) : 'gray' }")
     la-home.text-xl
-    .ml-2 {{ profile.name }}
+    .ml-2(v-if="profile.name") {{ profile.name.substring(0, 12) }}
   ui-layer.break-all(:open="open" :closeButton="false" @close="open = false")
     room-page
       
