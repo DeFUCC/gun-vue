@@ -14,45 +14,14 @@ import {
   safeJSONParse,
 } from "..";
 import { rootRoom } from "./rootRoom";
-import { reactive, computed, ref } from "vue";
+import { reactive, computed, ref, watchEffect } from "vue";
 
 export const room = reactive({
   pub: rootRoom.pub,
+  initiated: false,
   isRoot: computed(() => room.pub == rootRoom.pub),
-  host: computed(() => {
-    const hst = ref();
-    if (room.pub == rootRoom.pub) {
-      hst.value = rootRoom.host;
-    } else {
-      const gun = useGun();
-      gun
-        .user(room.pub)
-        .get("host")
-        .once((d, k) => {
-          console.log(k, d);
-          hst.value = d;
-        });
-    }
-    return hst;
-  }),
-  certs: computed(() => {
-    let cs = ref({});
-    if (room.pub == rootRoom.pub) {
-      cs.value = rootRoom.certs;
-    } else {
-      const gun = useGun();
-
-      gun
-        .user(room.pub)
-        .get("certs")
-        .map()
-        .once((d, k) => {
-          console.log(k, d);
-          cs.value[k] = d;
-        });
-    }
-    return cs;
-  }),
+  host: "",
+  certs: {},
 });
 
 /**
@@ -60,10 +29,43 @@ export const room = reactive({
  * @returns {useRoom}
  */
 
-export function useRoom() {
+export function useRoom(pub) {
   const profile = computed(() => {
     return listRoomItems("profile", room.pub);
   });
+
+  if (!room.inititated) {
+    watchEffect(() => {
+      if (room.pub == rootRoom.pub) {
+        room.host = rootRoom.host;
+      } else {
+        const gun = useGun();
+        gun
+          .user(room.pub)
+          .get("host")
+          .once((d, k) => {
+            room.host = d;
+          });
+      }
+    });
+
+    watchEffect(() => {
+      if (room.pub == rootRoom.pub) {
+        room.certs = rootRoom.certs;
+      } else {
+        room.certs = {};
+        const gun = useGun();
+        gun
+          .user(room.pub)
+          .get("certs")
+          .map()
+          .once((d, k) => {
+            room.certs[k] = d;
+          });
+      }
+    });
+    room.initiated = true;
+  }
 
   return {
     room,
@@ -104,19 +106,12 @@ export function useRoomProfile(pub = room.pub) {
 
 export function updateRoomProfile(field, content) {
   const gun = useGun();
-  let certificate = room.certs.value.profile;
-  console.log(field, content, room.pub, certificate);
+  let certificate = room.certs.profile;
   gun
     .user(room.pub)
     .get("profile")
     .get(field)
-    .put(
-      content,
-      () => {
-        console.log("ok");
-      },
-      { opt: { cert: certificate } }
-    );
+    .put(content, null, { opt: { cert: certificate } });
 }
 
 /**
@@ -128,20 +123,22 @@ export async function createRoom({ pair, certs, name } = {}) {
   if (!certs) certs = await regenerateCerts(pair);
   addPersonal({ tag: "rooms", key: pair.pub, text: true });
   const gun = useGun();
-  gun
-    .user(pair.pub)
+  const roomDb = gun.user(pair.pub);
+  roomDb
     .get("profile")
-    .get("name")
-    .put(name, null, { opt: { cert: certs.profile } });
-  gun
-    .user(pair.pub)
+    .put({ name }, null, { opt: { cert: certs.profile } })
+    .back()
     .get("certs")
-    .put(certs, null, { opt: { cert: certs.certs } });
-  gun
-    .user(pair.pub)
+    .put(certs, null, { opt: { cert: certs.certs } })
+    .back()
     .get("host")
     .put(user.pub, null, { opt: { cert: certs.host } });
 
+  const enc = await SEA.encrypt(pair, gun.user()._.sea);
+  gun.user().get("safe").get("rooms").get(pair.pub).put(enc);
+  console.log(enc);
+  let dec = await SEA.decrypt(enc, gun.user()._.sea);
+  console.log(dec);
   // enterRoom(pair.pub);
 }
 
@@ -153,6 +150,7 @@ export async function regenerateCerts(pair) {
       { tag: "profile", users: [user.pub] },
       { tag: "certs", users: [user.pub] },
       { tag: "host", users: [user.pub] },
+      { tag: "space", personal: true },
     ],
   });
 }
@@ -215,7 +213,7 @@ export async function addPersonal({
 } = {}) {
   if (!cert) cert = await gun.user(pub).get("cert").get(tag).then();
   if (!cert) {
-    cert = room.certs.value?.[`${tag}`];
+    cert = room.certs?.[`${tag}`];
   }
   if (!cert && pub != user.pub) {
     console.log("No certificate found");

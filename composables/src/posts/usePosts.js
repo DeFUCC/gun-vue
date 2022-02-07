@@ -12,6 +12,15 @@ import { useGun, gun } from "../gun";
 import { parsePost, addPost } from ".";
 
 /**
+ * @typedef useFeed
+ * @property {ref} posts -  the reactive list of hashed data
+ * @property {ref} timestamps - reactive timestamps list for all posts in a list
+ * @property {computed} count - the number of posts in a feed
+ * @property {Function} downloadPosts - Download all posts in a zip file
+ * @property {Function} uploadPosts - upload a zip file with posts
+ */
+
+/**
  * Use a list of immutable data from a #tag
  * @param {String} tag - A vue ref to watch - generated from props by `toRef(props,'tag')`
  * @param {Object} options - Options for the feed
@@ -37,9 +46,9 @@ export function useFeed(tag = "posts", { host = "" } = {}) {
     })
     .map()
     .on(async (d, k) => {
-      // console.log(k, d);
-      // let banned = await ban.get(k).then();
-      // if (tag != "ban" && banned) return;
+      console.log(k, d);
+      let banned = await ban.get(k).then();
+      if (tag != "ban" && banned) return;
       posts[k] = d;
     });
 
@@ -65,15 +74,6 @@ export function useFeed(tag = "posts", { host = "" } = {}) {
     uploadPosts,
   };
 }
-
-/**
- * @typedef useFeed
- * @property {ref} posts -  the reactive list of hashed data
- * @property {ref} timestamps - reactive timestamps list for all posts in a list
- * @property {computed} count - the number of posts in a feed
- * @property {Function} downloadPosts - Download all posts in a zip file
- * @property {Function} uploadPosts - upload a zip file with posts
- */
 
 /**
  * Export a list of posts as a zip file

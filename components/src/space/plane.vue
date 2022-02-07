@@ -1,11 +1,9 @@
 <script setup>
-import { useSpace, useUser, useColor } from '@composables'
-import { ref, watchEffect } from 'vue'
-
+import { useSpace, useUser, useColor, gunAvatar, room } from '@composables'
+import { ref, computed } from 'vue'
 
 const props = defineProps({
   pad: { type: Number, default: 50 },
-  name: { type: String, default: 'public' }
 })
 defineEmits(['user'])
 
@@ -15,17 +13,20 @@ const colorDeep = useColor('deep')
 
 const { space, plane, links, width, height, guests, area, join, place } = useSpace({
   TIMEOUT: 10000,
-  spaceName: props.name
 })
 
 const selected = ref();
 
 const enter = ref(false)
 
+const bg = computed(() => {
+  return { backgroundImage: `url(${gunAvatar({ pub: room.pub, draw: 'squares', reflect: false, size: 1000 })})` }
+})
+
 </script>
 
 <template lang='pug'>
-.flex.flex-col.items-center.relative
+.flex.flex-col.items-center.relative.bg-cover.my-4(:style="{ ...bg }")
 
   ui-layer(:open="!!selected" @close="selected = null")
     account-home(:pub="selected")
@@ -65,14 +66,6 @@ const enter = ref(false)
       fill="none"
       stroke-width="0"
       )
-    g.title
-      text(
-        :x="width / 2"
-        :y="20"
-        font-weight="bold"
-        font-size="4rem"
-        opacity="0.1"
-      ) {{ name }}
     g.pointer
       line(
         v-if="space.my?.pos"

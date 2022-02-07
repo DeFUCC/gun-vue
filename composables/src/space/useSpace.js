@@ -3,14 +3,14 @@
  * @module useSpace
  */
 
-import { useGun } from '../gun'
-import { useSvgMouse } from '../ui'
-import { user, useAccount } from '../user'
-import { hashText } from '../crypto'
-import { computed, ref, reactive, watchEffect } from 'vue'
-import { getFirstEmoji } from '..'
-import { getArrow } from 'curved-arrows'
-import { useElementBounding } from '@vueuse/core'
+import { useGun } from "../gun";
+import { useSvgMouse } from "../ui";
+import { user, useAccount } from "../user";
+import { hashText } from "../crypto";
+import { computed, ref, reactive, watchEffect } from "vue";
+import { getFirstEmoji, useRoom } from "..";
+import { getArrow } from "curved-arrows";
+import { useElementBounding } from "@vueuse/core";
 
 /**
  * @typedef {Object} useSpace
@@ -36,110 +36,119 @@ import { useElementBounding } from '@vueuse/core'
  */
 
 export function useSpace({
-  spaceName = 'public',
+  spaceName = "space",
   TIMEOUT = 10000,
   randomness = 0.1,
 } = {}) {
-  const gun = useGun()
+  const { area, mouse } = useSvgMouse();
+  const plane = ref();
+  const { width, height } = useElementBounding(plane);
+
+  const gun = useGun();
+
+  const { room } = useRoom();
 
   const space = reactive({
     title: spaceName,
     joined: false,
-    db: gun.get(spaceName),
+    db: computed(() => {
+      return gun.user(room.pub).get(spaceName);
+    }),
+    cert: computed(() => {
+      return room.certs.space;
+    }),
     my: {
-      id: null,
       mouse: computed(() => ({ x: mouse.normX, y: mouse.normY })),
       pos: null,
     },
-  })
+  });
 
-  const plane = ref()
-  const allGuests = reactive({})
-  const mates = reactive({})
-  const links = reactive({})
+  async function join() {
+    space.db
+      .get(user.pub)
+      .put(JSON.stringify({ x: mouse.normX, y: mouse.normY }), null, {
+        opt: { cert: room.certs.space },
+      });
+    space.joined = true;
+  }
+
+  function place({ x = mouse.normX, y = mouse.normY } = {}) {
+    if (!user.pub) return;
+    if (!space.joined) join();
+    space.db
+      .get(user.pub)
+      .put(JSON.stringify({ x, y }), null, { opt: { cert: room.certs.space } });
+  }
+
+  const allGuests = reactive({});
+  const mates = reactive({});
+  const links = reactive({});
 
   const guests = computed(() => {
-    const obj = {}
+    const obj = {};
     for (let g in allGuests) {
       if (Date.now() - allGuests[g]?.pulse < TIMEOUT) {
-        obj[g] = allGuests[g]
+        obj[g] = allGuests[g];
       }
     }
-    return obj
-  })
+    return obj;
+  });
 
-  const { width, height } = useElementBounding(plane)
+  space.db.get(user.pub).on((pos) => {
+    space.my.pos = typeof pos == "string" ? JSON.parse(pos) : pos;
+  });
 
-  const { area, mouse } = useSvgMouse()
+  space.db.map().once(async (pos, pub) => {
+    if (pub == user.pub) {
+      space.joined = true;
+    }
+    allGuests[pub] = {
+      pub: pub,
+      blink: false,
+      pulse: 0,
+      hasPos: false,
+      pos: {
+        x: 0,
+        y: 0,
+      },
+    };
 
-  gun
-    .user()
-    .get(spaceName)
-    .get('pos')
-    .on((pos) => {
-      space.my.pos = pos
-    })
+    space.db.get(pub).on((d, k) => {
+      allGuests[pub].hasPos = true;
+      allGuests[pub].pos = typeof d == "string" ? JSON.parse(d) : d;
+    });
 
-  gun
-    .get(spaceName)
-    .get('#guests')
-    .map()
-    .once(async (pub, hash) => {
-      if (pub == user.pub) {
-        space.joined = true
-      }
+    gun
+      .user(pub)
+      .get("pulse")
+      .on((d) => {
+        allGuests[pub].pulse = d;
+        allGuests[pub].blink = !allGuests[pub].blink;
+      })
+      .back()
+      .get("mates")
+      .map()
+      .on((d, k) => {
+        mates[pub] = mates[pub] || {};
+        mates[pub][k] = d;
+      });
+  });
 
-      allGuests[pub] = {
-        pub: pub,
-        blink: false,
-        pulse: 0,
-        hasPos: false,
-        pos: {
-          x: 0,
-          y: 0,
-        },
-      }
-
-      gun
-        .user(pub)
-        .get('pulse')
-        .on((d) => {
-          allGuests[pub].pulse = d
-          allGuests[pub].blink = !allGuests[pub].blink
-        })
-        .back()
-        .get('mates')
-        .map()
-        .on((d, k) => {
-          mates[pub] = mates[pub] || {}
-          mates[pub][k] = d
-        })
-        .back()
-        .back()
-        .get(spaceName)
-        .get('pos')
-        .map()
-        .on((d, k) => {
-          allGuests[pub].hasPos = true
-          allGuests[pub].pos[k] = d
-        })
-    })
-
-  const seeds = {} //random seeds to scatter the arrows a little - depends on the `randomness` option
+  const seeds = {}; //random seeds to scatter the arrows a little - depends on the `randomness` option
 
   watchEffect(() => {
     for (let pub1 in mates) {
-      seeds[pub1] = seeds[pub1] || {}
+      seeds[pub1] = seeds[pub1] || {};
 
       for (let pub2 in mates[pub1]) {
         let seed = (seeds[pub1][pub2] =
-          seeds[pub1][pub2] || Math.random() * randomness)
+          seeds[pub1][pub2] || Math.random() * randomness);
 
         if (mates[pub1][pub2]) {
-          const linkData = mates[pub1][pub2]
-          let g1 = allGuests[pub1]
-          let g2 = allGuests[pub2]
-          let age = Date.now() * 2 - g1?.pulse - g2?.pulse
+          const linkData = mates[pub1][pub2];
+          let g1 = allGuests[pub1];
+          let g2 = allGuests[pub2];
+          let age = Date.now() * 2 - g1?.pulse - g2?.pulse;
           if (g1 && g2 && g1?.hasPos && g2?.hasPos && age < TIMEOUT) {
             links[pub1 + pub2] = {
               user: pub1,
@@ -147,110 +156,99 @@ export function useSpace({
               emoji: getFirstEmoji(linkData),
               from: g1.pos,
               to: g2.pos,
-              arrow: generateArrow(g1.pos, g2.pos, seed),
-            }
+              arrow: generateArrow(
+                g1.pos,
+                g2.pos,
+                seed,
+                width.value,
+                height.value
+              ),
+            };
           }
         } else {
-          delete links[pub1 + pub2]
+          delete links[pub1 + pub2];
         }
       }
     }
-  })
+  });
+  return { space, guests, links, plane, width, height, area, join, place };
+}
 
-  function generateArrow(pos1, pos2, seed = 0) {
-    let arrowArray = getArrow(
-      pos1.x * width.value,
-      pos1.y * height.value,
-      pos2.x * width.value,
-      pos2.y * height.value,
-      {
-        padEnd: 20,
-        padStart: 10,
-      },
-    )
-    const [sx, sy, c1x, c1y, c2x, c2y, ex, ey, ae, as] = arrowArray
-    let arrow = {
-      sx,
-      sy,
-      c1x: c1x * (1 - seed + 2 * seed),
-      c1y: c1y * (1 - seed + 2 * seed),
-      c2x: c2x * (1 - seed + 2 * seed),
-      c2y: c2y * (1 - seed + 2 * seed),
-      ex,
-      ey,
-      ae,
-      as,
+function generateArrow(pos1, pos2, seed = 0, width, height) {
+  let arrowArray = getArrow(
+    pos1.x * width,
+    pos1.y * height,
+    pos2.x * width,
+    pos2.y * height,
+    {
+      padEnd: 20,
+      padStart: 10,
     }
-    return arrow
-  }
-
-  async function join() {
-    if (!user.pub) return
-    const hash = await hashText(user.pub)
-    gun.get(spaceName).get('#guests').get(hash).put(user.pub)
-    space.joined = true
-  }
-
-  function place({ x = mouse.normX, y = mouse.normY } = {}) {
-    if (!space.joined) join()
-    gun.user().get(spaceName).get('pos').put({ x, y })
-  }
-
-  return { space, guests, links, plane, width, height, area, join, place }
+  );
+  const [sx, sy, c1x, c1y, c2x, c2y, ex, ey, ae, as] = arrowArray;
+  let arrow = {
+    sx,
+    sy,
+    c1x: c1x * (1 - seed + 2 * seed),
+    c1y: c1y * (1 - seed + 2 * seed),
+    c2x: c2x * (1 - seed + 2 * seed),
+    c2y: c2y * (1 - seed + 2 * seed),
+    ex,
+    ey,
+    ae,
+    as,
+  };
+  return arrow;
 }
 
 /**
  * @todo draggable handles https://dev.to/abolz/roll-your-own-svg-drag-and-drop-in-vuejs-2c7o
  */
 
-let startTime = Date.now()
+let startTime = Date.now();
 
-export function useGuests({
-  space = 'publics',
-  role = 'guest',
-  timeout = 10000,
-} = {}) {
-  const gun = useGun()
-  startTime = Date.now()
+export function useGuests({ timeout = 10000 } = {}) {
+  const gun = useGun();
+  const { room } = useRoom();
+  startTime = Date.now();
 
-  const guests = reactive({})
-  const online = reactive({})
-  const offline = reactive({})
+  const guests = reactive({});
+  const online = reactive({});
+  const offline = reactive({});
 
   const count = reactive({
     online: computed(() => Object.keys(online).length),
     offline: computed(() => Object.keys(offline).length),
-  })
+  });
 
   gun
-    .get(space)
-    .get(`#${role}s`)
+    .user(room.pub)
+    .get("space")
     .map()
-    .once((d, k) => {
-      const { account } = useAccount(d)
-      const pub = account.value.pub
-      guests[pub] = account
+    .once((pos, pub) => {
+      const { account } = useAccount(pub);
+      guests[pub] = account;
       guests[pub].order = computed(() =>
         startTime - account.value.pulse < timeout
           ? 1
-          : startTime - account.value.pulse,
-      )
+          : startTime - account.value.pulse
+      );
       guests[pub].online = computed(() => {
-        return startTime - account.value.pulse < timeout
-      })
-    })
+        return startTime - account.value.pulse < timeout;
+      });
+    });
 
   watchEffect(() => {
     for (let pub in guests) {
       if (guests[pub].online) {
-        online[pub] = guests[pub]
-        delete offline[pub]
+        online[pub] = guests[pub];
+        delete offline[pub];
       } else {
-        offline[pub] = guests[pub]
-        delete online[pub]
+        offline[pub] = guests[pub];
+        delete online[pub];
       }
     }
-  })
+  });
 
-  return { guests, online, offline, count }
+  return { guests, online, offline, count };
 }

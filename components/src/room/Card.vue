@@ -1,5 +1,6 @@
 <script setup>
 import { gunAvatar, enterRoom, submitRoom, useUser, useRoomProfile } from '@composables'
+import { computed } from 'vue';
 const props = defineProps({
   pub: { type: String },
   authors: { type: Object, default: {} }
@@ -8,11 +9,15 @@ const props = defineProps({
 const { user } = useUser()
 
 const profile = useRoomProfile(props.pub)
+
+const bg = computed(() => {
+  return { backgroundImage: `url(${gunAvatar({ pub: props.pub, draw: 'squares', reflect: false, size: 600 })})` }
+})
 </script>
 
 <template lang='pug'>
 .rounded-xl.shadow-md.text-sm.bg-cover.cursor-pointer.hover_shadow-lg.transition.duration-300ms.filter.brightness-95.hover_brightness-100.flex.flex-wrap(
-  :style="{ backgroundImage: `url(${gunAvatar({ pub: pub, draw: 'squares', reflect: false, size: 600 })})` }"
+  :style="{ ...bg }"
 ) 
   .p-4.font-bold.text-xl {{ profile.name }}
   .p-4.bg-light-200.bg-opacity-40.backdrop-filter.backdrop-blur-md.flex.flex-wrap.relative.flex.gap-2.items-center(

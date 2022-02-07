@@ -18,7 +18,7 @@ const dirname = path.dirname(filename);
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
-    port: 3042,
+    port: 3142,
   },
   publicDir: "public",
   plugins: [

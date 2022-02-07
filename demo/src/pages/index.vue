@@ -12,9 +12,9 @@
 
       .flex.flex-wrap
 
-        router-link.my-4.flex-1(to="/spaces/")
-          .text-2xl Spaces
-          p 2D meeting spaces for everyone
+        router-link.my-4.flex-1(to="/space/")
+          .text-2xl Space
+          p A 2D meeting space
 
         router-link.my-4.flex-1(to="/posts/")
           .text-2xl Posts
