@@ -1,5 +1,15 @@
 # @gun-vue/components
 
+## 0.6.6
+
+### Patch Changes
+
+- eae5908: Rooms got the spaces inside. Certificates help guests write their positions to the room space.
+- 96a160f: Rooms introduced and barebones implemented. With new "square" `gunAvatar` backgrounds to have fun with!
+- Updated dependencies [eae5908]
+- Updated dependencies [96a160f]
+  - @gun-vue/composables@0.6.6
+
 ## 0.6.5
 
 ### Patch Changes
