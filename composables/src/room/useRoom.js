@@ -137,7 +137,9 @@ export async function createRoom({ pair, certs, name } = {}) {
 
   const enc = await SEA.encrypt(pair, gun.user()._.sea);
   gun.user().get("safe").get("rooms").get(pair.pub).put(enc);
+
   let dec = await SEA.decrypt(enc, gun.user()._.sea);
+  console.log({ pub: dec, host: user.pub, certs }, pair);
   // enterRoom(pair.pub);
 }
 
@@ -150,6 +152,7 @@ export async function generateRoomCerts(pair) {
       { tag: "certs", users: [user.pub] },
       { tag: "host", users: [user.pub] },
       { tag: "space", personal: true },
+      { tag: "posts", personal: true },
     ],
   });
 }
@@ -249,12 +252,12 @@ export async function addHashedPersonal(tag, obj, pub = room.pub, cert) {
     console.log("No certificate found");
     return;
   }
-  const { text, hash } = await hashObj(obj);
+  const { hashed, hash } = await hashObj(obj);
   gun
     .get(`~${pub}`)
     .get(`#${tag}`)
     .get(`${hash}@${user.pub}`)
-    .put(text, null, { opt: { cert } });
+    .put(hashed, null, { opt: { cert } });
 }
 
 export function getHashedPersonal(tag, hash, pub = room.pub) {

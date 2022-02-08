@@ -14,7 +14,7 @@ defineEmits(['close', 'browse'])
 const colorLight = computed(() => useColor('light').hex(props.hash))
 const colorDeep = computed(() => useColor('deep').hex(props.hash))
 
-const post = usePost({ hash: props.hash })
+const { post } = usePost({ hash: props.hash })
 
 </script>
 

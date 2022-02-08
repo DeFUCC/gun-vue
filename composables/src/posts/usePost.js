@@ -6,7 +6,7 @@
 import { computed, reactive, ref } from "vue";
 import ms from "ms";
 
-import { useGun, gun } from "../gun/";
+import { useGun, gun, useRoom, useUser } from "..";
 import { useZip } from "../file/";
 import { hashObj, hashText, safeHash } from "../crypto";
 
@@ -19,57 +19,51 @@ import { hashObj, hashText, safeHash } from "../crypto";
  */
 
 export function usePost({ tag = "posts", hash = "" } = {}) {
+  const { room } = useRoom();
   const gun = useGun();
 
-  const post = reactive({
-    empty: true,
-    downloading: false,
-    tag,
-    hash,
-    data: {},
-    async download() {
-      post.downloading = true;
-      await downloadPost(post);
-      post.downloading = false;
-    },
-  });
+  // const post = reactive({
+  //   empty: true,
+  //   downloading: false,
+  //   tag,
+  //   hash,
+  //   data: {},
+  //   async download() {
+  //     post.downloading = true;
+  //     await downloadPost(post);
+  //     post.downloading = false;
+  //   },
+  // });
+
+  const post = reactive({});
 
   // console.log(hash, tag);
   gun
     .get(`#${tag}`)
-    .on((d, k) => {
-      post.timestamp = d._[">"][hash];
-      if (post.timestamp) {
-        post.lastUpdated = ms(Date.now() - post.timestamp);
-      }
-    })
     .get(hash)
     .on(async (d, k) => {
       // let banned = await gun.get("#ban").get(k).then();
       // if (tag != "ban" && banned) return;
 
       try {
-        Object.assign(post.data, JSON.parse(d));
+        Object.assign(post, JSON.parse(d));
       } catch (e) {
-        post.data.raw = d;
+        post.raw = d;
       }
 
-      post.empty = false;
-
-      ["icon", "cover"].forEach((image) => {
-        if (post.data[image]) {
+      ["icon", "cover", "text"].forEach((file) => {
+        if (post[file]) {
           gun
-            .get(`#${image}s`)
-            .get(post.data[image])
-            .on((d) => {
-              post.data[image] = d;
+            .get(`#${file}s`)
+            .get(post[file])
+            .on((data) => {
+              post[file] = data;
             });
         }
       });
     });
-  window.gun = gun;
 
-  return post;
+  return { post };
 }
 
 /**
@@ -98,12 +92,40 @@ export function usePost({ tag = "posts", hash = "" } = {}) {
  */
 
 /**
+ * Add a new post to a tag
+ * @param {String} tag
+ * @param {Object} post
+ * @example
+ * import { addPost } from '@gun-vue/composables'
+ *
+ * addPost('MyTag', {
+ *  title: 'New post'
+ * })
+ */
+
+export async function addPost(tag = "posts", post) {
+  const { room } = useRoom();
+  const { user } = useUser();
+  const { icon, cover, text } = post;
+  post.icon = await saveToHash("icons", post.icon);
+  post.cover = await saveToHash("covers", post.cover);
+  post.text = await saveToHash("texts", post.text);
+  const { hashed, hash } = await hashObj(post);
+  gun.get(`#${tag}`).get(`${hash}`).put(hashed);
+  gun
+    .user(room.pub)
+    .get(tag)
+    .get(`${hash}@${user.pub}`)
+    .put(true, null, { opt: { cert: room.certs.posts } });
+}
+
+/**
  * Download the post as a zip file with MD contents and icon and cover pictures if present
  * @param {Post} post
  * @example
  * import { downloadPost, usePost } from '@gun-vue/composables'
  *
- * const post = usePost( postTag, postHash )
+ * const {post} = usePost( postTag, postHash )
  *
  * downloadPost(post)
  */
@@ -149,13 +171,13 @@ export async function loadFromHash(category, hash) {
   return hash;
 }
 
-async function saveToHash(category, file) {
-  if (category && file && file.slice(0, 5) == "data:") {
-    const hash = await hashText(file);
-    gun.get(`#${category}s`).get(`${hash}`).put(file);
+async function saveToHash(category, text) {
+  if (category && text) {
+    const hash = await hashText(text);
+    gun.get(`#${category}`).get(`${hash}`).put(text);
     return hash;
   } else {
-    return file;
+    return text;
   }
 }
 
@@ -173,26 +195,4 @@ export async function parsePost(data) {
     post = { base64: data };
   }
   return post;
-}
-
-/**
- * Add a new post to a tag
- * @param {String} tag
- * @param {Object} post
- * @example
- * import { addPost } from '@gun-vue/composables'
- *
- * addPost('MyTag', {
- *  title: 'New post'
- * })
- */
-
-export async function addPost(tag, post) {
-  const { icon, cover, content } = post;
-  post.icon = await saveToHash("icons", post.icon);
-  post.cover = await saveToHash("covers", post.cover);
-  post.content = await saveToHash("texts", post.content);
-  const { text, hash } = await hashObj(post);
-  let posted = gun.get(`#posts`).get(`${hash}`).put(text);
-  gun.get(tag).get(`${hash}`).put(true);
 }

@@ -10,7 +10,7 @@ import { useGun } from "../gun";
 import { hashText } from "../crypto";
 
 /**
- * @typedef useFeeds
+ * @typedef useTagList
  * @property {ref} search - a ref to bind to an input element
  * @property {computed} slug - a slugified search query - url safe verion to be used as a tag
  * @property {Tags} tags - the object to handle all the tags
@@ -19,9 +19,9 @@ import { hashText } from "../crypto";
 
 /**
  * Toolkit to deal with the available tags
- * @returns {useFeeds}
+ * @returns {useTagList}
  */
-export function useFeeds() {
+export function useTagList() {
   const gun = useGun();
 
   const search = ref();

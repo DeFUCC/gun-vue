@@ -1,5 +1,5 @@
 <script setup>
-import { useFeeds, useColor } from '@composables'
+import { useTagList, useColor } from '@composables'
 import { ref, onMounted } from 'vue'
 
 defineEmits(['tag'])
@@ -7,7 +7,7 @@ defineEmits(['tag'])
 const colorLight = useColor('light')
 const colorDeep = useColor('dark')
 
-const { search, slug, tags, addTag } = useFeeds()
+const { search, slug, tags, addTag } = useTagList()
 
 </script>
 

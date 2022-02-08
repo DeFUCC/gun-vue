@@ -7,12 +7,12 @@ import { computed, reactive, ref } from "vue";
 
 import JSZip from "jszip";
 
-import { detectMimeType, useZip, parseMd } from "../file";
+import { detectMimeType, useZip, parseMd, useRoom, listPersonal } from "..";
 import { useGun, gun } from "../gun";
 import { parsePost, addPost } from ".";
 
 /**
- * @typedef useFeed
+ * @typedef usePosts
  * @property {ref} posts -  the reactive list of hashed data
  * @property {ref} timestamps - reactive timestamps list for all posts in a list
  * @property {computed} count - the number of posts in a feed
@@ -24,32 +24,27 @@ import { parsePost, addPost } from ".";
  * Use a list of immutable data from a #tag
  * @param {String} tag - A vue ref to watch - generated from props by `toRef(props,'tag')`
  * @param {Object} options - Options for the feed
- * @returns {useFeed}
+ * @returns {usePosts}
  * @example
- * import { useFeed } from '@gun-vue/composables'
+ * import { usePosts } from '@gun-vue/composables'
  *
- * const { posts, timestamps, count, uploadPosts, downloadPosts} = useFeed('MyTag')
+ * const { posts, timestamps, count, uploadPosts, downloadPosts} = usePosts('MyTag')
  */
-export function useFeed(tag = "posts", { host = "" } = {}) {
+export function usePosts(tag = "posts") {
   const gun = useGun();
 
-  const timestamps = ref({});
-
-  const ban = host ? gun.user(host).get("bannedPosts") : gun.get("ban");
+  const { room } = useRoom();
 
   const posts = reactive({});
-
   gun
-    .get(tag)
-    .on(function (d, k) {
-      timestamps.value = d._[">"];
-    })
+    .user(room.pub)
+    .get(`${tag}`)
     .map()
-    .on(async (d, k) => {
-      console.log(k, d);
-      let banned = await ban.get(k).then();
-      if (tag != "ban" && banned) return;
-      posts[k] = d;
+    .on(function (data, key) {
+      let hash = key.substring(0, 44);
+      let author = key.substring(45);
+      posts[hash] = posts[hash] || {};
+      posts[hash][author] = data;
     });
 
   const count = computed(() => Object.keys(posts || {}).length);
@@ -67,7 +62,6 @@ export function useFeed(tag = "posts", { host = "" } = {}) {
 
   return {
     posts,
-    timestamps,
     count,
     downloadPosts,
     downloading,

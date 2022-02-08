@@ -4,7 +4,7 @@ import { reactive, ref, onMounted, watch, computed } from 'vue'
 import { addPost, useColor } from '@composables'
 
 const props = defineProps({
-  tag: { type: String, default: 'null' }
+  tag: { type: String, default: 'posts' }
 })
 
 const emit = defineEmits(['close'])
@@ -26,11 +26,11 @@ const postData = ref({})
 const add = reactive({
   form: false,
   youtube: false,
-  content: false,
+  text: false,
 })
 
 const hasContent = computed(() => {
-  return postData.value.title || postData.value.statement || postData.value.content || postData.value.cover
+  return postData.value.title || postData.value.statement || postData.value.text || postData.value.cover
 })
 
 
@@ -86,8 +86,8 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl.mb-6(action="javascript:
         )
         la-youtube
     button.m-1.button(
-      @click="add.content = true" 
-      :class="{ active: postData.content }"
+      @click="add.text = true" 
+      :class="{ active: postData.text }"
       )
       mdi-text-long
     .flex-1
@@ -106,8 +106,8 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl.mb-6(action="javascript:
         la-trash-alt
   ui-layer(:open="add.youtube" @close="add.youtube = false" :offset="'22vh'")
     post-form-youtube(v-model:id="postData.youtube")
-  ui-layer(:open="add.content" @close="add.content = false" :offset="'22vh'")
-    post-form-text(v-model:text="postData.content" @close="add.content = false")
+  ui-layer(:open="add.text" @close="add.text = false" :offset="'22vh'")
+    post-form-text(v-model:text="postData.text" @close="add.text = false")
   
 </template>
 

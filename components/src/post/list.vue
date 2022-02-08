@@ -1,33 +1,26 @@
 <script setup>
-import { useColor, gun } from '@composables';
-import { useFeed } from '@composables'
+import { usePosts } from '@composables'
 import { ref, computed } from 'vue'
 
 const props = defineProps({
-  tag: { type: String, default: 'tag' },
-  host: { type: String, default: '' },
+  tag: { type: String, default: 'posts' },
   header: { type: Boolean, default: true }
 })
 const emit = defineEmits(['close', 'browse'])
 
-const { posts, timestamps, count, downloadPosts, downloading, uploadPosts } = useFeed(props.tag, { host: props.host })
+const { posts, timestamps, count, downloadPosts, downloading, uploadPosts } = usePosts(props.tag)
 
 const add = ref()
-
-const colorDeep = computed(() => useColor('deep').hex(props.tag))
-const colorLight = computed(() => useColor('light').hex(props.tag))
 
 </script>
 
 <template lang='pug'>
-.shadow-lg.rounded-2xl.overflow-hidden.bg-light-400.mx-auto.overscroll-contain(:style="{ backgroundColor: colorLight }")
-  .flex.flex-wrap.items-center.p-2.text-xl.sticky.z-100.top-0.shadow-lg(v-if="header" :style="{ backgroundColor: colorDeep }")
-    .text-xl.ml-2.font-bold.cursor-pointer(style="flex: 1 100px " @click="$emit('close')") # {{ tag }}
-    account-badge(:pub="host" v-if="host")
-      .text-xs.mr-2.mt-1px Host
-    button.ml-8.button.cursor-pointer(@click="$emit('close')")
-      la-times
-  .p-2.flex.flex-wrap.z-300.text-sm.items-center(:style="{ backgroundColor: colorDeep + '33' }")
+.shadow-lg.rounded-2xl.overflow-hidden.bg-light-400.mx-auto.overscroll-contain
+  .flex.flex-wrap.items-center.p-2.text-xl.sticky.z-100.top-0.shadow-lg.bg-light-900(v-if="header")
+    .text-xl.ml-2.font-bold.cursor-pointer(style="flex: 1 100px " @click="$emit('close')") # {{ tag }} 
+    .flex-1
+    .p-2.font-bold.mx-2 {{ count }}
+  .p-2.flex.flex-wrap.z-300.text-sm.items-center.bg-light-700
     slot
     util-share(v-if="header")
     button.button.p-4.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(title="Download feed" @click="downloadPosts()" v-if="count > 0")
@@ -56,25 +49,16 @@ const colorLight = computed(() => useColor('light').hex(props.tag))
   .flex.flex-wrap(v-if="count > 0") 
     transition-group(name="list")
       post-card(
-        :style="{ order: Date.now() - timestamps[hash]?.toFixed?.() }"
         style="flex: 1 1 220px"
-        v-for="(active, hash) in posts" 
+        v-for="(authors, hash) in posts" 
         :key="hash" 
         :hash="hash"
         :tag="tag"
-        :host="host"
+        :authors="authors"
         @click="emit('browse', hash)"
         )
-          p {{ timestamps[hash] }}
+
+          post-action-like(:authors="authors")
 
 </template>
 
-<style lang="postcss" scoped>
-.add {
-  @apply border-4;
-  border-color: v-bind(colorDeep);
-}
-.add:hover {
-  background-color: v-bind(colorDeep);
-}
-</style>

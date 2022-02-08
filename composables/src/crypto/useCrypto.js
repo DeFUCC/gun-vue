@@ -49,9 +49,9 @@ export async function hashText(text) {
 }
 
 export async function hashObj(obj) {
-  let text = typeof obj == "string" ? obj : JSON.stringify(obj);
-  let hash = await hashText(text);
-  return { text, hash };
+  let hashed = typeof obj == "string" ? obj : JSON.stringify(obj);
+  let hash = await hashText(hashed);
+  return { hashed, hash };
 }
 
 /**

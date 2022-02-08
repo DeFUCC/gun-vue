@@ -1,5 +1,5 @@
 <script setup>
-import { useColor, useFeed } from '@composables';
+import { useColor, usePosts } from '@composables';
 
 const props = defineProps({
   hash: { type: String, default: '0' },
@@ -7,7 +7,7 @@ const props = defineProps({
   showEmpty: { type: Boolean, default: false }
 })
 
-const { count } = useFeed(props.tag)
+const { count } = usePosts(props.tag)
 
 const colorDeep = useColor('deep')
 const colorLight = useColor('light')

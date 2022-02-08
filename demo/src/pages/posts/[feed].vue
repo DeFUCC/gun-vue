@@ -1,14 +1,13 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue'
 const props = defineProps({
-  feed: { type: String, default: 'feed' }
+  hash: { type: String, default: '' },
+  feed: { type: String, default: '' }
 })
-import { safeHash, unsafeHash } from '@composables';
+import { unsafeHash, safeHash } from '@composables';
+import { computed } from 'vue'
 
-const open = ref(false)
-
-onMounted(() => {
-  open.value = true
+const unHash = computed(() => {
+  return unsafeHash(props.hash)
 })
 
 const path = computed(() => {
@@ -20,20 +19,20 @@ const path = computed(() => {
     return props.feed
   }
 })
+
 </script>
 
 <template lang='pug'>
-.p-2
-  post-page.w-full(
-    :key="path"
-    :hash="path" 
-    @close="$router.push('/posts/')" 
-    @browse="$router.push(`/posts/${safeHash($event)}`)"
-    )
-  router-view(v-slot="{ Component }")
-    transition(name="fade")
-      component(:is="Component" :key="$route.fullPath" )
+.flex.flex-col()
+  ui-layer(:open="true" :closeButton="false" @close="$router.push(`/posts/`)")
+    post-page.w-full(
+      :hash="unHash" 
+      :tag="path" 
+      :key="$route.fullPath"
+      @close="$router.push(`/posts/`)" 
+      @browse="$router.push(`/posts/${safeHash($event)}/`)"
+      )
 </template>
 
-<style scoped>
-</style>
+
+
