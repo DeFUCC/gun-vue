@@ -4,7 +4,8 @@ import { useGun, useColor } from '@composables'
 
 const props = defineProps({
   pub: { type: String, default: '' },
-  showName: { type: Boolean, default: true }
+  showName: { type: Boolean, default: true },
+  size: { type: Number, default: 30 }
 })
 
 const name = ref('')
@@ -23,7 +24,7 @@ watchEffect(() => {
 
 <template lang="pug">
 .p-2px.flex.items-center.rounded-3xl.bg-light-900.cursor-pointer.shadow.transition.duration-400.ease-in(:style="{ backgroundColor: colorDeep.hex(pub) }")
-  account-avatar(:pub="pub" :size="30")
+  account-avatar(:pub="pub" :size="size")
   .mx-2.font-bold.text-sm.max-w-8ch.overflow-ellipsis.overflow-hidden.whitespace-nowrap(v-if="showName && name") {{ name }}
   slot
 </template>

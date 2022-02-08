@@ -36,16 +36,39 @@ export function usePosts(tag = "posts") {
   const { room } = useRoom();
 
   const posts = reactive({});
-  gun
-    .user(room.pub)
-    .get(`${tag}`)
-    .map()
-    .on(function (data, key) {
-      let hash = key.substring(0, 44);
-      let author = key.substring(45);
-      posts[hash] = posts[hash] || {};
-      posts[hash][author] = data;
-    });
+
+  if (tag == "posts") {
+    gun
+      .user(room.pub)
+      .get(`${tag}`)
+      .map()
+      .on(function (data, key) {
+        let hash = key.substring(0, 44);
+        let author = key.substring(45);
+        posts[hash] = posts[hash] || {};
+        posts[hash][author] = data;
+      });
+  } else {
+    console.log("here");
+    gun
+      .user(room.pub)
+      .get("links")
+      .map()
+      .on(function (data, key) {
+        let index = key.indexOf(tag);
+        if (index == -1) return;
+        let toHash;
+        if (index == 0) {
+          toHash = key.slice(45, 89);
+        } else {
+          toHash = key.slice(0, 44);
+        }
+        let author = key.slice(-87);
+
+        posts[toHash] = posts[toHash] || {};
+        posts[toHash][author] = data;
+      });
+  }
 
   const count = computed(() => Object.keys(posts || {}).length);
 

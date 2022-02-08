@@ -9,6 +9,8 @@ defineEmits(['upvote', 'downvote'])
 
 const props = defineProps({
   hash: { type: String, default: '' },
+  authors: Object,
+  tag: String,
 })
 
 const { post } = usePost({ hash: props.hash })
@@ -30,11 +32,13 @@ const { post } = usePost({ hash: props.hash })
         ui-link(:url="post?.link" v-if="post?.link")
         slot
     .flex-1.text-xs
-    .flex.rounded-xl.p-1.bg-dark-100.bg-opacity-20(style="flex: 1 1")
-      post-action-comment(:hash="hash")
-      post-action-star(:hash="hash" )
-      post-action-update(:hash="hash" )
-      post-action-ban(:hash="hash")
+    .flex.rounded-xl.p-1.bg-dark-100.bg-opacity-20(style="flex: 1 1 180px")
+      post-action-like(:authors="authors" :hash="hash" :tag="tag")
+
+      //- post-action-update(:hash="hash" )
+      //- post-action-ban(:hash="hash")
+      //- post-action-comment(:hash="hash")
+      //- post-action-star(:hash="hash" )
 </template>
 
 

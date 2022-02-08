@@ -26,7 +26,7 @@ watch(() => room.pub, (pub) => {
 nav-bar
 .p-0.flex-1
   router-view(v-slot="{ Component }")
-    transition(name="fade")
+    transition(name="fade" mode="out-in")
       component(:is="Component")
 .flex.flex-col.items-center.bg-dark-100.p-4.bg-opacity-30
   util-tools

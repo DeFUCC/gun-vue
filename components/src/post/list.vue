@@ -8,7 +8,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['close', 'browse'])
 
-const { posts, timestamps, count, downloadPosts, downloading, uploadPosts } = usePosts(props.tag)
+const { posts, count, downloadPosts, downloading, uploadPosts } = usePosts(props.tag)
 
 const add = ref()
 
@@ -57,8 +57,6 @@ const add = ref()
         :authors="authors"
         @click="emit('browse', hash)"
         )
-
-          post-action-like(:authors="authors")
 
 </template>
 

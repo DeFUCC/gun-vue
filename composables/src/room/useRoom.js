@@ -139,7 +139,7 @@ export async function createRoom({ pair, certs, name } = {}) {
   gun.user().get("safe").get("rooms").get(pair.pub).put(enc);
 
   let dec = await SEA.decrypt(enc, gun.user()._.sea);
-  console.log({ pub: dec, host: user.pub, certs }, pair);
+  console.log({ pub: dec.pub, host: user.pub, certs }, pair);
   // enterRoom(pair.pub);
 }
 
@@ -153,6 +153,7 @@ export async function generateRoomCerts(pair) {
       { tag: "host", users: [user.pub] },
       { tag: "space", personal: true },
       { tag: "posts", personal: true },
+      { tag: "links", personal: true },
     ],
   });
 }

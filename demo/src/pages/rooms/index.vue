@@ -3,5 +3,5 @@
 </script>
 
 <template lang='pug'>
-room-list.p-8(@browse="$router.push(`/rooms/${$event}`)")
+p
 </template>

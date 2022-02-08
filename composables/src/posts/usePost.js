@@ -19,21 +19,7 @@ import { hashObj, hashText, safeHash } from "../crypto";
  */
 
 export function usePost({ tag = "posts", hash = "" } = {}) {
-  const { room } = useRoom();
   const gun = useGun();
-
-  // const post = reactive({
-  //   empty: true,
-  //   downloading: false,
-  //   tag,
-  //   hash,
-  //   data: {},
-  //   async download() {
-  //     post.downloading = true;
-  //     await downloadPost(post);
-  //     post.downloading = false;
-  //   },
-  // });
 
   const post = reactive({});
 
@@ -63,7 +49,15 @@ export function usePost({ tag = "posts", hash = "" } = {}) {
       });
     });
 
-  return { post };
+  const downloading = ref(false);
+
+  async function download() {
+    downloading.value = true;
+    await downloadPost(post);
+    downloading.value = false;
+  }
+
+  return { post, download, downloading };
 }
 
 /**
@@ -111,12 +105,20 @@ export async function addPost(tag = "posts", post) {
   post.cover = await saveToHash("covers", post.cover);
   post.text = await saveToHash("texts", post.text);
   const { hashed, hash } = await hashObj(post);
-  gun.get(`#${tag}`).get(`${hash}`).put(hashed);
-  gun
-    .user(room.pub)
-    .get(tag)
-    .get(`${hash}@${user.pub}`)
-    .put(true, null, { opt: { cert: room.certs.posts } });
+  gun.get(`#posts`).get(`${hash}`).put(hashed);
+  if (tag == "posts") {
+    gun
+      .user(room.pub)
+      .get(tag)
+      .get(`${hash}@${user.pub}`)
+      .put(true, null, { opt: { cert: room.certs.posts } });
+  } else {
+    gun
+      .user(room.pub)
+      .get("links")
+      .get(`${tag}:${hash}@${user.pub}`)
+      .put(true, null, { opt: { cert: room.certs.links } });
+  }
 }
 
 /**

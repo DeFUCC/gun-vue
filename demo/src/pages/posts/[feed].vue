@@ -7,7 +7,7 @@ import { unsafeHash, safeHash } from '@composables';
 import { computed } from 'vue'
 
 const unHash = computed(() => {
-  return unsafeHash(props.hash)
+  return unsafeHash(props.feed)
 })
 
 const path = computed(() => {
