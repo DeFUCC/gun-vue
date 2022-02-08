@@ -2,9 +2,10 @@
 import { routes } from '../../pages/routes'
 import { reactive } from 'vue'
 
-import { useUser, room, gunAvatar } from '@composables';
+import { useUser, useRoom, gunAvatar } from '@composables';
 
 const { user } = useUser()
+const { room } = useRoom()
 
 </script>
 

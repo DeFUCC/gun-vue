@@ -1,5 +1,5 @@
 <script setup>
-import { useSpace, useUser, useColor, gunAvatar, room, useBackground } from '@composables'
+import { useSpace, useUser, useColor, gunAvatar, useRoom, useBackground } from '@composables'
 import { ref, computed } from 'vue'
 
 const props = defineProps({
@@ -8,6 +8,7 @@ const props = defineProps({
 defineEmits(['user'])
 
 const { user } = useUser()
+const { room } = useRoom()
 
 const colorDeep = useColor('deep')
 
