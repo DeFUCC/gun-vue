@@ -69,27 +69,21 @@ export function useZip() {
     let { icon, cover, content, title, statement } = post;
     delete post?.content;
     if (!title) {
-      title = statement.split(0, 12) || genUUID();
+      title = statement ? statement.split(0, 12) : genUUID();
     }
 
-    cover = await loadFromHash("cover", cover);
-    if (cover) {
-      const fileName = await addFile({
-        title: "cover",
-        file: cover,
-        folder: title,
-      });
-      post.cover = fileName;
-    }
+    const files = ["cover", "icon", "text"];
 
-    icon = await loadFromHash("icon", icon);
-    if (icon) {
-      const fileName = await addFile({
-        title: "icon",
-        file: icon,
-        folder: title,
-      });
-      post.icon = fileName;
+    for (let name of files) {
+      let file = await loadFromHash(name, post[name]);
+      if (file) {
+        const fileName = await addFile({
+          title: name,
+          file,
+          folder: title,
+        });
+        post.cover = fileName;
+      }
     }
 
     addMd({

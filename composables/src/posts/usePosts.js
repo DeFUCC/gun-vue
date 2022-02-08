@@ -9,7 +9,7 @@ import JSZip from "jszip";
 
 import { detectMimeType, useZip, parseMd, useRoom, listPersonal } from "..";
 import { useGun, gun } from "../gun";
-import { parsePost, addPost } from ".";
+import { parsePost, addPost, usePost } from ".";
 
 /**
  * @typedef usePosts
@@ -106,13 +106,12 @@ export async function downloadFeed(tag, posts) {
   if (!posts) return;
 
   const { zip, zipPost, downloadZip } = useZip();
-
+  const fullPosts = {};
   for (let hash in posts) {
-    let frontmatter = {
-      ...posts[hash],
-    };
-    await zipPost(frontmatter);
+    fullPosts[hash] = usePost({ tag, hash }).post;
+    await zipPost({ ...fullPosts[hash] });
   }
+
   await downloadZip({ title: `#${tag}` });
   return true;
 }

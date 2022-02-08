@@ -133,26 +133,21 @@ export async function addPost(tag = "posts", post) {
  */
 
 export async function downloadPost(post) {
-  post = ref(post);
-  let postData = {
-    ...post.value.data,
-  };
-
-  let { title } = postData;
+  let { title } = post;
 
   const { zipPost, addFile, downloadZip } = useZip();
 
   let singleFile = false;
 
-  if (title && !postData.raw) {
-    await zipPost(postData);
+  if (title && !post.raw) {
+    await zipPost({ ...post });
   } else {
     title = "file";
     singleFile = true;
-    const hash = await hashText(postData.raw);
+    const hash = await hashText(post.raw);
     await addFile({
       title: safeHash(hash),
-      file: postData.raw,
+      file: post.raw,
     });
   }
 

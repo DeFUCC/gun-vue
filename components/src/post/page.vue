@@ -30,10 +30,10 @@ const { post, download, downloading } = usePost({ hash: props.hash })
 
   .flex.px-2.w-full.flex-wrap(:style="{ backgroundColor: colorDeep + '20' }")
     util-share
-    //- button.button.m-2.flex.items-center(@click="download()")
-    //-   la-file-download(v-if="!downloading")
-    //-   la-redo-alt.animate-spin(v-else)
-    //-   .ml-2 Download
+    button.button.m-2.flex.items-center(@click="download()")
+      la-file-download(v-if="!downloading")
+      la-redo-alt.animate-spin(v-else)
+      .ml-2 Download
     .flex-1 
 
     post-action-update(:hash="hash" )
