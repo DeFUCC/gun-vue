@@ -64,11 +64,6 @@ export function useSpace({
   });
 
   async function join() {
-    space.db
-      .get(user.pub)
-      .put(JSON.stringify({ x: mouse.normX, y: mouse.normY }), null, {
-        opt: { cert: room.certs.space },
-      });
     space.joined = true;
   }
 

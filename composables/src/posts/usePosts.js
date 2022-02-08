@@ -49,7 +49,6 @@ export function usePosts(tag = "posts") {
         posts[hash][author] = data;
       });
   } else {
-    console.log("here");
     gun
       .user(room.pub)
       .get("links")

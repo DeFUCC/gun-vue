@@ -29,7 +29,7 @@ const editName = ref(false)
 
 const colorDeep = useColor('deep')
 
-const bg = computed(() => useBackground(user.pub, 600))
+const bg = computed(() => useBackground(roomPub.value, 600))
 
 </script>
 
