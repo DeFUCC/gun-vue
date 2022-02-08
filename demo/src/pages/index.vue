@@ -18,11 +18,11 @@
 
         router-link.my-4.flex-1(to="/posts/")
           .text-2xl Posts
-          p Immutable public posts and tags 
+          p Immutable publications platform
 
         router-link.my-4.flex-1(to="/means")
-          .text-2xl Collaborative dictionaries
-          p 2D meeting spaces for everyone
+          .text-2xl Means
+          p  Collaborative dictionaries
 
       .my-4 We're building basic components and data structures as a foundation for various Vue 3 apps to built by anyone. Feel free to play with it and to make any contributions! 
       .flex.flex-wrap

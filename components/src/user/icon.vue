@@ -11,13 +11,13 @@ onMounted(() => {
 })
 const open = ref(false)
 
-defineEmits(['browse'])
+defineEmits(['room', 'user'])
 
 </script>
 
 <template lang="pug">
-.mx-2.text-xl.cursor-pointer
-  account-avatar(:size="size" :border="2" @click="open = true")
+.mx-2
+  account-avatar.cursor-pointer(:size="size" :border="2" @click="open = true")
   ui-layer(:open="open" @close="open = false")
-    user-home.max-w-600px(@browse="$emit('browse', $event)" @close="open = false")
+    user-home.max-w-600px(@room="$emit('room', $event)" @user="$emit('user', $event)" @close="open = false")
 </template>

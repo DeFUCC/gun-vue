@@ -1,6 +1,6 @@
 <script setup>
-import { useAccount } from '@composables';
-
+import { useAccount, useBackground } from '@composables';
+import { computed } from 'vue'
 const props = defineProps({
   pub: { type: String, default: '' }
 })
@@ -8,20 +8,23 @@ const props = defineProps({
 defineEmits(['browse', 'feed', 'post'])
 
 const { account } = useAccount(props.pub);
+
+const bg = computed(() => useBackground(props.pub, 600, 0.5, 'circles'))
+
 </script>
 
 <template lang='pug'>
 .flex.flex-col.rounded-3xl.overflow-hidden.shadow-xl
-  .p-4.flex.items-center(:style="{ backgroundColor: account.color }")
+  .p-4.flex.items-center.bg-cover.border-b-6(:style="{ borderColor: account.color, ...bg }")
     account-avatar(:pub="pub" :size="120")
     .flex.flex-col.ml-4
       .text-2xl.font-bold {{ account.profile?.name }}
       .mt-2 {{ account.lastSeen }}
-      link-mate(:pub="pub")
+      account-mate-button(:pub="pub")
     .flex-1
 
   account-profile.p-4(:pub="pub")
   .p-4
-    link-mates(:pub="pub" @browse="$emit('browse', $event)")
+    account-mate-list(:pub="pub" @browse="$emit('browse', $event)")
     account-stars(:pub="pub" @feed="$emit('feed', $event)")
 </template>

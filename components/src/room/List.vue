@@ -1,5 +1,5 @@
 <script setup>
-import { useRooms, useUser, SEA, regenerateCerts, gunAvatar } from '@composables';
+import { useRooms, useUser, SEA, generateRoomCerts, submitRoom, gunAvatar } from '@composables';
 import { reactive, ref } from 'vue'
 
 defineEmits(['browse'])
@@ -16,7 +16,7 @@ const create = reactive({
 async function genPair() {
   let pair = await SEA.pair()
   create.pair = pair
-  create.certs = await regenerateCerts(pair)
+  create.certs = await generateRoomCerts(pair)
 }
 
 function reset() {
@@ -42,7 +42,15 @@ function reset() {
       style="flex: 1 1 200px"
       v-for="(authors, pub) in rooms" :key="pub" 
       :pub="pub"
-      :authors="authors"
       @click="$emit('browse', pub)"
-      ) 
+      )
+      .p-4.flex.flex-wrap.gap-1
+        button.button(@click.stop.prevent="submitRoom(pub)" v-if="user.pub")
+          la-heart-solid(v-if="authors[user.pub]")
+          la-heart(v-else)
+        transition-group(name="fade")
+          account-badge.rounded-full.shadow-md(
+            v-for="(status, author) in authors" :key="author"
+            :pub="author" :showName="false" v-show="status"
+            ) {{ status !== true ? status : '' }}
 </template> 

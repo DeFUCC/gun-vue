@@ -11,7 +11,7 @@ const { user } = useUser()
 <template lang="pug">
 router-link.fixed.top-0.left-0.z-1000(to="/")
   img.w-24.transition-all.duration-500.ease-in-out(src="/gun-vue-logo.svg")
-.min-h-8vh.flex.flex-wrap.items-center.p-2.bg-light-900.shadow-md.z-400.sticky.w-full.border-b-2.bg-cover(
+.min-h-8vh.flex.flex-wrap.items-center.gap-2.p-2.bg-light-900.shadow-md.z-400.sticky.w-full.border-b-2.bg-cover.top-0(
   :style="{ borderColor: user.color, backgroundImage: `url(${gunAvatar({ pub: room.pub, draw: 'squares', reflect: false, size: 1200 })})` }"
 
   )
@@ -22,7 +22,9 @@ router-link.fixed.top-0.left-0.z-1000(to="/")
     ) {{ link }}
   .flex-1
   room-icon
-  user-icon(@browse="$router.push(`/users/${$event}`)")
+  user-icon(
+    @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
+    )
 </template>
 
 <style lang="postcss" scoped>

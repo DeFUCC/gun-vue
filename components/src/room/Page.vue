@@ -1,5 +1,5 @@
 <script setup>
-import { useRoom, rootRoom, useColor, useUser, gunAvatar, useRoomProfile } from '@composables';
+import { useRoom, rootRoom, useColor, useUser, useBackground, useRoomProfile } from '@composables';
 import { ref, computed } from 'vue'
 
 const props = defineProps({
@@ -29,18 +29,17 @@ const editName = ref(false)
 
 const colorDeep = useColor('deep')
 
-const bg = computed(() => {
-  return { backgroundImage: `url(${gunAvatar({ pub: roomPub.value, draw: 'squares', reflect: false, size: 600 })})` }
-})
+const bg = computed(() => useBackground(user.pub, 600))
+
 </script>
 
 <template lang='pug'>
-.px-8.py-20.bg-cover.relative.flex.flex-col.items-center(:style="{ ...bg }")
-  .flex.flex-col.items-center.bg-light-100.bg-opacity-20.p-8.rounded-4xl.shadow-xl.backdrop-blur-md.backdrop-filter
+.pt-42.pb-2.px-2.md_px-8.md_pb-8.bg-cover.relative.flex.flex-col.items-center(:style="{ ...bg }")
+  .flex.flex-col.items-start.bg-light-100.bg-opacity-20.p-6.md_p-12.rounded-4xl.shadow-xl.backdrop-blur-md.backdrop-filter
     .flex.flex-col.mb-4
       .flex.items-center
         .text-2xl.font-bold.break-all {{ profile.name || roomPub.substring(0, 12) }}
-        la-pen.ml-2.cursor-pointer(@click="name = profile.name; editName = true" v-if="user.pub == room.host && !editName")
+        la-pen.ml-2.cursor-pointer(@click="name = profile.name; editName = true" v-if="user.pub == room.host && pub == room.pub && !editName")
         la-times.ml-2.cursor-pointer(v-if="editName" @click="editName = false")
       input.my-2.p-2.shadow-lg.rounded-lg(v-if="user.pub == room.host && editName" type="text" v-model="name" @keyup.escape="editName = false" @keyup.enter="updateRoomProfile('name', name); editName = null")
     account-badge(:pub="room.host")

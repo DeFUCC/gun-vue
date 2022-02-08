@@ -12,8 +12,8 @@ export { default as AccountStars } from "./account/Stars.vue";
 
 // LINKs
 
-export { default as LinkMate } from "./link/Mate.vue";
-export { default as LinkMates } from "./link/Mates.vue";
+export { default as AccountMateButton } from "./account/mate/Button.vue";
+export { default as AccountMateList } from "./account/mate/List.vue";
 
 // USER
 

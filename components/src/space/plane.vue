@@ -1,5 +1,5 @@
 <script setup>
-import { useSpace, useUser, useColor, gunAvatar, room } from '@composables'
+import { useSpace, useUser, useColor, gunAvatar, room, useBackground } from '@composables'
 import { ref, computed } from 'vue'
 
 const props = defineProps({
@@ -19,9 +19,7 @@ const selected = ref();
 
 const enter = ref(false)
 
-const bg = computed(() => {
-  return { backgroundImage: `url(${gunAvatar({ pub: room.pub, draw: 'squares', reflect: false, size: 1000 })})` }
-})
+const bg = computed(() => useBackground(room.pub, 1000))
 
 </script>
 

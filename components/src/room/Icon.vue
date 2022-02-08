@@ -14,9 +14,9 @@ const colorDeep = useColor('deep')
 
 <template lang="pug">
 .mx-2
-  button.button(@click="open = true" :style="{ backgroundColor: !room.isRoot ? colorDeep.hex(room.pub) : 'gray' }")
-    la-home.text-xl
-    .ml-2(v-if="profile.name") {{ profile.name.substring(0, 12) }}
+  button.button(@click="open = true" :style="{ backgroundColor: !room.isRoot ? colorDeep.hex(room.pub) : '#ddd' }")
+    la-home.text-lg
+    .ml-2.text-sm(v-if="profile.name") {{ profile.name.substring(0, 12) }}
   ui-layer.break-all(:open="open" :closeButton="false" @close="open = false")
     room-page
       

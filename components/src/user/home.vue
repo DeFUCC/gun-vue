@@ -1,7 +1,8 @@
 <script setup>
+import { computed, ref } from 'vue'
 import { useUser } from '@composables';
 
-const emit = defineEmits(['browse', 'close'])
+const emit = defineEmits(['user', 'room', 'close'])
 
 const { user } = useUser()
 
@@ -13,14 +14,20 @@ function isSafe() {
 
 <template lang='pug'>
 .flex.flex-col.items-center.w-full
-  user-login(v-if="!user.is")
+  ui-layer(:open="user.is && !user.safe?.saved" closeButton @close="isSafe()")
+    user-credentials(@close="isSafe()")
 
+  user-login(v-if="!user.is")
   .flex.flex-col(v-else)
     user-panel(@browse="$emit('browse', $event); $emit('close')")
     .p-4
       user-profile
-      link-mates(:pub="user.pub"  @browse="$emit('browse', $event)")
-      button.button.my-4(@click="$emit('browse', user.pub)") Go to my page
-    ui-layer(:open="user.is && !user.safe?.saved" closeButton @close="isSafe()")
-      user-credentials(@close="isSafe()")
+      user-rooms(@browse="$emit('room', $event)")
+      account-mate-list(:pub="user.pub"  @browse="$emit('user', $event)")
+    button.p-4.m-4.rounded-xl.font-bold.text-lg.shadow-md(
+      @click="$emit('user', user.pub)"
+      :style="{ backgroundColor: user.color }"
+    ) Go to my page
+
+
 </template>

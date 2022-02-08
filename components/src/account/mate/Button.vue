@@ -14,8 +14,9 @@ const { emoji, isMate, toggleMate } = useMate(props.pub)
 <template lang="pug">
 .flex.items-center(v-if="user.is && user.pub != pub")
   button.button.text-3xl(@click="toggleMate()")
+
+    .ml-1.p-2(v-if="isMate") {{ isMate }}
+    input.rounded-xl.w-3ch.p-2.rounded-lg.shadow-inner(v-if="!isMate" type="text" v-model="emoji" placeholder="" @click.stop.prevent)
     la-plus(v-if="!isMate")
     la-times(v-else)
-    .ml-1(v-if="isMate") {{ isMate }}
-    input.w-2ch.ml-2.p-1.rounded-lg.shadow-inner(v-if="!isMate" type="text" v-model="emoji" placeholder="" @click.stop.prevent)
 </template>

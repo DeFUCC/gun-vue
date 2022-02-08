@@ -120,29 +120,28 @@ export function updateRoomProfile(field, content) {
 
 export async function createRoom({ pair, certs, name } = {}) {
   if (!pair) pair = await SEA.pair();
-  if (!certs) certs = await regenerateCerts(pair);
+  if (!certs) certs = await generateRoomCerts(pair);
   addPersonal({ tag: "rooms", key: pair.pub, text: true });
   const gun = useGun();
   const roomDb = gun.user(pair.pub);
   roomDb
-    .get("profile")
-    .put({ name }, null, { opt: { cert: certs.profile } })
-    .back()
     .get("certs")
     .put(certs, null, { opt: { cert: certs.certs } })
     .back()
     .get("host")
     .put(user.pub, null, { opt: { cert: certs.host } });
 
+  if (name) {
+    roomDb.get("profile").put({ name }, null, { opt: { cert: certs.profile } });
+  }
+
   const enc = await SEA.encrypt(pair, gun.user()._.sea);
   gun.user().get("safe").get("rooms").get(pair.pub).put(enc);
-  console.log(enc);
   let dec = await SEA.decrypt(enc, gun.user()._.sea);
-  console.log(dec);
   // enterRoom(pair.pub);
 }
 
-export async function regenerateCerts(pair) {
+export async function generateRoomCerts(pair) {
   return await generateCerts({
     pair,
     list: [
@@ -155,7 +154,7 @@ export async function regenerateCerts(pair) {
   });
 }
 
-window.regenerateCerts = regenerateCerts;
+window.generateRoomCerts = generateRoomCerts;
 
 export async function submitRoom(pub) {
   const gun = useGun();
