@@ -79,6 +79,6 @@ const { post, download, downloading } = usePost({ hash: props.hash })
           v-html="md.render(post?.text)")
       .mt-2.mb-4.z-20.mx-4(style="flex: 1 1 400px") 
 
-        post-list(:tag="hash" v-if="user.pub" :key="tag" :header="false" @browse="$emit('browse', $event)")
+        post-list(:tag="hash" :key="tag" :header="false" @browse="$emit('browse', $event)")
 
 </template>
