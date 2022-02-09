@@ -30,7 +30,8 @@
     "gun-avatar": "1.6.0",
     "jsqr": "^1.4.0",
     "simplemde": "^1.11.2",
-    "vue": "^3.2.30"
+    "vue": "^3.2.30",
+    "url-regex": "^5.0.0"
   },
   "peerDependencies": {
     "vue": "3.x"

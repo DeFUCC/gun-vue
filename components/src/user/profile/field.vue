@@ -1,6 +1,7 @@
 <script setup>
 import { updateProfile } from '@composables'
 import { ref } from 'vue'
+import urlRegex from 'url-regex'
 
 const props = defineProps({
   field: { type: String, default: '' },
@@ -14,6 +15,10 @@ function update() {
   edit.value = false;
   text.value = ''
 }
+
+function isLink(text) {
+  return urlRegex({ exact: true }).test(text)
+}
 </script>
 
 <template lang='pug'>
@@ -21,7 +26,8 @@ function update() {
   .mr-2.font-bold {{ field }}
   .flex.items-center
     .text-md.flex.items-center(v-if="!edit") 
-      .ml-1 {{ content }}
+      .p-0(v-if="!isLink(content)") {{ content }}
+      a.font-bold.underline(v-else :href="content" target="_blank") {{ content }} 
       button.p-1(@click="edit = true")
         la-pen
     .p-1.flex.items-center.flex-1(v-else)

@@ -1,6 +1,13 @@
 <script setup>
-import { routes } from '../pages/routes'
+
 import { computed } from 'vue'
+
+const routes = {
+  "/space/": "Space",
+  "/posts/": "Posts",
+  "/users/": "Users",
+  "/rooms/": "Rooms",
+};
 
 import { useUser, currentRoom, useBackground } from '@composables';
 
@@ -11,7 +18,7 @@ const bg = computed(() => useBackground(currentRoom.pub, 1200))
 </script>
 
 <template lang="pug">
-router-link.fixed.top-0.left-0.z-1000(to="/")
+a.fixed.top-0.left-0.z-1000(href="/#")
   img.w-24.transition-all.duration-500.ease-in-out(src="/gun-vue-logo.svg")
 .min-h-8vh.flex.flex-wrap.items-center.gap-2.p-2.bg-light-900.shadow-md.z-400.sticky.w-full.border-b-2.bg-cover.top-0(
   :style="{ borderColor: user.color, ...bg }"

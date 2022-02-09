@@ -20,6 +20,7 @@ importers:
       simplemde: ^1.11.2
       unplugin-icons: ^0.13.1
       unplugin-vue-components: ^0.17.18
+      url-regex: ^5.0.0
       vite: ^2.7.13
       vite-plugin-windicss: ^1.7.0
       vue: ^3.2.30
@@ -31,6 +32,7 @@ importers:
       gun-avatar: 1.6.0
       jsqr: 1.4.0
       simplemde: 1.11.2
+      url-regex: 5.0.0
       vue: 3.2.30
     devDependencies:
       '@vitejs/plugin-vue': 2.1.0_vite@2.7.13+vue@3.2.30
@@ -3577,6 +3579,11 @@ packages:
       side-channel: 1.0.4
     dev: true
 
+  /ip-regex/4.3.0:
+    resolution: {integrity: sha512-B9ZWJxHHOHUhUjCPrMpLD4xEq35bUTClHM1S6CBU5ixQnkZmwipwgc96vAd7AAGM9TGHvJR+Uss+/Ak6UphK+Q==}
+    engines: {node: '>=8'}
+    dev: false
+
   /ip/1.1.5:
     resolution: {integrity: sha1-vd7XARQpCCjAoDnnLvJfWq7ENUo=}
     dev: false
@@ -5397,6 +5404,11 @@ packages:
     resolution: {integrity: sha512-pkY1fj1cKHb2seWDy0B16HeWyczlJA9/WW3u3c4z/NiWDsO3DOU5D7nhTLE9CF0yXv/QZFY7sEJmj24dK+Rrqw==}
     dev: false
 
+  /tlds/1.229.0:
+    resolution: {integrity: sha512-yZCodKInN+BPGUyYgKHsodJ2FVWRjW/fYx6rKCAT/e24BBJd8FcxWgKD0aBgk+7uQ/88h/fmRTd4Nvzxf3313A==}
+    hasBin: true
+    dev: false
+
   /tmp/0.0.33:
     resolution: {integrity: sha512-jRCJlojKnZ3addtTOjdIqoRuPEKBvNXcGYqzO6zWZX8KfKEpnGY5jfggJQ3EjKuu8D4bJRr0y+cYJFmYbImXGw==}
     engines: {node: '>=0.6.0'}
@@ -5715,6 +5727,14 @@ packages:
     dependencies:
       punycode: 2.1.1
     dev: true
+
+  /url-regex/5.0.0:
+    resolution: {integrity: sha512-O08GjTiAFNsSlrUWfqF1jH0H1W3m35ZyadHrGv5krdnmPPoxP27oDTqux/579PtaroiSGm5yma6KT1mHFH6Y/g==}
+    engines: {node: '>=8'}
+    dependencies:
+      ip-regex: 4.3.0
+      tlds: 1.229.0
+    dev: false
 
   /util-deprecate/1.0.2:
     resolution: {integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=}
