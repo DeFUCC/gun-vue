@@ -26,5 +26,5 @@ const bg = computed(() => useBackground(props.pub, 600, 0.5, 'circles'))
   account-profile.p-4(:pub="pub")
   .p-4
     account-mate-list(:pub="pub" @browse="$emit('browse', $event)")
-    account-stars(:pub="pub" @feed="$emit('feed', $event)")
+    //- account-stars(:pub="pub" @feed="$emit('feed', $event)")
 </template>

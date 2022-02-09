@@ -1,12 +1,11 @@
 <script setup>
-import { useRoom, useColor, useUser, gunAvatar } from '@composables';
+import { useRoom, useColor, currentRoom, gunAvatar } from '@composables';
 import { ref } from 'vue'
 
-defineEmits(['browse'])
+defineEmits(['room'])
 
 const open = ref(false)
 
-const { room, profile } = useRoom()
 
 const colorDeep = useColor('deep')
 
@@ -14,11 +13,14 @@ const colorDeep = useColor('deep')
 
 <template lang="pug">
 .mx-2
-  button.button(@click="open = true" :style="{ backgroundColor: !room.isRoot ? colorDeep.hex(room.pub) : '#ddd' }")
+  button.button(
+    @click="open = true" 
+    :style="{ backgroundColor: !currentRoom.isRoot ? colorDeep.hex(currentRoom.pub) : '#ddd' }"
+    ) 
     la-home.text-lg
-    .ml-2.text-sm(v-if="profile.name") {{ profile.name.substring(0, 12) }}
+    .ml-2.text-sm(v-if="currentRoom?.profile?.name") {{ currentRoom.profile.name.substring(0, 12) }}
   ui-layer.break-all(:open="open" :closeButton="false" @close="open = false")
-    room-page
+    room-page(@room="$emit('room', $event)" :key="currentRoom.pub")
       
 
 </template>

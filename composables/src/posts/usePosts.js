@@ -56,16 +56,16 @@ export function usePosts(tag = "posts") {
       .on(function (data, key) {
         let index = key.indexOf(tag);
         if (index == -1) return;
-        let toHash;
+        let hash;
         if (index == 0) {
-          toHash = key.slice(45, 89);
+          hash = key.slice(45, 89);
         } else {
-          toHash = key.slice(0, 44);
+          hash = key.slice(0, 44);
         }
         let author = key.slice(-87);
 
-        posts[toHash] = posts[toHash] || {};
-        posts[toHash][author] = data;
+        posts[hash] = posts[hash] || {};
+        posts[hash][author] = data;
       });
   }
 

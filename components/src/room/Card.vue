@@ -1,5 +1,5 @@
 <script setup>
-import { gunAvatar, enterRoom, submitRoom, useUser, useRoomProfile, useBackground } from '@composables'
+import { useUser, useRoom, useBackground } from '@composables'
 import { computed } from 'vue';
 const props = defineProps({
   pub: { type: String },
@@ -7,20 +7,21 @@ const props = defineProps({
 
 })
 
-
-
 const { user } = useUser()
 
-const profile = useRoomProfile(props.pub)
+const { room } = useRoom(props.pub)
+
+const bg = computed(() => useBackground(props.pub, 400))
 
 
 </script>
 
 <template lang='pug'>
 .rounded-xl.shadow-md.text-sm.bg-cover.cursor-pointer.hover_shadow-lg.transition.duration-300ms.filter.brightness-95.hover_brightness-100.flex.flex-wrap(
-  :style="{ ...useBackground(pub, 400) }"
+  :style="{ ...bg }"
 ) 
-  .p-4.font-bold.text-xl {{ profile.name }}
+  .p-4.font-bold.text-xl.flex.flex-wrap.items-center {{ room.profile.name }}
+    account-avatar.m-2(v-for="(enc, host) in room.hosts" :key="host" :pub="host" :size="20")
   .bg-light-200.bg-opacity-40.backdrop-filter.backdrop-blur-md.flex.flex-wrap.relative.flex.gap-2.items-center(
     style="flex: 1 1 140px"
   )

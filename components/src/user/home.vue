@@ -22,8 +22,8 @@ function isSafe() {
     user-panel(@browse="$emit('browse', $event); $emit('close')")
     .p-4
       user-profile
-      user-rooms(@browse="$emit('room', $event)")
       account-mate-list(:pub="user.pub"  @browse="$emit('user', $event)")
+      user-rooms(@browse="$emit('room', $event)")
     button.p-4.m-4.rounded-xl.font-bold.text-lg.shadow-md(
       @click="$emit('user', user.pub)"
       :style="{ backgroundColor: user.color }"

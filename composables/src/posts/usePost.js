@@ -6,7 +6,7 @@
 import { computed, reactive, ref } from "vue";
 import ms from "ms";
 
-import { useGun, gun, useRoom, useUser } from "..";
+import { useGun, gun, useRoom, currentRoom, useUser } from "..";
 import { useZip } from "../file/";
 import { hashObj, hashText, safeHash } from "../crypto";
 
@@ -98,7 +98,6 @@ export function usePost({ tag = "posts", hash = "" } = {}) {
  */
 
 export async function addPost(tag = "posts", post) {
-  const { room } = useRoom();
   const { user } = useUser();
   const { icon, cover, text } = post;
   post.icon = await saveToHash("icons", post.icon);
@@ -108,16 +107,16 @@ export async function addPost(tag = "posts", post) {
   gun.get(`#posts`).get(`${hash}`).put(hashed);
   if (tag == "posts") {
     gun
-      .user(room.pub)
+      .user(currentRoom.pub)
       .get(tag)
       .get(`${hash}@${user.pub}`)
-      .put(true, null, { opt: { cert: room.certs.posts } });
+      .put(true, null, { opt: { cert: currentRoom.certs.posts } });
   } else {
     gun
-      .user(room.pub)
+      .user(currentRoom.pub)
       .get("links")
       .get(`${tag}:${hash}@${user.pub}`)
-      .put(true, null, { opt: { cert: room.certs.links } });
+      .put(true, null, { opt: { cert: currentRoom.certs.links } });
   }
 }
 

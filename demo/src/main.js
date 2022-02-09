@@ -23,11 +23,11 @@ const app = createApp(App);
 
 app.use(router).mount("#app");
 
-import { room } from "@composables";
+import { currentRoom } from "@composables";
 
 router.beforeEach((to, from, next) => {
-  if (!room.isRoot && !to.query?.room) {
-    next({ ...to, query: { room: room.pub } });
+  if (!currentRoom.isRoot && !to.query?.room) {
+    next({ ...to, query: { room: currentRoom.pub } });
   } else {
     next();
   }

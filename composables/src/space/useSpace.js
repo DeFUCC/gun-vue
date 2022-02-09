@@ -8,7 +8,7 @@ import { useSvgMouse } from "../ui";
 import { user, useAccount } from "../user";
 import { hashText } from "../crypto";
 import { computed, ref, reactive, watchEffect } from "vue";
-import { getFirstEmoji, useRoom } from "..";
+import { getFirstEmoji, useRoom, currentRoom } from "..";
 import { getArrow } from "curved-arrows";
 import { useElementBounding } from "@vueuse/core";
 
@@ -46,16 +46,14 @@ export function useSpace({
 
   const gun = useGun();
 
-  const { room } = useRoom();
-
   const space = reactive({
     title: spaceName,
     joined: false,
     db: computed(() => {
-      return gun.user(room.pub).get(spaceName);
+      return gun.user(currentRoom.pub).get(spaceName);
     }),
     cert: computed(() => {
-      return room.certs.space;
+      return currentRoom.certs.space;
     }),
     my: {
       mouse: computed(() => ({ x: mouse.normX, y: mouse.normY })),
@@ -72,7 +70,9 @@ export function useSpace({
     if (!space.joined) join();
     space.db
       .get(user.pub)
-      .put(JSON.stringify({ x, y }), null, { opt: { cert: room.certs.space } });
+      .put(JSON.stringify({ x, y }), null, {
+        opt: { cert: currentRoom.certs.space },
+      });
   }
 
   const allGuests = reactive({});
@@ -204,7 +204,6 @@ let startTime = Date.now();
 
 export function useGuests({ timeout = 10000 } = {}) {
   const gun = useGun();
-  const { room } = useRoom();
   startTime = Date.now();
 
   const guests = reactive({});
@@ -217,7 +216,7 @@ export function useGuests({ timeout = 10000 } = {}) {
   });
 
   gun
-    .user(room.pub)
+    .user(currentRoom.pub)
     .get("space")
     .map()
     .once((pos, pub) => {

@@ -3,9 +3,9 @@
  * @module useMates
  */
 
-import { reactive, watch, ref, computed } from 'vue'
-import { useGun, user } from '..'
-import GB from 'grapheme-breaker-mjs'
+import { reactive, watch, ref, computed } from "vue";
+import { useGun, user } from "..";
+import GB from "grapheme-breaker-mjs";
 
 /**
  * @typedef {reactive} useMates
@@ -19,36 +19,36 @@ import GB from 'grapheme-breaker-mjs'
 
 export function useMates(pub) {
   if (!pub) {
-    pub = user.pub
+    pub = user.pub;
   }
-  const mates = reactive({})
-  const gun = useGun()
+  const mates = reactive({});
+  const gun = useGun();
   gun
     .user(pub)
-    .get('mates')
+    .get("mates")
     .map()
     .once((text, matePub) => {
       if (text) {
         mates[matePub] = {
           emoji: getFirstEmoji(text),
           text,
-        }
+        };
         gun
           .user(matePub)
-          .get('mates')
+          .get("mates")
           .get(pub)
           .on((d) => {
             if (d) {
-              mates[matePub].back = getFirstEmoji(d)
+              mates[matePub].back = getFirstEmoji(d);
             } else {
-              delete mates[matePub].back
+              delete mates[matePub].back;
             }
-          })
+          });
       } else {
-        delete mates[matePub]
+        delete mates[matePub];
       }
-    })
-  return mates
+    });
+  return mates;
 }
 
 /**
@@ -57,13 +57,13 @@ export function useMates(pub) {
  * @returns {String} Emoji
  */
 
-export function getFirstEmoji(text) {
-  if (!text || typeof text != 'string') return
-  let em = GB.break(text)[0]
+export function getFirstEmoji(text, def = "👋") {
+  if (!text || typeof text != "string") return;
+  let em = GB.break(text)[0];
   if (isEmoji(em)) {
-    return em
+    return em;
   } else {
-    return '👋'
+    return def;
   }
 }
 
@@ -74,7 +74,7 @@ export function getFirstEmoji(text) {
  */
 
 export function isEmoji(text) {
-  return /\p{Extended_Pictographic}/u.test(text)
+  return /\p{Extended_Pictographic}/u.test(text);
 }
 
 /**
@@ -91,17 +91,17 @@ export function isEmoji(text) {
  */
 
 export function useMate(pub) {
-  const emoji = ref('👋')
-  const isMate = ref(false)
+  const emoji = ref("👋");
+  const isMate = ref(false);
 
-  const dbMate = user.db.get('mates').get(pub)
+  const dbMate = user.db.get("mates").get(pub);
 
   dbMate.on((d) => {
-    isMate.value = getFirstEmoji(d)
-  })
+    isMate.value = getFirstEmoji(d);
+  });
 
   function toggleMate() {
-    dbMate.put(isMate.value ? false : getFirstEmoji(emoji.value))
+    dbMate.put(isMate.value ? false : getFirstEmoji(emoji.value));
   }
-  return { emoji, isMate, toggleMate }
+  return { emoji, isMate, toggleMate };
 }

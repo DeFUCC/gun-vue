@@ -1,6 +1,6 @@
 <script setup>
-import { useRooms, useUser, SEA, generateRoomCerts, submitRoom, gunAvatar } from '@composables';
-import { reactive, ref } from 'vue'
+import { useRooms, useUser, SEA, generateRoomCerts, submitRoom, useBackground } from '@composables';
+import { reactive, ref, computed } from 'vue'
 
 defineEmits(['browse'])
 
@@ -25,18 +25,12 @@ function reset() {
   create.name = ''
 }
 
+const bg = computed(() => useBackground(create.pair?.pub, 620))
+
 </script>
 
 <template lang='pug'>
 .flex.flex-col.mb-4 
-  .flex.flex-col.bg-cover.rounded-2xl.p-2(v-if="user.pub" :style="{ backgroundImage: `url(${create.pair && gunAvatar({ pub: create.pair.pub, draw: 'squares', reflect: false, size: 600 })})` }")
-    button.button.m-2(@click="genPair()" ) Generate room
-    .text-xs.p-2 {{ create.pair }}
-    room-certs(:certs="create.certs" v-if="create.certs")
-    input.p-2.m-2.rounded-xl(type="text" v-if="create.pair" v-model="create.name" placeholder="New room name")
-    .flex
-      button.button.m-2.flex-1(@click="createRoom(create); reset()" v-if="create.pair && create.name" ) Add room
-      button.button.m-2(@click="reset()" v-if="create.pair" ) Reset
   .flex.flex-wrap.gap-4.my-4
     room-card( 
       style="flex: 1 1 200px"
@@ -53,4 +47,5 @@ function reset() {
             v-for="(status, author) in authors" :key="author"
             :pub="author" :showName="false" v-show="status"
             ) {{ status !== true ? status : '' }}
+  room-form(@room="$emit('browse', $event)")
 </template> 

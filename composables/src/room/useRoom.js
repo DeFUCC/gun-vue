@@ -16,12 +16,56 @@ import {
 import { rootRoom } from "./rootRoom";
 import { reactive, computed, ref, watchEffect } from "vue";
 
-export const room = reactive({
+export const privateCerts = [
+  { tag: "profile" },
+  { tag: "certs" },
+  { tag: "hosts" },
+];
+
+export const publicCerts = [
+  { tag: "rooms", personal: true },
+  { tag: "space", personal: true },
+  { tag: "posts", personal: true },
+  { tag: "links", personal: true },
+];
+
+export const currentRoom = reactive({
   pub: rootRoom.pub,
-  initiated: false,
-  isRoot: computed(() => room.pub == rootRoom.pub),
-  host: "",
+  isRoot: computed(() => currentRoom.pub == rootRoom.pub),
+  hosts: {},
   certs: {},
+  profile: {},
+});
+
+watchEffect(() => {
+  const gun = useGun();
+  gun
+    .user(currentRoom.pub)
+    .get("profile")
+    .map()
+    .on((d, k) => {
+      currentRoom.profile[k] = d;
+    });
+
+  if (currentRoom.pub == rootRoom.pub) {
+    currentRoom.hosts = rootRoom.hosts;
+    currentRoom.certs = rootRoom.certs;
+  } else {
+    currentRoom.certs = {};
+    gun
+      .user(currentRoom.pub)
+      .get("hosts")
+      .map()
+      .once((d, k) => {
+        currentRoom.hosts[k] = d;
+      })
+      .back()
+      .get("certs")
+      .map()
+      .once((d, k) => {
+        currentRoom.certs[k] = d;
+      });
+  }
 });
 
 /**
@@ -29,47 +73,39 @@ export const room = reactive({
  * @returns {useRoom}
  */
 
-export function useRoom(pub) {
-  const profile = computed(() => {
-    return listRoomItems("profile", room.pub);
+export function useRoom(pub = currentRoom.pub) {
+  const room = reactive({
+    pub,
+    isRoot: pub != rootRoom.pub,
+    hosts: {},
+    certs: {},
+    profile: {},
   });
 
-  if (!room.inititated) {
-    watchEffect(() => {
-      if (room.pub == rootRoom.pub) {
-        room.host = rootRoom.host;
-      } else {
-        const gun = useGun();
-        gun
-          .user(room.pub)
-          .get("host")
-          .once((d, k) => {
-            room.host = d;
-          });
-      }
+  const gun = useGun();
+  gun
+    .user(pub)
+    .get("profile")
+    .map()
+    .on((d, k) => {
+      room.profile[k] = d;
     });
-
-    watchEffect(() => {
-      if (room.pub == rootRoom.pub) {
-        room.certs = rootRoom.certs;
-      } else {
-        room.certs = {};
-        const gun = useGun();
-        gun
-          .user(room.pub)
-          .get("certs")
-          .map()
-          .once((d, k) => {
-            room.certs[k] = d;
-          });
-      }
+  gun
+    .user(pub)
+    .get("hosts")
+    .map()
+    .once((d, k) => {
+      room.hosts[k] = d;
+    })
+    .back()
+    .get("certs")
+    .map()
+    .once((d, k) => {
+      room.certs[k] = d;
     });
-    room.initiated = true;
-  }
 
   return {
     room,
-    profile,
     submitRoom,
     enterRoom,
     createRoom,
@@ -80,22 +116,9 @@ export function useRoom(pub) {
 
 export function useRooms() {
   const rooms = computed(() => {
-    return listPersonal("rooms", room.pub);
+    return listPersonal("rooms", currentRoom.pub);
   });
   return { rooms, createRoom };
-}
-
-export function useRoomProfile(pub = room.pub) {
-  const profile = reactive({});
-  const gun = useGun();
-  gun
-    .user(pub)
-    .get("profile")
-    .map()
-    .on((d, k) => {
-      profile[k] = d;
-    });
-  return profile;
 }
 
 /**
@@ -106,9 +129,9 @@ export function useRoomProfile(pub = room.pub) {
 
 export function updateRoomProfile(field, content) {
   const gun = useGun();
-  let certificate = room.certs.profile;
+  let certificate = currentRoom.certs.profile;
   gun
-    .user(room.pub)
+    .user(currentRoom.pub)
     .get("profile")
     .get(field)
     .put(content, null, { opt: { cert: certificate } });
@@ -119,42 +142,48 @@ export function updateRoomProfile(field, content) {
  */
 
 export async function createRoom({ pair, certs, name } = {}) {
+  const { user } = useUser();
   if (!pair) pair = await SEA.pair();
   if (!certs) certs = await generateRoomCerts(pair);
-  addPersonal({ tag: "rooms", key: pair.pub, text: true });
+  const enc = await SEA.encrypt(pair, user.pair());
+  console.log(
+    { pub: pair.pub, hosts: { [user.pub]: enc }, certs: { ...certs } },
+    pair
+  );
   const gun = useGun();
+  gun.user().get("safe").get("rooms").get(pair.pub).put(enc);
+
+  gun
+    .user(currentRoom.pub)
+    .get("rooms")
+    .get(`${pair.pub}@${user.pub}`)
+    .put(true, null, { opt: { cert: currentRoom.certs.rooms } });
+
   const roomDb = gun.user(pair.pub);
   roomDb
     .get("certs")
     .put(certs, null, { opt: { cert: certs.certs } })
     .back()
-    .get("host")
-    .put(user.pub, null, { opt: { cert: certs.host } });
+    .get("hosts")
+    .get(user.pub)
+    .put(enc, null, { opt: { cert: certs.hosts } });
 
   if (name) {
     roomDb.get("profile").put({ name }, null, { opt: { cert: certs.profile } });
   }
 
-  const enc = await SEA.encrypt(pair, gun.user()._.sea);
-  gun.user().get("safe").get("rooms").get(pair.pub).put(enc);
-
-  let dec = await SEA.decrypt(enc, gun.user()._.sea);
-  console.log({ pub: dec.pub, host: user.pub, certs }, pair);
   // enterRoom(pair.pub);
 }
 
 export async function generateRoomCerts(pair) {
+  const { user } = useUser();
+  const privCerts = [];
+  for (let c in privateCerts) {
+    privCerts[c] = { ...privateCerts[c], users: [user.pub] };
+  }
   return await generateCerts({
     pair,
-    list: [
-      { tag: "rooms", personal: true },
-      { tag: "profile", users: [user.pub] },
-      { tag: "certs", users: [user.pub] },
-      { tag: "host", users: [user.pub] },
-      { tag: "space", personal: true },
-      { tag: "posts", personal: true },
-      { tag: "links", personal: true },
-    ],
+    list: [...privCerts, ...publicCerts],
   });
 }
 
@@ -163,11 +192,16 @@ window.generateRoomCerts = generateRoomCerts;
 export async function submitRoom(pub) {
   const gun = useGun();
   const already = await gun
-    .user(room.pub)
+    .user(currentRoom.pub)
     .get("rooms")
     .get(`${pub}@${user.pub}`)
     .then();
-  addPersonal({ tag: "rooms", key: pub, text: !already });
+
+  gun
+    .user(currentRoom.pub)
+    .get("rooms")
+    .get(`${pub}@${user.pub}`)
+    .put(!already, null, { opt: { cert: currentRoom.certs.rooms } });
 }
 
 /**
@@ -176,7 +210,7 @@ export async function submitRoom(pub) {
  */
 
 export function enterRoom(pub) {
-  room.pub = pub;
+  currentRoom.pub = pub;
 }
 
 /**
@@ -184,39 +218,19 @@ export function enterRoom(pub) {
  */
 
 export function leaveRoom() {
-  room.pub = rootRoom.pub;
-}
-
-/**
- * List room tag items
- * @param {String} tag path to list
- * @param {String} pub room public key
- * @returns {reactive}
- */
-
-export function listRoomItems(tag, pub = room.pub) {
-  const gun = useGun();
-  const items = reactive({});
-  gun
-    .user(pub)
-    .get(tag)
-    .map()
-    .on((d, k) => {
-      items[k] = d;
-    });
-  return items;
+  currentRoom.pub = rootRoom.pub;
 }
 
 export async function addPersonal({
   tag,
   key,
   text,
-  pub = room.pub,
+  pub = currentRoom.pub,
   cert,
 } = {}) {
   if (!cert) cert = await gun.user(pub).get("cert").get(tag).then();
   if (!cert) {
-    cert = room.certs?.[`${tag}`];
+    cert = currentRoom.certs?.[`${tag}`];
   }
   if (!cert && pub != user.pub) {
     console.log("No certificate found");
@@ -229,7 +243,7 @@ export async function addPersonal({
     .put(text, null, { opt: { cert } });
 }
 
-export function listPersonal(tag, pub = room.pub) {
+export function listPersonal(tag, pub = currentRoom.pub) {
   const gun = useGun();
   const records = reactive({});
   gun
@@ -244,7 +258,7 @@ export function listPersonal(tag, pub = room.pub) {
   return records;
 }
 
-export async function addHashedPersonal(tag, obj, pub = room.pub, cert) {
+export async function addHashedPersonal(tag, obj, pub = currentRoom.pub, cert) {
   if (!cert) cert = await gun.get(`~${pub}`).get("cert").get(tag).then();
   if (!cert && pub == rootRoom.pub) {
     cert = rootRoom.certs?.[`#${tag}`];
@@ -261,7 +275,7 @@ export async function addHashedPersonal(tag, obj, pub = room.pub, cert) {
     .put(hashed, null, { opt: { cert } });
 }
 
-export function getHashedPersonal(tag, hash, pub = room.pub) {
+export function getHashedPersonal(tag, hash, pub = currentRoom.pub) {
   const record = reactive({});
   gun
     .get(`~${pub}`)
