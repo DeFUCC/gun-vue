@@ -35,7 +35,7 @@ const bg = computed(() => useBackground(roomPub.value, 600))
     .flex.flex-col.mb-4
       .flex.items-center
         .text-2xl.font-bold.break-all {{ room.profile.name || roomPub.substring(0, 12) }}
-        la-pen.ml-2.cursor-pointer(@click="name = room.profile.name; editName = true" v-if="room.hosts[user.pub] && pub == room.pub && !editName")
+        la-pen.ml-2.cursor-pointer(@click="name = room.profile.name; editName = true" v-if="room.hosts[user.pub] && roomPub == currentRoom.pub && !editName")
         la-times.ml-2.cursor-pointer(v-if="editName" @click="editName = false")
       input.my-2.p-2.shadow-lg.rounded-lg(v-if="room.hosts[user.pub] && editName" type="text" v-model="name" @keyup.escape="editName = false" @keyup.enter="updateRoomProfile('name', name); editName = null")
     account-badge(v-for="(enc, host) in room.hosts" :key="host" :pub="host")
@@ -43,10 +43,10 @@ const bg = computed(() => useBackground(roomPub.value, 600))
     .text-sm.font-mono.my-4 {{ room.profile }}
     .flex.flex-wrap
       button.button(@click="enterRoom(roomPub)" v-if="currentRoom.pub !== roomPub && roomPub != rootRoom.pub")
-        la-door-closed
+        ion-enter-outline
         .ml-2 Enter
       button.button(@click="leaveRoom()" v-if="currentRoom.pub == roomPub && roomPub != rootRoom.pub")
-        la-door-open
+        ion-exit-outline
         .ml-2 Leave
 
 </template>

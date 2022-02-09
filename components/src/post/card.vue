@@ -13,12 +13,24 @@ const props = defineProps({
   tag: String,
 })
 
+function countAuthors(authors) {
+  let arr = []
+  for (let author in authors) {
+    if (authors[author]) {
+      arr.push(author)
+    }
+  }
+  return arr.length
+}
+
 const { post } = usePost({ hash: props.hash })
 
 </script>
 
 <template lang='pug'>
-.card(:style="{ backgroundImage: `url(${post?.cover || post?.raw})`, backgroundColor: colorDeep.hex(hash), paddingTop: post?.cover || post?.raw ? '140px' : '5px' }") 
+.card(
+  :style="{ backgroundImage: `url(${post?.cover || post?.raw})`, backgroundColor: colorDeep.hex(hash), paddingTop: post?.cover || post?.raw ? '140px' : '5px', opacity: countAuthors(authors) > 0 ? 1 : 0.1 }"
+  ) 
   .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-lg.rounded-xl.bg-light-100.bg-opacity-90.backdrop-blur-sm.backdrop-filter.shadow-md
     .p-0(style="flex: 1 1 40px" v-if="post?.icon" )
       img.w-20.max-h-20.rounded-full.m-2(:src="post.icon" width="40px")

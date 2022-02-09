@@ -14,6 +14,16 @@ const { posts, count, downloadPosts, downloading, uploadPosts } = usePosts(props
 
 const add = ref()
 
+function countAuthors(authors) {
+  let arr = []
+  for (let author in authors) {
+    if (authors[author]) {
+      arr.push(author)
+    }
+  }
+  return arr.length
+}
+
 </script>
 
 <template lang='pug'>
@@ -53,6 +63,7 @@ const add = ref()
     transition-group(name="list")
       post-card(
         style="flex: 1 1 220px"
+        :style="{ order: -countAuthors(authors) }"
         v-for="(authors, hash) in posts" 
         :key="hash" 
         :hash="hash"
@@ -60,6 +71,5 @@ const add = ref()
         :authors="authors"
         @click="emit('browse', hash)"
         )
-
 </template>
 
