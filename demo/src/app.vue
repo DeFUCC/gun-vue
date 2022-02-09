@@ -1,18 +1,18 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect } from "vue";
-import { useRoom, rootRoom } from "@composables";
-const { room } = useRoom()
+import { currentRoom, rootRoom } from "@composables";
+
 
 const router = useRouter()
 const route = useRoute();
 watchEffect(() => {
   if (route.query?.room) {
-    room.pub = route.query.room
+    currentRoom.pub = route.query.room
   }
 });
 
-watch(() => room.pub, (pub) => {
+watch(() => currentRoom.pub, (pub) => {
   if (pub == rootRoom.pub) {
     router.push({ path: route.path, query: {} })
   } else {
