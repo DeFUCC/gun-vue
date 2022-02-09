@@ -1,6 +1,8 @@
 <script setup>
 import { ref, watchEffect, computed } from 'vue'
-import { useColor, loadFromHash, usePost, useMd } from '@composables';
+import { useColor, useUser, usePost, useMd } from '@composables';
+
+const { user } = useUser()
 
 const md = useMd()
 
@@ -30,10 +32,10 @@ const { post, download, downloading } = usePost({ hash: props.hash })
 
   .flex.px-2.w-full.flex-wrap(:style="{ backgroundColor: colorDeep + '20' }")
     util-share
-    button.button.m-2.flex.items-center(@click="download()")
-      la-file-download(v-if="!downloading")
-      la-redo-alt.animate-spin(v-else)
-      .ml-2 Download
+    //- button.button.m-2.flex.items-center(@click="download()")
+    //-   la-file-download(v-if="!downloading")
+    //-   la-redo-alt.animate-spin(v-else)
+    //-   .ml-2 Download
     .flex-1 
 
     post-action-update(:hash="hash" )
@@ -77,6 +79,6 @@ const { post, download, downloading } = usePost({ hash: props.hash })
           v-html="md.render(post?.text)")
       .mt-2.mb-4.z-20.mx-4(style="flex: 1 1 400px") 
 
-        post-list(:tag="hash" :key="tag" :header="false" @browse="$emit('browse', $event)")
+        post-list(:tag="hash" v-if="user.pub" :key="tag" :header="false" @browse="$emit('browse', $event)")
 
 </template>

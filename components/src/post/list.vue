@@ -1,6 +1,8 @@
 <script setup>
-import { usePosts } from '@composables'
+import { usePosts, useUser } from '@composables'
 import { ref, computed } from 'vue'
+
+const { user } = useUser()
 
 const props = defineProps({
   tag: { type: String, default: 'posts' },
@@ -23,19 +25,20 @@ const add = ref()
   .p-2.flex.flex-wrap.z-300.text-sm.items-center.bg-light-700
     slot
     util-share(v-if="header")
-    button.button.p-4.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(title="Download feed" @click="downloadPosts()" v-if="count > 0")
-      la-file-download(v-if="!downloading")
-      la-redo-alt.animate-spin(v-else)
-      .ml-2.mr-1 Download
-    .flex-1
-    label.cursor-pointer.button.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(title="Upload feed" for="import-feed")
-      la-file-upload
-      .ml-2.mr-1 Upload
-    button.add.button.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(@click="add = !add")
-      transition(name="fade" mode="out-in")
-        la-plus(v-if="!add")
-        la-times(v-else)
-      .ml-2.mr-1 Add
+    .flex.flex-wrap.flex-1(v-if="user.pub")
+      button.button.p-4.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(title="Download feed" @click="downloadPosts()" v-if="count > 0")
+        la-file-download(v-if="!downloading")
+        la-redo-alt.animate-spin(v-else)
+        .ml-2.mr-1 Download
+      .flex-1
+      label.cursor-pointer.button.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(title="Upload feed" for="import-feed")
+        la-file-upload
+        .ml-2.mr-1 Upload
+      button.add.button.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(@click="add = !add")
+        transition(name="fade" mode="out-in")
+          la-plus(v-if="!add")
+          la-times(v-else)
+        .ml-2.mr-1 Add
     input#import-feed.hidden(
       tabindex="-1"
       type="file",

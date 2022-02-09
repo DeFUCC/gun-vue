@@ -6,9 +6,8 @@
 import { useGun } from "../gun";
 import { useSvgMouse } from "../ui";
 import { user, useAccount } from "../user";
-import { hashText } from "../crypto";
 import { computed, ref, reactive, watchEffect } from "vue";
-import { getFirstEmoji, useRoom, currentRoom } from "..";
+import { getFirstEmoji, currentRoom } from "..";
 import { getArrow } from "curved-arrows";
 import { useElementBounding } from "@vueuse/core";
 
@@ -68,11 +67,9 @@ export function useSpace({
   function place({ x = mouse.normX, y = mouse.normY } = {}) {
     if (!user.pub) return;
     if (!space.joined) join();
-    space.db
-      .get(user.pub)
-      .put(JSON.stringify({ x, y }), null, {
-        opt: { cert: currentRoom.certs.space },
-      });
+    space.db.get(user.pub).put(JSON.stringify({ x, y }), null, {
+      opt: { cert: currentRoom.certs.space },
+    });
   }
 
   const allGuests = reactive({});
@@ -202,7 +199,7 @@ function generateArrow(pos1, pos2, seed = 0, width, height) {
 
 let startTime = Date.now();
 
-export function useGuests({ timeout = 10000 } = {}) {
+export function useGuests({ TIMEOUT = 10000 } = {}) {
   const gun = useGun();
   startTime = Date.now();
 
@@ -223,12 +220,12 @@ export function useGuests({ timeout = 10000 } = {}) {
       const { account } = useAccount(pub);
       guests[pub] = account;
       guests[pub].order = computed(() =>
-        startTime - account.value.pulse < timeout
+        startTime - account.value.pulse < TIMEOUT
           ? 1
           : startTime - account.value.pulse
       );
       guests[pub].online = computed(() => {
-        return startTime - account.value.pulse < timeout;
+        return startTime - account.value.pulse < TIMEOUT;
       });
     });
 
