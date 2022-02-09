@@ -21,7 +21,6 @@ function isSafe() {
   .flex.flex-col(v-else)
     user-panel(@browse="$emit('browse', $event); $emit('close')")
     .p-4.flex.flex-col.items-start
-      user-avatar
       user-profile
       account-mate-list(:pub="user.pub"  @browse="$emit('user', $event)")
       user-rooms(@browse="$emit('room', $event)")

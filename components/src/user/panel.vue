@@ -16,8 +16,8 @@ const bg = computed(() => useBackground(user.pub, 600, 0.5, 'circles'))
   v-if="user.is"
   :style="{ ...bg }"
   )
-  .flex.items-center(@click="$emit('browse', user.pub)")
-    account-avatar
+  .flex.items-center
+    user-avatar(:size="120")
     .text-2xl.mx-2.font-bold {{ user?.name }}
   account-mate-button(:pub="user.pub")
   .flex-1 

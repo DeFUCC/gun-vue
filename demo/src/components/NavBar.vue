@@ -28,6 +28,7 @@ a.fixed.top-0.left-0.z-1000(href="/#")
   .flex-1
   room-icon(@room="$router.push(`/rooms/${$event}`)")
   user-icon(
+    :size="60"
     @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
     )
 .flex.flex-wrap.items-center.bg-light-900.p-2.shadow-lg

@@ -6,9 +6,7 @@ const props = defineProps({
   size: { type: Number, default: 42 }
 })
 
-onMounted(() => {
-  useUser()
-})
+const { user } = useUser()
 const open = ref(false)
 
 defineEmits(['room', 'user'])
@@ -17,7 +15,7 @@ defineEmits(['room', 'user'])
 
 <template lang="pug">
 .mx-2
-  account-avatar.cursor-pointer(:size="size" :border="2" @click="open = true")
+  account-avatar.cursor-pointer(:size="size" :border="2" @click="open = true" :pub="user.pub")
   ui-layer(:open="open" @close="open = false")
     user-home.max-w-600px(@room="$emit('room', $event)" @user="$emit('user', $event)" @close="open = false")
 </template>
