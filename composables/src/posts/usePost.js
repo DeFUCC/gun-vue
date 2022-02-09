@@ -104,6 +104,8 @@ export async function addPost(tag = "posts", post) {
   post.cover = await saveToHash("covers", post.cover);
   post.text = await saveToHash("texts", post.text);
   const { hashed, hash } = await hashObj(post);
+  console.log(post, currentRoom.certs);
+  return;
   gun.get(`#posts`).get(`${hash}`).put(hashed);
   if (tag == "posts") {
     gun

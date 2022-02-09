@@ -687,7 +687,6 @@ Get and handle a particular post by it's tag and hash
     * [.createRoom()](#module_Room.createRoom)
     * [.enterRoom(pub)](#module_Room.enterRoom)
     * [.leaveRoom()](#module_Room.leaveRoom)
-    * [.listRoomItems(tag, pub)](#module_Room.listRoomItems) ⇒ <code>reactive</code>
 
 ### useRoom() ⇒ <code>useRoom</code>
   Reactive room controls
@@ -714,15 +713,6 @@ Get and handle a particular post by it's tag and hash
 
 ### leaveRoom()
   Leave the room
-
-### listRoomItems(tag, pub) ⇒ <code>reactive</code>
-  List room tag items
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| tag | <code>String</code> | path to list |
-| pub | <code>String</code> | room public key |
 
 <hr />
 

@@ -52,14 +52,16 @@ watchEffect(() => {
     currentRoom.certs = rootRoom.certs;
   } else {
     currentRoom.certs = {};
+    currentRoom.hosts = {};
     gun
       .user(currentRoom.pub)
       .get("hosts")
       .map()
       .once((d, k) => {
         currentRoom.hosts[k] = d;
-      })
-      .back()
+      });
+    gun
+      .user(currentRoom.pub)
       .get("certs")
       .map()
       .once((d, k) => {
@@ -96,8 +98,9 @@ export function useRoom(pub = currentRoom.pub) {
     .map()
     .once((d, k) => {
       room.hosts[k] = d;
-    })
-    .back()
+    });
+  gun
+    .user(pub)
     .get("certs")
     .map()
     .once((d, k) => {
