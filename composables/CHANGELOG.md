@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.7.1
+
+### Patch Changes
+
+- currentRoom is always accessible and easy to use. If you need another room - use it vie useRoom(pub). The format is the same.
+
 ## 0.7.0
 
 ### Minor Changes
