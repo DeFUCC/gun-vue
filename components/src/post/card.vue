@@ -44,12 +44,14 @@ const { post } = usePost({ hash: props.hash })
         ui-link(:url="post?.link" v-if="post?.link")
         slot
     .flex-1.text-xs
-    .flex.rounded-xl.p-1.bg-dark-100.bg-opacity-20(style="flex: 1 1 180px")
+    .flex.rounded-xl.p-1.bg-dark-100.bg-opacity-20.flex-wrap.items-center(style="flex: 1 1 180px")
       post-action-like(:authors="authors" :hash="hash" :tag="tag")
+      .flex-1
+      post-action-link(:hash="hash")
 
       //- post-action-update(:hash="hash" )
       //- post-action-ban(:hash="hash")
-      //- post-action-comment(:hash="hash")
+
       //- post-action-star(:hash="hash" )
 </template>
 
