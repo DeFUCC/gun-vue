@@ -9,6 +9,7 @@ export { default as AccountAvatar } from "./account/Avatar.vue";
 export { default as AccountBadge } from "./account/Badge.vue";
 export { default as AccountHome } from "./account/Home.vue";
 export { default as AccountStars } from "./account/Stars.vue";
+export { default as AccountReactions } from "./account/Reactions.vue";
 
 // LINKs
 

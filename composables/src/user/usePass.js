@@ -3,9 +3,9 @@
  * @module usePass
  */
 
-import { computed, reactive, watchEffect } from 'vue'
-import { gun, useGun, SEA, auth, isPair, user } from '..'
-import base32 from 'base32'
+import { computed, reactive, watchEffect } from "vue";
+import { gun, useGun, SEA, auth, isPair, user } from "..";
+import base32 from "base32";
 
 /**
  * @typedef {reactive} Pass
@@ -14,7 +14,7 @@ import base32 from 'base32'
  */
 
 export const pass = reactive({
-  input: '',
+  input: "",
   show: false,
   safePair: false,
   minLength: 5,
@@ -22,30 +22,32 @@ export const pass = reactive({
   dec: {},
   links: {
     pass: computed(() => {
-      return genLink(pass.safe?.enc)
+      return genLink(pass.safe?.enc);
     }),
     pair: computed(() => {
-      return genLink(JSON.stringify(user.pair()))
+      return genLink(JSON.stringify(user.pair()));
     }),
   },
 
   set() {
-    setPass(pass.input)
-    pass.input = ''
-    pass.show = false
+    setPass(pass.input);
+    pass.input = "";
+    pass.show = false;
   },
-})
+});
 
-function genLink(text = '') {
-  return (
-    window.location.origin +
-    window.location.pathname +
-    '#/auth/' +
-    base32.encode(text)
-  )
+function genLink(text = "") {
+  let base = base32.encode(text);
+  return window.location.origin + window.location.pathname + "#/auth/" + base;
 }
 
-let initiated = false
+export function parseLink(link) {
+  let index = link.indexOf("#/auth/");
+  let base = link.substr(index + 7);
+  return base32.decode(base);
+}
+
+let initiated = false;
 
 /**
  * Manage password of a user
@@ -54,32 +56,32 @@ let initiated = false
 
 export function usePass() {
   if (!initiated) {
-    const gun = useGun()
+    const gun = useGun();
     gun
       .user()
-      .get('safe')
+      .get("safe")
       .map()
       .on((d, k) => {
-        pass.safe[k] = d
-      })
+        pass.safe[k] = d;
+      });
 
     watchEffect(async () => {
       if (!pass.show) {
-        pass.dec = {}
-        return
+        pass.dec = {};
+        return;
       }
       if (pass?.show && pass?.safe?.pass) {
-        pass.dec.pass = await SEA.decrypt(pass.safe.pass, user.pair())
-        pass.input = pass.dec.pass
+        pass.dec.pass = await SEA.decrypt(pass.safe.pass, user.pair());
+        pass.input = pass.dec.pass;
       }
       if (pass.show && pass?.safe?.enc) {
-        pass.dec.pair = await SEA.decrypt(pass.safe.enc, pass.dec.pass)
+        pass.dec.pair = await SEA.decrypt(pass.safe.enc, pass.dec.pass);
       }
-    })
+    });
   }
-  initiated = true
+  initiated = true;
 
-  return { pass, setPass, logWithPass }
+  return { pass, setPass, logWithPass };
 }
 
 /**
@@ -90,44 +92,44 @@ export function usePass() {
  */
 
 export async function hasPass(pub) {
-  return await gun.get(`~${pub}`).get('safe').get('enc').then()
+  return await gun.get(`~${pub}`).get("safe").get("enc").then();
 }
 
 async function logWithPass(pub, passphrase) {
-  let encPair = await gun.get(`~${pub}`).get('safe').get('enc').then()
-  let pair = await SEA.decrypt(encPair, passphrase)
-  auth(pair)
+  let encPair = await gun.get(`~${pub}`).get("safe").get("enc").then();
+  let pair = await SEA.decrypt(encPair, passphrase);
+  auth(pair);
 }
 
 async function setPass(text) {
-  let encPair = await SEA.encrypt(user.pair(), text)
-  let encPass = await SEA.encrypt(text, user.pair())
-  user.db.get('safe').get('enc').put(encPair)
-  user.db.get('safe').get('pass').put(encPass)
+  let encPair = await SEA.encrypt(user.pair(), text);
+  let encPass = await SEA.encrypt(text, user.pair());
+  user.db.get("safe").get("enc").put(encPair);
+  user.db.get("safe").get("pass").put(encPass);
 }
 
 export function usePassLink(data, passPhrase) {
-  if (!data) return
-  const decoded = base32.decode(data)
-  if (decoded.substring(0, 3) == 'SEA') {
+  if (!data) return;
+  const decoded = base32.decode(data);
+  if (decoded.substring(0, 3) == "SEA") {
     if (passPhrase) {
-      logEncPass(decoded, passPhrase)
+      logEncPass(decoded, passPhrase);
     }
-    return 'encrypted'
+    return "encrypted";
   } else {
     try {
-      let d = JSON.parse(decoded)
+      let d = JSON.parse(decoded);
       if (isPair(d)) {
-        auth(d)
+        auth(d);
       }
-      return 'success'
+      return "success";
     } catch (e) {
-      return 'incorrect link'
+      return "incorrect link";
     }
   }
 }
 
 async function logEncPass(encPair, passphrase) {
-  let pair = await SEA.decrypt(encPair, passphrase)
-  auth(pair)
+  let pair = await SEA.decrypt(encPair, passphrase);
+  auth(pair);
 }

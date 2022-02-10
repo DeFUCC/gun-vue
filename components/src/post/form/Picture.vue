@@ -51,7 +51,7 @@ watch(picture, pic => {
 input {
   @apply p-2 rounded-xl m-1;
 }
-.active {
-  @apply bg-fuchsia-500;
+.button.active {
+  @apply bg-fuchsia-800;
 }
 </style>

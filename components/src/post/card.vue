@@ -12,9 +12,8 @@ const props = defineProps({
   authors: Object,
   tag: String,
   back: Boolean,
+  actions: { type: Boolean, default: true }
 })
-
-
 
 const { post } = usePost({ hash: props.hash })
 
@@ -22,7 +21,6 @@ const { post } = usePost({ hash: props.hash })
 
 <template lang='pug'>
 .card(
-
   :style="{ backgroundImage: `url(${post?.cover || post?.raw})`, backgroundColor: colorDeep.hex(hash), paddingTop: post?.cover || post?.raw ? '140px' : '5px' }"
   )
   .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-lg.rounded-xl.bg-light-100.bg-opacity-90.backdrop-blur-sm.backdrop-filter.shadow-md
@@ -38,7 +36,7 @@ const { post } = usePost({ hash: props.hash })
         ui-link(:url="post?.link" v-if="post?.link")
         slot
     .flex-1.text-xs
-    .flex.gap-1.rounded-xl.p-1.bg-dark-100.bg-opacity-20.flex-wrap.items-center(style="flex: 1 1 220px")
+    .flex.gap-1.rounded-xl.p-1.bg-dark-100.bg-opacity-20.flex-wrap.items-center(style="flex: 1 1 220px" v-if="actions")
       post-action-react(:authors="authors" @user="$emit('user', $event)" :hash="hash" :tag="tag" :back="back")
       .flex-1
       post-action-link(:hash="hash")

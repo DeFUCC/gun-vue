@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, safeJSONParse, uploadText, SEA } from '@composables'
+import { useUser, safeJSONParse, uploadText, SEA, parseLink } from '@composables'
 import { ref, watch } from 'vue'
 
 const current = ref('pass')
@@ -17,6 +17,9 @@ function show(option) {
 watch(pair, (p) => {
   if (p && typeof p == 'string' && p.substring(0, 3) == 'SEA') {
     passphrase.value = ''
+  }
+  if (p.includes('#/auth/')) {
+    p = parseLink(p)
   }
   let obj = safeJSONParse(p)
   if (obj.pub && obj.priv) {

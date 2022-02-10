@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, selectedUser } from '@composables';
+import { useUser, selectedUser, safeHash } from '@composables';
 import { ref, onMounted } from 'vue'
 
 const props = defineProps({
@@ -9,7 +9,7 @@ const props = defineProps({
 const { user } = useUser()
 const open = ref(false)
 
-defineEmits(['room', 'user'])
+defineEmits(['room', 'user', 'post'])
 
 </script>
 
@@ -37,6 +37,7 @@ defineEmits(['room', 'user'])
     account-home.max-w-600px(
       :pub="selectedUser.pub" 
       @user="$emit('user', $event)" 
+      @post="$emit('post', safeHash($event))"
       @close="selectedUser.pub = null"
       :key="selectedUser.pub"
       )

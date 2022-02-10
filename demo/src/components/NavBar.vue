@@ -30,6 +30,7 @@ a.fixed.top-0.left-0.z-1000(href="/#")
   user-icon(
     :size="40"
     @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
+    @post="$router.push(`/posts/${$event}`)"
     )
 .flex.flex-wrap.items-center.bg-light-900.p-2.shadow-lg
   router-link.p-2.rounded-xl.cursor-pointer(

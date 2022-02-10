@@ -23,7 +23,8 @@ const bg = computed(() => useBackground(props.pub, 600, 0.5, 'circles'))
     .flex-1
     account-mate-button.m-4(:pub="pub")
   account-profile.p-4(:pub="pub")
-  .p-4
+  .p-4.flex.flex-col
     account-mate-list(:pub="pub" @browse="$emit('browse', $event)")
     //- account-stars(:pub="pub" @feed="$emit('feed', $event)")
+    account-reactions.m-2(:pub="pub" @post="$emit('post', $event)")
 </template>

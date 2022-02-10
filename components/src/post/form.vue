@@ -99,9 +99,6 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl.mb-6(action="javascript:
         )
         la-check
         .font-bold.ml-2 Submit
-      //- button.m-1.plus.button.items-center.justify-center(@click="add.form = !add.form")
-      //-   la-pen(v-if="!add.form")
-      //-   la-eye-slash(v-else)
       button.m-1.button.text-xl( @click="reset()")
         la-trash-alt
   ui-layer(:open="add.youtube" @close="add.youtube = false" :offset="'22vh'")
