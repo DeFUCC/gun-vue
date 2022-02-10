@@ -1,5 +1,15 @@
 # @gun-vue/components
 
+## 0.7.2
+
+### Patch Changes
+
+- cec7dad: Users can upload a square avatar and it shows instead of the generative icon.
+- Emoji links between posts make the whole posts space so much more expressive! It's interesting to experiment with building some useful knowledge graph collaboratively.
+- Updated dependencies [cec7dad]
+- Updated dependencies
+  - @gun-vue/composables@0.7.2
+
 ## 0.7.1
 
 ### Patch Changes

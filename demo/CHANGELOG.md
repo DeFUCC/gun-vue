@@ -1,5 +1,14 @@
 # @gun-vue/demo
 
+## 0.7.2
+
+### Patch Changes
+
+- Updated dependencies [cec7dad]
+- Updated dependencies
+  - @gun-vue/components@0.7.2
+  - @gun-vue/composables@0.7.2
+
 ## 0.7.1
 
 ### Patch Changes
