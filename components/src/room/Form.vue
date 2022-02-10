@@ -19,11 +19,16 @@ async function genPair() {
 }
 
 function reset() {
-  emit('room', create.pair.pub)
-  enterRoom(create.pair.pub)
+  // emit('room', create.pair.pub)
+  // enterRoom(create.pair.pub)
   create.pair = null
   create.certs = null
   create.name = ''
+}
+
+function createIt() {
+  createRoom({ pair: { ...create.pair }, certs: { ...create.certs }, name: create.name });
+  reset()
 }
 
 const bg = computed(() => useBackground(create.pair?.pub, 620))
@@ -37,7 +42,7 @@ const bg = computed(() => useBackground(create.pair?.pub, 620))
     button.button.m-2(@click="reset()" v-if="create.pair" ) Reset
   input.p-2.m-2.rounded-xl(type="text" v-if="create.pair" v-model="create.name" placeholder="New room name")
   transition(name="fade")
-    button.button.m-2.flex-1(@click="createRoom(create); reset(); " v-if="create.pair && create.name" ) Add room
+    button.button.m-2.flex-1(@click="createIt()" v-if="create.pair && create.name" ) Add room
   room-certs.mt-6(:certs="create.certs" v-if="create.certs")
 
 </template> 

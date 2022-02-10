@@ -34,18 +34,24 @@ if (props.tag == 'posts' || props.tag == 'rooms') {
   })
 }
 
+function react(event) {
+
+  reactToPost({ tag: props.tag, hash: props.hash, back: props.back, reaction: getFirstEmoji(reaction.value) })
+
+}
+
 </script>
 
 <template lang='pug'>
 .p-2.flex.flex-wrap.gap-1.relative.items-center
   button.rounded-2xl.text-lg.bg-light-200.flex.items-center.pl-1.pr-1.mr-1(
     :style="{ backgroundColor: authors?.[user.pub] ? colorDeep.hex(user.pub) : '' }"
-    @click.stop.prevent="reactToPost({ tag, hash, back, reaction: getFirstEmoji(reaction) })" 
+    @click.stop.prevent="react()" 
     v-if="user.pub"
     )
     account-avatar.rounded-full.shadow-md(:pub="user.pub" :size="32")
     .flex.items-center(v-if="!authors?.[user.pub]")
-      input.py-1.px-2.w-36px.rounded-xl.mx-1.text-center(v-model="reaction" @input="reactToPost({ tag, hash, back, reaction: getFirstEmoji(reaction) })" @click.stop.prevent v-if="!authors?.[user.pub]")
+      input.py-1.px-2.w-36px.rounded-xl.mx-1.text-center(v-model="reaction" @input="$event.target.value && react()" @click.stop.prevent v-if="!authors?.[user.pub]")
       la-plus
     .flex.items-center(v-else)
       .px-2.py-1.text-xl.w-36px {{ reaction }}

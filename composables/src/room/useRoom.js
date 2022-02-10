@@ -144,29 +144,28 @@ export function updateRoomProfile(field, content) {
  * Create a new room inside the current room
  */
 
-export async function createRoom({ pair, certs, name } = {}) {
+export async function createRoom({ pair, name } = {}) {
   const { user } = useUser();
   if (!pair) pair = await SEA.pair();
-  if (!certs) certs = await generateRoomCerts(pair);
+  let certs = await generateRoomCerts(pair);
   const enc = await SEA.encrypt(pair, user.pair());
+  const dec = await SEA.decrypt(enc, user.pair());
   console.log(
-    { pub: pair.pub, hosts: { [user.pub]: enc }, certs: { ...certs } },
-    pair
+    { pub: dec.pub, hosts: { [user.pub]: enc }, certs: { ...certs } },
+    dec
   );
   const gun = useGun();
-  gun.user().get("safe").get("rooms").get(pair.pub).put(enc);
+  gun.user().get("safe").get("rooms").get(dec.pub).put(enc);
 
   gun
     .user(currentRoom.pub)
     .get("rooms")
-    .get(`${pair.pub}@${user.pub}`)
+    .get(`${dec.pub}@${user.pub}`)
     .put(true, null, { opt: { cert: currentRoom.certs.rooms } });
 
-  const roomDb = gun.user(pair.pub);
+  const roomDb = gun.user(dec.pub);
+  roomDb.get("certs").put(certs, null, { opt: { cert: certs.certs } });
   roomDb
-    .get("certs")
-    .put(certs, null, { opt: { cert: certs.certs } })
-    .back()
     .get("hosts")
     .get(user.pub)
     .put(enc, null, { opt: { cert: certs.hosts } });
