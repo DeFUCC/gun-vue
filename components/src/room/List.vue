@@ -38,14 +38,6 @@ const bg = computed(() => useBackground(create.pair?.pub, 620))
       :pub="pub"
       @click="$emit('browse', pub)"
       )
-      .p-4.flex.flex-wrap.gap-1
-        button.button(@click.stop.prevent="submitRoom(pub)" v-if="user.pub")
-          la-heart-solid(v-if="authors[user.pub]")
-          la-heart(v-else)
-        transition-group(name="fade")
-          account-badge.rounded-full.shadow-md(
-            v-for="(status, author) in authors" :key="author"
-            :pub="author" :showName="false" v-show="status"
-            ) {{ status !== true ? status : '' }}
+      post-action-react(:authors="authors" :hash="pub" tag="rooms")
   room-form(@room="$emit('browse', $event)")
 </template> 

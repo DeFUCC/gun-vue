@@ -72,7 +72,7 @@ const showHidden = ref(false)
       transition-group(name="list")
         post-card(
           style="flex: 1 1 220px"
-          v-show="tag != hash && countAuthors(authors) > 0 || showHidden"
+          v-show="tag != hash && (countAuthors(authors) > 0 || showHidden)"
           :style="{ order: -countAuthors(authors), opacity: countAuthors(authors) > 0 ? 1 : 0.3 }"
           v-for="(authors, hash) in posts" 
           :key="hash" 

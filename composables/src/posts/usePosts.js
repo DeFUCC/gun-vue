@@ -120,13 +120,12 @@ export async function reactToPost({ tag, hash, back, reaction = true } = {}) {
   const { user } = useUser();
   const gun = useGun();
 
-  if (tag == "posts") {
-    let myPost = gun
-      .user(currentRoom.pub)
-      .get("posts")
-      .get(`${hash}@${user.pub}`);
+  if (tag == "posts" || tag == "rooms") {
+    let myPost = gun.user(currentRoom.pub).get(tag).get(`${hash}@${user.pub}`);
     let current = await myPost.then();
-    myPost.put(!current, null, { opt: { cert: currentRoom.certs.posts } });
+    myPost.put(!current ? reaction : null, null, {
+      opt: { cert: currentRoom.certs[tag] },
+    });
   } else {
     let myLink = gun.user(currentRoom.pub).get("links");
     if (!back) {
@@ -136,12 +135,9 @@ export async function reactToPost({ tag, hash, back, reaction = true } = {}) {
     }
 
     let current = await myLink.then();
-    if (!current) {
-      current = reaction;
-    } else {
-      current = null;
-    }
-    myLink.put(current, null, { opt: { cert: currentRoom.certs.links } });
+    myLink.put(!current ? reaction : null, null, {
+      opt: { cert: currentRoom.certs.links },
+    });
   }
 }
 

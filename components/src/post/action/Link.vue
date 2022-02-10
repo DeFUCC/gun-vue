@@ -12,7 +12,7 @@ const comments = reactive({})
 
 gun.user(currentRoom.pub).get('links').map().once((d, k) => {
   if (k.indexOf(props.hash) == 0 && d) {
-    comments[k.substring(0, 44)] = d
+    comments[k.substring(45, 87)] = d
   } else {
     delete comments[k]
   }
@@ -27,7 +27,7 @@ const count = computed(() => Object.keys(comments).length)
 </script>
 
 <template lang='pug'>
-button.m-1.button.items-center(v-if="count >= 0")
+button.m-1.button.items-center(v-if="count > 0")
   la-link
   .ml-1.text-sm {{ count }}
 </template>
