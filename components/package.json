@@ -26,22 +26,22 @@
   "dependencies": {
     "@gun-vue/composables": "workspace:^",
     "@qrcode/svg": "^1.0.0-beta.2",
-    "@vueuse/core": "7.6.0",
+    "@vueuse/core": "7.6.1",
     "gun-avatar": "1.6.0",
     "jsqr": "^1.4.0",
     "simplemde": "^1.11.2",
-    "vue": "^3.2.30",
-    "url-regex": "^5.0.0"
+    "url-regex": "^5.0.0",
+    "vue": "^3.2.30"
   },
   "peerDependencies": {
     "vue": "3.x"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.1.0",
+    "@vitejs/plugin-vue": "^2.2.0",
     "pug": "^3.0.2",
     "unplugin-icons": "^0.13.1",
     "unplugin-vue-components": "^0.17.18",
-    "vite": "^2.7.13",
+    "vite": "^2.8.0",
     "vite-plugin-windicss": "^1.7.0",
     "windicss": "^3.4.3"
   }
