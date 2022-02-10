@@ -25,7 +25,7 @@ function isSafe() {
       account-mate-list(:pub="user.pub"  @browse="$emit('user', $event)")
       user-rooms(@browse="$emit('room', $event)")
     button.p-4.m-4.rounded-xl.font-bold.text-lg.shadow-md(
-      @click="$emit('user', user.pub)"
+      @click="$emit('user', user.pub); $emit('close')"
       :style="{ backgroundColor: user.color }"
     ) Go to my page
 </template>

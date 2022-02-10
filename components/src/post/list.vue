@@ -8,7 +8,7 @@ const props = defineProps({
   tag: { type: String, default: 'posts' },
   header: { type: Boolean, default: true }
 })
-const emit = defineEmits(['close', 'browse'])
+const emit = defineEmits(['close', 'browse', 'user'])
 
 const { posts, backlinks, countPosts, countBacklinks, downloadPosts, downloading, uploadPosts } = usePosts(props.tag)
 
@@ -99,6 +99,7 @@ const showHidden = ref(false)
           :tag="tag"
           :authors="authors"
           :back="true"
+          @user="$emit('user', $event)"
           @click="emit('browse', hash)"
           )
 </template>

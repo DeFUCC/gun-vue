@@ -1,11 +1,12 @@
 <script setup>
+import { currentRoom, rootRoom } from '@composables';
 </script>
 
 <template lang="pug">
-.flex.flex-col
+.flex.flex-col(v-if="currentRoom.pub == rootRoom.pub")
   .flex.flex-wrap.shadow-lg.m-2.rounded-3xl.items-start
     img.w-full.max-w-100.sticky.top-20.-z-2(src="/gun-vue-logo.svg")
-    .flex.flex-col.mx-4.max-w-120.bg-light-200.p-4.rounded-2xl.bg-opacity-95.backdrop-filter.backdrop-blur-md
+    .flex.flex-col.mx-4.max-w-200.p-8.bg-light-200.p-4.rounded-2xl.bg-opacity-95.backdrop-filter.backdrop-blur-md
       .font-bold.text-3xl.mb-4 @gun-vue
       .my-4 Gun-vue is a collection of essential building blocks to create a variety of decentralized apps for online and offline collaboration. It's a moment when we can feel the nature of distributed networking and have fun together!
       .my-2 All the data in the app is stored only on the client side - right in your browser. And it's reactively synced between all simultaneous visitors by Gun. So it's better to share a link to this page with your friend to have a more profound demo experience. 
@@ -15,17 +16,17 @@
         router-link.shadow-md.m-2.p-2.flex-1.flex.flex-col.items-center.bg-light-800.rounded-2xl.justify-center(to="/space/")
           ic-round-filter-center-focus.text-60px.mb-2
           .text-2xl Space
-          .p-0 A 2D meeting space
+          .p-0 2D meeting space
 
         router-link.shadow-md.m-2.p-2.flex-1.flex.flex-col.items-center.bg-light-800.rounded-2xl.justify-center(to="/posts/")
           fluent-document-page-number-20-regular.text-60px.mb-2
           .text-2xl Posts
-          p Immutable publications platform
+          p Immutable publications
 
-        //- router-link.my-4.flex-1.flex.flex-col.items-center(to="/means")
-        //-   cil-book.text-60px.mb-2
-        //-   .text-2xl Means
-        //-   p  Collaborative dictionaries
+        router-link.shadow-md.m-2.p-2.flex-1.flex.flex-col.items-center.bg-light-800.rounded-2xl.justify-center(to="/rooms/")
+          la-layer-group.text-60px.mb-2
+          .text-2xl Rooms
+          p Open data collections
 
       .my-4 We're building basic components and data structures as a foundation for various Vue 3 apps to built by anyone. Feel free to play with it and to make any contributions! 
       .flex.flex-wrap
@@ -41,6 +42,5 @@
         a.button.m-2.flex.items-center(href="https://ko-fi.com/davay" target="_blank")
           cib-ko-fi.mr-4.text-3xl
           .text-xl Sponsorship
-
-
+room-page(v-else)
 </template>

@@ -9,7 +9,7 @@ const props = defineProps({
   back: Boolean
 })
 
-defineEmits(['react'])
+defineEmits(['react', 'user'])
 const colorDeep = useColor('deep')
 
 const { user } = useUser();
@@ -34,25 +34,30 @@ if (props.tag == 'posts' || props.tag == 'rooms') {
   })
 }
 
-
-
 </script>
 
 <template lang='pug'>
 .p-2.flex.flex-wrap.gap-1.relative.items-center
-  button.button(
+  button.rounded-2xl.text-lg.bg-light-200.flex.items-center.pl-1.pr-1.mr-1(
     :style="{ backgroundColor: authors?.[user.pub] ? colorDeep.hex(user.pub) : '' }"
     @click.stop.prevent="reactToPost({ tag, hash, back, reaction: getFirstEmoji(reaction) })" 
     v-if="user.pub"
     )
-    input.px-2.w-36px.rounded-xl(v-model="reaction" @click.stop.prevent)
-    la-plus(v-if="!authors?.[user.pub]")
-    la-times(v-else)
+    account-avatar.rounded-full.shadow-md(:pub="user.pub" :size="32")
+    .flex.items-center(v-if="!authors?.[user.pub]")
+      input.py-1.px-2.w-36px.rounded-xl.mx-1.text-center(v-model="reaction" @input="reactToPost({ tag, hash, back, reaction: getFirstEmoji(reaction) })" @click.stop.prevent v-if="!authors?.[user.pub]")
+      la-plus
+    .flex.items-center(v-else)
+      .px-2.py-1.text-xl.w-36px {{ reaction }}
+      la-times
   transition-group(name="fade")
     account-badge.rounded-full.shadow-md(
+      @click.stop.prevent="$emit('user', author)"
       v-for="(status, author) in authors" :key="author"
       :size="30"
-      :pub="author" :showName="false" v-show="status"
+      :selectable="true"
+      v-show="status && author != user.pub"
+      :pub="author" :showName="false"
       ) 
       .mr-2.ml-1(v-if="status !== true") {{ status !== true && status != false ? status : '' }} 
 </template>

@@ -10,6 +10,10 @@ import ms from "ms";
 
 const colorDeep = useColor("deep");
 
+export const selectedUser = reactive({
+  pub: null,
+});
+
 /**
  * @typedef {Object} Account - the user account interface
  * @property {ref} pub - The pub key used to build the account

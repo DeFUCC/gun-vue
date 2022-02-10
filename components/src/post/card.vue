@@ -5,7 +5,7 @@ import { computed, ref, watchEffect } from 'vue'
 const colorLight = useColor('light')
 const colorDeep = useColor('deep')
 
-defineEmits(['react'])
+defineEmits(['user'])
 
 const props = defineProps({
   hash: { type: String, default: '' },
@@ -38,8 +38,8 @@ const { post } = usePost({ hash: props.hash })
         ui-link(:url="post?.link" v-if="post?.link")
         slot
     .flex-1.text-xs
-    .flex.rounded-xl.p-1.bg-dark-100.bg-opacity-20.flex-wrap.items-center(style="flex: 1 1 220px")
-      post-action-react(:authors="authors" :hash="hash" :tag="tag" :back="back")
+    .flex.gap-1.rounded-xl.p-1.bg-dark-100.bg-opacity-20.flex-wrap.items-center(style="flex: 1 1 220px")
+      post-action-react(:authors="authors" @user="$emit('user', $event)" :hash="hash" :tag="tag" :back="back")
       .flex-1
       post-action-link(:hash="hash")
 

@@ -21,6 +21,7 @@ const props = defineProps({
     v-if="isEmoji(emoji)"
     ) {{ emoji }}
   account-badge.shadow-md(
+    :selectable="true"
     :pub="to"  
     )
     .pr-2.text-xl(v-if="back") {{ back }}

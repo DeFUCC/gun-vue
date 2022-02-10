@@ -20,9 +20,8 @@ const bg = computed(() => useBackground(props.pub, 600, 0.5, 'circles'))
     .flex.flex-col.ml-4
       .text-2xl.font-bold {{ account.profile?.name }}
       .mt-2 {{ account.lastSeen }}
-      account-mate-button(:pub="pub")
     .flex-1
-
+    account-mate-button.m-4(:pub="pub")
   account-profile.p-4(:pub="pub")
   .p-4
     account-mate-list(:pub="pub" @browse="$emit('browse', $event)")

@@ -38,11 +38,11 @@ watch(picture, pic => {
 <template lang='pug'>
 .flex.flex-wrap
   input.hidden(type="file" v-if="!picture" :id="id"  @change="handleChange" accept="image/*")
-  label.m-1.button.cursor-pointer(@click="add = true" :class="{ active: picture }" :for="id")
+  label.m-1.button.cursor-pointer.opacity-50.hover_opacity-100(@click="add = true" :class="{ active: picture }" :for="id")
     slot
       la-image
   ui-layer(:open="add" @close="add = false")
-    button.button.absolute.text-2xl.right-2.opacity-60.hover_opacity-100
+    button.button.absolute.text-2xl.right-2.opacity-40.hover_opacity-100
       la-trash-alt(@click="picture = null; add = false")
     img(:src="picture")
 </template>

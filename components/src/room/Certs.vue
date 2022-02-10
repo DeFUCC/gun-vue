@@ -11,5 +11,5 @@ const open = ref(false)
 .flex.flex-wrap.text-sm.items-center.gap-1 Features:
   .px-1.font-bold(v-for="(cert, c) in certs" :key="c" :title="cert") {{ c }}
   la-copy(@click="open = !open")
-  .text-xs(v-if="open") {{ certs }}
+  .text-xs.break-all(v-if="open") {{ certs }}
 </template>
