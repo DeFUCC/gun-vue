@@ -1,13 +1,14 @@
 <script setup>
 import { ref, watchEffect, computed } from 'vue'
-import { useColor, useUser, usePost, useMd } from '@composables';
+import { useColor, usePosts, useGun, useUser, usePost, useMd } from '@composables';
 
 const { user } = useUser()
+const gun = useGun()
 
 const md = useMd()
 
 const props = defineProps({
-  tag: { type: String, default: '' },
+  tag: { type: String, default: 'posts' },
   hash: { type: String, default: '' },
 })
 
@@ -18,6 +19,7 @@ const colorDeep = computed(() => useColor('deep').hex(props.hash))
 
 const { post, download, downloading } = usePost({ hash: props.hash })
 
+
 </script>
 
 <template lang='pug'>
@@ -26,7 +28,7 @@ const { post, download, downloading } = usePost({ hash: props.hash })
     .hover_underline.text-md.cursor-pointer.font-bold.flex(@click="$emit('close')") 
       .p-0 #
     .ml-1.break-all.font-bold {{ post?.title }} 
-    .flex-1
+    .flex-1 
     button.p-2( @click="$emit('close')") 
       la-times
 

@@ -7,7 +7,7 @@ import { computed, reactive, ref } from "vue";
 
 import JSZip from "jszip";
 
-import { detectMimeType, useZip, parseMd, useRoom, listPersonal } from "..";
+import { detectMimeType, useZip, parseMd, currentRoom, useUser } from "..";
 import { useGun, gun } from "../gun";
 import { parsePost, addPost, usePost } from ".";
 
@@ -33,14 +33,13 @@ import { parsePost, addPost, usePost } from ".";
 export function usePosts(tag = "posts") {
   const gun = useGun();
 
-  const { room } = useRoom();
-
   const posts = reactive({});
+  const backlinks = reactive({});
 
   if (tag == "posts") {
     gun
-      .user(room.pub)
-      .get(`${tag}`)
+      .user(currentRoom.pub)
+      .get("posts")
       .map()
       .on(function (data, key) {
         let hash = key.substring(0, 44);
@@ -50,26 +49,50 @@ export function usePosts(tag = "posts") {
       });
   } else {
     gun
-      .user(room.pub)
+      .user(currentRoom.pub)
       .get("links")
       .map()
       .on(function (data, key) {
         let index = key.indexOf(tag);
         if (index == -1) return;
-        let hash;
-        if (index == 0) {
-          hash = key.slice(45, 89);
-        } else {
-          hash = key.slice(0, 44);
-        }
         let author = key.slice(-87);
-
-        posts[hash] = posts[hash] || {};
-        posts[hash][author] = data;
+        let from = key.slice(0, 44);
+        let to = key.slice(45, 89);
+        if (index == 0) {
+          posts[to] = posts[to] || {};
+          posts[to][author] = data;
+        } else {
+          backlinks[from] = backlinks[from] || {};
+          backlinks[from][author] = data;
+        }
       });
   }
 
-  const count = computed(() => Object.keys(posts || {}).length);
+  const countPosts = computed(() => {
+    let count = 0;
+    for (let hash in posts) {
+      inner_loop: for (let author in posts[hash]) {
+        if (posts[hash][author]) {
+          count++;
+          break inner_loop;
+        }
+      }
+    }
+    return count;
+  });
+
+  const countBacklinks = computed(() => {
+    let count = 0;
+    for (let hash in backlinks) {
+      inner_loop: for (let author in backlinks[hash]) {
+        if (backlinks[hash][author]) {
+          count++;
+          break inner_loop;
+        }
+      }
+    }
+    return count;
+  });
 
   const downloading = ref(false);
 
@@ -84,11 +107,42 @@ export function usePosts(tag = "posts") {
 
   return {
     posts,
-    count,
+    backlinks,
+    countPosts,
+    countBacklinks,
     downloadPosts,
     downloading,
     uploadPosts,
   };
+}
+
+export async function reactToPost({ tag, hash, back, reaction = true } = {}) {
+  const { user } = useUser();
+  const gun = useGun();
+
+  if (tag == "posts") {
+    let myPost = gun
+      .user(currentRoom.pub)
+      .get("posts")
+      .get(`${hash}@${user.pub}`);
+    let current = await myPost.then();
+    myPost.put(!current, null, { opt: { cert: currentRoom.certs.posts } });
+  } else {
+    let myLink = gun.user(currentRoom.pub).get("links");
+    if (!back) {
+      myLink = myLink.get(`${tag}:${hash}@${user.pub}`);
+    } else {
+      myLink = myLink.get(`${hash}:${tag}@${user.pub}`);
+    }
+
+    let current = await myLink.then();
+    if (!current) {
+      current = reaction;
+    } else {
+      current = null;
+    }
+    myLink.put(current, null, { opt: { cert: currentRoom.certs.links } });
+  }
 }
 
 /**

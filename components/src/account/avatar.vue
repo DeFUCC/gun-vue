@@ -19,7 +19,6 @@ watch(() => props.pub, () => {
 }, { immediate: true })
 
 gun.user(props.pub).get('avatar').on(hash => {
-  console.log(hash)
   if (hash) {
     gun.get('#avatars').get(hash).once(d => {
       avatar.value = d

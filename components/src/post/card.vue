@@ -5,23 +5,16 @@ import { computed, ref, watchEffect } from 'vue'
 const colorLight = useColor('light')
 const colorDeep = useColor('deep')
 
-defineEmits(['upvote', 'downvote'])
+defineEmits(['react'])
 
 const props = defineProps({
   hash: { type: String, default: '' },
   authors: Object,
   tag: String,
+  back: Boolean,
 })
 
-function countAuthors(authors) {
-  let arr = []
-  for (let author in authors) {
-    if (authors[author]) {
-      arr.push(author)
-    }
-  }
-  return arr.length
-}
+
 
 const { post } = usePost({ hash: props.hash })
 
@@ -29,14 +22,15 @@ const { post } = usePost({ hash: props.hash })
 
 <template lang='pug'>
 .card(
-  :style="{ backgroundImage: `url(${post?.cover || post?.raw})`, backgroundColor: colorDeep.hex(hash), paddingTop: post?.cover || post?.raw ? '140px' : '5px', opacity: countAuthors(authors) > 0 ? 1 : 0.1 }"
-  ) 
+
+  :style="{ backgroundImage: `url(${post?.cover || post?.raw})`, backgroundColor: colorDeep.hex(hash), paddingTop: post?.cover || post?.raw ? '140px' : '5px' }"
+  )
   .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-lg.rounded-xl.bg-light-100.bg-opacity-90.backdrop-blur-sm.backdrop-filter.shadow-md
     .p-0(style="flex: 1 1 40px" v-if="post?.icon" )
       img.w-20.max-h-20.rounded-full.m-2(:src="post.icon" width="40px")
     .flex.flex-col.p-2.overflow-hidden(style="flex: 10 1 180px")
       .px-2
-        .text-xl.font-bold(v-if="post?.title") {{ post.title }}
+        .text-xl.font-bold.my-2(v-if="post?.title") {{ post.title }}
         .statement(v-if="post?.statement") {{ post.statement }}
       .flex.items-center.flex-wrap.items-center
         la-youtube.mx-1(v-if="post?.youtube")
@@ -44,8 +38,8 @@ const { post } = usePost({ hash: props.hash })
         ui-link(:url="post?.link" v-if="post?.link")
         slot
     .flex-1.text-xs
-    .flex.rounded-xl.p-1.bg-dark-100.bg-opacity-20.flex-wrap.items-center(style="flex: 1 1 180px")
-      post-action-like(:authors="authors" :hash="hash" :tag="tag")
+    .flex.rounded-xl.p-1.bg-dark-100.bg-opacity-20.flex-wrap.items-center(style="flex: 1 1 220px")
+      post-action-react(:authors="authors" :hash="hash" :tag="tag" :back="back")
       .flex-1
       post-action-link(:hash="hash")
 

@@ -11,8 +11,8 @@ const gun = useGun()
 const comments = reactive({})
 
 gun.user(currentRoom.pub).get('links').map().once((d, k) => {
-  if (k.includes(props.hash) && d) {
-    comments[k] = d
+  if (k.indexOf(props.hash) == 0 && d) {
+    comments[k.substring(0, 44)] = d
   } else {
     delete comments[k]
   }

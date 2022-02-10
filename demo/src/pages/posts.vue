@@ -6,6 +6,7 @@ const { room } = useRoom()
 <template lang='pug'>
 .flex.flex-col
   post-list.w-full(
+    :header="false"
     tag="posts" 
     :key="room.pub"
     @close="$router.push('/posts/')" 
