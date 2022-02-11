@@ -28,7 +28,7 @@ nav-bar
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in")
       component(:is="Component")
-.flex.flex-col.items-center.bg-dark-100.p-4.bg-opacity-30
+.flex.flex-col.items-center.bg-dark-100.p-4.bg-opacity-30.sticky.bottom-0
   util-tools
 </template>
 

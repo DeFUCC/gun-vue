@@ -4,7 +4,7 @@ import { currentRoom, rootRoom } from '@composables';
 
 <template lang="pug">
 .flex.flex-col
-  img.w-full.max-w-80.fixed.top-32.z-20(src="/gun-vue-logo.svg")
+
   room-page
   .flex.flex-wrap.shadow-lg.m-2.rounded-3xl.items-start.z-30(v-if="currentRoom.pub == rootRoom.pub")
 

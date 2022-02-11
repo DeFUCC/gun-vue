@@ -35,11 +35,11 @@ const bg = computed(() => useBackground(roomPub.value, 600))
     .flex.flex-col.items-stretche.bg-light-100.bg-opacity-20.p-4.md_p-12.rounded-4xl.shadow-xl.backdrop-blur-md.backdrop-filter
       .flex.flex-wrap.items-center
         .flex.flex-col
-          .flex.items-center.mr-4.mb-2
-            .text-2xl.font-bold.break-all {{ room.profile.name || roomPub.substring(0, 12) }}
-            la-pen.ml-2.cursor-pointer(@click="name = room.profile.name; editName = true" v-if="room.hosts[user.pub] && roomPub == currentRoom.pub && !editName")
-            la-times.ml-2.cursor-pointer(v-if="editName" @click="editName = false")
-          input.my-2.p-2.shadow-lg.rounded-lg(v-if="room.hosts[user.pub] && editName" type="text" v-model="name" @keyup.escape="editName = false" @keyup.enter="updateRoomProfile('name', name); editName = null")
+          form-title.font-bold.text-2xl(
+            :text="room.profile.name || roomPub.substring(0, 12)"
+            :editable="room.hosts[user.pub] && roomPub == currentRoom.pub && !editName"
+            @update="updateRoomProfile('name', $event)"
+          )
           .flex.items-center
             .font-bold.mr-2 Hosts: 
             .p-2(v-for="(enc, host) in room.hosts" :key="host")

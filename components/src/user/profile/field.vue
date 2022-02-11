@@ -37,5 +37,4 @@ function isLink(text) {
           la-check
         button.p-1(@click="text = ''; edit = false")
           la-times
-  
 </template>
