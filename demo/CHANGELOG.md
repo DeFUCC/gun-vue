@@ -1,5 +1,16 @@
 # @gun-vue/demo
 
+## 0.7.3
+
+### Patch Changes
+
+- New stage of data management. Need some time to create form components, but then users will be immediately edit their profiles and also their room profiles.
+- Updated dependencies
+- Updated dependencies [11e3054]
+- Updated dependencies [4fd4a99]
+  - @gun-vue/components@0.7.3
+  - @gun-vue/composables@0.7.3
+
 ## 0.7.2
 
 ### Patch Changes

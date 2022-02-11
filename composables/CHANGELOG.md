@@ -1,5 +1,13 @@
 # @gun-vue/composables
 
+## 0.7.3
+
+### Patch Changes
+
+- New stage of data management. Need some time to create form components, but then users will be immediately edit their profiles and also their room profiles.
+- 11e3054: Post reactions are fully implemented. Your vote makes quite an impact. You make the post rise in the list and also add it to your page under the chosen reaction. Be creative!
+- 4fd4a99: Better certificates management. Now every host of a room has his own set of certificates for room management. And all the public certificates are now "features" and once we got many of them we can make the hosts manage them too!
+
 ## 0.7.2
 
 ### Patch Changes
