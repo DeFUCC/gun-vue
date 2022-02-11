@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, SEA, generateRoomCerts, createRoom, useBackground, enterRoom } from '@composables';
+import { useUser, SEA, createRoom, useBackground, enterRoom } from '@composables';
 import { reactive, ref, computed } from 'vue'
 
 const emit = defineEmits(['room'])
@@ -8,26 +8,23 @@ const { user } = useUser()
 
 const create = reactive({
   pair: null,
-  certs: null,
   name: ''
 })
 
 async function genPair() {
   let pair = await SEA.pair()
   create.pair = pair
-  create.certs = await generateRoomCerts(pair)
 }
 
 function reset() {
   // emit('room', create.pair.pub)
   // enterRoom(create.pair.pub)
   create.pair = null
-  create.certs = null
   create.name = ''
 }
 
 function createIt() {
-  createRoom({ pair: { ...create.pair }, certs: { ...create.certs }, name: create.name });
+  createRoom({ pair: { ...create.pair }, name: create.name });
   reset()
 }
 
@@ -43,6 +40,5 @@ const bg = computed(() => useBackground(create.pair?.pub, 620))
   input.p-2.m-2.rounded-xl(type="text" v-if="create.pair" v-model="create.name" placeholder="New room name")
   transition(name="fade")
     button.button.m-2.flex-1(@click="createIt()" v-if="create.pair && create.name" ) Add room
-  room-certs.mt-6(:certs="create.certs" v-if="create.certs")
 
 </template> 

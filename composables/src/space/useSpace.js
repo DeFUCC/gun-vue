@@ -52,7 +52,7 @@ export function useSpace({
       return gun.user(currentRoom.pub).get(spaceName);
     }),
     cert: computed(() => {
-      return currentRoom.certs.space;
+      return currentRoom.features?.space;
     }),
     my: {
       mouse: computed(() => ({ x: mouse.normX, y: mouse.normY })),
@@ -68,7 +68,7 @@ export function useSpace({
     if (!user.pub) return;
     if (!space.joined) join();
     space.db.get(user.pub).put(JSON.stringify({ x, y }), null, {
-      opt: { cert: currentRoom.certs.space },
+      opt: { cert: currentRoom.features?.space },
     });
   }
 

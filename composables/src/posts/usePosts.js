@@ -124,7 +124,7 @@ export async function reactToPost({ tag, hash, back, reaction = true } = {}) {
     let myPost = gun.user(currentRoom.pub).get(tag).get(`${hash}@${user.pub}`);
     let current = await myPost.then();
     myPost.put(!current ? reaction : null, null, {
-      opt: { cert: currentRoom.certs[tag] },
+      opt: { cert: currentRoom.features?.[tag] },
     });
   } else {
     let myLink = gun.user(currentRoom.pub).get("links");
@@ -136,7 +136,7 @@ export async function reactToPost({ tag, hash, back, reaction = true } = {}) {
 
     let current = await myLink.then();
     myLink.put(!current ? reaction : null, null, {
-      opt: { cert: currentRoom.certs.links },
+      opt: { cert: currentRoom.features?.links },
     });
   }
 }

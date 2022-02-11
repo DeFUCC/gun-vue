@@ -8,5 +8,6 @@ export function useBackground(pub, size = 200, light = 0.5, draw = "squares") {
       { pub: pub, draw, reflect: false, size: size }
     )})`,
     backgroundSize: "cover",
+    backgroundAttachment: "fixed",
   };
 }

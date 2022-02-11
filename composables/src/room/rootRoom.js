@@ -1,23 +1,25 @@
 export const rootRoom = {
-  pub: "7RYdmwPFEhXFl7NuprLb5jPhMOMOAkHikttXrPiki3I.0cx_psTxM6-65L5jtcEEGvrV30emHoSlw6SgHFZTOUA",
+  pub: "CGKqb0UfOEBRIUL-5w-TrTQ78enpvjOgCysXcrIx1Lg.MvPjSEr8-xHEh3NefFsBudEQ_WSaZBAx_ast90I3LK4",
   hosts: {
-    "PzR831FwtQwURp_pJswi9JNJCjY5YUY6uDqf2yHGMzY.78OF3Bu4yQ8dMqXJGnnjwy9S1CNtwiMxeoXVliW9MdM":
-      'SEA{"ct":"u7IsvmsDyCgyOqCevMuopLqLWhaxSVjYVJV4WrpQmfDLsNJaZdKpq+USJ9qJMETb8fglfrPFjFxW/Xcvoo9W2rBrXbAILZVXCj5EuXD2I0FzlXQK4druRgF6+jd8+MJ/IOjwPQcHMtxMctwh8LknpcH2U4OgZkIMQJ8HiihbcEh0HDIsflsqVkeWY8dFmbLM+v4q/eGP4otELt+5JNSOBnT/d4WcXoigm9KJEqn5qNHdmCcJQwyr7Mq4t9Z2WRiLqH0lE5DkWUArI4Vf+BG9l3NARPvMFH1YrG7Z9Xvz0leiC5KHNJgfTYBJGYt8YI8oJQ9C6Oz2P35fWF79aTynd6qhBsrUR1/vJ5JXjlMRDB/ONMIFsXfTv7kAg14rVJa9pQOu020u6f8dPpMl7KgGbOeEUQZDqYvrZ5mPJzc=","iv":"/0khcgUzm7At51wwmnM3","s":"cby7RIRY6ZtO"}',
+    "OVEIlbwn0NHhyD4S14t6JlIKauKj9Fl-lfqIcJLynPM.VCBFfxMJfZNrIXhj9s3m4QOZbvl7hljrwnG-GQGQZA0":
+      {
+        enc: 'SEA{"ct":"mjmu9Y38BSug+jyFdb2WTm7Fio/y6hHxrek/b0/XcgTc9dTXYXT6QBDlRm/PhIu/VjTU8zuScNiSrbmbbGg2N9tprn4X5DlkbkRsYrOJc2jHTybgaWceqCEoRAAgTc9KvD/o6JhnR3rJ8SEpYdvLEhxuEbyKyL4q2dw4/xOxidPlEwd4l9IbkxE84wz9qOHrLOFaqXoJJTzQcKPCpGUsej8kYgUXqA2nwq7ptoVzR0Rz89qYuxOcGY8SKiesGbmwDg5S6qRVVmvdiHBZCqHmZ3eJNECD/OjAstsz82+QOXivBySymEVHg1uxZxhg7Rae1m5wHrbknWdCKFW1JpTrDLdvSoItzWw8gErwfPa0lxa2260Kf2uBZta2q1vSTkByT8s8TiijqBR/91gYuOQqGHV3e53vhd+/IqLtOQQ=","iv":"s3oajwOqOaXIrOs7EGL8","s":"SkL4Xmt7YXBY"}',
+        profile:
+          'SEA{"m":{"c":"OVEIlbwn0NHhyD4S14t6JlIKauKj9Fl-lfqIcJLynPM.VCBFfxMJfZNrIXhj9s3m4QOZbvl7hljrwnG-GQGQZA0","w":{"*":"profile"}},"s":"RSApVlQJkUPmaRPKHQ8aMQcRoQoawIwe+fROMpRqFKZaFSz4sx6Pk+RVFoK+ygL+/BBBnTffKRsQ9tSjT3AGgg=="}',
+        features:
+          'SEA{"m":{"c":"OVEIlbwn0NHhyD4S14t6JlIKauKj9Fl-lfqIcJLynPM.VCBFfxMJfZNrIXhj9s3m4QOZbvl7hljrwnG-GQGQZA0","w":{"*":"features"}},"s":"H+TpHujQES6Ta9Y0nGRxCHHFSSHyX2zStWJHRzICoZJ4rHTXPtx0khUaqrPJajJ+/XxAJCoU+1+r4bD+DjSV5Q=="}',
+        hosts:
+          'SEA{"m":{"c":"OVEIlbwn0NHhyD4S14t6JlIKauKj9Fl-lfqIcJLynPM.VCBFfxMJfZNrIXhj9s3m4QOZbvl7hljrwnG-GQGQZA0","w":{"*":"hosts"}},"s":"qIpHgXdIrkbfDB43LHgZYCXLSg0hVYIZBEqPrmZaTQQJuztKFidsd0INIaEmHQJB4G1746WE2/NjIpaN1GsvWg=="}',
+      },
   },
-  certs: {
-    profile:
-      'SEA{"m":{"c":"PzR831FwtQwURp_pJswi9JNJCjY5YUY6uDqf2yHGMzY.78OF3Bu4yQ8dMqXJGnnjwy9S1CNtwiMxeoXVliW9MdM","w":{"*":"profile"}},"s":"RAthV5QDAMK8z+Vhlic9wScxMEJ8Y74LysM3r1nU0Q3Z0N/klnU5eXytC/6ii34J+PkFe0m8qGzzzHIT1jG2hA=="}',
-    certs:
-      'SEA{"m":{"c":"PzR831FwtQwURp_pJswi9JNJCjY5YUY6uDqf2yHGMzY.78OF3Bu4yQ8dMqXJGnnjwy9S1CNtwiMxeoXVliW9MdM","w":{"*":"certs"}},"s":"xqnIWmw59wm72n3mdOZCtD8AIWp7v7jtHqlIQXhO2s+CygJ/nGmnyumCm6hX5w4xqxQe4gDTlY2razeUEJSnow=="}',
-    hosts:
-      'SEA{"m":{"c":"PzR831FwtQwURp_pJswi9JNJCjY5YUY6uDqf2yHGMzY.78OF3Bu4yQ8dMqXJGnnjwy9S1CNtwiMxeoXVliW9MdM","w":{"*":"hosts"}},"s":"K+/TrXG3adqdQj+7db7TQ8PliKmHnp/doWiLK5VMtDGIyoezEBVkrlEk+oi2xH3XgpYOa6ETe8FofGaPikpb3g=="}',
+  features: {
     rooms:
-      'SEA{"m":{"c":"*","w":{"*":"rooms","+":"*"}},"s":"UThEodRYdJpJniS0FWC2QP2tC6bo7kK8Q0QtzeWA4sqaCDyW8HHj97GMfM6HGJEzblQZvlYBfODY1EfgP6RvXQ=="}',
+      'SEA{"m":{"c":"*","w":{"*":"rooms","+":"*"}},"s":"awkYGIp+aTmKa6+jVVA7HIsHfoufSNV9Jj4Lvg2AOifk19eLb+gXufof6rz6sCMFF6lY73+yQzrdkJaxxRFmzw=="}',
     space:
-      'SEA{"m":{"c":"*","w":{"*":"space","+":"*"}},"s":"s6c0BzDKtQlesaGR07sA9h3PGqESmhpbFBU88XIu6jv6x2MppsbR9Uu4ums3/GNtVpdbHw87kE/a0SybAcg2aQ=="}',
+      'SEA{"m":{"c":"*","w":{"*":"space","+":"*"}},"s":"eJ/HAjkR9tGE43VPF2hM5a4xna1I1oi+wBlWjkt1sZbFeQl8cIX13vM8Ap8ZblyqXCIUHqs0/kkvlVFDdlCoVA=="}',
     posts:
-      'SEA{"m":{"c":"*","w":{"*":"posts","+":"*"}},"s":"UhHDniHpV/z5cklel4deYlvGnS1RcH6foU5yZZ0k0dh9bCw+ZlRl4udrkUBAATHaaVXgH+ejqVDiNp5l3ndNIw=="}',
+      'SEA{"m":{"c":"*","w":{"*":"posts","+":"*"}},"s":"SpQS+srfbl6U72mh7SkguqVrY0pf+qAuT/ouUdyg1zRZ76Z0vdARynBdU4myLSecsUwzWwIGe6WYw+ugKfda4A=="}',
     links:
-      'SEA{"m":{"c":"*","w":{"*":"links","+":"*"}},"s":"lIwYEWEgUqT0J+zvNueGqTbNOOC+JaVUwCQtW3/sYhO0krZiAM7nNvI0DxlfFrItTnR+NK+h7xQEVTJSTFWYQg=="}',
+      'SEA{"m":{"c":"*","w":{"*":"links","+":"*"}},"s":"M+p66R9+JvC7u9AKM8mwtBFTa6yhSZUrLBwiN0dmz0IJ8pP68QZBOSdO23uzwnDIsC2SXSV/vm13Fo77tqmQwg=="}',
   },
 };

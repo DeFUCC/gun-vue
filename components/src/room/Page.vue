@@ -31,17 +31,19 @@ const bg = computed(() => useBackground(roomPub.value, 600))
 
 <template lang='pug'>
 .pt-42.pb-2.px-2.md_px-8.md_pb-8.bg-cover.relative.flex.flex-col.items-center(:style="{ ...bg }")
-  .flex.flex-col.items-stretche.bg-light-100.bg-opacity-20.p-6.md_p-12.rounded-4xl.shadow-xl.backdrop-blur-md.backdrop-filter
+  .flex.flex-col.items-stretche.bg-light-100.bg-opacity-20.p-4.md_p-12.rounded-4xl.shadow-xl.backdrop-blur-md.backdrop-filter
     .flex.flex-wrap.items-center
       .flex.flex-col
-        .flex.items-center.mb-2
+        .flex.items-center.mr-4.mb-2
           .text-2xl.font-bold.break-all {{ room.profile.name || roomPub.substring(0, 12) }}
           la-pen.ml-2.cursor-pointer(@click="name = room.profile.name; editName = true" v-if="room.hosts[user.pub] && roomPub == currentRoom.pub && !editName")
           la-times.ml-2.cursor-pointer(v-if="editName" @click="editName = false")
         input.my-2.p-2.shadow-lg.rounded-lg(v-if="room.hosts[user.pub] && editName" type="text" v-model="name" @keyup.escape="editName = false" @keyup.enter="updateRoomProfile('name', name); editName = null")
         .flex.items-center
-          .font-bold.mr-2 Host: 
-          account-badge(v-for="(enc, host) in room.hosts" :key="host" :pub="host" :selectable="true")
+          .font-bold.mr-2 Hosts: 
+          .p-2(v-for="(enc, host) in room.hosts" :key="host")
+            account-badge( :pub="host" :selectable="true")
+            room-features(:features="enc") Tools
       .flex-1
       .flex.flex-wrap.py-4(v-if="roomPub != rootRoom.pub")
         button.button(@click="enterRoom(roomPub)" v-if="currentRoom.pub !== roomPub")
@@ -50,7 +52,7 @@ const bg = computed(() => useBackground(roomPub.value, 600))
         button.button(@click="leaveRoom()" v-else)
           ion-exit-outline
           .ml-2 Leave
-    room-certs.mt-4(:certs="room.certs")
+    room-features.mt-4(:features="room.features")
     .text-sm.font-mono.my-4 {{ room.profile }}
 
 

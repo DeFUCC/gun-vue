@@ -3,9 +3,11 @@ import { currentRoom, rootRoom } from '@composables';
 </script>
 
 <template lang="pug">
-.flex.flex-col(v-if="currentRoom.pub == rootRoom.pub")
-  .flex.flex-wrap.shadow-lg.m-2.rounded-3xl.items-start
-    img.w-full.max-w-100.sticky.top-20.-z-2(src="/gun-vue-logo.svg")
+.flex.flex-col
+  img.w-full.max-w-80.fixed.top-32.z-20(src="/gun-vue-logo.svg")
+  room-page
+  .flex.flex-wrap.shadow-lg.m-2.rounded-3xl.items-start.z-30(v-if="currentRoom.pub == rootRoom.pub")
+
     .flex.flex-col.mx-4.max-w-200.p-8.bg-light-200.p-4.rounded-2xl.bg-opacity-95.backdrop-filter.backdrop-blur-md
       .font-bold.text-3xl.mb-4 @gun-vue
       .my-4 Gun-vue is a collection of essential building blocks to create a variety of decentralized apps for online and offline collaboration. It's a moment when we can feel the nature of distributed networking and have fun together!
@@ -42,5 +44,5 @@ import { currentRoom, rootRoom } from '@composables';
         a.button.m-2.flex.items-center(href="https://ko-fi.com/davay" target="_blank")
           cib-ko-fi.mr-4.text-3xl
           .text-xl Sponsorship
-room-page(v-else)
+
 </template>

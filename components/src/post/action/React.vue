@@ -35,9 +35,7 @@ if (props.tag == 'posts' || props.tag == 'rooms') {
 }
 
 function react(event) {
-
   reactToPost({ tag: props.tag, hash: props.hash, back: props.back, reaction: getFirstEmoji(reaction.value) })
-
 }
 
 </script>

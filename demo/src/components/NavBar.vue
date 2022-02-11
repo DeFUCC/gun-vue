@@ -3,6 +3,7 @@
 import { computed } from 'vue'
 
 const routes = {
+  "/": "Home",
   "/space/": "Space",
   "/posts/": "Posts",
   "/users/": "Users",
@@ -24,7 +25,7 @@ a.fixed.top-0.left-0.z-1000(href="/#")
   :style="{ borderColor: user.color, ...bg }"
 
   )
-  .w-24
+  .w-4.h-12
   .flex-1
   room-icon(@room="$router.push(`/rooms/${$event}`)")
   user-icon(

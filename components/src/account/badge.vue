@@ -30,7 +30,7 @@ function select() {
 </script>
 
 <template lang="pug">
-.p-2px.flex.items-center.rounded-3xl.bg-light-900.cursor-pointer.shadow.transition.duration-400.ease-in(
+.p-2px.flex.items-center.rounded-full.bg-light-900.cursor-pointer.shadow.transition.duration-400.ease-in(
   :style="{ backgroundColor: colorDeep.hex(pub) }"
   @click="select()"
   )

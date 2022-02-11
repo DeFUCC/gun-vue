@@ -110,13 +110,13 @@ export async function addPost(tag = "posts", post) {
       .user(currentRoom.pub)
       .get(tag)
       .get(`${hash}@${user.pub}`)
-      .put(true, null, { opt: { cert: currentRoom.certs.posts } });
+      .put(true, null, { opt: { cert: currentRoom.features?.posts } });
   } else {
     gun
       .user(currentRoom.pub)
       .get("links")
       .get(`${tag}:${hash}@${user.pub}`)
-      .put(true, null, { opt: { cert: currentRoom.certs.links } });
+      .put(true, null, { opt: { cert: currentRoom.features?.links } });
   }
 }
 

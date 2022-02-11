@@ -28,12 +28,14 @@ const { post } = usePost({ hash: props.hash })
       img.w-20.max-h-20.rounded-full.m-2(:src="post.icon" width="40px")
     .flex.flex-col.p-2.overflow-hidden(style="flex: 10 1 180px")
       .px-2
-        .text-xl.font-bold.my-2(v-if="post?.title") {{ post.title }}
+        .flex.flex-wrap.items-center
+          .text-xl.font-bold.my-2(v-if="post?.title") {{ post.title }}
+          la-youtube.mx-1(v-if="post?.youtube")
+          mdi-text-long.mx-1(v-if="post?.text")
+          ui-link(:url="post?.link" v-if="post?.link")
         .statement(v-if="post?.statement") {{ post.statement }}
       .flex.items-center.flex-wrap.items-center
-        la-youtube.mx-1(v-if="post?.youtube")
-        mdi-text-long.mx-1(v-if="post?.text")
-        ui-link(:url="post?.link" v-if="post?.link")
+
         slot
     .flex-1.text-xs
     .flex.gap-1.rounded-xl.p-1.bg-dark-100.bg-opacity-20.flex-wrap.items-center(style="flex: 1 1 220px" v-if="actions")
