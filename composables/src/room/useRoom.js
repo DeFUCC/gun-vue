@@ -136,7 +136,8 @@ export function updateRoomProfile(field, content) {
 
 export async function createRoom({ pair, name } = {}) {
   const { user } = useUser();
-  if (!pair) pair = await SEA.pair();
+  // if (!pair) pair = await SEA.pair();
+  if (!pair) return;
 
   const certs = await generateCerts({
     pair,
@@ -198,6 +199,13 @@ export async function createRoom({ pair, name } = {}) {
   }
 
   // enterRoom(pair.pub);
+}
+
+export async function recreateRoom(enc) {
+  const dec = await SEA.decrypt(enc, user.pair());
+  createRoom({
+    pair: dec,
+  });
 }
 
 export async function submitRoom(pub) {

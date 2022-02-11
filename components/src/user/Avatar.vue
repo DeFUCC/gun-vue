@@ -44,7 +44,7 @@ function removeAvatar() {
 .flex.flex-col.relative.items-center.justify-center
   account-avatar(:pub="user.pub" :size="size" )
 
-  post-form-picture.absolute(
+  form-picture.absolute(
     :options="{ picSize: props.pic, preserveRatio: false }"
     @update="uploadAvatar($event)"
     )

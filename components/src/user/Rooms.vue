@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
-import { useUser, createRoom, SEA, enterRoom } from '@composables';
+import { useUser, createRoom, SEA, enterRoom, recreateRoom } from '@composables';
 
 const emit = defineEmits(['browse'])
 
@@ -19,12 +19,7 @@ const rooms = computed(() => {
 
 const open = ref(false)
 
-async function recreateRoom(enc) {
-  const dec = await SEA.decrypt(enc, user.pair())
-  createRoom({
-    pair: dec
-  })
-}
+
 </script>
 
 <template lang='pug'>

@@ -51,6 +51,13 @@ export { default as PostActionStar } from "./post/action/Star.vue";
 export { default as PostActionUpdate } from "./post/action/Update.vue";
 export { default as PostActionBan } from "./post/action/Ban.vue";
 
+// FORMS
+
+export { default as FormLink } from "./form/Link.vue";
+export { default as FormPicture } from "./form/Picture.vue";
+export { default as FormText } from "./form/Text.vue";
+export { default as FormYoutube } from "./form/Youtube.vue";
+
 // UTILS
 
 export { default as RelayIcon } from "./relay/Icon.vue";

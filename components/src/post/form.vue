@@ -70,14 +70,14 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl.mb-6(action="javascript:
       title="Add a heading"
       )
       tabler-heading
-    post-form-picture(
+    form-picture(
       @update="postData.icon = $event" 
       field="icon" 
       :options="{ picSize: 400, preserveRatio: false }"
       )
       la-info-circle
-    post-form-picture(@update="postData.cover = $event")
-    post-form-link(@update="postData.link = $event")
+    form-picture(@update="postData.cover = $event")
+    form-link(@update="postData.link = $event")
 
     .flex.flex-wrap
       button.button.m-1(
@@ -102,9 +102,9 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl.mb-6(action="javascript:
       button.m-1.button.text-xl( @click="reset()")
         la-trash-alt
   ui-layer(:open="add.youtube" @close="add.youtube = false" :offset="'22vh'")
-    post-form-youtube(v-model:id="postData.youtube")
+    form-youtube(v-model:id="postData.youtube")
   ui-layer(:open="add.text" @close="add.text = false" :offset="'22vh'")
-    post-form-text(v-model:text="postData.text" @close="add.text = false")
+    form-text(v-model:text="postData.text" @close="add.text = false")
   
 </template>
 
