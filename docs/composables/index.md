@@ -30,6 +30,11 @@ const user = useUser();
   </thead>
   <tbody>
 <tr>
+    <td><a href="#chat" >Chat</a></td>
+    <td><p>Basic public chat</p>
+</td>
+    </tr>
+<tr>
     <td><a href="#usecrypto" >useCrypto</a></td>
     <td><p>SEA cryptography abstraction</p>
 </td>
@@ -111,6 +116,13 @@ const user = useUser();
 </tbody>
 </table>
 
+
+<a name="module_Chat"></a>
+
+## Chat
+Basic public chat
+
+<hr />
 
 <a name="module_useCrypto"></a>
 
@@ -726,7 +738,6 @@ A 2D-space
     * _static_
         * [.useSpace(spaceName)](#module_useSpace.useSpace) ⇒ <code>useSpace</code>
     * _inner_
-        * [~startTime](#module_useSpace..startTime)
         * [~useSpace](#module_useSpace..useSpace) : <code>Object</code>
 
 ### useSpace(spaceName) ⇒ <code>useSpace</code>
@@ -744,11 +755,6 @@ TIMEOUT: 10000,
 spaceName: 'Space title'
 })
 ```
-### startTime
-  **Todo**
-
-- [ ] draggable handles https://dev.to/abolz/roll-your-own-svg-drag-and-drop-in-vuejs-2c7o
-
 ### useSpace : <code>Object</code>
   **Properties**
 

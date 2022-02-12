@@ -1,3 +1,8 @@
+/**
+ * Basic public chat
+ * @module Chat
+ */
+
 import { ref, reactive, watch, nextTick, onMounted } from "vue";
 import { useUser, ms, useGun, currentRoom } from "..";
 
