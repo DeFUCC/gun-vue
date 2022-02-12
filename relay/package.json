@@ -1,7 +1,7 @@
 {
   "name": "@gun-vue/relay",
   "desciprion": "A no store gun peer relay for free tier hosting",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/defucc/gun-vue.git",

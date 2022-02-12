@@ -1,5 +1,11 @@
 # @gun-vue/repo
 
+## 0.7.4
+
+### Patch Changes
+
+- package info update
+
 ## 0.7.1
 
 ### Patch Changes
