@@ -135,6 +135,7 @@ export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
 
 export const user = reactive({
   initiated: false,
+  auth: false,
   is: null,
   name: "",
   pub: computed(() => user?.is?.pub),

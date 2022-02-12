@@ -13,7 +13,7 @@ const guests = useGuests({ space: props.space })
 </script>
 
 <template lang='pug'>
-.flex.flex-col.p-4
+.flex.flex-col.p-4.items-center
   .flex.flex-col.my-2(v-for="state in ['online', 'offline']" :key="state")
     .flex.items-center.my-2
       .text-xl.mr-2.capitalize {{ state }}

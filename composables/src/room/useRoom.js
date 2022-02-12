@@ -154,6 +154,7 @@ export async function createRoom({ pair, name } = {}) {
       { tag: "space", personal: true },
       { tag: "posts", personal: true },
       { tag: "links", personal: true },
+      { tag: "chat", personal: true },
     ],
   });
 
@@ -221,6 +222,17 @@ export async function submitRoom(pub) {
     .get("rooms")
     .get(`${pub}@${user.pub}`)
     .put(!already, null, { opt: { cert: currentRoom.features?.rooms } });
+}
+
+export function joinRoom() {
+  const gun = useGun();
+  gun
+    .user(currentRoom.pub)
+    .get("space")
+    .db.get(user.pub)
+    .put(JSON.stringify({ x: Math.random(), y: Math.random() }), null, {
+      opt: { cert: currentRoom.features?.space },
+    });
 }
 
 /**

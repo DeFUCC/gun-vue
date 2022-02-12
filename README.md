@@ -18,7 +18,7 @@ There are 3 packages in the [@gun-vue npmjs org](https://www.npmjs.com/org/gun-v
 
 <a href="https://www.npmjs.com/package/@gun-vue/components" target="_blank"><img src="https://img.shields.io/npm/v/@gun-vue/components?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
 
-A set of ready to use Vue 3 components as building blocks to implement Gun powered interactivity in seconds
+Ready to use Vue 3 components as building blocks to implement Gun powered interactivity in seconds
 
 ---
 
@@ -26,7 +26,7 @@ A set of ready to use Vue 3 components as building blocks to implement Gun power
 
 <a href="https://www.npmjs.com/package/@gun-vue/composables" target="_blank"><img src="https://img.shields.io/npm/v/@gun-vue/composables?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
 
-A set of composable functions for use with Vue 3 Composition API
+Composable functions for use with Vue 3 Composition API
 
 ---
 
@@ -58,7 +58,7 @@ The docs at [gun-vue.js.org/docs](https://gun-vue.js.org/docs) is an example Vit
 
 We manage tasks for the build at this [Taskade project](https://www.taskade.com/d/XtaACTKmN4KqSC1v?share=view&view=hsVKduBWoYMa9S7a).
 
-## How to build the workspace repo yourself
+## How to build the workspace repo yourself?
 
 1. Clone the repo
 2. Use [pnpm](https://pnpm.io/) to install all the dependencies in the workspaces
@@ -68,4 +68,5 @@ npm i -G pnpm
 pnpm i
 ```
 
-3. Use `demo` and `docs` scripts in the root `package.json` to run corresponding dev servers. Use `npm run build` to build the whole project to the `_dist` folder.
+3. Use `demo` and `docs` scripts in the root `package.json` to run corresponding dev servers.
+4. Use `npm run build` to build the whole project to the `_dist` folder.

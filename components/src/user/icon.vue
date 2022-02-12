@@ -7,7 +7,7 @@ const props = defineProps({
 })
 
 const { user } = useUser()
-const open = ref(false)
+
 
 defineEmits(['room', 'user', 'post'])
 
@@ -18,17 +18,17 @@ div
   account-avatar.cursor-pointer(
     :size="size" 
     :border="2" 
-    @click="open = true" 
+    @click="user.auth = true" 
     :pub="user.pub"
     )
   ui-layer(
-    :open="open" 
-    @close="open = false"
+    :open="user.auth" 
+    @close="user.auth = false"
     )
     user-home.max-w-600px(
       @room="$emit('room', $event)" 
       @user="$emit('user', $event)" 
-      @close="open = false"
+      @close="user.auth = false"
       )
   ui-layer(
     :open="selectedUser.pub" 

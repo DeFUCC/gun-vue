@@ -1,5 +1,5 @@
 <script setup>
-import { useSpace, useUser, useColor, gunAvatar, useRoom, useBackground } from '@composables'
+import { useSpace, useUser, useColor, gunAvatar, useRoom, useBackground, selectedUser } from '@composables'
 import { ref, computed } from 'vue'
 
 const props = defineProps({
@@ -16,9 +16,6 @@ const { space, plane, links, width, height, guests, area, join, place } = useSpa
   TIMEOUT: 10000,
 })
 
-const selected = ref();
-
-const enter = ref(false)
 
 const bg = computed(() => useBackground(room.pub, 1000))
 
@@ -26,12 +23,6 @@ const bg = computed(() => useBackground(room.pub, 1000))
 
 <template lang='pug'>
 .flex.flex-col.items-center.relative.bg-cover.my-4(:style="{ ...bg }")
-
-  ui-layer(:open="!!selected" @close="selected = null")
-    account-home(:pub="selected")
-
-  ui-layer(:open="enter && !user.is" @close="enter = false")
-    user-home(@browse="$router.push(`/users/${$event}`)" @close="enter = false")
 
   .text-2xl.p-8.top-15vh.cursor-pointer.bg-light-700.absolute.rounded-3xl.shadow-xl.border-4(
     v-if="!space.joined && user.is" 
@@ -41,7 +32,7 @@ const bg = computed(() => useBackground(room.pub, 1000))
   svg.h-80vh.w-98vw(
     ref="plane"
     style="cursor:none;"
-    @click="place(); enter = true"
+    @click="place(); !user.is ? user.auth = true : null"
     version="1.1",
     baseProfile="full",
     :viewBox="`${-pad} ${-pad} ${width + 2 * pad} ${height + 2 * pad}`",
@@ -88,14 +79,14 @@ const bg = computed(() => useBackground(room.pub, 1000))
         v-for="(link, key) in links"
         :link="link" 
         :key="key"
-        @user="selected = $event"
+        @user="selectedUser.pub = $event"
         )
 
     g.guests
       space-guest.cursor-pointer.transition-all.ease-out.duration-600(
         v-for="guest in guests" :key="guest" 
         v-bind="guest"
-        @click="selected = guest.pub"
+        @click="selectedUser.pub = guest.pub"
         :style="{ transform: `translate(${guest?.pos?.x * width}px, ${guest?.pos?.y * height}px)` }"
       )
         

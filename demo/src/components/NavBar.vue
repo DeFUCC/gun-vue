@@ -5,6 +5,7 @@ import { computed } from 'vue'
 const routes = {
   "/": "Home",
   "/space/": "Space",
+  "/chat/": "Chat",
   "/posts/": "Posts",
   "/users/": "Users",
   "/rooms/": "Rooms",

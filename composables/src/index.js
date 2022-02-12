@@ -5,12 +5,11 @@ export * from "./ui/";
 export * from "./file/";
 export * from "./crypto/";
 export * from "./space/";
-
-export * from "./useLog";
-
+export * from "./chat/";
 export * from "./room/";
 
 export * from "./useWorker";
+export * from "./useLog";
 
 export * from "gun-avatar";
 export { default as ms } from "ms";
