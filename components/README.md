@@ -17,13 +17,13 @@ npm i @gun-vue/components
 2. Import a component to your Vue 3 project:
 
 ```js
-import { RelayPulse } from "@gun-vue/components";
+import { UserIcon } from "@gun-vue/components";
 ```
 
 3. Use the component in your SFC template:
 
 ```html
-<relay-pulse />
+<user-icon />
 ```
 
 4. Have fun combining dufferent components with shared Gun state.

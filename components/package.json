@@ -2,7 +2,14 @@
   "name": "@gun-vue/components",
   "version": "0.7.3",
   "license": "MIT",
-  "repository": "github:defucc/gun-vue",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/defucc/gun-vue.git",
+    "directory": "components"
+  },
+  "bugs": {
+    "url": "https://github.com/defucc/gun-vue/issues"
+  },
   "homepage": "https://gun-vue.js.org",
   "author": "davay42 <davay@defucc.me>",
   "funding": {

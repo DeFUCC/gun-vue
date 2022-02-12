@@ -20,7 +20,11 @@ It's just the beginning and not all the functions are reliably implemented yet. 
 - **Relay** - Gun relay peer connection monitoring
 - **Room** - private signed collaborative spaces with a certificate system for access management. (TBD)
 - **Space** - a simple demo of showing working with private user data in a shared space
-- **Tags** - hashed immutable data in the root of the db as a fun experiment, but with deep observations about freedom of speach and ways to explore the vastness of the public graph space available with Gun
+- **Posts** - hashed immutable data in the root of the db as a fun experiment, but with deep observations about freedom of speach and ways to explore the vastness of the public graph space available with Gun
+- **Chat** - basic public chat
+- **Rooms** - cryptographic data collections
+
+... and more!
 
 **And there's more!**
 
@@ -41,17 +45,15 @@ import { useAccount } from "@gun-vue/composables";
 3. Instantiate the function inside your Vue SFC
 
 ```js
-
-const {(account, auth, leave)} = useAccount()
-
+const { account, auth, leave } = useAccount();
 ```
 
 4. Use the reactive state in your template to drive the component:
 
 ```html
-<div v-for="(data,field) in account.profile" :key="data">
+<div v-for="(data,field) in account.profile" :key="field">
   {{ field }} - {{ data }}
 </div>
 ```
 
-[FULL DOCS ONLINE](https://gun-vue.js.org/docs)
+[READ FULL DOCS ONLINE](https://gun-vue.js.org/docs)

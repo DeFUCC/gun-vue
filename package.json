@@ -1,12 +1,12 @@
 {
   "name": "@gun-vue/repo",
   "private": true,
-  "version": "0.7.1",
+  "version": "0.7.3",
   "funding": {
     "type": "ko-fi",
-    "url": "https://ko-fi.com/B0B44CM90"
+    "url": "https://ko-fi.com/davay"
   },
-  "homepage": "https://defucc.github.io/gun-vue",
+  "homepage": "https://gun-vue.js.org",
   "engines": {
     "node": "16.x"
   },
