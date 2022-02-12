@@ -51,6 +51,11 @@ export { default as PostActionStar } from "./post/action/Star.vue";
 export { default as PostActionUpdate } from "./post/action/Update.vue";
 export { default as PostActionBan } from "./post/action/Ban.vue";
 
+//CHAT
+
+export { default as ChatRoom } from "./chat/Room.vue";
+export { default as ChatMessage } from "./chat/Message.vue";
+
 // FORMS
 
 export { default as FormLink } from "./form/Link.vue";
