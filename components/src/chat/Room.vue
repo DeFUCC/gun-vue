@@ -35,7 +35,7 @@ onMounted(() => {
     .flex-1.ml-2 / {{ currentChat }}
   .flex
     transition(name="fade")
-      .flex.flex-col.bg-dark-300.gap-2.h-50vh.overflow-y-scroll.scroll-smooth.absolute.sm_static.z-20.w-220px.max-w-full.text-light-900(style="flex: 1 1 220px" v-if="isLarge || (panelOpen && !isLarge)" ref="chatsPanel")
+      .flex.flex-col.bg-dark-300.gap-2.h-55vh.overflow-y-scroll.scroll-smooth.absolute.sm_static.z-20.w-220px.max-w-full.text-light-900(style="flex: 1 1 220px" v-if="isLarge || (panelOpen && !isLarge)" ref="chatsPanel")
         .text-xl.font-bold.bg-dark-50.p-2 Chats 
         .flex.flex-col.p-2.gap-2.h-full
           .font-bold.bg-light-100.bg-opacity-30.rounded-xl.px-2.cursor-pointer.flex(
@@ -51,7 +51,7 @@ onMounted(() => {
               @keyup.enter="addChat(newChat); newChat = ''"
               placeholder="New chat"
               )
-    .flex.flex-col.bg-dark-50.bg-opacity-80.p-4.gap-2.h-50vh.overflow-y-scroll.scroll-smooth(ref="chatWindow" style="flex: 1 1 auto")
+    .flex.flex-col.bg-dark-50.bg-opacity-80.p-4.gap-2.h-55vh.overflow-y-scroll.scroll-smooth(ref="chatWindow" style="flex: 1 1 auto")
       chat-message(
         :style="{ order: Math.round(Number(message.timestamp) / 1000) - 1640995200 }"
         v-for="(message, key) in messages" :key="key"

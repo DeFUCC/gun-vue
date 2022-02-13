@@ -14,10 +14,9 @@ const address = computed(() => {
 
 <template lang='pug'>
 .flex
-  button.button.p-4.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(@click="open = !open")
+  button.button.p-4.transition.bg-light-800.shadow-lg.flex.items-center.justify-center(@click="open = !open")
     ion-share-outline
-    slot
-      .ml-2 Share 
+      slot
   ui-layer.text-center(:open="open" @close="open = false")
     qr-show(:data="address")
     .flex.flex-col.items-center.mb-4.-mt-8
