@@ -70,7 +70,7 @@ const showHidden = ref(false)
       post-form(:tag="tag" v-if="add" @close="add = false")
     .flex.flex-wrap
       transition-group(name="list")
-        post-card(
+        post-card.max-w-640px(
           style="flex: 1 1 220px"
           v-show="tag != hash && (countAuthors(authors) > 0 || showHidden)"
           :style="{ order: -countAuthors(authors), opacity: countAuthors(authors) > 0 ? 1 : 0.3 }"

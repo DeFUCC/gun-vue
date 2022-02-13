@@ -5,14 +5,15 @@ import { useChat, useUser } from '@composables';
 
 const { user } = useUser();
 
-const { send, currentTopic, topics, messages } = useChat()
+const { send, currentChat, addChat, chats, messages } = useChat()
 
 const message = ref('')
-const topicsPanel = ref()
-const topicsOpen = ref(true)
+const newChat = ref('')
+const chatsPanel = ref()
+const panelOpen = ref(true)
 const isLarge = useMediaQuery('(min-width: 640px)')
 
-onClickOutside(topicsPanel, (event) => !isLarge.value ? topicsOpen.value = false : null)
+onClickOutside(chatsPanel, (event) => !isLarge.value ? panelOpen.value = false : null)
 
 const chatWindow = ref();
 
@@ -30,18 +31,26 @@ onMounted(() => {
 <template lang='pug'>
 .flex.flex-col.bg-light-800.shadow-md.mx-auto.w-full
   .p-4.flex.flex-wrap.items-center
-    .text-xl.font-bold Chat 
-    .flex-1.ml-2 / {{ currentTopic }}
-    button.button(v-if="!isLarge" @click.stop.prevent="topicsOpen = !topicsOpen") Channels
+    button.button( @click.stop.prevent="panelOpen = !panelOpen") Chats
+    .flex-1.ml-2 / {{ currentChat }}
   .flex
     transition(name="fade")
-      .flex.flex-col.bg-dark-300.gap-2.h-50vh.overflow-y-scroll.scroll-smooth.absolute.sm_static.z-20.w-220px.max-w-full.text-light-900(style="flex: 1 1 420px" v-if="isLarge || (topicsOpen && !isLarge)" ref="topicsPanel")
-        .text-xl.font-bold.bg-dark-50.p-2 Channels
-        .flex.flex-col.p-2.gap-1
-          .font-bold.bg-light-100.bg-opacity-30.rounded-xl.px-2.cursor-pointer(
-            v-for="(count, topic) in topics" :key="topic"
-            @click="currentTopic = topic; topicsOpen = false"
-            ) {{ topic }} {{ count }}
+      .flex.flex-col.bg-dark-300.gap-2.h-50vh.overflow-y-scroll.scroll-smooth.absolute.sm_static.z-20.w-220px.max-w-full.text-light-900(style="flex: 1 1 220px" v-if="isLarge || (panelOpen && !isLarge)" ref="chatsPanel")
+        .text-xl.font-bold.bg-dark-50.p-2 Chats 
+        .flex.flex-col.p-2.gap-2.h-full
+          .font-bold.bg-light-100.bg-opacity-30.rounded-xl.px-2.cursor-pointer.flex(
+            v-for="(authors, topic) in chats" :key="topic"
+            @click="currentChat = topic; panelOpen = false"
+            ) 
+            .flex-1 {{ topic }}
+            account-avatar(v-for="(isAuthor, author) in authors" :key="author" :size="20" :pub="author")
+          .flex-1
+          .flex.flex-wrap
+            input.p-2.m-2.w-full.rounded-xl.text-dark-800(
+              v-model="newChat" 
+              @keyup.enter="addChat(newChat); newChat = ''"
+              placeholder="New chat"
+              )
     .flex.flex-col.bg-dark-50.bg-opacity-80.p-4.gap-2.h-50vh.overflow-y-scroll.scroll-smooth(ref="chatWindow" style="flex: 1 1 auto")
       chat-message(
         :style="{ order: Math.round(Number(message.timestamp) / 1000) - 1640995200 }"

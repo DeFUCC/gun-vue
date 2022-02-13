@@ -32,6 +32,6 @@ function formatDate(timestamp) {
     account-badge.opacity-50.hover_opacity-90.transition(:pub="author" :showName="true" :size="20" @click="selectedUser.pub = author")
     .flex-1
     .text-sm.opacity-20.hover_opacity-80.transition.cursor-default.text-light-200 {{ dateTime.date }}
-  .px-2.py-1.bg-light-300.bg-opacity-80.rounded-r-xl.rounded-b-xl.max-w-max
+  .px-2.py-1.bg-light-300.bg-opacity-80.rounded-r-xl.rounded-b-xl.max-w-max.break-all.overflow-hidden
     slot {{ text }}
 </template>
