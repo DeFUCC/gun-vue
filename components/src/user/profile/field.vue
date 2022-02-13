@@ -22,7 +22,7 @@ function isLink(text) {
 </script>
 
 <template lang='pug'>
-.p-2.flex.items-center
+.p-2.flex.items-center.break-all
   .mr-2.font-bold {{ field }}
   .flex.items-center
     .text-md.flex.items-center(v-if="!edit") 
