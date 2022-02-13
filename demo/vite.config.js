@@ -89,6 +89,7 @@ export default defineConfig({
   build: {
     outDir: "../_dist/",
     target: "esnext",
+    sourcemap: true,
     brotliSize: true,
     assetsInlineLimit: 100000000,
     chunkSizeWarningLimit: 100000000,
