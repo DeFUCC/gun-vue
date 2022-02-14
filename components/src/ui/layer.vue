@@ -21,7 +21,7 @@ transition(name="fade")
 
 <style lang="postcss" scoped>
 .layer {
-  @apply bg-light-100 rounded-3xl z-200 shadow-2xl overflow-y-scroll overscroll-contain max-h-88vh left-0 mx-2 right-0 relative z-500;
+  @apply bg-light-100 rounded-3xl z-200 shadow-2xl overflow-y-scroll overscroll-contain max-h-88vh max-w-98vw  relative z-500;
   overscroll-behavior-y: none;
 }
 </style>

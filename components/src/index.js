@@ -65,8 +65,6 @@ export { default as FormYoutube } from "./form/Youtube.vue";
 
 // UTILS
 
-export { default as RelayIcon } from "./relay/Icon.vue";
-
 export { default as LogTree } from "./log/Tree.vue";
 
 export { default as QrShow } from "./qr/Show.vue";
@@ -80,5 +78,6 @@ export { default as UtilPulse } from "./util/Pulse.vue";
 export { default as UtilGraph } from "./util/Graph.vue";
 export { default as UtilShare } from "./util/Share.vue";
 export { default as Utiltools } from "./util/Tools.vue";
+export { default as UtilRelay } from "./util/Relay.vue";
 
 export * from "@composables";

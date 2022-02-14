@@ -86,6 +86,7 @@ const bg = computed(() => useBackground(room.pub, 1000))
       space-guest.cursor-pointer.transition-all.ease-out.duration-600(
         v-for="guest in guests" :key="guest" 
         v-bind="guest"
+        :mouse="space.my.mouse"
         @click="selectedUser.pub = guest.pub"
         :style="{ transform: `translate(${guest?.pos?.x * width}px, ${guest?.pos?.y * height}px)` }"
       )

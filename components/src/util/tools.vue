@@ -8,7 +8,7 @@ const show = reactive({
 </script>
 
 <template lang='pug'>
-.flex.justify-center.flex-wrap.relative.gap-2
+.flex.justify-end.flex-wrap.relative.gap-2
   util-share
   //- button.button.m-2(@click="show.log = !show.log")
   //-   la-info-circle
@@ -16,7 +16,7 @@ const show = reactive({
   button.button(@click="show.graph = !show.graph")
     mdi-graph-outline
   button.button
-    relay-icon
+    util-relay
 
 
   //- ui-layer(:open="show.log" @close="show.log = false")

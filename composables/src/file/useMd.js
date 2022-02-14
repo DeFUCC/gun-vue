@@ -19,14 +19,14 @@ import externalLinks from "markdown-it-external-links";
  * @returns Markdown text file ready to download
  */
 
-export function createMd({ frontmatter = null, content = "" } = md) {
+export function createMd({ frontmatter = null, text = "" } = md) {
   let front = "";
   if (typeof frontmatter == "object") {
     let yml = yaml.stringify(frontmatter);
     front = `---
 ${yml}---
  `;
-    return front + content;
+    return front + text;
   }
 }
 

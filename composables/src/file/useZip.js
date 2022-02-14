@@ -56,6 +56,7 @@ export function useZip() {
   }
 
   function addMd({ md, title } = {}) {
+    console.log(md);
     zip.file(`${title}/index.md`, createMd(md), "text/markdown");
   }
 
@@ -66,31 +67,34 @@ export function useZip() {
    */
 
   async function zipPost(post = {}) {
-    let { icon, cover, content, title, statement } = post;
-    delete post?.content;
+    let { icon, cover, text, title, statement } = post;
+    delete post?.text;
     if (!title) {
       title = statement ? statement.split(0, 12) : genUUID();
     }
 
-    const files = ["cover", "icon", "text"];
+    const files = ["cover", "icon"];
 
-    for (let name of files) {
-      let file = await loadFromHash(name, post[name]);
+    for (let type of files) {
+      let file = await loadFromHash(type, post[type]);
       if (file) {
         const fileName = await addFile({
-          title: name,
+          title: type,
           file,
           folder: title,
         });
-        post.cover = fileName;
+
+        post[type] = fileName;
       }
     }
+
+    text = await loadFromHash("text", text);
 
     addMd({
       title,
       md: {
         frontmatter: post,
-        content,
+        text,
       },
     });
   }

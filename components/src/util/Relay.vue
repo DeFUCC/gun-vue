@@ -20,12 +20,12 @@ const open = ref(false)
       :style="{ backgroundColor: relay.blink ? 'white' : 'black' }"
       )
   ui-layer(:open="open" @close="open = false")
-    .p-4.min-w-60vw
+    .p-4.min-w-60vw.max-w-full
       .h-2.w-full.mb-2.rounded-full.transition-all.duration-300.ease-in-out.opacity-40(
         :style="{ backgroundColor: relay.blink ? 'white' : 'black' }"
         )
       .flex.flex-col.items-start
-        .p-0.flex.items-center  Host: 
+        .p-0.flex.items-center.flex-wrap  Host: 
           input.mx-1.p-2.rounded-lg(v-model="relay.peer")
           button.button.m-1(@click="relay.setPeer(relay.peer)") Set
           button.button.m-1(@click="relay.resetPeer()") Reset
