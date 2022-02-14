@@ -17,7 +17,7 @@ const bg = computed(() => useBackground({ pub: props.pub, size: 400 }))
 </script>
 
 <template lang='pug'>
-.rounded-xl.shadow-md.text-sm.bg-cover.cursor-pointer.hover_shadow-lg.transition.duration-300ms.filter.brightness-95.hover_brightness-100.flex.flex-wrap(
+.rounded-xl.shadow-md.text-sm.bg-cover.cursor-pointer.hover_shadow-lg.transition.duration-300ms.filter.brightness-95.hover_brightness-100.flex.flex-wrap.overflow-hidden(
   :style="{ ...bg }"
 ) 
   .p-4.font-bold.text-xl.flex.flex-wrap.items-center.flex.w-full

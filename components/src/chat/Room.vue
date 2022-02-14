@@ -24,19 +24,28 @@ watch(messages, () => {
   });
 }, { deep: true });
 
-const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 800 }))
 
 </script>
 
 <template lang='pug'>
-.flex.flex-col.bg-light-800.shadow-md.mx-auto.w-full(:style="{ ...bg }")
-  .p-4.flex.flex-wrap.items-center
-    button.button( @click.stop.prevent="panelOpen = !panelOpen") Chats
-    .flex-1.ml-2 / {{ currentChat }}
+.flex.flex-col.bg-dark-800.bg-opacity-40.backdrop-filter.backdrop-blur-sm.shadow-md.mx-auto.w-full
+
   .flex.relative.h-72vh.items-stretch
     transition(name="fade")
-      .flex.flex-col.bg-dark-300.bg-opacity-70.gap-2.min-h-full.overflow-y-scroll.scroll-smooth.absolute.sm_static.z-20.w-220px.max-w-full.max-h-full.text-light-900(style="flex: 1 1 320px" v-if="isLarge || (panelOpen && !isLarge)" ref="chatsPanel")
-        .text-xl.font-bold.bg-dark-50.p-2 Chats 
+      .flex.flex-col.bg-dark-300.bg-opacity-70.gap-2.min-h-full.overflow-y-scroll.scroll-smooth.absolute.sm_static.z-20.w-220px.max-w-full.max-h-full.text-light-900.backdrop-filter.backdrop-blur-md(style="flex: 1 1 320px" v-if="isLarge || (panelOpen && !isLarge)" ref="chatsPanel")
+        .flex.flex-wrap
+          .text-xl.font-bold.p-2 Chats 
+          .flex-1
+          .self-center.text-2xl.p-2(@click="adding = !adding")
+            transition(name="fade" mode="out-in")
+              la-plus(v-if="!adding")
+          la-times
+        .flex.flex-wrap(v-if="adding")
+          input.p-2.m-2.w-full.rounded-xl.text-dark-800(
+            v-model="newChat" 
+            @keyup.enter="addChat(newChat); newChat = ''; adding = false"
+            placeholder="New chat"
+            )
         .flex.flex-col.p-2.gap-2.h-full
           .font-bold.bg-light-100.bg-opacity-30.rounded-xl.px-2.cursor-pointer.flex(
             v-for="(authors, topic) in chats" :key="topic"
@@ -44,19 +53,14 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 800 }))
             ) 
             .flex-1 {{ topic }}
             account-avatar(v-for="(isAuthor, author) in authors" :key="author" :size="20" :pub="author")
-          .flex.flex-wrap(v-if="adding")
-            input.p-2.m-2.w-full.rounded-xl.text-dark-800(
-              v-model="newChat" 
-              @keyup.enter="addChat(newChat); newChat = ''; adding = false"
-              placeholder="New chat"
-              )
-          .self-center.text-2xl(@click="adding = !adding")
-            transition(name="fade" mode="out-in")
-              la-plus(v-if="!adding")
-              la-times(v-else)
+
+
 
 
     .flex.flex-col(style="flex: 1 1 auto")
+      .p-4.flex.flex-wrap.items-center
+        button.button( @click.stop.prevent="panelOpen = !panelOpen") Chats
+        .flex-1.ml-2 / {{ currentChat }}
       .flex.flex-col.bg-opacity-80.p-4.gap-2.overflow-y-scroll.scroll-smooth.flex-auto(ref="chatWindow"  )
         chat-message(
           :style="{ order: Math.round(Number(message.timestamp) / 1000) - 1640995200 }"

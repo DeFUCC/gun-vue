@@ -7,6 +7,7 @@ const props = defineProps({
   showName: { type: Boolean, default: true },
   size: { type: Number, default: 30 },
   selectable: Boolean,
+  vertical: Boolean
 })
 
 const name = ref('')
@@ -31,7 +32,7 @@ function select() {
 
 <template lang="pug">
 .p-2px.flex.items-center.rounded-full.bg-light-900.cursor-pointer.shadow.transition.duration-400.ease-in(
-  :style="{ backgroundColor: colorDeep.hex(pub) }"
+  :style="{ backgroundColor: colorDeep.hex(pub), flexDirection: vertical ? 'column' : 'row' }"
   @click="select()"
   )
   account-avatar(:pub="pub" :size="size")

@@ -1,7 +1,7 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router";
-import { watch, watchEffect } from "vue";
-import { currentRoom, rootRoom } from "@composables";
+import { watch, watchEffect, computed } from "vue";
+import { currentRoom, rootRoom, useBackground } from "@composables";
 
 
 const router = useRouter()
@@ -20,11 +20,14 @@ watch(() => currentRoom.pub, (pub) => {
   }
 })
 
+const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, light: 0.8, overlay: 0.5 }))
+
 </script>
 
 <template lang="pug">
-nav-bar
-.p-0.flex-1
+
+.p-0.flex-1(:style="{ ...bg }")
+  nav-bar
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in")
       component(:is="Component")

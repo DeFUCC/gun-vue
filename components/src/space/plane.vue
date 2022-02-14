@@ -1,6 +1,5 @@
 <script setup>
-import { useSpace, useUser, useColor, gunAvatar, useRoom, useBackground, selectedUser } from '@composables'
-import { ref, computed } from 'vue'
+import { useSpace, useUser, useColor, useRoom, selectedUser } from '@composables'
 
 const props = defineProps({
   pad: { type: Number, default: 50 },
@@ -8,7 +7,6 @@ const props = defineProps({
 defineEmits(['user'])
 
 const { user } = useUser()
-const { room } = useRoom()
 
 const colorDeep = useColor('deep')
 
@@ -17,14 +15,11 @@ const { space, plane, links, width, height, guests, area, join, place } = useSpa
 })
 
 
-const bg = computed(() => useBackground({ pub: room.pub, light: 0.5, overlay: 0.5, size: 1000 }))
-
 </script>
 
 <template lang='pug'>
-.flex.flex-col.items-center.relative.bg-cover.my-4(:style="{ ...bg }")
-
-  .text-2xl.p-8.top-15vh.cursor-pointer.bg-light-700.absolute.rounded-3xl.shadow-xl.border-4(
+.flex.flex-col.items-center.relative
+  .text-2xl.p-8.top-15vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-4(
     v-if="!space.joined && user.is" 
     @click="join()"
     :style="{ borderColor: user.color }"
@@ -49,12 +44,14 @@ const bg = computed(() => useBackground({ pub: room.pub, light: 0.5, overlay: 0.
         circle(r=".5" cx=".5" cy=".5" )
     rect(
       ref="area"
-      :x="pad"
-      :y="pad"
+      :x="0"
+      :y="0"
+      rx="12"
       :width="width"
       :height="height"
       fill="none"
-      stroke-width="0"
+      stroke="#3333"
+      stroke-width="1"
       )
     g.pointer
       line(

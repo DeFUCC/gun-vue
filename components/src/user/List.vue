@@ -22,6 +22,7 @@ const guests = useGuests({ space: props.space })
       transition-group(name="fade")
         account-badge.shadow-md.m-1(
           :size="state == 'online' ? 100 : 50"
+          :vertical="state == 'online'"
           v-for="(guest, p) in guests[state]" :key="p"
           :pub="guest.pub"
           @click="$emit('user', guest.pub)"

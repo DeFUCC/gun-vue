@@ -65,8 +65,9 @@ const { post, download, downloading } = usePost({ hash: props.hash })
             style="flex:1 1 120px"
             v-if="post?.title"
             ) {{ post?.title }}
-          .m-2(v-if="post?.statement") {{ post?.statement }} 
           ui-link(:url="post?.link" v-if="post?.link")
+          .m-2(v-if="post?.statement") {{ post?.statement }} 
+
 
       .my-4.mx-2.z-20.max-w-90vw(
         style="flex: 100 1 320px" 

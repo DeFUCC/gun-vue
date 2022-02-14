@@ -31,7 +31,7 @@ const showHidden = ref(false)
 </script>
 
 <template lang='pug'>
-.flex.flex-col
+.flex.flex-col.z-10
   .shadow-lg.rounded-2xl.overflow-hidden.bg-light-400.mx-auto.overscroll-contain
     .flex.flex-wrap.items-center.p-2.text-xl.sticky.z-100.top-0.shadow-lg.bg-light-900(v-if="header")
       .text-xl.ml-2.font-bold.cursor-pointer(style="flex: 1 100px " @click="$emit('close')") # {{ tag }} 
