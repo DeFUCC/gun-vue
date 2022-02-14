@@ -3,7 +3,6 @@
 import { computed } from 'vue'
 
 const routes = {
-  "/": "Home",
   "/space/": "Space",
   "/chats/": "Chats",
   "/posts/": "Posts",
@@ -15,7 +14,7 @@ import { useUser, currentRoom, useBackground, useColor } from '@composables';
 
 const { user } = useUser()
 
-const bg = computed(() => useBackground(currentRoom.pub, 1200))
+const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 
 const color = useColor('light')
 

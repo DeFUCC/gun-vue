@@ -12,26 +12,23 @@ import { reactive } from "vue";
  * @param {String} fileName - the full file name like "myKey.json"
  */
 
-export function downloadFile(text, fileType, fileName) {
-  let blob;
-
-  if (typeof text == "string") {
-    blob = new Blob([text], { type: fileType });
-  } else {
-    blob = text;
-  }
-
-  var a = document.createElement("a");
+export function downloadFile(text, fileType, fileName, isBlob = true) {
+  const a = document.createElement("a");
   a.download = fileName;
-  a.href = URL.createObjectURL(blob);
+
+  if (isBlob) {
+    a.href = URL.createObjectURL(new Blob([text], { type: fileType }));
+    setTimeout(function () {
+      URL.revokeObjectURL(a.href);
+    }, 1500);
+  } else {
+    a.href = `data:${fileType};,${text}`;
+  }
   a.dataset.downloadurl = [fileType, a.download, a.href].join(":");
   a.style.display = "none";
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-  setTimeout(function () {
-    URL.revokeObjectURL(a.href);
-  }, 1500);
 }
 
 /**

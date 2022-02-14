@@ -11,7 +11,7 @@ const { user } = useUser()
 
 const { room } = useRoom(props.pub)
 
-const bg = computed(() => useBackground(props.pub, 400))
+const bg = computed(() => useBackground({ pub: props.pub, size: 400 }))
 
 
 </script>

@@ -17,7 +17,7 @@ const { space, plane, links, width, height, guests, area, join, place } = useSpa
 })
 
 
-const bg = computed(() => useBackground(room.pub, 1000))
+const bg = computed(() => useBackground({ pub: room.pub, light: 0.5, overlay: 0.5, size: 1000 }))
 
 </script>
 

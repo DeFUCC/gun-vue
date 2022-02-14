@@ -38,7 +38,7 @@ const { post } = usePost({ hash: props.hash })
 
         slot
     .flex-1.text-xs
-    .flex.gap-1.rounded-xl.p-1.bg-dark-100.bg-opacity-20.flex-wrap.items-center(style="flex: 1 1 220px" v-if="actions")
+    .flex.gap-1.rounded-xl.p-1.bg-dark-100.bg-opacity-20.flex-wrap.items-center(style="flex: 1 1 420px" v-if="actions")
       post-action-react(:authors="authors" @user="$emit('user', $event)" :hash="hash" :tag="tag" :back="back")
       .flex-1
       post-action-link(:hash="hash")

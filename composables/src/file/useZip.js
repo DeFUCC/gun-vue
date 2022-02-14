@@ -56,7 +56,6 @@ export function useZip() {
   }
 
   function addMd({ md, title } = {}) {
-    console.log(md);
     zip.file(`${title}/index.md`, createMd(md), "text/markdown");
   }
 

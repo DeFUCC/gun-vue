@@ -62,7 +62,7 @@ const encPair = computed(() => {
       button.m-2.button.items-center(@click="show('key')")
         la-envelope-open-text
         .px-2 Text
-      button.m-2.button.items-center(@click="downloadFile(encPair, 'application/json', (user.name || 'account') + '.json'); current = null")
+      button.m-2.button.items-center(@click="downloadFile(encPair, 'text/json', (user.name || 'account') + '.json', false); current = null")
         la-file-code
         .px-2 JSON
   .flex.w-full.justify-center.mt-4(v-if="current")

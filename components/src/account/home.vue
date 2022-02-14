@@ -9,7 +9,7 @@ defineEmits(['browse', 'feed', 'post'])
 
 const { account } = useAccount(props.pub);
 
-const bg = computed(() => useBackground(props.pub, 600, 0.5, 'circles'))
+const bg = computed(() => useBackground({ pub: props.pub, size: 600, light: 0.5, draw: 'circles' }))
 
 </script>
 

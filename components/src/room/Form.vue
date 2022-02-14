@@ -28,7 +28,7 @@ function createIt() {
   reset()
 }
 
-const bg = computed(() => useBackground(create.pair?.pub, 620))
+const bg = computed(() => useBackground({ pub: create.pair?.pub, size: 620 }))
 
 </script>
 

@@ -7,7 +7,7 @@ const { user, leave } = useUser()
 const colorDeep = useColor('deep')
 const emit = defineEmits(['browse'])
 
-const bg = computed(() => useBackground(user.pub, 600, 0.5, 'circles'))
+const bg = computed(() => useBackground({ pub: user.pub, size: 600, light: 0.5, draw: 'circles' }))
 
 </script>
 
