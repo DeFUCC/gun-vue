@@ -3,6 +3,8 @@ import { ref, computed, watch, nextTick } from 'vue'
 import { useMediaQuery, onClickOutside } from '@vueuse/core'
 import { useChat, useUser, useBackground, currentRoom } from '@composables';
 
+const emit = defineEmits(['newMessage'])
+
 const { user } = useUser();
 
 const { send, currentChat, addChat, chats, messages } = useChat()
@@ -18,9 +20,12 @@ onClickOutside(chatsPanel, (event) => !isLarge.value ? panelOpen.value = false :
 
 const chatWindow = ref();
 
+
+
 watch(messages, () => {
   nextTick(() => {
     chatWindow.value.scrollTo(0, chatWindow.value.scrollHeight);
+    emit('newMessage')
   });
 }, { deep: true });
 

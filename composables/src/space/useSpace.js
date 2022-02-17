@@ -86,6 +86,8 @@ export function useSpace({
     return obj;
   });
 
+  const guestCount = computed(() => Object.keys(guests.value).length);
+
   space.db.get(user.pub).on((pos) => {
     space.my.pos = typeof pos == "string" ? JSON.parse(pos) : pos;
   });
@@ -163,7 +165,18 @@ export function useSpace({
       }
     }
   });
-  return { space, guests, links, plane, width, height, area, join, place };
+  return {
+    space,
+    guests,
+    guestCount,
+    links,
+    plane,
+    width,
+    height,
+    area,
+    join,
+    place,
+  };
 }
 
 function generateArrow(pos1, pos2, seed = 0, width, height) {

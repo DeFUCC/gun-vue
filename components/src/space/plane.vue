@@ -1,17 +1,27 @@
 <script setup>
+import { watch } from 'vue'
 import { useSpace, useUser, useColor, useRoom, selectedUser } from '@composables'
 
 const props = defineProps({
   pad: { type: Number, default: 50 },
 })
-defineEmits(['user'])
+const emit = defineEmits(['user', 'enter', 'leave'])
 
 const { user } = useUser()
 
 const colorDeep = useColor('deep')
 
-const { space, plane, links, width, height, guests, area, join, place } = useSpace({
+const { space, plane, links, width, height, guests, guestCount, area, join, place } = useSpace({
   TIMEOUT: 10000,
+})
+
+watch(guestCount, (next, prev) => {
+
+  if (next > prev) {
+    emit('enter')
+  } else {
+    emit('leave')
+  }
 })
 
 
