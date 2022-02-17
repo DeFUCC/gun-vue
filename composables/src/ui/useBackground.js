@@ -6,6 +6,7 @@ export function useBackground({
   light = 0.5,
   overlay = 0.5,
   draw = "squares",
+  attachment = "fixed",
 } = {}) {
   if (!pub) return;
 
@@ -19,6 +20,6 @@ export function useBackground({
       size: size,
     })})`,
     backgroundSize: "cover, cover",
-    backgroundAttachment: "fixed, fixed",
+    backgroundAttachment: `${attachment},${attachment}`,
   };
 }

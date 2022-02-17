@@ -8,7 +8,12 @@ function click() {
     audio = new Audio('audio/safe.mp3')
     audio.volume = 0.1
   }
-  audio.play()
+  let promise = audio.play()
+  if (promise) {
+    //Older browsers may not return a promise, according to the MDN website
+    promise.catch(function (error) { });
+  }
+
 }
 
 </script>

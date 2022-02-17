@@ -33,20 +33,15 @@ const { post, download, downloading } = usePost({ hash: props.hash })
       la-times
 
   .flex.px-2.w-full.flex-wrap(:style="{ backgroundColor: colorDeep + '20' }")
-    util-share
-    //- button.button.m-2.flex.items-center(@click="download()")
-    //-   la-file-download(v-if="!downloading")
-    //-   la-redo-alt.animate-spin(v-else)
-    //-   .ml-2 Download
+
+
     .flex-1 
 
-    post-action-update(:hash="hash" )
+
     //- post-action-ban(:hash="hash")
     //- post-action-star.text-xl(:hash="hash")
 
   .flex.flex-wrap.items-stretch 
-    .p-0(style="flex: 4 1 300px" v-if="post?.cover")
-      img.sticky.top-5vh(:src="post.cover")
 
     .flex-1.flex.flex-wrap(style="flex: 10 1 300px")
       .flex.flex-wrap.items-start.w-full.justify-start.my-4.rounded-xl.m-2.backdrop-filter.backdrop-blur-md(
@@ -54,34 +49,44 @@ const { post, download, downloading } = usePost({ hash: props.hash })
         :style="{ backgroundColor: colorLight + '99' }" 
         v-if="post?.icon || post?.title || post?.statement"
         )
-        .p-2.sticky.top-8vh.w-full.flex.flex-wrap.items-center
-          img.w-20.h-20.rounded-full.m-2(
-            style="flex:0 1 40px"
-            v-if="post.icon" 
-            :src="post.icon" 
-            :style="{ borderColor: colorDeep }"
-            )
-          .text-2xl.font-bold.m-2(
-            style="flex:1 1 120px"
-            v-if="post?.title"
-            ) {{ post?.title }}
-          ui-link(:url="post?.link" v-if="post?.link")
-          .m-2(v-if="post?.statement") {{ post?.statement }} 
+        .sticky.top-8vh.w-full.flex.flex-wrap.items-center
+          .p-2
+            img.w-20.h-20.rounded-full.m-2(
+              style="flex:0 1 40px"
+              v-if="post.icon" 
+              :src="post.icon" 
+              :style="{ borderColor: colorDeep }"
+              )
+            .text-2xl.font-bold.m-2(
+              style="flex:1 1 120px"
+              v-if="post?.title"
+              ) {{ post?.title }}
+            ui-link(:url="post?.link" v-if="post?.link")
+            .m-2(v-if="post?.statement") {{ post?.statement }} 
+          .flex.flex-wrap.p-4.bg-dark-50.bg-opacity-25.w-full.items-center.rounded-b-xl.gap-1
+            util-share
+              p Share
+            post-action-update(:hash="hash" )
+            button.button.flex.items-center(@click="download()")
+              la-file-download(v-if="!downloading")
+              la-redo-alt.animate-spin(v-else)
+              .ml-2 Download
 
 
       .my-4.mx-2.z-20.max-w-90vw(
         style="flex: 100 1 320px" 
-        v-if="post?.youtube || post?.text"
+        v-if="post?.cover || post?.youtube || post?.text"
         )
+        img(:src="post.cover")
         embed-youtube.mb-6.shadow-xl.flex-1(
           v-if="post?.youtube" 
           :video="post?.youtube"
           )
-        .text-md.markdown-body.bg-light-200.rounded-2xl.m-1.px-4.py-4.leading-relaxed.max-w-55ch(
+        .text-md.markdown-body.bg-light-200.rounded-2xl.m-1.px-4.py-4.leading-relaxed.max-w-55ch.z-10(
           v-if="post?.text" 
           v-html="md.render(post?.text)")
       .mt-2.mb-4.z-20.mx-4(style="flex: 1 1 400px") 
 
-        post-list(:tag="hash" :key="tag" :header="false" @browse="$emit('browse', $event)")
+        post-list.sticky.top-8vh(:tag="hash" :key="tag" :header="false" @browse="$emit('browse', $event)")
 
 </template>

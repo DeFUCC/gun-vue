@@ -21,7 +21,7 @@ div
     @click="user.auth = true" 
     :pub="user.pub"
     )
-  ui-layer(
+  ui-panel(
     :open="user.auth" 
     @close="user.auth = false"
     )

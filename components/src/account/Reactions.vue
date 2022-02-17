@@ -19,6 +19,19 @@ const currentList = computed(() => {
 
 const gun = useGun()
 
+gun.user(currentRoom.pub).get('posts').map().on((d, k) => {
+  let author = k.slice(-87);
+  let to = k.substring(0, 44)
+  if (author == props.pub) {
+    if (d) {
+      reactions[d] = reactions[d] || {}
+      reactions[d][to] = d
+    } else {
+      delete reactions?.[d]?.[to]
+    }
+  }
+})
+
 gun.user(currentRoom.pub).get('links').map().on((d, k) => {
   let author = k.slice(90);
   let from = k.substring(0, 44)
@@ -41,7 +54,7 @@ gun.user(currentRoom.pub).get('links').map().on((d, k) => {
 <template lang='pug'>
 .flex.flex-col
   .text-xl.font-bold.mb-2 Reactions
-  .flex.flex-wrap.gap-4
+  .flex.flex-wrap.gap-4 
     .p-2.flex.flex-wrap.bg-light-800.shadow-md.rounded-xl.gap-2
       transition-group(name="fade")
         .flex.py-2.items-center.cursor-pointer.bg-light-100.rounded-xl.shadow-lg.px-4(
