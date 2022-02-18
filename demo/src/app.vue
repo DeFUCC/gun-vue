@@ -25,8 +25,7 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 </script>
 
 <template lang="pug">
-
-.p-0.flex-1(:style="{ ...bg }")
+.p-0.flex.flex-col(style="flex: 1000 1 100%" :style="{ ...bg }")
   nav-bar
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in")

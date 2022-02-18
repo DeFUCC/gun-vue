@@ -50,7 +50,7 @@ function reset() {
 </script>
 
 <template lang='pug'>
-form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl.mb-6(action="javascript:void(0);")
+form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(0);")
   input.font-bold.text-xl(
     v-model="postData.title" 
     placeholder="Title" 

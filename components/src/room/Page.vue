@@ -6,7 +6,7 @@ const props = defineProps({
   pub: String
 })
 
-defineEmits(['browse'])
+defineEmits(['rooms'])
 
 const { room, leaveRoom, updateRoomProfile, enterRoom } = useRoom(props.pub)
 
@@ -25,7 +25,7 @@ const editName = ref(false)
 
 const colorDeep = useColor('deep')
 
-const bg = computed(() => useBackground({ pub: roomPub.value, size: 1920 }))
+const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attachment: 'local' }))
 
 </script>
 
@@ -62,7 +62,8 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1920 }))
     .m-2.p-4.shadow-lg.rounded-2xl
       .text-sm.font-mono {{ room.profile }}
       .text-md {{ room.profile.description }}
-      
+    slot
+
       
 
 

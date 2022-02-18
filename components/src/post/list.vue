@@ -31,33 +31,35 @@ const showHidden = ref(false)
 </script>
 
 <template lang='pug'>
-.flex.flex-col.z-10
-  .shadow-lg.rounded-2xl.overflow-hidden.bg-light-400.mx-auto.overscroll-contain
-    .flex.flex-wrap.items-center.p-2.text-xl.sticky.z-100.top-0.shadow-lg.bg-light-900(v-if="header")
-      .text-xl.ml-2.font-bold.cursor-pointer(style="flex: 1 100px " @click="$emit('close')") # {{ tag }} 
-      .flex-1
-      .p-2.font-bold.mx-2 {{ countPosts }}
-    .p-2.flex.flex-wrap.z-300.text-sm.items-center.bg-light-700
+.flex.flex-col.z-10.items-stretch.h-full.justify-items-stretch
+  .flex.flex-wrap.items-center.p-2.text-xl.sticky.z-100.top-0.shadow-lg.bg-light-900(v-if="header")
+    .text-xl.ml-2.font-bold.cursor-pointer(style="flex: 1 100px " @click="$emit('close')") # {{ tag }} 
+    .flex-1
+    .p-2.font-bold.mx-2 {{ countPosts }}
+  .flex.flex-wrap.bg-dark-50.bg-opacity-40.backdrop-filter.backdrop-blur-md.flex-1
+    .p-2.flex.flex-wrap.z-300.text-sm.bg-light-300.bg-opacity-40.rounded-2xl.m-2.flex-1(
+      style="order:-2147483647"
+      v-if="user.pub"
+      )
       slot
       util-share(v-if="header")
       .flex.flex-wrap.flex-1(v-if="user.pub")
-        button.button.p-4.transition.shadow-lg.m-2.flex.items-center.justify-center(title="Download feed" @click="downloadPosts()" v-if="countPosts > 0")
-          la-file-download(v-if="!downloading")
-          la-redo-alt.animate-spin(v-else)
-          .ml-2.mr-1 Download
-        button.button.p-4.transition.shadow-lg.m-2.flex.items-center.justify-center(@click="showHidden = !showHidden")
-          la-eye(v-if="showHidden")
-          la-eye-slash(v-else)
-          .ml-2 Hidden
-        .flex-1
-        label.cursor-pointer.button.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(title="Upload feed" for="import-feed")
-          la-file-upload
-          .ml-2.mr-1 Upload
-        button.add.button.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(@click="add = !add")
+        button.flex-auto.add.button.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(@click="add = !add")
           transition(name="fade" mode="out-in")
             la-plus(v-if="!add")
             la-times(v-else)
           .ml-2.mr-1 Add
+        label.flex-auto.cursor-pointer.button.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(title="Upload feed" for="import-feed")
+          la-file-upload
+          .ml-2.mr-1 Upload
+        button.flex-auto.button.p-4.transition.shadow-lg.m-2.flex.items-center.justify-center(@click="showHidden = !showHidden")
+          la-eye(v-if="showHidden")
+          la-eye-slash(v-else)
+          .ml-2 Show hidden
+        button.flex-auto.button.p-4.transition.shadow-lg.m-2.flex.items-center.justify-center(title="Download feed" @click="downloadPosts()" v-if="countPosts > 0")
+          la-file-download(v-if="!downloading")
+          la-redo-alt.animate-spin(v-else)
+          .ml-2.mr-1 Download
       input#import-feed.hidden(
         tabindex="-1"
         type="file",
@@ -66,21 +68,21 @@ const showHidden = ref(false)
         multiple
         @change="uploadPosts($event.target.files)"
       )
-    transition(name="fade")
-      post-form(:tag="tag" v-if="add" @close="add = false")
-    .flex.flex-wrap
-      transition-group(name="list")
-        post-card.max-w-640px(
-          style="flex: 1 1 220px"
-          v-show="tag != hash && (countAuthors(authors) > 0 || showHidden)"
-          :style="{ order: -countAuthors(authors), opacity: countAuthors(authors) > 0 ? 1 : 0.3 }"
-          v-for="(authors, hash) in posts" 
-          :key="hash" 
-          :hash="hash"
-          :tag="tag"
-          :authors="authors"
-          @click="emit('browse', hash)"
-          )
+      transition(name="fade")
+        post-form(:tag="tag" v-if="add" @close="add = false")
+
+    transition-group(name="list")
+      post-card.max-w-640px(
+        style="flex: 1 1 220px"
+        v-show="tag != hash && (countAuthors(authors) > 0 || showHidden)"
+        :style="{ order: -countAuthors(authors), opacity: countAuthors(authors) > 0 ? 1 : 0.3 }"
+        v-for="(authors, hash) in posts" 
+        :key="hash" 
+        :hash="hash"
+        :tag="tag"
+        :authors="authors"
+        @click="emit('browse', hash)"
+        )
   .text-lg.w-full.text-lg.font-bold.mt-4.mb-2.flex.items-center.p-2.bg-light-600.shadow-lg.rounded-2xl.cursor-pointer(v-if="countBacklinks > 0" @click="openBacklinks = !openBacklinks") 
     .p-2 Backlinks 
     .flex-1

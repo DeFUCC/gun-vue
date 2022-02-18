@@ -33,18 +33,18 @@ watch(messages, () => {
 </script>
 
 <template lang='pug'>
-.flex.flex-col.bg-dark-800.bg-opacity-40.backdrop-filter.backdrop-blur-sm.shadow-md.mx-auto.w-full
+.flex.flex-col.bg-dark-800.bg-opacity-40.backdrop-filter.backdrop-blur-xl.shadow-md.mx-auto.w-full
 
-  .flex.relative.h-72vh.items-stretch
+  .flex.relative.h-78vh.items-stretch
     transition(name="fade")
-      .flex.flex-col.bg-dark-300.bg-opacity-70.gap-2.min-h-full.overflow-y-scroll.scroll-smooth.absolute.sm_static.z-20.w-220px.max-w-full.max-h-full.text-light-900.backdrop-filter.backdrop-blur-md(style="flex: 1 1 320px" v-if="isLarge || (panelOpen && !isLarge)" ref="chatsPanel")
+      .flex.flex-col.bg-dark-300.bg-opacity-70.gap-2.min-h-full.overflow-y-scroll.scroll-smooth.absolute.sm_static.z-20.w-220px.max-w-full.max-h-full.text-light-900.backdrop-filter.backdrop-blur-xl(style="flex: 1 1 320px" v-if="isLarge || (panelOpen && !isLarge)" ref="chatsPanel")
         .flex.flex-wrap
           .text-xl.font-bold.p-2 Chats 
           .flex-1
-          .self-center.text-2xl.p-2(@click="adding = !adding")
+          .cursor-pointer.self-center.text-2xl.p-2(@click="adding = !adding")
             transition(name="fade" mode="out-in")
               la-plus(v-if="!adding")
-          la-times
+              la-times(v-else)
         .flex.flex-wrap(v-if="adding")
           input.p-2.m-2.w-full.rounded-xl.text-dark-800(
             v-model="newChat" 
@@ -59,10 +59,7 @@ watch(messages, () => {
             .flex-1 {{ topic }}
             account-avatar(v-for="(isAuthor, author) in authors" :key="author" :size="20" :pub="author")
 
-
-
-
-    .flex.flex-col(style="flex: 1 1 auto")
+    .flex.flex-col(style="flex: 1000 1 auto")
       .p-4.flex.flex-wrap.items-center
         button.button( @click.stop.prevent="panelOpen = !panelOpen") Chats
         .flex-1.ml-2 / {{ currentChat }}
@@ -74,7 +71,7 @@ watch(messages, () => {
           :timestamp="message.timestamp"
           :text="message.text"
           ) 
-      .p-4.rounded-2xl.bg-light-900.flex.gap-2(v-if="user.pub")
+      .p-4.bg-dark-50.bg-opacity-80.flex.gap-2(v-if="user.pub")
         input.p-2.rounded-xl.bg-light-200(
           v-model="message" placeholder="Your message"
           @keyup.enter="send(message); message = ''"

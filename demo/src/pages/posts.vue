@@ -4,8 +4,8 @@ const { room } = useRoom()
 </script>
 
 <template lang='pug'>
-.flex.flex-col
-  post-list.w-full.my-2(
+.flex.flex-col.flex-auto
+  post-list.w-full(
     :header="false"
     tag="posts" 
     :key="room.pub"
