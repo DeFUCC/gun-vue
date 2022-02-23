@@ -50,41 +50,42 @@ export default defineConfig({
         }),
       ],
     }),
-    // VitePWA({ // https://css-tricks.com/vitepwa-plugin-offline-service-worker/, https://vite-plugin-pwa.netlify.app/guide/prompt-for-update.html#runtime
-    //   manifest: {
-    //     name: "Gun-Vue",
-    //     short_name: "@gun-vue",
-    //     description: "Peer-to-peer graph database UI components",
-    //     iconPath: "./media/gun-vue-logo.png",
-    //     theme_color: "#ff0088",
-    //     display: "standalone",
-    //     homepage_url: "https://gun-vue.js.org",
-    //     orientation: "portrait",
-    //     providedBy: {
-    //       name: "defucc",
-    //       url: "https://defucc.me",
-    //     },
-    //     icons: [
-    //       {
-    //         src: "./media/gun-vue-logo.svg",
-    //         type: "image/svg+xml",
-    //         sizes: "512x512",
-    //       },
-    //       {
-    //         src: "./media/gun-vue-logo.png",
-    //         sizes: "192x192",
-    //         type: "image/png",
-    //         purpose: "any maskable",
-    //       },
-    //       {
-    //         src: "./media/gun-vue-logo.png",
-    //         sizes: "512x512",
-    //         type: "image/png",
-    //         purpose: "any maskable",
-    //       },
-    //     ],
-    //   },
-    // }),
+    VitePWA({
+      registerType: "autoUpdate",
+      manifest: {
+        name: "Gun-Vue",
+        short_name: "@gun-vue",
+        description: "Peer-to-peer graph database UI components",
+        iconPath: "./media/gun-vue-logo.png",
+        theme_color: "#ff0088",
+        display: "standalone",
+        homepage_url: "https://gun-vue.js.org",
+        orientation: "portrait",
+        providedBy: {
+          name: "defucc",
+          url: "https://defucc.me",
+        },
+        icons: [
+          {
+            src: "./media/gun-vue-logo.svg",
+            type: "image/svg+xml",
+            sizes: "512x512",
+          },
+          {
+            src: "./media/gun-vue-logo.png",
+            sizes: "192x192",
+            type: "image/png",
+            purpose: "any maskable",
+          },
+          {
+            src: "./media/gun-vue-logo.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "any maskable",
+          },
+        ],
+      },
+    }),
   ],
   build: {
     outDir: "../_dist/",
@@ -100,6 +101,9 @@ export default defineConfig({
         manualChunks: () => "everything.js",
       },
     },
+  },
+  optimizeDeps: {
+    include: ["vue", "vue-router", "@vueuse/core"],
   },
   resolve: {
     alias: {
