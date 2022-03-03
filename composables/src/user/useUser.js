@@ -137,6 +137,8 @@ function init() {
     gun.user().get("pulse").put(Date.now());
   }, 1000);
 
+  gun.user().get('epub').put(user.is.epub)
+
   gun
     .user()
     .get("pulse")
@@ -144,12 +146,14 @@ function init() {
       user.blink = !user.blink;
       user.pulse = d;
     })
-    .back()
+
+  gun.user()
     .get("safe")
     .map()
     .on((d, k) => {
       user.safe[k] = d;
     });
+
   gun
     .user()
     .get("profile")
@@ -171,7 +175,7 @@ function init() {
  * }
  */
 
-export async function auth(pair, cb = () => {}) {
+export async function auth(pair, cb = () => { }) {
   if (!isPair(pair)) {
     // pair = await SEA.pair();
     console.log("incorrect pair", pair);

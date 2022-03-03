@@ -3,8 +3,8 @@
  * @module PrivateChat
  */
 
-import { reactive, computed } from "vue"
-import { useAccount, useUser, useGun } from '..'
+import { reactive, computed, ref } from "vue"
+import { useAccount, useUser, useGun, SEA } from '..'
 
 
 export function usePrivateChat(pub) {
@@ -12,30 +12,48 @@ export function usePrivateChat(pub) {
   const gun = useGun();
   const { user } = useUser();
   const messages = reactive({});
+  const epub = ref()
 
-  const myChat = gun.user().get('chat').get(pub)
-  const yourChat = gun.user(pub).get('chat').get(user.pub)
+  gun.user(pub).get('epub').once(d => epub.value = d)
 
-  yourChat.map().on((d, k) => {
-    messages[k] = {
-      timestamp: k,
-      author: pub,
-      text: d
+
+  gun.user(pub).get('chat').get(user.pub).map().on(async (d, k) => {
+    if (d && d.startsWith('SEA')) {
+      const secret = await SEA.secret(epub.value, user.pair())
+      const work = await SEA.work(secret, k)
+      const dec = await SEA.decrypt(d, work)
+      if (!dec) return
+      messages[k] = {
+        timestamp: k,
+        author: pub,
+        text: dec
+      }
     }
   })
 
-  myChat.map().on((d, k) => {
-    messages[k] = {
-      timestamp: k,
-      author: user.pub,
-      text: d
+  gun.user().get('chat').get(pub).map().on(async (d, k) => {
+    if (d && d.startsWith('SEA')) {
+      const secret = await SEA.secret(epub.value, user.pair())
+      const work = await SEA.work(secret, k)
+      const dec = await SEA.decrypt(d, work)
+      if (!dec) return
+      messages[k] = {
+        timestamp: k,
+        author: user.pub,
+        text: dec
+      }
     }
   })
 
-  function send(message) {
+  async function send(message) {
     if (!message) return;
     let now = Date.now();
-    myChat.get(now).put(message)
+    const secret = await SEA.secret(epub.value, user.pair())
+    const work = await SEA.work(secret, now)
+    const enc = await SEA.encrypt(message, work)
+    console.log(enc)
+
+    gun.user().get('chat').get(pub).get(now).put(enc)
   }
 
   return {
@@ -49,14 +67,17 @@ export function usePrivateChatCount(pub) {
   const { user } = useUser();
   const messages = reactive({});
 
-  const yourChat = gun.user(pub).get('chat').get(user.pub)
+  const available = ref(false)
 
-  yourChat.map().on((d, k) => {
+  gun.user(pub).get('epub').on(d => available.value = d)
+
+  gun.user(pub).get('chat').get(user.pub).map().on((d, k) => {
+    if (d && !d.startsWith('SEA')) return
     messages[k] = d
   })
 
   const count = computed(() => {
     return Object.keys(messages).length
   })
-  return count
+  return { count, available }
 }
