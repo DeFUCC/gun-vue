@@ -14,46 +14,55 @@ export function usePrivateChat(pub) {
   const messages = reactive({});
   const epub = ref()
 
-  gun.user(pub).get('epub').once(d => epub.value = d)
+  gun.user(pub)
+    .get('epub')
+    .once(d => epub.value = d)
 
 
-  gun.user(pub).get('chat').get(user.pub).map().on(async (d, k) => {
-    if (d && d.startsWith('SEA')) {
-      const secret = await SEA.secret(epub.value, user.pair())
-      const work = await SEA.work(secret, k)
-      const dec = await SEA.decrypt(d, work)
-      if (!dec) return
-      messages[k] = {
-        timestamp: k,
-        author: pub,
-        text: dec
+  gun.user(pub)
+    .get('chat')
+    .get(user.pub)
+    .map()
+    .once(function (d, k) {
+      parseMessages(d, k, pub, this)
+    })
+
+  gun.user()
+    .get('chat')
+    .get(pub)
+    .map()
+    .once(function (d, k) {
+      parseMessages(d, k, user.pub, this)
+    })
+
+  function parseMessages(data, today, author, that) {
+    that.map().on(async (d, k) => {
+      if (d && d.startsWith('SEA')) {
+        const secret = await SEA.secret(epub.value, user.pair())
+        const work = await SEA.work(secret, today)
+        const dec = await SEA.decrypt(d, work)
+        if (!dec || typeof dec != 'object') return
+        messages[k] = {
+          timestamp: dec.timestamp,
+          author,
+          text: dec.text
+        }
       }
-    }
-  })
-
-  gun.user().get('chat').get(pub).map().on(async (d, k) => {
-    if (d && d.startsWith('SEA')) {
-      const secret = await SEA.secret(epub.value, user.pair())
-      const work = await SEA.work(secret, k)
-      const dec = await SEA.decrypt(d, work)
-      if (!dec) return
-      messages[k] = {
-        timestamp: k,
-        author: user.pub,
-        text: dec
-      }
-    }
-  })
+    })
+  }
 
   async function send(message) {
     if (!message) return;
-    let now = Date.now();
+    const theDate = new Date()
+    const toSend = {
+      timestamp: theDate.getTime(),
+      text: message
+    }
+    const today = theDate.toLocaleDateString('en-CA')
     const secret = await SEA.secret(epub.value, user.pair())
-    const work = await SEA.work(secret, now)
-    const enc = await SEA.encrypt(message, work)
-    console.log(enc)
-
-    gun.user().get('chat').get(pub).get(now).put(enc)
+    const work = await SEA.work(secret, today)
+    const enc = await SEA.encrypt(toSend, work)
+    gun.user().get('chat').get(pub).get(today).set(enc)
   }
 
   return {
@@ -71,7 +80,7 @@ export function usePrivateChatCount(pub) {
 
   gun.user(pub).get('epub').on(d => available.value = d)
 
-  gun.user(pub).get('chat').get(user.pub).map().on((d, k) => {
+  gun.user(pub).get('chat').get(user.pub).map().map().on((d, k) => {
     if (d && !d.startsWith('SEA')) return
     messages[k] = d
   })
