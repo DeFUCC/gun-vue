@@ -1,19 +1,18 @@
 <script setup>
+import { usePrivateChatCount } from '@composables'
 
-import {useUser} from '@components'
 const props = defineProps({
   pub: String
 })
 
 const emit = defineEmits(['chat'])
 
-const {user} = useUser()
+const count = usePrivateChatCount(props.pub)
 
 </script>
 
 <template lang='pug'>
-.p-2.flex.bg-light-200.rounded-full.cursor-pointer.shadow-md(@click="$emit('chat')")
-  account-avatar(:pub="user.pub")
+.p-2.flex.items-center.bg-light-200.rounded-xl.cursor-pointer.shadow-md(@click="$emit('chat')")
   ph-chats-light.text-3xl
-  account-avatar(:pub="pub")
+  .font-bold.text-lg.mx-2 {{ count }}
 </template>

@@ -3,51 +3,60 @@
  * @module PrivateChat
  */
 
-import { ref, reactive, computed } from "vue";
-import { useUser, useGun, currentRoom } from "..";
+import { ref, reactive, computed, toRef } from "vue"
+import { useAccount, useUser, useGun, currentRoom } from '@composables'
 
 
 export function usePrivateChat(pub) {
+
   const gun = useGun();
   const { user } = useUser();
-
   const messages = reactive({});
 
+  const myChat = gun.user().get('chat').get(pub)
+  const yourChat = gun.user(pub).get('chat').get(user.pub)
 
-  const chatDb = gun.user(currentRoom.pub).get("chat");
-
-  chatDb.map().on((d, k) => {
-    const [title, author] = k.split("@");
-    if (d) {
-      chat[author] = d;
-    } else {
-      delete chat?.[author];
-    }
-  });
-  
-  topicDb.value.map().on((text, k) => {
-    const timestamp = k.substring(0, 13);
-    const author = k.substring(14);
+  yourChat.map().on((d, k) => {
     messages[k] = {
-      timestamp,
-      author,
-      text,
-    };
-  });
+      timestamp: k,
+      author: pub,
+      text: d
+    }
+  })
+
+  myChat.map().on((d, k) => {
+    messages[k] = {
+      timestamp: k,
+      author: user.pub,
+      text: d
+    }
+  })
 
   function send(message) {
     if (!message) return;
     let now = Date.now();
-    topicDb.value
-      .get(`${now}@${user.pub}`)
-      .put(message, null, { opt: { cert: currentRoom.features.chat } });
+    myChat.get(now).put(message)
   }
 
   return {
     send,
-    addChat,
-    currentChat,
-    chats,
     messages,
   };
+}
+
+export function usePrivateChatCount(pub) {
+  const gun = useGun();
+  const { user } = useUser();
+  const messages = reactive({});
+
+  const yourChat = gun.user(pub).get('chat').get(user.pub)
+
+  yourChat.map().on((d, k) => {
+    messages[k] = d
+  })
+
+  const count = computed(() => {
+    return Object.keys(messages).length
+  })
+  return count
 }
