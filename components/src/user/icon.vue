@@ -1,6 +1,5 @@
 <script setup>
 import { useUser, selectedUser, safeHash } from '@composables';
-import { ref, onMounted } from 'vue'
 
 const props = defineProps({
   size: { type: Number, default: 42 }
