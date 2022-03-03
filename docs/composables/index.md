@@ -454,17 +454,12 @@ Relay connection management
 
 * [useRelay](#module_useRelay)
     * _static_
-        * [.useRelay(host)](#module_useRelay.useRelay) ⇒ <code>Relay</code>
+        * [.useRelay()](#module_useRelay.useRelay) ⇒ <code>Relay</code>
     * _inner_
         * [~Relay](#module_useRelay..Relay) : <code>reactive</code>
 
-### useRelay(host) ⇒ <code>Relay</code>
+### useRelay() ⇒ <code>Relay</code>
   Peer server status monitor
-
-
-| Param | Type |
-| --- | --- |
-| host | <code>URL</code> | 
 
 **Example**  
 ```js

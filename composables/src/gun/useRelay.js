@@ -63,7 +63,6 @@ watch(
 
 /**
  * Peer server status monitor
- * @param {URL} host
  * @returns {Relay}
  *
  * @example

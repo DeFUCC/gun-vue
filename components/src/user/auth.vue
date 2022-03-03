@@ -15,10 +15,11 @@ function show(option) {
 }
 
 watch(pair, (p) => {
+  console.log(p)
   if (p && typeof p == 'string' && p.substring(0, 3) == 'SEA') {
     passphrase.value = ''
   }
-  if (p.includes('#/auth/')) {
+  if (typeof p == 'string' && p.includes('#/auth/')) {
     p = parseLink(p)
   }
   let obj = safeJSONParse(p)
