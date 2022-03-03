@@ -18,7 +18,7 @@ const bg = computed(() => useBackground({ pub: props.pub, size: 600, light: 0.5,
 .flex.flex-col.rounded-3xl.overflow-hidden.shadow-xl
   .p-4.flex.items-center.bg-cover.border-b-6(:style="{ borderColor: account.color, ...bg }")
     account-avatar(:pub="pub" :size="120")
-    .flex.flex-col.ml-4
+    .flex.flex-col.ml-4.mx-4
       .text-2xl.font-bold {{ account.profile?.name }}
       .mt-2 {{ account.lastSeen }}
     .flex-1
