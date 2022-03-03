@@ -3,6 +3,7 @@
 import { computed } from 'vue'
 
 const routes = {
+  '/':"Home",
   "/space/": "Space",
   "/chats/": "Chats",
   "/posts/": "Posts",
@@ -13,7 +14,6 @@ const routes = {
 const icons = {
   'Space': 'ic-round-filter-center-focus'
 }
-
 
 import { useUser, currentRoom, useBackground, useColor } from '@composables';
 
@@ -45,6 +45,7 @@ const color = useColor('light')
     router-link.link(
       v-for="(link, l) in routes" :key="link" 
       :to="l" ) 
+      ph-house-simple(v-if="link == 'Home'")
       ph-hands-clapping(v-if="link == 'Space'")
       ph-newspaper(v-if="link == 'Posts'")
       ph-house(v-if="link == 'Rooms'")

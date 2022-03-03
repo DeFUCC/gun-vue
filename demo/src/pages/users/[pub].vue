@@ -20,6 +20,7 @@ onMounted(() => {
     @browse="$router.push(`/users/${$event}`)" 
     :key="pub"
     @feed="$router.push(`/posts/${$event}`)"
+    @chat="$router.push(`/users/${pub}/chat`)" 
     )
   router-view(v-slot="{ Component }")
     transition(name="fade")

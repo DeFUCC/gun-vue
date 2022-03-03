@@ -1,13 +1,14 @@
 <script setup>
-import { useAccount, useBackground } from '@composables';
+import { useAccount, useUser, useBackground } from '@composables';
 import { computed } from 'vue'
 const props = defineProps({
   pub: { type: String, default: '' }
 })
 
-defineEmits(['browse', 'feed', 'post'])
+defineEmits(['browse', 'feed', 'post', 'chat'])
 
 const { account } = useAccount(props.pub);
+const { user } = useUser()
 
 const bg = computed(() => useBackground({ pub: props.pub, size: 600, light: 0.5, draw: 'circles' }))
 
@@ -22,6 +23,7 @@ const bg = computed(() => useBackground({ pub: props.pub, size: 600, light: 0.5,
       .mt-2 {{ account.lastSeen }}
     .flex-1
     account-mate-button.m-4(:pub="pub")
+    chat-private-count(:pub="pub" v-if="user.is" @chat="$emit('chat')")
   account-profile.p-4(:pub="pub")
   .p-4.flex.flex-col
     account-mate-list(:pub="pub" @browse="$emit('browse', $event)")

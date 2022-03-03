@@ -18,17 +18,9 @@ const isLarge = useMediaQuery('(min-width: 640px)')
 
 onClickOutside(chatsPanel, (event) => !isLarge.value ? panelOpen.value = false : null)
 
-const chatWindow = ref();
-
-
-
 watch(messages, () => {
-  nextTick(() => {
-    chatWindow.value.scrollTo(0, chatWindow.value.scrollHeight);
     emit('newMessage')
-  });
 }, { deep: true });
-
 
 </script>
 
@@ -63,21 +55,7 @@ watch(messages, () => {
       .p-4.flex.flex-wrap.items-center
         button.button( @click.stop.prevent="panelOpen = !panelOpen") Chats
         .flex-1.ml-2 / {{ currentChat }}
-      .flex.flex-col.bg-opacity-80.p-4.gap-2.overflow-y-scroll.scroll-smooth.flex-auto(ref="chatWindow"  )
-        chat-message(
-          :style="{ order: Math.round(Number(message.timestamp) / 1000) - 1640995200 }"
-          v-for="(message, key) in messages" :key="key"
-          :author="message.author"
-          :timestamp="message.timestamp"
-          :text="message.text"
-          ) 
-      .p-4.bg-dark-50.bg-opacity-80.flex.gap-2(v-if="user.pub")
-        input.p-2.rounded-xl.bg-light-200(
-          v-model="message" placeholder="Your message"
-          @keyup.enter="send(message); message = ''"
-          )
-        button.button(@click="send(message); message = ''" v-if="user.pub")
-          la-comment-dots.mx-2
-      .p-4.flex.flex-col.items-center(v-else)
-        button.button(@click="user.auth = true") Log in to post messages
+      chat-messages(:messages="messages")
+      .p-4.bg-dark-50.bg-opacity-80.flex.gap-2.flex
+        chat-input.flex-auto(@submit="send($event)")
 </template>
