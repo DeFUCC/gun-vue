@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.7.5
+
+### Patch Changes
+
+- Basic encrypted chat is available for everyone! Send messages in daily buckets with encrypted timestamps
+
 ## 0.7.4
 
 ### Patch Changes

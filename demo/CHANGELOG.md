@@ -1,5 +1,14 @@
 # @gun-vue/demo
 
+## 0.7.5
+
+### Patch Changes
+
+- Basic encrypted chat is available for everyone! Send messages in daily buckets with encrypted timestamps
+- Updated dependencies
+  - @gun-vue/components@0.7.5
+  - @gun-vue/composables@0.7.5
+
 ## 0.7.4
 
 ### Patch Changes
