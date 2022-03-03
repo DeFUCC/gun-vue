@@ -35,6 +35,11 @@ const user = useUser();
 </td>
     </tr>
 <tr>
+    <td><a href="#privatechat" >PrivateChat</a></td>
+    <td><p>Basic private chat</p>
+</td>
+    </tr>
+<tr>
     <td><a href="#usecrypto" >useCrypto</a></td>
     <td><p>SEA cryptography abstraction</p>
 </td>
@@ -99,6 +104,11 @@ const user = useUser();
 </td>
     </tr>
 <tr>
+    <td><a href="#useaccount" >useAccount</a></td>
+    <td><p>Basic user management</p>
+</td>
+    </tr>
+<tr>
     <td><a href="#usemates" >useMates</a></td>
     <td><p>Connections between accounts</p>
 </td>
@@ -121,6 +131,13 @@ const user = useUser();
 
 ## Chat
 Basic public chat
+
+<hr />
+
+<a name="module_PrivateChat"></a>
+
+## PrivateChat
+Basic private chat
 
 <hr />
 
@@ -833,6 +850,34 @@ Handle mouse movement inside an SVG
 
 <hr />
 
+<a name="module_useAccount"></a>
+
+## useAccount
+Basic user management
+
+### useAccount(pub) ⇒ <code>Account</code>
+  Load and handle user's account by a public key
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| pub | <code>ref</code> | The public key of a user as a string or a ref |
+
+**Example**  
+```js
+import { ref } from 'vue'
+import { useAccount, SEA } from '@gun-vue/composables'
+
+const pub = ref()
+
+async function generatePair() {
+ pub.value = await SEA.pair()
+}
+
+const { account } = useAccount(pub)
+```
+<hr />
+
 <a name="module_useMates"></a>
 
 ## useMates
@@ -937,7 +982,6 @@ Basic user management
 
 * [useUser](#module_useUser)
     * _static_
-        * [.useAccount(pub)](#module_useUser.useAccount) ⇒ <code>Account</code>
         * [.useUser()](#module_useUser.useUser) ⇒ <code>useUser</code>
         * [.auth(pair)](#module_useUser.auth)
         * [.leave()](#module_useUser.leave)
@@ -949,27 +993,6 @@ Basic user management
         * [~User](#module_useUser..User) : <code>Object</code>
         * [~useUser](#module_useUser..useUser)
 
-### useAccount(pub) ⇒ <code>Account</code>
-  Load and handle user's account by a public key
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| pub | <code>ref</code> | The public key of a user as a string or a ref |
-
-**Example**  
-```js
-import { ref } from 'vue'
-import { useAccount, SEA } from '@gun-vue/composables'
-
-const pub = ref()
-
-async function generatePair() {
- pub.value = await SEA.pair()
-}
-
-const { account } = useAccount(pub)
-```
 ### useUser() ⇒ <code>useUser</code>
   Get access to current logged in user
 
