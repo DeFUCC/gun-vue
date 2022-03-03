@@ -3,8 +3,8 @@
  * @module PrivateChat
  */
 
-import { ref, reactive, computed, toRef } from "vue"
-import { useAccount, useUser, useGun, currentRoom } from '@composables'
+import { reactive, computed } from "vue"
+import { useAccount, useUser, useGun } from '..'
 
 
 export function usePrivateChat(pub) {
