@@ -32,7 +32,7 @@ export let gun2;
 
 /**
  * Instantiate a Gun instance for DB manipulations
- * @param {Array} peer - an array of Gun peers (should be only one for now)
+ * @param {Object} options - options fot this gun instance, like { localstorage:true }
  * @returns {Gun}
  * @example
  * import { useGun } from '@gun-vue/composables'
@@ -49,7 +49,7 @@ export function useGun(opts = { localStorage: false }) {
 
 /**
  * get a secondary Gun instance to manages certificates
- * @param {Array} peer - an array of Gun peers (should be only one for now)
+ * @param {Object} options - options fot this gun instance, like { localstorage:true }
  * @returns {Gun}
  */
 
