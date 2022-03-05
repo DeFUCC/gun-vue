@@ -40,7 +40,7 @@ export let gun2;
  * const gun = useGun()
  */
 
-export function useGun(opts = {localStorage: false}) {
+export function useGun(opts = { localStorage: false }) {
   if (!gun) {
     gun = Gun({ peers: [peer.value], ...opts });
   }
@@ -53,9 +53,9 @@ export function useGun(opts = {localStorage: false}) {
  * @returns {Gun}
  */
 
-export function useGun2() {
+export function useGun2(opts = { localStorage: false }) {
   if (!gun2) {
-    gun2 = Gun({ peers: [peer.value], localStorage: false });
+    gun2 = Gun({ peers: [peer.value], ...opts });
   }
   return gun2;
 }
