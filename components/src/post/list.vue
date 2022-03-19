@@ -31,7 +31,7 @@ const showHidden = ref(false)
 </script>
 
 <template lang='pug'>
-.flex.flex-col.z-10.items-stretch.h-full.justify-items-stretch
+.flex.flex-col.z-10.items-start.justify-items-stretch
   .flex.flex-wrap.items-center.p-2.text-xl.sticky.z-100.top-0.shadow-lg.bg-light-900(v-if="header")
     .text-xl.ml-2.font-bold.cursor-pointer(style="flex: 1 100px " @click="$emit('close')") # {{ tag }} 
     .flex-1
@@ -43,7 +43,7 @@ const showHidden = ref(false)
       )
       slot
       util-share(v-if="header")
-      .flex.flex-wrap.flex-1(v-if="user.pub")
+      .flex.flex-wrap(v-if="user.pub" )
         button.flex-auto.add.button.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(@click="add = !add")
           transition(name="fade" mode="out-in")
             la-plus(v-if="!add")
@@ -73,7 +73,7 @@ const showHidden = ref(false)
 
     transition-group(name="list")
       post-card.max-w-640px(
-        style="flex: 1 1 220px"
+        style="flex: 1 1 320px"
         v-show="tag != hash && (countAuthors(authors) > 0 || showHidden)"
         :style="{ order: -countAuthors(authors), opacity: countAuthors(authors) > 0 ? 1 : 0.3 }"
         v-for="(authors, hash) in posts" 

@@ -398,8 +398,8 @@ Gun DB initialization and basic methods
     * _static_
         * [.gun](#module_useGun.gun)
         * [.gun2](#module_useGun.gun2)
-        * [.useGun(peer)](#module_useGun.useGun) ⇒ <code>Gun</code>
-        * [.useGun2(peer)](#module_useGun.useGun2) ⇒ <code>Gun</code>
+        * [.useGun(options)](#module_useGun.useGun) ⇒ <code>Gun</code>
+        * [.useGun2(options)](#module_useGun.useGun2) ⇒ <code>Gun</code>
     * _inner_
         * [~SEA](#module_useGun..SEA)
         * [~soul()](#module_useGun..soul)
@@ -411,13 +411,13 @@ Gun DB initialization and basic methods
 ### gun2
   Secondary Gun instance for key management
 
-### useGun(peer) ⇒ <code>Gun</code>
+### useGun(options) ⇒ <code>Gun</code>
   Instantiate a Gun instance for DB manipulations
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| peer | <code>Array</code> | an array of Gun peers (should be only one for now) |
+| options | <code>Object</code> | options fot this gun instance, like { localstorage:true } |
 
 **Example**  
 ```js
@@ -425,13 +425,13 @@ import { useGun } from '@gun-vue/composables'
 
 const gun = useGun()
 ```
-### useGun2(peer) ⇒ <code>Gun</code>
+### useGun2(options) ⇒ <code>Gun</code>
   get a secondary Gun instance to manages certificates
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| peer | <code>Array</code> | an array of Gun peers (should be only one for now) |
+| options | <code>Object</code> | options fot this gun instance, like { localstorage:true } |
 
 ### SEA
   SEA library
