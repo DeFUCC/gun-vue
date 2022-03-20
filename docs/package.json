@@ -24,25 +24,25 @@
   "license": "MIT",
   "dependencies": {
     "@gun-vue/components": "workspace:^",
-    "@vueuse/core": "7.6.1",
+    "@vueuse/core": "8.1.2",
     "vue": "^3.2.31"
   },
   "devDependencies": {
-    "@iconify/json": "^2.0.36",
+    "@iconify/json": "^2.1.17",
     "jsdoc-to-markdown": "^7.1.1",
     "markdown-it-checkbox": "^1.1.0",
     "markdown-it-classy": "^0.2.0",
     "markdown-it-container": "^3.0.0",
     "markdown-it-external-links": "^0.0.6",
     "pug": "3.0.2",
-    "unplugin-auto-import": "^0.5.11",
-    "unplugin-icons": "^0.13.1",
-    "unplugin-vue-components": "^0.17.18",
-    "vite": "^2.8.1",
-    "vite-aliases": "^0.8.7",
-    "vite-plugin-windicss": "^1.7.0",
-    "vitepress": "0.22.0",
-    "vitepress-tags": "^0.4.0",
-    "windicss": "^3.4.3"
+    "unplugin-auto-import": "^0.6.6",
+    "unplugin-icons": "^0.14.0",
+    "unplugin-vue-components": "^0.18.3",
+    "vite": "^2.8.6",
+    "vite-aliases": "^0.9.1",
+    "vite-plugin-windicss": "^1.8.3",
+    "vitepress": "0.22.3",
+    "vitepress-tags": "^0.6.2",
+    "windicss": "^3.5.1"
   }
 }

@@ -35,13 +35,13 @@
     "deploy": "sh deploy.sh"
   },
   "dependencies": {
-    "@vueuse/core": "7.6.1",
+    "@vueuse/core": "8.1.2",
     "base32": "^0.0.6",
     "color-hash": "^2.0.1",
     "curved-arrows": "^0.1.0",
     "fuse.js": "^6.5.3",
     "grapheme-breaker-mjs": "^1.0.4",
-    "gun": "^0.2020.1235",
+    "gun": "0.2020.1235",
     "gun-avatar": "1.6.2",
     "gun-util": "^0.0.17",
     "jszip": "^3.7.1",
@@ -53,6 +53,6 @@
     "yaml": "^1.10.2"
   },
   "devDependencies": {
-    "vite": "^2.8.1"
+    "vite": "^2.8.6"
   }
 }
