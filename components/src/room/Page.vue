@@ -40,13 +40,16 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
             :editable="room.hosts[user.pub] && roomPub == currentRoom.pub && !editName"
             @update="updateRoomProfile('name', $event)"
           )
+          .text-md {{ room.profile.description }}
           .flex.items-center.flex-wrap
             .font-bold.mr-2 Hosts: 
             .p-2(v-for="(enc, host) in room.hosts" :key="host")
               account-badge( :pub="host" :selectable="true")
-              room-features(:features="enc") Tools
+              room-features(:features="enc") 🗝
+
         .flex-1
       room-features.my-4(:features="room.features")
+      .text-xs.font-mono {{ room.profile }}
       .flex.flex-wrap
         button.button(v-if="room.hosts?.[user.pub]?.enc" @click="recreateRoom(room.hosts?.[user.pub]?.enc)")
           la-tools
@@ -59,9 +62,6 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
             ion-exit-outline
             .ml-2 Leave
   .text-center.flex.flex-col.items-center
-    .m-2.p-4.shadow-lg.rounded-2xl
-      .text-sm.font-mono {{ room.profile }}
-      .text-md {{ room.profile.description }}
     slot
 
       
