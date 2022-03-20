@@ -12,6 +12,6 @@ jobs:
       - name: Deployment
         uses: SkynetLabs/deploy-to-skynet-action@v2
         with:
-          upload-dir: /
+          upload-dir: "."
           github-token: ${{ secrets.GITHUB_TOKEN }}
           registry-seed: ${{ secrets.REGISTRY_SEED || ‘’ }}
