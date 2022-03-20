@@ -2,7 +2,7 @@ name: Deploy to Skynet
 
 on:
   push:
-    branches: [gh-pages]
+    branches: ["gh-pages"]
 
 jobs:
   upload:
