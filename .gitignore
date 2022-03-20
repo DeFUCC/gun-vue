@@ -7,3 +7,4 @@ dist-ssr
 radata
 demo/public/docs
 demo/public/means
+.env

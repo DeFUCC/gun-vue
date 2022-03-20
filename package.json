@@ -10,6 +10,7 @@
   "engines": {
     "node": "16.x"
   },
+  "type": "module",
   "scripts": {
     "demo": "cd demo && pnpm run dev",
     "docs": "cd docs && pnpm run dev",
@@ -18,9 +19,12 @@
     "version": "pnpm changeset version",
     "publish": "pnpm run build && pnpm changeset publish",
     "deploy": "sh deploy.sh",
+    "sky": "node deploy-to-skynet.js",
     "relay": "cd relay && pnpm run start"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.20.0"
+    "@skynetlabs/skynet-nodejs": "^2.5.0",
+    "@changesets/cli": "^2.20.0",
+    "dotenv": "^16.0.0"
   }
 }
