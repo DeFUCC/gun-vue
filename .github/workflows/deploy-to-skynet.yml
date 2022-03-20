@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      — uses: actions/checkout@v2
       - name: Deployment
         uses: SkynetLabs/deploy-to-skynet-action@v2
         with:
