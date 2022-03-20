@@ -1,5 +1,13 @@
 # @gun-vue/site
 
+## 0.7.6
+
+### Patch Changes
+
+- A p2p app ready to be shipped from Skynet Homescreen
+- Updated dependencies
+  - @gun-vue/components@0.7.6
+
 ## 0.7.5
 
 ### Patch Changes

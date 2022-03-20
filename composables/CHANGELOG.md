@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.7.6
+
+### Patch Changes
+
+- A p2p app ready to be shipped from Skynet Homescreen
+
 ## 0.7.5
 
 ### Patch Changes
