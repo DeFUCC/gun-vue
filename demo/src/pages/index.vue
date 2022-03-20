@@ -49,7 +49,3 @@ import { currentRoom, rootRoom } from '@composables';
           .text-xl Sponsorship
 
 </template>
-
-
-a.text-sm(href="https://homescreen.hns.siasky.net/#/skylink/AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A") Add to Skynet Homescreen 
-      .flex.flex-wrap.text-center
