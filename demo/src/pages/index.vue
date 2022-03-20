@@ -32,6 +32,9 @@ import { currentRoom, rootRoom } from '@composables';
 
       .my-4 We're building basic components and data structures as a foundation for various Vue 3 apps to built by anyone. Feel free to play with it and to make any contributions! 
       .flex.flex-wrap
+        a.button.m-2.flex.items-center(href="https://homescreen.hns.siasky.net/#/skylink/AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A" target="_blank")
+          simple-icons-skynet.mr-4.text-3xl
+          .text-xl Homescreen
         a.button.m-2.flex.items-center(href="/docs/" target="_blank")
           la-book-open.mr-4.text-3xl
           .text-xl Documentation
@@ -46,3 +49,7 @@ import { currentRoom, rootRoom } from '@composables';
           .text-xl Sponsorship
 
 </template>
+
+
+a.text-sm(href="https://homescreen.hns.siasky.net/#/skylink/AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A") Add to Skynet Homescreen 
+      .flex.flex-wrap.text-center
