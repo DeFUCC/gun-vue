@@ -113,32 +113,22 @@ export function usePosts(tag = "posts") {
     downloadPosts,
     downloading,
     uploadPosts,
+    countRating
   };
 }
 
-export async function reactToPost({ tag, hash, back, reaction = true } = {}) {
-  const { user } = useUser();
-  const gun = useGun();
 
-  if (tag == "posts" || tag == "rooms") {
-    let myPost = gun.user(currentRoom.pub).get(tag).get(`${hash}@${user.pub}`);
-    let current = await myPost.then();
-    myPost.put(!current ? reaction : null, null, {
-      opt: { cert: currentRoom.features?.[tag] },
-    });
-  } else {
-    let myLink = gun.user(currentRoom.pub).get("links");
-    if (!back) {
-      myLink = myLink.get(`${tag}:${hash}@${user.pub}`);
-    } else {
-      myLink = myLink.get(`${hash}:${tag}@${user.pub}`);
+
+function countRating(authors) {
+  let count = 0
+  for (let author in authors) {
+    if (authors[author] && authors[author] != '🗑') {
+      count++
+    } else if (authors[author] == '🗑') {
+      count--
     }
-
-    let current = await myLink.then();
-    myLink.put(!current ? reaction : null, null, {
-      opt: { cert: currentRoom.features?.links },
-    });
   }
+  return count
 }
 
 /**

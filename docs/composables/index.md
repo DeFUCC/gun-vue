@@ -80,6 +80,11 @@ const user = useUser();
 </td>
     </tr>
 <tr>
+    <td><a href="#reaction" >Reaction</a></td>
+    <td><p>React to posts with emojis</p>
+</td>
+    </tr>
+<tr>
     <td><a href="#feeds" >Feeds</a></td>
     <td><p>Get and handle a particular post by it&#39;s tag and hash</p>
 </td>
@@ -671,6 +676,13 @@ import { uploadFeed } from '@gun-vue/composables'
 | count | <code>computed</code> | the number of posts in a feed |
 | downloadPosts | <code>function</code> | Download all posts in a zip file |
 | uploadPosts | <code>function</code> | upload a zip file with posts |
+
+<hr />
+
+<a name="module_Reaction"></a>
+
+## Reaction
+React to posts with emojis
 
 <hr />
 

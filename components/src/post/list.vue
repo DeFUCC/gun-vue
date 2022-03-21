@@ -10,40 +10,44 @@ const props = defineProps({
 })
 const emit = defineEmits(['close', 'browse', 'user'])
 
-const { posts, backlinks, countPosts, countBacklinks, downloadPosts, downloading, uploadPosts } = usePosts(props.tag)
+const { posts, backlinks, countPosts, countBacklinks, downloadPosts, downloading, uploadPosts, countRating } = usePosts(props.tag)
 
 const add = ref()
 
-function countAuthors(authors) {
-  let count = 0
-  for (let author in authors) {
-    if (authors[author]) {
-      count++
-    }
-  }
-  return count
-}
-
 const openBacklinks = ref(false)
 const showHidden = ref(false)
+
+const filteredPosts = computed(() => {
+  const list = {}
+  for (let hash in posts) {
+    const rating = countRating(posts[hash])
+    if (showHidden.value || rating > 0) {
+      list[hash] = posts[hash]
+    }
+  }
+  return list
+})
 
 
 </script>
 
 <template lang='pug'>
-.flex.flex-col.z-10.items-start.justify-items-stretch
-  .flex.flex-wrap.items-center.p-2.text-xl.sticky.z-100.top-0.shadow-lg.bg-light-900(v-if="header")
+.flex.flex-col.z-10.items-start.justify-items-stretch 
+  .flex.flex-wrap.items-center.p-2.text-xl.sticky.z-100.top-0.shadow-lg.bg-light-700(v-if="header")
     .text-xl.ml-2.font-bold.cursor-pointer(style="flex: 1 100px " @click="$emit('close')") # {{ tag }} 
     .flex-1
     .p-2.font-bold.mx-2 {{ countPosts }}
-  .flex.flex-wrap.bg-dark-50.bg-opacity-40.backdrop-filter.backdrop-blur-md.flex-1
+  .flex.flex-wrap.bg-dark-50.bg-opacity-20.backdrop-filter.backdrop-blur-md.flex-1.p-2
     .p-2.flex.flex-wrap.z-300.text-sm.bg-light-300.bg-opacity-40.rounded-2xl.m-2.flex-1(
-      style="order:-2147483647"
+      style="order:-2147483647; flex: 1000 100%"
       v-if="user.pub"
       )
       slot
       util-share(v-if="header")
-      .flex.flex-wrap(v-if="user.pub" )
+      .flex.flex-wrap(
+        v-if="user.pub"
+
+        )
         button.flex-auto.add.button.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(@click="add = !add")
           transition(name="fade" mode="out-in")
             la-plus(v-if="!add")
@@ -74,9 +78,9 @@ const showHidden = ref(false)
     transition-group(name="list")
       post-card.max-w-640px(
         style="flex: 1 1 320px"
-        v-show="tag != hash && (countAuthors(authors) > 0 || showHidden)"
-        :style="{ order: -countAuthors(authors), opacity: countAuthors(authors) > 0 ? 1 : 0.3 }"
-        v-for="(authors, hash) in posts" 
+        v-show="tag != hash"
+        :style="{ order: -countRating(authors), opacity: countRating(authors) > 0 ? 1 : 0.3 }"
+        v-for="(authors, hash) in filteredPosts" 
         :key="hash" 
         :hash="hash"
         :tag="tag"
@@ -94,7 +98,7 @@ const showHidden = ref(false)
       transition-group(name="list")
         post-card(
           style="flex: 1 1 220px"
-          :style="{ order: -countAuthors(authors) }"
+          :style="{ order: -countRating(authors) }"
           v-for="(authors, hash) in backlinks" 
           :key="hash" 
           :hash="hash"

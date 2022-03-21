@@ -44,7 +44,7 @@ const { post } = usePost({ hash: props.hash })
       post-action-link(:hash="hash")
 
       //- post-action-update(:hash="hash" )
-      //- post-action-ban(:hash="hash")
+      //- post-action-ban(:hash="hash" :tag="tag")
 
       //- post-action-star(:hash="hash" )
 </template>
