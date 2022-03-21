@@ -1,5 +1,13 @@
 # @gun-vue/site
 
+## 0.7.7
+
+### Patch Changes
+
+- 2113e36: Reactions are more powerful now. You can plus OR minus a post and it will make it move up or down in the list. If a post has negative rating, it's filtered out. So... collective moderation becomes possible.
+- Updated dependencies [2113e36]
+  - @gun-vue/components@0.7.7
+
 ## 0.7.6
 
 ### Patch Changes
