@@ -15,12 +15,12 @@
     "demo": "cd demo && pnpm run dev",
     "docs": "cd docs && pnpm run dev",
     "build": "cd composables && pnpm run build && cd .. && cd components && pnpm run build && cd .. && cd docs && pnpm run build  && cd .. && cd demo && pnpm run build ",
+    "relay": "cd relay && pnpm run start",
     "change": "pnpm changeset",
     "version": "pnpm changeset version",
     "publish": "pnpm run build && pnpm changeset publish",
     "deploy": "sh deploy.sh",
-    "sky": "node deploy-to-skynet.js",
-    "relay": "cd relay && pnpm run start"
+    "sky": "node deploy-to-skynet.js"
   },
   "devDependencies": {
     "@changesets/cli": "^2.21.1",
