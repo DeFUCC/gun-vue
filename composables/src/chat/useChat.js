@@ -30,7 +30,7 @@ export function useChat() {
 
   function addChat(title) {
     chatDb
-      .get(`${slugify(title)}@${user.pub}`)
+      .get(`${slugify(title) || title}@${user.pub}`)
       .put(true, null, { opt: { cert: currentRoom.features.chat } });
   }
 
