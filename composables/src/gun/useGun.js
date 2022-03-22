@@ -12,6 +12,12 @@ import "gun/lib/rindexed";
 // import "gun/lib/webrtc";
 import "gun/nts";
 
+import Buffer from 'buffer'
+import setImmediate from 'setimmediate'
+
+window.Buffer = Buffer.Buffer
+document.setImmediate = setImmediate.setImmediate
+
 import { useStorage } from "@vueuse/core";
 
 export const defaultPeer = "https://etogun.glitch.me/gun";
