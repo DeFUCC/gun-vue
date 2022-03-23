@@ -12,11 +12,11 @@ import "gun/lib/rindexed";
 // import "gun/lib/webrtc";
 import "gun/nts";
 
-import Buffer from 'buffer'
-import setImmediate from 'setimmediate'
+import { Buffer } from 'buffer'
+import { setImmediate } from 'setimmediate'
 
-window.Buffer = Buffer.Buffer
-document.setImmediate = setImmediate.setImmediate
+window.Buffer = Buffer
+document.setImmediate = setImmediate
 
 import { useStorage } from "@vueuse/core";
 
