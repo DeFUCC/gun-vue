@@ -51,8 +51,7 @@
     "slugify": "^1.6.5",
     "vue": "^3.2.31",
     "yaml": "^1.10.2",
-    "buffer": "^6.0.3",
-    "setimmediate": "^1.0.5"
+    "buffer": "^6.0.3"
   },
   "devDependencies": {
     "vite": "^2.8.6"
