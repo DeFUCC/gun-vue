@@ -70,6 +70,11 @@ const user = useUser();
 </td>
     </tr>
 <tr>
+    <td><a href="#userelays" >useRelays</a></td>
+    <td><p>Loads the <a href="https://github.com/amark/gun/wiki/volunteer.dht">list of active volunteer DHT gun nodes</a>  and benchmarks ping for them</p>
+</td>
+    </tr>
+<tr>
     <td><a href="#post" >Post</a></td>
     <td><p>Get and handle a particular post by it&#39;s tag and hash</p>
 </td>
@@ -503,6 +508,64 @@ const { relay, setPeer, resetPeer } = useRelay()
 "blink": true
 }
 ```
+<hr />
+
+<a name="module_useRelays"></a>
+
+## useRelays
+Loads the [list of active volunteer DHT gun nodes](https://github.com/amark/gun/wiki/volunteer.dht)  and benchmarks ping for them
+
+
+* [useRelays](#module_useRelays)
+    * _static_
+        * [.loadRelays(loadRelaysOptions)](#module_useRelays.loadRelays) ⇒ <code>relays</code>
+        * [.useRelays()](#module_useRelays.useRelays) ⇒ <code>useRelays</code>
+    * _inner_
+        * [~useRelays](#module_useRelays..useRelays) : <code>Object</code>
+        * [~loadRelaysOptions](#module_useRelays..loadRelaysOptions) : <code>Object</code>
+        * [~Relays](#module_useRelays..Relays) : <code>Array.&lt;Object&gt;</code>
+
+### loadRelays(loadRelaysOptions) ⇒ <code>relays</code>
+  Load the list of the relays
+
+
+| Param | Type |
+| --- | --- |
+| loadRelaysOptions | <code>Object</code> | 
+
+### useRelays() ⇒ <code>useRelays</code>
+  Gets the list of actual gun relays and tool to update the list
+
+**Example**  
+```js
+import { useRelays } from '@gun-vue/composables'
+ const { relays, errors, loadRelays } = useRelays()
+```
+### useRelays : <code>Object</code>
+  **Properties**
+
+| Name | Type |
+| --- | --- |
+| Relays | <code>Object</code> | 
+| Errors | <code>Object</code> | 
+| loadRelays | <code>function</code> | 
+
+### loadRelaysOptions : <code>Object</code>
+  **Properties**
+
+| Name | Type |
+| --- | --- |
+| source | <code>String</code> | 
+
+### Relays : <code>Array.&lt;Object&gt;</code>
+  **Properties**
+
+| Name | Type |
+| --- | --- |
+| hostname | <code>String</code> | 
+| url | <code>String</code> | 
+| ping | <code>Number</code> | 
+
 <hr />
 
 <a name="module_Post"></a>
