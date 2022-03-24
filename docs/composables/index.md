@@ -539,7 +539,7 @@ Loads the [list of active volunteer DHT gun nodes](https://github.com/amark/gun/
 **Example**  
 ```js
 import { useRelays } from '@gun-vue/composables'
- const { relays, errors, loadRelays } = useRelays()
+const { relays, errors, loadRelays } = useRelays()
 ```
 ### useRelays : <code>Object</code>
   **Properties**
