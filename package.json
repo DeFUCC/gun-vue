@@ -1,15 +1,12 @@
 {
   "name": "@gun-vue/repo",
   "private": true,
-  "version": "0.7.7",
+  "version": "0.7.8",
   "funding": {
     "type": "ko-fi",
     "url": "https://ko-fi.com/davay"
   },
   "homepage": "https://gun-vue.js.org",
-  "engines": {
-    "node": "16.x"
-  },
   "type": "module",
   "scripts": {
     "demo": "cd demo && pnpm run dev",
