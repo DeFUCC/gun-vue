@@ -82,8 +82,6 @@ export async function loadRelays({
  */
 
 export function useRelays() {
-  loadRelays()
-
   return { relays, errors, loadRelays }
 }
 

@@ -3,9 +3,13 @@
  * @module useRelay
  */
 
-import { useGun, peer, defaultPeer } from '.'
+import { useGun } from '.'
 import { computed, reactive, watch } from 'vue'
+import { useStorage } from "@vueuse/core";
 import ms from 'ms'
+
+export const defaultPeer = "https://etogun.glitch.me/gun";
+export const peer = useStorage("peer", defaultPeer);
 
 /**
  * @typedef {reactive} Relay Peer server status reactive object

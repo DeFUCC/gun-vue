@@ -18,10 +18,8 @@ import { Buffer } from 'buffer'
 window.Buffer = Buffer
 window.setImmediate = setTimeout
 
-import { useStorage } from "@vueuse/core";
+import { peer } from './useRelay'
 
-export const defaultPeer = "https://etogun.glitch.me/gun";
-export const peer = useStorage("peer", defaultPeer);
 
 // https://github.com/amark/gun/wiki/volunteer.dht
 // https://github.com/draeder/gun-relays

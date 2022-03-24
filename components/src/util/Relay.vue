@@ -14,7 +14,7 @@ const { relays, loadRelays } = useRelays()
 </script>
 
 <template lang='pug'>
-.cursor-pointer.relative
+.cursor-pointer.relative.text-left
   button.flex(@click="open = true")
     carbon-bare-metal-server-01.text-xl.-mt-1
     .ml-2.font-bold(v-if="text") {{ text }}
@@ -27,8 +27,8 @@ const { relays, loadRelays } = useRelays()
         :style="{ backgroundColor: relay.blink ? 'white' : 'black' }"
         )
       .flex.flex-col.items-start
-        .p-0.flex.items-center.flex-wrap  Host: 
-          input.mx-1.p-2.rounded-lg(v-model="relay.peer")
+        .p-0.flex.items-center.flex-wrap.w-full  Host: 
+          input.mx-1.p-2.rounded-lg.flex-auto(v-model="relay.peer")
           button.button.m-1(@click="setPeer(relay.peer)") Set
           button.button.m-1(@click="resetPeer()") Reset
 
@@ -38,21 +38,7 @@ const { relays, loadRelays } = useRelays()
           .num.p-0 Pulse drift: {{ relay.lag }} ms
           .num.p-0 Active wires: {{ relay.activeWires }} / {{ relay.totalConnections }}
           .p-0 Data storage is {{ relay.store ? 'enabled' : 'disabled' }}
-      .flex.flex-col
-        .flex.items-center
-          .text-lg.text-left Relay peers:
-          .flex-auto
-          button.button.m-1(@click="loadRelays")
-            la-redo-alt
-        ul.flex.flex-col.font-normal.items-start
-          li.flex.w-full.text-left.p-1.hover_bg-light-500(
-            v-for="link in relays" :key="link.host" 
-            @click="setPeer(link.url)"
-            :class="{ active: link.url == relay.peer }"
-            :style="{ order: link.ping }"
-            ) 
-            .flex-1.underline {{ link.host }}
-            .font-bold {{ link.ping }} ms
+      util-relay-list
 </template>
 
 <style lang="postcss" scoped>
