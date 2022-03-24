@@ -30,8 +30,6 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in")
       component(:is="Component")
-.flex.flex-col.items-end.fixed.bottom-2.left-2.z-10000
-  util-tools
 </template>
 
 <style lang="postcss">

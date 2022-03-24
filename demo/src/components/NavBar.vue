@@ -1,9 +1,9 @@
 <script setup>
-
+import { currentRoom, useBackground, useColor } from '@composables';
 import { computed } from 'vue'
 
 const routes = {
-  '/':"Home",
+  '/': "Home",
   "/space/": "Space",
   "/chats/": "Chats",
   "/posts/": "Posts",
@@ -11,13 +11,6 @@ const routes = {
   "/rooms/": "Rooms",
 };
 
-const icons = {
-  'Space': 'ic-round-filter-center-focus'
-}
-
-import { useUser, currentRoom, useBackground, useColor } from '@composables';
-
-const { user } = useUser()
 
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 
@@ -34,6 +27,8 @@ const color = useColor('light')
     )
     .w-4.h-12
     .flex-1
+    .flex.flex-col.items-end.z-10000
+      util-tools
     user-icon(
       :size="40"
       @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"

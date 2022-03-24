@@ -459,18 +459,18 @@ Relay connection management
 
 * [useRelay](#module_useRelay)
     * _static_
-        * [.useRelay()](#module_useRelay.useRelay) ⇒ <code>Relay</code>
+        * [.useRelay()](#module_useRelay.useRelay) ⇒ <code>useRelay</code>
     * _inner_
         * [~Relay](#module_useRelay..Relay) : <code>reactive</code>
 
-### useRelay() ⇒ <code>Relay</code>
+### useRelay() ⇒ <code>useRelay</code>
   Peer server status monitor
 
 **Example**  
 ```js
 import { useRelay } from '@gun-vue/composables';
 
-const relay = useRelay()
+const { relay, setPeer, resetPeer } = useRelay()
 ```
 ### Relay : <code>reactive</code>
   Peer server status reactive object

@@ -32,7 +32,8 @@ import ms from 'ms'
  * }
  */
 
-const relay = reactive({
+export const relay = reactive({
+  list: [],
   peer: peer.value,
   host: new URL(peer.value).hostname,
   status: 'offline',
@@ -43,14 +44,6 @@ const relay = reactive({
   age: computed(() => ms(relay.diff)),
   delay: computed(() => Date.now() - relay.pulse),
   blink: false,
-  setPeer(url) {
-    peer.value = url
-    window.location.reload()
-  },
-  resetPeer() {
-    peer.value = defaultPeer
-    window.location.reload()
-  },
 })
 
 watch(
@@ -61,14 +54,25 @@ watch(
   },
 )
 
+function setPeer(url) {
+  peer.value = url
+  window.location.reload()
+};
+
+function resetPeer() {
+  peer.value = defaultPeer
+  window.location.reload()
+}
+
+
 /**
  * Peer server status monitor
- * @returns {Relay}
+ * @returns {useRelay}
  *
  * @example
  * import { useRelay } from '@gun-vue/composables';
  *
- * const relay = useRelay()
+ * const { relay, setPeer, resetPeer } = useRelay()
  */
 export function useRelay() {
   const gun = useGun()
@@ -81,5 +85,5 @@ export function useRelay() {
       })
   }
 
-  return relay
+  return { relay, setPeer, resetPeer }
 }

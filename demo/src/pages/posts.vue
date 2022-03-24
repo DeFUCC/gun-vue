@@ -4,7 +4,7 @@ const { room } = useRoom()
 </script>
 
 <template lang='pug'>
-.flex.flex-col.flex-auto
+.flex.flex-col.flex-auto.relative
   post-list.w-full(
     :header="false"
     tag="posts" 
