@@ -1,5 +1,11 @@
 # @gun-vue/relay
 
+## 0.3.6
+
+### Patch Changes
+
+- 7de71cb: bump gun to 0.2020.1236
+
 ## 0.3.5
 
 ### Patch Changes

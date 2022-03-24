@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.7.8
+
+### Patch Changes
+
+- 3548311: Volunteer DHT relays
+
 ## 0.7.7
 
 ### Patch Changes

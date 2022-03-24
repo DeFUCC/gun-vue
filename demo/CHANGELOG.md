@@ -1,5 +1,15 @@
 # @gun-vue/demo
 
+## 0.7.8
+
+### Patch Changes
+
+- Updated dependencies [3548311]
+- Updated dependencies [7de71cb]
+  - @gun-vue/components@0.7.8
+  - @gun-vue/composables@0.7.8
+  - @gun-vue/relay@0.3.6
+
 ## 0.7.7
 
 ### Patch Changes
