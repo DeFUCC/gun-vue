@@ -173,12 +173,12 @@ importers:
   relay:
     specifiers:
       express: ^4.17.3
-      gun: 0.2020.1235
+      gun: 0.2020.1236
       ip: ^1.1.5
       qrcode-terminal: ^0.12.0
     dependencies:
       express: 4.17.3
-      gun: 0.2020.1235
+      gun: 0.2020.1236
       ip: 1.1.5
       qrcode-terminal: 0.12.0
 
@@ -3667,19 +3667,6 @@ packages:
       gun: 0.2020.1236
       lodash: 4.17.21
       moment: 2.29.1
-    dev: false
-
-  /gun/0.2020.1235:
-    resolution: {integrity: sha512-aba6s0X/MCCOByt0T3VrMzMMUEblfN2aLV2bAmIQWjkB7SKnm07zAZWigljwI69Rb5sOw7C1G116UyvCM2p9kA==}
-    engines: {node: '>=0.8.4'}
-    dependencies:
-      ws: 7.5.5
-    optionalDependencies:
-      '@peculiar/webcrypto': 1.2.2
-      emailjs: 2.2.0
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
     dev: false
 
   /gun/0.2020.1236:
