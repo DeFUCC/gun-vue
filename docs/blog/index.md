@@ -27,6 +27,13 @@ posts:
     youtube: _SXVSMiIbvg
     text: |
       Today we present a new iteration on merging a reactive p2p database with a reactive UI framework together to form a toolbox for everyone to build upon. With v 0.7 we introduce the concept of rooms, that are separate SEA key pairs for use with certificates. Any logged in user can do create some records inside the app room based of a set of certificates, restricting the posting rules. Posts, spaces, users and even rooms are already easily addable to any room by any user. And anyone can create a new room to fill up as he/she wishes. It becomes more and more fun!
+  - title: "Gun-Vue v0.7.8: Skynet Homescreen, swappable relays and private encrypted chat"
+    date: 2022-03-26
+    youtube: jnxwS4__8T4
+    text: |
+      Some nice progress going with Gun-Vue project development. It gets so much more reliable with the new SIA Skynet Homescreen publication and interchangeable relays. Yes, the volunteer list is still at the centralized GitHub, but it's such a small footprint that may be changed to any other way of delivering the list of available peers. We should share that in gun space too, as the gun-relays package already does.
+
+      We also have some encrypted private chats and the new GUN v0.2020.1236 under the hood. More features to come!
 ---
 
 ## Blog
