@@ -3,9 +3,6 @@
   "private": true,
   "version": "0.7.8",
   "homepage": "https://gun-vue.js.org",
-  "engines": {
-    "node": "16.x"
-  },
   "author": "davay42 <davay@defucc.me>",
   "funding": {
     "type": "ko-fi",

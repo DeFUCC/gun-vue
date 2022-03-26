@@ -35,7 +35,6 @@
     "deploy": "sh deploy.sh"
   },
   "dependencies": {
-    "gun-relays": "github:DeFUCC/gun-relays",
     "@vueuse/core": "8.1.2",
     "base32": "^0.0.6",
     "color-hash": "^2.0.1",

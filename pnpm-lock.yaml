@@ -58,7 +58,6 @@ importers:
       grapheme-breaker-mjs: ^1.0.4
       gun: 0.2020.1236
       gun-avatar: 1.6.2
-      gun-relays: github:DeFUCC/gun-relays
       gun-util: ^0.0.17
       jszip: ^3.7.1
       markdown-it: ^12.3.2
@@ -79,7 +78,6 @@ importers:
       grapheme-breaker-mjs: 1.0.4
       gun: 0.2020.1236
       gun-avatar: 1.6.2
-      gun-relays: github.com/DeFUCC/gun-relays/e4e1da5110595a8a2f0703116d6c8ac9ce7cc2fb
       gun-util: 0.0.17_gun@0.2020.1236
       jszip: 3.7.1
       markdown-it: 12.3.2
@@ -6724,16 +6722,3 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
-
-  github.com/DeFUCC/gun-relays/e4e1da5110595a8a2f0703116d6c8ac9ce7cc2fb:
-    resolution: {tarball: https://codeload.github.com/DeFUCC/gun-relays/tar.gz/e4e1da5110595a8a2f0703116d6c8ac9ce7cc2fb}
-    name: gun-relays
-    version: 1.0.1
-    engines: {node: '>=17.5'}
-    dependencies:
-      gun: 0.2020.1236
-      url-regex: 5.0.0
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-    dev: false
