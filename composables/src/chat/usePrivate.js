@@ -7,7 +7,7 @@ import { reactive, computed, ref } from "vue"
 import { useAccount, useUser, useGun, SEA } from '..'
 
 
-export function usePrivateChat(pub) {
+export function usePrivateChat(pub, { parse = true } = {}) {
 
   const gun = useGun();
   const { user } = useUser();
@@ -71,6 +71,7 @@ export function usePrivateChat(pub) {
   };
 }
 
+
 export function usePrivateChatCount(pub) {
   const gun = useGun();
   const { user } = useUser();
@@ -85,8 +86,33 @@ export function usePrivateChatCount(pub) {
     messages[k] = d
   })
 
+  gun.user().get('chat').get(pub).map().map().on((d, k) => {
+    if (d && !d.startsWith('SEA')) return
+    messages[k] = d
+  })
+
   const count = computed(() => {
     return Object.keys(messages).length
   })
   return { count, available }
+}
+
+export function usePrivateChatList() {
+  const gun = useGun();
+  const { user } = useUser();
+  const list = reactive({})
+  if (user.is) {
+    gun.user().get('chat').map().on((d, k) => {
+      list[k] = d
+    })
+    gun.user().get("mates").map().on(async (d, k) => {
+      const mutual = await gun.user(k).get('mates').get(user.pub)
+      const epub = await gun.user(k).get('epub')
+      if (mutual && epub) {
+        list[k] = d
+      }
+    })
+
+  }
+  return { list }
 }

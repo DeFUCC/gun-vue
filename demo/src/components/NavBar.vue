@@ -5,9 +5,10 @@ import { computed } from 'vue'
 const routes = {
   '/': "Home",
   "/space/": "Space",
-  "/chats/": "Chats",
+  "/topics/": "Topics",
   "/posts/": "Posts",
   "/users/": "Users",
+  "/chats/": "Chats",
   "/rooms/": "Rooms",
 };
 
@@ -33,7 +34,7 @@ const color = useColor('light')
       :size="40"
       @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
       @post="$router.push(`/posts/${$event}`)"
-      @chat="$router.push(`/users/${$event}/chat`)"
+      @chat="$router.push(`/chats/${$event}`)"
       )
     room-icon(@room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)")
 
@@ -45,6 +46,7 @@ const color = useColor('light')
       ph-hands-clapping(v-if="link == 'Space'")
       ph-newspaper(v-if="link == 'Posts'")
       ph-house(v-if="link == 'Rooms'")
+      la-broadcast-tower(v-if="link == 'Topics'")
       ph-chats-teardrop(v-if="link == 'Chats'")
       ph-users(v-if="link == 'Users'")
       .ml-1 {{ link }}

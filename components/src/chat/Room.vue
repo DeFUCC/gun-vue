@@ -3,6 +3,10 @@ import { ref, computed, watch, nextTick } from 'vue'
 import { useMediaQuery, onClickOutside } from '@vueuse/core'
 import { useChat, useUser, useBackground, currentRoom } from '@composables';
 
+const props = defineProps({
+  title: { type: String, default: 'Topics' }
+})
+
 const emit = defineEmits(['newMessage'])
 
 const { user } = useUser();
@@ -19,7 +23,7 @@ const isLarge = useMediaQuery('(min-width: 640px)')
 onClickOutside(chatsPanel, (event) => !isLarge.value ? panelOpen.value = false : null)
 
 watch(messages, () => {
-    emit('newMessage')
+  emit('newMessage')
 }, { deep: true });
 
 </script>
@@ -31,7 +35,7 @@ watch(messages, () => {
     transition(name="fade")
       .flex.flex-col.bg-dark-300.bg-opacity-70.gap-2.min-h-full.overflow-y-scroll.scroll-smooth.absolute.sm_static.z-20.w-220px.max-w-full.max-h-full.text-light-900.backdrop-filter.backdrop-blur-xl(style="flex: 1 1 320px" v-if="isLarge || (panelOpen && !isLarge)" ref="chatsPanel")
         .flex.flex-wrap
-          .text-xl.font-bold.p-2 Chats 
+          .text-xl.font-bold.p-2 {{ title }}
           .flex-1
           .cursor-pointer.self-center.text-2xl.p-2(@click="adding = !adding")
             transition(name="fade" mode="out-in")
@@ -53,7 +57,7 @@ watch(messages, () => {
 
     .flex.flex-col(style="flex: 1000 1 auto")
       .p-4.flex.flex-wrap.items-center
-        button.button( @click.stop.prevent="panelOpen = !panelOpen") Chats
+        button.button( @click.stop.prevent="panelOpen = !panelOpen" v-if="!isLarge") {{ title }}
         .flex-1.ml-2 / {{ currentChat }}
       chat-messages(:messages="messages")
       .p-4.bg-dark-50.bg-opacity-80.flex.gap-2.flex

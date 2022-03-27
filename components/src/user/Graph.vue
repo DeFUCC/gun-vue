@@ -1,6 +1,6 @@
 <script setup>
 import { computed, reactive, watchEffect, onMounted } from 'vue'
-import { useColor, useMates, useGun, currentRoom, gunAvatar } from '@composables';
+import { useColor, useMates, useGun, currentRoom, gunAvatar, user } from '@composables';
 import ForceGraph from 'force-graph';
 
 //https://github.com/vasturiano/force-graph
@@ -21,7 +21,6 @@ gun
       pub: k,
       name: await gun.user(k).get('profile').get('name'),
       color: colorDeep.hex(k),
-      avatar: gunAvatar(k),
       links: useMates(k)
     }
   })
@@ -34,19 +33,38 @@ const links = computed(() => {
       arr.push({
         source: node.pub,
         target: link[0],
-        emoji: link[1].emoji
+        emoji: link[1].emoji,
+        back: link[1].back
       })
     })
   })
   return arr
 })
 
+
 onMounted(() => {
   const Graph = ForceGraph()(document.getElementById('graph'))
     .nodeId('pub')
     .nodeColor('color')
+    .nodeVal(node => {
+      if (node.pub == user.pub) {
+        return 100
+      } else {
+        return Object.keys(node.links).length + 1
+      }
+    })
+    .nodeRelSize(1)
     .linkDirectionalArrowLength(4)
+    .linkDirectionalArrowRelPos(1)
     .linkLabel('emoji')
+    .linkCurvature(0.02)
+    .linkColor(link => {
+      return colorDeep.hex(link.source?.pub || 0)
+    })
+    .linkWidth((link) => {
+      if (link.back) return 3
+      return 1
+    })
     .onNodeDragEnd(node => {
       node.fx = node.x;
       node.fy = node.y;

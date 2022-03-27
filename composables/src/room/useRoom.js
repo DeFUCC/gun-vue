@@ -229,7 +229,7 @@ export function joinRoom() {
   gun
     .user(currentRoom.pub)
     .get("space")
-    .db.get(user.pub)
+    .get(user.pub)
     .put(JSON.stringify({ x: Math.random(), y: Math.random() }), null, {
       opt: { cert: currentRoom.features?.space },
     });

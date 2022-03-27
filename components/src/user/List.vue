@@ -1,10 +1,12 @@
 <script setup>
 import { onClickOutside } from '@vueuse/core';
-import { useGuests } from '@composables';
+import { useGuests, joinRoom, useUser } from '@composables';
 import { reactive, ref, computed, toRef } from 'vue'
 onClickOutside
 
 const emit = defineEmits(['user'])
+
+const { user } = useUser()
 
 const guests = useGuests()
 
@@ -16,13 +18,20 @@ onClickOutside(panel, () => {
     open.value = false
   }
 })
+
+const isInRoom = computed(() => guests.guests[user.pub])
+
 </script>
 
 <template lang='pug'>
 .flex.flex-col.items-center.relative.w-full(ref="panel")
-  button.absolute.left-2.top-2.button.z-200(@click="open = !open")
-    la-users.text-3xl
-    .ml-1 Users list
+  .absolute.left-2.top-2.z-200.flex.gap-2
+    button.button(@click="open = !open")
+      la-users.text-3xl
+      .ml-1 Users list
+    button.button(v-if="user.is && !isInRoom" @click="joinRoom()")
+      la-plus
+      .ml-2 Join
   transition(name="fade")
     .absolute.left-0.w-50.bg-light-200.z-100.h-80vh.overflow-y-scroll.px-2.pt-12(v-show="open" )
       .flex.flex-col.my-2(v-for="state in ['online', 'offline']" :key="state")
