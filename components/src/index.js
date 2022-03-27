@@ -26,7 +26,8 @@ export { default as UserHome } from "./user/Home.vue";
 export { default as UserIcon } from "./user/Icon.vue";
 export { default as UserPanel } from "./user/Panel.vue";
 export { default as UserProfile } from "./user/Profile.vue";
-export { default as UserProfileField } from "./user/Profile/Field.vue";
+export { default as UserGraph } from "./user/Graph.vue";
+export { default as UserProfileField } from "./user/profile/Field.vue";
 
 export { default as RoomProfile } from "./room/Profile.vue";
 
