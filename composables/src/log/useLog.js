@@ -7,7 +7,7 @@ import { reactive, ref, onMounted, watchEffect, onBeforeUnmount } from "vue";
 import { DateTree } from "gun-util";
 import ms from "ms";
 import { newWorker } from "./useWorker";
-import { gun, useGun } from "./gun/";
+import { gun, useGun } from "../gun";
 
 function sortByDate(e) {
   const arr = Object.entries(e.data);

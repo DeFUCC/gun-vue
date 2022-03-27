@@ -75,6 +75,16 @@ const user = useUser();
 </td>
     </tr>
 <tr>
+    <td><a href="#uselog" >useLog</a></td>
+    <td><p>Reactive version of <code>gun-util</code> Date tree</p>
+</td>
+    </tr>
+<tr>
+    <td><a href="#useworker" >useWorker</a></td>
+    <td><p>Worker wrapper for heavy functions</p>
+</td>
+    </tr>
+<tr>
     <td><a href="#post" >Post</a></td>
     <td><p>Get and handle a particular post by it&#39;s tag and hash</p>
 </td>
@@ -565,6 +575,44 @@ const { relays, errors, loadRelays } = useRelays()
 | hostname | <code>String</code> | 
 | url | <code>String</code> | 
 | ping | <code>Number</code> | 
+
+<hr />
+
+<a name="module_useLog"></a>
+
+## useLog
+Reactive version of `gun-util` Date tree
+
+<hr />
+
+<a name="module_useWorker"></a>
+
+## useWorker
+Worker wrapper for heavy functions
+
+
+* [useWorker](#module_useWorker)
+    * _static_
+        * [.newWorker](#module_useWorker.newWorker)
+    * _inner_
+        * [~sortByDate(e)](#module_useWorker..sortByDate)
+
+### newWorker
+  Create a new worker for a function
+It should contain a `postMessage` method to reply to any incoming `postMessage` from the main script
+
+
+| Param | Type |
+| --- | --- |
+| funcObj | <code>function</code> | 
+
+### sortByDate(e)
+  Example sorter function for a dated list object
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| e | <code>Object</code> | the worker post event with a `data` object with a list of records to sort by the date keys |
 
 <hr />
 
