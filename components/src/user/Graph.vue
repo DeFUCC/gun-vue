@@ -46,14 +46,14 @@ onMounted(() => {
   const Graph = ForceGraph()(document.getElementById('graph'))
     .nodeId('pub')
     .nodeColor('color')
-    .nodeVal(node => {
-      if (node.pub == user.pub) {
-        return 100
-      } else {
-        return Object.keys(node.links).length + 1
-      }
-    })
-    .nodeRelSize(1)
+    // .nodeVal(node => {
+    //   if (node.pub == user.pub) {
+    //     return 100
+    //   } else {
+    //     return Object.keys(node.links).length + 1
+    //   }
+    // })
+    .nodeRelSize(4)
     .linkDirectionalArrowLength(4)
     .linkDirectionalArrowRelPos(1)
     .linkLabel('emoji')
