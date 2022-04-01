@@ -19,8 +19,8 @@ function isLink(text) {
   .p-2.flex.items-center(
     v-for="(content, field) in account.profile" :key="field"
     )
-    .mr-2.font-bold(style="flex: 1 1 20px") {{ field }}
-    .flex.items-center.ml-1(style="flex: 1 1 220px")
+    .mr-2.font-bold(style="flex: 1 1 60px") {{ field }}
+    .flex.items-center.ml-1(style="flex: 1 1 180px")
       .p-0(v-if="!isLink(content)") {{ content }}
       a.font-bold.underline(v-else :href="content" target="_blank") {{ content }} 
 </template>
