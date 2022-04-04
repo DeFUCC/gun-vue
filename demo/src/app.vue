@@ -30,17 +30,18 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in")
       component(:is="Component")
+  nav-footer
 </template>
 
 <style lang="postcss">
 html {
   scroll-behavior: smooth;
   hyphens: auto;
-  overscroll-behavior-y: contain;
+  overscroll-behavior-y: none;
 }
 body {
   @apply bg-light-400 dark_bg-dark-100;
-  overscroll-behavior-y: contain;
+  overscroll-behavior-y: none;
 }
 #app {
   @apply min-h-100vh flex flex-col;

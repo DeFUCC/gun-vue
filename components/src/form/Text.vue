@@ -56,7 +56,7 @@ function importPostFile(event) {
   .flex.flex-wrap.bg-dark-100.p-4
     button.button.m-1(@click="$emit('close')")
       la-check
-      .ml-2 Add to post
+      .ml-2 Save
     label.m-1.button.cursor-pointer.flex.items-center(for="import-post")
       la-markdown
       .ml-2 Load

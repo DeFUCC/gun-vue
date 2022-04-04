@@ -1,6 +1,6 @@
 <script setup>
-import { useRoom, currentRoom, rootRoom, recreateRoom, useColor, useUser, useBackground } from '@composables';
-import { ref, computed } from 'vue'
+import { useRoom, currentRoom, rootRoom, recreateRoom, useColor, useUser, useBackground, useMd } from '@composables';
+import { ref, computed, reactive } from 'vue'
 
 const props = defineProps({
   pub: String
@@ -20,8 +20,15 @@ const roomPub = computed(() => {
   }
 })
 
-const name = ref('')
-const editName = ref(false)
+const md = useMd()
+
+
+
+const edit = reactive({
+  name: false,
+  description: false,
+  text: false,
+})
 
 const colorDeep = useColor('deep')
 
@@ -31,13 +38,13 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
 
 <template lang='pug'>
 .flex.flex-col.items-stretch
-  .pt-42.pb-2.px-2.md_px-8.md_pb-8.bg-cover.relative.flex.flex-col.items-center(:style="{ ...bg }")
-    .flex.flex-col.items-stretche.bg-light-100.bg-opacity-20.p-4.md_p-12.rounded-4xl.shadow-xl.backdrop-blur-md.backdrop-filter
+  .pt-32.px-2.md_px-8.bg-cover.relative.flex.flex-col.items-center(:style="{ ...bg }")
+    .w-200.max-w-full.flex.flex-col.items-stretche.bg-light-100.bg-opacity-20.p-4.md_p-12.shadow-xl.backdrop-blur-md.backdrop-filter.rounded-t-xl
       .flex.flex-wrap.items-center
         .flex.flex-col
           form-title.font-bold.text-2xl(
             :text="room.profile.name || roomPub.substring(0, 12)"
-            :editable="room.hosts[user.pub] && roomPub == currentRoom.pub && !editName"
+            :editable="room.hosts[user.pub] && roomPub == currentRoom.pub && !edit.name"
             @update="updateRoomProfile('name', $event)"
           )
           .text-md {{ room.profile.description }}
@@ -49,9 +56,8 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
 
         .flex-1
       room-features.my-4(:features="room.features")
-      .text-xs.font-mono {{ room.profile }}
-      .flex.flex-wrap
-        button.button(v-if="room.hosts?.[user.pub]?.enc" @click="recreateRoom(room.hosts?.[user.pub]?.enc)")
+      .flex.flex-wrap.items-center.gap-2
+        button.button(v-if="room.hosts?.[user.pub]" @click="recreateRoom(room.hosts?.[user.pub]?.enc)")
           la-tools
           .ml-2 Renew
         .flex.flex-wrap.py-4(v-if="roomPub != rootRoom.pub")
@@ -61,10 +67,13 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
           button.button(@click="leaveRoom()" v-else)
             ion-exit-outline
             .ml-2 Leave
-  .text-center.flex.flex-col.items-center
-    slot
-
-      
+  .flex.flex-col.items-center.bg-light-300
+    .max-w-200.relative
+      .flex.items-center(v-if="edit.text === false" ) 
+        .p-8.markdown-body(v-html="md.render(room.profile?.text || '')")
+        button.button.absolute.top-4.right-4.z-200(@click="edit.text = room.profile?.text || ''" v-if="room.hosts?.[user.pub]")
+          la-pen
+      form-text(v-else v-model:text="edit.text" @close="updateRoomProfile('text', edit.text); edit.text = false")
 
 
 </template>
