@@ -6,7 +6,6 @@ import { safeHash, currentRoom } from '@composables'
 <template lang='pug'>
 .flex.flex-col.flex-auto.relative
   post-list.w-full(
-    :header="false"
     tag="posts" 
     :key="currentRoom.pub"
     @close="$router.push('/posts/')" 
@@ -15,5 +14,6 @@ import { safeHash, currentRoom } from '@composables'
     )
   router-view(v-slot="{ Component }")
     transition(name="fade")
-      component(:is="Component" )
+      keep-alive
+        component(:is="Component" )
 </template>

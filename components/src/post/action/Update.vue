@@ -28,8 +28,9 @@ async function refreshPost(tag = 'posts', hash) {
 
 <template lang='pug'>
 button.m-1.button.items-center(@click.stop.prevent="refreshPost(tag, hash)")
-  .num.p-0.mr-1.text-sm {{ msTime }}
   mdi-watering-can-outline
+  .num.p-0.ml-1.text-sm {{ msTime }}
+
 </template>
 
 <style scoped>

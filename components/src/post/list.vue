@@ -32,12 +32,12 @@ const filteredPosts = computed(() => {
 </script>
 
 <template lang='pug'>
-.flex.flex-col.z-10.items-start.justify-items-stretch 
-  .flex.flex-wrap.items-center.p-2.text-xl.sticky.z-100.top-0.shadow-lg.bg-light-700(v-if="header")
+.flex.flex-col.z-10.items-start.justify-items-stretch
+  .flex.flex-wrap.items-center.p-2.text-xl.sticky.z-100.top-0.shadow-lg.bg-light-700.w-full(v-if="header")
     .text-xl.ml-2.font-bold.cursor-pointer(style="flex: 1 100px " @click="$emit('close')") # {{ tag }} 
     .flex-1
     .p-2.font-bold.mx-2 {{ countPosts }}
-  .flex.flex-wrap.bg-dark-50.bg-opacity-20.backdrop-filter.backdrop-blur-md.flex-1.p-2
+  .flex.flex-wrap.bg-dark-50.bg-opacity-20.backdrop-filter.backdrop-blur-md.flex-1.p-2.w-full
     .p-2.flex.flex-wrap.z-300.text-sm.bg-light-300.bg-opacity-40.rounded-2xl.m-2.flex-1(
       style="order:-2147483647; flex: 1000 100%"
       v-if="user.pub"
@@ -87,26 +87,5 @@ const filteredPosts = computed(() => {
         :authors="authors"
         @click="emit('browse', hash)"
         )
-  .text-lg.w-full.text-lg.font-bold.mt-4.mb-2.flex.items-center.p-2.bg-light-600.shadow-lg.rounded-2xl.cursor-pointer(v-if="countBacklinks > 0" @click="openBacklinks = !openBacklinks") 
-    .p-2 Backlinks 
-    .flex-1
-    la-angle-down(v-if="!openBacklinks")
-    la-angle-up(v-else)
-    .p-2 {{ countBacklinks }}
-  transition(name="fade")
-    .flex.flex-wrap.flex-1(v-if="openBacklinks && countBacklinks > 0")
-      transition-group(name="list")
-        post-card(
-          style="flex: 1 1 220px"
-          :style="{ order: -countRating(authors) }"
-          v-for="(authors, hash) in backlinks" 
-          :key="hash" 
-          :hash="hash"
-          :tag="tag"
-          :authors="authors"
-          :back="true"
-          @user="$emit('user', $event)"
-          @click="emit('browse', hash)"
-          )
 </template>
 

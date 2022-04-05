@@ -31,7 +31,7 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
     transition(name="fade" mode="out-in")
       keep-alive
         component.flex-auto.overflow-y-scroll(:is="Component")
-  nav-footer
+  nav-footer(v-if="$route.path == '/'")
 </template>
 
 <style lang="postcss">

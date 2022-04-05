@@ -50,7 +50,7 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
           .text-md {{ room.profile.description }}
           .flex.items-center.flex-wrap
             .font-bold.mr-2 Hosts: 
-            .p-2(v-for="(enc, host) in room.hosts" :key="host")
+            .p-2.flex.flex-col.items-start.gap-2(v-for="(enc, host) in room.hosts" :key="host")
               account-badge( :pub="host" :selectable="true")
               room-features(:features="enc") 🗝
 

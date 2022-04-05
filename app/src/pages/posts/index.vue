@@ -1,5 +1,5 @@
 <script setup>
-import { safeHash } from '@composables'
+import { safeHash, currentRoom } from '@composables'
 
 </script>
 

@@ -8,5 +8,6 @@
   user-graph( @user="$router.push(`/users/${$event}`)" )
   router-view(v-slot="{ Component }")
     transition(name="fade")
-      component(:is="Component")
+      keep-alive
+        component(:is="Component")
 </template> 
