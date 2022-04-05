@@ -29,7 +29,8 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
   nav-bar
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in")
-      component(:is="Component")
+      keep-alive
+        component(:is="Component")
   nav-footer
 </template>
 
