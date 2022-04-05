@@ -25,12 +25,12 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 </script>
 
 <template lang="pug">
-.p-0.flex.flex-col(style="flex: 1000 1 100%" )
+.p-0.flex.flex-col.h-100vh(style="flex: 1000 1 100%" )
   nav-bar
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in")
       keep-alive
-        component(:is="Component")
+        component.flex-auto.overflow-y-scroll(:is="Component")
   nav-footer
 </template>
 
@@ -41,10 +41,10 @@ html {
   overscroll-behavior-y: none;
 }
 body {
-  @apply bg-light-400 dark_bg-dark-100;
+  @apply bg-light-600 dark_bg-dark-200;
   overscroll-behavior-y: none;
 }
 #app {
-  @apply min-h-100vh flex flex-col;
+  @apply min-h-100vh max-h-100vh flex flex-col;
 }
 </style>

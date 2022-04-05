@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import Components from "unplugin-vue-components/vite";
 import Pages from "vite-plugin-pages";
+import generateSitemap from 'vite-plugin-pages-sitemap'
 
 import { VitePWA } from "vite-plugin-pwa";
 
@@ -25,6 +26,8 @@ export default defineConfig({
     vue(),
     Pages({
       dirs: "src/pages",
+      routeBlockLang: 'yaml',
+      onRoutesGenerated: routes => (generateSitemap({ routes, hostname: 'https://gun-vue.js.org' })),
     }),
     WindiCSS({
       scan: {

@@ -34,7 +34,7 @@ watch(guestCount, (next, prev) => {
     @click="join()"
     :style="{ borderColor: user.color }"
     ) Click here to join the space
-  svg.h-80vh.w-98vw(
+  svg.max-h-78vh.w-98vw(
     ref="plane"
     style="cursor:none;"
     @click="place(); !user.is ? user.auth = true : null"
