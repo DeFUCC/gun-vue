@@ -69,13 +69,13 @@ watch(guestCount, (next, prev) => {
         :stroke="user.color"
         stroke-width="2"
         stroke-linecap="round"
-        :x1="space.my.mouse.x * width"
-        :y1="space.my.mouse.y * height"
-        :x2="space.my.pos.x * width"
-        :y2="space.my.pos.y * height"
+        :x1="space.my.mouse.x * width || 0"
+        :y1="space.my.mouse.y * height || 0"
+        :x2="space.my.pos.x * width || 0"
+        :y2="space.my.pos.y * height || 0"
         stroke-dasharray="4 16"
       )
-      g.mouse(:transform="`translate(${space.my.mouse.x * width} ${space.my.mouse.y * height})`")
+      g.mouse(:transform="`translate(${space.my.mouse.x * width || 0} ${space.my.mouse.y * height || 0})`")
         circle(
           style="filter:url(#shadowButton)"
           :fill="user.color"

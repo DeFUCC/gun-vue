@@ -26,13 +26,6 @@ export const currentRoom = reactive({
 
 watchEffect(() => {
   const gun = useGun();
-  gun
-    .user(currentRoom.pub)
-    .get("profile")
-    .map()
-    .on((d, k) => {
-      currentRoom.profile[k] = d;
-    });
 
   if (currentRoom.pub == rootRoom.pub) {
     currentRoom.hosts = rootRoom.hosts;
@@ -57,6 +50,7 @@ watchEffect(() => {
       });
   }
 });
+
 
 /**
  * Reactive room controls
@@ -85,7 +79,7 @@ export function useRoom(pub = currentRoom.pub) {
     .get("hosts")
     .map()
     .once((d, k) => {
-      delete d._;
+      if (d) delete d._;
       room.hosts[k] = d;
     });
   gun

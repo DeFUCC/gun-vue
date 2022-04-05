@@ -9,6 +9,7 @@ const route = useRoute();
 watchEffect(() => {
   if (route.query?.room) {
     currentRoom.pub = route.query.room
+    console.log(route.query.room)
   }
 });
 
