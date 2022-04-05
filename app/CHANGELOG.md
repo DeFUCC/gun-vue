@@ -1,5 +1,14 @@
 # @gun-vue/demo
 
+## 0.8.1
+
+### Patch Changes
+
+- vertical post data
+- Updated dependencies
+  - @gun-vue/components@0.8.1
+  - @gun-vue/composables@0.8.1
+
 ## 0.8.0
 
 ### Minor Changes
