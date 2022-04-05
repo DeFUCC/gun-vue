@@ -1,5 +1,19 @@
 # @gun-vue/components
 
+## 0.8.0
+
+### Minor Changes
+
+- demo becomes app
+
+### Patch Changes
+
+- a248364: User graph visualization
+- 0213424: Keep alive routes and more atomic components
+- Updated dependencies [0213424]
+- Updated dependencies
+  - @gun-vue/composables@0.8.0
+
 ## 0.7.8
 
 ### Patch Changes

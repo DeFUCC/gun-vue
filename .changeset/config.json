@@ -6,7 +6,7 @@
     [
       "@gun-vue/components",
       "@gun-vue/composables",
-      "@gun-vue/demo",
+      "@gun-vue/app",
       "@gun-vue/docs",
       "@gun-vue/repo"
     ]

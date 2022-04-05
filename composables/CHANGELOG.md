@@ -1,5 +1,15 @@
 # @gun-vue/composables
 
+## 0.8.0
+
+### Minor Changes
+
+- demo becomes app
+
+### Patch Changes
+
+- 0213424: Keep alive routes and more atomic components
+
 ## 0.7.8
 
 ### Patch Changes
