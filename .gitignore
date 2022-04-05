@@ -5,6 +5,6 @@ _dist
 dist-ssr
 *.local
 radata
-demo/public/docs
-demo/public/means
+app/public/docs
+app/public/means
 .env

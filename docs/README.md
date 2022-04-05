@@ -2,7 +2,7 @@
 
 Demontration of embedding the components into a server generated web site based on vitepress. It's a minimal demo, but vitepress is quite powerful to create some really big projects.
 
-![@gun-vue logo](https://raw.githubusercontent.com/davay42/gun-vue/master/demo/public/gun-vue-logo.svg)
+![@gun-vue logo](https://raw.githubusercontent.com/davay42/gun-vue/master/app/public/gun-vue-logo.svg)
 
 To build a site with Vitepress now you'll have to use out custom component loader in order to use `@gun-vue/components` in SSR node environment.
 

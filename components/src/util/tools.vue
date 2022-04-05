@@ -9,7 +9,7 @@ const show = reactive({
 
 <template lang='pug'>
 .flex.justify-end.flex-wrap.relative.gap-2
-  util-share
+  //- util-share
   //- button.button.m-2(@click="show.log = !show.log")
   //-   la-info-circle
   //-   .ml-2 Log

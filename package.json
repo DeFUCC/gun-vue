@@ -9,9 +9,9 @@
   "homepage": "https://gun-vue.js.org",
   "type": "module",
   "scripts": {
-    "demo": "cd demo && pnpm run dev",
+    "app": "cd app && pnpm run dev",
     "docs": "cd docs && pnpm run dev",
-    "build": "cd composables && pnpm run build && cd .. && cd components && pnpm run build && cd .. && cd docs && pnpm run build  && cd .. && cd demo && pnpm run build ",
+    "build": "cd composables && pnpm run build && cd .. && cd components && pnpm run build && cd .. && cd docs && pnpm run build  && cd .. && cd app && pnpm run build ",
     "relay": "cd relay && pnpm run start",
     "change": "pnpm changeset",
     "version": "pnpm changeset version",

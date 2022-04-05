@@ -1,4 +1,4 @@
-![@gun-vue logo](https://raw.githubusercontent.com/davay42/gun-vue/master/demo/public/gun-vue-logo.svg)
+![@gun-vue logo](https://raw.githubusercontent.com/davay42/gun-vue/master/app/public/gun-vue-logo.svg)
 
 ## [gun-vue.js.org](https://gun-vue.js.org)
 

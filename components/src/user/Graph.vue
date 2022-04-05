@@ -83,5 +83,5 @@ onMounted(() => {
 </script>
 
 <template lang='pug'>
-#graph.bg-light-700
+#graph.bg-light-700.max-h-100vh
 </template>

@@ -17,7 +17,7 @@ const metaData = {
 export default defineConfig({
   base: "/docs/",
   title: metaData.title,
-  outDir: "../demo/public/docs",
+  outDir: "../app/public/docs",
   markdown: {
     config(md) {
       md.use(mdCheck);
