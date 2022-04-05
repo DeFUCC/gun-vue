@@ -9,7 +9,6 @@ const route = useRoute();
 watchEffect(() => {
   if (route.query?.room) {
     currentRoom.pub = route.query.room
-    console.log(route.query.room)
   }
 });
 
@@ -26,7 +25,7 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 </script>
 
 <template lang="pug">
-.p-0.flex.flex-col(style="flex: 1000 1 100%" :style="{ ...bg }")
+.p-0.flex.flex-col(style="flex: 1000 1 100%" )
   nav-bar
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in")

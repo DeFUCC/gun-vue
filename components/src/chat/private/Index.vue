@@ -5,16 +5,18 @@ const props = defineProps({
   pub: String
 })
 
+const emit = defineEmits('user')
+
 const { account } = useAccount(toRef(props, 'pub'));
 
-const { send, messages } = usePrivateChat(props.pub) 
+const { send, messages } = usePrivateChat(props.pub)
 
 </script>
 
 <template lang="pug">
 .m-0.flex.flex-col
   .flex-0.p-4.flex.flex-wrap.items-center
-    account-avatar(:pub="pub")
+    account-avatar(:pub="pub" @click="$emit('user')")
     .text-lg.font-bold.p-2 {{ account.profile?.name }}
     .text-lg {{ account.lastSeen }}
   chat-messages.bg-dark-50(:messages="messages")

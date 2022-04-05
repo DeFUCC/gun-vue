@@ -8,7 +8,6 @@ const routes = {
   "/topics/": "Topics",
   "/posts/": "Posts",
   "/users/": "Users",
-  "/chats/": "Chats",
   "/rooms/": "Rooms",
 };
 
@@ -30,13 +29,14 @@ const color = useColor('light')
     .flex-1
     .flex.flex-col.items-end.z-10000
       util-tools
+    room-icon(@room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)")
     user-icon(
       :size="40"
       @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
       @post="$router.push(`/posts/${$event}`)"
-      @chat="$router.push(`/chats/${$event}`)"
+      @chat="$router.push(`/my/chat/${$event}`)"
       )
-    room-icon(@room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)")
+
 
   .flex.flex-wrap.items-center.bg-light-900.p-2.shadow-lg.sticky.top-18.z-2(:style="{ backgroundColor: color.hex(currentRoom.pub) }")
     router-link.link(
@@ -47,7 +47,6 @@ const color = useColor('light')
       ph-newspaper(v-if="link == 'Posts'")
       ph-house(v-if="link == 'Rooms'")
       la-broadcast-tower(v-if="link == 'Topics'")
-      ph-chats-teardrop(v-if="link == 'Chats'")
       ph-users(v-if="link == 'Users'")
       .ml-1 {{ link }}
     

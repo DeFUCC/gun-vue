@@ -1,6 +1,6 @@
 <script setup>
-import { safeHash, useRoom } from '@composables'
-const { room } = useRoom()
+import { safeHash, currentRoom } from '@composables'
+
 </script>
 
 <template lang='pug'>
@@ -8,7 +8,7 @@ const { room } = useRoom()
   post-list.w-full(
     :header="false"
     tag="posts" 
-    :key="room.pub"
+    :key="currentRoom.pub"
     @close="$router.push('/posts/')" 
     @browse="$router.push(`/posts/${safeHash($event)}`)"
     @user="$router.push(`/users/${$event}`)"

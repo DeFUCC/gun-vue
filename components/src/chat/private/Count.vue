@@ -12,10 +12,10 @@ const { count, available } = usePrivateChatCount(props.pub)
 </script>
 
 <template lang='pug'>
-.p-2.flex.items-center.bg-light-200.rounded-xl.cursor-pointer.shadow-md(
+.pl-2.flex.items-center.bg-light-200.rounded-xl.cursor-pointer(
   @click="$emit('chat')"
   :style="{ opacity: available ? 1 : 0.1 }"
   )
-  ph-chats-light.text-3xl
+  ph-chats-light.text-xl
   .font-bold.text-lg.mx-2 {{ count }}
 </template>

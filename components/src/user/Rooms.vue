@@ -23,7 +23,7 @@ const open = ref(false)
 </script>
 
 <template lang='pug'>
-.flex.flex-col
+.flex.flex-col(v-if="Object.keys(rooms).length > 0")
   .flex.p-4.bg-light-900.rounded-xl.mb-2.items-center.cursor-pointer.shadow-sm.hover_shadow-md.transition(@click="open = !open")
     .text-lg.font-bold My rooms
     .flex-1 

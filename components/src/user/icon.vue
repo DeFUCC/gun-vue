@@ -8,7 +8,7 @@ const props = defineProps({
 const { user } = useUser()
 
 
-defineEmits(['room', 'user', 'post','chat'])
+defineEmits(['room', 'user', 'post', 'chat'])
 
 </script>
 
@@ -25,9 +25,11 @@ div
     @close="user.auth = false"
     )
     user-home.max-w-600px(
-      @room="$emit('room', $event)" 
-      @user="$emit('user', $event)" 
+      @room="$emit('room', $event); user.auth = false" 
+      @user="$emit('user', $event); user.auth = false" 
+      @chat="$emit('chat', $event); user.auth = false"
       @close="user.auth = false"
+      @post="$emit('post', safeHash($event)); user.auth = false"
       )
   ui-layer(
     :open="selectedUser.pub" 
