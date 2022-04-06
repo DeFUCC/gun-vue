@@ -11,6 +11,7 @@ import { safeHash, currentRoom } from '@composables'
     @close="$router.push('/posts/')" 
     @browse="$router.push(`/posts/${safeHash($event)}`)"
     @user="$router.push(`/users/${$event}`)"
+    :header="false"
     )
   router-view(v-slot="{ Component }")
     transition(name="fade")

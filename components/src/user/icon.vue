@@ -13,7 +13,7 @@ defineEmits(['room', 'user', 'post', 'chat'])
 </script>
 
 <template lang="pug">
-div
+div.z-1000
   account-avatar.cursor-pointer(
     :size="size" 
     :border="2" 
