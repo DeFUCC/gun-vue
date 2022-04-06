@@ -36,7 +36,7 @@ const color = useColor('light')
       )
 
 
-.flex.flex-wrap.items-center.bg-light-900.p-2.shadow-lg.sticky.top-18.z-30(:style="{ backgroundColor: color.hex(currentRoom.pub) }")
+.flex.flex-wrap.items-center.bg-light-900.p-2.shadow-lg.z-30(:style="{ backgroundColor: color.hex(currentRoom.pub) }")
   router-link.link(
     v-for="(link, l) in routes" :key="link" 
     :to="l" ) 
