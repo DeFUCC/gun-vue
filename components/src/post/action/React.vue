@@ -56,7 +56,7 @@ const rating = computed(() => countRating(props.authors))
         account-badge.rounded-full.shadow-md(
           @click.stop.prevent="$emit('user', author)"
           v-for="(author) in list" :key="author"
-          :size="30"
+          :size="20"
           :selectable="true"
           v-show="author"
           :pub="author" :showName="false"

@@ -73,7 +73,7 @@ const filteredPosts = computed(() => {
       )
       transition(name="fade")
         post-form(:tag="tag" v-if="add" @close="add = false")
-    .p-2(style="order:-2147483647; flex: 1000 100%")
+    .p-2(v-if="!user.pub" style="order:-2147483647; flex: 1000 100%")
       button.button(@click="user.auth = true") Authorize to post here
 
     transition-group(name="list")

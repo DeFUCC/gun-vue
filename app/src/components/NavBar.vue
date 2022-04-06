@@ -19,7 +19,7 @@ const color = useColor('light')
 </script>
 
 <template lang="pug">
-.flex.flex-col.z-700
+.flex.flex-col.z-400
   a.fixed.top-0.left-0.z-1000(href="/#")
     img.w-24.transition-all.duration-500.ease-in-out(src="/gun-vue-logo.svg")
   .flex.items-center.z-40.gap-2.p-2.bg-light-900.shadow-xl.sticky.w-full.bg-cover.top-0(

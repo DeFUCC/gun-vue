@@ -54,6 +54,7 @@ export { default as PostActionBan } from "./post/action/Ban.vue";
 
 //CHAT
 
+export { default as ChatTopics } from "./chat/Topics.vue";
 export { default as ChatRoom } from "./chat/Room.vue";
 export { default as ChatMessage } from "./chat/Message.vue";
 export { default as ChatPrivate } from "./chat/private/Index.vue";

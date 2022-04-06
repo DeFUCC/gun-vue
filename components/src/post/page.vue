@@ -81,12 +81,10 @@ const { posts, backlinks } = usePosts(props.tag)
         .flex-auto
         .flex.flex-wrap.p-4.bg-dark-50.bg-opacity-25.w-full.items-center.gap-1.text-sm
           util-share
-            .ml-1 Share
           post-action-update(:hash="hash" )
           button.button.flex.items-center(@click="download()")
             la-file-download(v-if="!downloading")
             la-redo-alt.animate-spin(v-else)
-            .ml-1 Download
 
     .text-md.markdown-body.bg-light-200.rounded-2xl.m-1.px-4.py-4.leading-relaxed.max-w-55ch.z-10(
       v-if="post?.text" 

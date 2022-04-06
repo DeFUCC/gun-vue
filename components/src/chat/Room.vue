@@ -4,62 +4,40 @@ import { useMediaQuery, onClickOutside } from '@vueuse/core'
 import { useChat, useUser, useBackground, currentRoom } from '@composables';
 
 const props = defineProps({
-  title: { type: String, default: 'Topics' }
+  title: { type: String, default: 'Topics' },
+  topic: { type: String, default: 'general' },
+  clickSound: { type: String, default: 'audio/safe.mp3' }
 })
 
-const emit = defineEmits(['newMessage'])
+let audio
 
-const { user } = useUser();
+function click() {
+  if (!audio) {
+    audio = new Audio(props.clickSound)
+    audio.volume = 0.1
+  }
+  audio.play()
+}
 
-const { send, currentChat, addChat, chats, messages } = useChat()
+const { send, currentChat, messages } = useChat()
 
-const message = ref('')
-const newChat = ref('')
-const adding = ref(false)
-const chatsPanel = ref()
-const panelOpen = ref(true)
-const isLarge = useMediaQuery('(min-width: 640px)')
-
-onClickOutside(chatsPanel, (event) => !isLarge.value ? panelOpen.value = false : null)
+watch(() => props.topic, topic => {
+  currentChat.value = topic
+}, { immediate: true })
 
 watch(messages, () => {
-  emit('newMessage')
+  click()
 }, { deep: true });
 
 </script>
 
 <template lang='pug'>
-.flex.flex-col.bg-dark-800.bg-opacity-40.backdrop-filter.backdrop-blur-xl.shadow-md.mx-auto.w-full
 
-  .flex.relative.items-stretch.max-h-78vh
-    transition(name="fade")
-      .flex.flex-col.bg-dark-300.bg-opacity-70.gap-2.min-h-full.overflow-y-scroll.scroll-smooth.absolute.sm_static.z-20.w-220px.max-w-full.max-h-full.text-light-900.backdrop-filter.backdrop-blur-xl(style="flex: 1 1 320px" v-if="isLarge || (panelOpen && !isLarge)" ref="chatsPanel")
-        .flex.flex-wrap
-          .text-xl.font-bold.p-2 {{ title }}
-          .flex-1
-          .cursor-pointer.self-center.text-2xl.p-2(@click="adding = !adding")
-            transition(name="fade" mode="out-in")
-              la-plus(v-if="!adding")
-              la-times(v-else)
-        .flex.flex-wrap(v-if="adding")
-          input.p-2.m-2.w-full.rounded-xl.text-dark-800(
-            v-model="newChat" 
-            @keyup.enter="addChat(newChat); newChat = ''; adding = false"
-            placeholder="New chat"
-            )
-        .flex.flex-col.p-2.gap-2.h-full
-          .font-bold.bg-light-100.bg-opacity-30.rounded-xl.px-2.cursor-pointer.flex(
-            v-for="(authors, topic) in chats" :key="topic"
-            @click="currentChat = topic; panelOpen = false"
-            ) 
-            .flex-1 {{ topic }}
-            account-avatar(v-for="(isAuthor, author) in authors" :key="author" :size="20" :pub="author")
 
-    .flex.flex-col.overflow-y-scroll(style="flex: 1000 1 auto")
-      .p-4.flex.flex-wrap.items-center
-        button.button( @click.stop.prevent="panelOpen = !panelOpen" v-if="!isLarge") {{ title }}
-        .flex-1.ml-2 / {{ currentChat }}
-      chat-messages(:messages="messages")
-      .p-4.bg-dark-50.bg-opacity-80.flex.gap-2.flex.sticky.bottom-0
-        chat-input.flex-auto(@submit="send($event)")
+.flex.flex-col.overflow-y-scroll(style="flex: 1000 1 auto")
+  .px-4.py-6.flex.flex-wrap.items-center.text-center
+    .flex-1.ml-2.font-bold {{ currentChat }}
+  chat-messages(:messages="messages")
+  .p-4.bg-dark-50.bg-opacity-80.flex.gap-2.flex.sticky.bottom-0
+    chat-input.flex-auto(@submit="send($event)")
 </template>
