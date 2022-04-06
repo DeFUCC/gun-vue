@@ -1,5 +1,6 @@
 <script setup>
-import { useReaction, useUser, useColor } from '@composables';
+import { useReaction, useUser, useColor, useReactions, countRating } from '@composables';
+import { computed } from 'vue'
 
 const props = defineProps({
   authors: Object,
@@ -15,15 +16,18 @@ const { user } = useUser();
 
 const { reaction, react } = useReaction({ ...props })
 
+const reactions = computed(() => useReactions(props.authors))
+
+const rating = computed(() => countRating(props.authors))
 </script>
 
 <template lang='pug'>
-.p-2.flex.flex-wrap.gap-1.relative.items-center
+.p-1.flex.flex-wrap.gap-2.items-center
+  .p-2.font-bold {{ rating > 0 ? '+' : '' }}{{ rating }}
   button.rounded-2xl.text-lg.bg-light-200.flex.items-center.pl-1.pr-1.mr-1(
     :style="{ backgroundColor: authors?.[user.pub] ? colorDeep.hex(user.pub) : '' }"
-
     v-if="user.pub"
-    )
+    ) 
     //- account-avatar.rounded-full.shadow-md(:pub="user.pub" :size="32")
     .flex.items-center.px-2.py-1.text-xl(
       v-if="!authors?.[user.pub]"
@@ -41,14 +45,20 @@ const { reaction, react } = useReaction({ ...props })
       @click.stop.prevent="react('🗑')"
     )
       la-minus
+
   transition-group(name="fade")
-    account-badge.rounded-full.shadow-md(
-      @click.stop.prevent="$emit('user', author)"
-      v-for="(status, author) in authors" :key="author"
-      :size="30"
-      :selectable="true"
-      v-show="status"
-      :pub="author" :showName="false"
-      ) 
-      .mr-2.ml-1(v-if="status !== true") {{ status !== true && status != false ? status : '' }} 
+    .p-2px.flex.flex-wrap.items-center.rounded-3xl.bg-light-500.gap-1(
+      @click.stop.prevent="react(emoji)" 
+      v-for="(list, emoji) in reactions" :key="emoji"
+      )
+      .px-2.text-xl(v-if="emoji !== 'true'") {{ emoji }}
+      transition-group(name="list")
+        account-badge.rounded-full.shadow-md(
+          @click.stop.prevent="$emit('user', author)"
+          v-for="(author) in list" :key="author"
+          :size="30"
+          :selectable="true"
+          v-show="author"
+          :pub="author" :showName="false"
+          ) 
 </template>

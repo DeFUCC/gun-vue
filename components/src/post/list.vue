@@ -1,5 +1,5 @@
 <script setup>
-import { usePosts, useUser } from '@composables'
+import { usePosts, useUser, countRating } from '@composables'
 import { ref, computed } from 'vue'
 
 const { user } = useUser()
@@ -10,7 +10,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['close', 'browse', 'user'])
 
-const { posts, backlinks, countPosts, countBacklinks, downloadPosts, downloading, uploadPosts, countRating } = usePosts(props.tag)
+const { posts, backlinks, countPosts, countBacklinks, downloadPosts, downloading, uploadPosts } = usePosts(props.tag)
 
 const add = ref()
 
@@ -73,7 +73,7 @@ const filteredPosts = computed(() => {
       )
       transition(name="fade")
         post-form(:tag="tag" v-if="add" @close="add = false")
-    .p-2(v-else)
+    .p-2(style="order:-2147483647; flex: 1000 100%")
       button.button(@click="user.auth = true") Authorize to post here
 
     transition-group(name="list")

@@ -112,24 +112,13 @@ export function usePosts(tag = "posts") {
     countBacklinks,
     downloadPosts,
     downloading,
-    uploadPosts,
-    countRating
+    uploadPosts
   };
 }
 
 
 
-function countRating(authors) {
-  let count = 0
-  for (let author in authors) {
-    if (authors[author] && authors[author] != '🗑') {
-      count++
-    } else if (authors[author] == '🗑') {
-      count--
-    }
-  }
-  return count
-}
+
 
 /**
  * Export a list of posts as a zip file
