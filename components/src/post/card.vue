@@ -10,7 +10,7 @@ defineEmits(['user'])
 const props = defineProps({
   hash: { type: String, default: '' },
   authors: Object,
-  tag: String,
+  tag: [String, Boolean],
   back: Boolean,
   actions: { type: Boolean, default: true }
 })
@@ -57,10 +57,12 @@ const { post } = usePost({ hash: props.hash })
   @apply transition duration-300ms ease-out min-w-280px p-1 rounded-2xl cursor-pointer flex flex-wrap items-end bg-cover bg-center;
   filter: grayscale(10%) brightness(95%);
 }
+
 .card:hover {
   @apply shadow-md;
   filter: grayscale(0%) brightness(100%);
 }
+
 .statement {
   @apply max-h-24 overflow-ellipsis overflow-clip;
   display: -webkit-box;

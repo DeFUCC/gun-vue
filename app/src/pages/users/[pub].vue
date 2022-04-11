@@ -1,4 +1,8 @@
 <script setup>
+
+import { safeHash } from '@composables'
+
+
 import { ref, onMounted } from 'vue'
 const props = defineProps({
   pub: { type: String, default: '' }
@@ -19,7 +23,7 @@ onMounted(() => {
     :pub="pub" 
     @browse="$router.push(`/users/${$event}`)" 
     :key="pub"
-    @feed="$router.push(`/posts/${$event}`)"
+    @post="$router.push(`/posts/${safeHash($event)}`)"
     @chat="$router.push(`/my/chat/${pub}`)" 
     )
   router-view(v-slot="{ Component }")

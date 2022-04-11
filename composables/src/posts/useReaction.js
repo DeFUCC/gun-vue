@@ -47,7 +47,7 @@ export function useReaction({ tag, hash, back } = {}) {
 export async function reactToPost({ tag, hash, back, reaction = true } = {}) {
   const { user } = useUser();
   const gun = useGun();
-
+  console.log(tag, hash, reaction)
   if (tag == "posts" || tag == "rooms") {
     let myPost = gun.user(currentRoom.pub).get(tag).get(`${hash}@${user.pub}`);
     let current = await myPost.then();
@@ -68,3 +68,4 @@ export async function reactToPost({ tag, hash, back, reaction = true } = {}) {
     });
   }
 }
+

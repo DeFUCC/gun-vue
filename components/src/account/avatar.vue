@@ -40,7 +40,6 @@ gun.user(props.pub).get('pulse').on(d => {
 .flex.flex-col
   img.border.rounded-full.overflow-hidden.transition.duration-500.ease-out(
     :style="{ borderColor: blink ? colorDeep.hex(pub) : 'transparent', borderWidth: `${border}px` }"
-    :title="pub",
     v-if="pub",
     :width="size"
     :height="size"

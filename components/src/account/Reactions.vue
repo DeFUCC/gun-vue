@@ -1,82 +1,72 @@
 <script setup>
-import { useGun, currentRoom, isEmoji } from '@composables';
+import { useGun, currentRoom, isEmoji, useUser, reactToPost, useUserPosts, useUserLinks } from '@composables';
 import { reactive, ref, computed } from 'vue'
 
 const props = defineProps({
   pub: String,
 })
 
+const { user } = useUser()
+
+const isMe = computed(() => props.pub == user.pub)
+
 const emit = defineEmits(['post'])
 
-const open = reactive({})
 
-const reactions = reactive({})
 
-const currentReaction = ref()
-const currentList = computed(() => {
-  return reactions[currentReaction.value]
+const postReaction = ref()
+const userPosts = useUserPosts(props.pub)
+const postList = computed(() => {
+  return userPosts[postReaction.value] || []
 })
 
-const gun = useGun()
 
-gun.user(currentRoom.pub).get('posts').map().on((d, k) => {
-  let author = k.slice(-87);
-  let to = k.substring(0, 44)
-  if (author == props.pub) {
-    if (d) {
-      reactions[d] = reactions[d] || {}
-      reactions[d][to] = d
-    } else {
-      delete reactions?.[d]?.[to]
-    }
-  }
-})
-
-gun.user(currentRoom.pub).get('links').map().on((d, k) => {
-  let author = k.slice(90);
-  let from = k.substring(0, 44)
-  let to = k.substring(45, 89)
-  if (author == props.pub) {
-
-    if (d) {
-      reactions[d] = reactions[d] || {}
-      reactions[d][to] = from
-    } else {
-      delete reactions?.[d]?.[to]
-    }
-
-  }
-})
-
+const linkReaction = ref()
+const userLinks = useUserLinks(props.pub)
 
 </script>
 
 <template lang='pug'>
 .flex.flex-col
-  .text-xl.font-bold.mb-2 Reactions
-  .flex.flex-wrap.gap-4 
-    .p-2.flex.flex-wrap.bg-light-800.shadow-md.rounded-xl.gap-2
-      transition-group(name="fade")
-        .flex.py-2.items-center.cursor-pointer.bg-light-100.rounded-xl.shadow-lg.px-4(
-          style="flex: 1 1 10px"
-          :style="{ backgroundColor: currentReaction == reaction ? '#999' : '' }"
-          v-for="(hashes, reaction) in reactions" :key="reaction"
-          @click="currentReaction = reaction"
-          )
-          .text-4xl {{ isEmoji(reaction) ? reaction : '👋' }}
-          .flex-1.w-4
-          la-angle-up(v-if="currentReaction == reaction")
-          la-angle-down(v-else)
-          .text-lg.ml-1 {{ Object.keys(hashes).length }}
+  .text-xl.font-bold.mb-2 {{ isMe ? 'My ' : '' }} Posts
+  .flex.flex-col.gap-4
+    reaction-tabs(:reactions="userPosts" v-model:current="postReaction")
     transition(name="fade")
-      .flex.flex-wrap.bg-light-800.rounded-2xl(v-if="currentReaction")
+      .flex.flex-col.bg-light-800.rounded-2xl.gap-4(v-if="postReaction")
         transition-group(name="fade")
-          post-card(
-            style="flex: 1 1 100px"
-            v-for="(from, hash) in currentList" :key="hash"
-            :hash="hash"
-            :tag="from"
-            @click="$emit('post', hash)"
-            :actions="false"
-            )
+          .p-0.relative(
+            v-for="(from, hash) in  userPosts[postReaction]" :key="hash"
+          )
+            .absolute.top-2.left-2.button.p-2.z-100.text-2xl.opacity-30.hover_opacity-100.transition.cursor-pointer(
+              v-if="isMe"
+              @click="reactToPost({ tag: from == postReaction ? 'posts' : from, hash: hash, reaction: postReaction })"
+            ) 
+              la-trash
+            post-card(
+              style="flex: 1 1 100px"
+              :hash="hash"
+              @click="emit('post', hash)"
+              :actions="false"
+              )
+
+  .text-xl.font-bold.mb-2 {{ isMe ? 'My ' : '' }} Links
+  .flex.flex-col.gap-4
+    reaction-tabs(:reactions="userLinks" v-model:current="linkReaction")
+    transition(name="fade")
+      .flex.flex-col.bg-light-800.rounded-2xl.gap-4(v-if="linkReaction")
+        transition-group(name="fade")
+          .p-0.relative(
+            v-for="(from, hash) in userLinks[linkReaction]" :key="hash"
+          )
+            .absolute.top-2.left-2.button.p-2.z-100.text-2xl.opacity-30.hover_opacity-100.transition.cursor-pointer(
+              v-if="isMe"
+              @click="reactToPost({ tag: from == linkReaction ? 'posts' : from, hash: hash, reaction: linkReaction })"
+            ) 
+              la-trash
+            post-card(
+              style="flex: 1 1 100px"
+              :hash="hash"
+              @click="emit('post', hash)"
+              :actions="false"
+              )
 </template>

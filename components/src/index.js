@@ -52,6 +52,8 @@ export { default as PostActionStar } from "./post/action/Star.vue";
 export { default as PostActionUpdate } from "./post/action/Update.vue";
 export { default as PostActionBan } from "./post/action/Ban.vue";
 
+export { default as ReactionTabs } from "./reaction/Tabs.vue";
+
 //CHAT
 
 export { default as ChatTopics } from "./chat/Topics.vue";
