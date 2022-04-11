@@ -1,4 +1,4 @@
-import { useGun, currentRoom, isEmoji, useUser, reactToPost } from '@composables';
+import { useGun, currentRoom, isEmoji, useUser, reactToPost } from '../';
 import { reactive, ref, computed } from 'vue'
 
 

@@ -1,5 +1,15 @@
 # @gun-vue/components
 
+## 0.8.2
+
+### Patch Changes
+
+- more usable reactions as a new form of collaborative content moderation and better post cards
+- d418d44: cleaner navigation
+- Updated dependencies
+- Updated dependencies [d418d44]
+  - @gun-vue/composables@0.8.2
+
 ## 0.8.1
 
 ### Patch Changes
