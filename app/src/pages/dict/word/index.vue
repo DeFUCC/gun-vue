@@ -1,7 +1,7 @@
 <script setup>
-
+import { safeHash } from '@composables';
 </script>
 
 <template lang='pug'>
-p WORDS
+dict-words(@word="$router.push(`/dict/word/${safeHash($event)}`)")
 </template>
