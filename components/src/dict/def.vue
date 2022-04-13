@@ -12,7 +12,7 @@ const gun = useGun()
 
 const def = ref()
 
-gun.get('#def').get(props.hash).once((d, k) => {
+gun.get('dict').get('#def').get(props.hash).once((d, k) => {
   def.value = JSON.parse(d)
 })
 </script>

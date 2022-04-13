@@ -5,7 +5,7 @@ const props = defineProps({
   hash: String
 })
 
-const colorDeep = useColor('deep')
+const color = useColor('light')
 
 const { word } = useWord(props.hash)
 
@@ -13,5 +13,5 @@ const { word } = useWord(props.hash)
 
 <template lang='pug'>
 .flex.flex-col.gap-2.p-4
-  .border-4.rounded-xl.text-xl.p-2(:style="{ borderColor: colorDeep.hex(hash) }" v-html="renderWord(word)") 
+  .rounded-xl.text-xl.p-2(:style="{ backgroundColor: color.hex(hash) }" v-html="renderWord(word)") 
 </template>

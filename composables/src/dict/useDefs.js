@@ -29,6 +29,8 @@ export const langParts = {
 export function useDefs() {
   const gun = useGun()
 
+  const defDB = gun.get('dict').get('#def')
+
   const def = reactive({
     text: '',
     part: null
@@ -36,14 +38,14 @@ export function useDefs() {
 
   async function addDef() {
     const { hash, hashed } = await hashObj(def)
-    gun.get('#def').get(hash).put(hashed)
+    defDB.get(hash).put(hashed)
     def.text = ''
     def.part = null
   }
 
   const defs = reactive({})
 
-  gun.get('#def').map().once((d, k) => {
+  defDB.map().once((d, k) => {
     defs[k] = JSON.parse(d)
   })
   return { def, addDef, defs }
