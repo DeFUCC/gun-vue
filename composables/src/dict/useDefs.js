@@ -1,4 +1,4 @@
-import { useGun, hashObj, } from '@composables';
+import { useGun, hashObj, } from '../';
 import { reactive } from 'vue'
 
 

@@ -1,4 +1,4 @@
-import { useGun, currentRoom, hashObj, useColor } from '@composables';
+import { useGun, currentRoom, hashObj, useColor } from '../';
 import { ref, computed, reactive } from 'vue'
 
 export const stressMark = '&#x301;'
