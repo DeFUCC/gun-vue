@@ -628,6 +628,7 @@ Get and handle a particular post by it's tag and hash
         * [.addPost(tag, post)](#module_Post.addPost)
         * [.downloadPost(post)](#module_Post.downloadPost)
         * [.parsePost(data)](#module_Post.parsePost) ⇒ <code>Object</code>
+        * [.usePostTimestamp()](#module_Post.usePostTimestamp) ⇒
     * _inner_
         * [~Post](#module_Post..Post) : <code>Object</code>
 
@@ -684,6 +685,15 @@ downloadPost(post)
 | Param | Type | Description |
 | --- | --- | --- |
 | data | <code>String</code> | Stringified data from the hashed post |
+
+### usePostTimestamp() ⇒
+  Get and update the timestamp of an immutable post
+
+**Returns**: - {timestamp, msTime, refresh}  
+
+| Param | Description |
+| --- | --- |
+|  | {tag, hash} |
 
 ### Post : <code>Object</code>
   **Properties**
