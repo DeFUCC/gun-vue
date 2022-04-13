@@ -1,5 +1,11 @@
 # @gun-vue/repo
 
+## 0.9.0
+
+### Minor Changes
+
+- New posts scheme and 'lists' certs removed. So breaking changes.
+
 ## 0.8.0
 
 ### Minor Changes

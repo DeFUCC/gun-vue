@@ -1,5 +1,16 @@
 # @gun-vue/site
 
+## 0.9.0
+
+### Minor Changes
+
+- New posts scheme and 'lists' certs removed. So breaking changes.
+
+### Patch Changes
+
+- Updated dependencies
+  - @gun-vue/components@0.9.0
+
 ## 0.8.3
 
 ### Patch Changes
