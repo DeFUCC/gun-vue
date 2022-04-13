@@ -18,35 +18,33 @@ import { hashObj, hashText, safeHash } from "../crypto";
  * const post = usePost({ tag: 'tag', hash: postHash })
  */
 
-export function usePost({ tag = "posts", hash = "" } = {}) {
+export function usePost({ hash = "", loadMedia = true } = {}) {
   const gun = useGun();
 
   const post = reactive({});
 
-  // console.log(hash, tag);
   gun
-    .get(`#${tag}`)
+    .get(`#posts`)
     .get(hash)
     .on(async (d, k) => {
-      // let banned = await gun.get("#ban").get(k).then();
-      // if (tag != "ban" && banned) return;
-
       try {
         Object.assign(post, JSON.parse(d));
       } catch (e) {
         post.raw = d;
       }
+      if (loadMedia) {
+        ["icon", "cover", "text"].forEach((file) => {
+          if (post[file]) {
+            gun
+              .get(`#${file}s`)
+              .get(post[file])
+              .on((data) => {
+                post[file] = data;
+              });
+          }
+        });
+      }
 
-      ["icon", "cover", "text"].forEach((file) => {
-        if (post[file]) {
-          gun
-            .get(`#${file}s`)
-            .get(post[file])
-            .on((data) => {
-              post[file] = data;
-            });
-        }
-      });
     });
 
   const downloading = ref(false);
@@ -56,7 +54,6 @@ export function usePost({ tag = "posts", hash = "" } = {}) {
     await downloadPost(post);
     downloading.value = false;
   }
-
   return { post, download, downloading };
 }
 
@@ -97,27 +94,21 @@ export function usePost({ tag = "posts", hash = "" } = {}) {
  * })
  */
 
-export async function addPost(tag = "posts", post) {
+export async function addPost(to, post) {
   const { user } = useUser();
   const { icon, cover, text } = post;
   post.icon = await saveToHash("icons", post.icon);
   post.cover = await saveToHash("covers", post.cover);
   post.text = await saveToHash("texts", post.text);
   const { hashed, hash } = await hashObj(post);
+  console.log(hash, post, to)
   gun.get(`#posts`).get(`${hash}`).put(hashed);
-  if (tag == "posts") {
-    gun
-      .user(currentRoom.pub)
-      .get(tag)
-      .get(`${hash}@${user.pub}`)
-      .put(true, null, { opt: { cert: currentRoom.features?.posts } });
-  } else {
-    gun
-      .user(currentRoom.pub)
-      .get("links")
-      .get(`${tag}:${hash}@${user.pub}`)
-      .put(true, null, { opt: { cert: currentRoom.features?.links } });
-  }
+  gun
+    .user(currentRoom.pub)
+    .get("posts")
+    .get(`${to}:${hash}@${user.pub}`)
+    .put(true, null, { opt: { cert: currentRoom.features?.posts } });
+
 }
 
 /**
@@ -191,4 +182,29 @@ export async function parsePost(data) {
     post = { base64: data };
   }
   return post;
+}
+
+/**
+ * Get and update the timestamp of an immutable post
+ * @param {} - {tag, hash} 
+ * @returns {} - {timestamp, msTime, refresh}
+ */
+
+export function usePostTimestamp({ tag = 'posts', hash } = {}) {
+  const timestamp = ref(0)
+
+  const msTime = computed(() => ms(Date.now() - timestamp.value || 1000))
+
+  gun
+    .get(`#${tag}`)
+    .get(hash)
+    .on(function (d, k, g) {
+      timestamp.value = g.put['>']
+    })
+
+  async function refresh() {
+    let data = await gun.get(`#${tag}`).get(hash).then();
+    gun.get(`#${tag}`).get(hash).put(data);
+  }
+  return { timestamp, msTime, refresh }
 }

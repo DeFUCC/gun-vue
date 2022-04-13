@@ -1,6 +1,7 @@
 <script setup>
 import { useUser, downloadFile, usePass } from '@composables'
 import { ref, computed } from 'vue'
+import { useClipboard, useShare } from '@vueuse/core'
 
 const emit = defineEmits(['close'])
 
@@ -17,8 +18,6 @@ function show(option) {
 }
 
 const { pass } = usePass()
-
-import { useClipboard, useShare } from '@vueuse/core'
 
 
 const { text, copy, copied, isSupported: canCopy } = useClipboard()

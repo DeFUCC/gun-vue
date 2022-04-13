@@ -7,7 +7,7 @@
 import { useUser, currentRoom, getFirstEmoji, useGun } from '..';
 import { ref, watchEffect } from 'vue'
 
-const rootsTags = ['posts', 'rooms']
+const rootsTags = ['rooms']
 
 
 export function useReaction({ tag, hash, back } = {}) {
@@ -28,7 +28,7 @@ export function useReaction({ tag, hash, back } = {}) {
         }
       })
     } else {
-      roomDb.get('links').get(`${tag}:${hash}@${user.pub}`).on(d => {
+      roomDb.get('posts').get(`${tag}:${hash}@${user.pub}`).on(d => {
         if (d && d !== true) {
           reaction.value = d
         }
@@ -48,14 +48,14 @@ export async function reactToPost({ tag, hash, back, reaction = true } = {}) {
   const { user } = useUser();
   const gun = useGun();
   console.log(tag, hash, reaction)
-  if (tag == "posts" || tag == "rooms") {
+  if (tag == "rooms") {
     let myPost = gun.user(currentRoom.pub).get(tag).get(`${hash}@${user.pub}`);
     let current = await myPost.then();
     myPost.put(!current ? reaction : null, null, {
       opt: { cert: currentRoom.features?.[tag] },
     });
   } else {
-    let myLink = gun.user(currentRoom.pub).get("links");
+    let myLink = gun.user(currentRoom.pub).get("posts");
     if (!back) {
       myLink = myLink.get(`${tag}:${hash}@${user.pub}`);
     } else {
@@ -64,7 +64,7 @@ export async function reactToPost({ tag, hash, back, reaction = true } = {}) {
 
     let current = await myLink.then();
     myLink.put(!current ? reaction : null, null, {
-      opt: { cert: currentRoom.features?.links },
+      opt: { cert: currentRoom.features?.posts },
     });
   }
 }

@@ -1,25 +1,22 @@
 <script setup>
 
-import { unsafeHash, safeHash } from '@composables';
+import { unsafeHash, safeHash, isHash } from '@composables';
 import { computed } from 'vue'
 
 const props = defineProps({
   hash: { type: String, default: '' },
-  feed: { type: String, default: '' }
 });
 
-
 const unHash = computed(() => {
-  return unsafeHash(props.feed)
+  return unsafeHash(props.hash)
 })
 
 const path = computed(() => {
-
-  if (props.feed.length == 44) {
-    let un = unsafeHash(props.feed)
+  if (isHash(props.hash)) {
+    let un = unsafeHash(props.hash)
     return un
   } else {
-    return props.feed
+    return props.hash
   }
 })
 

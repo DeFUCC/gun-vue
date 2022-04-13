@@ -7,7 +7,7 @@ import { computed, reactive, ref } from "vue";
 
 import JSZip from "jszip";
 
-import { detectMimeType, useZip, parseMd, currentRoom, useUser } from "..";
+import { detectMimeType, useZip, parseMd, currentRoom, useUser, isHash } from "..";
 import { useGun, gun } from "../gun";
 import { parsePost, addPost, usePost } from ".";
 
@@ -30,43 +30,32 @@ import { parsePost, addPost, usePost } from ".";
  *
  * const { posts, timestamps, count, uploadPosts, downloadPosts} = usePosts('MyTag')
  */
-export function usePosts(tag = "posts") {
+export function usePosts(tag) {
+  if (!tag) return
   const gun = useGun();
 
   const posts = reactive({});
   const backlinks = reactive({});
 
-  if (tag == "posts") {
-    gun
-      .user(currentRoom.pub)
-      .get("posts")
-      .map()
-      .on(function (data, key) {
-        let hash = key.substring(0, 44);
-        let author = key.substring(45);
-        posts[hash] = posts[hash] || {};
-        posts[hash][author] = data;
-      });
-  } else {
-    gun
-      .user(currentRoom.pub)
-      .get("links")
-      .map()
-      .on(function (data, key) {
-        let index = key.indexOf(tag);
-        if (index == -1) return;
-        let author = key.slice(-87);
-        let from = key.slice(0, 44);
-        let to = key.slice(45, 89);
-        if (index == 0) {
-          posts[to] = posts[to] || {};
-          posts[to][author] = data;
-        } else {
-          backlinks[from] = backlinks[from] || {};
-          backlinks[from][author] = data;
-        }
-      });
-  }
+  gun
+    .user(currentRoom.pub)
+    .get("posts")
+    .map()
+    .on(function (data, key) {
+      let index = key.indexOf(tag);
+      if (index == -1) return;
+      let author = key.slice(-87);
+      let from = key.slice(0, 44);
+      let to = key.slice(45, 89);
+      if (index == 0) {
+        posts[to] = posts[to] || {};
+        posts[to][author] = data;
+      } else {
+        backlinks[from] = backlinks[from] || {};
+        backlinks[from][author] = data;
+      }
+    });
+
 
   const countPosts = computed(() => {
     let count = 0;

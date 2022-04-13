@@ -8,7 +8,7 @@ const gun = useGun()
 const md = useMd()
 
 const props = defineProps({
-  tag: { type: String, default: 'posts' },
+  tag: { type: String, default: '' },
   hash: { type: String, default: '' },
 })
 

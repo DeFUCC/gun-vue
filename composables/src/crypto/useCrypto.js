@@ -7,6 +7,10 @@
 
 import { SEA } from "../gun/";
 
+export function isHash(str) {
+  return str.length == 44 && str.charAt(43) == '='
+}
+
 /**
  * @typedef {Object} Entity
  * @property {String} pub - the public key

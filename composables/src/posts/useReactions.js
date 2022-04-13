@@ -32,38 +32,18 @@ export function useUserPosts(pub) {
   const gun = useGun()
   const posts = reactive({})
   gun.user(currentRoom.pub).get('posts').map().on((d, k) => {
-    let author = k.slice(-87);
-    let to = k.substring(0, 44)
-    if (author == pub) {
-      if (d) {
-        posts[d] = posts[d] || {}
-        posts[d][to] = d
-      } else {
-        console.log(d)
-        delete posts?.[d]?.[to]
-      }
-    }
-  })
-  return posts
-}
-
-export function useUserLinks(pub) {
-  const gun = useGun()
-  const reactions = reactive({})
-  gun.user(currentRoom.pub).get('links').map().on((d, k) => {
     let author = k.slice(90);
     let from = k.substring(0, 44)
     let to = k.substring(45, 89)
     if (author == pub) {
-
       if (d) {
-        reactions[d] = reactions[d] || {}
-        reactions[d][to] = from
+        posts[d] = reactions[d] || {}
+        posts[d][to] = from
       } else {
-        delete reactions?.[d]?.[to]
+        delete posts?.[d]?.[to]
       }
 
     }
   })
-  return reactions
+  return posts
 }

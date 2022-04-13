@@ -44,9 +44,6 @@ export { default as PostForm } from "./post/Form.vue";
 export { default as PostList } from "./post/List.vue";
 export { default as PostPage } from "./post/Page.vue";
 
-export { default as PostFeedBlock } from "./post/feed/Block.vue";
-export { default as PostFeedLabel } from "./post/feed/Label.vue";
-export { default as PostFeedList } from "./post/feed/List.vue";
 
 export { default as PostActionStar } from "./post/action/Star.vue";
 export { default as PostActionUpdate } from "./post/action/Update.vue";

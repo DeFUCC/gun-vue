@@ -10,7 +10,7 @@ const gun = useGun()
 
 const comments = reactive({})
 
-gun.user(currentRoom.pub).get('links').map().once((d, k) => {
+gun.user(currentRoom.pub).get('posts').map().once((d, k) => {
   if (k.indexOf(props.hash) == 0 && d) {
     comments[k.substring(45, 87)] = d
   } else {

@@ -1,33 +1,17 @@
 <script setup>
-import { ref, computed } from 'vue'
-import { gun, ms } from '@composables';
+import { usePostTimestamp } from '@composables'
 
 const props = defineProps({
   tag: { type: String, default: 'posts' },
   hash: { type: String, default: '' }
 })
 
-const timestamp = ref(0)
-
-const msTime = computed(() => ms(Date.now() - timestamp.value || 1000))
-
-gun
-  .get(`#${props.tag}`)
-  .get(props.hash)
-  .on(function (d, k, g) {
-    timestamp.value = g.put['>']
-  })
-
-
-async function refreshPost(tag = 'posts', hash) {
-  let data = await gun.get(`#${tag}`).get(hash).then();
-  gun.get(`#${tag}`).get(hash).put(data);
-}
+const { timestamp, msTime, refresh } = usePostTimestamp(props)
 
 </script>
 
 <template lang='pug'>
-button.m-1.button.items-center(@click.stop.prevent="refreshPost(tag, hash)")
+button.m-1.button.items-center(@click.stop.prevent="refresh()")
   mdi-watering-can-outline
   .num.p-0.ml-1.text-sm {{ msTime }}
 

@@ -6,7 +6,7 @@ import { safeHash, currentRoom } from '@composables'
 <template lang='pug'>
 .flex.flex-col.flex-auto.relative
   post-list.w-full(
-    tag="posts" 
+    tag='PvRPp6Qs4F5fkSx9CnWfUsN2QkpmsIkaVxvpGf6iK18='
     :key="currentRoom.pub"
     @close="$router.push('/posts/')" 
     @browse="$router.push(`/posts/${safeHash($event)}`)"

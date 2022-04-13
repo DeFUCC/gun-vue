@@ -5,7 +5,7 @@ import { ref, computed } from 'vue'
 const { user } = useUser()
 
 const props = defineProps({
-  tag: { type: String, default: 'posts' },
+  tag: { type: String },
   header: { type: Boolean, default: true }
 })
 const emit = defineEmits(['close', 'browse', 'user'])
