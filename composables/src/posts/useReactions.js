@@ -37,7 +37,7 @@ export function useUserPosts(pub) {
     let to = k.substring(45, 89)
     if (author == pub) {
       if (d) {
-        posts[d] = reactions[d] || {}
+        posts[d] = posts[d] || {}
         posts[d][to] = from
       } else {
         delete posts?.[d]?.[to]

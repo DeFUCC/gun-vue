@@ -31,7 +31,7 @@ const postList = computed(() => {
       .flex.flex-col.bg-light-800.rounded-2xl.gap-4(v-if="postReaction")
         transition-group(name="fade")
           .p-0.relative(
-            v-for="(from, hash) in userPosts[postReaction]" :key="hash"
+            v-for="(from, hash) in postList" :key="hash"
           )
             .absolute.top-2.left-2.button.p-2.z-100.text-2xl.opacity-30.hover_opacity-100.transition.cursor-pointer(
               v-if="isMe"
