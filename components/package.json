@@ -39,7 +39,7 @@
     "jsqr": "^1.4.0",
     "simplemde": "^1.11.2",
     "url-regex": "^5.0.0",
-    "vue": "^3.2.31"
+    "vue": "^3.2.32"
   },
   "peerDependencies": {
     "vue": "3.x"
@@ -49,8 +49,8 @@
     "pug": "^3.0.2",
     "unplugin-icons": "^0.14.1",
     "unplugin-vue-components": "^0.19.2",
-    "vite": "^2.9.1",
-    "vite-plugin-windicss": "^1.8.3",
+    "vite": "^2.9.4",
+    "vite-plugin-windicss": "^1.8.4",
     "windicss": "^3.5.1"
   }
 }

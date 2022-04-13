@@ -21,20 +21,20 @@
     "@gun-vue/relay": "workspace:^",
     "@vueuse/core": "8.2.5",
     "ola": "^1.2.1",
-    "vue": "^3.2.31",
+    "vue": "^3.2.32",
     "vue-router": "^4.0.14"
   },
   "devDependencies": {
-    "@iconify/json": "^2.1.27",
+    "@iconify/json": "^2.1.28",
     "@vitejs/plugin-vue": "^2.3.1",
     "pug": "3.0.2",
     "unplugin-icons": "^0.14.1",
     "unplugin-vue-components": "^0.19.2",
-    "vite": "^2.9.1",
+    "vite": "^2.9.4",
     "vite-plugin-pages": "^0.22.0",
     "vite-plugin-pages-sitemap": "^1.2.0",
     "vite-plugin-pwa": "^0.11.13",
-    "vite-plugin-windicss": "^1.8.3",
+    "vite-plugin-windicss": "^1.8.4",
     "windicss": "^3.5.1"
   }
 }
