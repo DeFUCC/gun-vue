@@ -1,6 +1,5 @@
 <script setup>
-import { ref } from 'vue'
-import { useGun, useColor, renderWord } from '@composables';
+import { useWord, useColor, renderWord } from '@composables';
 
 const props = defineProps({
   hash: String
@@ -8,13 +7,8 @@ const props = defineProps({
 
 const colorDeep = useColor('deep')
 
-const gun = useGun()
+const { word } = useWord(props.hash)
 
-const word = ref()
-
-gun.get('#word').get(props.hash).once((d, k) => {
-  word.value = JSON.parse(d)
-})
 </script>
 
 <template lang='pug'>

@@ -1,29 +1,11 @@
 <script setup>
-import { useGun, currentRoom, hashObj, useColor, renderWord, langParts } from '@composables';
-import { ref, computed, reactive } from 'vue'
+import { useDefs, useColor, langParts } from '@composables';
 
 const deepColor = useColor('deep')
 
-const gun = useGun()
-
-const def = reactive({
-  text: '',
-  part: null
-})
 defineEmits(['def'])
 
-async function addDef() {
-  const { hash, hashed } = await hashObj(def)
-  gun.get('#def').get(hash).put(hashed)
-  def.text = ''
-  def.part = null
-}
-
-const defs = reactive({})
-
-gun.get('#def').map().once((d, k) => {
-  defs[k] = JSON.parse(d)
-})
+const { def, addDef, defs } = useDefs()
 
 
 </script>
