@@ -30,8 +30,11 @@ export function useWords() {
   const words = reactive({})
 
   gun.get('#word').map().once((d, k) => {
-    words[k] = JSON.parse(d)
+    let w = JSON.parse(d)
+    if (d.includes(' ')) return
+    words[k] = w
   })
+
   return { search, words, word, addWord }
 }
 

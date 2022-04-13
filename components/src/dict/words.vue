@@ -1,7 +1,7 @@
 <script setup>
 import { useWords, useColor, renderWord } from '@composables';
 
-const deepColor = useColor('deep')
+const color = useColor('light')
 
 defineEmits(['word'])
 
@@ -18,10 +18,10 @@ const { search, words, word, addWord } = useWords()
     :class="{ active: l == word.stress }"
     ) {{ letter }}
   .flex.flex-wrap.gap-2
-    .px-2.py-1.rounded-lg.bg-light-700.border-2.cursor-pointer(
+    .px-2.py-1.rounded-lg.bg-light-700.cursor-pointer(
       @click="$emit('word', hash)"
       v-for="(w, hash) in words" :key="hash"
-      :style="{ borderColor: deepColor.hex(hash) }"
+      :style="{ backgroundColor: color.hex(hash) }"
       v-html="renderWord(w)"
       ) 
 </template>
