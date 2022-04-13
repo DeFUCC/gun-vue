@@ -21,7 +21,6 @@ const { post, download, downloading, } = usePost({ hash: props.hash })
 
 const { posts, backlinks } = usePosts(props.tag)
 
-
 </script>
 
 <template lang='pug'>

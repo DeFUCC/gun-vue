@@ -1,5 +1,14 @@
 # @gun-vue/demo
 
+## 0.8.3
+
+### Patch Changes
+
+- 6eedc81: More consistent posts that begin with a sigle post hash and grow from there. Very onfigurable.
+- Updated dependencies [6eedc81]
+  - @gun-vue/components@0.8.3
+  - @gun-vue/composables@0.8.3
+
 ## 0.8.2
 
 ### Patch Changes
