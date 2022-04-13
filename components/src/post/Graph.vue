@@ -30,12 +30,16 @@ gun
         name: node?.title || node?.statement || hash,
       }
     }
+
     links.push({
       source: from,
       target: to,
-      emoji: data
+      emoji: data,
+      author
     })
   })
+
+const rndms = {}
 
 onMounted(() => {
   const Graph = ForceGraph()(document.getElementById('graph'))
@@ -49,17 +53,18 @@ onMounted(() => {
     //   }
     // })
     .nodeRelSize(4)
-    .linkDirectionalArrowLength(4)
+    .linkDirectionalArrowLength(6)
     .linkDirectionalArrowRelPos(1)
     .linkLabel('emoji')
-    .linkCurvature(0.02)
-    .linkColor(link => {
-      return colorDeep.hex(link.source?.hash || 0)
+    .linkCurvature((l) => {
+      return rndms[l.index] = rndms[l.index] || Math.random() * 1 - 0.5
     })
-    // .linkWidth((link) => {
-    //   if (link?.back) return 3
-    //   return 1
-    // })
+    .linkColor(link => {
+      return colorDeep.hex(link?.author || 0)
+    })
+    .linkWidth((link) => {
+      return 2
+    })
     .onNodeDragEnd(node => {
       node.fx = node.x;
       node.fy = node.y;

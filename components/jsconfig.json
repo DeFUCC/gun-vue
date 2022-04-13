@@ -14,6 +14,7 @@
 		"isolatedModules": true,
 		"noEmit": true,
 		"baseUrl": "./",
+		"jsx": "preserve",
 		"paths": {
 			"@/*": ["./*"],
 			"@composables": ["../composables/src/"],

@@ -76,6 +76,7 @@ onMounted(() => {
     .onNodeClick((node, ev) => {
       emit('user', node.pub)
     });
+
   watchEffect(() => Graph.graphData({ nodes: Object.values(guests), links: links.value }))
 
 })

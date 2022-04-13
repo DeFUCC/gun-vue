@@ -44,7 +44,6 @@ const filteredPosts = computed(() => {
       style="order:-2147483647; flex: 1000 100%"
       v-if="user.pub"
       )
-      slot
       util-share(v-if="header")
       .flex.flex-wrap.gap-2(
         v-if="user.pub"
