@@ -17,7 +17,7 @@ const { search, words, word, addWord } = useWords()
     @click="word.stress = l; addWord()"
     :class="{ active: l == word.stress }"
     ) {{ letter }}
-  .flex.flex-wrap.gap-2
+  .flex.flex-wrap.gap-2.text-2xl
     .px-2.py-1.rounded-lg.bg-light-700.cursor-pointer(
       @click="$emit('word', hash)"
       v-for="(w, hash) in words" :key="hash"

@@ -68,8 +68,8 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
       @click="add.title = !add.title" 
       :class="{ active: postData.title }"
       title="Add a heading"
-      )
-      tabler-heading
+      ) H1
+
     form-picture(
       @update="postData.icon = $event" 
       field="icon" 
