@@ -27,7 +27,5 @@ const count = computed(() => Object.keys(comments).length)
 </script>
 
 <template lang='pug'>
-button.m-1.flex.items-center.items-center(v-if="count > 0")
-  la-link.text-lg
-  .ml-1.text-sm {{ count }}
+button.m-1.flex.items-center.items-center.px-2.py-1.bg-light-700.dark_bg-dark-50.rounded-lg(v-if="count > 0") {{ count }}
 </template>

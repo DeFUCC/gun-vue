@@ -147,7 +147,6 @@ export async function createRoom({ pair, name } = {}) {
       { tag: "rooms", personal: true },
       { tag: "space", personal: true },
       { tag: "posts", personal: true },
-      { tag: "links", personal: true },
       { tag: "chat", personal: true },
     ],
   });

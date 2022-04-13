@@ -41,8 +41,10 @@ watch(picture, pic => {
   label.m-1.button.cursor-pointer(@click="add = true" :class="{ active: picture }" :for="id")
     slot
       la-image
-  ui-layer(:open="add" @close="add = false")
-    button.button.absolute.text-2xl.right-2.opacity-40.hover_opacity-100
+  ui-layer.max-h-60vh.mt-20(:open="add" @close="add = false")
+    button.button.fixed.text-2xl.opacity-40.hover_opacity-100.m-4
+      la-check(@click="add = false")
+    button.button.fixed.text-2xl.opacity-40.hover_opacity-100.mt-4.ml-18
       la-trash-alt(@click="picture = null; add = false")
     img(:src="picture")
 </template>
@@ -51,6 +53,7 @@ watch(picture, pic => {
 input {
   @apply p-2 rounded-xl m-1;
 }
+
 .button.active {
   @apply bg-fuchsia-800;
 }

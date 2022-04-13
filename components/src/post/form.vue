@@ -63,7 +63,7 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
     placeholder="Short text statement"
     @keyup.enter.ctrl="submit()"
     )
-  .flex.flex-wrap
+  .flex.flex-wrap.z-100
     button.button.m-1(
       @click="add.title = !add.title" 
       :class="{ active: postData.title }"
@@ -78,13 +78,7 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
       la-info-circle
     form-picture(@update="postData.cover = $event")
     form-link(@update="postData.link = $event")
-
-    .flex.flex-wrap
-      button.button.m-1(
-        @click="add.youtube = !add.youtube" 
-        :class="{ active: postData.youtube }"
-        )
-        la-youtube
+    form-youtube(@update="postData.youtube = $event")
     button.m-1.button(
       @click="add.text = true" 
       :class="{ active: postData.text }"
@@ -102,7 +96,7 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
       button.m-1.button.text-xl( @click="reset()")
         la-trash-alt
   ui-layer(:open="add.youtube" @close="add.youtube = false" :offset="'22vh'")
-    form-youtube(v-model:id="postData.youtube")
+
   ui-layer(:open="add.text" @close="add.text = false" :offset="'22vh'")
     form-text(v-model:text="postData.text" @close="add.text = false")
   

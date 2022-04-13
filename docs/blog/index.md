@@ -34,6 +34,11 @@ posts:
       Some nice progress going with Gun-Vue project development. It gets so much more reliable with the new SIA Skynet Homescreen publication and interchangeable relays. Yes, the volunteer list is still at the centralized GitHub, but it's such a small footprint that may be changed to any other way of delivering the list of available peers. We should share that in gun space too, as the gun-relays package already does.
 
       We also have some encrypted private chats and the new GUN v0.2020.1236 under the hood. More features to come!
+  - title: "@gun-vue v.0.8.3 updates and move to a new room"
+    date: 2022-04-13
+    youtube: v=BFx7pIwTAMY
+    text: |
+      We'll go through the app features and change the app root room to a new one to update the data structure.  I've optimized the posts feature for them to form a tree, growing from any post hash.
 ---
 
 ## Blog
