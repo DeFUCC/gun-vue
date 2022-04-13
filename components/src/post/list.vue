@@ -14,6 +14,8 @@ const { posts, backlinks, countPosts, countBacklinks, downloadPosts, downloading
 
 const add = ref()
 
+
+
 const openBacklinks = ref(false)
 const showHidden = ref(false)
 
@@ -44,25 +46,26 @@ const filteredPosts = computed(() => {
       )
       slot
       util-share(v-if="header")
-      .flex.flex-wrap(
+      .flex.flex-wrap.gap-2(
         v-if="user.pub"
         )
-        button.flex-auto.add.button.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(@click="add = !add")
+        button.button(@click="add = !add")
           transition(name="fade" mode="out-in")
             la-plus(v-if="!add")
             la-times(v-else)
           .ml-2.mr-1 Add
-        label.flex-auto.cursor-pointer.button.transition.bg-light-800.shadow-lg.m-2.flex.items-center.justify-center(title="Upload feed" for="import-feed")
+        label.button(title="Upload feed" for="import-feed")
           la-file-upload
           .ml-2.mr-1 Upload
-        button.flex-auto.button.p-4.transition.shadow-lg.m-2.flex.items-center.justify-center(@click="showHidden = !showHidden")
+        button.button(@click="showHidden = !showHidden")
           la-eye(v-if="showHidden")
           la-eye-slash(v-else)
           .ml-2 Show hidden
-        button.flex-auto.button.p-4.transition.shadow-lg.m-2.flex.items-center.justify-center(title="Download feed" @click="downloadPosts()" v-if="countPosts > 0")
+        button.button(title="Download feed" @click="downloadPosts()" v-if="countPosts > 0")
           la-file-download(v-if="!downloading")
           la-redo-alt.animate-spin(v-else)
           .ml-2.mr-1 Download
+        slot
       input#import-feed.hidden(
         tabindex="-1"
         type="file",
@@ -73,8 +76,9 @@ const filteredPosts = computed(() => {
       )
       transition(name="fade")
         post-form(:tag="tag" v-if="add" @close="add = false")
-    .p-2(v-if="!user.pub" style="order:-2147483647; flex: 1000 100%")
+    .p-2.flex.items-center.gap-2(v-if="!user.pub" style="order:-2147483647; flex: 1000 100%")
       button.button(@click="user.auth = true") Authorize to post here
+      slot
 
     transition-group(name="list")
       post-card.max-w-3xl.w-full.shadow-xl(

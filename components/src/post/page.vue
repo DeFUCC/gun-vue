@@ -51,7 +51,7 @@ const { posts, backlinks } = usePosts(props.hash)
 
 
   .flex-1.flex.flex-col.items-stretch(style="flex: 10 1 300px")
-    .z-20.max-w-100vw(
+    .z-1.max-w-100vw(
 
       v-if="post?.cover || post?.youtube || post?.text"
       )

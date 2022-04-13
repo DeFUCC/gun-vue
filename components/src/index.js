@@ -43,6 +43,7 @@ export { default as PostCard } from "./post/Card.vue";
 export { default as PostForm } from "./post/Form.vue";
 export { default as PostList } from "./post/List.vue";
 export { default as PostPage } from "./post/Page.vue";
+export { default as PostGraph } from "./post/Graph.vue";
 
 
 export { default as PostActionStar } from "./post/action/Star.vue";
