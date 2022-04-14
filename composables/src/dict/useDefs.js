@@ -9,7 +9,7 @@ export function useDefs() {
   const def = reactive({
     text: '',
     lang: useStorage('dict-lang', 'en'),
-    part: null
+    part: 'noun'
   })
 
   async function addDef() {

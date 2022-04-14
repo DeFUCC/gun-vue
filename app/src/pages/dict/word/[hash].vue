@@ -8,5 +8,5 @@ unsafeHash
 </script>
 
 <template lang='pug'>
-dict-word(:hash="unsafeHash(hash)" :key="hash")
+dict-word-card(:hash="unsafeHash(hash)" :key="hash")
 </template>

@@ -7,5 +7,5 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-dict-def(:hash="unsafeHash(hash)" :key="hash")
+dict-def-card(:hash="unsafeHash(hash)" :key="hash")
 </template>
