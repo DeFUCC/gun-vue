@@ -8,14 +8,14 @@ const show = reactive({
 </script>
 
 <template lang='pug'>
-.flex.justify-end.flex-wrap.relative.gap-2
+.flex.justify-end.relative.gap-3.items-center
   //- util-share
   //- button.button.m-2(@click="show.log = !show.log")
   //-   la-info-circle
   //-   .ml-2 Log
-  button.button(@click="show.graph = !show.graph")
+  button.flex.items-center(@click="show.graph = !show.graph")
     mdi-graph-outline
-  button.button
+  button.flex.items-center
     util-relay
 
 

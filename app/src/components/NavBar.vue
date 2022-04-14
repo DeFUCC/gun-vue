@@ -26,8 +26,9 @@ const color = useColor('light')
   .flex.items-center.z-40.gap-2.p-2.bg-light-900.shadow-xl.sticky.w-full.bg-cover.top-0(
     :style="{ ...bg }"
     )
-    .w-4
+
     .flex-1
+    util-tools
     room-icon(@room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)")
     user-icon(
       :size="40"
@@ -50,7 +51,6 @@ const color = useColor('light')
     ph-books(v-if="link == 'Dictionary'")
     .ml-1.hidden.sm_block.text-sm {{ link }}
   .flex-1
-  util-tools
 </template>
 
 <style lang="postcss" scoped>

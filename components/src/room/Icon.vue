@@ -26,7 +26,7 @@ const bg = computed(() => useBackground({
     :style="{ ...bg }"
     )
     .text-2xl.font-normal @
-    .ml-2.text-sm(v-if="current?.room?.profile?.name") {{ current?.room.profile.name.substring(0, 15) }}
+    .ml-1.text-sm(v-if="current?.room?.profile?.name") {{ current?.room.profile.name.substring(0, 15) }}
   ui-panel.break-all(:open="open" :closeButton="false" @close="open = false")
     room-page(@room="$emit('room', $event)" :key="currentRoom.pub" @rooms="$emit('rooms')")
       button.button.m-4(@click="$emit('rooms'); open = false") Browse rooms

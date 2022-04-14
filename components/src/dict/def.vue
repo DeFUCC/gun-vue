@@ -20,6 +20,7 @@ gun.get('dict').get('#def').get(props.hash).once((d, k) => {
 <template lang='pug'>
 .flex.flex-col.gap-2.p-4
   .rounded-xl.text-xl.p-2(:style="{ borderColor: colorDeep.hex(hash) }") 
+    .text-xs {{ def.lang }}
     .text-sm {{ def.part }}
     .text-lg {{ def.text }}
 </template>

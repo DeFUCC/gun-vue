@@ -1,4 +1,4 @@
-import { useGun, currentRoom, hashObj, useColor } from '../';
+import { useGun, currentRoom, hashText, useColor } from '../';
 import { ref, computed, reactive } from 'vue'
 
 export const stressMark = '&#x301;'
@@ -9,32 +9,31 @@ export function renderWord({ text, stress } = {}) {
   return str[0].toUpperCase() + str.slice(1);
 }
 
+export function letterFilter(str) {
+  let clean = str.toLowerCase().matchAll(/\p{L}/gu, '')
+  return Array.from(clean).map(el => el[0]).join('')
+}
+
 export function useWords() {
   const gun = useGun()
   const wordDb = gun.get('dict').get('#word')
 
   const search = ref('')
-  const word = reactive({
-    text: computed(() => {
-      let clean = search.value.toLowerCase().matchAll(/\p{L}/gu, '')
-      return Array.from(clean).map(el => el[0]).join('')
-    }),
-    stress: null
-  })
+  const word = computed(() => letterFilter(search.value))
+
+
 
   async function addWord() {
-    const { hash, hashed } = await hashObj(word)
-    wordDb.get(hash).put(hashed)
+    const hash = await hashText(word.value)
+    wordDb.get(hash).put(word.value)
     search.value = ''
-    word.stress = null
   }
 
   const words = reactive({})
 
   wordDb.map().once((d, k) => {
-    let w = JSON.parse(d)
     if (d.includes(' ')) return
-    words[k] = w
+    words[k] = d
   })
 
   return { search, words, word, addWord }
@@ -46,7 +45,7 @@ export function useWord(hash) {
   const word = ref()
 
   gun.get('dict').get('#word').get(hash).once((d, k) => {
-    word.value = JSON.parse(d)
+    word.value = letterFilter(d)
   })
   return { word }
 }
