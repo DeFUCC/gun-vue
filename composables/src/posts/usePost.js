@@ -24,7 +24,8 @@ export function usePost({ hash = "", loadMedia = true } = {}) {
   const post = reactive({});
 
   gun
-    .get(`#posts`)
+    .get('posts')
+    .get(`#index`)
     .get(hash)
     .on(async (d, k) => {
       try {
@@ -36,7 +37,8 @@ export function usePost({ hash = "", loadMedia = true } = {}) {
         ["icon", "cover", "text"].forEach((file) => {
           if (post[file]) {
             gun
-              .get(`#${file}s`)
+              .get('posts')
+              .get(`#${file}`)
               .get(post[file])
               .on((data) => {
                 post[file] = data;
@@ -97,12 +99,12 @@ export function usePost({ hash = "", loadMedia = true } = {}) {
 export async function addPost(to, post) {
   const { user } = useUser();
   const { icon, cover, text } = post;
-  post.icon = await saveToHash("icons", post.icon);
-  post.cover = await saveToHash("covers", post.cover);
-  post.text = await saveToHash("texts", post.text);
+  post.icon = await saveToHash("icon", post.icon);
+  post.cover = await saveToHash("cover", post.cover);
+  post.text = await saveToHash("text", post.text);
   const { hashed, hash } = await hashObj(post);
   console.log(hash, post, to)
-  gun.get(`#posts`).get(`${hash}`).put(hashed);
+  gun.get('posts').get(`#index`).get(`${hash}`).put(hashed);
   gun
     .user(currentRoom.pub)
     .get("posts")
@@ -153,7 +155,7 @@ export async function loadFromHash(category, hash) {
     hash.length == 44 &&
     hash.slice(0, 5) != "data:"
   ) {
-    return await gun.get(`#${category}s`).get(hash).then();
+    return await gun.get('posts').get(`#${category}`).get(hash).then();
   }
   return hash;
 }
@@ -161,7 +163,7 @@ export async function loadFromHash(category, hash) {
 async function saveToHash(category, text) {
   if (category && text) {
     const hash = await hashText(text);
-    gun.get(`#${category}`).get(`${hash}`).put(text);
+    gun.get('posts').get(`#${category}`).get(`${hash}`).put(text);
     return hash;
   } else {
     return text;
@@ -190,21 +192,22 @@ export async function parsePost(data) {
  * @returns {} - {timestamp, msTime, refresh}
  */
 
-export function usePostTimestamp({ tag = 'posts', hash } = {}) {
+export function usePostTimestamp({ tag, hash } = {}) {
   const timestamp = ref(0)
 
   const msTime = computed(() => ms(Date.now() - timestamp.value || 1000))
 
   gun
-    .get(`#${tag}`)
+    .get('posts')
+    .get(`#index`)
     .get(hash)
     .on(function (d, k, g) {
       timestamp.value = g.put['>']
     })
 
   async function refresh() {
-    let data = await gun.get(`#${tag}`).get(hash).then();
-    gun.get(`#${tag}`).get(hash).put(data);
+    let data = await gun.get('posts').get(`#index`).get(hash).then();
+    gun.get('posts').get(`#index`).get(hash).put(data);
   }
   return { timestamp, msTime, refresh }
 }
