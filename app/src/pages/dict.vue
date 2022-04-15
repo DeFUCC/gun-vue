@@ -2,8 +2,6 @@
 import { safeHash } from '@composables';
 import { dictLang, languages, useDictLangs } from '@composables'
 
-
-
 </script>
 
 <template lang='pug'>
@@ -21,6 +19,5 @@ import { dictLang, languages, useDictLangs } from '@composables'
     .p-4.flex.flex-col.bg-light-800.shadow.rounded-xl(style="flex: 1 1 48%") 
       router-link.text-xl.font-bold.mb-2(to="/dict/defs/") DEFINITIONS
       dict-def-list(@def="$router.push(`/dict/defs/${safeHash($event)}`)" @word="$router.push(`/dict/words/${safeHash($event)}`)")
-
 
 </template>
