@@ -1,5 +1,17 @@
 # @gun-vue/components
 
+## 0.9.1
+
+### Patch Changes
+
+- 7fbbabb6: Dictionary is up and running!
+- 99500a06: Collaborative dictionary started, TBD
+- 5071f7bc: Collaborative dictionary as a means of synchronization
+- Updated dependencies [7fbbabb6]
+- Updated dependencies [99500a06]
+- Updated dependencies [5071f7bc]
+  - @gun-vue/composables@0.9.1
+
 ## 0.9.0
 
 ### Minor Changes

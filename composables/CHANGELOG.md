@@ -1,5 +1,13 @@
 # @gun-vue/composables
 
+## 0.9.1
+
+### Patch Changes
+
+- 7fbbabb6: Dictionary is up and running!
+- 99500a06: Collaborative dictionary started, TBD
+- 5071f7bc: Collaborative dictionary as a means of synchronization
+
 ## 0.9.0
 
 ### Minor Changes

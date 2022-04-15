@@ -45,6 +45,10 @@ const user = useUser();
 </td>
     </tr>
 <tr>
+    <td><a href="#dictionary" >Dictionary</a></td>
+    <td></td>
+    </tr>
+<tr>
     <td><a href="#usefile" >useFile</a></td>
     <td><p>File handling functions</p>
 </td>
@@ -218,6 +222,14 @@ SEA cryptography abstraction
 | --- | --- | --- |
 | pub | <code>String</code> | the public key |
 | epub | <code>String</code> | the elliplic encryption epub |
+
+<hr />
+
+<a name="module_Dictionary"></a>
+
+## Dictionary
+### useWords() ⇒ <code>useWords</code>
+  Use filtrable words list
 
 <hr />
 
