@@ -23,6 +23,7 @@ It's just the beginning and not all the functions are reliably implemented yet. 
 - **Posts** - hashed immutable data in the root of the db as a fun experiment, but with deep observations about freedom of speach and ways to explore the vastness of the public graph space available with Gun
 - **Chat** - basic public chat
 - **Rooms** - cryptographic data collections
+- **Dictionary** - we find ourselves in great power if we have verified concepts to collaborate with
 
 ... and more!
 
