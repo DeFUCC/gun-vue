@@ -1,24 +1,29 @@
 <script setup>
-import { useWord, useColor, letterFilter, dictLink, useLinks } from '@composables';
+import { useWord, useColor, letterFilter, dictRecord, useDictRecords, useUser } from '@composables';
 
 const props = defineProps({
   hash: String
 })
 
+defineEmits(['def'])
+
+const { user } = useUser()
+
 const color = useColor('light')
 
 const { word } = useWord(props.hash)
-const links = useLinks(props.hash)
+const links = useDictRecords(props.hash)
 
 </script>
 
 <template lang='pug'>
 .flex.items-center.px-2.py-1.rounded-lg.bg-light-700.cursor-pointer.capitalize(:style="{ backgroundColor: color.hex(hash) }" )
   .text-xl {{ letterFilter(word) }}
-  dict-links(:links="links")
+  slot
+  dict-links(:links="links" @def="$emit('def', $event)")
   la-link.link(
-    @click.stop.prevent="dictLink.word = dictLink.word == hash ? null : hash"
-    :class="{ active: dictLink.word == hash || links[dictLink.def] }"
+    @click.stop.prevent="dictRecord.word = dictRecord.word == hash ? null : hash"
+    :class="{ active: dictRecord.word == hash || links?.[dictRecord.def]?.[user.pub] }"
     )
 </template>
 

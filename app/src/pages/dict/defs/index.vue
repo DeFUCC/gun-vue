@@ -3,5 +3,5 @@ import { safeHash } from '@composables';
 </script>
 
 <template lang='pug'>
-dict-words(@word="$router.push(`/dict/word/${safeHash($event)}`)")
+dict-def-list(@def="$router.push(`/dict/defs/${safeHash($event)}`)")
 </template>

@@ -1,13 +1,26 @@
 <script setup>
+import { safeHash } from '@composables';
+import { dictLang, languages, useDictLangs } from '@composables'
+
+
 
 </script>
 
 <template lang='pug'>
 .flex.flex-col
-  .flex.w-full.items-center
-    router-link.flex-1.p-2.bg-light-900(to="/dict/") Dictionary
+  dict-panel(@home="$router.push('/dict/')")
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in")
       keep-alive
         component(:is="Component" )
+  .flex.flex-wrap.gap-4.p-4(:key="dictLang")
+
+    .p-4.flex.flex-col.bg-light-800.shadow.rounded-xl(style="flex: 1 1 48%") 
+      router-link.text-xl.font-bold.mb-2(to="/dict/words/") WORDS
+      dict-word-list(@word="$router.push(`/dict/words/${safeHash($event)}`)" @def="$router.push(`/dict/defs/${safeHash($event)}`)")
+    .p-4.flex.flex-col.bg-light-800.shadow.rounded-xl(style="flex: 1 1 48%") 
+      router-link.text-xl.font-bold.mb-2(to="/dict/defs/") DEFINITIONS
+      dict-def-list(@def="$router.push(`/dict/defs/${safeHash($event)}`)" @word="$router.push(`/dict/words/${safeHash($event)}`)")
+
+
 </template>

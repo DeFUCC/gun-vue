@@ -1,25 +1,26 @@
 <script setup>
-import { useWords, useColor, renderWord, letterFilter, dictLink, useLinks } from '@composables';
+import { useWords, useColor, dictRecord } from '@composables';
 
 const color = useColor('light')
 
 defineEmits(['word'])
 
-const { input, found, words, word, addWord } = useWords()
+const { input, found, words, linked, word, addWord } = useWords()
 
 </script>
 
 <template lang='pug'>
 .flex.flex-col.gap-2 
   transition(name="fade" mode="out-in")
-    dict-def-card(v-if="dictLink.def" :key="dictLink.def" :hash="dictLink.def")
+    dict-def-card(v-if="dictRecord.def" :key="dictRecord.def" :hash="dictRecord.def")
   .flex.gap-2
     input.p-2.rounded-lg.flex-1(v-model="input" placeholder="Enter a word")
     button.button(@click="addWord()") Add
-  .flex.flex-wrap.gap-2
+  .flex.flex-wrap.gap-2 
     transition-group(name="list")
       template(v-if="input")
         dict-word-card(
+          @def="$emit('def', $event)"
           @click="$emit('word', hash)"
           v-for="result in found" :key="result.item.hash"
           :style="{ opacity: 1 - result.score }"
@@ -27,8 +28,9 @@ const { input, found, words, word, addWord } = useWords()
           )
       template(v-else)
         dict-word-card(
+          @def="$emit('def', $event)"
           @click="$emit('word', hash)"
-          v-for="(w, hash) in words" :key="hash"
+          v-for="(w, hash) in linked" :key="hash"
           :hash="hash"
           )
 </template>

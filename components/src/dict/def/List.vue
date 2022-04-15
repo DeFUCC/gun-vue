@@ -1,36 +1,35 @@
 <script setup>
-import { useDefs, useColor, langParts, languages, dictLink } from '@composables';
+import { useDefs, useColor, langParts, languages, dictRecord } from '@composables';
 
 const deepColor = useColor('deep')
 
 defineEmits(['def'])
 
-const { def, addDef, defs } = useDefs()
+const { def, addDef, defs, linked } = useDefs()
 </script>
 
 <template lang='pug'>
 .flex.flex-col.gap-2
   transition(name="fade" mode="out-in")
     dict-word-card(
-      v-if="dictLink?.word" 
-      :key="dictLink.word"
-      :hash="dictLink.word"
+      v-if="dictRecord?.word" 
+      :key="dictRecord.word"
+      :hash="dictRecord.word"
       )
   .flex.flex-wrap.gap-2
-    select.pl-2(v-model="def.lang")
-      option(v-for="lang in languages" :value="lang.code") {{ lang.native }}
-    button.button.capitalize(
-      v-for="(part, p) in langParts" :key="part"
-      @click="def.part = p"
-      :class="{ active: def.part == p }"
-    ) {{ p }}
+    .flex.flex-1.gap-1.m-2
+      button.button.capitalize(
+        v-for="(part, p) in langParts" :key="part"
+        @click="def.part = p"
+        :class="{ active: def.part == p }"
+      ) {{ p }}
   .flex.w-full.gap-2
     textarea.p-2.rounded-lg.flex-1(v-model="def.text" placeholder="Enter a definition")
     button.button(@click="addDef()") Add
   .flex.flex-wrap.gap-2
-    dict-def-card(
+    dict-def-card.cursor-pointer(
       @click="$emit('def', hash)"
-      v-for="(d, hash) in defs" :key="hash"
+      v-for="(d, hash) in linked" :key="hash"
       :hash="hash"
       )  
 

@@ -77,6 +77,7 @@ export { default as QrLoad } from "./qr/Load.vue";
 export { default as EmbedYoutube } from "./embed/Youtube.vue";
 
 export { default as UiModal } from "./ui/Modal.vue";
+export { default as UiLayer } from "./ui/Layer.vue";
 
 export { default as UtilPulse } from "./util/Pulse.vue";
 export { default as UtilGraph } from "./util/Graph.vue";
