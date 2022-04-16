@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useGun, useColor, useDictRecords, dictRecord, langParts, useUser } from '@composables';
+import { useGun, useColor, useDictRecordsFor, dictRecord, langParts, useUser } from '@composables';
 
 const props = defineProps({
   hash: String
@@ -19,7 +19,7 @@ gun.get('dict').get('#def').get(props.hash).once((d, k) => {
   def.value = JSON.parse(d)
 })
 
-const links = useDictRecords(props.hash)
+const links = useDictRecordsFor(props.hash)
 </script>
 
 <template lang='pug'>
@@ -52,7 +52,7 @@ const links = useDictRecords(props.hash)
     .p-0(v-for="(authors, h) in links" :key="h")
       template(v-if="Object.keys(authors).length > 0") 
         dict-word-card.cursor-pointer(:hash="h" @click="$emit('word', h)")
-          dict-links(:links="{ [h]: authors }" :avatar="true")
+          dict-link-list(:links="{ [h]: authors }" :avatar="true")
 
 </template>
 

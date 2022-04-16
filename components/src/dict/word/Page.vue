@@ -1,5 +1,5 @@
 <script setup>
-import { useWord, useColor, letterFilter, dictRecord, useDictRecords } from '@composables';
+import { useWord, useColor, letterFilter, dictRecord, useDictRecordsFor } from '@composables';
 
 const props = defineProps({
   hash: String
@@ -11,7 +11,7 @@ const color = useColor('light')
 const colorDeep = useColor('deep')
 
 const { word } = useWord(props.hash)
-const links = useDictRecords(props.hash)
+const links = useDictRecordsFor(props.hash)
 
 </script>
 
@@ -31,7 +31,7 @@ const links = useDictRecords(props.hash)
     .p-0(v-for="(authors, h) in links" :key="h")
       template(v-if="Object.keys(authors).length > 0") 
         dict-def-card.cursor-pointer(:hash="h" @click="$emit('def', h)")
-          //- dict-links(:links="{ [h]: authors }" :avatar="true")
+          //- dict-link-list(:links="{ [h]: authors }" :avatar="true")
 
 </template>
 

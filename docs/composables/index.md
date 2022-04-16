@@ -228,8 +228,16 @@ SEA cryptography abstraction
 <a name="module_Dictionary"></a>
 
 ## Dictionary
+
+* [Dictionary](#module_Dictionary)
+    * [.useWords()](#module_Dictionary.useWords) ⇒ <code>useWords</code>
+    * [.useDefs()](#module_Dictionary.useDefs) ⇒ <code>useDefs</code>
+
 ### useWords() ⇒ <code>useWords</code>
   Use filtrable words list
+
+### useDefs() ⇒ <code>useDefs</code>
+  Dictionary definitions browser
 
 <hr />
 

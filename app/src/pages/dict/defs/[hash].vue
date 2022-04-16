@@ -10,7 +10,7 @@ watch(() => props.hash, hash => {
   let rec = unsafeHash(hash)
   dictRecord.word = null
   dictRecord.def = rec
-})
+}, { immediate: true })
 </script>
 
 <template lang='pug'>

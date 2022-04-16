@@ -2,10 +2,12 @@
  * @module Dictionary
  */
 
-import { useGun, currentRoom, hashText, useUser, useColor, hashObj } from '..';
 import Fuse from "fuse.js";
 import { ref, reactive, computed, watch } from 'vue'
 import { useStorage } from '@vueuse/core';
+
+import { useGun, currentRoom, hashText, useUser, useColor, hashObj } from '..';
+
 
 export const dictRecord = reactive({
   word: null,
@@ -83,6 +85,9 @@ export function useWords() {
 
   return { input, found, words, linked, word, addWord }
 }
+
+
+
 
 export function useWord(hash) {
   const gun = useGun()
@@ -179,7 +184,7 @@ async function addRecord({ word, def } = {}) {
   dictRecord.def = null
 }
 
-export function useDictRecords(hash) {
+export function useDictRecordsFor(hash) {
   const gun = useGun()
   const links = reactive({})
   gun
@@ -189,9 +194,7 @@ export function useDictRecords(hash) {
     .on((data, key) => {
       let index = key.indexOf(hash);
       if (index == -1) return;
-      let from = key.slice(0, 44);
-      let to = key.slice(45, 89);
-      let author = key.slice(-87);
+      const { from, to, author } = parseHashLink(key)
       let linked = from == hash ? to : from
 
       links[linked] = links[linked] || {}
@@ -199,9 +202,52 @@ export function useDictRecords(hash) {
         links[linked][author] = data
       } else {
         delete links?.[linked]?.[author]
+        if (Object.keys(links?.[linked]).length == 0) {
+          delete links?.[linked]
+        }
       }
     })
   return links
+}
+
+export function useDictRecordsBy(pub) {
+  const gun = useGun()
+  const records = reactive({})
+  gun
+    .user(currentRoom.pub)
+    .get('dict')
+    .map()
+    .on((data, key) => {
+      const { from, to, author } = parseHashLink(key)
+      if (author != pub) return
+
+      records[from] = records[from] || {}
+      if (data) {
+        records[from][to] = data
+      } else {
+        delete records?.[from]?.[to]
+        if (Object.keys(records[from]).length == 0) {
+          delete records?.[from]
+        }
+      }
+    })
+  return records
+}
+
+export function useDictAuthors() {
+  const gun = useGun()
+  const authors = reactive({})
+  gun
+    .user(currentRoom.pub)
+    .get('dict')
+    .map()
+    .once(async (data, key) => {
+      const { from, to, author } = parseHashLink(key)
+      authors[author] = authors[author] || {}
+      authors[author][from] = authors[author][from] || {}
+      authors[author][from][to] = data
+    })
+  return authors
 }
 
 export function useDictLangs() {
@@ -229,6 +275,14 @@ export function useDictLangs() {
   return langs
 }
 
+
+export function parseHashLink(link) {
+  return {
+    from: link.slice(0, 44),
+    to: link.slice(45, 89),
+    author: link.slice(-87),
+  }
+}
 
 
 export function renderStress({ text, stress } = {}) {

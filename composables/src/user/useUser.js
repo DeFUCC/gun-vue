@@ -110,10 +110,11 @@ export const user = reactive({
  */
 
 export function useUser() {
-  const gun = useGun();
-  user.db = gun.user();
+
 
   if (!user.initiated) {
+    const gun = useGun();
+    user.db = gun.user();
     gun.user().recall({ sessionStorage: true }, () => {
       console.log("user was recalled");
     });
@@ -122,8 +123,9 @@ export function useUser() {
       init();
       console.log("user authenticated");
     });
+    user.initiated = true;
   }
-  user.initiated = true;
+
 
   return { user, auth, leave };
 }

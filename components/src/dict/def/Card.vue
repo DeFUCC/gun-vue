@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useGun, useUser, useColor, useDictRecords, dictRecord, langParts } from '@composables';
+import { useGun, useUser, useColor, useDictRecordsFor, dictRecord, langParts } from '@composables';
 
 const props = defineProps({
   hash: String,
@@ -18,7 +18,7 @@ gun.get('dict').get('#def').get(props.hash).once((d, k) => {
   def.value = JSON.parse(d)
 })
 
-const links = useDictRecords(props.hash)
+const links = useDictRecordsFor(props.hash)
 </script>
 
 <template lang='pug'>
@@ -36,12 +36,11 @@ const links = useDictRecords(props.hash)
       p {{ def?.part }}
     slot
     .flex-1
-    dict-links(:links="links" type="word")
-
-    la-link.link(
-      v-if="user.is"
-      @click.stop.prevent="dictRecord.def = dictRecord.def == hash ? null : hash"
-      :class="{ active: dictRecord.def == hash || links[dictRecord.word] }"
+    dict-link-list(:links="links" type="word")
+    dict-link-button(
+      :hash="hash"
+      type="def"
+      :my="links[dictRecord.word]?.[user.pub]"
       )
 </template>
 

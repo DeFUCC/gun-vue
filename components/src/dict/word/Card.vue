@@ -1,5 +1,5 @@
 <script setup>
-import { useWord, useColor, letterFilter, dictRecord, useDictRecords, useUser } from '@composables';
+import { useWord, useColor, letterFilter, dictRecord, useDictRecordsFor, useUser } from '@composables';
 
 const props = defineProps({
   hash: String
@@ -12,7 +12,7 @@ const { user } = useUser()
 const color = useColor('light')
 
 const { word } = useWord(props.hash)
-const links = useDictRecords(props.hash)
+const links = useDictRecordsFor(props.hash)
 
 </script>
 
@@ -20,11 +20,11 @@ const links = useDictRecords(props.hash)
 .flex.items-center.px-2.py-1.rounded-lg.bg-light-700.cursor-pointer.capitalize(:style="{ backgroundColor: color.hex(hash) }" )
   .text-xl {{ letterFilter(word) }}
   slot
-  dict-links(:links="links" @def="$emit('def', $event)")
-  la-link.link(
-    v-if="user.is"
-    @click.stop.prevent="dictRecord.word = dictRecord.word == hash ? null : hash"
-    :class="{ active: dictRecord.word == hash || links?.[dictRecord.def]?.[user.pub] }"
+  dict-link-list(:links="links" @def="$emit('def', $event)")
+  dict-link-button(
+    :hash="hash"
+    type="word"
+    :my="links?.[dictRecord.def]?.[user.pub]"
     )
 </template>
 

@@ -10,7 +10,7 @@ watch(() => props.hash, hash => {
   let rec = unsafeHash(hash)
   dictRecord.def = null
   dictRecord.word = rec
-})
+}, { immediate: true })
 
 </script>
 

@@ -68,7 +68,8 @@ export { default as DictDefPage } from './dict/def/Page.vue'
 export { default as DictWordCard } from './dict/word/Card.vue'
 export { default as DictWordList } from './dict/word/List.vue'
 export { default as DictWordPage } from './dict/word/Page.vue'
-export { default as DictLinks } from './dict/Links.vue'
+export { default as DictLinkList } from './dict/link/List.vue'
+export { default as DictLinkButton } from './dict/link/Button.vue'
 export { default as DictPanel } from './dict/Panel.vue'
 
 

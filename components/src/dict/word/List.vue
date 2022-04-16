@@ -5,7 +5,7 @@ const color = useColor('light')
 
 const { user } = useUser()
 
-defineEmits(['word'])
+defineEmits(['word', 'root'])
 
 const { input, found, words, linked, word, addWord } = useWords()
 
@@ -13,6 +13,7 @@ const { input, found, words, linked, word, addWord } = useWords()
 
 <template lang='pug'>
 .flex.flex-col.gap-2 
+  .font-bold.text-xl.mb-2.cursor-pointer(@click="$emit('root', 'words')") Words
   transition(name="fade" mode="out-in")
     dict-def-card(v-if="dictRecord.def" :key="dictRecord.def" :hash="dictRecord.def")
   .flex.gap-2
@@ -40,11 +41,4 @@ const { input, found, words, linked, word, addWord } = useWords()
 </template>
 
 <style lang="postcss" scoped>
-.link {
-  @apply cursor-pointer transition ml-2 p-1 bg-light-100 rounded-xl text-xl;
-
-  &.active {
-    @apply bg-dark-50 text-light-200;
-  }
-}
 </style>
