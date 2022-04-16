@@ -1,16 +1,17 @@
 <script setup>
 import { ref } from 'vue'
-import { useGun, useColor, useDictRecords, dictRecord, langParts } from '@composables';
+import { useGun, useColor, useDictRecords, dictRecord, langParts, useUser } from '@composables';
 
 const props = defineProps({
   hash: String
 })
 
-defineEmits(['word'])
+defineEmits(['word', 'close'])
 
 const color = useColor('light')
 
 const gun = useGun()
+const { user } = useUser()
 
 const def = ref()
 
@@ -24,22 +25,29 @@ const links = useDictRecords(props.hash)
 <template lang='pug'>
 .flex.flex-col.rounded-xl.text-xl.p-4(
   :style="{ backgroundColor: color.hex(hash) }"
-  ) 
-  .text-xl(
-    style="text-decoration-line: underline"
-    :style="{ textDecorationStyle: langParts[def?.part]?.underline, textDecorationColor: color.hex(hash) }"
-) {{ def?.text }}
-  .flex
-    .inline-flex.text-sm.gap-1
-      p {{ def?.lang }}
-      p {{ def?.part }}
-    .flex-1
-    dict-links(:links="links" type="word")
+  )
+  .flex.flex-col.mb-4 
+    .text-xl.flex.flex-wrap.items-center(
+      style="text-decoration-line: underline"
+      :style="{ textDecorationStyle: langParts[def?.part]?.underline, textDecorationColor: color.hex(hash) }"
+      ) {{ def?.text }}
+      la-link.link(
+        v-if="user.is"
+        @click.stop.prevent="dictRecord.def = dictRecord.def == hash ? null : hash"
+        :class="{ active: dictRecord.def == hash || links[dictRecord.word] }"
+        )
 
-    la-link.link(
-      @click.stop.prevent="dictRecord.def = dictRecord.def == hash ? null : hash"
-      :class="{ active: dictRecord.def == hash || links[dictRecord.word] }"
-      )
+      .flex-1
+      button.cursor-pointer.p-2(@click="$emit('close')")
+        la-times.text-xl
+    .flex
+      .inline-flex.text-sm.gap-2
+        .font-bold {{ def?.lang }}
+        p {{ def?.part }}
+
+
+
+
   .flex.flex-wrap.gap-2
     .p-0(v-for="(authors, h) in links" :key="h")
       template(v-if="Object.keys(authors).length > 0") 

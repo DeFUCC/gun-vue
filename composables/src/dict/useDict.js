@@ -96,7 +96,10 @@ export function useWord(hash) {
 }
 
 
-
+/**
+ * Dictionary definitions browser
+ * @returns {useDefs}
+ */
 
 export function useDefs() {
   const gun = useGun()
@@ -114,13 +117,6 @@ export function useDefs() {
     def.text = ''
     def.part = null
   }
-
-  const defs = reactive({})
-
-  gun.get('dict').get('#def').map().once((d, k) => {
-    defs[k] = JSON.parse(d)
-  })
-
 
   const linked = reactive({})
 
@@ -141,7 +137,26 @@ export function useDefs() {
   })
 
 
-  return { def, addDef, defs, linked }
+  const defs = reactive({})
+
+  gun.get('dict').get('#def').map().once((d, k) => {
+    defs[k] = JSON.parse(d)
+  })
+
+  const fuse = computed(() => {
+    let defList = []
+    for (let hash in defs) {
+      defList.push({ hash, ...defs[hash] })
+    }
+    return new Fuse(defList, {
+      keys: ['text'],
+      includeScore: true
+    })
+  })
+
+  const found = computed(() => fuse.value.search(def.text))
+
+  return { def, addDef, defs, found, linked }
 }
 
 

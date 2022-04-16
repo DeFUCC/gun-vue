@@ -5,7 +5,7 @@
 </script>
 
 <template lang='pug'>
-.flex.flex-wrap.gap-2.p-2
+.flex.flex-wrap.gap-2
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in")
       keep-alive

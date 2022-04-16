@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useGun, useColor, useDictRecords, dictRecord, langParts } from '@composables';
+import { useGun, useUser, useColor, useDictRecords, dictRecord, langParts } from '@composables';
 
 const props = defineProps({
   hash: String,
@@ -10,6 +10,7 @@ const props = defineProps({
 const color = useColor('light')
 
 const gun = useGun()
+const { user } = useUser()
 
 const def = ref()
 
@@ -38,6 +39,7 @@ const links = useDictRecords(props.hash)
     dict-links(:links="links" type="word")
 
     la-link.link(
+      v-if="user.is"
       @click.stop.prevent="dictRecord.def = dictRecord.def == hash ? null : hash"
       :class="{ active: dictRecord.def == hash || links[dictRecord.word] }"
       )

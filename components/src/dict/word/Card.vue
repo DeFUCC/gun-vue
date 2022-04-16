@@ -22,6 +22,7 @@ const links = useDictRecords(props.hash)
   slot
   dict-links(:links="links" @def="$emit('def', $event)")
   la-link.link(
+    v-if="user.is"
     @click.stop.prevent="dictRecord.word = dictRecord.word == hash ? null : hash"
     :class="{ active: dictRecord.word == hash || links?.[dictRecord.def]?.[user.pub] }"
     )

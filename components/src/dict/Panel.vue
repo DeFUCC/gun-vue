@@ -17,6 +17,6 @@ defineEmits(['home'])
       ) 
         .font-bold {{ lang }} 
         .ml-1 {{ num }}
-  select.m-2.p-2.w-30(v-model="dictLang")
+  select.m-2.p-2.w-30.rounded-lg(v-model="dictLang")
     option(v-for="lang in languages" :value="lang.code") {{ lang.native }}
 </template>
