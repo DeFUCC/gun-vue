@@ -6,7 +6,7 @@ const props = defineProps({
   pub: String
 })
 
-defineEmits(['rooms'])
+defineEmits(['rooms', 'browse'])
 
 const { room, leaveRoom, updateRoomProfile, enterRoom } = useRoom(props.pub)
 
@@ -21,8 +21,6 @@ const roomPub = computed(() => {
 })
 
 const md = useMd()
-
-
 
 const edit = reactive({
   name: false,
@@ -52,10 +50,7 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
             .font-bold.mr-2 Hosts: 
             .p-2.flex.flex-col.items-start.gap-2(v-for="(enc, host) in room.hosts" :key="host")
               account-badge( :pub="host" :selectable="true")
-              room-features(:features="enc") 🗝
-
         .flex-1
-      room-features.my-4(:features="room.features")
       .flex.flex-wrap.items-center.gap-2
         button.button(v-if="room.hosts?.[user.pub]" @click="recreateRoom(room.hosts?.[user.pub]?.enc)")
           la-tools
@@ -69,11 +64,10 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
             .ml-2 Leave
   .flex.flex-col.items-center.bg-light-300
     .max-w-200.relative
+      room-features.my-4(:features="room.features" @browse="$emit('browse', $event)")
       .flex.items-center(v-if="edit.text === false" ) 
         .p-8.markdown-body(v-html="md.render(room.profile?.text || '')")
         button.button.absolute.top-4.right-4.z-200(@click="edit.text = room.profile?.text || ''" v-if="room.hosts?.[user.pub]")
           la-pen
       form-text(v-else v-model:text="edit.text" @close="updateRoomProfile('text', edit.text); edit.text = false")
-
-
 </template>
