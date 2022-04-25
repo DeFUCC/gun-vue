@@ -24,11 +24,11 @@
   "license": "MIT",
   "dependencies": {
     "@gun-vue/components": "workspace:^",
-    "@vueuse/core": "8.2.6",
+    "@vueuse/core": "8.3.1",
     "vue": "^3.2.33"
   },
   "devDependencies": {
-    "@iconify/json": "^2.1.28",
+    "@iconify/json": "^2.1.32",
     "jsdoc-to-markdown": "^7.1.1",
     "markdown-it-checkbox": "^1.1.0",
     "markdown-it-classy": "^0.2.0",

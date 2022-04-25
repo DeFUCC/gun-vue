@@ -33,7 +33,7 @@
   "dependencies": {
     "@gun-vue/composables": "workspace:^",
     "@qrcode/svg": "^1.0.0-beta.2",
-    "@vueuse/core": "8.2.6",
+    "@vueuse/core": "8.3.1",
     "@vueuse/sound": "^1.1.7",
     "force-graph": "^1.42.9",
     "jsqr": "^1.4.0",
