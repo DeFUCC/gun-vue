@@ -15,21 +15,33 @@ export { default as AccountReactions } from "./account/Reactions.vue";
 
 export { default as AccountMateButton } from "./account/mate/Button.vue";
 export { default as AccountMateList } from "./account/mate/List.vue";
+export { default as AccountMateLink } from "./account/mate/Link.vue";
 
 // USER
 
-export { default as UserCredentials } from "./user/Credentials.vue";
-export { default as UserPassphrase } from "./user/Pass.vue";
 export { default as UserAuth } from "./user/Auth.vue";
-export { default as UserLogin } from "./user/Login.vue";
+export { default as UserAvatar } from "./user/Avatar.vue";
+export { default as UserCreate } from "./user/Create.vue";
+export { default as UserCredentials } from "./user/Credentials.vue";
+export { default as UserGraph } from "./user/Graph.vue";
 export { default as UserHome } from "./user/Home.vue";
 export { default as UserIcon } from "./user/Icon.vue";
+export { default as UserList } from "./user/List.vue";
+export { default as UserLogin } from "./user/Login.vue";
 export { default as UserPanel } from "./user/Panel.vue";
+export { default as UserPass } from "./user/Pass.vue";
 export { default as UserProfile } from "./user/Profile.vue";
-export { default as UserGraph } from "./user/Graph.vue";
+export { default as UserRooms } from "./user/Rooms.vue";
 export { default as UserProfileField } from "./user/profile/Field.vue";
 
+// ROOM
+
 export { default as RoomProfile } from "./room/Profile.vue";
+export { default as RoomIcon } from './room/Icon.vue'
+export { default as RoomCard } from './room/Card.vue'
+export { default as RoomForm } from './room/Form.vue'
+export { default as RoomPage } from './room/Page.vue'
+export { default as RoomFeatures } from './room/Features.vue'
 
 //SPACE
 
@@ -41,24 +53,34 @@ export { default as SpaceArrow } from "./space/Arrow.vue";
 
 export { default as PostCard } from "./post/Card.vue";
 export { default as PostForm } from "./post/Form.vue";
+export { default as PostGraph } from "./post/Graph.vue";
+export { default as PostLine } from "./post/Line.vue";
 export { default as PostList } from "./post/List.vue";
 export { default as PostPage } from "./post/Page.vue";
-export { default as PostGraph } from "./post/Graph.vue";
 
 
 export { default as PostActionStar } from "./post/action/Star.vue";
 export { default as PostActionUpdate } from "./post/action/Update.vue";
 export { default as PostActionBan } from "./post/action/Ban.vue";
 
+export { default as PostActionReact } from "./post/action/React.vue";
+export { default as ReactionButton } from "./reaction/Button.vue";
 export { default as ReactionTabs } from "./reaction/Tabs.vue";
 
 //CHAT
 
-export { default as ChatTopics } from "./chat/Topics.vue";
-export { default as ChatRoom } from "./chat/Room.vue";
+
+export { default as ChatInput } from "./chat/Input.vue";
 export { default as ChatMessage } from "./chat/Message.vue";
+export { default as ChatRoom } from "./chat/Room.vue";
+export { default as ChatTopics } from "./chat/Topics.vue";
+
+// PRIVATE CHAT
+
 export { default as ChatPrivate } from "./chat/private/Index.vue";
 export { default as ChatPrivateCount } from "./chat/private/Count.vue";
+export { default as ChatPrivateList } from "./chat/private/List.vue";
+
 
 // DICTIONARY
 
@@ -70,7 +92,9 @@ export { default as DictWordList } from './dict/word/List.vue'
 export { default as DictWordPage } from './dict/word/Page.vue'
 export { default as DictLinkList } from './dict/link/List.vue'
 export { default as DictLinkButton } from './dict/link/Button.vue'
+export { default as DictBy } from './dict/By.vue'
 export { default as DictPanel } from './dict/Panel.vue'
+export { default as DictAuthors } from './dict/Authors.vue'
 
 
 // FORMS
@@ -79,6 +103,7 @@ export { default as FormLink } from "./form/Link.vue";
 export { default as FormPicture } from "./form/Picture.vue";
 export { default as FormText } from "./form/Text.vue";
 export { default as FormYoutube } from "./form/Youtube.vue";
+export { default as FormTitle } from "./form/Title.vue";
 
 // UTILS
 

@@ -1,5 +1,11 @@
 # @gun-vue/components
 
+## 0.9.2
+
+### Patch Changes
+
+- All components exported
+
 ## 0.9.1
 
 ### Patch Changes
