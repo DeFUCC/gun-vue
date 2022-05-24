@@ -1,6 +1,6 @@
 <script setup>
 import { watch } from 'vue'
-import { useSpace, useUser, useColor, useRoom, selectedUser } from '@composables'
+import { useSpace, useUser, useColor, useRoom, selectedUser, drawingEnabled } from '@composables'
 
 const props = defineProps({
   pad: { type: Number, default: 50 },
@@ -34,6 +34,14 @@ watch(guestCount, (next, prev) => {
     @click="join()"
     :style="{ borderColor: user.color }"
     ) Click here to join the space
+  button.fixed.bottom-2.right-2.text-xl.z-1000(
+    @click="drawingEnabled = !drawingEnabled"
+    :class="{ active: drawingEnabled }"
+    v-tooltip.top="'Draw on the screen'"
+    )
+    carbon-pen
+  draw-controls.z-2000
+  draw-layer
   svg.max-h-78vh.w-98vw(
     ref="plane"
     style="cursor:none;"

@@ -7,6 +7,8 @@ import "@components/styles/index.css";
 import { createRouter, createWebHashHistory } from "vue-router";
 import routes from "~pages";
 
+import { FloatingVue } from '@gun-vue/components'
+
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [...routes],
@@ -20,7 +22,7 @@ const router = createRouter({
 });
 
 const app = createApp(App);
-
+app.use(FloatingVue)
 app.use(router).mount("#app");
 
 import { currentRoom } from "@composables";

@@ -55,6 +55,9 @@ export default defineConfig({
     }),
     VitePWA({
       registerType: "autoUpdate",
+      workbox: {
+        maximumFileSizeToCacheInBytes: 3000000
+      },
       manifest: {
         name: "Gun-Vue",
         short_name: "Gun-Vue",

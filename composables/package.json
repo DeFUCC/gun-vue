@@ -52,7 +52,8 @@
     "slugify": "^1.6.5",
     "url-regex": "^5.0.0",
     "vue": "^3.2.36",
-    "yaml": "^2.1.0"
+    "yaml": "^2.1.0",
+    "drauu": "^0.3.0"
   },
   "devDependencies": {
     "vite": "^2.9.9"
