@@ -19,22 +19,22 @@
     "@gun-vue/components": "workspace:^",
     "@gun-vue/composables": "workspace:^",
     "@gun-vue/relay": "workspace:^",
-    "@vueuse/core": "8.3.1",
+    "@vueuse/core": "8.5.0",
     "ola": "^1.2.1",
-    "vue": "^3.2.33",
-    "vue-router": "^4.0.14"
+    "vue": "^3.2.36",
+    "vue-router": "^4.0.15"
   },
   "devDependencies": {
-    "@iconify/json": "^2.1.32",
-    "@vitejs/plugin-vue": "^2.3.1",
+    "@iconify/json": "^2.1.48",
+    "@vitejs/plugin-vue": "^2.3.3",
     "pug": "3.0.2",
-    "unplugin-icons": "^0.14.1",
-    "unplugin-vue-components": "^0.19.3",
-    "vite": "^2.9.5",
+    "unplugin-icons": "^0.14.3",
+    "unplugin-vue-components": "^0.19.5",
+    "vite": "^2.9.9",
     "vite-plugin-pages": "^0.23.0",
     "vite-plugin-pages-sitemap": "^1.2.2",
     "vite-plugin-pwa": "^0.12.0",
     "vite-plugin-windicss": "^1.8.4",
-    "windicss": "^3.5.1"
+    "windicss": "^3.5.4"
   }
 }

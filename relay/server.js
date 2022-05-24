@@ -20,6 +20,7 @@ export default {
     var server = app.listen(port);
 
     const gun = Gun({
+      super: false,
       file: "store",
       radisk: store,
       web: server,
