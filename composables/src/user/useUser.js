@@ -184,7 +184,7 @@ export async function auth(pair, cb = () => { }) {
     return;
   }
   gun.user().auth(pair, async () => {
-    cb();
+    cb(pair);
     console.log("user is authenticated");
   });
 }

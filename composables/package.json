@@ -40,6 +40,7 @@
     "buffer": "^6.0.3",
     "color-hash": "^2.0.1",
     "curved-arrows": "^0.1.0",
+    "drauu": "^0.3.0",
     "fuse.js": "^6.6.2",
     "grapheme-breaker-mjs": "^1.0.4",
     "gun": "0.2020.1237",
@@ -52,8 +53,7 @@
     "slugify": "^1.6.5",
     "url-regex": "^5.0.0",
     "vue": "^3.2.36",
-    "yaml": "^2.1.0",
-    "drauu": "^0.3.0"
+    "yaml": "^2.1.0"
   },
   "devDependencies": {
     "vite": "^2.9.9"

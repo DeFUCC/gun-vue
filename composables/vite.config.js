@@ -11,7 +11,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(dirname, "./src/index.js"),
       name: "composables",
-      formats: ["es"],
+      formats: ["es", "cjs"],
     },
     sourcemap: true,
     rollupOptions: {
@@ -24,7 +24,7 @@ export default defineConfig({
       // external: ["vue"],
       output: {
         minifyInternalExports: false,
-        chunkFileNames: "[name].js",
+        chunkFileNames: "[name].[format].js",
       },
     },
   },

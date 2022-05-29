@@ -57,7 +57,7 @@ export default defineConfig({
       // external: ["vue"],
       output: {
         minifyInternalExports: false,
-        chunkFileNames: "[name].js",
+        chunkFileNames: "[name].[format].js",
         // Provide global variables to use in the UMD build
         // for externalized deps
         globals: {
