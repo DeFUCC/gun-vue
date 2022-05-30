@@ -1,23 +1,15 @@
 <script setup>
 import { useDraw } from '@composables'
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import 'floating-vue/dist/style.css'
 
-const svg = ref()
-
-const { drauu, drawingEnabled, loadCanvas } = useDraw()
-
-onMounted(() => {
-  drauu.mount(svg.value, svg.value.parentElement)
-  loadCanvas()
+const props = defineProps({
+  content: { type: String, default: '' }
 })
 
-onBeforeUnmount(() => {
-  drauu.unmount()
-})
+
 </script>
 
-<template>
-  <svg ref="svg" class="absolute w-full h-full top-0 bottom-0 left-0 right-0"
-    :class="{ 'pointer-events-none': !drawingEnabled, 'touch-none': drawingEnabled }" />
+<template lang="pug">
+svg.absolute.touch-none.pointer-events-none.w-full.h-full.top-0.bottom-0.left-0.right-0(v-html="content")
 </template>

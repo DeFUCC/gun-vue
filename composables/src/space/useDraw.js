@@ -2,125 +2,104 @@ import { computed, markRaw, nextTick, reactive, ref, watch, onMounted } from 'vu
 import { createDrauu } from 'drauu'
 import { toReactive, useStorage, useCycleList } from '@vueuse/core'
 
+import { useGun, useUser } from '../'
 
-export const brushColors = [
-  '#000000',
-  ...new Array(12).fill(true).map((el, i) => `hsl(${i * 30}, 100%,50%)`),
-  '#ffffff',
-]
-
-export const drawingModes = ['line', 'arrow', 'stylus', 'rectangle', 'ellipse']
-
-export const brushSizes = useCycleList([4, 8, 16, 24])
-
-export const drawingState = ref()
-const pages = toReactive(useStorage('drawings', {}))
-
-const currentPage = ref('/')
-const isPresenter = ref()
-
-export const drawingEnabled = ref(false)
-export const drawingPinned = useStorage('drawing-pinned', false)
-export const canUndo = ref(false)
-export const canRedo = ref(false)
-export const canClear = ref(false)
-export const isDrawing = ref(false)
-export const drawingInitiated = ref(false)
+export const draw = reactive({
+  colors: [
+    '#000000',
+    ...new Array(12).fill(true).map((el, i) => `hsl(${i * 30}, 100%,50%)`),
+    '#ffffff',
+  ],
+  sizes: useCycleList([4, 8, 16, 24]),
+  modes: ['line', 'arrow', 'stylus', 'rectangle', 'ellipse'],
+  mode: computed({
+    get() {
+      return _mode.value
+    },
+    set(v) {
+      _mode.value = v
+      if (v === 'arrow') {
+        brush.mode = 'line'
+        brush.arrowEnd = true
+      }
+      else {
+        brush.mode = v
+        brush.arrowEnd = false
+      }
+    },
+  }),
+  enabled: false,
+  pinned: useStorage('drawing-pinned', false),
+  canUndo: false,
+  canRedo: false,
+  canClear: false,
+  ing: false,
+  initiated: false,
+  content: ''
+})
 
 export const brush = toReactive(useStorage('drawing-brush', {
-  color: brushColors[0],
+  color: draw.colors[0],
   size: 10,
   mode: 'stylus',
 }))
 
 const _mode = ref('stylus')
-const syncUp = computed(() => isPresenter.value)
 let disableDump = false
-
-export const drawingMode = computed({
-  get() {
-    return _mode.value
-  },
-  set(v) {
-    _mode.value = v
-    if (v === 'arrow') {
-      brush.mode = 'line'
-      brush.arrowEnd = true
-    }
-    else {
-      brush.mode = v
-      brush.arrowEnd = false
-    }
-  },
-})
 
 export const drauuOptions = reactive({
   brush,
-  acceptsInputTypes: computed(() => drawingEnabled.value ? undefined : ['pen']),
+  acceptsInputTypes: computed(() => draw.enabled ? undefined : ['pen']),
   coordinateTransform: true,
 })
 export const drauu = markRaw(createDrauu(drauuOptions))
 
 export function clearDrauu() {
   drauu.clear()
-}
-
-export function updateState() {
-  canRedo.value = drauu.canRedo()
-  canUndo.value = drauu.canUndo()
-  canClear.value = !!drauu.el?.children.length
+  draw.content = ''
 }
 
 export function loadCanvas(page) {
   disableDump = true
-  const data = pages[page || currentPage.value]
-  if (data != null)
-    drauu.load(data)
+  if (draw.content != null)
+    drauu.load(draw.content)
   else
     drauu.clear()
   disableDump = false
 }
 
+export function updateState() {
+  draw.canRedo = drauu.canRedo()
+  draw.canUndo = drauu.canUndo()
+  draw.canClear = !!drauu.el?.children.length
+}
+
+
 export function useDraw() {
-  if (!drawingInitiated.value) {
+  if (!draw.initiated) {
+    const gun = useGun()
+
+    const drawing = gun.user().get('space').get('draw')
+
     drauu.on('changed', () => {
       updateState()
       if (!disableDump) {
-        const dump = drauu.dump()
-        const key = currentPage.value
-        if ((pages[key] || '') !== dump)
-          pages[key] = dump
+        draw.content = drauu.dump()
+        drawing.put(draw.content)
       }
     })
-
     onMounted(() => {
       nextTick(() => {
-        if (pages?.[currentPage.value] != null)
-          drauu.load(pages?.[currentPage.value] || '')
+        loadCanvas()
       })
 
     })
 
-    watch(currentPage, (page) => {
-      disableDump = true
-      if (pages[page] != null)
-        drauu.load(pages[page] || '')
-      disableDump = false
-      updateState()
-    })
-
-    nextTick(() => {
-      watch(currentPage, () => {
-
-        loadCanvas()
-      }, { immediate: true })
-    })
-
-    drauu.on('start', () => isDrawing.value = true)
-    drauu.on('end', () => isDrawing.value = false)
+    drauu.on('start', () => draw.ing = true)
+    drauu.on('end', () => draw.ing = false)
 
     window.addEventListener('keydown', (e) => {
-      if (!drawingEnabled.value)
+      if (!draw.enabled)
         return
 
       const noModifier = !e.ctrlKey && !e.altKey && !e.shiftKey && !e.metaKey
@@ -132,7 +111,7 @@ export function useDraw() {
           drauu.undo()
       }
       else if (e.code === 'Escape') {
-        drawingEnabled.value = false
+        draw.enabled = false
       }
       else if (e.code === 'KeyC' && (e.ctrlKey || e.metaKey)) {
         clearDrauu()
@@ -151,15 +130,10 @@ export function useDraw() {
     }, false)
   }
 
-  drawingInitiated.value = true
+  draw.initiated = true
 
   return {
-    brush, brushColors, brushSizes, canClear,
-    canRedo, canUndo, clearDrauu, currentPage,
-    drauu, drawingEnabled, drawingMode, drawingPinned, drauu, drawingEnabled, loadCanvas
+    brush, clearDrauu, draw, drauu, loadCanvas
   }
 }
-
-
-
 

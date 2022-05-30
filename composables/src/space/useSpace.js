@@ -126,6 +126,10 @@ export function useSpace({
         mates[pub] = mates[pub] || {};
         mates[pub][k] = d;
       });
+
+    gun.user(pub).get('space').get('draw').on(d => {
+      allGuests[pub].draw = d
+    })
   });
 
   const seeds = {}; //random seeds to scatter the arrows a little - depends on the `randomness` option
