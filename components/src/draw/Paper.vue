@@ -17,7 +17,6 @@ onBeforeUnmount(() => {
 })
 </script>
 
-<template>
-  <svg ref="svg" class="absolute w-full h-full top-0 bottom-0 left-0 right-0"
-    :class="{ 'pointer-events-none': !draw.enabled, 'touch-none': draw.enabled }" />
+<template lang="pug">
+svg.absolute.w-full.h-full.top-0.bottom-0.left-0.right-0(ref="svg" :class="{ 'pointer-events-none': !draw.enabled, 'touch-none': draw.enabled }")
 </template>

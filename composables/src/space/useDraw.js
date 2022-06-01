@@ -81,11 +81,16 @@ export function useDraw() {
 
     const drawing = gun.user().get('space').get('draw')
 
+    drawing.once(d => {
+      draw.content = d
+      loadCanvas()
+    })
     drauu.on('changed', () => {
       updateState()
       if (!disableDump) {
-        draw.content = drauu.dump()
-        drawing.put(draw.content)
+        let content = drauu.dump()
+        draw.content = content
+        drawing.put(content)
       }
     })
     onMounted(() => {

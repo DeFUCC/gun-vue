@@ -104,7 +104,7 @@ export function useSpace({
       pos: {
         x: 0,
         y: 0,
-      },
+      }
     };
 
     space.db.get(pub).on((d, k) => {
@@ -128,6 +128,7 @@ export function useSpace({
       });
 
     gun.user(pub).get('space').get('draw').on(d => {
+      if (!d) return
       allGuests[pub].draw = d
     })
   });
@@ -171,6 +172,7 @@ export function useSpace({
   });
   return {
     space,
+    allGuests,
     guests,
     guestCount,
     links,
