@@ -79,7 +79,7 @@ export function useDraw() {
   if (!draw.initiated) {
     const gun = useGun()
 
-    const drawing = gun.user().get('space').get('draw')
+    const drawing = gun.user().get('draw').get('space')
 
     drawing.once(d => {
       draw.content = d

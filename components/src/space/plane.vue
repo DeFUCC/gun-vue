@@ -106,5 +106,9 @@ watch(guestCount, (next, prev) => {
         @click="selectedUser.pub = guest.pub"
         :style="{ transform: `translate(${guest?.pos?.x * width}px, ${guest?.pos?.y * height}px)` }"
       )
+<<<<<<< HEAD
   draw-layer.opacity-40(v-for="guest in guests" :key="guest.draw" :content="guest.draw")
+=======
+  draw-layer.opacity-40(v-for="guest in guests" :key="guest" :content="guest.draw")
+>>>>>>> dcaba6d2af4f8436c76fd831d797bf5331535bb2
 </template>
