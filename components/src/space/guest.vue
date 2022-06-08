@@ -26,7 +26,7 @@ const gun = useGun()
 
 gun.user(props.pub).get('avatar').on(hash => {
   if (hash) {
-    gun.get('#avatars').get(hash).on(d => {
+    gun.get('#avatars').get(hash).once(d => {
       avatar.value = d
     })
   } else {

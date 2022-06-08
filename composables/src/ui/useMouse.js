@@ -27,8 +27,7 @@ import { ref, reactive, onMounted, onBeforeUnmount, watch } from "vue";
  * @returns {useMouse}
  */
 
-export function useSvgMouse() {
-  const area = ref(null);
+export function useSvgMouse(area = ref(null)) {
 
   const { pressed } = useMousePressed();
 
@@ -60,7 +59,7 @@ export function useSvgMouse() {
     svgPoint.x = event.clientX;
     svgPoint.y = event.clientY;
     let correct = svgPoint.matrixTransform(svgElement.getScreenCTM().inverse());
-    if (rect) {
+    if (false) {
       let bounds = rect.getBBox();
       mouse.x =
         correct.x < bounds.width

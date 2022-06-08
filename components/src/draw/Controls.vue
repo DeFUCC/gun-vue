@@ -1,16 +1,8 @@
 <script setup>
 import { useDraw } from '@composables'
 
-const { brush, brushColors, clearDrauu,
-  drauu, draw } = useDraw()
+const { brush, drauu, draw } = useDraw()
 
-
-function undo() {
-  drauu.undo()
-}
-function redo() {
-  drauu.redo()
-}
 
 function setDrawingMode(mode) {
   draw.mode = mode
@@ -25,7 +17,7 @@ function setBrushColor(color) {
 </script>
 
 <template lang="pug">
-.flex.flex-wrap.text-xl.p-2.gap-2.rounded-md.bg-main.shadow.transition-opacity.duration-200.dark_border.dark_border-gray-400.dark_border-opacity-10.bg-light-300.dark_bg-dark-300.justify-center(
+.flex.flex-wrap.text-xl.p-2.gap-2.rounded-md.bg-main.shadow.transition-opacity.duration-200.dark_border.dark_border-gray-400.dark_border-opacity-10.bg-light-300.dark_bg-dark-300.justify-center.absolute(
   :class="draw.enabled ? '' : draw.pinned ? 'opacity-40 hover_opacity-90' : 'opacity-0 pointer-events-none'", 
   storage-key="slidev-drawing-pos", 
   :initial-x="10", 
@@ -67,12 +59,12 @@ function setBrushColor(color) {
         )
 
 
-  button(:class="{ disabled: !draw.canUndo }", @click="undo()")
+  button(:class="{ disabled: !draw.canUndo }", @click="drauu.undo()")
     carbon:undo
-  button(:class="{ disabled: !draw.canRedo }", @click="redo()")
+  button(:class="{ disabled: !draw.canRedo }", @click="drauu.redo()")
     carbon:redo
 
-  button(:class="{ disabled: !draw.canClear }", @click="clearDrauu()")
+  button(:class="{ disabled: !draw.canClear }", @click="draw.clear()")
     carbon:delete
 
   button(:class="{ shallow: !draw.pinned }", @click="draw.pinned = !draw.pinned")

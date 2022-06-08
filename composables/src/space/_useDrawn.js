@@ -2,7 +2,7 @@ import { computed, markRaw, nextTick, reactive, ref, watch, onMounted } from 'vu
 import { createDrauu } from 'drauu'
 import { toReactive, useStorage, useCycleList } from '@vueuse/core'
 
-import { useGun, useUser } from '../'
+import { useGun, useUser } from '..'
 
 
 export const brushColors = [

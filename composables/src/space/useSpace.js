@@ -9,7 +9,7 @@ import { user, useAccount } from "../user";
 import { computed, ref, reactive, watchEffect } from "vue";
 import { getFirstEmoji, currentRoom } from "..";
 import { getArrow } from "curved-arrows";
-import { useElementBounding } from "@vueuse/core";
+import { useClamp, useElementBounding } from "@vueuse/core";
 
 /**
  * @typedef {Object} useSpace
@@ -39,23 +39,22 @@ export function useSpace({
   TIMEOUT = 10000,
   randomness = 0.1,
 } = {}) {
-  const { area, mouse } = useSvgMouse();
   const plane = ref();
+  const { area, mouse } = useSvgMouse(plane);
+
   const { width, height } = useElementBounding(plane);
+  const position = reactive([0, 0])
+  const zoom = useClamp(1, 0.5, 2)
 
   const gun = useGun();
 
   const space = reactive({
     title: spaceName,
     joined: false,
-    db: computed(() => {
-      return gun.user(currentRoom.pub).get(spaceName);
-    }),
-    cert: computed(() => {
-      return currentRoom.features?.space;
-    }),
+    db: computed(() => gun.user(currentRoom.pub).get(spaceName)),
+    cert: computed(() => currentRoom.features?.space),
     my: {
-      mouse: computed(() => ({ x: mouse.normX, y: mouse.normY })),
+      mouse: computed(() => ({ x: mouse.x, y: mouse.y })),
       pos: null,
     },
   });
@@ -64,9 +63,11 @@ export function useSpace({
     space.joined = true;
   }
 
-  function place({ x = mouse.normX, y = mouse.normY } = {}) {
+  function place({ x = mouse.x, y = mouse.y } = {}) {
     if (!user.pub) return;
     if (!space.joined) join();
+    position[0] = x
+    position[1] = y
     space.db.get(user.pub).put(JSON.stringify({ x, y }), null, {
       opt: { cert: currentRoom.features?.space },
     });
@@ -127,7 +128,7 @@ export function useSpace({
         mates[pub][k] = d;
       });
 
-    gun.user(pub).get('space').get('draw').on(d => {
+    gun.user(pub).get('draw').get('space').on(d => {
       if (!d) return
       allGuests[pub].draw = d
     })
@@ -159,8 +160,6 @@ export function useSpace({
                 g1.pos,
                 g2.pos,
                 seed,
-                width.value,
-                height.value
               ),
             };
           }
@@ -179,18 +178,20 @@ export function useSpace({
     plane,
     width,
     height,
+    position,
+    zoom,
     area,
     join,
     place,
   };
 }
 
-function generateArrow(pos1, pos2, seed = 0, width, height) {
+function generateArrow(pos1, pos2, seed = 0) {
   let arrowArray = getArrow(
-    pos1.x * width,
-    pos1.y * height,
-    pos2.x * width,
-    pos2.y * height,
+    pos1.x,
+    pos1.y,
+    pos2.x,
+    pos2.y,
     {
       padEnd: 20,
       padStart: 10,

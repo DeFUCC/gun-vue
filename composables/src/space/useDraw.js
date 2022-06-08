@@ -54,11 +54,6 @@ export const drauuOptions = reactive({
 })
 export const drauu = markRaw(createDrauu(drauuOptions))
 
-export function clearDrauu() {
-  drauu.clear()
-  draw.content = ''
-}
-
 export function loadCanvas(page) {
   disableDump = true
   if (draw.content != null)
@@ -81,7 +76,8 @@ export function useDraw() {
 
     const drawing = gun.user().get('draw').get('space')
 
-    drawing.once(d => {
+    drawing.on(d => {
+      if (draw.ing) return
       draw.content = d
       loadCanvas()
     })
@@ -103,6 +99,12 @@ export function useDraw() {
     drauu.on('start', () => draw.ing = true)
     drauu.on('end', () => draw.ing = false)
 
+    draw.clear = () => {
+      drauu.clear()
+      draw.content = ''
+      drawing.put('')
+    }
+
     window.addEventListener('keydown', (e) => {
       if (!draw.enabled)
         return
@@ -119,7 +121,7 @@ export function useDraw() {
         draw.enabled = false
       }
       else if (e.code === 'KeyC' && (e.ctrlKey || e.metaKey)) {
-        clearDrauu()
+        draw.clear()
       }
       else if (e.code.startsWith('Digit') && noModifier && +e.code[5] <= brushColors.length) {
         brush.color = brushColors[+e.code[5] - 1]
@@ -138,7 +140,7 @@ export function useDraw() {
   draw.initiated = true
 
   return {
-    brush, clearDrauu, draw, drauu, loadCanvas
+    brush, draw, drauu, loadCanvas
   }
 }
 
