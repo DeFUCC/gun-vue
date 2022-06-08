@@ -1,5 +1,17 @@
 # @gun-vue/components
 
+## 0.9.3
+
+### Patch Changes
+
+- 7755eb73: move and draw on the infinite space plane
+- 29219a58: basic collaborative vector drawings
+- 9378cee9: Bumped deps
+- Updated dependencies [7755eb73]
+- Updated dependencies [29219a58]
+- Updated dependencies [9378cee9]
+  - @gun-vue/composables@0.9.3
+
 ## 0.9.2
 
 ### Patch Changes

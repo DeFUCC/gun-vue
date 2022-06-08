@@ -1,5 +1,11 @@
 # @gun-vue/relay
 
+## 0.3.7
+
+### Patch Changes
+
+- 9378cee9: Bumped deps
+
 ## 0.3.6
 
 ### Patch Changes
