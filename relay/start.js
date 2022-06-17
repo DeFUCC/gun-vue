@@ -1,8 +1,7 @@
 import relay from "./server.js";
 
 relay.init({
-  showQr: true,
+  showQr: false,
   store: true,
-  path: '../_dist'
 });
 
