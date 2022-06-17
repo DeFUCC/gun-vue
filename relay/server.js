@@ -8,10 +8,10 @@ export default {
   initiated: false,
   init({
     host = process.env.RELAY_HOST,
-    store = JSON.parse(process.env.RELAY_STORE),
+    store = process.env.RELAY_STORE || false,
     port = process.env.RELAY_PORT || 4200,
     path = process.env.RELAY_PATH || "public",
-    showQr = JSON.parse(process.env.RELAY_QR),
+    showQr = process.env.RELAY_QR || false,
   } = {}) {
     if (this.initiated) return;
     this.initiated = true;
