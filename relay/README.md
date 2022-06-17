@@ -88,3 +88,13 @@ relay.init({
   path: "public", // A public directory to expose your app with the build in express server. Insert a path like '../app/dist'
 });
 ```
+
+The options may be also set with `.env` file. The defaults are:
+
+```
+RELAY_HOST="localhost"
+RELAY_STORE=false
+RELAY_PORT=4200
+RELAY_PATH="public"
+RELAY_QR=false
+```

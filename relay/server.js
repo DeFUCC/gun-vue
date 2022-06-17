@@ -2,15 +2,16 @@ import express from "express";
 import Gun from "gun";
 import qr from "qrcode-terminal";
 import ip from "ip";
+import 'dotenv/config'
 
 export default {
   initiated: false,
   init({
-    host,
-    store = false,
-    port = 4200,
-    path = "public",
-    showQr = false,
+    host = process.env.RELAY_HOST,
+    store = JSON.parse(process.env.RELAY_STORE),
+    port = process.env.RELAY_PORT || 4200,
+    path = process.env.RELAY_PATH || "public",
+    showQr = JSON.parse(process.env.RELAY_QR),
   } = {}) {
     if (this.initiated) return;
     this.initiated = true;
