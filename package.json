@@ -20,8 +20,8 @@
     "sky": "node deploy-to-skynet.js"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.22.0",
-    "@skynetlabs/skynet-nodejs": "^2.5.1",
+    "@changesets/cli": "^2.23.0",
+    "@skynetlabs/skynet-nodejs": "^2.6.0",
     "dotenv": "^16.0.1"
   }
 }
