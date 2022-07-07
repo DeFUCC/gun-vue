@@ -1,11 +1,9 @@
 <script setup>
-import { useGuests, useGifts, useGift, useUser } from '@composables'
+import { useGuests, useGift, useUser } from '@composables'
 
 const { user } = useUser()
 
 const { gift, propose } = useGift()
-
-const { gifts } = useGifts()
 
 const { guests, count } = useGuests()
 
@@ -13,10 +11,12 @@ const { guests, count } = useGuests()
 
 <template lang='pug'>
 .flex
+
   .w-160px.p-4.text-center
     user-icon.pointer-events-none(:size="150")
     .text-lg {{ user.name }}
   .flex-1
+    .font-mono.text-sm.m-4.opacity-50.break-all {{ gift }}
     .p-4
       account-badge(:pub="gift.to" v-if="gift.to")
         .flex-1
@@ -31,6 +31,5 @@ const { guests, count } = useGuests()
       input(v-model="gift.ql" placeholder="Quality")
       textarea(v-model="gift.wish" placeholder="Wish")
     button.button(@click="propose()") Propose
-    .font-mono.text-sm.m-4.opacity-20.break-all {{ gift }}
-    .font-mono.text-sm.m-4.opacity-20.break-all {{ gifts }}
+
 </template>

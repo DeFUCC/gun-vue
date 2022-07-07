@@ -1,7 +1,9 @@
+import { useNow } from '@vueuse/core'
+import { SEA } from 'gun'
 import { reactive, computed } from 'vue'
-import { useGun, useUser, hashObj } from '@composables'
+import { useGun, useUser, hashObj } from '..'
 
-const prefix = "gifts2022"
+export const giftPath = "#gifts2023"
 
 
 export function useGift() {
@@ -11,17 +13,19 @@ export function useGift() {
     to: '',
     qn: 0,
     ql: '',
-    wish: ''
+    wish: '',
+    date: useNow()
   })
+
   const gun = useGun()
 
   async function propose() {
-    const { hashed, hash } = await hashObj(gift)
 
-    gun.get('#' + prefix).get(hash).put(hashed)
+    const { hash, hashed } = await hashObj(gift)
 
-    gun.user().get(prefix).get(hash).put(true)
+    gun.get(giftPath).get(hash).put(hashed)
 
+    gun.user().get(giftPath).get(hash).put(true)
 
   }
 
@@ -29,24 +33,35 @@ export function useGift() {
 
 }
 
+export async function acceptGift(hash) {
+  const { user } = useUser()
+  user.db.get(giftPath).get(hash).put(true)
+}
+
+
 
 export function useGifts() {
+  const { user } = useUser()
   const gun = useGun()
 
   const gifts = reactive({})
 
-  gun.get('#' + prefix).map().on((d, k) => {
+  gun.get(giftPath).map().once(async (d, k) => {
     try {
-      gifts[k] = JSON.parse(d)
+      const obj = JSON.parse(d)
+
+      obj.sent = await gun.user(obj.from).get(giftPath).get(k)
+      obj.received = await gun.user(obj.to).get(giftPath).get(k)
+      if (obj.sent && obj.received || d.includes(user?.pub)) {
+        gifts[k] = obj
+      }
+
+
     } catch (e) {
       // gifts[k] = d
     }
   })
 
-  function del(hash) {
-    console.log('del')
-    gun.user().get(prefix).get(hash).put(null)
-  }
-  return { gifts, del }
+  return { gifts }
 }
 

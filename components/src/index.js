@@ -123,6 +123,10 @@ export { default as UtilShare } from "./util/Share.vue";
 export { default as Utiltools } from "./util/Tools.vue";
 export { default as UtilRelay } from "./util/Relay.vue";
 
+// GIFTS
+
+export { default as GiftCard } from './gift/Card.vue'
+
 export * from "@composables";
 
 export { default as FloatingVue } from 'floating-vue'

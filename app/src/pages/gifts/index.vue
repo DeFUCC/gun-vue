@@ -1,15 +1,19 @@
 <script setup>
 import { useGifts } from '@composables'
 
-const { gifts, del } = useGifts()
+const { gifts } = useGifts()
 
-console.log(gifts)
 </script>
 
 <template lang='pug'>
 .flex.flex-col.gap-2
-  .p-2.rounded-bg-light-200.bg-opacity-40(
-    v-for="(gift, hash) in gifts" :key="hash"
-    ) {{ gift }}
-    button(@click="del(hash)") del
+
+  .flex.flex-col.gap-2
+    .text-lg.font-bold Gifts
+    gift-card(
+      v-for="(gift, hash) in gifts" :key="hash"
+      :gift="gift"
+      :hash="hash"
+      )
+    
 </template>
