@@ -11,6 +11,7 @@ export function useGuests({ TIMEOUT = 10000 } = {}) {
   const offline = reactive({});
 
   const count = reactive({
+    total: computed(() => Object.keys(guests).length),
     online: computed(() => Object.keys(online).length),
     offline: computed(() => Object.keys(offline).length),
   });

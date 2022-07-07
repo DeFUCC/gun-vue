@@ -9,6 +9,7 @@ export * from "./chat/";
 export * from "./room/";
 export * from "./log/";
 export * from "./dict/";
+export * from "./gifts/";
 
 export * from "gun-avatar";
 export { default as ms } from "ms";

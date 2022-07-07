@@ -9,7 +9,8 @@ const routes = {
   "/posts/": "Posts",
   "/users/": "Users",
   "/rooms/": "Rooms",
-  '/dict/': "Dictionary"
+  '/dict/': "Dictionary",
+  '/gifts/': "Gifts"
 };
 
 
@@ -49,6 +50,7 @@ const color = useColor('light')
     la-broadcast-tower(v-if="link == 'Topics'")
     ph-users(v-if="link == 'Users'")
     ph-books(v-if="link == 'Dictionary'")
+    la-sun(v-if="link == 'Gifts'")
     .ml-1.hidden.sm_block.text-sm {{ link }}
   .flex-1
 </template>
