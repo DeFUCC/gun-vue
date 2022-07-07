@@ -35,7 +35,7 @@
     "deploy": "sh deploy.sh"
   },
   "dependencies": {
-    "@vueuse/core": "8.7.5",
+    "@vueuse/core": "8.9.0",
     "base32": "^0.0.6",
     "buffer": "^6.0.3",
     "color-hash": "^2.0.1",
