@@ -2,7 +2,7 @@
 import { defineAsyncComponent, reactive } from 'vue'
 
 const AccountAvatar = defineAsyncComponent(() =>
-  import('./Avatar.vue')
+  import('./AccountAvatar.vue')
 )
 
 const state = reactive({

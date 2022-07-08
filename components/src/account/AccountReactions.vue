@@ -26,7 +26,7 @@ const postList = computed(() => {
 .flex.flex-col
   .text-xl.font-bold.mb-2 {{ isMe ? 'My ' : '' }} Posts
   .flex.flex-col.gap-4
-    reaction-tabs(:reactions="userPosts" v-model:current="postReaction")
+    post-reaction-tabs(:reactions="userPosts" v-model:current="postReaction")
     transition(name="fade")
       .flex.flex-col.bg-light-800.rounded-2xl.gap-4(v-if="postReaction")
         transition-group(name="fade")

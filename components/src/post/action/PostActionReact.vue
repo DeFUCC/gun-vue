@@ -26,7 +26,7 @@ const selected = ref()
 <template lang='pug'>
 .p-1.flex.flex-wrap.gap-2.items-center
   .p-2.font-bold {{ rating > 0 ? '+' : '' }}{{ rating }}
-  reaction-button(@react="react($event)" :isMy="authors?.[user.pub]" :reaction="reaction")
+  post-reaction-button(@react="react($event)" :isMy="authors?.[user.pub]" :reaction="reaction")
 
   transition-group(name="fade")
     .p-2px.flex.items-center.rounded-3xl.bg-light-500.gap-1(

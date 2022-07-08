@@ -43,7 +43,7 @@ export default defineConfig({
     Components({
       dirs: ["src/components", "../components/src"],
       extensions: ["vue"],
-      directoryAsNamespace: true,
+      directoryAsNamespace: false,
       globalNamespaces: ["global"],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       exclude: [/node_modules/, /\.git/],
