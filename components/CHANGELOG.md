@@ -1,5 +1,11 @@
 # @gun-vue/components
 
+## 0.9.5
+
+### Patch Changes
+
+- Renamed all components to full names - no directoryas namespace option of unplugin-components needed any more. This should make the components more stable on some case sensitive Linux systems and avoid any naming collisions. And now we can showcase all of the components one by one with the Histoire lib. Majestic!
+
 ## 0.9.4
 
 ### Patch Changes

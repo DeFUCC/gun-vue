@@ -1,7 +1,7 @@
 {
   "name": "@gun-vue/app",
   "private": true,
-  "version": "0.9.4",
+  "version": "0.9.5",
   "homepage": "https://gun-vue.js.org",
   "author": "davay42 <davay@defucc.me>",
   "funding": {

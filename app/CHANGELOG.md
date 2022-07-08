@@ -1,4 +1,11 @@
-# @gun-vue/demo
+# @gun-vue/app
+
+## 0.9.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @gun-vue/components@0.9.5
 
 ## 0.9.4
 
