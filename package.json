@@ -1,23 +1,23 @@
 {
   "name": "@gun-vue/repo",
-  "private": true,
   "version": "0.9.3",
+  "private": true,
+  "homepage": "https://gun-vue.js.org",
   "funding": {
     "type": "ko-fi",
     "url": "https://ko-fi.com/davay"
   },
-  "homepage": "https://gun-vue.js.org",
   "type": "module",
   "scripts": {
     "app": "cd app && pnpm run dev",
-    "docs": "cd docs && pnpm run dev",
-    "build": "cd composables && pnpm run build && cd .. && cd components && pnpm run build && cd .. && cd docs && pnpm run build  && cd .. && cd app && pnpm run build ",
-    "relay": "cd relay && pnpm run start",
+    "build": "cd composables && pnpm run build && cd .. && cd components && pnpm run build && pnpm run story:build && cd .. && cd docs && pnpm run build  && cd .. && cd app && pnpm run build ",
     "change": "pnpm changeset",
-    "version": "pnpm changeset version",
-    "publish": "pnpm run build && pnpm changeset publish",
     "deploy": "sh deploy.sh",
-    "sky": "node deploy-to-skynet.js"
+    "docs": "cd docs && pnpm run dev",
+    "publish": "pnpm run build && pnpm changeset publish",
+    "relay": "cd relay && pnpm run start",
+    "sky": "node deploy-to-skynet.js",
+    "version": "pnpm changeset version"
   },
   "devDependencies": {
     "@changesets/cli": "^2.23.0",

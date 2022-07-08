@@ -3,27 +3,57 @@
 </script>
 
 <template lang='pug'>
-
-.flex.flex-wrap.justify-center.z-200.text-2xl.w-full.gap-2.py-4.bg-dark-50.bg-opacity-80
-  a.btn.flex.items-center(href="https://homescreen.hns.siasky.net/#/skylink/AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A" target="_blank")
-    simple-icons-skynet
-    .text-sm.hidden.sm_block.ml-2 Homescreen
-  a.btn.flex.items-center(href="/docs/" target="_blank")
-    la-book-open
-    .text-sm.hidden.sm_block.ml-2 Documentation
-  a.btn.flex.items-center(href="https://www.npmjs.com/org/gun-vue" target="_blank")
-    la-npm
-    .text-sm.hidden.sm_block.ml-2 Packages
-  a.btn.flex.items-center(href="https://github.com/defucc/gun-vue" target="_blank")
-    la-github
-    .text-sm.hidden.sm_block.ml-2 Repository
-  a.btn.flex.items-center(href="https://ko-fi.com/davay" target="_blank" title="Sponsorship")
-    cib-ko-fi
-    .text-sm.hidden.sm_block.ml-2 Support
+.flex.flex-col.bg-dark-50.bg-opacity-70
+  .text-xl.text-center.mt-2.font-bold Welcome to Gun-Vue
+  .flex.flex-wrap.justify-center.z-200.text-2xl.w-full.gap-4.py-4
+    a.btn(
+      href="https://homescreen.hns.siasky.net/#/skylink/AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A" target="_blank"
+      )
+      simple-icons-skynet
+      .bar
+        .title Homescreen
+        .subtitle Install the app
+    a.btn(href="/docs/" target="_blank")
+      la-book-open
+      .bar
+        .title Composables
+        .subtitle Read docs
+    a.btn(href="/components/" target="_blank")
+      la-book
+      .bar
+        .title Components
+        .subtitle View stories
+    a.btn(href="https://www.npmjs.com/org/gun-vue" target="_blank")
+      la-npm
+      .bar
+        .title Packages
+        .subtitle Install and use
+    a.btn(href="https://github.com/defucc/gun-vue" target="_blank")
+      la-github
+      .bar
+        .title Repository
+        .subtitle Contribute code
+    a.btn(href="https://ko-fi.com/davay" target="_blank" title="Sponsorship")
+      cib-ko-fi
+      .bar
+        .title Support
+        .subtitle Donate funds
 </template>
 
 <style lang="postcss" scoped>
 .btn {
-  @apply bg-light-100/30 p-2 rounded-lg hover_bg-light-100/70;
+  @apply flex gap-2 items-center transition bg-light-100/70 p-2 rounded-lg hover_bg-light-100;
+}
+
+.title {
+  @apply text-18px font-bold;
+}
+
+.subtitle {
+  @apply text-sm;
+}
+
+.bar {
+  @apply flex-1 p-1 flex flex-col gap-1;
 }
 </style>

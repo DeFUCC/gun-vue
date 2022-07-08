@@ -2,6 +2,11 @@ import { defineConfig } from 'histoire'
 
 export default defineConfig({
   setupFile: 'histoire.setup.js',
+  outDir: '../app/public/components/',
+  vite: {
+    base: '/components/'
+  },
+  routerMode: 'hash',
   theme: {
     title: 'Gun-Vue components',
     // logo: {
