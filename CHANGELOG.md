@@ -1,5 +1,11 @@
 # @gun-vue/repo
 
+## 0.9.4
+
+### Patch Changes
+
+- 960a869c: Histroire components stories fit into the build. Had to disable VitePWA for it to work properly in a nested folder.
+
 ## 0.9.3
 
 ### Patch Changes

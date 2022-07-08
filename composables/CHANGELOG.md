@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.9.4
+
+### Patch Changes
+
+- e9cdf199: Gift exchange started
+
 ## 0.9.3
 
 ### Patch Changes
