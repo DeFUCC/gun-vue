@@ -44,7 +44,10 @@ export function useGifts() {
   const { user } = useUser()
   const gun = useGun()
 
+  const my = reactive({})
+  const proposed = reactive({})
   const gifts = reactive({})
+
 
   gun.get(giftPath).map().once(async (d, k) => {
     try {
@@ -52,8 +55,16 @@ export function useGifts() {
 
       obj.sent = await gun.user(obj.from).get(giftPath).get(k)
       obj.received = await gun.user(obj.to).get(giftPath).get(k)
-      if (obj.sent && obj.received || d.includes(user?.pub)) {
-        gifts[k] = obj
+
+      if (d.includes(user?.pub)) {
+        my[k] = obj
+      }
+
+      if (obj.sent) {
+        if (!obj.received)
+          proposed[k] = obj
+        else
+          gifts[k] = obj
       }
 
 
@@ -62,6 +73,6 @@ export function useGifts() {
     }
   })
 
-  return { gifts }
+  return { my, proposed, gifts }
 }
 

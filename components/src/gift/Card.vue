@@ -1,6 +1,7 @@
 <script setup>
 import { acceptGift, giftPath, useUser } from '@composables'
-import { ref } from 'vue'
+import { computed } from 'vue'
+import { useTimeAgo } from '@vueuse/core'
 
 const props = defineProps({
   hash: String,
@@ -17,29 +18,28 @@ const props = defineProps({
 
 const { user } = useUser()
 
-const accepted = ref()
+const complete = computed(() => props.gift.sent && props.gift.received)
 
-user.db.get(giftPath).get(props.hash).on(d => {
-  accepted.value = d
-})
-
+const time = useTimeAgo(props.gift.date)
 
 </script>
 
 <template lang='pug'>
-.p-2.rounded-xl.bg-light-200.bg-opacity-90.flex.shadow-lg
-  account-avatar.m-4.min-w-50px.flex-1(:pub="gift.from" :size="100")
-  .p-2.bg-green-300.h-4.rounded-xl(v-if="gift.sent")
-  .p-2.bg-green-300.h-4.rounded-xl(v-if="gift.received")
-  .flex-auto 
-    .flex.gap-4.p-2.items-center.flex-wrap
-      .flex.flex-col
-        .text-xl.font-bold {{ gift.qn }}
-      .flex.flex-col
-        .text-lg {{ gift.ql }}
-      .flex.items-center.gap-2.p-2 FOR
-        account-avatar(:pub="gift.to")
-      .p-2(v-if="gift.wish") {{ gift.wish }}
-      .p-2(v-if="gift.date") {{ gift.date }}
-      button.button(@click="acceptGift(hash)" v-if="gift.to == user?.pub && !accepted") Accept
+.p-2.rounded-xl.bg-light-200.bg-opacity-90.flex.shadow-lg.flex.items-center(
+  :style="{ backgroundColor: complete ? 'lightgreen' : 'transparent' }"
+  )
+  .flex.items-center.gap-2
+    account-avatar.flex-auto(:pub="gift.from")
+    .flex.items-center.gap-2 TO
+    account-avatar(:pub="gift.to")
+  .flex.gap-2.p-2.items-center.flex-wrap.flex-1
+    .flex.flex-col
+      .text-xl.font-bold {{ gift.qn }}
+    .flex.flex-col
+      .text-lg {{ gift.ql }}
+
+    .p-2.flex-auto(v-if="gift.wish") {{ gift.wish }}
+
+    .p-2(v-if="gift.date") {{ time }}
+    button.button(@click="acceptGift(hash)" v-if="gift.to == user?.pub && !complete") Accept
 </template>
