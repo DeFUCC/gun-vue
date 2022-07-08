@@ -1,4 +1,4 @@
-# @gun-vue/site
+# @gun-vue/docs
 
 ## 0.9.5
 
