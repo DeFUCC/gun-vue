@@ -17,6 +17,7 @@
     "publish": "pnpm run build && pnpm changeset publish",
     "relay": "cd relay && pnpm run start",
     "sky": "node deploy-to-skynet.js",
+    "story": "cd components && pnpm run story:dev",
     "version": "pnpm changeset version"
   },
   "devDependencies": {
