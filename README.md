@@ -10,17 +10,19 @@ Gun-vue – is where the peer-to-peer javascript database Gun meets the reactivi
 
 @gun-vue is a collection of essential building blocks to create a variety of decentralized apps for online and offline collaboration. It's a moment when we can feel the nature of distributed networking and have fun together!
 
-[Gun](https://gun.eco) is a CRDT distributed graph database, Vue is a reactive JS UI framework, SEA is web-browser cryptography adapter and together they evolve into an ecosystem of multiple app levels.
+[Gun](https://gun.eco) is a CRDT based distributed graph database, Vue is a reactive JS UI framework, SEA is web-browser cryptography adapter and together they evolve into an ecosystem of multiple app levels.
 
 The project is committed to give all the basic tools for everyone to participate in exploring this new universe. You can find your own way in it for yourself.
 
-There are 3 packages in the [@gun-vue npmjs org](https://www.npmjs.com/org/gun-vue) for you to install and use:
+There code is organised into distinct 3 packages in the [@gun-vue npmjs.com organisation](https://www.npmjs.com/org/gun-vue) for you to install and use:
 
 ## [@gun-vue/components](https://github.com/DeFUCC/gun-vue/tree/master/components)
 
 <a href="https://www.npmjs.com/package/@gun-vue/components" target="_blank"><img src="https://img.shields.io/npm/v/@gun-vue/components?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
 
-Ready to use Vue 3 components as building blocks to implement Gun powered interactivity in seconds
+Ready to use Vue 3 components as building blocks to implement Gun powered interactivity in seconds.
+
+The interactive components documentation is available at [gun-vue.js.org/components/](https://gun-vue.js.org/components/) built with the [Histoire](https://histoire.dev) stories.
 
 ---
 
@@ -40,7 +42,7 @@ A simple no-store Gun server to throw at any free tier Node.js environment.
 
 ---
 
-## [@gun-vue/demo](https://github.com/DeFUCC/gun-vue/tree/master/demo)
+## [@gun-vue/app](https://github.com/DeFUCC/gun-vue/tree/master/app)
 
 The main [gun-vue.js.org](https://gun-vue.js.org) site is an example Vite SPA
 
@@ -52,13 +54,9 @@ The docs at [gun-vue.js.org/docs](https://gun-vue.js.org/docs) is an example Vit
 
 ---
 
-### [Watch a youtube video review of the build process](https://www.youtube.com/watch?v=4hpVRgVQvsY)
+## Watch the development video blog at [gun-vue.js.org/docs/blog/](https://gun-vue.js.org/docs/blog/)
 
-### [Gun-vue.js.org and v0.5.0 video presentation](https://www.youtube.com/watch?v=ALKkBhj1IIE)
-
-### To do list
-
-We manage tasks for the build at this [Taskade project](https://www.taskade.com/d/XtaACTKmN4KqSC1v?share=view&view=hsVKduBWoYMa9S7a).
+You can find shorter new features announcements along with longer live coding sessions there.
 
 ## How to build the workspace repo yourself?
 
@@ -70,5 +68,5 @@ npm i -G pnpm
 pnpm i
 ```
 
-3. Use `demo` and `docs` scripts in the root `package.json` to run corresponding dev servers.
+3. Use `demo`, `docs` and `story` scripts in the root `package.json` to run corresponding dev servers.
 4. Use `npm run build` to build the whole project to the `_dist` folder.
