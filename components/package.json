@@ -1,34 +1,37 @@
 {
   "name": "@gun-vue/components",
   "version": "0.9.3",
-  "license": "MIT",
+  "homepage": "https://gun-vue.js.org",
+  "bugs": {
+    "url": "https://github.com/defucc/gun-vue/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/defucc/gun-vue.git",
     "directory": "components"
   },
-  "bugs": {
-    "url": "https://github.com/defucc/gun-vue/issues"
-  },
-  "homepage": "https://gun-vue.js.org",
-  "author": "davay42 <davay@defucc.me>",
   "funding": {
     "type": "ko-fi",
     "url": "https://ko-fi.com/davay"
   },
-  "module": "./dist/components.es.js",
-  "main": "./dist/components.es.js",
+  "license": "MIT",
+  "author": "davay42 <davay@defucc.me>",
   "exports": {
     ".": {
       "import": "./dist/components.es.js"
     },
     "./*": "./*"
   },
+  "main": "./dist/components.es.js",
+  "module": "./dist/components.es.js",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "story:build": "histoire build",
+    "story:dev": "histoire dev",
+    "story:preview": "histoire preview"
   },
   "dependencies": {
     "@gun-vue/composables": "workspace:^",
@@ -45,6 +48,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.3",
+    "histoire": "^0.7.9",
     "pug": "^3.0.2",
     "unplugin-icons": "^0.14.7",
     "unplugin-vue-components": "^0.21.1",

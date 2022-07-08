@@ -80,11 +80,4 @@ export const soul = Gun?.node?.soul;
  */
 export const genUUID = Gun?.text?.random;
 
-// A putPriv chain extension as noted by @amark
-GUN.chain.putPriv = function (data, cb, opt) {
-  var ref = this;
-  (async function () {
-    ref.put(await SEA.encrypt(data, ref.back(-1).user().pair()), cb, opt);
-  })();
-  return ref;
-};
+
