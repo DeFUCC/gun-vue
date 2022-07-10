@@ -4,13 +4,15 @@ import { computed } from 'vue'
 
 const props = defineProps({
   data: String,
+  size: { type: Number, default: 400 },
+  margin: { type: Number, default: 4 }
 });
 
 const src = computed(() => {
   if (!props.data) return;
   return qrcode(props.data, {
-    size: 400,
-    margin: 4,
+    size: props.size,
+    margin: props.margin,
   });
 });
 </script>
