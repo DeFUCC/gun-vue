@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
-import { useColor, useMates, isEmoji, user } from '@composables';
+import { useColor, useMates, isEmoji, user } from '#composables';
 
 const props = defineProps({
   pub: { type: String, default: '' }

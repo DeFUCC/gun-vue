@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, toRef } from 'vue'
-import { useUser } from '@composables'
+import { useUser } from '#composables'
 
 const { user } = useUser()
 

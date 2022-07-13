@@ -1,5 +1,5 @@
 <script setup>
-import { useDraw } from '@composables'
+import { useDraw } from '#composables'
 
 const { brush, drauu, draw } = useDraw()
 

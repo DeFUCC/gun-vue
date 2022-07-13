@@ -1,6 +1,6 @@
 <script setup>
 import { ref, reactive, computed, toRef } from "vue"
-import { useAccount, usePrivateChat } from '@composables'
+import { useAccount, usePrivateChat } from '#composables'
 const props = defineProps({
   pub: String
 })

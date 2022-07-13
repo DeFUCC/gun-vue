@@ -1,4 +1,4 @@
-<script setup>import { usePrivateChatList } from '@composables';
+<script setup>import { usePrivateChatList } from '#composables';
 
 const props = defineProps({
   title: { type: String, default: 'Private chats' }

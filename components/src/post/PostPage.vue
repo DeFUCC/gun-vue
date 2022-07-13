@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watchEffect, computed } from 'vue'
-import { useColor, usePosts, useGun, useUser, usePost, useMd } from '@composables';
+import { useColor, usePosts, useGun, useUser, usePost, useMd } from '#composables';
 
 const { user } = useUser()
 const gun = useGun()

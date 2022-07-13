@@ -1,6 +1,6 @@
 <script setup>
 import { computed, reactive, watchEffect, onMounted } from 'vue'
-import { useColor, useMates, useGun, currentRoom, usePosts, user } from '@composables';
+import { useColor, useMates, useGun, currentRoom, usePosts, user } from '#composables';
 import ForceGraph from 'force-graph';
 
 //https://github.com/vasturiano/force-graph

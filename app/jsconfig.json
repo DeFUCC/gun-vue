@@ -16,7 +16,7 @@
 		"baseUrl": "./",
 		"jsx": "preserve",
 		"paths": {
-			"@composables": ["../composables/"],
+			"#composables": ["../composables/src/"],
 		}
 	},
 	"include": ["./", "../composables/*"]

@@ -22,7 +22,7 @@ const state = reactive({
 })
 
 async function generate() {
-  const { SEA } = await import('@composables')
+  const { SEA } = await import('#composables')
   gift.from = (await SEA.pair()).pub
   gift.to = (await SEA.pair()).pub
 }
@@ -32,7 +32,7 @@ onMounted(() => {
 })
 
 watch(gift, async () => {
-  const { hashObj } = await import('@composables')
+  const { hashObj } = await import('#composables')
   hashed.value = await hashObj(gift)
 })
 

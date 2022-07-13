@@ -1,6 +1,6 @@
 <script setup>
 
-import { unsafeHash, safeHash, isHash } from '@composables';
+import { unsafeHash, safeHash, isHash } from '#composables';
 import { computed } from 'vue'
 
 const props = defineProps({

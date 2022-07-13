@@ -1,5 +1,5 @@
 <script setup>
-import { useRoom, useColor, currentRoom, useBackground } from '@composables';
+import { useRoom, useColor, currentRoom, useBackground } from '#composables';
 import { ref, computed } from 'vue'
 
 defineEmits(['room', 'rooms'])

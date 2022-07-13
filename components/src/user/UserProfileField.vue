@@ -1,5 +1,5 @@
 <script setup>
-import { updateProfile } from '@composables'
+import { updateProfile } from '#composables'
 import { ref } from 'vue'
 import urlRegex from 'url-regex'
 

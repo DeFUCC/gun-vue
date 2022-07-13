@@ -1,5 +1,5 @@
 <script setup>
-import { useRelay, useRelays } from '@composables'
+import { useRelay, useRelays } from '#composables'
 import { onMounted } from 'vue';
 
 const { relay, setPeer, resetPeer } = useRelay()

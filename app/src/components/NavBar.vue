@@ -1,5 +1,5 @@
 <script setup>
-import { currentRoom, useBackground, useColor } from '@composables';
+import { currentRoom, useBackground, useColor } from '#composables';
 import { computed } from 'vue'
 
 const routes = {

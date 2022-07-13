@@ -1,5 +1,5 @@
 <script setup>
-import { usePass } from '@composables'
+import { usePass } from '#composables'
 const { pass } = usePass();
 
 </script>

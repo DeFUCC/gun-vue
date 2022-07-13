@@ -1,5 +1,5 @@
 <script setup>
-import { unsafeHash, safeHash, dictRecord } from '@composables';
+import { unsafeHash, safeHash, dictRecord } from '#composables';
 import { watch } from 'vue';
 
 const props = defineProps({

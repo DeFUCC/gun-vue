@@ -1,6 +1,6 @@
 <script setup>
 import { onClickOutside, useMediaQuery } from '@vueuse/core';
-import { useGuests, joinRoom, useUser } from '@composables';
+import { useGuests, joinRoom, useUser } from '#composables';
 import { reactive, ref, computed, toRef } from 'vue'
 
 const isLarge = useMediaQuery('(min-width: 640px)')

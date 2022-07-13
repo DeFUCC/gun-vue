@@ -1,5 +1,5 @@
 <script setup>
-import { useUser } from '@composables'
+import { useUser } from '#composables'
 import { ref } from 'vue'
 
 const { user } = useUser()

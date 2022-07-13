@@ -1,8 +1,8 @@
 <script setup>
 import { watch } from 'vue'
-import { useSpace, useUser, useColor, useRoom, selectedUser } from '@composables'
+import { useSpace, useUser, useColor, useRoom, selectedUser } from '#composables'
 import { useDrag, usePinch } from '@vueuse/gesture'
-import { useDraw } from '@composables'
+import { useDraw } from '#composables'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const props = defineProps({

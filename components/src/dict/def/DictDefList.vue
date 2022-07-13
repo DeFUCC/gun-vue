@@ -1,5 +1,5 @@
 <script setup>
-import { useDefs, useColor, langParts, useUser, dictRecord } from '@composables';
+import { useDefs, useColor, langParts, useUser, dictRecord } from '#composables';
 
 const deepColor = useColor('deep')
 

@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch, computed } from 'vue'
 
-import { usePictureUpload } from '@composables'
+import { usePictureUpload } from '#composables'
 
 const props = defineProps({
   field: { type: String, default: 'cover' },

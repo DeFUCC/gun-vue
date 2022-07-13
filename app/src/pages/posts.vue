@@ -1,5 +1,5 @@
 <script setup>
-import { safeHash, currentRoom } from '@composables'
+import { safeHash, currentRoom } from '#composables'
 import { ref, computed } from 'vue'
 
 const showGraph = ref()

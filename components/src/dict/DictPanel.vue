@@ -1,5 +1,5 @@
 <script setup>
-import { dictLang, languages, useDictLangs } from '@composables'
+import { dictLang, languages, useDictLangs } from '#composables'
 
 const langs = useDictLangs()
 

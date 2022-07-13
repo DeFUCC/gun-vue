@@ -1,5 +1,5 @@
 <script setup>
-import { useColor, usePost } from '@composables'
+import { useColor, usePost } from '#composables'
 import { computed, ref, watchEffect } from 'vue'
 
 const colorLight = useColor('light')

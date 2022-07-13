@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, selectedUser, safeHash } from '@composables';
+import { useUser, selectedUser, safeHash } from '#composables';
 
 const props = defineProps({
   size: { type: Number, default: 42 }

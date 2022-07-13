@@ -1,5 +1,5 @@
 <script setup>
-import { useAccount } from '@composables'
+import { useAccount } from '#composables'
 import urlRegex from 'url-regex'
 
 const props = defineProps({

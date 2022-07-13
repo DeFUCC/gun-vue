@@ -1,5 +1,5 @@
 <script setup>
-import { useRelay, useRelays } from '@composables'
+import { useRelay, useRelays } from '#composables'
 import { ref } from 'vue'
 
 const props = defineProps({

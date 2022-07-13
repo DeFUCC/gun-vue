@@ -1,5 +1,5 @@
 <script setup>
-import { usePassLink, user } from '@composables'
+import { usePassLink, user } from '#composables'
 import { useRouter } from 'vue-router'
 import { ref, onMounted, watch } from 'vue'
 const router = useRouter()

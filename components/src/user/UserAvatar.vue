@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, useGun, hashText } from '@composables'
+import { useUser, useGun, hashText } from '#composables'
 import { ref } from 'vue'
 
 const { user } = useUser()

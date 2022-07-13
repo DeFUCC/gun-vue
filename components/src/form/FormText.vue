@@ -2,7 +2,7 @@
 import { reactive, ref, onMounted, watch, computed, nextTick } from 'vue'
 import SimpleMDE from 'simplemde'
 import 'simplemde/dist/simplemde.min.css'
-import { uploadText, parseMd } from '@composables'
+import { uploadText, parseMd } from '#composables'
 
 const emit = defineEmits(['update:text', 'frontmatter', 'close'])
 

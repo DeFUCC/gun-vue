@@ -1,5 +1,5 @@
 <script setup>
-import { useGifts } from '@composables'
+import { useGifts } from '#composables'
 
 const { gifts, my, proposed } = useGifts()
 

@@ -1,5 +1,5 @@
 <script setup>
-import { useUser } from '@composables'
+import { useUser } from '#composables'
 
 const { user } = useUser()
 </script>

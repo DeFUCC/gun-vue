@@ -1,5 +1,5 @@
 <script setup>
-import { dictRecord, useColor, selectedUser } from '@composables';
+import { dictRecord, useColor, selectedUser } from '#composables';
 import { computed } from 'vue'
 
 const color = useColor('light')

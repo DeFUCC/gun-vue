@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useGun, useColor, useDictRecordsFor, dictRecord, langParts, useUser } from '@composables';
+import { useGun, useColor, useDictRecordsFor, dictRecord, langParts, useUser } from '#composables';
 
 const props = defineProps({
   hash: String

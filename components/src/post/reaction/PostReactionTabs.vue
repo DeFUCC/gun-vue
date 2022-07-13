@@ -1,6 +1,6 @@
 <script setup>
 
-import { isEmoji } from '@composables';
+import { isEmoji } from '#composables';
 const props = defineProps({
   reactions: Object,
   current: String

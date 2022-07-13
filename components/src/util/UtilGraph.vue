@@ -1,5 +1,5 @@
 <script setup >
-import { useGun, useColor } from '@composables';
+import { useGun, useColor } from '#composables';
 import { ref, onBeforeUnmount } from 'vue'
 
 const graph = ref({});

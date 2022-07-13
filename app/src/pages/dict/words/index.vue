@@ -1,5 +1,5 @@
 <script setup>
-import { safeHash } from '@composables';
+import { safeHash } from '#composables';
 </script>
 
 <template lang='pug'>

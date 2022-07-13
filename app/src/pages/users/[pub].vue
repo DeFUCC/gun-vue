@@ -1,6 +1,6 @@
 <script setup>
 
-import { safeHash } from '@composables'
+import { safeHash } from '#composables'
 
 
 import { ref, onMounted } from 'vue'

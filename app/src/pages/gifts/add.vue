@@ -1,5 +1,5 @@
 <script setup>
-import { useGuests, useGift, useUser } from '@composables'
+import { useGuests, useGift, useUser } from '#composables'
 
 const { user } = useUser()
 

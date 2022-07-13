@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 
-import { useUser, useColor, useBackground } from '@composables'
+import { useUser, useColor, useBackground } from '#composables'
 const { user, leave } = useUser()
 
 const colorDeep = useColor('deep')

@@ -25,7 +25,7 @@ const app = createApp(App);
 app.use(FloatingVue)
 app.use(router).mount("#app");
 
-import { currentRoom } from "@composables";
+import { currentRoom } from "#composables";
 
 router.beforeEach((to, from, next) => {
   if (!currentRoom.isRoot && !to.query?.room) {

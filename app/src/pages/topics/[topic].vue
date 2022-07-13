@@ -1,5 +1,5 @@
 <script setup>
-import { currentRoom } from '@composables';
+import { currentRoom } from '#composables';
 
 const props = defineProps({
   topic: String,

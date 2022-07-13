@@ -1,5 +1,5 @@
 <script setup>
-import { useLog } from '@composables'
+import { useLog } from '#composables'
 const props = defineProps({
   name: { type: String, default: 'logs' },
   after: { type: String, default: "2021-01-01" },

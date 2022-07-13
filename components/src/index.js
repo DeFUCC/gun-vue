@@ -16,6 +16,6 @@ export * from './ui/index.js'
 export * from './user/index.js'
 export * from './util/index.js'
 
-export * from "@composables";
+export * from "#composables";
 
 export { default as FloatingVue } from 'floating-vue'

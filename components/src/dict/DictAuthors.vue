@@ -1,5 +1,5 @@
 <script setup>
-import { useDictAuthors } from '@composables'
+import { useDictAuthors } from '#composables'
 const authors = useDictAuthors()
 
 defineEmits(['author'])

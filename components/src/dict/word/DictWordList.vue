@@ -1,5 +1,5 @@
 <script setup>
-import { useWords, useColor, useUser, dictRecord } from '@composables';
+import { useWords, useColor, useUser, dictRecord } from '#composables';
 
 const color = useColor('light')
 

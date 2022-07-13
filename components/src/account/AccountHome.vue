@@ -1,5 +1,5 @@
 <script setup>
-import { useAccount, useUser, useBackground } from '@composables';
+import { useAccount, useUser, useBackground } from '#composables';
 import { computed } from 'vue'
 const props = defineProps({
   pub: { type: String, default: '' }

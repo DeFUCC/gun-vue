@@ -17,7 +17,7 @@
 		"jsx": "preserve",
 		"paths": {
 			"@/*": ["./*"],
-			"@composables": ["../composables/src/"],
+			"#composables": ["../composables/src/"],
 		}
 	},
 	"include": ["./src"]

@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
-import { useUser } from '@composables';
+import { useUser } from '#composables';
 
 const emit = defineEmits(['user', 'room', 'close', 'chat'])
 

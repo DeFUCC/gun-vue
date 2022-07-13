@@ -1,5 +1,5 @@
 <script setup>
-import { useAccount, useUser, addProfileField } from '@composables'
+import { useAccount, useUser, addProfileField } from '#composables'
 import { ref } from 'vue'
 
 const { user } = useUser()

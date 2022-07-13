@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, SEA, createRoom, useBackground, enterRoom } from '@composables';
+import { useUser, SEA, createRoom, useBackground, enterRoom } from '#composables';
 import { reactive, ref, computed } from 'vue'
 
 const emit = defineEmits(['room'])

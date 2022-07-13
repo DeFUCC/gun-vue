@@ -1,5 +1,5 @@
 <script setup>
-import { usePosts, useUser, countRating } from '@composables'
+import { usePosts, useUser, countRating } from '#composables'
 import { ref, computed } from 'vue'
 
 const { user } = useUser()

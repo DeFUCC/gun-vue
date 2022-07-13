@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, useColor, } from '@composables';
+import { useUser, useColor, } from '#composables';
 import { computed, ref } from 'vue'
 
 const props = defineProps({

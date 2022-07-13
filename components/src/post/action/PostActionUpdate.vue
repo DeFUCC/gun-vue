@@ -1,5 +1,5 @@
 <script setup>
-import { usePostTimestamp } from '@composables'
+import { usePostTimestamp } from '#composables'
 
 const props = defineProps({
   tag: { type: String, default: 'posts' },

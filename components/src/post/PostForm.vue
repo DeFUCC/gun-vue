@@ -1,7 +1,7 @@
 <script setup>
 import { reactive, ref, onMounted, watch, computed } from 'vue'
 
-import { addPost, useColor } from '@composables'
+import { addPost, useColor } from '#composables'
 
 const props = defineProps({
   tag: { type: String, default: ' ' }

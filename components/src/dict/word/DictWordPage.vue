@@ -1,5 +1,5 @@
 <script setup>
-import { useWord, useColor, letterFilter, dictRecord, useDictRecordsFor } from '@composables';
+import { useWord, useColor, letterFilter, dictRecord, useDictRecordsFor } from '#composables';
 
 const props = defineProps({
   hash: String

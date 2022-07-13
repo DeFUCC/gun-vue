@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
-import { useUser, createRoom, SEA, enterRoom, recreateRoom } from '@composables';
+import { useUser, createRoom, SEA, enterRoom, recreateRoom } from '#composables';
 
 const emit = defineEmits(['browse'])
 

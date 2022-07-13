@@ -1,5 +1,5 @@
 <script setup>
-import { useRooms } from '@composables';
+import { useRooms } from '#composables';
 import { reactive, ref, computed } from 'vue'
 
 defineEmits(['browse'])

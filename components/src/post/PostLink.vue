@@ -1,5 +1,5 @@
 <script setup>
-import { useGun, currentRoom } from '@composables'
+import { useGun, currentRoom } from '#composables'
 import { reactive, computed } from 'vue'
 
 const props = defineProps({

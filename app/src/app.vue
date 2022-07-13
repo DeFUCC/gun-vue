@@ -1,7 +1,7 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
-import { currentRoom, rootRoom, useBackground } from "@composables";
+import { currentRoom, rootRoom, useBackground } from "#composables";
 
 
 const router = useRouter()

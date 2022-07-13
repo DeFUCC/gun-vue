@@ -1,5 +1,5 @@
 <script setup>
-import { useGun, currentRoom, isEmoji, useUser, reactToPost, useUserPosts, } from '@composables';
+import { useGun, currentRoom, isEmoji, useUser, reactToPost, useUserPosts, } from '#composables';
 import { reactive, ref, computed } from 'vue'
 
 const props = defineProps({

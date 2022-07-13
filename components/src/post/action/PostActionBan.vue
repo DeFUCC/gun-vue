@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { gun } from '@composables'
+import { gun } from '#composables'
 
 const props = defineProps({
   tag: { type: String, default: '' },

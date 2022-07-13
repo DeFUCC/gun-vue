@@ -1,6 +1,6 @@
 <script setup>
 import { reactive } from 'vue'
-import { useGun, safeHash, usePost } from '@composables';
+import { useGun, safeHash, usePost } from '#composables';
 
 const props = defineProps({
   pub: { type: String, default: '' }

@@ -1,6 +1,6 @@
 <script setup>
 
-import { useUser, useDictRecordsBy } from '@composables';
+import { useUser, useDictRecordsBy } from '#composables';
 import { computed } from 'vue'
 
 const props = defineProps({

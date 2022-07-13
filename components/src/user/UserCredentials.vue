@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, downloadFile, usePass } from '@composables'
+import { useUser, downloadFile, usePass } from '#composables'
 import { ref, computed } from 'vue'
 import { useClipboard, useShare } from '@vueuse/core'
 

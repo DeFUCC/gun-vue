@@ -1,6 +1,6 @@
 <script setup>
-import { safeHash } from '@composables';
-import { dictLang, languages, useDictLangs } from '@composables'
+import { safeHash } from '#composables';
+import { dictLang, languages, useDictLangs } from '#composables'
 
 </script>
 

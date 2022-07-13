@@ -1,5 +1,5 @@
 <script setup>
-import { acceptGift, useColor, useUser } from '@composables'
+import { acceptGift, useColor, useUser } from '#composables'
 import { computed } from 'vue'
 import { useTimeAgo } from '@vueuse/core'
 

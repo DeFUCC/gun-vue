@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, SEA, useColor, updateProfile } from '@composables'
+import { useUser, SEA, useColor, updateProfile } from '#composables'
 import { useRefHistory } from '@vueuse/core'
 import { ref, nextTick } from 'vue'
 
@@ -30,19 +30,11 @@ function createUser() {
 <template>
   <div
     class="flex flex-col items-center flex-1 p-2 bg-light-700 rounded-3xl shadow-lg text-center p-4 transition duration-300ms ease-in"
-    v-if="!user.is"
-    :style="{ backgroundColor: colorDeep.hex(newPair?.pub || '') }"
-  >
+    v-if="!user.is" :style="{ backgroundColor: colorDeep.hex(newPair?.pub || '') }">
     <div class="text-xl font-bold">Create a new account</div>
     <div class="mb-4 mt-2">Tap the circle to generate a new key</div>
-    <account-avatar
-      class="cursor-pointer shadow-xl border-8"
-      v-if="newPair"
-      :pub="newPair.pub"
-      :size="200"
-      @click="generatePair()"
-      :style="{ borderColor: colorDeep.hex(newPair.pub) }"
-    ></account-avatar>
+    <account-avatar class="cursor-pointer shadow-xl border-8" v-if="newPair" :pub="newPair.pub" :size="200"
+      @click="generatePair()" :style="{ borderColor: colorDeep.hex(newPair.pub) }"></account-avatar>
     <div class="flex flex-col">
       <div class="flex justify-center my-4">
         <button class="m-2 button items-center" v-if="history.length > 2" @click="undo()">
@@ -53,12 +45,9 @@ function createUser() {
         </button>
       </div>
       <input class="p-4 rounded-2xl my-2" v-model="name" placeholder="Enter your name or nickname" />
-      <button
-        class="button w-full flex justify-center items-center"
-        @click="createUser()"
+      <button class="button w-full flex justify-center items-center" @click="createUser()"
         v-if="newPair && !user.is && name"
-        :style="{ backgroundColor: colorLight.hex(newPair.pub) }"
-      >Authenticate</button>
+        :style="{ backgroundColor: colorLight.hex(newPair.pub) }">Authenticate</button>
     </div>
   </div>
 </template> 

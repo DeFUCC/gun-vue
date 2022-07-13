@@ -12,7 +12,7 @@ const state = reactive({
 })
 
 async function generate() {
-  const { SEA } = await import('@composables')
+  const { SEA } = await import('#composables')
   const pair = await SEA.pair()
   state.pub = pair.pub
 }

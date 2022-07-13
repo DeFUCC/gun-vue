@@ -1,5 +1,5 @@
 <script setup>
-import { useColor, usePost } from '@composables'
+import { useColor, usePost } from '#composables'
 import { computed, ref, watchEffect } from 'vue'
 
 const colorLight = useColor('light')
@@ -42,10 +42,12 @@ const { post } = usePost({ hash: props.hash })
   @apply transition duration-300ms ease-out min-w-280px shadow-sm m-2 rounded-xl cursor-pointer flex flex-wrap items-end bg-fixed bg-center;
   filter: grayscale(10%) brightness(95%);
 }
+
 .line:hover {
   @apply shadow-md;
   filter: grayscale(0%) brightness(100%);
 }
+
 .statement {
   @apply max-h-24 overflow-ellipsis overflow-clip;
   display: -webkit-box;

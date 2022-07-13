@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, safeJSONParse, uploadText, SEA, parseLink } from '@composables'
+import { useUser, safeJSONParse, uploadText, SEA, parseLink } from '#composables'
 import { ref, watch } from 'vue'
 
 const current = ref('pass')

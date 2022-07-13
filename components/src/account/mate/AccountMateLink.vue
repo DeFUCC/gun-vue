@@ -1,5 +1,5 @@
 <script setup>
-import { isEmoji, useColor } from '@composables';
+import { isEmoji, useColor } from '#composables';
 import { computed } from 'vue';
 
 const colorDeep = useColor('deep')

@@ -1,5 +1,5 @@
 <script setup>
-import { useReaction, useUser, useColor, useReactions, countRating } from '@composables';
+import { useReaction, useUser, useColor, useReactions, countRating } from '#composables';
 import { computed, ref } from 'vue'
 
 const props = defineProps({
