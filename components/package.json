@@ -36,11 +36,11 @@
   "dependencies": {
     "@gun-vue/composables": "workspace:^",
     "@qrcode/svg": "^1.0.0-beta.2",
-    "@vueuse/core": "8.9.1",
+    "@vueuse/core": "8.9.2",
     "@vueuse/gesture": "^2.0.0-beta.1",
     "@vueuse/sound": "^1.1.7",
     "floating-vue": "^2.0.0-y.0",
-    "force-graph": "^1.42.10",
+    "force-graph": "^1.42.11",
     "jsqr": "^1.4.0",
     "simplemde": "^1.11.2",
     "url-regex": "^5.0.0",
