@@ -8,7 +8,7 @@ const UtilGraph = defineAsyncComponent(() =>
 </script>
 
 <template lang="pug">
-Story(title="Util/Graph" :layout="{ type: 'single', iframe: false }")
+Story(title="Util/Graph" icon="mdi:graph-outline" :layout="{ type: 'single', iframe: false }")
   Variant(title="Round")
     UtilGraph
 

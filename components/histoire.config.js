@@ -15,7 +15,7 @@ export default defineConfig({
   tree: {
     file: 'title'
   },
-  routerMode: 'history',
+  routerMode: 'hash',
   theme: {
     title: 'Gun-Vue components',
     logo: {

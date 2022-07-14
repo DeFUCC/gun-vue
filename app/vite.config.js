@@ -53,46 +53,46 @@ export default defineConfig({
         }),
       ],
     }),
-    VitePWA({
-      registerType: "autoUpdate",
-      workbox: {
-        maximumFileSizeToCacheInBytes: 3000000
-      },
-      manifest: {
-        name: "Gun-Vue",
-        short_name: "Gun-Vue",
-        description: "Peer-to-peer graph database UI components",
-        iconPath: "./gun-vue-logo.png",
-        theme_color: "#43b883",
-        display: "standalone",
-        homepage_url: "https://gun-vue.js.org",
-        skylink: "AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A",
-        orientation: "portrait",
-        providedBy: {
-          name: "defucc",
-          url: "https://defucc.me",
-        },
-        icons: [
-          {
-            src: "./gun-vue-logo.svg",
-            type: "image/svg+xml",
-            sizes: "512x512",
-          },
-          {
-            src: "./gun-vue-logo.png",
-            sizes: "192x192",
-            type: "image/png",
-            purpose: "any maskable",
-          },
-          {
-            src: "./gun-vue-logo.png",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "any maskable",
-          },
-        ],
-      },
-    }),
+    // VitePWA({
+    //   registerType: "autoUpdate",
+    //   workbox: {
+    //     maximumFileSizeToCacheInBytes: 4000000
+    //   },
+    //   manifest: {
+    //     name: "Gun-Vue",
+    //     short_name: "Gun-Vue",
+    //     description: "Peer-to-peer graph database UI components",
+    //     iconPath: "./gun-vue-logo.png",
+    //     theme_color: "#43b883",
+    //     display: "standalone",
+    //     homepage_url: "https://gun-vue.js.org",
+    //     skylink: "AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A",
+    //     orientation: "portrait",
+    //     providedBy: {
+    //       name: "defucc",
+    //       url: "https://defucc.me",
+    //     },
+    //     icons: [
+    //       {
+    //         src: "./gun-vue-logo.svg",
+    //         type: "image/svg+xml",
+    //         sizes: "512x512",
+    //       },
+    //       {
+    //         src: "./gun-vue-logo.png",
+    //         sizes: "192x192",
+    //         type: "image/png",
+    //         purpose: "any maskable",
+    //       },
+    //       {
+    //         src: "./gun-vue-logo.png",
+    //         sizes: "512x512",
+    //         type: "image/png",
+    //         purpose: "any maskable",
+    //       },
+    //     ],
+    //   },
+    // }),
   ],
   base: './',
   build: {

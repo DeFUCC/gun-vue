@@ -18,7 +18,7 @@ async function generate() {
 </script>
 
 <template lang="pug">
-Story(title="User/Auth")
+Story(title="User/Auth" icon="la:key")
   Variant(title="Round")
     UserAuth(v-bind="state")
 
