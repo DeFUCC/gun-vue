@@ -19,7 +19,7 @@
     "@gun-vue/components": "workspace:^",
     "@gun-vue/composables": "workspace:^",
     "@gun-vue/relay": "workspace:^",
-    "@vueuse/core": "8.9.2",
+    "@vueuse/core": "8.9.3",
     "ola": "^1.2.1",
     "vue": "^3.2.37",
     "vue-router": "^4.1.2"
@@ -34,7 +34,7 @@
     "vite-plugin-pages": "^0.25.0",
     "vite-plugin-pages-sitemap": "^1.2.2",
     "vite-plugin-pwa": "^0.12.3",
-    "vite-plugin-windicss": "^1.8.6",
+    "vite-plugin-windicss": "^1.8.7",
     "windicss": "^3.5.6"
   }
 }
