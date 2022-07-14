@@ -10,6 +10,6 @@ const UtilRelay = defineAsyncComponent(() =>
 <template lang="pug">
 Story(title="Util/Relay")
   Variant(title="Round")
-    UtilRelay(v-bind="state")
+    UtilRelay.h-full
 
 </template>

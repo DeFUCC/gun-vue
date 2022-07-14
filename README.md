@@ -46,15 +46,10 @@ A simple no-store Gun server to throw at any free tier Node.js environment.
 
 The main [gun-vue.js.org](https://gun-vue.js.org) site is an example Vite SPA
 
----
-
-## [@gun-vue/docs](https://github.com/DeFUCC/gun-vue/tree/master/docs)
-
-The docs at [gun-vue.js.org/docs](https://gun-vue.js.org/docs) is an example Vitepress SSR web-site using `@gun-vue/components`
 
 ---
 
-## Watch the development video blog at [gun-vue.js.org/docs/blog/](https://gun-vue.js.org/docs/blog/)
+## Watch the development video blog at [youtube](https://www.youtube.com/watch?v=gwZUQcCp01U&list=PLncuCCb2zjt6wmlSNLiK1lZl150qX-rAw)
 
 You can find shorter new features announcements along with longer live coding sessions there.
 
@@ -68,5 +63,5 @@ npm i -G pnpm
 pnpm i
 ```
 
-3. Use `demo`, `docs` and `story` scripts in the root `package.json` to run corresponding dev servers.
+3. Use `demo`, and `histoire` scripts in the root `package.json` to run corresponding dev servers.
 4. Use `npm run build` to build the whole project to the `_dist` folder.

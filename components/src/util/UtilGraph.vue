@@ -15,6 +15,8 @@ const timer = setInterval(() => {
 onBeforeUnmount(() => {
   clearInterval(timer);
 });
+
+
 </script>
 
 <template lang="pug">

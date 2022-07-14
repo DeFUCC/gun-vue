@@ -1,5 +1,5 @@
 /**
- * @module Dictionary
+ * @module useDictionary
  */
 
 import Fuse from "fuse.js";

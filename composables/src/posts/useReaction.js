@@ -1,6 +1,6 @@
 /**
  * React to posts with emojis
- * @module Reaction
+ * @module useReaction
  */
 
 

@@ -3,9 +3,9 @@
  * @module useSpace
  */
 
-import { useGun } from "../gun";
+import { useGun } from "..";
 import { useSvgMouse } from "../ui";
-import { user, useAccount } from "../user";
+import { user } from "../user";
 import { computed, ref, reactive, watchEffect } from "vue";
 import { getFirstEmoji, currentRoom } from "..";
 import { getArrow } from "curved-arrows";

@@ -1,38 +1,38 @@
 {
   "name": "@gun-vue/composables",
   "version": "0.9.4",
-  "license": "MIT",
+  "homepage": "https://gun-vue.js.org",
+  "bugs": {
+    "url": "https://github.com/defucc/gun-vue/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/defucc/gun-vue.git",
     "directory": "composables"
   },
-  "bugs": {
-    "url": "https://github.com/defucc/gun-vue/issues"
-  },
-  "homepage": "https://gun-vue.js.org",
-  "author": "davay42 <davay@defucc.me>",
   "funding": {
     "type": "ko-fi",
     "url": "https://ko-fi.com/davay"
   },
-  "type": "module",
-  "module": "./dist/composables.es.js",
-  "main": "./dist/composables.es.js",
+  "license": "MIT",
+  "author": "davay42 <davay@defucc.me>",
   "exports": {
     ".": {
       "import": "./dist/composables.es.js"
     },
     "./*": "./*"
   },
+  "main": "./dist/composables.es.js",
+  "module": "./dist/composables.es.js",
   "files": [
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview",
-    "deploy": "sh deploy.sh"
+    "deploy": "sh deploy.sh",
+    "dev": "vite",
+    "doc": "cd jsdoc2md && sh docs.sh",
+    "serve": "vite preview"
   },
   "dependencies": {
     "@vueuse/core": "8.9.2",
@@ -56,6 +56,7 @@
     "yaml": "^2.1.1"
   },
   "devDependencies": {
+    "jsdoc-to-markdown": "^7.1.1",
     "vite": "^3.0.0"
   }
 }

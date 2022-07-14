@@ -3,18 +3,29 @@
  * @module useAccount
  * */
 
- import {  useGun } from "..";
- import { useColor } from "../ui";
- import { computed, reactive, ref } from "vue";
- import ms from "ms";
- 
- const colorDeep = useColor("deep");
- 
+import { useGun } from "..";
+import { useColor } from "../ui";
+import { computed, reactive, ref } from "vue";
+import ms from "ms";
+
+const colorDeep = useColor("deep");
+
+/**
+ * @typedef {computed(object)} account 
+ * Reactive account data
+ * @property {string} pub   the pub key
+ * @property {string} color the color hash of the pub key
+ * @property {object} profile all the profile fields of the account
+ * @property {number} pulse the recent presence timestamp
+ * @property {boolean} blink on/off switching pulse
+ * @property {'online' | string} lastSeen a human readable last seen status ('online' if less than TIMEOUT)
+ */
+
 
 /**
  * Load and handle user's account by a public key
- * @param {ref} pub - The public key of a user as a string or a ref
- * @returns {Account}
+ * @param {ref(string) | string} pub - The public key of a user as a string or a ref
+ * @returns {account}
  * @example
  * import { ref } from 'vue'
  * import { useAccount, SEA } from '@gun-vue/composables'
@@ -26,9 +37,11 @@
  * }
  *
  * const { account } = useAccount(pub)
+ * 
+ * generatePair()
  */
 
- export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
+export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
   const gun = useGun();
   pub = ref(pub);
   const account = computed(() => {

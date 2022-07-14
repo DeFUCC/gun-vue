@@ -1,6 +1,6 @@
 /**
  * Get and handle a particular post by it's tag and hash
- * @module Feed
+ * @module usePosts
  */
 
 import { computed, reactive, ref } from "vue";

@@ -1,3 +1,8 @@
+/**
+ * Reactions to posts with emojis
+ * @module useReactions
+ */
+
 import { useGun, currentRoom, isEmoji, useUser, reactToPost } from '../';
 import { reactive, ref, computed } from 'vue'
 

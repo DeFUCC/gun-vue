@@ -1,5 +1,5 @@
 <script setup>
-import { defineAsyncComponent, onMounted, reactive, ref, watch, watchEffect } from 'vue'
+import { defineAsyncComponent, onMounted, reactive, ref, watch, nextTick } from 'vue'
 import { computedAsync } from '@vueuse/core'
 
 const GiftCard = defineAsyncComponent(() =>
@@ -9,13 +9,15 @@ const GiftCard = defineAsyncComponent(() =>
 const gift = reactive({
   from: '',
   to: '',
-  qn: 0,
-  ql: '',
+  qn: 10,
+  ql: 'USD',
   wish: '',
   date: Date.now()
 })
 
-const hashed = ref()
+const hashed = ref({
+  hash: ''
+})
 
 const state = reactive({
   size: 40,
@@ -28,7 +30,7 @@ async function generate() {
 }
 
 onMounted(() => {
-  generate()
+  nextTick(() => { generate() })
 })
 
 watch(gift, async () => {

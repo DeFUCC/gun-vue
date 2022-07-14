@@ -27,7 +27,7 @@ const open = ref(true)
   transition(name="fade")
     .flex.flex-wrap.bg-light-500.rounded-xl.p-2(v-if="open")
       transition-group(name="fade")
-        account-mate-link(
+        mate-link(
           v-for="(link, linkPub) in mates" 
           :key="linkPub" 
           :emoji="link.emoji"

@@ -9,12 +9,13 @@ export default defineConfig({
         allow: '..'
       }
     },
+    build: { sourcemap: false },
     base: '/components/'
   },
   tree: {
     file: 'title'
   },
-  routerMode: 'hash',
+  routerMode: 'history',
   theme: {
     title: 'Gun-Vue components',
     logo: {
@@ -23,6 +24,6 @@ export default defineConfig({
       dark: '/components.svg'
     },
     logoHref: '/',
-    // favicon: '../docs/public/svg/gun-vue-logo.svg',
+    favicon: '/gun-vue-logo.svg',
   },
 })

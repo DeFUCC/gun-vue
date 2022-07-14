@@ -10,14 +10,14 @@
   "type": "module",
   "scripts": {
     "app": "cd app && pnpm run dev",
-    "build": "cd composables && pnpm run build && cd .. && cd components && pnpm run build && pnpm run story:build && cd .. && cd docs && pnpm run build  && cd .. && cd app && pnpm run build ",
+    "build": "cd composables && pnpm run build && pnpm run doc && cd .. && cd components && pnpm run build && pnpm run story:build && cd .. && cd app && pnpm run build ",
     "change": "pnpm changeset",
     "deploy": "sh deploy.sh",
-    "docs": "cd docs && pnpm run dev",
+    "docs": "cd composables && pnpm run doc",
+    "histoire": "cd components && pnpm run story:dev",
     "publish": "pnpm run build && pnpm changeset publish",
     "relay": "cd relay && pnpm run start",
     "sky": "node deploy-to-skynet.js",
-    "story": "cd components && pnpm run story:dev",
     "version": "pnpm changeset version"
   },
   "devDependencies": {

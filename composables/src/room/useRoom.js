@@ -1,5 +1,5 @@
 /**
- * @module Room
+ * @module useRoom
  */
 
 import {

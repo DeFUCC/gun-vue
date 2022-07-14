@@ -13,16 +13,11 @@
       .bar
         .title Homescreen
         .subtitle Install the app
-    a.btn(href="/docs/" target="_blank")
-      la-book-open
-      .bar
-        .title Composables
-        .subtitle Read docs
     a.btn(href="/components/" target="_blank")
       la-book
       .bar
-        .title Components
-        .subtitle View stories
+        .title Documentation
+        .subtitle Component stories and composable docs
     a.btn(href="https://www.npmjs.com/org/gun-vue" target="_blank")
       la-npm
       .bar

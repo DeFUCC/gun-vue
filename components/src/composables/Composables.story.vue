@@ -1,8 +1,18 @@
-![](/media/svg/composables.svg)
+<template>
+  <Story
+    title="Composables"
+    docs-only
+    icon="la:book-open"
+  />
+</template>
 
-## Composables
+<docs lang="md">
 
-GunVue is a collection of utility functions based on [Vue 3 Composition API](https://v3.vuejs.org/guide/composition-api-introduction.html). We assume you are already familiar with the basic ideas of Composition API and [script setup](https://learnvue.co/2021/05/explaining-the-new-script-setup-type-in-vue-3-major-takeaways-from-the-rfc/#using-script-setup-with-a-normal-script) before you continue.
+![](/composables.svg)
+
+## @gun-vue/composables
+
+GunVue Composables is a collection of utility functions based on [Vue 3 Composition API](https://v3.vuejs.org/guide/composition-api-introduction.html). We assume you are already familiar with the basic ideas of Composition API and [script setup](https://learnvue.co/2021/05/explaining-the-new-script-setup-type-in-vue-3-major-takeaways-from-the-rfc/#using-script-setup-with-a-normal-script) before you continue.
 
 ### How to install?
 
@@ -30,12 +40,17 @@ const user = useUser();
   </thead>
   <tbody>
 <tr>
-    <td><a href="#chat" >Chat</a></td>
+    <td><a href="#useaccount" >useAccount</a></td>
+    <td><p>Basic user management</p>
+</td>
+    </tr>
+<tr>
+    <td><a href="#usechat" >useChat</a></td>
     <td><p>Basic public chat</p>
 </td>
     </tr>
 <tr>
-    <td><a href="#privatechat" >PrivateChat</a></td>
+    <td><a href="#useprivatechat" >usePrivateChat</a></td>
     <td><p>Basic private chat</p>
 </td>
     </tr>
@@ -45,7 +60,7 @@ const user = useUser();
 </td>
     </tr>
 <tr>
-    <td><a href="#dictionary" >Dictionary</a></td>
+    <td><a href="#usedictionary" >useDictionary</a></td>
     <td></td>
     </tr>
 <tr>
@@ -89,27 +104,32 @@ const user = useUser();
 </td>
     </tr>
 <tr>
-    <td><a href="#post" >Post</a></td>
+    <td><a href="#usepost" >usePost</a></td>
     <td><p>Get and handle a particular post by it&#39;s tag and hash</p>
 </td>
     </tr>
 <tr>
-    <td><a href="#feed" >Feed</a></td>
+    <td><a href="#useposts" >usePosts</a></td>
     <td><p>Get and handle a particular post by it&#39;s tag and hash</p>
 </td>
     </tr>
 <tr>
-    <td><a href="#reaction" >Reaction</a></td>
+    <td><a href="#usereaction" >useReaction</a></td>
     <td><p>React to posts with emojis</p>
 </td>
     </tr>
 <tr>
-    <td><a href="#feeds" >Feeds</a></td>
+    <td><a href="#usereactions" >useReactions</a></td>
+    <td><p>Reactions to posts with emojis</p>
+</td>
+    </tr>
+<tr>
+    <td><a href="#usetags" >useTags</a></td>
     <td><p>Get and handle a particular post by it&#39;s tag and hash</p>
 </td>
     </tr>
 <tr>
-    <td><a href="#room" >Room</a></td>
+    <td><a href="#useroom" >useRoom</a></td>
     <td></td>
     </tr>
 <tr>
@@ -125,11 +145,6 @@ const user = useUser();
 <tr>
     <td><a href="#usemouse" >useMouse</a></td>
     <td><p>Handle mouse movement inside an SVG</p>
-</td>
-    </tr>
-<tr>
-    <td><a href="#useaccount" >useAccount</a></td>
-    <td><p>Basic user management</p>
 </td>
     </tr>
 <tr>
@@ -151,16 +166,67 @@ const user = useUser();
 </table>
 
 
-<a name="module_Chat"></a>
+<a name="module_useAccount"></a>
 
-## Chat
+## useAccount
+Basic user management
+
+
+* [useAccount](#module_useAccount)
+    * _static_
+        * [.useAccount(pub)](#module_useAccount.useAccount) ⇒ <code>account</code>
+    * _inner_
+        * [~account](#module_useAccount..account) : <code>computed(object)</code>
+
+### useAccount(pub) ⇒ <code>account</code>
+  Load and handle user's account by a public key
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| pub | <code>ref(string)</code> \| <code>string</code> | The public key of a user as a string or a ref |
+
+**Example**  
+```js
+import { ref } from 'vue'
+import { useAccount, SEA } from '@gun-vue/composables'
+
+const pub = ref()
+
+async function generatePair() {
+ pub.value = await SEA.pair()
+}
+
+const { account } = useAccount(pub)
+
+generatePair()
+```
+### account : <code>computed(object)</code>
+  Reactive account data
+
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| pub | <code>string</code> | the pub key |
+| color | <code>string</code> | the color hash of the pub key |
+| profile | <code>object</code> | all the profile fields of the account |
+| pulse | <code>number</code> | the recent presence timestamp |
+| blink | <code>boolean</code> | on/off switching pulse |
+| lastSeen | <code>&#x27;online&#x27;</code> \| <code>string</code> | a human readable last seen status ('online' if less than TIMEOUT) |
+
+<hr />
+
+<a name="module_useChat"></a>
+
+## useChat
 Basic public chat
 
 <hr />
 
-<a name="module_PrivateChat"></a>
+<a name="module_usePrivateChat"></a>
 
-## PrivateChat
+## usePrivateChat
 Basic private chat
 
 <hr />
@@ -225,13 +291,13 @@ SEA cryptography abstraction
 
 <hr />
 
-<a name="module_Dictionary"></a>
+<a name="module_useDictionary"></a>
 
-## Dictionary
+## useDictionary
 
-* [Dictionary](#module_Dictionary)
-    * [.useWords()](#module_Dictionary.useWords) ⇒ <code>useWords</code>
-    * [.useDefs()](#module_Dictionary.useDefs) ⇒ <code>useDefs</code>
+* [useDictionary](#module_useDictionary)
+    * [.useWords()](#module_useDictionary.useWords) ⇒ <code>useWords</code>
+    * [.useDefs()](#module_useDictionary.useDefs) ⇒ <code>useDefs</code>
 
 ### useWords() ⇒ <code>useWords</code>
   Use filtrable words list
@@ -466,12 +532,12 @@ import { useGun } from '@gun-vue/composables'
 const gun = useGun()
 ```
 ### useGun2(options) ⇒ <code>Gun</code>
-  get a secondary Gun instance to manages certificates
+  get a secondary Gun instance for certificate management
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| options | <code>Object</code> | options fot this gun instance, like { localstorage:true } |
+| options | <code>object</code> | options fot this gun instance, like { localstorage:true } |
 
 ### SEA
   SEA library
@@ -636,21 +702,21 @@ It should contain a `postMessage` method to reply to any incoming `postMessage` 
 
 <hr />
 
-<a name="module_Post"></a>
+<a name="module_usePost"></a>
 
-## Post
+## usePost
 Get and handle a particular post by it's tag and hash
 
 
-* [Post](#module_Post)
+* [usePost](#module_usePost)
     * _static_
-        * [.usePost(options)](#module_Post.usePost) ⇒ <code>Post</code>
-        * [.addPost(tag, post)](#module_Post.addPost)
-        * [.downloadPost(post)](#module_Post.downloadPost)
-        * [.parsePost(data)](#module_Post.parsePost) ⇒ <code>Object</code>
-        * [.usePostTimestamp()](#module_Post.usePostTimestamp) ⇒
+        * [.usePost(options)](#module_usePost.usePost) ⇒ <code>Post</code>
+        * [.addPost(tag, post)](#module_usePost.addPost)
+        * [.downloadPost(post)](#module_usePost.downloadPost)
+        * [.parsePost(data)](#module_usePost.parsePost) ⇒ <code>Object</code>
+        * [.usePostTimestamp()](#module_usePost.usePostTimestamp) ⇒
     * _inner_
-        * [~Post](#module_Post..Post) : <code>Object</code>
+        * [~Post](#module_usePost..Post) : <code>Object</code>
 
 ### usePost(options) ⇒ <code>Post</code>
   An interface to manage a post
@@ -746,19 +812,19 @@ downloadPost(post)
 ```
 <hr />
 
-<a name="module_Feed"></a>
+<a name="module_usePosts"></a>
 
-## Feed
+## usePosts
 Get and handle a particular post by it's tag and hash
 
 
-* [Feed](#module_Feed)
+* [usePosts](#module_usePosts)
     * _static_
-        * [.usePosts(tag, options)](#module_Feed.usePosts) ⇒ <code>usePosts</code>
-        * [.downloadFeed(tag, posts)](#module_Feed.downloadFeed)
-        * [.uploadFeed(tag, files)](#module_Feed.uploadFeed)
+        * [.usePosts(tag, options)](#module_usePosts.usePosts) ⇒ <code>usePosts</code>
+        * [.downloadFeed(tag, posts)](#module_usePosts.downloadFeed)
+        * [.uploadFeed(tag, files)](#module_usePosts.uploadFeed)
     * _inner_
-        * [~usePosts](#module_Feed..usePosts)
+        * [~usePosts](#module_usePosts..usePosts)
 
 ### usePosts(tag, options) ⇒ <code>usePosts</code>
   Use a list of immutable data from a #tag
@@ -820,24 +886,31 @@ import { uploadFeed } from '@gun-vue/composables'
 
 <hr />
 
-<a name="module_Reaction"></a>
+<a name="module_useReaction"></a>
 
-## Reaction
+## useReaction
 React to posts with emojis
 
 <hr />
 
-<a name="module_Feeds"></a>
+<a name="module_useReactions"></a>
 
-## Feeds
+## useReactions
+Reactions to posts with emojis
+
+<hr />
+
+<a name="module_useTags"></a>
+
+## useTags
 Get and handle a particular post by it's tag and hash
 
 
-* [Feeds](#module_Feeds)
+* [useTags](#module_useTags)
     * _static_
-        * [.useTagList()](#module_Feeds.useTagList) ⇒ <code>useTagList</code>
+        * [.useTagList()](#module_useTags.useTagList) ⇒ <code>useTagList</code>
     * _inner_
-        * [~useTagList](#module_Feeds..useTagList)
+        * [~useTagList](#module_useTags..useTagList)
 
 ### useTagList() ⇒ <code>useTagList</code>
   Toolkit to deal with the available tags
@@ -854,16 +927,16 @@ Get and handle a particular post by it's tag and hash
 
 <hr />
 
-<a name="module_Room"></a>
+<a name="module_useRoom"></a>
 
-## Room
+## useRoom
 
-* [Room](#module_Room)
-    * [.useRoom()](#module_Room.useRoom) ⇒ <code>useRoom</code>
-    * [.updateRoomProfile(field, content)](#module_Room.updateRoomProfile)
-    * [.createRoom()](#module_Room.createRoom)
-    * [.enterRoom(pub)](#module_Room.enterRoom)
-    * [.leaveRoom()](#module_Room.leaveRoom)
+* [useRoom](#module_useRoom)
+    * [.useRoom()](#module_useRoom.useRoom) ⇒ <code>useRoom</code>
+    * [.updateRoomProfile(field, content)](#module_useRoom.updateRoomProfile)
+    * [.createRoom()](#module_useRoom.createRoom)
+    * [.enterRoom(pub)](#module_useRoom.enterRoom)
+    * [.leaveRoom()](#module_useRoom.leaveRoom)
 
 ### useRoom() ⇒ <code>useRoom</code>
   Reactive room controls
@@ -996,34 +1069,6 @@ Handle mouse movement inside an SVG
 | pressed | <code>Boolean</code> | is mouse pressed? |
 | inside | <code>Boolean</code> | is mouse inside the area? |
 
-<hr />
-
-<a name="module_useAccount"></a>
-
-## useAccount
-Basic user management
-
-### useAccount(pub) ⇒ <code>Account</code>
-  Load and handle user's account by a public key
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| pub | <code>ref</code> | The public key of a user as a string or a ref |
-
-**Example**  
-```js
-import { ref } from 'vue'
-import { useAccount, SEA } from '@gun-vue/composables'
-
-const pub = ref()
-
-async function generatePair() {
- pub.value = await SEA.pair()
-}
-
-const { account } = useAccount(pub)
-```
 <hr />
 
 <a name="module_useMates"></a>
@@ -1294,6 +1339,8 @@ updateProfile( 'city', 'Moscow' )
 | leave | <code>function</code> | log out |
 
 <hr />
+
+</docs>
 
 <style scoped>
   hr {

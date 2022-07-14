@@ -94,6 +94,7 @@ export default defineConfig({
       },
     }),
   ],
+  base: './',
   build: {
     outDir: "../_dist/",
     target: "esnext",
@@ -114,7 +115,6 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-
       "#components": path.resolve(dirname, "../components/src"),
       "#composables": path.resolve(dirname, "../composables/src"),
     },

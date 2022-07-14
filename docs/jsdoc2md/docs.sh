@@ -1,1 +1,0 @@
-jsdoc2md --partial sig-name.hbs --helper helpers.js --template docs.hbs --files ../../composables/src/**/*.js > ../composables/index.md 

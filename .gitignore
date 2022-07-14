@@ -5,7 +5,6 @@ _dist
 dist-ssr
 *.local
 radata
-docs/public/stories
 app/public/docs
 app/public/components
 app/public/sitemap.xml

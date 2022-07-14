@@ -48,8 +48,8 @@ export function useGun(opts = { localStorage: false }) {
 }
 
 /**
- * get a secondary Gun instance to manages certificates
- * @param {Object} options - options fot this gun instance, like { localstorage:true }
+ * get a secondary Gun instance for certificate management
+ * @param {object} options - options fot this gun instance, like { localstorage:true }
  * @returns {Gun}
  */
 
