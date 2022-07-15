@@ -17,7 +17,7 @@ function setBrushColor(color) {
 </script>
 
 <template lang="pug">
-.flex.flex-wrap.text-xl.p-2.gap-2.rounded-md.bg-main.shadow.transition-opacity.duration-200.dark_border.dark_border-gray-400.dark_border-opacity-10.bg-light-300.dark_bg-dark-300.justify-center.absolute(
+.flex.flex-wrap.text-xl.p-2.gap-2.rounded-md.bg-main.shadow.transition-opacity.duration-200.dark_border.dark_border-gray-400.dark_border-opacity-10.bg-light-300.dark_bg-dark-300.bg-opacity-30.justify-center.absolute(
   :class="draw.enabled ? '' : draw.pinned ? 'opacity-40 hover_opacity-90' : 'opacity-0 pointer-events-none'", 
   storage-key="slidev-drawing-pos", 
   :initial-x="10", 

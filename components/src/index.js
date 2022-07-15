@@ -5,7 +5,6 @@ import "./styles/transitions.css";
 export * from './account/index.js'
 export * from './chat/index.js'
 export * from './dict/index.js'
-export * from './draw/index.js'
 export * from './form/index.js'
 export * from './gift/index.js'
 export * from './post/index.js'

@@ -58,13 +58,12 @@ onBeforeUnmount(() => {
     @click="join()"
     :style="{ borderColor: user.color }"
     ) Click here to join the space
-  button.fixed.bottom-4.right-4.text-xl.z-1000(
+  button.fixed.top-4.right-4.text-xl.z-1000(
     @click="draw.enabled = !draw.enabled"
     :class="{ active: draw.enabled }"
-    v-tooltip.top="'Draw on the screen'"
     )
     carbon-pen
-  draw-controls.z-2000
+  space-draw.z-2000
   svg.h-full.w-full.z-200.bg-dark-100.bg-opacity-5.cursor-pointer(
     ref="plane"
     @dblclick="place({ x: 0, y: 0 })"
