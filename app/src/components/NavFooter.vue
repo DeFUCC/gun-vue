@@ -12,12 +12,12 @@
       simple-icons-skynet
       .bar
         .title Homescreen
-        .subtitle Install the app
+        .subtitle Install the skapp
     a.btn(href="/components/" target="_blank")
       la-book
       .bar
         .title Documentation
-        .subtitle Component stories and composable docs
+        .subtitle Component stories 
     a.btn(href="https://www.npmjs.com/org/gun-vue" target="_blank")
       la-npm
       .bar

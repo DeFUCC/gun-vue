@@ -29,10 +29,10 @@ function sortByDate(e) {
 export const newWorker = function (funcObj) {
   // Build a worker from an anonymous function body
   var blobURL = URL.createObjectURL(
-      new Blob(["onmessage=", funcObj.toString()], {
-        type: "application/javascript",
-      })
-    ),
+    new Blob(["onmessage=", funcObj.toString()], {
+      type: "application/javascript",
+    })
+  ),
     worker = new Worker(blobURL);
 
   // Won't be needing this anymore

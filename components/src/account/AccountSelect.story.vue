@@ -15,7 +15,7 @@ const state = reactive({
 </script>
 
 <template lang="pug">
-Story(title="Account/Select" )
+Story(title="Account/Select" icon="la:list")
   Variant(title="Round")
     AccountSelect(v-model:pub="state.pub" @update:pub="hstEvent('update:pub', $event)")
 

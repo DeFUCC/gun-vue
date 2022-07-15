@@ -1,13 +1,13 @@
 <script setup>
 import { useAccount, useUser, useBackground } from '#composables';
-import { computed } from 'vue'
+import { computed, toRef } from 'vue'
 const props = defineProps({
   pub: { type: String, default: '' }
 })
 
 defineEmits(['browse', 'feed', 'post', 'chat'])
 
-const { account } = useAccount(props.pub);
+const { account } = useAccount(toRef(props, 'pub'));
 const { user } = useUser()
 
 const bg = computed(() => useBackground({ pub: props.pub, size: 600, light: 0.5, draw: 'circles' }))

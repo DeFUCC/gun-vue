@@ -33,7 +33,7 @@ function createUser() {
     v-if="!user.is" :style="{ backgroundColor: colorDeep.hex(newPair?.pub || '') }">
     <div class="text-xl font-bold">Create a new account</div>
     <div class="mb-4 mt-2">Tap the circle to generate a new key</div>
-    <account-avatar class="cursor-pointer shadow-xl border-8" v-if="newPair" :pub="newPair.pub" :size="200"
+    <account-avatar class="cursor-pointer rounded-full shadow-xl border-8" v-if="newPair" :pub="newPair.pub" :size="200"
       @click="generatePair()" :style="{ borderColor: colorDeep.hex(newPair.pub) }"></account-avatar>
     <div class="flex flex-col">
       <div class="flex justify-center my-4">

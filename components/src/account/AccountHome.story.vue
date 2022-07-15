@@ -1,28 +1,35 @@
 <script setup>
-import { defineAsyncComponent, reactive } from 'vue'
+import { computed, defineAsyncComponent, onMounted, reactive } from 'vue'
+import { watchOnce } from '@vueuse/core'
 
-const AccountHome = defineAsyncComponent(() =>
-  import('./AccountHome.vue')
-)
+
+const AccountHome = defineAsyncComponent(() => import('./AccountHome.vue'))
+const AccountSelect = defineAsyncComponent(() => import('./AccountSelect.vue'))
 
 const state = reactive({
   pub: "We2MxFrbFH37008fNmreSk9hdHLJNMVhrSMIIbOO5Ao.FbNrdt118-TCYzGYRo94Xa8EUWwwV-7DIopXSE9OZD8",
 })
 
-async function generate() {
-  const { SEA } = await import('#composables')
-  const pair = await SEA.pair()
-  state.pub = pair.pub
-}
+onMounted(async () => {
+  const { useGuests } = await import('#composables')
+  const { guests } = useGuests()
+  watchOnce(guests, g => {
+    state.pub = Object.keys(guests)[0]
+  })
+})
 
 </script>
 
 <template lang="pug">
-Story(title="Account/Home")
+Story(title="Account/Home" icon="la:home")
   Variant(title="Round")
-    AccountHome(v-bind="state")
+    AccountHome(:pub="state.pub" :key="state.pub")
 
   template(#controls)
     .p-2.flex.flex-col.gap-4
-      button.p-2.border-1.rounded-lg(@click="generate()") Generate Key Pair
+      AccountSelect(v-model:pub="state.pub")
 </template>
+
+<docs lang="md">
+Currently it's important to set the `:key="pub"` attribute for the component to correctly update with changing pub key.
+</docs>

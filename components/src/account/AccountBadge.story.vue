@@ -19,7 +19,7 @@ async function generate() {
 </script>
 
 <template lang="pug">
-Story(title="Account/Badge")
+Story(title="Account/Badge" icon="la:id-badge")
   Variant(title="Round")
     AccountBadge(v-bind="state")
 

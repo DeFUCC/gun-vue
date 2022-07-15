@@ -21,7 +21,7 @@ async function generate() {
 </script>
 
 <template lang="pug">
-Story(title="Account/Avatar")
+Story(title="Account/Avatar" icon="la:user")
   Variant(title="Round")
     AccountAvatar(v-bind="state")
   template(#controls)

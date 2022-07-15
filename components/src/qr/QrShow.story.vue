@@ -20,7 +20,7 @@ async function generate() {
 </script>
 
 <template lang="pug">
-Story(title="Qr/Show")
+Story(title="Qr/Show" icon="la:qrcode")
   Variant(title="Round")
     QrShow(v-bind="state")
 
