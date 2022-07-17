@@ -46,15 +46,19 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       manualChunks: (id) => {
+        if (id.includes("jsqr")) {
+          return "jsqr";
+        }
         if (id.includes("node_modules")) {
           return "vendor";
         }
         if (id.includes("composables")) {
           return "composables";
         }
+
         // return path.parse(id).name;
       },
-      // external: ["vue"],
+      external: ["vue"],
       output: {
         minifyInternalExports: false,
         chunkFileNames: "[name].[format].js",

@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.10.1
+
+### Patch Changes
+
+- Vue plugin components export
+- Updated dependencies
+  - @gun-vue/composables@0.10.1
+
 ## 0.10.0
 
 ### Minor Changes

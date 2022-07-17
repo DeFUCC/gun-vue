@@ -3,6 +3,7 @@
     title="Composables"
     docs-only
     icon="la:book-open"
+    group="docs"
   />
 </template>
 

@@ -1,6 +1,6 @@
 {
   "name": "@gun-vue/components",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "homepage": "https://gun-vue.js.org",
   "bugs": {
     "url": "https://github.com/defucc/gun-vue/issues"
@@ -55,5 +55,8 @@
     "vite": "2.9.14",
     "vite-plugin-windicss": "^1.8.7",
     "windicss": "^3.5.6"
+  },
+  "peerDependencies": {
+    "vue": "^3.2.37"
   }
 }

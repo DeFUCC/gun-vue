@@ -13,7 +13,27 @@ export default defineConfig({
     base: '/components/'
   },
   tree: {
-    file: 'title'
+    // file: 'title'
+    groups: [
+
+      {
+        title: 'Docs',
+        id: "docs"
+      },
+      {
+        id: 'top',
+        title: 'Auth', // No toggle
+        include: file => ['User', 'Account', 'Room'].reduce((prev, curr) => prev || file.title.startsWith(curr), false),
+      },
+      {
+        title: 'Features',
+        include: file => !file.title.includes('Util') && !file.title.includes('Qr'),
+      },
+      {
+        title: 'Tools',
+        include: file => true,
+      },
+    ],
   },
   routerMode: 'hash',
   theme: {
