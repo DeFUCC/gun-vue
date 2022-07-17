@@ -12,7 +12,7 @@ It enables eager web developers to build p2p apps for their communities all over
 
 ## How to install?
 
-Gun-Vue is distributed as a regular NPM package and may be used right from your Vue templates. 
+Gun-Vue is distributed as a regular NPM package and may be used in any Vue 3 project. 
 
 1. You may start by [creating a new Vue project](https://vuejs.org/guide/quick-start.html).
 
