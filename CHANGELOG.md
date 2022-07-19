@@ -1,5 +1,11 @@
 # @gun-vue/repo
 
+## 0.10.2
+
+### Patch Changes
+
+- More components showcased - easier design and development
+
 ## 0.10.0
 
 ### Minor Changes

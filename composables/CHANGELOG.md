@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.10.2
+
+### Patch Changes
+
+- More components showcased - easier design and development
+
 ## 0.10.1
 
 ### Patch Changes

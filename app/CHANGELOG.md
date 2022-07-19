@@ -1,5 +1,14 @@
 # @gun-vue/app
 
+## 0.10.2
+
+### Patch Changes
+
+- More components showcased - easier design and development
+- Updated dependencies
+  - @gun-vue/components@0.10.2
+  - @gun-vue/composables@0.10.2
+
 ## 0.10.1
 
 ### Patch Changes
