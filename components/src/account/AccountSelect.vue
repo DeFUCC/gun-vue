@@ -13,12 +13,17 @@ const props = defineProps({
 
 <template lang='pug'>
 .p-4
-  account-badge(:pub="pub" v-if="pub")
+  .flex.items-center(v-if="pub")
+    account-badge(:pub="pub" )
     .flex-1
-    la-times.mr-2(@click="$emit('update:pub', '')")
+    la-times.mr-2.cursor-pointer(@click="$emit('update:pub', '')")
   .flex.flex-col(v-else)
-    .font-bold USER SELECT OF {{ count.total }}
+    .flex.items-center.p-2
+      .font-bold SELECT A USER
+      .flex-1 
+      .p-0 {{ count.total }}
 
     .flex.flex-wrap.gap-3
-      account-badge(v-for="guest of guests" :key="guest" @click="$emit('update:pub', guest.pub)" :pub="guest.pub")
+      transition-group(name="fade")
+        account-badge(v-for="guest of guests" :key="guest" @click="$emit('update:pub', guest.pub)" :pub="guest.pub")
 </template>

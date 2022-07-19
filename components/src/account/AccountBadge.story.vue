@@ -1,20 +1,22 @@
 <script setup>
-import { defineAsyncComponent, reactive } from 'vue'
+import { watchOnce } from '@vueuse/core';
+import { defineAsyncComponent, reactive, onMounted } from 'vue'
 
-const AccountBadge = defineAsyncComponent(() =>
-  import('./AccountBadge.vue')
-)
+const AccountBadge = defineAsyncComponent(() => import('./AccountBadge.vue'))
+const AccountSelect = defineAsyncComponent(() => import('./AccountSelect.vue'))
 
 const state = reactive({
   pub: "We2MxFrbFH37008fNmreSk9hdHLJNMVhrSMIIbOO5Ao.FbNrdt118-TCYzGYRo94Xa8EUWwwV-7DIopXSE9OZD8",
   size: 200
 })
 
-async function generate() {
-  const { SEA } = await import('#composables')
-  const pair = await SEA.pair()
-  state.pub = pair.pub
-}
+onMounted(async () => {
+  const { useGuests } = await import('#composables')
+  const { guests } = useGuests()
+  watchOnce(guests, g => {
+    state.pub = Object.keys(guests)[0]
+  })
+})
 
 </script>
 
@@ -33,5 +35,5 @@ Story(title="Account/Badge" icon="la:id-badge")
           :min="40"
           :max="500"
           )
-      button.p-2.border-1.rounded-lg(@click="generate()") Generate Key Pair
+      AccountSelect(v-model:pub="state.pub")
 </template>

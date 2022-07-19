@@ -17,6 +17,7 @@ const colorDeep = useColor('deep')
 const gun = useGun()
 
 watchEffect(() => {
+  name.value = ''
   gun.user(props.pub).get('profile').get('name').on(d => {
     name.value = d
   })

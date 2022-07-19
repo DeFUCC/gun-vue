@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, useRoom, useBackground } from '#composables'
+import { useUser, useRoom, useBackground, currentRoom } from '#composables'
 import { computed } from 'vue';
 const props = defineProps({
   pub: { type: String },
@@ -14,11 +14,12 @@ const { room } = useRoom(props.pub)
 const bg = computed(() => useBackground({ pub: props.pub, size: 400 }))
 
 
+
 </script>
 
 <template lang='pug'>
 .rounded-xl.shadow-md.text-sm.bg-cover.cursor-pointer.hover_shadow-lg.transition.duration-300ms.filter.brightness-95.hover_brightness-100.flex.flex-wrap.overflow-hidden(
-  :style="{ ...bg }"
+  :style="{ ...bg, border: room.pub == currentRoom.pub ? '2px solid currentColor' : '' }"
 ) 
   .p-4.font-bold.text-xl.flex.flex-wrap.items-center.flex.w-full
     .text-lg {{ room.profile.name }}
