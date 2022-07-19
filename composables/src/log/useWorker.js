@@ -7,7 +7,7 @@
  * Example sorter function for a dated list object
  * @param {Object} e - the worker post event with a `data` object with a list of records to sort by the date keys
  */
-function sortByDate(e) {
+export function sortByDate(e) {
   const arr = Object.entries(e.data);
   let sorted = arr.sort((a, b) => {
     if (!a || !b) return 0;
@@ -41,4 +41,3 @@ export const newWorker = function (funcObj) {
   return worker;
 };
 
-export const sortDate = newWorker(sortByDate);

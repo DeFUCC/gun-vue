@@ -10,18 +10,20 @@ const state = reactive({
   pub: "We2MxFrbFH37008fNmreSk9hdHLJNMVhrSMIIbOO5Ao.FbNrdt118-TCYzGYRo94Xa8EUWwwV-7DIopXSE9OZD8",
 })
 
-onMounted(async () => {
-  const { useGuests } = await import('#composables')
-  const { guests } = useGuests()
-  watchOnce(guests, g => {
-    state.pub = Object.keys(guests)[0]
+function mySetup() {
+  onMounted(async () => {
+    const { useGuests } = await import('#composables')
+    const { guests } = useGuests()
+    watchOnce(guests, g => {
+      state.pub = Object.keys(guests)[0]
+    })
   })
-})
+}
 
 </script>
 
 <template lang="pug">
-Story(title="Account/Home" icon="la:home")
+Story(title="Account/Home" icon="la:home" :setup-app="mySetup")
   Variant(title="Round")
     AccountHome(:pub="state.pub" :key="state.pub")
 

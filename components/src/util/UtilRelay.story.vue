@@ -1,9 +1,7 @@
 <script setup>
 import { defineAsyncComponent } from 'vue'
 
-const UtilRelay = defineAsyncComponent(() =>
-  import('./UtilRelay.vue')
-)
+const UtilRelay = defineAsyncComponent(() => import('./UtilRelay.vue'))
 
 </script>
 

@@ -10,18 +10,20 @@ const state = reactive({
   size: 200
 })
 
-onMounted(async () => {
-  const { useGuests } = await import('#composables')
-  const { guests } = useGuests()
-  watchOnce(guests, g => {
-    state.pub = Object.keys(guests)[0]
+function mySetup() {
+  onMounted(async () => {
+    const { useGuests } = await import('#composables')
+    const { guests } = useGuests()
+    watchOnce(guests, g => {
+      state.pub = Object.keys(guests)[0]
+    })
   })
-})
+}
 
 </script>
 
 <template lang="pug">
-Story(title="Account/Badge" icon="la:id-badge")
+Story(title="Account/Badge" icon="la:id-badge" :setup-app="mySetup")
   Variant(title="Round")
     AccountBadge(v-bind="state")
 

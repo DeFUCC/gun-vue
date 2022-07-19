@@ -679,10 +679,8 @@ Worker wrapper for heavy functions
 
 
 * [useWorker](#module_useWorker)
-    * _static_
-        * [.newWorker](#module_useWorker.newWorker)
-    * _inner_
-        * [~sortByDate(e)](#module_useWorker..sortByDate)
+    * [.newWorker](#module_useWorker.newWorker)
+    * [.sortByDate(e)](#module_useWorker.sortByDate)
 
 ### newWorker
   Create a new worker for a function
