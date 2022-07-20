@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.10.3
+
+### Patch Changes
+
+- Projects will be one of the key parts for p2p collaboration. Started building this feature today.
+- Updated dependencies
+  - @gun-vue/composables@0.10.3
+
 ## 0.10.2
 
 ### Patch Changes

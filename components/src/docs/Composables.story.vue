@@ -130,6 +130,10 @@ const user = useUser();
 </td>
     </tr>
 <tr>
+    <td><a href="#projects" >Projects</a></td>
+    <td></td>
+    </tr>
+<tr>
     <td><a href="#useroom" >useRoom</a></td>
     <td></td>
     </tr>
@@ -924,6 +928,11 @@ Get and handle a particular post by it's tag and hash
 | tags | <code>Tags</code> | the object to handle all the tags |
 | addTag | <code>function</code> | add a slug tag to the list |
 
+<hr />
+
+<a name="module_Projects"></a>
+
+## Projects
 <hr />
 
 <a name="module_useRoom"></a>

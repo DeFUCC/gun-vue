@@ -1,6 +1,6 @@
 {
   "name": "@gun-vue/composables",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "homepage": "https://gun-vue.js.org",
   "bugs": {
     "url": "https://github.com/defucc/gun-vue/issues"
@@ -57,6 +57,7 @@
   },
   "devDependencies": {
     "jsdoc-to-markdown": "^7.1.1",
+    "pug": "^3.0.2",
     "vite": "^3.0.2"
   }
 }

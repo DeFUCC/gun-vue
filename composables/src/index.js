@@ -7,6 +7,7 @@ export * from "./gifts/";
 export * from "./gun/";
 export * from "./log/";
 export * from "./posts/";
+export * from "./project/";
 export * from "./room/";
 export * from "./space/";
 export * from "./ui/";
