@@ -44,6 +44,13 @@ posts:
     youtube: z29qSr0YG2I
     text: |
       It's the first approach to build a gift exchange platform. So users can propose a donation to other user for them to approve the transaction. We start by creating routes and basic logic and proceed to building Gun lists with content-addressing and user signatures. We'll evaluate a couple of ideas and finally get a MVP of sending and receiving gift records. It's just the first steps as this system will grow into a public projects funding system. So the donations will be linked to projects and will have to be used to get them done. But we'll have to build the project management system too. That's going to be next.
+  - title: "How to add a feature into the Gun-Vue system: routes, components and composables"
+    date: 2022-07-21
+    youtube: BEkPfXVAkIk 
+    text: |
+      The very basic functionality to create and list user project has been added to @gun-vue project. Here is the memo for you (and me) to remember the way we can expand the power of the p2p library. I review the layers from the top: routes and navigation, then the components and then the main logic is built in the composables. 
+
+      In 16 minutes I will show how the layers are built, how they are connected with each other. We got the certificates for users to write to their personal spaces in the current room. For now it's only title, but there will be much more. Projects will include events, objects, tasks and more! I have to invent the way to connect everything together, but make it discoverable and useful for global stats collections.
 ---
 
 ## Blog
