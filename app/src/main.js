@@ -9,6 +9,8 @@ import routes from "~pages";
 
 import { FloatingVue } from '@gun-vue/components'
 
+import { GunVuePlugin } from "../../components/src/";
+
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [...routes],
@@ -23,6 +25,7 @@ const router = createRouter({
 
 const app = createApp(App);
 app.use(FloatingVue)
+app.use(GunVuePlugin)
 app.use(router).mount("#app");
 
 import { currentRoom } from "#composables";

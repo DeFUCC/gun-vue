@@ -32,7 +32,7 @@ const time = useTimeAgo(props.gift.date)
   )
   .flex.items-center.gap-2(style='flex: 1 1 100px')
     account-avatar(:pub="gift.from")
-    la-angle-right.flex-auto
+    la-arrow-right.flex-auto
     account-avatar(:pub="gift.to")
   .flex.gap-2.p-2.items-center.flex-wrap(style="flex:1 1 300px")
     .flex.flex-col
