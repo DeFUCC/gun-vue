@@ -2,14 +2,14 @@ import { createApp } from "vue";
 import App from "./app.vue";
 
 import "virtual:windi.css";
-import "#components/styles/index.css";
+import "#components/styles/index.css"; // use '@gun-vue/components/styles/index.css' in your apps
 
 import { createRouter, createWebHashHistory } from "vue-router";
 import routes from "~pages";
 
-import { FloatingVue } from '@gun-vue/components'
+// import FloatingVue from 'floating-vue'
 
-import { GunVuePlugin } from "../../components/src/";
+import { GunVuePlugin } from "#components"; // use '@gun-vue/components' in your apps
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -24,7 +24,7 @@ const router = createRouter({
 });
 
 const app = createApp(App);
-app.use(FloatingVue)
+// app.use(FloatingVue)
 app.use(GunVuePlugin)
 app.use(router).mount("#app");
 

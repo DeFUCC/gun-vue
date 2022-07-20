@@ -39,7 +39,7 @@
     "@vueuse/core": "8.9.3",
     "@vueuse/gesture": "^2.0.0-beta.1",
     "@vueuse/sound": "^1.1.7",
-    "floating-vue": "^2.0.0-y.0",
+    "floating-vue": "^2.0.0-beta.17",
     "force-graph": "^1.42.11",
     "jsqr": "^1.4.0",
     "simplemde": "^1.11.2",

@@ -12,6 +12,7 @@ const names = {
   posts: 'Posts',
   users: 'Users',
   rooms: 'Rooms',
+  projects: 'Projects',
   dict: 'Dictionary'
 }
 
@@ -27,6 +28,7 @@ const names = {
       la-broadcast-tower(v-if="c == 'topics'")
       ph-users(v-if="c == 'users'")
       ph-books(v-if="c == 'dict'")
+      la-toolbox(v-if="c == 'projects'")
     .px-1.font-bold() {{ names[c] }}
     la-lock-open.text-xs.absolute.top-2.right-2.opacity-30(v-if="features[c] || (c == 'users' && features.space) || (c == 'topics' && features.chat)")
 </template>

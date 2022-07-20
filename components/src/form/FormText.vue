@@ -1,6 +1,6 @@
 <script setup>
 import { reactive, ref, onMounted, watch, computed, nextTick } from 'vue'
-import SimpleMDE from 'simplemde'
+// import SimpleMDE from 'simplemde'
 import 'simplemde/dist/simplemde.min.css'
 import { uploadText, parseMd } from '#composables'
 
@@ -25,13 +25,13 @@ const text = computed({
 
 nextTick(() => {
   if (!simplemde) {
-    simplemde = new SimpleMDE({
-      element: document.getElementById("myMD"),
-    });
-    simplemde.value(text.value)
-    simplemde.codemirror.on("change", function () {
-      text.value = simplemde.value()
-    });
+    // simplemde = new SimpleMDE({
+    //   element: document.getElementById("myMD"),
+    // });
+    // simplemde.value(text.value)
+    // simplemde.codemirror.on("change", function () {
+    //   text.value = simplemde.value()
+    // });
   }
 })
 
@@ -42,7 +42,7 @@ function importPostFile(event) {
     if (content) {
       add.value = true
       nextTick(() => {
-        simplemde.value(content)
+        // simplemde.value(content)
       })
     }
   });

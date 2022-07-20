@@ -1,3 +1,3 @@
-export { default as AccountMateButton } from "./mate/AccountMateButton.vue";
-export { default as AccountMateList } from "./mate/AccountMateList.vue";
-export { default as AccountMateLink } from "./mate/AccountMateLink.vue";
+export { default as MateButton } from "./MateButton.vue";
+export { default as MateList } from "./MateList.vue";
+export { default as MateLink } from "./MateLink.vue";

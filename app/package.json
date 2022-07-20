@@ -1,19 +1,19 @@
 {
   "name": "@gun-vue/app",
-  "private": true,
   "version": "0.10.2",
+  "private": true,
   "homepage": "https://gun-vue.js.org",
-  "author": "davay42 <davay@defucc.me>",
   "funding": {
     "type": "ko-fi",
     "url": "https://ko-fi.com/davay"
   },
+  "author": "davay42 <davay@defucc.me>",
   "scripts": {
-    "start": "node start.js",
-    "dev": "vite --host",
     "build": "vite  build --base=./ --emptyOutDir",
+    "deploy": "sh deploy.sh",
+    "dev": "vite --host",
     "preview": "vite preview --host",
-    "deploy": "sh deploy.sh"
+    "start": "node start.js"
   },
   "dependencies": {
     "@gun-vue/components": "workspace:^",

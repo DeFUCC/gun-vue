@@ -15,5 +15,4 @@ export const GunVuePlugin = {
 export * from './all.js'
 export * from "#composables";
 
-export { default as FloatingVue } from 'floating-vue'
 

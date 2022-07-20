@@ -2,16 +2,7 @@
 import { currentRoom, useBackground, useColor } from '#composables';
 import { computed } from 'vue'
 
-const routes = {
-  '/': "Home",
-  "/space/": "Space",
-  "/topics/": "Topics",
-  "/posts/": "Posts",
-  "/users/": "Users",
-  "/rooms/": "Rooms",
-  '/dict/': "Dictionary",
-  '/gifts/': "Gifts"
-};
+import routes from '../pages/routes'
 
 
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
@@ -51,6 +42,7 @@ const color = useColor('light')
     ph-users(v-if="link == 'Users'")
     ph-books(v-if="link == 'Dictionary'")
     la-sun(v-if="link == 'Gifts'")
+    la-toolbox(v-if="link == 'Projects'")
     .ml-1.hidden.sm_block.text-sm {{ link }}
   .flex-1
 </template>

@@ -4,15 +4,12 @@
 
 <template lang='pug'>
 .flex.flex-col.bg-dark-50.bg-opacity-70
-  .text-xl.text-center.mt-2.font-bold Welcome to Gun-Vue
+  .text-xl.text-center.mt-2.font-bold.flex.items-center.justify-center.gap-2
+    a.underline(href="https://gun.eco" target="_blank") Gun
+    span + 
+    a.underline(href="https://vuejs.org" target="_blank") Vue
+    span = ✨
   .flex.flex-wrap.justify-center.z-200.text-2xl.w-full.gap-4.py-4
-    a.btn(
-      href="https://homescreen.hns.siasky.net/#/skylink/AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A" target="_blank"
-      )
-      simple-icons-skynet
-      .bar
-        .title Homescreen
-        .subtitle Install the skapp
     a.btn(href="/components/" target="_blank")
       la-book
       .bar
@@ -32,23 +29,30 @@
       cib-ko-fi
       .bar
         .title Support
-        .subtitle Donate funds
+        .subtitle Donate money
+    a.btn(
+      href="https://homescreen.hns.siasky.net/#/skylink/AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A" target="_blank"
+      )
+      simple-icons-skynet
+      .bar
+        .title Homescreen
+        .subtitle Install the skapp
 </template>
 
 <style lang="postcss" scoped>
 .btn {
-  @apply flex gap-2 items-center transition bg-light-100/70 p-2 rounded-lg hover_bg-light-100;
+  @apply flex gap-2 items-center transition bg-light-100/70 py-1 px-2 rounded-lg hover_bg-light-100;
 }
 
 .title {
-  @apply text-18px font-bold;
+  @apply text-lg font-bold;
 }
 
 .subtitle {
-  @apply text-sm;
+  @apply text-xs;
 }
 
 .bar {
-  @apply flex-1 p-1 flex flex-col gap-1;
+  @apply flex-1 pb-1 flex flex-col gap-1;
 }
 </style>
