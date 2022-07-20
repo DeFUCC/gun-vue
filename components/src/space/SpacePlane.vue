@@ -52,17 +52,12 @@ onBeforeUnmount(() => {
 </script>
 
 <template lang='pug'>
-.flex.flex-col.items-center.relative
+.flex.flex-col.items-center
   .text-2xl.p-8.top-15vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-4(
     v-if="!space.joined && user.is" 
     @click="join()"
     :style="{ borderColor: user.color }"
     ) Click here to join the space
-  button.fixed.top-4.right-4.text-xl.z-1000(
-    @click="draw.enabled = !draw.enabled"
-    :class="{ active: draw.enabled }"
-    )
-    carbon-pen
   space-draw.z-2000
   svg.h-full.w-full.z-200.bg-dark-100.bg-opacity-5.cursor-pointer(
     ref="plane"

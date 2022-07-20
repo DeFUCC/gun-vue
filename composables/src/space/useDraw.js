@@ -2,7 +2,7 @@ import { computed, markRaw, nextTick, reactive, ref, watch, onMounted } from 'vu
 import { createDrauu } from 'drauu'
 import { toReactive, useStorage, useCycleList } from '@vueuse/core'
 
-import { useGun, useUser } from '../'
+import { useGun, currentRoom, useUser } from '../'
 
 export const draw = reactive({
   colors: [
@@ -74,7 +74,9 @@ export function useDraw() {
   if (!draw.initiated) {
     const gun = useGun()
 
-    const drawing = gun.user().get('draw').get('space')
+    const { user } = useUser()
+
+    const drawing = gun.user(currentRoom.pub).get('space').get(user.pub).get('draw')
 
     drawing.on(d => {
       if (draw.ing) return
@@ -86,7 +88,7 @@ export function useDraw() {
       if (!disableDump) {
         let content = drauu.dump()
         draw.content = content
-        drawing.put(content)
+        drawing.put(content, null, { opt: { cert: currentRoom.features?.space } })
       }
     })
     onMounted(() => {
@@ -102,7 +104,7 @@ export function useDraw() {
     draw.clear = () => {
       drauu.clear()
       draw.content = ''
-      drawing.put('')
+      drawing.put('', null, { opt: { cert: currentRoom.features?.space } })
     }
 
     window.addEventListener('keydown', (e) => {

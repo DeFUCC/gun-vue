@@ -982,23 +982,17 @@ A 2D-space
 
 * [useSpace](#module_useSpace)
     * _static_
-        * [.useSpace(spaceName)](#module_useSpace.useSpace) ⇒ <code>useSpace</code>
+        * [.useSpace()](#module_useSpace.useSpace) ⇒ <code>useSpace</code>
     * _inner_
         * [~useSpace](#module_useSpace..useSpace) : <code>Object</code>
 
-### useSpace(spaceName) ⇒ <code>useSpace</code>
+### useSpace() ⇒ <code>useSpace</code>
   A space to navigate with mouse clicks
-
-
-| Param | Type |
-| --- | --- |
-| spaceName | <code>String</code> | 
 
 **Example**  
 ```js
 const { space, plane, links, width, height, guests, area, join } = useSpace({
 TIMEOUT: 10000,
-spaceName: 'Space title'
 })
 ```
 ### useSpace : <code>Object</code>
