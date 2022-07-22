@@ -1,6 +1,7 @@
 <script setup>
-import { useColor, } from '#composables'
-import { computed, reactive, ref, watchEffect } from 'vue'
+import { useColor } from '#composables'
+
+
 
 const colorLight = useColor('light')
 const colorDeep = useColor('deep')
@@ -8,36 +9,30 @@ const colorDeep = useColor('deep')
 defineEmits(['user'])
 
 const props = defineProps({
-  hash: { type: String, default: '' },
-  authors: Object,
-  tag: [String, Boolean],
-  back: Boolean,
-  actions: { type: Boolean, default: true }
+  path: { type: String, default: '' },
+  project: {
+    type: Object,
+    default: {
+      title: '',
+      statement: '',
+      color: '',
+      cover: null,
+      icon: null,
+      link: '',
+      goals: [],
+      objects: [],
+      events: [],
+      text: ''
+    }
+  }
 })
 
-const { project } = useProject({ hash: props.hash })
-
-function useProject({ hash = "" } = {}) {
-  const project = reactive({
-    hash,
-    title: '',
-    statement: '',
-    cover: null,
-    icon: null,
-    link: '',
-    goals: [],
-    objects: [],
-    events: [],
-    text: ''
-  })
-  return { project }
-}
 
 </script>
 
 <template lang='pug'>
 .card(
-  :style="{ backgroundImage: `url(${project?.cover || project?.raw})`, backgroundColor: colorDeep.hex(hash) }"
+  :style="{ backgroundImage: `url(${project?.cover || project?.raw})`, backgroundColor: project.color }"
   )
   .p-0(style="flex: 12 1 120px" :style="{ paddingTop: project?.cover || project?.raw ? '18em' : '0' }")
   .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-lg.rounded-2xl.bg-light-100.backdrop-blur-sm.backdrop-filter.shadow-md(
@@ -50,23 +45,24 @@ function useProject({ hash = "" } = {}) {
         .flex.items-center
           .text-xl.font-bold.my-2(v-if="project?.title") {{ project.title }}
           .flex-1
-          post-link(:hash="hash")
+
+          account-badge(:pub="path.slice(-87)")
         .statement(v-if="project?.statement") {{ project.statement }}
       .flex.items-center.flex-wrap.items-center.mt-2.gap-2
         la-youtube.mx-1(v-if="project?.youtube")
         mdi-text-long.mx-1(v-if="project?.text")
         ui-link(:url="project?.link" v-if="project?.link")
+        .text-xs
+          slot
+    //- .flex.gap-1.rounded-xl.p-1.bg-dark-50.bg-opacity-20.flex-wrap.items-center(style="flex: 1 1 130px" v-if="actions")
+    //- post-action-react(:authors="authors" @user="$emit('user', $event)" :hash="hash" :tag="tag" :back="back")
 
-        slot
-    .flex.gap-1.rounded-xl.p-1.bg-dark-50.bg-opacity-20.flex-wrap.items-center(style="flex: 1 1 130px" v-if="actions")
-      post-action-react(:authors="authors" @user="$emit('user', $event)" :hash="hash" :tag="tag" :back="back")
 
 
+    //- post-action-update(:hash="hash" )
+    //- post-action-ban(:hash="hash" :tag="tag")
 
-      //- post-action-update(:hash="hash" )
-      //- post-action-ban(:hash="hash" :tag="tag")
-
-      //- post-action-star(:hash="hash" )
+    //- post-action-star(:hash="hash" )
 </template>
 
 

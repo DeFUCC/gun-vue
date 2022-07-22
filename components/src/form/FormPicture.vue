@@ -6,7 +6,8 @@ import { usePictureUpload } from '#composables'
 const props = defineProps({
   field: { type: String, default: 'cover' },
   options: {
-    type: Object, default: {
+    type: Object,
+    default: {
       picSize: 800,
       preserveRatio: true
     }
@@ -45,7 +46,7 @@ watch(picture, pic => {
     button.button.fixed.text-2xl.opacity-40.hover_opacity-100.m-4
       la-check(@click="add = false")
     button.button.fixed.text-2xl.opacity-40.hover_opacity-100.mt-4.ml-18
-      la-trash-alt(@click="picture = null; add = false")
+      la-trash-alt(@click="picture = ''; add = false")
     img(:src="picture")
 </template>
 

@@ -1,10 +1,10 @@
 <script setup>
 import { defineAsyncComponent, reactive } from 'vue'
 
-const ProjectForm = defineAsyncComponent(() => import('./ProjectForm.vue'))
+const ProjectList = defineAsyncComponent(() => import('./ProjectList.vue'))
 
 const state = reactive({
-  hash: "123",
+
 })
 
 
@@ -12,9 +12,9 @@ const state = reactive({
 </script>
 
 <template lang="pug">
-Story(title="Project/Form" icon="la:question")
+Story(title="Project/List" icon="la:tools")
   Variant(title="Round")
-    ProjectForm(v-bind="state")
+    ProjectList(v-bind="state")
 
   template(#controls)
     .p-4.flex.flex-col.gap-4

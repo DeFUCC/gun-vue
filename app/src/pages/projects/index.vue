@@ -4,6 +4,5 @@ import { currentRoom } from '#components';
 
 <template lang='pug'>
 .flex.flex-col
-  project-form
-  project-list(:key="currentRoom.pub")
+  project-list(:key="currentRoom.pub" @open="$router.push(`/projects/${$event}`)")
 </template>

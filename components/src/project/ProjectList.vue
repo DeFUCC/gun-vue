@@ -1,12 +1,25 @@
 <script setup>
-import { useProjects } from '#composables';
+import { useProjects, updateProject, project } from '#composables';
+const { search, projects, candidates } = useProjects()
 
-const { projects } = useProjects()
+defineEmits(['open'])
+
 </script>
 
 <template lang='pug'>
 .flex.flex-col
-  .text-lg.font-bold PROJECT LIST
+  .p-2.flex.flex-col.gap-2
+    input.p-2.rounded-xl.shadow(v-model="project.title" placeholder="Start typing a project title")
   .flex.flex-wrap.gap-2.p-2
-    .p-4.shadow-lg.bg-light-100.rounded-xl(v-for="project in projects" :key="project") {{ project }}
+    transition-group(name="list")
+      project-card(
+        v-for="(proj, path) in candidates" 
+        @click="$emit('open', proj.item.path)"
+        :key="path"
+        :project="proj.item"
+        :path="proj.item.path"
+        :style="{ opacity: 1 - proj.score }"
+        )
+  .p-2.flex.flex-col.gap-2
+    button.button(@click="updateProject()" key="button" v-if="project.title") Add Project {{ project.title }}
 </template>

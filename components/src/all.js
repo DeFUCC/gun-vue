@@ -1,6 +1,7 @@
 export * from './account/'
 export * from './chat/'
 export * from './dict/'
+export * from './embed/'
 export * from './form/'
 export * from './gift/'
 export * from './mate/'
