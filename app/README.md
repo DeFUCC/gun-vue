@@ -24,3 +24,4 @@ A starter GUN client built with Vite plus some very useful plugins. With local e
 - [pug](https://pugjs.org) - Pug – robust, elegant, feature rich template engine for Node.js
 - [windicss](https://windicss.org/) - Next generation utility-first CSS framework.
 - [ola](https://github.com/franciscop/ola) - 🌊 Smooth animation library for interpolating numbers
+- [md-editor-v3](https://imzbf.github.io/md-editor-v3/index) - Markdown editor and renderer
