@@ -1,5 +1,11 @@
 # @gun-vue/repo
 
+## 0.11.0
+
+### Minor Changes
+
+- Now we have a desktop app builds (powered with tauri). Need some cleanup for smaller package size, but the basic functionality is up and running.
+
 ## 0.10.3
 
 ### Patch Changes

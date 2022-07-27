@@ -1,5 +1,16 @@
 # @gun-vue/components
 
+## 0.11.0
+
+### Minor Changes
+
+- Now we have a desktop app builds (powered with tauri). Need some cleanup for smaller package size, but the basic functionality is up and running.
+
+### Patch Changes
+
+- Updated dependencies
+  - @gun-vue/composables@0.11.0
+
 ## 0.10.3
 
 ### Patch Changes
