@@ -26,6 +26,9 @@ jobs:
         with:
           toolchain: stable
 
+      - name: PNPM setup
+        uses: pnpm/action-setup@v2.2.2
+
       - name: Install dependencies (ubuntu only)
         if: matrix.platform == 'ubuntu-latest'
         run: |
