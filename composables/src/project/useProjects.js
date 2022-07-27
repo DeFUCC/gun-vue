@@ -3,7 +3,8 @@
  */
 
 import { computed, reactive, ref } from "vue"
-import { projectsPath, project } from "."
+import { projectsPath } from "."
+import { newProject } from './useProject'
 import { useGun } from "../gun"
 import { currentRoom } from "../room"
 import Fuse from "fuse.js";
@@ -25,8 +26,8 @@ export function useProjects() {
   })
 
   const candidates = computed(() => {
-    if (project.title) {
-      return fuse.value.search(project.title)
+    if (newProject.title) {
+      return fuse.value.search(newProject.title)
     } else {
       return Object.entries(projects).map(arr => ({ item: { ...arr[1], path: arr[0] } }))
     }
@@ -56,8 +57,8 @@ export function countProjects() {
     .user(currentRoom.pub)
     .get(projectsPath)
     .map()
-    .once((d, k) => {
-      if (d == null) return
+    .on((d, k) => {
+      if (d == null) { delete list[k]; return }
       list[k] = true
     })
   return computed(() => Object.keys(list).length)

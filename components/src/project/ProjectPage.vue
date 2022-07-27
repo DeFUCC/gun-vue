@@ -5,12 +5,12 @@ import MdEditor from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
 
 const props = defineProps({
-  path: { type: String, default: {} }
+  path: { type: String, default: '' },
 })
 
 const { user } = useUser()
 
-const project = useProject(toRef(props, 'path'))
+const { project } = useProject(toRef(props, 'path'))
 
 const editable = computed(() => props.path.includes(user.pub))
 
