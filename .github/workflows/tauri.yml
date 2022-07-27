@@ -28,6 +28,8 @@ jobs:
 
       - name: PNPM setup
         uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.5.2
 
       - name: Install dependencies (ubuntu only)
         if: matrix.platform == 'ubuntu-latest'
