@@ -44,7 +44,7 @@ A simple no-store Gun server to throw at any free tier Node.js environment.
 
 ## [@gun-vue/app](https://github.com/DeFUCC/gun-vue/tree/master/app)
 
-The main [gun-vue.js.org](https://gun-vue.js.org) site is an example Vite SPA
+The main [gun-vue.js.org](https://gun-vue.js.org) site is an example Vite SPA. It's also easily built into a desktop app with [Tauri](https://tauri.app).
 
 
 ---
