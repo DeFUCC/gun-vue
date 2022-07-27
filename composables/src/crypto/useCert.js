@@ -3,15 +3,19 @@ import { SEA } from "..";
 export async function issueCert({
   pair,
   tag = "word",
+  dot = '',
   users = "*",
   personal = false,
 } = {}) {
-  let path = { "*": `${tag}` };
+  let policy = { "*": `${tag}` };
+  if (dot) {
+    policy["."] = dot;
+  }
   if (personal) {
-    path["+"] = "*";
+    policy["+"] = "*";
   }
   try {
-    let cert = await SEA.certify(users, path, pair);
+    let cert = await SEA.certify(users, policy, pair);
     return cert;
   } catch (e) {
     console.log("cert error: ", e);

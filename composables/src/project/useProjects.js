@@ -39,10 +39,10 @@ export function useProjects() {
     .get(projectsPath)
     .map()
     .on((d, k) => {
+      if (d == null) { delete projects[k]; return }
       const data = { ...d }
       delete data._
       projects[k] = data
-
     })
 
   return { search, projects, candidates }
@@ -57,6 +57,7 @@ export function countProjects() {
     .get(projectsPath)
     .map()
     .once((d, k) => {
+      if (d == null) return
       list[k] = true
     })
   return computed(() => Object.keys(list).length)

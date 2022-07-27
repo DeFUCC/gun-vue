@@ -52,3 +52,13 @@ export function useProject(path = ref()) {
   })
 
 }
+
+export function removeProject(hash) {
+  const gun = useGun()
+  const { user } = useUser()
+
+  gun.user(currentRoom.pub).get(projectsPath).get(`${hash}@${user.pub}`).put(null, null, {
+    opt:
+      { cert: currentRoom.features?.projects }
+  })
+}

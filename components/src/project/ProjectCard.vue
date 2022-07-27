@@ -1,7 +1,7 @@
 <script setup>
-import { useColor } from '#composables'
+import { useColor, useUser, removeProject } from '#composables'
 
-
+const { user } = useUser()
 
 const colorLight = useColor('light')
 const colorDeep = useColor('deep')
@@ -34,6 +34,8 @@ const props = defineProps({
 .card(
   :style="{ backgroundImage: `url(${project?.cover || project?.raw})`, backgroundColor: project.color }"
   )
+  .absolute.top-2.right-2(@click.stop.prevent="removeProject(path.slice(0, -88))" v-if="path.includes(user.pub)")
+    la-trash
   .p-0(style="flex: 12 1 120px" :style="{ paddingTop: project?.cover || project?.raw ? '18em' : '0' }")
   .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-lg.rounded-2xl.bg-light-100.backdrop-blur-sm.backdrop-filter.shadow-md(
     style="flex: 14 1 620px"
