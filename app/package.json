@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.1.79",
+    "@tauri-apps/cli": "^1.0.5",
     "@vitejs/plugin-vue": "^3.0.1",
     "pug": "3.0.2",
     "unplugin-icons": "^0.14.7",

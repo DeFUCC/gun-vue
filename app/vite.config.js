@@ -18,9 +18,12 @@ const dirname = path.dirname(filename);
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  clearScreen: false,
   server: {
     port: 3142,
+    strictPort: true,
   },
+  envPrefix: ['VITE_', 'TAURI_'],
   publicDir: "public",
   plugins: [
     vue(),
@@ -98,7 +101,8 @@ export default defineConfig({
   build: {
     outDir: "../_dist/",
     target: "esnext",
-    sourcemap: true,
+    minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
+    sourcemap: !!process.env.TAURI_DEBUG,
     brotliSize: true,
     assetsInlineLimit: 100000000,
     chunkSizeWarningLimit: 100000000,
