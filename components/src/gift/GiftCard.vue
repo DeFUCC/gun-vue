@@ -1,34 +1,27 @@
 <script setup>
-import { acceptGift, useColor, useUser } from '#composables'
+import { giftState, useColor, useUser, useGift } from '#composables'
 import { computed } from 'vue'
 import { useTimeAgo } from '@vueuse/core'
 
 const props = defineProps({
   hash: String,
-  gift: {
-    type: Object, default: {
-      qn: 0,
-      ql: '',
-      wish: '',
-      from: '',
-      to: '',
-    }
-  }
 })
 
 const { user } = useUser()
 
 const color = useColor()
 
-const complete = computed(() => props.gift.sent && props.gift.received)
+const { gift, status } = useGift(props.hash)
 
-const time = useTimeAgo(props.gift.date)
+const complete = computed(() => gift.sent && gift.received)
+
+const time = useTimeAgo(gift.date)
 
 </script>
 
 <template lang='pug'>
 .p-2.rounded-xl.bg-light-200.bg-opacity-90.flex.shadow-lg.flex-wrap.items-center.border-2(
-  :style="{ backgroundColor: complete ? color.hex(hash) : '#ccc3', borderColor: !complete ? color.hex(hash) : 'transparent' }"
+  :style="{ backgroundColor: status == 'complete' ? color.hex(hash) : '#ccc3', borderColor: !status == 'complete' ? color.hex(hash) : 'transparent' }"
   )
   .flex.items-center.gap-2(style='flex: 1 1 100px')
     account-avatar(:pub="gift.from")
@@ -43,5 +36,7 @@ const time = useTimeAgo(props.gift.date)
     .flex-auto(v-if="gift.wish") {{ gift.wish }}
 
     .p-2(v-if="gift.date") {{ time }}
-    button.button(@click="acceptGift(hash)" v-if="gift.to == user?.pub && !complete") Accept
+    template(v-if="gift.to == user?.pub")
+      button.button(@click.stop.prevent="giftState(hash, true)" v-if="status == 'proposed'") Accept
+      button.button(@click.stop.prevent="giftState(hash, false)" v-if="status == 'complete'") Reject
 </template>

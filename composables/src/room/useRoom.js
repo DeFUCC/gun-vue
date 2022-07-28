@@ -39,7 +39,7 @@ watchEffect(() => {
       .get("hosts")
       .map()
       .once((d, k) => {
-        delete d._;
+
         currentRoom.hosts[k] = d;
       });
     gun
@@ -47,6 +47,7 @@ watchEffect(() => {
       .get("features")
       .map()
       .once((d, k) => {
+
         currentRoom.features[k] = d;
       });
   }
@@ -80,7 +81,6 @@ export function useRoom(pub = currentRoom.pub) {
     .get("hosts")
     .map()
     .once((d, k) => {
-      if (d) delete d._;
       room.hosts[k] = d;
     });
   gun

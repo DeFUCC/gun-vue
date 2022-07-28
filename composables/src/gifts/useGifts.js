@@ -3,40 +3,10 @@ import { SEA } from 'gun'
 import { reactive, computed } from 'vue'
 import { useGun, useUser, hashObj } from '..'
 
-export const giftPath = "#gifts2023"
+import { giftPath } from '.'
 
 
-export function useGift() {
-  const { user } = useUser()
-  const gift = reactive({
-    from: computed(() => user?.pub),
-    to: '',
-    qn: 0,
-    ql: '',
-    wish: '',
-    date: useNow()
-  })
 
-  const gun = useGun()
-
-  async function propose() {
-
-    const { hash, hashed } = await hashObj(gift)
-
-    gun.get(giftPath).get(hash).put(hashed)
-
-    gun.user().get(giftPath).get(hash).put(true)
-
-  }
-
-  return { gift, propose }
-
-}
-
-export async function acceptGift(hash) {
-  const { user } = useUser()
-  user.db.get(giftPath).get(hash).put(true)
-}
 
 
 
@@ -76,3 +46,27 @@ export function useGifts() {
   return { my, proposed, gifts }
 }
 
+
+export function useMyGifts() {
+  const { user } = useUser()
+  const gun = useGun()
+  const gifts = reactive({})
+  const from = reactive({})
+  const to = reactive({})
+  gun.user().get(giftPath).map().on((d, hash) => {
+    gun.get(giftPath).get(hash).once(d => {
+      try {
+        d = JSON.parse(d)
+      } catch { }
+      if (d.from == user.pub) {
+        from[hash] = { ...d, sent: true }
+      }
+      if (d.to == user.pub) {
+        to[hash] = { ...d, sent: true, received: true }
+      }
+      gifts[hash] = d
+    })
+
+  })
+  return { gifts, to, from }
+}

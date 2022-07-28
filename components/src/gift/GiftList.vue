@@ -3,6 +3,8 @@ import { useGifts } from '#composables'
 
 const { gifts, my, proposed } = useGifts()
 
+const emit = defineEmits(['open'])
+
 </script>
 
 <template lang='pug'>
@@ -10,15 +12,15 @@ const { gifts, my, proposed } = useGifts()
   .flex.flex-col.gap-2
     .text-lg.font-bold MY
     gift-card(
+      @click="$emit('open', hash)"
       v-for="(gift, hash) in my" :key="hash"
-      :gift="gift"
       :hash="hash"
       )
   .flex.flex-col.gap-2
     .text-lg.font-bold COMPLETE
     gift-card(
+      @click="$emit('open', hash)"
       v-for="(gift, hash) in gifts" :key="hash"
-      :gift="gift"
       :hash="hash"
       )
     
