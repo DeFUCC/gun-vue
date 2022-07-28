@@ -36,7 +36,7 @@
   "dependencies": {
     "@gun-vue/composables": "workspace:^",
     "@qrcode/svg": "^1.0.0-beta.2",
-    "@vueuse/core": "8.9.3",
+    "@vueuse/core": "9.0.0",
     "@vueuse/gesture": "^2.0.0-beta.1",
     "@vueuse/sound": "^1.1.7",
     "floating-vue": "^2.0.0-beta.17",
@@ -49,10 +49,10 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "2.3.3",
-    "histoire": "^0.7.9",
+    "histoire": "^0.8.4",
     "pug": "^3.0.2",
     "unplugin-icons": "^0.14.7",
-    "unplugin-vue-components": "^0.21.1",
+    "unplugin-vue-components": "^0.21.2",
     "vite": "2.9.14",
     "vite-plugin-windicss": "^1.8.7",
     "windicss": "^3.5.6"

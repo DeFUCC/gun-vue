@@ -9,7 +9,8 @@ import { user } from "../user";
 import { computed, ref, reactive, watchEffect } from "vue";
 import { getFirstEmoji, currentRoom } from "..";
 import { getArrow } from "curved-arrows";
-import { useClamp, useElementBounding } from "@vueuse/core";
+import { useElementBounding } from "@vueuse/core";
+import { useClamp } from '@vueuse/math'
 
 /**
  * @typedef {Object} useSpace
