@@ -1,4 +1,4 @@
-import { resolveComponent, openBlock, createBlock, withCtx, createBaseVNode, withDirectives, vModelText, createVNode, defineAsyncComponent, __vitePreload, reactive, ref, onMounted, nextTick, watch, computedAsync } from "./vendor.es.js";
+import { resolveComponent$1 as resolveComponent, openBlock$1 as openBlock, createBlock$1 as createBlock, withCtx$1 as withCtx, createBaseVNode$1 as createBaseVNode, withDirectives$1 as withDirectives, vModelText$1 as vModelText, createVNode$1 as createVNode, defineAsyncComponent$1 as defineAsyncComponent, reactive$1 as reactive, ref$1 as ref, onMounted$1 as onMounted, nextTick$1 as nextTick, watch$1 as watch, computedAsync } from "./vendor.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 const _hoisted_1 = { class: "p-2 flex flex-col gap-4" };
 const _hoisted_2 = { class: "flex gap-2" };
@@ -73,7 +73,7 @@ const _sfc_main = {
   __name: "GiftCard.story",
   setup(__props, { expose }) {
     expose();
-    const GiftCard = defineAsyncComponent(() => __vitePreload(() => import("./GiftCard.es.js"), true ? ["GiftCard.es.js","useDraw.es.js","vendor.es.js","useGifts.es.js","AccountAvatar.es.js","plugin-vue_export-helper.es.js"] : void 0));
+    const GiftCard = defineAsyncComponent(() => import("./GiftCard.es.js"));
     const gift = reactive({
       from: "",
       to: "",
@@ -89,7 +89,7 @@ const _sfc_main = {
       size: 40
     });
     async function generate() {
-      const { SEA } = await __vitePreload(() => import("./index.es.js"), true ? ["index.es.js","useDraw.es.js","vendor.es.js","useChat.es.js","usePrivate.es.js","useLog.es.js","useFile.es.js","useZip.es.js","useMd.es.js","useGifts.es.js","useReactions.es.js","useMates.es.js","useGuests.es.js","useSpace.es.js","useBackground.es.js","useProjects.es.js"] : void 0);
+      const { SEA } = await import("./index.es.js");
       gift.from = (await SEA.pair()).pub;
       gift.to = (await SEA.pair()).pub;
     }
@@ -99,7 +99,7 @@ const _sfc_main = {
       });
     });
     watch(gift, async () => {
-      const { hashObj } = await __vitePreload(() => import("./index.es.js"), true ? ["index.es.js","useDraw.es.js","vendor.es.js","useChat.es.js","usePrivate.es.js","useLog.es.js","useFile.es.js","useZip.es.js","useMd.es.js","useGifts.es.js","useReactions.es.js","useMates.es.js","useGuests.es.js","useSpace.es.js","useBackground.es.js","useProjects.es.js"] : void 0);
+      const { hashObj } = await import("./index.es.js");
       hashed.value = await hashObj(gift);
     });
     const __returned__ = { GiftCard, gift, hashed, state, generate, defineAsyncComponent, onMounted, reactive, ref, watch, nextTick, computedAsync };

@@ -1,4 +1,4 @@
-import { defineComponent, useMediaQuery, ref, watch, computed, onUnmounted, openBlock, createElementBlock, createBaseVNode, renderSlot, normalizeClass, withModifiers, normalizeStyle, unref, createBlock, withCtx, toDisplayString, createVNode, Icon, createCommentVNode, Transition, scrollIntoView, onMounted, resolveComponent, withKeys, mergeProps } from "./vendor.es.js";
+import { defineComponent, resolveComponent, openBlock, createBlock, withCtx, createBaseVNode, renderSlot, normalizeClass, withKeys, mergeProps, watch, scrollIntoView, onMounted, ref, computed, onUnmounted, createElementBlock, withModifiers, normalizeStyle, unref, useMediaQuery, toDisplayString, createVNode, Icon, createCommentVNode, Transition } from "./vendor.es.js";
 var _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
@@ -256,7 +256,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var BaseSplitPane = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-4cd3cd6c"]]);
+var BaseSplitPane = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-7c5763cc"]]);
 const isMobile = useMediaQuery("(max-width: 640px)");
 const _hoisted_1 = {
   key: 0,

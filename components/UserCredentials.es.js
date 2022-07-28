@@ -1,10 +1,10 @@
 import { useUser, usePass } from "./useDraw.es.js";
-import { openBlock, createElementBlock, createBaseVNode, renderSlot, createVNode, createBlock, toDisplayString, normalizeStyle, normalizeClass, createCommentVNode, withCtx, Transition, TransitionGroup, ref, useClipboard, useShare, computed } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, renderSlot$1 as renderSlot, createVNode$1 as createVNode, createBlock$1 as createBlock, toDisplayString$1 as toDisplayString, normalizeStyle$1 as normalizeStyle, normalizeClass$1 as normalizeClass, createCommentVNode$1 as createCommentVNode, withCtx$1 as withCtx, Transition$1 as Transition, TransitionGroup, ref$1 as ref, useClipboard, useShare, computed$1 as computed } from "./vendor.es.js";
 import { downloadFile } from "./useFile.es.js";
 import { __unplugin_components_5 } from "./check.es.js";
-import __unplugin_components_1 from "./QrShow.es.js";
+import __unplugin_components_1$1 from "./QrShow.es.js";
 import { __unplugin_components_6, __unplugin_components_8 } from "./qrcode.es.js";
-import { __unplugin_components_1 as __unplugin_components_1$1, __unplugin_components_2 as __unplugin_components_2$2 } from "./lock.es.js";
+import { __unplugin_components_1, __unplugin_components_2 as __unplugin_components_2$2 } from "./lock.es.js";
 import __unplugin_components_0$1 from "./UserPass.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 import "./eye.es.js";
@@ -111,7 +111,7 @@ const _hoisted_17 = /* @__PURE__ */ createBaseVNode("div", { class: "ml-2" }, "I
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _a;
   const _component_user_pass = __unplugin_components_0$1;
-  const _component_la_lock = __unplugin_components_1$1;
+  const _component_la_lock = __unplugin_components_1;
   const _component_la_unlock = __unplugin_components_2$2;
   const _component_la_share = __unplugin_components_3;
   const _component_la_copy = __unplugin_components_2;
@@ -119,7 +119,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_la_qrcode = __unplugin_components_6;
   const _component_la_envelope_open_text = __unplugin_components_7;
   const _component_la_file_code = __unplugin_components_8;
-  const _component_qr_show = __unplugin_components_1;
+  const _component_qr_show = __unplugin_components_1$1;
   const _component_la_check = __unplugin_components_5;
   return $setup.user.is && !((_a = $setup.user.safe) == null ? void 0 : _a.saved) ? (openBlock(), createElementBlock("div", _hoisted_1, [
     renderSlot(_ctx.$slots, "default", {}, () => [

@@ -1,5 +1,5 @@
 import { useColor, useUser } from "./useDraw.es.js";
-import { openBlock, createElementBlock, createBaseVNode, withModifiers, createVNode, createCommentVNode, withDirectives, vModelText, toDisplayString, normalizeStyle, computed, ref, withCtx, Fragment, renderList, TransitionGroup, vShow, createBlock } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, withModifiers$1 as withModifiers, createVNode$1 as createVNode, createCommentVNode$1 as createCommentVNode, withDirectives$1 as withDirectives, vModelText$1 as vModelText, toDisplayString$1 as toDisplayString, normalizeStyle$1 as normalizeStyle, computed$1 as computed, ref$1 as ref, withCtx$1 as withCtx, Fragment$1 as Fragment, renderList$1 as renderList, TransitionGroup, vShow$1 as vShow, createBlock$1 as createBlock } from "./vendor.es.js";
 import { useReaction, useReactions, countRating } from "./useReactions.es.js";
 import __unplugin_components_0$2 from "./AccountBadge.es.js";
 import { __unplugin_components_0 as __unplugin_components_0$1 } from "./times.es.js";

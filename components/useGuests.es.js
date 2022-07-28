@@ -1,4 +1,4 @@
-import { reactive, computed, watchEffect } from "./vendor.es.js";
+import { reactive$1 as reactive, computed$1 as computed, watchEffect$1 as watchEffect } from "./vendor.es.js";
 import { useGun, currentRoom, useAccount } from "./useDraw.es.js";
 let startTime = Date.now();
 function useGuests({ TIMEOUT = 1e4 } = {}) {

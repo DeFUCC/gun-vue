@@ -1,5 +1,5 @@
 import { useUser, useGun, currentRoom, useAccount } from "./useDraw.es.js";
-import { openBlock, createElementBlock, createVNode, withCtx, Fragment, renderList, normalizeStyle, createBaseVNode, toDisplayString, createBlock, TransitionGroup, createCommentVNode, Transition, computed, ref, reactive, urlRegex, toRef } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createVNode$1 as createVNode, withCtx$1 as withCtx, Fragment$1 as Fragment, renderList$1 as renderList, normalizeStyle$1 as normalizeStyle, createBaseVNode$1 as createBaseVNode, toDisplayString$1 as toDisplayString, createBlock$1 as createBlock, TransitionGroup, createCommentVNode$1 as createCommentVNode, Transition$1 as Transition, computed$1 as computed, ref$1 as ref, reactive$1 as reactive, urlRegex, toRef } from "./vendor.es.js";
 import { useBackground } from "./useBackground.es.js";
 import { useUserPosts, reactToPost } from "./useReactions.es.js";
 import { isEmoji } from "./useMates.es.js";

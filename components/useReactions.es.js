@@ -1,5 +1,5 @@
 import { useUser, useGun, currentRoom } from "./useDraw.es.js";
-import { ref, watchEffect, reactive } from "./vendor.es.js";
+import { ref$1 as ref, watchEffect$1 as watchEffect, reactive$1 as reactive } from "./vendor.es.js";
 import { getFirstEmoji } from "./useMates.es.js";
 const rootsTags = ["rooms"];
 function useReaction({ tag, hash, back } = {}) {

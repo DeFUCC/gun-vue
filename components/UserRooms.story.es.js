@@ -1,4 +1,4 @@
-import { resolveComponent, openBlock, createBlock, withCtx, createVNode, createBaseVNode, defineAsyncComponent, __vitePreload } from "./vendor.es.js";
+import { resolveComponent$1 as resolveComponent, openBlock$1 as openBlock, createBlock$1 as createBlock, withCtx$1 as withCtx, createVNode$1 as createVNode, createBaseVNode$1 as createBaseVNode, defineAsyncComponent$1 as defineAsyncComponent } from "./vendor.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 const _hoisted_1 = /* @__PURE__ */ createBaseVNode("div", { class: "p-2 flex flex-col gap-4" }, null, -1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -26,7 +26,7 @@ const _sfc_main = {
   __name: "UserRooms.story",
   setup(__props, { expose }) {
     expose();
-    const UserRooms = defineAsyncComponent(() => __vitePreload(() => import("./UserRooms.es.js"), true ? ["UserRooms.es.js","vendor.es.js","useDraw.es.js","RoomCard.es.js","useBackground.es.js","AccountAvatar.es.js","plugin-vue_export-helper.es.js","enter-outline.es.js","eye.es.js","angle-up.es.js"] : void 0));
+    const UserRooms = defineAsyncComponent(() => import("./UserRooms.es.js"));
     const __returned__ = { UserRooms, defineAsyncComponent };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;

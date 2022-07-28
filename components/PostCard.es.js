@@ -1,5 +1,5 @@
 import { useGun, currentRoom, useColor } from "./useDraw.es.js";
-import { openBlock, createElementBlock, toDisplayString, createCommentVNode, reactive, computed, createBaseVNode, normalizeStyle, createVNode, createBlock, renderSlot, pushScopeId, popScopeId, ref, watchEffect } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, toDisplayString$1 as toDisplayString, createCommentVNode$1 as createCommentVNode, reactive$1 as reactive, computed$1 as computed, createBaseVNode$1 as createBaseVNode, normalizeStyle$1 as normalizeStyle, createVNode$1 as createVNode, createBlock$1 as createBlock, renderSlot$1 as renderSlot, pushScopeId$1 as pushScopeId, popScopeId$1 as popScopeId, ref$1 as ref, watchEffect$1 as watchEffect } from "./vendor.es.js";
 import { usePost } from "./useZip.es.js";
 import { __unplugin_components_1 } from "./PostActionReact.es.js";
 import { __unplugin_components_2, __unplugin_components_3, __unplugin_components_4 } from "./youtube.es.js";

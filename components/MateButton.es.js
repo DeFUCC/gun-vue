@@ -1,5 +1,5 @@
 import { useUser, useColor } from "./useDraw.es.js";
-import { openBlock, createElementBlock, createBaseVNode, createVNode, toDisplayString, createCommentVNode, withDirectives, vModelText, withModifiers, createBlock, normalizeStyle } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, createVNode$1 as createVNode, toDisplayString$1 as toDisplayString, createCommentVNode$1 as createCommentVNode, withDirectives$1 as withDirectives, vModelText$1 as vModelText, withModifiers$1 as withModifiers, createBlock$1 as createBlock, normalizeStyle$1 as normalizeStyle } from "./vendor.es.js";
 import { useMate } from "./useMates.es.js";
 import { __unplugin_components_0 as __unplugin_components_0$1 } from "./times.es.js";
 import { __unplugin_components_1 as __unplugin_components_1$1 } from "./plus.es.js";

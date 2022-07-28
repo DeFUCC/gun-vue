@@ -1,4 +1,4 @@
-import { resolveComponent, openBlock, createBlock, withCtx, createVNode, defineAsyncComponent, __vitePreload } from "./vendor.es.js";
+import { resolveComponent$1 as resolveComponent, openBlock$1 as openBlock, createBlock$1 as createBlock, withCtx$1 as withCtx, createVNode$1 as createVNode, defineAsyncComponent$1 as defineAsyncComponent } from "./vendor.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Variant = resolveComponent("Variant");
@@ -23,7 +23,7 @@ const _sfc_main = {
   __name: "UtilGraph.story",
   setup(__props, { expose }) {
     expose();
-    const UtilGraph = defineAsyncComponent(() => __vitePreload(() => import("./UtilGraph.es.js"), true ? ["UtilGraph.es.js","useDraw.es.js","vendor.es.js","AccountAvatar.es.js","plugin-vue_export-helper.es.js"] : void 0));
+    const UtilGraph = defineAsyncComponent(() => import("./UtilGraph.es.js"));
     const __returned__ = { UtilGraph, defineAsyncComponent };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;

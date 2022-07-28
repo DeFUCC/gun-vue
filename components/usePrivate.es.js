@@ -1,4 +1,4 @@
-import { reactive, ref, SEA, computed } from "./vendor.es.js";
+import { reactive$1 as reactive, ref$1 as ref, SEA, computed$1 as computed } from "./vendor.es.js";
 import { useGun, useUser } from "./useDraw.es.js";
 function usePrivateChat(pub, { parse = true } = {}) {
   const gun = useGun();

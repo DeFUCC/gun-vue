@@ -1,4 +1,4 @@
-import { openBlock, createElementBlock, jsQR } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, jsQR } from "./vendor.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("input", {

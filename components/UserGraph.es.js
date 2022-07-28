@@ -1,4 +1,4 @@
-import { openBlock, createElementBlock, reactive, computed, onMounted, forceGraph, watchEffect, gunAvatar } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, reactive$1 as reactive, computed$1 as computed, onMounted$1 as onMounted, forceGraph, watchEffect$1 as watchEffect, gunAvatar } from "./vendor.es.js";
 import { useColor, useGun, currentRoom, user } from "./useDraw.es.js";
 import { useMates } from "./useMates.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";

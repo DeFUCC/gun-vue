@@ -1,4 +1,4 @@
-import { openBlock, createElementBlock, createBaseVNode, toDisplayString, createVNode, createCommentVNode, ref, computed } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, toDisplayString$1 as toDisplayString, createVNode$1 as createVNode, createCommentVNode$1 as createCommentVNode, ref$1 as ref, computed$1 as computed } from "./vendor.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 const _hoisted_1$3 = {
   preserveAspectRatio: "xMidYMid meet",

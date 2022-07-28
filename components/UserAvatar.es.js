@@ -1,5 +1,5 @@
 import { useUser, useGun, hashText } from "./useDraw.es.js";
-import { openBlock, createElementBlock, createBaseVNode, createCommentVNode, renderSlot, createVNode, normalizeClass, withCtx, computed, ref, watch, createBlock, withModifiers } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, createCommentVNode$1 as createCommentVNode, renderSlot$1 as renderSlot, createVNode$1 as createVNode, normalizeClass$1 as normalizeClass, withCtx$1 as withCtx, computed$1 as computed, ref$1 as ref, watch$1 as watch, createBlock$1 as createBlock, withModifiers$1 as withModifiers } from "./vendor.es.js";
 import { usePictureUpload } from "./useFile.es.js";
 import { __unplugin_components_3 } from "./UiLayer.es.js";
 import { __unplugin_components_5 } from "./check.es.js";

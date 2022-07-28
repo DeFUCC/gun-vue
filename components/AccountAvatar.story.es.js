@@ -1,4 +1,4 @@
-import { resolveComponent, openBlock, createBlock, withCtx, createBaseVNode, withDirectives, vModelText, createVNode, normalizeProps, guardReactiveProps, defineAsyncComponent, __vitePreload, reactive, onMounted } from "./vendor.es.js";
+import { resolveComponent$1 as resolveComponent, openBlock$1 as openBlock, createBlock$1 as createBlock, withCtx$1 as withCtx, createBaseVNode$1 as createBaseVNode, withDirectives$1 as withDirectives, vModelText$1 as vModelText, createVNode$1 as createVNode, normalizeProps, guardReactiveProps, defineAsyncComponent$1 as defineAsyncComponent, reactive$1 as reactive, onMounted$1 as onMounted } from "./vendor.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 const _hoisted_1 = { class: "p-2 flex flex-col gap-4" };
 const _hoisted_2 = { class: "flex gap-2" };
@@ -59,14 +59,14 @@ const _sfc_main = {
   __name: "AccountAvatar.story",
   setup(__props, { expose }) {
     expose();
-    const AccountAvatar = defineAsyncComponent(() => __vitePreload(() => import("./AccountAvatar.es.js"), true ? ["AccountAvatar.es.js","useDraw.es.js","vendor.es.js","plugin-vue_export-helper.es.js"] : void 0));
+    const AccountAvatar = defineAsyncComponent(() => import("./AccountAvatar.es.js"));
     const state = reactive({
       pub: "We2MxFrbFH37008fNmreSk9hdHLJNMVhrSMIIbOO5Ao.FbNrdt118-TCYzGYRo94Xa8EUWwwV-7DIopXSE9OZD8",
       size: 200,
       border: 2
     });
     async function generate() {
-      const { SEA } = await __vitePreload(() => import("./index.es.js"), true ? ["index.es.js","useDraw.es.js","vendor.es.js","useChat.es.js","usePrivate.es.js","useLog.es.js","useFile.es.js","useZip.es.js","useMd.es.js","useGifts.es.js","useReactions.es.js","useMates.es.js","useGuests.es.js","useSpace.es.js","useBackground.es.js","useProjects.es.js"] : void 0);
+      const { SEA } = await import("./index.es.js");
       const pair = await SEA.pair();
       state.pub = pair.pub;
     }

@@ -1,4 +1,4 @@
-import { resolveComponent, openBlock, createBlock, withCtx, createBaseVNode, toDisplayString, createVNode, mergeProps, defineAsyncComponent, __vitePreload, reactive } from "./vendor.es.js";
+import { resolveComponent$1 as resolveComponent, openBlock$1 as openBlock, createBlock$1 as createBlock, withCtx$1 as withCtx, createBaseVNode$1 as createBaseVNode, toDisplayString$1 as toDisplayString, createVNode$1 as createVNode, mergeProps$1 as mergeProps, defineAsyncComponent$1 as defineAsyncComponent, reactive$1 as reactive } from "./vendor.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 const _hoisted_1 = { class: "p-4 flex flex-col gap-4" };
 const _hoisted_2 = /* @__PURE__ */ createBaseVNode("div", { class: "font-bold" }, "Output", -1);
@@ -33,7 +33,7 @@ const _sfc_main = {
   __name: "QrLoad.story",
   setup(__props, { expose }) {
     expose();
-    const QrLoad = defineAsyncComponent(() => __vitePreload(() => import("./QrLoad.es.js"), true ? ["QrLoad.es.js","vendor.es.js","plugin-vue_export-helper.es.js"] : void 0));
+    const QrLoad = defineAsyncComponent(() => import("./QrLoad.es.js"));
     const state = reactive({
       data: ""
     });

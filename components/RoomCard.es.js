@@ -1,5 +1,5 @@
 import { useUser, useRoom, currentRoom } from "./useDraw.es.js";
-import { openBlock, createElementBlock, createBaseVNode, toDisplayString, Fragment, renderList, createBlock, renderSlot, normalizeStyle, computed } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, toDisplayString$1 as toDisplayString, Fragment$1 as Fragment, renderList$1 as renderList, createBlock$1 as createBlock, renderSlot$1 as renderSlot, normalizeStyle$1 as normalizeStyle, computed$1 as computed } from "./vendor.es.js";
 import { useBackground } from "./useBackground.es.js";
 import __unplugin_components_0 from "./AccountAvatar.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";

@@ -1,4 +1,4 @@
-import { resolveComponent, openBlock, createBlock, withCtx, createBaseVNode, createVNode, defineAsyncComponent, __vitePreload, reactive, hstEvent } from "./vendor.es.js";
+import { resolveComponent$1 as resolveComponent, openBlock$1 as openBlock, createBlock$1 as createBlock, withCtx$1 as withCtx, createBaseVNode$1 as createBaseVNode, createVNode$1 as createVNode, defineAsyncComponent$1 as defineAsyncComponent, reactive$1 as reactive, hstEvent } from "./vendor.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 const _hoisted_1 = { class: "p-2 flex flex-col gap-4" };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -37,8 +37,8 @@ const _sfc_main = {
   __name: "AccountStars.story",
   setup(__props, { expose }) {
     expose();
-    const AccountStars = defineAsyncComponent(() => __vitePreload(() => import("./AccountStars.es.js"), true ? ["AccountStars.es.js","vendor.es.js","useDraw.es.js","useZip.es.js","useFile.es.js","useMd.es.js","PostCard.es.js","PostActionReact.es.js","useReactions.es.js","useMates.es.js","AccountBadge.es.js","AccountAvatar.es.js","plugin-vue_export-helper.es.js","times.es.js","plus.es.js","youtube.es.js"] : void 0));
-    const AccountSelect = defineAsyncComponent(() => __vitePreload(() => import("./AccountSelect.es.js"), true ? ["AccountSelect.es.js","useDraw.es.js","vendor.es.js","useGuests.es.js","times.es.js","AccountBadge.es.js","AccountAvatar.es.js","plugin-vue_export-helper.es.js"] : void 0));
+    const AccountStars = defineAsyncComponent(() => import("./AccountStars.es.js"));
+    const AccountSelect = defineAsyncComponent(() => import("./AccountSelect.es.js"));
     const state = reactive({
       pub: ""
     });

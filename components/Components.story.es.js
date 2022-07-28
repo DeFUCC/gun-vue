@@ -1,4 +1,4 @@
-import { resolveComponent, openBlock, createBlock } from "./vendor.es.js";
+import { resolveComponent$1 as resolveComponent, openBlock$1 as openBlock, createBlock$1 as createBlock } from "./vendor.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 var block0 = (Comp) => {
   Comp.doc = `<p><img src="/components.svg" alt=""></p>

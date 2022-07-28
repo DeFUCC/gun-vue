@@ -1,4 +1,4 @@
-import { resolveComponent, openBlock, createBlock, withCtx, createBaseVNode, withDirectives, vModelText, createVNode, normalizeProps, guardReactiveProps, defineAsyncComponent, __vitePreload, reactive } from "./vendor.es.js";
+import { resolveComponent$1 as resolveComponent, openBlock$1 as openBlock, createBlock$1 as createBlock, withCtx$1 as withCtx, createBaseVNode$1 as createBaseVNode, withDirectives$1 as withDirectives, vModelText$1 as vModelText, createVNode$1 as createVNode, normalizeProps, guardReactiveProps, defineAsyncComponent$1 as defineAsyncComponent, reactive$1 as reactive } from "./vendor.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 const _hoisted_1 = { class: "p-2 flex flex-col gap-4" };
 const _hoisted_2 = { class: "flex gap-2" };
@@ -41,7 +41,7 @@ const _sfc_main = {
   __name: "UserAvatar.story",
   setup(__props, { expose }) {
     expose();
-    const UserAvatar = defineAsyncComponent(() => __vitePreload(() => import("./UserAvatar.es.js"), true ? ["UserAvatar.es.js","useDraw.es.js","vendor.es.js","useFile.es.js","UiLayer.es.js","times.es.js","plugin-vue_export-helper.es.js","check.es.js","AccountAvatar.es.js"] : void 0));
+    const UserAvatar = defineAsyncComponent(() => import("./UserAvatar.es.js"));
     const state = reactive({
       size: 200
     });

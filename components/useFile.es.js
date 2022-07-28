@@ -1,4 +1,4 @@
-import { reactive } from "./vendor.es.js";
+import { reactive$1 as reactive } from "./vendor.es.js";
 function downloadFile(text, fileType, fileName, isBlob = true) {
   const a = document.createElement("a");
   a.download = fileName;

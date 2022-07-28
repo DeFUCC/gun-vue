@@ -1,4 +1,4 @@
-import { openBlock, createElementBlock, createBaseVNode } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode } from "./vendor.es.js";
 const _hoisted_1 = {
   preserveAspectRatio: "xMidYMid meet",
   viewBox: "0 0 32 32",

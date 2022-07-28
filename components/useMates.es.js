@@ -1,4 +1,4 @@
-import { reactive, GB, ref } from "./vendor.es.js";
+import { reactive$1 as reactive, GB, ref$1 as ref } from "./vendor.es.js";
 import { user, useGun } from "./useDraw.es.js";
 function useMates(pub) {
   if (!pub) {

@@ -1,4 +1,4 @@
-import { openBlock, createElementBlock, computed, svg } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, computed$1 as computed, svg } from "./vendor.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 const _hoisted_1 = ["innerHTML"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {

@@ -1,4 +1,4 @@
-import { resolveComponent, openBlock, createBlock, withCtx, createBaseVNode, withDirectives, vModelText, createVNode, normalizeProps, guardReactiveProps, defineAsyncComponent, __vitePreload, reactive } from "./vendor.es.js";
+import { resolveComponent$1 as resolveComponent, openBlock$1 as openBlock, createBlock$1 as createBlock, withCtx$1 as withCtx, createBaseVNode$1 as createBaseVNode, withDirectives$1 as withDirectives, vModelText$1 as vModelText, createVNode$1 as createVNode, normalizeProps, guardReactiveProps, defineAsyncComponent$1 as defineAsyncComponent, reactive$1 as reactive } from "./vendor.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 const _hoisted_1 = { class: "p-2 flex flex-col gap-4" };
 const _hoisted_2 = { class: "flex gap-2" };
@@ -41,7 +41,7 @@ const _sfc_main = {
   __name: "UserIcon.story",
   setup(__props, { expose }) {
     expose();
-    const UserIcon = defineAsyncComponent(() => __vitePreload(() => import("./UserIcon.es.js"), true ? ["UserIcon.es.js","useDraw.es.js","vendor.es.js","UiLayer.es.js","times.es.js","plugin-vue_export-helper.es.js","AccountHome.es.js","useBackground.es.js","useReactions.es.js","useMates.es.js","PostCard.es.js","useZip.es.js","useFile.es.js","useMd.es.js","PostActionReact.es.js","AccountBadge.es.js","AccountAvatar.es.js","plus.es.js","youtube.es.js","trash.es.js","angle-up.es.js","ChatPrivateCount.es.js","usePrivate.es.js","MateButton.es.js","UiPanel.es.js","UserHome.es.js","UserRooms.es.js","RoomCard.es.js","enter-outline.es.js","eye.es.js","UserProfile.es.js","check.es.js","pen.es.js","UserPanel.es.js","exit-outline.es.js","lock.es.js","UserAvatar.es.js","UserLogin.es.js","UserCreate.es.js","UserAuth.es.js","QrLoad.es.js","qrcode.es.js","UserCredentials.es.js","QrShow.es.js","UserPass.es.js"] : void 0));
+    const UserIcon = defineAsyncComponent(() => import("./UserIcon.es.js"));
     const state = reactive({
       size: 200
     });

@@ -1,4 +1,4 @@
-import { resolveComponent, openBlock, createBlock, withCtx, createVNode, defineAsyncComponent, __vitePreload } from "./vendor.es.js";
+import { resolveComponent$1 as resolveComponent, openBlock$1 as openBlock, createBlock$1 as createBlock, withCtx$1 as withCtx, createVNode$1 as createVNode, defineAsyncComponent$1 as defineAsyncComponent } from "./vendor.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Variant = resolveComponent("Variant");
@@ -23,7 +23,7 @@ const _sfc_main = {
   __name: "SpacePlane.story",
   setup(__props, { expose }) {
     expose();
-    const SpacePlane = defineAsyncComponent(() => __vitePreload(() => import("./SpacePlane.es.js"), true ? ["SpacePlane.es.js","vendor.es.js","useDraw.es.js","useSpace.es.js","useMates.es.js","plugin-vue_export-helper.es.js"] : void 0));
+    const SpacePlane = defineAsyncComponent(() => import("./SpacePlane.es.js"));
     const __returned__ = { SpacePlane, defineAsyncComponent };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;

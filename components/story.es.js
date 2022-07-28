@@ -1,4 +1,4 @@
-import { createRouter, __vitePreload, defineStore, createWebHistory, createWebHashHistory, ref, computed } from "./vendor.es.js";
+import { createRouter, createWebHistory, createWebHashHistory, defineStore, ref, computed } from "./vendor.es.js";
 import { histoireConfig } from "./mapping.es.js";
 const base = "/components/";
 function createRouterHistory() {
@@ -16,12 +16,12 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: () => __vitePreload(() => import("./HomeView.es.js"), true ? ["HomeView.es.js","vendor.es.js","mapping.es.js"] : void 0)
+      component: () => import("./HomeView.es.js")
     },
     {
       path: "/story/:storyId",
       name: "story",
-      component: () => __vitePreload(() => import("./StoryView.es.js"), true ? ["StoryView.es.js","vendor.es.js","MobileOverlay.es.js","BaseEmpty.es.js","mapping.es.js","events.es.js","state.es.js"] : void 0)
+      component: () => import("./StoryView.es.js")
     }
   ]
 });

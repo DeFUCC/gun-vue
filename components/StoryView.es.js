@@ -1,34 +1,34 @@
-import { defineStore, defineComponent, useRouter, useRoute, watch, unref, createBlock, withCtx, createElementBlock, createVNode, ref, watchEffect, openBlock, Icon, useStorage, createTextVNode, computed, createBaseVNode, resolveDynamicComponent, useCssVars, createCommentVNode, Fragment, renderList, _sfc_main$1 as _sfc_main$1$1, onMounted, nextTick, toDisplayString, useResizeObserver, normalizeStyle, clone, omit, useTimeoutFn, onClickOutside, resolveDirective, withDirectives, vModelText, withModifiers, isRef, withKeys, normalizeClass, resolveComponent, shallowRef, getHighlighter, unindent, generateSourceCode, HstCopyIcon, renderSlot, toRefs, mergeProps, Dropdown, applyStateToVariant, HstTextarea, HstCheckbox, HstNumber, HstText, Transition, h, pushScopeId, popScopeId, setCDN, reactive, onBeforeUnmount, useEventListener, SANDBOX_READY, EVENT_SEND, STATE_SYNC, PREVIEW_SETTINGS_SYNC, toRaw, onUnmounted, createStaticVNode } from "./vendor.es.js";
+import { useRoute, computed, defineComponent, useCssVars, unref, toRefs, ref, openBlock, createElementBlock, createVNode, withCtx, Icon, normalizeClass, createBaseVNode, toDisplayString, useRouter, useResizeObserver, resolveComponent, SandboxVue3, withModifiers, watch, normalizeStyle, Fragment, renderList, createBlock, defineStore, useStorage, renderSlot, withKeys, resolveDirective, withDirectives, vModelText, createTextVNode, createCommentVNode, pushScopeId, popScopeId, onUnmounted, createStaticVNode, useEventListener, SANDBOX_READY, EVENT_SEND, STATE_SYNC, applyState, PREVIEW_SETTINGS_SYNC, toRaw, mergeProps, Dropdown, clone, omit, onMounted, useTimeoutFn, onClickOutside, isRef, nextTick, HstTextarea, HstCheckbox, HstNumber, HstText, resolveDynamicComponent, watchEffect, shallowRef, getHighlighter, unindent, generateSourceCode, HstCopyIcon, setCDN, Transition, h, reactive, onBeforeUnmount } from "./vendor.es.js";
 import { useStoryStore, base } from "./story.es.js";
-import { BaseSplitPane, isMobile, _export_sfc, _sfc_main as _sfc_main$v, useScrollOnActive, BaseListItemLink } from "./MobileOverlay.es.js";
+import { _export_sfc, useScrollOnActive, BaseListItemLink, isMobile, BaseSplitPane, _sfc_main as _sfc_main$v } from "./MobileOverlay.es.js";
 import { BaseEmpty } from "./BaseEmpty.es.js";
-import { isDark, histoireConfig } from "./mapping.es.js";
+import { histoireConfig, isDark } from "./mapping.es.js";
 import { useEventsStore } from "./events.es.js";
 import { toRawDeep } from "./state.es.js";
-var __defProp = Object.defineProperty;
-var __defProps = Object.defineProperties;
-var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __spreadValues = (a, b) => {
+var __defProp$3 = Object.defineProperty;
+var __defProps$3 = Object.defineProperties;
+var __getOwnPropDescs$3 = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols$3 = Object.getOwnPropertySymbols;
+var __hasOwnProp$3 = Object.prototype.hasOwnProperty;
+var __propIsEnum$3 = Object.prototype.propertyIsEnumerable;
+var __defNormalProp$3 = (obj, key, value) => key in obj ? __defProp$3(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues$3 = (a, b) => {
   for (var prop in b || (b = {}))
-    if (__hasOwnProp.call(b, prop))
-      __defNormalProp(a, prop, b[prop]);
-  if (__getOwnPropSymbols)
-    for (var prop of __getOwnPropSymbols(b)) {
-      if (__propIsEnum.call(b, prop))
-        __defNormalProp(a, prop, b[prop]);
+    if (__hasOwnProp$3.call(b, prop))
+      __defNormalProp$3(a, prop, b[prop]);
+  if (__getOwnPropSymbols$3)
+    for (var prop of __getOwnPropSymbols$3(b)) {
+      if (__propIsEnum$3.call(b, prop))
+        __defNormalProp$3(a, prop, b[prop]);
     }
   return a;
 };
-var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+var __spreadProps$3 = (a, b) => __defProps$3(a, __getOwnPropDescs$3(b));
 function useCurrentVariantRoute(variant) {
   const route = useRoute();
   const isActive = computed(() => route.query.variantId === variant.value.id);
-  const targetRoute = computed(() => __spreadProps(__spreadValues({}, route), {
-    query: __spreadProps(__spreadValues({}, route.query), {
+  const targetRoute = computed(() => __spreadProps$3(__spreadValues$3({}, route), {
+    query: __spreadProps$3(__spreadValues$3({}, route.query), {
       variantId: variant.value.id
     })
   }));
@@ -105,7 +105,7 @@ const _sfc_main$t = /* @__PURE__ */ defineComponent({
   setup(__props, { emit }) {
     const props = __props;
     useCssVars((_ctx) => ({
-      "7d3aedf8": unref(variant).iconColor
+      "5f94a358": unref(variant).iconColor
     }));
     const { variant } = toRefs(props);
     const { isActive, targetRoute } = useCurrentVariantRoute(variant);
@@ -170,7 +170,7 @@ const _sfc_main$t = /* @__PURE__ */ defineComponent({
           onClick: _cache[0] || (_cache[0] = withModifiers(($event) => selectVariant(), ["stop", "prevent"])),
           onKeyup: _cache[1] || (_cache[1] = ($event) => selectVariant())
         }, [
-          createVNode(unref(_sfc_main$1$1), {
+          createVNode(unref(SandboxVue3), {
             variant: unref(variant),
             story: __props.story,
             onReady
@@ -180,7 +180,7 @@ const _sfc_main$t = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var StoryVariantGridItem = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["__scopeId", "data-v-265ac8e3"]]);
+var StoryVariantGridItem = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["__scopeId", "data-v-307653da"]]);
 const _sfc_main$s = /* @__PURE__ */ defineComponent({
   name: "StoryVariantGrid",
   setup(__props) {
@@ -333,7 +333,7 @@ const _sfc_main$q = /* @__PURE__ */ defineComponent({
     const progress = computed(() => props.modelValue ? 1 : 0);
     const dashoffset = computed(() => (1 - progress.value) * dasharray.value);
     const animationEnabled = ref(false);
-    watch(path, (value) => {
+    watch(path, () => {
       var _a, _b, _c;
       dasharray.value = (_c = (_b = (_a = path.value).getTotalLength) == null ? void 0 : _b.call(_a)) != null ? _c : 21.21;
     });
@@ -499,9 +499,9 @@ const _sfc_main$p = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const _withScopeId$5 = (n) => (pushScopeId("data-v-bde73868"), n = n(), popScopeId(), n);
+const _withScopeId$2 = (n) => (pushScopeId("data-v-bde73868"), n = n(), popScopeId(), n);
 const _hoisted_1$m = { class: "htw-cursor-pointer hover:htw-text-primary-500 htw-flex htw-items-center htw-gap-1 htw-h-full htw-px-2 htw-group" };
-const _hoisted_2$i = /* @__PURE__ */ _withScopeId$5(() => /* @__PURE__ */ createBaseVNode("div", { class: "bind-preview-bg htw-w-4 htw-h-4 htw-rounded-full htw-border htw-border-black/50 dark:htw-border-white/50" }, null, -1));
+const _hoisted_2$i = /* @__PURE__ */ _withScopeId$2(() => /* @__PURE__ */ createBaseVNode("div", { class: "bind-preview-bg htw-w-4 htw-h-4 htw-rounded-full htw-border htw-border-black/50 dark:htw-border-white/50" }, null, -1));
 const _hoisted_3$b = { class: "htw-flex htw-flex-col htw-items-stretch" };
 const _hoisted_4$8 = /* @__PURE__ */ createTextVNode(" Checkerboard ");
 const _hoisted_5$5 = ["onClick"];
@@ -655,7 +655,7 @@ function _sfc_render$2(_ctx, _cache) {
   return openBlock(), createElementBlock("svg", _hoisted_1$j, _hoisted_4$7);
 }
 var CheckerboardPattern = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$2]]);
-const _withScopeId$3 = (n) => (pushScopeId("data-v-769a585e"), n = n(), popScopeId(), n);
+const _withScopeId$1 = (n) => (pushScopeId("data-v-769a585e"), n = n(), popScopeId(), n);
 const _hoisted_1$i = { class: "htw-w-full htw-h-full htw-flex-1 htw-border htw-border-gray-100 dark:htw-border-gray-800 htw-rounded-lg htw-relative htw-overflow-hidden" };
 const _hoisted_2$g = {
   key: 0,
@@ -663,7 +663,7 @@ const _hoisted_2$g = {
 };
 const _hoisted_3$9 = { class: "htw-p-4 htw-h-full htw-relative" };
 const _hoisted_4$6 = { class: "htw-w-full htw-h-full htw-border htw-border-gray-100 dark:htw-border-gray-800 htw-rounded-sm htw-relative" };
-const _hoisted_5$4 = /* @__PURE__ */ _withScopeId$3(() => /* @__PURE__ */ createBaseVNode("div", { class: "bind-preview-bg htw-absolute htw-inset-0" }, null, -1));
+const _hoisted_5$4 = /* @__PURE__ */ _withScopeId$1(() => /* @__PURE__ */ createBaseVNode("div", { class: "bind-preview-bg htw-absolute htw-inset-0" }, null, -1));
 const _hoisted_6$4 = /* @__PURE__ */ createStaticVNode('<div class="htw-absolute htw-top-1 htw-left-4 htw-h-2 htw-w-px htw-bg-gray-200 dark:htw-bg-gray-800" data-v-769a585e></div><div class="htw-absolute htw-top-1 htw-right-4 htw-h-2 htw-w-px htw-bg-gray-200 dark:htw-bg-gray-800" data-v-769a585e></div><div class="htw-absolute htw-bottom-1 htw-left-4 htw-h-2 htw-w-px htw-bg-gray-200 dark:htw-bg-gray-800" data-v-769a585e></div><div class="htw-absolute htw-bottom-1 htw-right-4 htw-h-2 htw-w-px htw-bg-gray-200 dark:htw-bg-gray-800" data-v-769a585e></div><div class="htw-absolute htw-left-1 htw-top-4 htw-w-2 htw-h-px htw-bg-gray-200 dark:htw-bg-gray-800" data-v-769a585e></div><div class="htw-absolute htw-left-1 htw-bottom-4 htw-w-2 htw-h-px htw-bg-gray-200 dark:htw-bg-gray-800" data-v-769a585e></div><div class="htw-absolute htw-right-1 htw-top-4 htw-w-2 htw-h-px htw-bg-gray-200 dark:htw-bg-gray-800" data-v-769a585e></div><div class="htw-absolute htw-right-1 htw-bottom-4 htw-w-2 htw-h-px htw-bg-gray-200 dark:htw-bg-gray-800" data-v-769a585e></div>', 8);
 const _sfc_main$k = /* @__PURE__ */ defineComponent({
   name: "StoryResponsivePreview",
@@ -851,7 +851,7 @@ const _sfc_main$j = /* @__PURE__ */ defineComponent({
               height: finalHeight ? `${finalHeight}px` : "100%"
             } : { width: "100%", height: "100%" })
           }, [
-            (openBlock(), createBlock(unref(_sfc_main$1$1), {
+            (openBlock(), createBlock(unref(SandboxVue3), {
               key: `${__props.story.id}-${__props.variant.id}`,
               variant: __props.variant,
               story: __props.story,
@@ -913,7 +913,7 @@ const _sfc_main$i = /* @__PURE__ */ defineComponent({
     });
     function updateVariantState(state) {
       synced = true;
-      applyStateToVariant(props.variant, state);
+      applyState(props.variant.state, state);
     }
     function logEvent(event) {
       const eventsStore = useEventsStore();
@@ -1041,7 +1041,7 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
     useCssVars((_ctx) => {
       var _a;
       return {
-        "22451fc3": (_a = unref(variant)) == null ? void 0 : _a.iconColor
+        "33d9fc01": (_a = unref(variant)) == null ? void 0 : _a.iconColor
       };
     });
     const storyStore = useStoryStore();
@@ -1052,12 +1052,11 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
     const variant = computed(() => storyStore.currentVariant);
     return (_ctx, _cache) => {
       var _a;
-      return unref(hasSingleVariant) && unref(storyStore).currentVariant ? (openBlock(), createElementBlock("div", _hoisted_1$f, [
-        unref(storyStore).currentVariant.configReady ? (openBlock(), createBlock(_sfc_main$h, {
-          key: 0,
-          variant: unref(storyStore).currentVariant,
+      return unref(hasSingleVariant) && unref(variant) ? (openBlock(), createElementBlock("div", _hoisted_1$f, [
+        createVNode(_sfc_main$h, {
+          variant: unref(variant),
           story: unref(storyStore).currentStory
-        }, null, 8, ["variant", "story"])) : createCommentVNode("", true)
+        }, null, 8, ["variant", "story"])
       ])) : (openBlock(), createElementBlock(Fragment, { key: 1 }, [
         unref(isMobile) ? (openBlock(), createElementBlock("div", _hoisted_2$e, [
           createBaseVNode("a", {
@@ -1082,11 +1081,10 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
             })
           ]),
           unref(storyStore).currentVariant ? (openBlock(), createElementBlock("div", _hoisted_4$5, [
-            unref(storyStore).currentVariant.configReady ? (openBlock(), createBlock(_sfc_main$h, {
-              key: 0,
+            createVNode(_sfc_main$h, {
               variant: unref(storyStore).currentVariant,
               story: unref(storyStore).currentStory
-            }, null, 8, ["variant", "story"])) : createCommentVNode("", true)
+            }, null, 8, ["variant", "story"])
           ])) : createCommentVNode("", true)
         ])) : (openBlock(), createBlock(BaseSplitPane, {
           key: 1,
@@ -1097,10 +1095,10 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
         }, {
           first: withCtx(() => [
             createBaseVNode("div", _hoisted_5$3, [
-              (openBlock(true), createElementBlock(Fragment, null, renderList(unref(storyStore).currentStory.variants, (variant2, index) => {
+              (openBlock(true), createElementBlock(Fragment, null, renderList(unref(storyStore).currentStory.variants, (v, index) => {
                 return openBlock(), createBlock(StoryVariantListItem, {
                   key: index,
-                  variant: variant2
+                  variant: v
                 }, null, 8, ["variant"]);
               }), 128))
             ])
@@ -1119,7 +1117,7 @@ const _sfc_main$g = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var StoryVariantSingle = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__scopeId", "data-v-39eaa600"]]);
+var StoryVariantSingle = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__scopeId", "data-v-30bcb922"]]);
 const _hoisted_1$e = { class: "htw-bg-gray-50 htw-h-full dark:htw-bg-gray-750" };
 const _sfc_main$f = /* @__PURE__ */ defineComponent({
   name: "StoryViewer",
@@ -1127,7 +1125,7 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
     useCssVars((_ctx) => {
       var _a;
       return {
-        "d1b61db4": (_a = unref(variant)) == null ? void 0 : _a.iconColor
+        "578fcd62": (_a = unref(variant)) == null ? void 0 : _a.iconColor
       };
     });
     const storyStore = useStoryStore();
@@ -1153,10 +1151,10 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
           onClose: closeMenu
         }, {
           default: withCtx(() => [
-            (openBlock(true), createElementBlock(Fragment, null, renderList(unref(storyStore).currentStory.variants, (variant2, index) => {
+            (openBlock(true), createElementBlock(Fragment, null, renderList(unref(storyStore).currentStory.variants, (v, index) => {
               return openBlock(), createBlock(StoryVariantListItem, {
                 key: index,
-                variant: variant2
+                variant: v
               }, null, 8, ["variant"]);
             }), 128))
           ]),
@@ -1166,7 +1164,26 @@ const _sfc_main$f = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var StoryViewer = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-3c153cb8"]]);
+var StoryViewer = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-356879fc"]]);
+var __defProp$2 = Object.defineProperty;
+var __defProps$2 = Object.defineProperties;
+var __getOwnPropDescs$2 = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols$2 = Object.getOwnPropertySymbols;
+var __hasOwnProp$2 = Object.prototype.hasOwnProperty;
+var __propIsEnum$2 = Object.prototype.propertyIsEnumerable;
+var __defNormalProp$2 = (obj, key, value) => key in obj ? __defProp$2(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues$2 = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp$2.call(b, prop))
+      __defNormalProp$2(a, prop, b[prop]);
+  if (__getOwnPropSymbols$2)
+    for (var prop of __getOwnPropSymbols$2(b)) {
+      if (__propIsEnum$2.call(b, prop))
+        __defNormalProp$2(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps$2 = (a, b) => __defProps$2(a, __getOwnPropDescs$2(b));
 const _hoisted_1$d = { class: "htw-cursor-pointer htw-w-full htw-outline-none htw-px-2 htw-h-[27px] -htw-my-1 htw-border htw-border-solid htw-border-black/25 dark:htw-border-white/25 hover:htw-border-primary-500 dark:hover:htw-border-primary-500 htw-rounded-sm htw-flex htw-gap-2 htw-items-center htw-leading-normal" };
 const _hoisted_2$d = { class: "htw-flex-1 htw-truncate" };
 const _hoisted_3$7 = { class: "htw-flex htw-flex-col htw-bg-gray-50 dark:htw-bg-gray-700" };
@@ -1197,7 +1214,7 @@ const _sfc_main$e = /* @__PURE__ */ defineComponent({
         popper: withCtx(({ hide }) => [
           createBaseVNode("div", _hoisted_3$7, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(unref(formattedOptions), (label, value) => {
-              return openBlock(), createElementBlock("div", mergeProps(__spreadProps(__spreadValues({}, _ctx.$attrs), { class: null, style: null }), {
+              return openBlock(), createElementBlock("div", mergeProps(__spreadProps$2(__spreadValues$2({}, _ctx.$attrs), { class: null, style: null }), {
                 key: label,
                 class: ["htw-px-2 htw-py-1 htw-cursor-pointer hover:htw-bg-primary-100 dark:hover:htw-bg-primary-700", {
                   "htw-bg-primary-200 dark:htw-bg-primary-800": props.modelValue === value
@@ -1264,13 +1281,13 @@ const _sfc_main$d = /* @__PURE__ */ defineComponent({
     });
     function resetState() {
       selectedOption.value = DEFAULT_ID;
-      applyStateToVariant(props.variant, clone(defaultState));
+      applyState(props.variant.state, clone(defaultState));
     }
     function applyPreset(id) {
       if (id === DEFAULT_ID) {
         resetState();
       } else if (presetStates.value.has(id)) {
-        applyStateToVariant(props.variant, clone(presetStates.value.get(id).state));
+        applyState(props.variant.state, clone(presetStates.value.get(id).state));
       }
     }
     onMounted(() => {
@@ -1570,7 +1587,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
             variant: __props.variant
           }, null, 8, ["story", "variant"])
         ]),
-        __props.variant.slots().controls || __props.story.slots().controls ? (openBlock(), createBlock(unref(_sfc_main$1$1), {
+        __props.variant.slots().controls || __props.story.slots().controls ? (openBlock(), createBlock(unref(SandboxVue3), {
           key: 0,
           "slot-name": "controls",
           variant: __props.variant,
@@ -1602,7 +1619,26 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
 });
 const _hoisted_1$9 = /* @__PURE__ */ createTextVNode(" No documentation available ");
 const _hoisted_2$9 = ["innerHTML"];
-const _sfc_main$9 = /* @__PURE__ */ defineComponent({
+function useStoryDoc(story) {
+  const renderedDoc = ref("");
+  watchEffect(async () => {
+    var _a;
+    let comp = (_a = story.value.file) == null ? void 0 : _a.component;
+    console.log(comp);
+    if (comp) {
+      if (comp.__asyncResolved) {
+        comp = comp.__asyncResolved;
+      } else if (comp.__asyncLoader) {
+        comp = await comp.__asyncLoader();
+      }
+      renderedDoc.value = comp.doc;
+    }
+  });
+  return {
+    renderedDoc
+  };
+}
+const _sfc_main$9 = defineComponent({
   name: "StoryDocs",
   props: {
     story: {
@@ -1612,20 +1648,11 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
   },
   setup(__props) {
     const props = __props;
-    const renderedDoc = ref("");
-    watchEffect(async () => {
-      var _a;
-      let comp = (_a = props.story.file) == null ? void 0 : _a.component;
-      if (comp.__asyncResolved) {
-        comp = comp.__asyncResolved;
-      } else if (comp.__asyncLoader) {
-        comp = await comp.__asyncLoader();
-      }
-      renderedDoc.value = comp.doc;
-    });
+    const { story } = toRefs(props);
+    const { renderedDoc } = useStoryDoc(story);
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", null, [
-        !renderedDoc.value ? (openBlock(), createBlock(BaseEmpty, { key: 0 }, {
+        !unref(renderedDoc) ? (openBlock(), createBlock(BaseEmpty, { key: 0 }, {
           default: withCtx(() => [
             createVNode(unref(Icon), {
               icon: "carbon:document-unknown",
@@ -1638,7 +1665,7 @@ const _sfc_main$9 = /* @__PURE__ */ defineComponent({
           key: 1,
           class: "htw-prose dark:htw-prose-invert htw-p-4 htw-max-w-none",
           "data-test-id": "story-docs",
-          innerHTML: renderedDoc.value
+          innerHTML: unref(renderedDoc)
         }, null, 8, _hoisted_2$9))
       ]);
     };
@@ -1741,7 +1768,7 @@ const _sfc_main$7 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const _withScopeId = (n) => (pushScopeId("data-v-8b318638"), n = n(), popScopeId(), n);
+const _withScopeId = (n) => (pushScopeId("data-v-19579c98"), n = n(), popScopeId(), n);
 const _hoisted_1$6 = { class: "htw-bg-gray-100 dark:htw-bg-gray-800 htw-h-full htw-overflow-hidden htw-flex htw-flex-col" };
 const _hoisted_2$6 = {
   key: 0,
@@ -1774,7 +1801,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     const highlighter = shallowRef();
     const error = ref(null);
     onMounted(async () => {
-      setCDN("https://unpkg.com/shiki/");
+      setCDN("https://unpkg.com/shiki@0.10.1/");
       highlighter.value = await getHighlighter({
         langs: [
           "html",
@@ -1841,7 +1868,7 @@ const _sfc_main$6 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var StorySourceCode = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-8b318638"]]);
+var StorySourceCode = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["__scopeId", "data-v-19579c98"]]);
 const _sfc_main$5 = defineComponent({
   inheritAttrs: false,
   props: {
@@ -1912,6 +1939,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
       return c.length;
     });
     const ChildWrapper = {
+      name: "ChildWrapper",
       props: ["index"],
       setup(props, { slots }) {
         const el2 = ref();
@@ -2018,6 +2046,25 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   }, 16);
 }
 var BaseOverflowTab = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render]]);
+var __defProp$1 = Object.defineProperty;
+var __defProps$1 = Object.defineProperties;
+var __getOwnPropDescs$1 = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols$1 = Object.getOwnPropertySymbols;
+var __hasOwnProp$1 = Object.prototype.hasOwnProperty;
+var __propIsEnum$1 = Object.prototype.propertyIsEnumerable;
+var __defNormalProp$1 = (obj, key, value) => key in obj ? __defProp$1(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues$1 = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp$1.call(b, prop))
+      __defNormalProp$1(a, prop, b[prop]);
+  if (__getOwnPropSymbols$1)
+    for (var prop of __getOwnPropSymbols$1(b)) {
+      if (__propIsEnum$1.call(b, prop))
+        __defNormalProp$1(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps$1 = (a, b) => __defProps$1(a, __getOwnPropDescs$1(b));
 const _hoisted_1$2 = /* @__PURE__ */ createTextVNode(" Controls ");
 const _hoisted_2$2 = /* @__PURE__ */ createTextVNode(" Docs ");
 const _hoisted_3$1 = /* @__PURE__ */ createTextVNode(" Events ");
@@ -2034,13 +2081,21 @@ const _hoisted_8 = {
 };
 const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   name: "PaneTabs",
+  props: {
+    story: null,
+    variant: null
+  },
   setup(__props) {
+    const props = __props;
+    const { story } = toRefs(props);
+    const { renderedDoc } = useStoryDoc(story);
     const eventsStore = useEventsStore();
+    const hasEvents = computed(() => eventsStore.events.length);
     return (_ctx, _cache) => {
       return openBlock(), createBlock(_sfc_main$4, { class: "htw-h-10 htw-flex-none htw-border-b htw-border-gray-100 dark:htw-border-gray-750" }, {
         overflow: withCtx(() => [
           createVNode(BaseOverflowTab, {
-            to: __spreadProps(__spreadValues({}, _ctx.$route), { query: __spreadProps(__spreadValues({}, _ctx.$route.query), { tab: "" }) }),
+            to: __spreadProps$1(__spreadValues$1({}, _ctx.$route), { query: __spreadProps$1(__spreadValues$1({}, _ctx.$route.query), { tab: "" }) }),
             matched: !_ctx.$route.query.tab
           }, {
             default: withCtx(() => [
@@ -2049,28 +2104,34 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
             _: 1
           }, 8, ["to", "matched"]),
           createVNode(BaseOverflowTab, {
-            to: __spreadProps(__spreadValues({}, _ctx.$route), { query: __spreadProps(__spreadValues({}, _ctx.$route.query), { tab: "docs" }) }),
-            matched: _ctx.$route.query.tab === "docs"
+            to: __spreadProps$1(__spreadValues$1({}, _ctx.$route), { query: __spreadProps$1(__spreadValues$1({}, _ctx.$route.query), { tab: "docs" }) }),
+            matched: _ctx.$route.query.tab === "docs",
+            class: normalizeClass({
+              "opacity-50": !unref(renderedDoc)
+            })
           }, {
             default: withCtx(() => [
               _hoisted_6
             ]),
             _: 1
-          }, 8, ["to", "matched"]),
+          }, 8, ["to", "matched", "class"]),
           createVNode(BaseOverflowTab, {
-            to: __spreadProps(__spreadValues({}, _ctx.$route), { query: __spreadProps(__spreadValues({}, _ctx.$route.query), { tab: "events" }) }),
-            matched: _ctx.$route.query.tab === "events"
+            to: __spreadProps$1(__spreadValues$1({}, _ctx.$route), { query: __spreadProps$1(__spreadValues$1({}, _ctx.$route.query), { tab: "events" }) }),
+            matched: _ctx.$route.query.tab === "events",
+            class: normalizeClass({
+              "htw-opacity-50": !unref(hasEvents)
+            })
           }, {
             default: withCtx(() => [
               _hoisted_7,
               unref(eventsStore).unseen ? (openBlock(), createElementBlock("span", _hoisted_8, toDisplayString(unref(eventsStore).unseen <= 99 ? unref(eventsStore).unseen : "99+"), 1)) : createCommentVNode("", true)
             ]),
             _: 1
-          }, 8, ["to", "matched"])
+          }, 8, ["to", "matched", "class"])
         ]),
         default: withCtx(() => [
           createVNode(BaseTab, {
-            to: __spreadProps(__spreadValues({}, _ctx.$route), { query: __spreadProps(__spreadValues({}, _ctx.$route.query), { tab: "" }) }),
+            to: __spreadProps$1(__spreadValues$1({}, _ctx.$route), { query: __spreadProps$1(__spreadValues$1({}, _ctx.$route.query), { tab: "" }) }),
             matched: !_ctx.$route.query.tab
           }, {
             default: withCtx(() => [
@@ -2079,24 +2140,30 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
             _: 1
           }, 8, ["to", "matched"]),
           createVNode(BaseTab, {
-            to: __spreadProps(__spreadValues({}, _ctx.$route), { query: __spreadProps(__spreadValues({}, _ctx.$route.query), { tab: "docs" }) }),
-            matched: _ctx.$route.query.tab === "docs"
+            to: __spreadProps$1(__spreadValues$1({}, _ctx.$route), { query: __spreadProps$1(__spreadValues$1({}, _ctx.$route.query), { tab: "docs" }) }),
+            matched: _ctx.$route.query.tab === "docs",
+            class: normalizeClass({
+              "htw-opacity-50": !unref(renderedDoc)
+            })
           }, {
             default: withCtx(() => [
               _hoisted_2$2
             ]),
             _: 1
-          }, 8, ["to", "matched"]),
+          }, 8, ["to", "matched", "class"]),
           createVNode(BaseTab, {
-            to: __spreadProps(__spreadValues({}, _ctx.$route), { query: __spreadProps(__spreadValues({}, _ctx.$route.query), { tab: "events" }) }),
-            matched: _ctx.$route.query.tab === "events"
+            to: __spreadProps$1(__spreadValues$1({}, _ctx.$route), { query: __spreadProps$1(__spreadValues$1({}, _ctx.$route.query), { tab: "events" }) }),
+            matched: _ctx.$route.query.tab === "events",
+            class: normalizeClass({
+              "htw-opacity-50": !unref(hasEvents)
+            })
           }, {
             default: withCtx(() => [
               _hoisted_3$1,
               unref(eventsStore).unseen ? (openBlock(), createElementBlock("span", _hoisted_4, toDisplayString(unref(eventsStore).unseen <= 99 ? unref(eventsStore).unseen : "99+"), 1)) : createCommentVNode("", true)
             ]),
             _: 1
-          }, 8, ["to", "matched"])
+          }, 8, ["to", "matched", "class"])
         ]),
         _: 1
       });
@@ -2127,7 +2194,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
           _hoisted_1$1
         ]),
         _: 1
-      })) : !unref(storyStore).currentVariant.previewReady ? (openBlock(), createBlock(BaseEmpty, { key: 1 }, {
+      })) : !unref(storyStore).currentVariant.configReady || !unref(storyStore).currentVariant.previewReady ? (openBlock(), createBlock(BaseEmpty, { key: 1 }, {
         default: withCtx(() => [
           _hoisted_2$1
         ]),
@@ -2141,7 +2208,10 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       }, {
         first: withCtx(() => [
           createBaseVNode("div", _hoisted_3, [
-            createVNode(_sfc_main$2),
+            createVNode(_sfc_main$2, {
+              story: unref(storyStore).currentStory,
+              variant: unref(storyStore).currentVariant
+            }, null, 8, ["story", "variant"]),
             (openBlock(), createBlock(resolveDynamicComponent(unref(panelContentComponent)), {
               story: unref(storyStore).currentStory,
               variant: unref(storyStore).currentVariant,
@@ -2160,6 +2230,25 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 const _hoisted_1 = {
   key: 1,
   class: "htw-h-full"

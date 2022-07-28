@@ -1,4 +1,4 @@
-import { reactive, ref, computed, ms, JSZip } from "./vendor.es.js";
+import { reactive$1 as reactive, ref$1 as ref, computed$1 as computed, ms, JSZip } from "./vendor.es.js";
 import { base64FileType, base64Extension, downloadFile } from "./useFile.es.js";
 import { useGun, useUser, hashObj, gun, currentRoom, hashText, safeHash, genUUID } from "./useDraw.es.js";
 import { createMd } from "./useMd.es.js";

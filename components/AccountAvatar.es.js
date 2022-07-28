@@ -1,5 +1,5 @@
 import { useColor, useGun, useUser } from "./useDraw.es.js";
-import { openBlock, createElementBlock, createBaseVNode, normalizeStyle, createVNode, ref, watch, gunAvatar, computed } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, normalizeStyle$1 as normalizeStyle, createVNode$1 as createVNode, ref$1 as ref, watch$1 as watch, gunAvatar, computed$1 as computed } from "./vendor.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 const _hoisted_1$1 = {
   preserveAspectRatio: "xMidYMid meet",

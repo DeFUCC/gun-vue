@@ -1,4 +1,4 @@
-import { openBlock, createElementBlock, toDisplayString, createCommentVNode, createVNode, withCtx, normalizeStyle, computed, createBaseVNode, createBlock, TransitionGroup, Fragment, renderList, Transition, ref } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, toDisplayString$1 as toDisplayString, createCommentVNode$1 as createCommentVNode, createVNode$1 as createVNode, withCtx$1 as withCtx, normalizeStyle$1 as normalizeStyle, computed$1 as computed, createBaseVNode$1 as createBaseVNode, createBlock$1 as createBlock, TransitionGroup, Fragment$1 as Fragment, renderList$1 as renderList, Transition$1 as Transition, ref$1 as ref } from "./vendor.es.js";
 import { useColor, user } from "./useDraw.es.js";
 import { isEmoji, useMates } from "./useMates.es.js";
 import __unplugin_components_0$1 from "./AccountBadge.es.js";

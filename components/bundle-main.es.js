@@ -1,28 +1,9 @@
-import { defineStore, defineComponent, ref, computed, watch, useTitle, onMounted, resolveComponent, createElementBlock, unref, createVNode, createCommentVNode, createBaseVNode, createBlock, withCtx, normalizeStyle, Transition, Fragment, createApp, createPinia, plugin, useEventListener, resolveDirective, openBlock, withDirectives, Icon, defineAsyncComponent, __vitePreload, vShow, _sfc_main as _sfc_main$b, useStorage, renderList, isRef, withKeys, normalizeClass, toDisplayString, useCssVars, createTextVNode, reactive, useRoute, pushScopeId, popScopeId } from "../vendor.es.js";
-import { files, mapFile, histoireConfig, toggleDark, tree, isDark, customLogos } from "../mapping.es.js";
-import { BaseSplitPane, _export_sfc, isMobile, _sfc_main as _sfc_main$c, useScrollOnActive, BaseListItemLink } from "../MobileOverlay.es.js";
-import { useStoryStore, router } from "../story.es.js";
+import { defineComponent, useCssVars, unref, computed, useRoute, ref, openBlock, createElementBlock, createVNode, withCtx, createBaseVNode, Icon, normalizeClass, toDisplayString, createCommentVNode, defineStore, useStorage, watch, resolveComponent, withKeys, Fragment, renderList, createBlock, useEventListener, isRef, resolveDirective, withDirectives, createTextVNode, pushScopeId, popScopeId, defineAsyncComponent, vShow, reactive, normalizeStyle, Transition, useTitle, onMounted, MountStoryVue3, createApp, createPinia, plugin } from "./vendor.es.js";
+import { isDark, histoireConfig, customLogos, toggleDark, files, mapFile, tree } from "./mapping.es.js";
+import { _export_sfc, useScrollOnActive, BaseListItemLink, _sfc_main as _sfc_main$b, BaseSplitPane, isMobile } from "./MobileOverlay.es.js";
+import { useStoryStore, router } from "./story.es.js";
 var style = "";
 var $histoireThemeResolved = "";
-var __defProp = Object.defineProperty;
-var __defProps = Object.defineProperties;
-var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __spreadValues = (a, b) => {
-  for (var prop in b || (b = {}))
-    if (__hasOwnProp.call(b, prop))
-      __defNormalProp(a, prop, b[prop]);
-  if (__getOwnPropSymbols)
-    for (var prop of __getOwnPropSymbols(b)) {
-      if (__propIsEnum.call(b, prop))
-        __defNormalProp(a, prop, b[prop]);
-    }
-  return a;
-};
-var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 const _hoisted_1$a = { class: "bind-tree-margin htw-flex htw-items-center htw-gap-2 htw-pl-4 htw-min-w-0" };
 const _hoisted_2$7 = { class: "htw-truncate" };
 const _hoisted_3$5 = {
@@ -38,16 +19,16 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
   setup(__props) {
     const props = __props;
     useCssVars((_ctx) => ({
-      "335c8a9c": unref(filePadding),
-      "10044424": __props.story.iconColor
+      "2101d9b6": unref(filePadding),
+      "0fbedaf2": __props.story.iconColor
     }));
     const filePadding = computed(() => {
       return props.depth * 12 + "px";
     });
     const route = useRoute();
-    const active = computed(() => route.params.storyId === props.story.id);
+    const isActive = computed(() => route.params.storyId === props.story.id);
     const el = ref();
-    useScrollOnActive(active, el);
+    useScrollOnActive(isActive, el);
     return (_ctx, _cache) => {
       return openBlock(), createElementBlock("div", {
         ref_key: "el",
@@ -63,15 +44,15 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
           },
           class: "htw-pl-0.5 htw-pr-2 htw-py-2 md:htw-py-1.5 htw-mx-1 htw-rounded-sm"
         }, {
-          default: withCtx(({ active: active2 }) => {
+          default: withCtx(({ active }) => {
             var _a;
             return [
               createBaseVNode("span", _hoisted_1$a, [
                 createVNode(unref(Icon), {
                   icon: (_a = __props.story.icon) != null ? _a : "carbon:cube",
                   class: normalizeClass(["base-list-item-link-icon htw-w-5 htw-h-5 sm:htw-w-4 sm:htw-h-4 htw-flex-none", {
-                    "htw-text-primary-500": !active2 && !__props.story.iconColor,
-                    "bind-icon-color": !active2 && __props.story.iconColor
+                    "htw-text-primary-500": !active && !__props.story.iconColor,
+                    "bind-icon-color": !active && __props.story.iconColor
                   }])
                 }, null, 8, ["icon", "class"]),
                 createBaseVNode("span", _hoisted_2$7, toDisplayString(__props.story.title), 1)
@@ -85,7 +66,7 @@ const _sfc_main$a = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var StoryListItem = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-3bb05a26"]]);
+var StoryListItem = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-1b0b957a"]]);
 const useFolderStore = defineStore("folder", () => {
   const openedFolders = useStorage("_histoire-tree-state", /* @__PURE__ */ new Map());
   function getStringPath(path) {
@@ -479,7 +460,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const _withScopeId = (n) => (pushScopeId("data-v-5fe505b0"), n = n(), popScopeId(), n);
+const _withScopeId = (n) => (pushScopeId("data-v-67187ed0"), n = n(), popScopeId(), n);
 const _hoisted_1$4 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("span", { class: "htw-opacity-40" }, " / ", -1));
 const _hoisted_2$3 = { class: "htw-flex htw-items-center htw-gap-2" };
 const _hoisted_3$1 = { class: "htw-opacity-40 htw-text-sm" };
@@ -494,7 +475,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     useCssVars((_ctx) => {
       var _a;
       return {
-        "7fa476a0": (_a = unref(story)) == null ? void 0 : _a.iconColor
+        "5e381dde": (_a = unref(story)) == null ? void 0 : _a.iconColor
       };
     });
     const storyStore = useStoryStore();
@@ -547,7 +528,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
             })
           ])
         ]),
-        createVNode(_sfc_main$c, {
+        createVNode(_sfc_main$b, {
           title: "Select a story",
           opened: isMenuOpened.value,
           onClose: closeMenu
@@ -565,7 +546,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-var Breadcrumb = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-5fe505b0"]]);
+var Breadcrumb = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-67187ed0"]]);
 const _hoisted_1$3 = { class: "htw-flex htw-items-center htw-gap-4 htw-pl-6 htw-border htw-border-transparent focus-visible:htw-border-primary-500 htw-h-[51px] htw-opacity-30" };
 const _hoisted_2$2 = /* @__PURE__ */ createTextVNode(" Loading... ");
 const _sfc_main$3 = /* @__PURE__ */ defineComponent({
@@ -600,7 +581,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   },
   setup(__props, { emit }) {
     const SearchPane = defineAsyncComponent({
-      loader: () => __vitePreload(() => import("../SearchPane.es.js"), true ? ["SearchPane.es.js","vendor.es.js","story.es.js","mapping.es.js","BaseEmpty.es.js","MobileOverlay.es.js"] : void 0),
+      loader: () => import("./SearchPane.es.js"),
       loadingComponent: _sfc_main$3,
       delay: 0
     });
@@ -665,6 +646,25 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
+var __defProp = Object.defineProperty;
+var __defProps = Object.defineProperties;
+var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
+var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 const _hoisted_1 = {
   key: 0,
   class: "htw-hidden"
@@ -721,7 +721,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent(__spreadProps(__spreadValues({
       const _component_RouterView = resolveComponent("RouterView");
       return openBlock(), createElementBlock(Fragment, null, [
         unref(storyStore).currentStory ? (openBlock(), createElementBlock("div", _hoisted_1, [
-          createVNode(unref(_sfc_main$b), {
+          createVNode(unref(MountStoryVue3), {
             story: unref(storyStore).currentStory
           }, null, 8, ["story"])
         ])) : createCommentVNode("", true),

@@ -1,4 +1,4 @@
-import { reactive, computed, useNow } from "./vendor.es.js";
+import { reactive$1 as reactive, computed$1 as computed, useNow } from "./vendor.es.js";
 import { useUser, useGun, hashObj } from "./useDraw.es.js";
 const giftPath = "#gifts2023";
 function useGift() {

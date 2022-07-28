@@ -1,4 +1,4 @@
-import { resolveComponent, openBlock, createBlock, withCtx, createBaseVNode, createVNode, defineAsyncComponent, __vitePreload, reactive, computed, onMounted, watchOnce } from "./vendor.es.js";
+import { resolveComponent$1 as resolveComponent, openBlock$1 as openBlock, createBlock$1 as createBlock, withCtx$1 as withCtx, createBaseVNode$1 as createBaseVNode, createVNode$1 as createVNode, defineAsyncComponent$1 as defineAsyncComponent, reactive$1 as reactive, computed$1 as computed, onMounted$1 as onMounted, watchOnce } from "./vendor.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 const _hoisted_1 = { class: "p-2 flex flex-col gap-4" };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -38,14 +38,14 @@ const _sfc_main = {
   __name: "AccountHome.story",
   setup(__props, { expose }) {
     expose();
-    const AccountHome = defineAsyncComponent(() => __vitePreload(() => import("./AccountHome.es.js"), true ? ["AccountHome.es.js","useDraw.es.js","vendor.es.js","useBackground.es.js","useReactions.es.js","useMates.es.js","PostCard.es.js","useZip.es.js","useFile.es.js","useMd.es.js","PostActionReact.es.js","AccountBadge.es.js","AccountAvatar.es.js","plugin-vue_export-helper.es.js","times.es.js","plus.es.js","youtube.es.js","trash.es.js","angle-up.es.js","ChatPrivateCount.es.js","usePrivate.es.js","MateButton.es.js"] : void 0));
-    const AccountSelect = defineAsyncComponent(() => __vitePreload(() => import("./AccountSelect.es.js"), true ? ["AccountSelect.es.js","useDraw.es.js","vendor.es.js","useGuests.es.js","times.es.js","AccountBadge.es.js","AccountAvatar.es.js","plugin-vue_export-helper.es.js"] : void 0));
+    const AccountHome = defineAsyncComponent(() => import("./AccountHome.es.js"));
+    const AccountSelect = defineAsyncComponent(() => import("./AccountSelect.es.js"));
     const state = reactive({
       pub: "We2MxFrbFH37008fNmreSk9hdHLJNMVhrSMIIbOO5Ao.FbNrdt118-TCYzGYRo94Xa8EUWwwV-7DIopXSE9OZD8"
     });
     function mySetup() {
       onMounted(async () => {
-        const { useGuests } = await __vitePreload(() => import("./index.es.js"), true ? ["index.es.js","useDraw.es.js","vendor.es.js","useChat.es.js","usePrivate.es.js","useLog.es.js","useFile.es.js","useZip.es.js","useMd.es.js","useGifts.es.js","useReactions.es.js","useMates.es.js","useGuests.es.js","useSpace.es.js","useBackground.es.js","useProjects.es.js"] : void 0);
+        const { useGuests } = await import("./index.es.js");
         const { guests } = useGuests();
         watchOnce(guests, (g) => {
           state.pub = Object.keys(guests)[0];

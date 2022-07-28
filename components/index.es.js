@@ -7,7 +7,7 @@ export { base64Extension, base64FileType, base64MimeType, detectMimeType, downlo
 export { addPost, downloadPost, loadFromHash, parsePost, usePost, usePostTimestamp, useZip } from "./useZip.es.js";
 export { createMd, parseMd, useMd } from "./useMd.es.js";
 export { acceptGift, giftPath, useGift, useGifts } from "./useGifts.es.js";
-import { ref, computed, reactive, slugify, Fuse } from "./vendor.es.js";
+import { ref$1 as ref, computed$1 as computed, slugify, reactive$1 as reactive, Fuse } from "./vendor.es.js";
 export { SEA, gunAvatar, mountClass, mountElement, ms, slugify } from "./vendor.es.js";
 export { countRating, reactToPost, useReaction, useReactions, useUserPosts } from "./useReactions.es.js";
 export { useGuests } from "./useGuests.es.js";

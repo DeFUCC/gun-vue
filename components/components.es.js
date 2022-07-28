@@ -1,6 +1,6 @@
-import { reactive, parseQuery, ref, createApp, createPinia, watch, computed, STATE_SYNC, PREVIEW_SETTINGS_SYNC, onMounted, h, _sfc_main, SANDBOX_READY, _sfc_main$1, applyStateToVariant } from "../vendor.es.js";
-import { mapFile, files, histoireConfig, isDark } from "../mapping.es.js";
-import { toRawDeep } from "../state.es.js";
+import { reactive, parseQuery, ref, createApp, createPinia, watch, computed, STATE_SYNC, PREVIEW_SETTINGS_SYNC, onMounted, h, MountStoryVue3, SANDBOX_READY, SandboxVue3, applyState } from "./vendor.es.js";
+import { mapFile, files, histoireConfig, isDark } from "./mapping.es.js";
+import { toRawDeep } from "./state.es.js";
 var sandbox = "";
 const receivedSettings = reactive({});
 function applyPreviewSettings(settings) {
@@ -24,7 +24,7 @@ const app = createApp({
         if (!mounted)
           return;
         synced = true;
-        applyStateToVariant(variant.value, event.data.state);
+        applyState(variant.value.state, event.data.state);
       } else if (((_b = event.data) == null ? void 0 : _b.type) === PREVIEW_SETTINGS_SYNC) {
         applyPreviewSettings(event.data.settings);
       }
@@ -53,11 +53,11 @@ const app = createApp({
   render() {
     return [
       h("div", { class: "htw-sandbox-hidden" }, [
-        h(_sfc_main, {
+        h(MountStoryVue3, {
           story: file.value.story
         })
       ]),
-      this.story && this.variant ? h(_sfc_main$1, {
+      this.story && this.variant ? h(SandboxVue3, {
         story: this.story,
         variant: this.variant,
         onReady: () => {

@@ -1,5 +1,5 @@
 import { useUser, useColor } from "./useDraw.es.js";
-import { openBlock, createElementBlock, createBaseVNode, createVNode, toDisplayString, createCommentVNode, normalizeStyle, computed, useTimeAgo } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, createVNode$1 as createVNode, toDisplayString$1 as toDisplayString, createCommentVNode$1 as createCommentVNode, normalizeStyle$1 as normalizeStyle, computed$1 as computed, useTimeAgo } from "./vendor.es.js";
 import { acceptGift } from "./useGifts.es.js";
 import __unplugin_components_0$1 from "./AccountAvatar.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";

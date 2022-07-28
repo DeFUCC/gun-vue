@@ -1,5 +1,5 @@
 import { useUser, useColor, removeProject, currentRoom } from "./useDraw.es.js";
-import { openBlock, createElementBlock, withModifiers, createVNode, createCommentVNode, createBaseVNode, normalizeStyle, toDisplayString, createBlock, renderSlot, pushScopeId, popScopeId } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, withModifiers$1 as withModifiers, createVNode$1 as createVNode, createCommentVNode$1 as createCommentVNode, createBaseVNode$1 as createBaseVNode, normalizeStyle$1 as normalizeStyle, toDisplayString$1 as toDisplayString, createBlock$1 as createBlock, renderSlot$1 as renderSlot, pushScopeId$1 as pushScopeId, popScopeId$1 as popScopeId } from "./vendor.es.js";
 import { __unplugin_components_4, __unplugin_components_2, __unplugin_components_3 } from "./youtube.es.js";
 import __unplugin_components_0$2 from "./AccountBadge.es.js";
 import { __unplugin_components_0 as __unplugin_components_0$1 } from "./trash.es.js";

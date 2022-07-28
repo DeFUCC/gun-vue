@@ -1,4 +1,4 @@
-import { resolveComponent, openBlock, createBlock, withCtx, createVNode, normalizeProps, guardReactiveProps, createBaseVNode, defineAsyncComponent, __vitePreload, reactive } from "./vendor.es.js";
+import { resolveComponent$1 as resolveComponent, openBlock$1 as openBlock, createBlock$1 as createBlock, withCtx$1 as withCtx, createVNode$1 as createVNode, normalizeProps, guardReactiveProps, createBaseVNode$1 as createBaseVNode, defineAsyncComponent$1 as defineAsyncComponent, reactive$1 as reactive } from "./vendor.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 const _hoisted_1 = /* @__PURE__ */ createBaseVNode("div", { class: "p-4 flex flex-col gap-4" }, null, -1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -26,7 +26,7 @@ const _sfc_main = {
   __name: "ProjectCard.story",
   setup(__props, { expose }) {
     expose();
-    const ProjectCard = defineAsyncComponent(() => __vitePreload(() => import("./ProjectCard.es.js"), true ? ["ProjectCard.es.js","useDraw.es.js","vendor.es.js","youtube.es.js","plugin-vue_export-helper.es.js","AccountBadge.es.js","AccountAvatar.es.js","trash.es.js"] : void 0));
+    const ProjectCard = defineAsyncComponent(() => import("./ProjectCard.es.js"));
     const state = reactive({
       hash: "123"
     });

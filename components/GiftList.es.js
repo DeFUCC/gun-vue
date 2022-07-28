@@ -1,5 +1,5 @@
 import "./useDraw.es.js";
-import { openBlock, createElementBlock, createBaseVNode, Fragment, renderList, createBlock } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, Fragment$1 as Fragment, renderList$1 as renderList, createBlock$1 as createBlock } from "./vendor.es.js";
 import { useGifts } from "./useGifts.es.js";
 import __unplugin_components_0 from "./GiftCard.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";

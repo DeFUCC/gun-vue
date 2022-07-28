@@ -1,5 +1,5 @@
 import { useRoom, useUser, currentRoom, useColor, rootRoom, recreateRoom } from "./useDraw.es.js";
-import { openBlock, createElementBlock, createBaseVNode, createVNode, pushScopeId, popScopeId, ref, computed, nextTick, reactive, onMounted, watch, toDisplayString, createBlock, createCommentVNode, withDirectives, vModelText, withKeys, Fragment, renderList, normalizeStyle, withCtx } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, createVNode$1 as createVNode, pushScopeId$1 as pushScopeId, popScopeId$1 as popScopeId, ref$1 as ref, computed$1 as computed, nextTick$1 as nextTick, reactive$1 as reactive, onMounted$1 as onMounted, watch$1 as watch, toDisplayString$1 as toDisplayString, createBlock$1 as createBlock, createCommentVNode$1 as createCommentVNode, withDirectives$1 as withDirectives, vModelText$1 as vModelText, withKeys$1 as withKeys, Fragment$1 as Fragment, renderList$1 as renderList, normalizeStyle$1 as normalizeStyle, withCtx$1 as withCtx } from "./vendor.es.js";
 import { useBackground } from "./useBackground.es.js";
 import { __unplugin_components_1 as __unplugin_components_1$2 } from "./UiPanel.es.js";
 import { parseMd, useMd } from "./useMd.es.js";
