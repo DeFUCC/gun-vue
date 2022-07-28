@@ -13,7 +13,6 @@
     "build": "cd composables && pnpm run build && pnpm run doc && cd .. && cd components && pnpm run build && pnpm run story:build && cd .. && cd app && pnpm run build ",
     "change": "pnpm changeset",
     "deploy": "sh deploy.sh",
-    "docs": "cd composables && pnpm run doc",
     "histoire": "cd components && pnpm run story:dev",
     "publish": "pnpm run build && pnpm changeset publish",
     "relay": "cd relay && pnpm run start",
