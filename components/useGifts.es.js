@@ -1,28 +1,6 @@
-import { reactive$1 as reactive, computed$1 as computed, useNow } from "./vendor.es.js";
-import { useUser, useGun, hashObj } from "./useDraw.es.js";
-const giftPath = "#gifts2023";
-function useGift() {
-  const { user } = useUser();
-  const gift = reactive({
-    from: computed(() => user == null ? void 0 : user.pub),
-    to: "",
-    qn: 0,
-    ql: "",
-    wish: "",
-    date: useNow()
-  });
-  const gun = useGun();
-  async function propose() {
-    const { hash, hashed } = await hashObj(gift);
-    gun.get(giftPath).get(hash).put(hashed);
-    gun.user().get(giftPath).get(hash).put(true);
-  }
-  return { gift, propose };
-}
-async function acceptGift(hash) {
-  const { user } = useUser();
-  user.db.get(giftPath).get(hash).put(true);
-}
+import { reactive$1 as reactive } from "./vendor.es.js";
+import { useUser, useGun } from "./useDraw.es.js";
+import { giftPath } from "./index.es2.js";
 function useGifts() {
   const { user } = useUser();
   const gun = useGun();
@@ -48,4 +26,27 @@ function useGifts() {
   });
   return { my, proposed, gifts };
 }
-export { acceptGift, giftPath, useGift, useGifts };
+function useMyGifts() {
+  const { user } = useUser();
+  const gun = useGun();
+  const gifts = reactive({});
+  const from = reactive({});
+  const to = reactive({});
+  gun.user().get(giftPath).map().on((d, hash) => {
+    gun.get(giftPath).get(hash).once((d2) => {
+      try {
+        d2 = JSON.parse(d2);
+      } catch {
+      }
+      if (d2.from == user.pub) {
+        from[hash] = { ...d2, sent: true };
+      }
+      if (d2.to == user.pub) {
+        to[hash] = { ...d2, sent: true, received: true };
+      }
+      gifts[hash] = d2;
+    });
+  });
+  return { gifts, to, from };
+}
+export { useGifts, useMyGifts };

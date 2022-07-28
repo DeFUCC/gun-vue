@@ -25,6 +25,7 @@ import "./exit-outline.es.js";
 import "./lock.es.js";
 import "./MateButton.es.js";
 import "./UserAvatar.es.js";
+import "./camera.es.js";
 import "./useFile.es.js";
 import "./UserCreate.es.js";
 import "./UserAuth.es.js";

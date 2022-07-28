@@ -61690,6 +61690,739 @@ function externalLinksPlugin(md, options) {
 }
 var lib = externalLinksPlugin;
 var browser = gun.exports;
+var classesmjs = { "trie": "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", "classes": { "Other": 0, "Prepend": 1, "CR": 2, "LF": 3, "Control": 4, "Extend": 5, "Regional_Indicator": 6, "SpacingMark": 7, "L": 8, "V": 9, "T": 10, "LV": 11, "LVT": 12, "ZWJ": 13, "ExtPict": 14 } };
+var TINF_OK = 0;
+var TINF_DATA_ERROR = -3;
+function Tree() {
+  this.table = new Uint16Array(16);
+  this.trans = new Uint16Array(288);
+}
+function Data(source, dest) {
+  this.source = source;
+  this.sourceIndex = 0;
+  this.tag = 0;
+  this.bitcount = 0;
+  this.dest = dest;
+  this.destLen = 0;
+  this.ltree = new Tree();
+  this.dtree = new Tree();
+}
+var sltree = new Tree();
+var sdtree = new Tree();
+var length_bits = new Uint8Array(30);
+var length_base = new Uint16Array(30);
+var dist_bits = new Uint8Array(30);
+var dist_base = new Uint16Array(30);
+var clcidx = new Uint8Array([
+  16,
+  17,
+  18,
+  0,
+  8,
+  7,
+  9,
+  6,
+  10,
+  5,
+  11,
+  4,
+  12,
+  3,
+  13,
+  2,
+  14,
+  1,
+  15
+]);
+var code_tree = new Tree();
+var lengths = new Uint8Array(288 + 32);
+function tinf_build_bits_base(bits2, base2, delta2, first) {
+  var i2, sum2;
+  for (i2 = 0; i2 < delta2; ++i2)
+    bits2[i2] = 0;
+  for (i2 = 0; i2 < 30 - delta2; ++i2)
+    bits2[i2 + delta2] = i2 / delta2 | 0;
+  for (sum2 = first, i2 = 0; i2 < 30; ++i2) {
+    base2[i2] = sum2;
+    sum2 += 1 << bits2[i2];
+  }
+}
+function tinf_build_fixed_trees(lt2, dt) {
+  var i2;
+  for (i2 = 0; i2 < 7; ++i2)
+    lt2.table[i2] = 0;
+  lt2.table[7] = 24;
+  lt2.table[8] = 152;
+  lt2.table[9] = 112;
+  for (i2 = 0; i2 < 24; ++i2)
+    lt2.trans[i2] = 256 + i2;
+  for (i2 = 0; i2 < 144; ++i2)
+    lt2.trans[24 + i2] = i2;
+  for (i2 = 0; i2 < 8; ++i2)
+    lt2.trans[24 + 144 + i2] = 280 + i2;
+  for (i2 = 0; i2 < 112; ++i2)
+    lt2.trans[24 + 144 + 8 + i2] = 144 + i2;
+  for (i2 = 0; i2 < 5; ++i2)
+    dt.table[i2] = 0;
+  dt.table[5] = 32;
+  for (i2 = 0; i2 < 32; ++i2)
+    dt.trans[i2] = i2;
+}
+var offs = new Uint16Array(16);
+function tinf_build_tree(t2, lengths2, off, num2) {
+  var i2, sum2;
+  for (i2 = 0; i2 < 16; ++i2)
+    t2.table[i2] = 0;
+  for (i2 = 0; i2 < num2; ++i2)
+    t2.table[lengths2[off + i2]]++;
+  t2.table[0] = 0;
+  for (sum2 = 0, i2 = 0; i2 < 16; ++i2) {
+    offs[i2] = sum2;
+    sum2 += t2.table[i2];
+  }
+  for (i2 = 0; i2 < num2; ++i2) {
+    if (lengths2[off + i2])
+      t2.trans[offs[lengths2[off + i2]]++] = i2;
+  }
+}
+function tinf_getbit(d2) {
+  if (!d2.bitcount--) {
+    d2.tag = d2.source[d2.sourceIndex++];
+    d2.bitcount = 7;
+  }
+  var bit = d2.tag & 1;
+  d2.tag >>>= 1;
+  return bit;
+}
+function tinf_read_bits(d2, num2, base2) {
+  if (!num2)
+    return base2;
+  while (d2.bitcount < 24) {
+    d2.tag |= d2.source[d2.sourceIndex++] << d2.bitcount;
+    d2.bitcount += 8;
+  }
+  var val = d2.tag & 65535 >>> 16 - num2;
+  d2.tag >>>= num2;
+  d2.bitcount -= num2;
+  return val + base2;
+}
+function tinf_decode_symbol(d2, t2) {
+  while (d2.bitcount < 24) {
+    d2.tag |= d2.source[d2.sourceIndex++] << d2.bitcount;
+    d2.bitcount += 8;
+  }
+  var sum2 = 0, cur = 0, len2 = 0;
+  var tag = d2.tag;
+  do {
+    cur = 2 * cur + (tag & 1);
+    tag >>>= 1;
+    ++len2;
+    sum2 += t2.table[len2];
+    cur -= t2.table[len2];
+  } while (cur >= 0);
+  d2.tag = tag;
+  d2.bitcount -= len2;
+  return t2.trans[sum2 + cur];
+}
+function tinf_decode_trees(d2, lt2, dt) {
+  var hlit, hdist, hclen;
+  var i2, num2, length;
+  hlit = tinf_read_bits(d2, 5, 257);
+  hdist = tinf_read_bits(d2, 5, 1);
+  hclen = tinf_read_bits(d2, 4, 4);
+  for (i2 = 0; i2 < 19; ++i2)
+    lengths[i2] = 0;
+  for (i2 = 0; i2 < hclen; ++i2) {
+    var clen = tinf_read_bits(d2, 3, 0);
+    lengths[clcidx[i2]] = clen;
+  }
+  tinf_build_tree(code_tree, lengths, 0, 19);
+  for (num2 = 0; num2 < hlit + hdist; ) {
+    var sym = tinf_decode_symbol(d2, code_tree);
+    switch (sym) {
+      case 16:
+        var prev = lengths[num2 - 1];
+        for (length = tinf_read_bits(d2, 2, 3); length; --length) {
+          lengths[num2++] = prev;
+        }
+        break;
+      case 17:
+        for (length = tinf_read_bits(d2, 3, 3); length; --length) {
+          lengths[num2++] = 0;
+        }
+        break;
+      case 18:
+        for (length = tinf_read_bits(d2, 7, 11); length; --length) {
+          lengths[num2++] = 0;
+        }
+        break;
+      default:
+        lengths[num2++] = sym;
+        break;
+    }
+  }
+  tinf_build_tree(lt2, lengths, 0, hlit);
+  tinf_build_tree(dt, lengths, hlit, hdist);
+}
+function tinf_inflate_block_data(d2, lt2, dt) {
+  while (1) {
+    var sym = tinf_decode_symbol(d2, lt2);
+    if (sym === 256) {
+      return TINF_OK;
+    }
+    if (sym < 256) {
+      d2.dest[d2.destLen++] = sym;
+    } else {
+      var length, dist2, offs2;
+      var i2;
+      sym -= 257;
+      length = tinf_read_bits(d2, length_bits[sym], length_base[sym]);
+      dist2 = tinf_decode_symbol(d2, dt);
+      offs2 = d2.destLen - tinf_read_bits(d2, dist_bits[dist2], dist_base[dist2]);
+      for (i2 = offs2; i2 < offs2 + length; ++i2) {
+        d2.dest[d2.destLen++] = d2.dest[i2];
+      }
+    }
+  }
+}
+function tinf_inflate_uncompressed_block(d2) {
+  var length, invlength;
+  var i2;
+  while (d2.bitcount > 8) {
+    d2.sourceIndex--;
+    d2.bitcount -= 8;
+  }
+  length = d2.source[d2.sourceIndex + 1];
+  length = 256 * length + d2.source[d2.sourceIndex];
+  invlength = d2.source[d2.sourceIndex + 3];
+  invlength = 256 * invlength + d2.source[d2.sourceIndex + 2];
+  if (length !== (~invlength & 65535))
+    return TINF_DATA_ERROR;
+  d2.sourceIndex += 4;
+  for (i2 = length; i2; --i2)
+    d2.dest[d2.destLen++] = d2.source[d2.sourceIndex++];
+  d2.bitcount = 0;
+  return TINF_OK;
+}
+function tinf_uncompress(source, dest) {
+  var d2 = new Data(source, dest);
+  var bfinal, btype, res;
+  do {
+    bfinal = tinf_getbit(d2);
+    btype = tinf_read_bits(d2, 2, 0);
+    switch (btype) {
+      case 0:
+        res = tinf_inflate_uncompressed_block(d2);
+        break;
+      case 1:
+        res = tinf_inflate_block_data(d2, sltree, sdtree);
+        break;
+      case 2:
+        tinf_decode_trees(d2, d2.ltree, d2.dtree);
+        res = tinf_inflate_block_data(d2, d2.ltree, d2.dtree);
+        break;
+      default:
+        res = TINF_DATA_ERROR;
+    }
+    if (res !== TINF_OK)
+      throw new Error("Data error");
+  } while (!bfinal);
+  if (d2.destLen < d2.dest.length) {
+    if (typeof d2.dest.slice === "function")
+      return d2.dest.slice(0, d2.destLen);
+    else
+      return d2.dest.subarray(0, d2.destLen);
+  }
+  return d2.dest;
+}
+tinf_build_fixed_trees(sltree, sdtree);
+tinf_build_bits_base(length_bits, length_base, 4, 3);
+tinf_build_bits_base(dist_bits, dist_base, 2, 1);
+length_bits[28] = 0;
+length_base[28] = 258;
+const isBigEndian = new Uint8Array(new Uint32Array([305419896]).buffer)[0] === 18;
+const swap = (b2, n2, m2) => {
+  let i2 = b2[n2];
+  b2[n2] = b2[m2];
+  b2[m2] = i2;
+};
+const swap32 = (array2) => {
+  const len2 = array2.length;
+  for (let i2 = 0; i2 < len2; i2 += 4) {
+    swap(array2, i2, i2 + 3);
+    swap(array2, i2 + 1, i2 + 2);
+  }
+};
+const swap32LE$1 = (array2) => {
+  if (isBigEndian) {
+    swap32(array2);
+  }
+};
+const exports$2 = {
+  swap32LE: swap32LE$1
+};
+const swap32LE = exports$2.swap32LE;
+const SHIFT_1 = 6 + 5;
+const SHIFT_2 = 5;
+const SHIFT_1_2 = SHIFT_1 - SHIFT_2;
+const OMITTED_BMP_INDEX_1_LENGTH = 65536 >> SHIFT_1;
+const INDEX_2_BLOCK_LENGTH = 1 << SHIFT_1_2;
+const INDEX_2_MASK = INDEX_2_BLOCK_LENGTH - 1;
+const INDEX_SHIFT = 2;
+const DATA_BLOCK_LENGTH = 1 << SHIFT_2;
+const DATA_MASK = DATA_BLOCK_LENGTH - 1;
+const LSCP_INDEX_2_OFFSET = 65536 >> SHIFT_2;
+const LSCP_INDEX_2_LENGTH = 1024 >> SHIFT_2;
+const INDEX_2_BMP_LENGTH = LSCP_INDEX_2_OFFSET + LSCP_INDEX_2_LENGTH;
+const UTF8_2B_INDEX_2_OFFSET = INDEX_2_BMP_LENGTH;
+const UTF8_2B_INDEX_2_LENGTH = 2048 >> 6;
+const INDEX_1_OFFSET = UTF8_2B_INDEX_2_OFFSET + UTF8_2B_INDEX_2_LENGTH;
+const DATA_GRANULARITY = 1 << INDEX_SHIFT;
+class UnicodeTrie {
+  constructor(data2) {
+    const isBuffer = typeof data2.readUInt32BE === "function" && typeof data2.slice === "function";
+    if (isBuffer || data2 instanceof Uint8Array) {
+      let uncompressedLength;
+      if (isBuffer) {
+        this.highStart = data2.readUInt32LE(0);
+        this.errorValue = data2.readUInt32LE(4);
+        uncompressedLength = data2.readUInt32LE(8);
+        data2 = data2.slice(12);
+      } else {
+        const view = new DataView(data2.buffer);
+        this.highStart = view.getUint32(0, true);
+        this.errorValue = view.getUint32(4, true);
+        uncompressedLength = view.getUint32(8, true);
+        data2 = data2.subarray(12);
+      }
+      data2 = tinf_uncompress(data2, new Uint8Array(uncompressedLength));
+      data2 = tinf_uncompress(data2, new Uint8Array(uncompressedLength));
+      swap32LE(data2);
+      this.data = new Uint32Array(data2.buffer);
+    } else {
+      ({ data: this.data, highStart: this.highStart, errorValue: this.errorValue } = data2);
+    }
+  }
+  get(codePoint) {
+    let index2;
+    if (codePoint < 0 || codePoint > 1114111) {
+      return this.errorValue;
+    }
+    if (codePoint < 55296 || codePoint > 56319 && codePoint <= 65535) {
+      index2 = (this.data[codePoint >> SHIFT_2] << INDEX_SHIFT) + (codePoint & DATA_MASK);
+      return this.data[index2];
+    }
+    if (codePoint <= 65535) {
+      index2 = (this.data[LSCP_INDEX_2_OFFSET + (codePoint - 55296 >> SHIFT_2)] << INDEX_SHIFT) + (codePoint & DATA_MASK);
+      return this.data[index2];
+    }
+    if (codePoint < this.highStart) {
+      index2 = this.data[INDEX_1_OFFSET - OMITTED_BMP_INDEX_1_LENGTH + (codePoint >> SHIFT_1)];
+      index2 = this.data[index2 + (codePoint >> SHIFT_2 & INDEX_2_MASK)];
+      index2 = (index2 << INDEX_SHIFT) + (codePoint & DATA_MASK);
+      return this.data[index2];
+    }
+    return this.data[this.data.length - DATA_GRANULARITY];
+  }
+}
+const trie = classesmjs.trie;
+const { Other, Prepend, CR, LF, Control, Extend, Regional_Indicator, SpacingMark, L: L$2, V: V$2, T: T$2, LV, LVT, ZWJ, ExtPict } = classesmjs.classes;
+let data = null;
+if (globalThis["window"]) {
+  const bin = window.atob(trie);
+  data = new Uint8Array(bin.length);
+  for (let i2 = 0; i2 < bin.length; i2++)
+    data[i2] = bin.charCodeAt(i2);
+} else {
+  data = Buffer.from(trie, "base64");
+}
+const classTrie = new UnicodeTrie(data);
+const codePointAt = function(str, idx) {
+  const code3 = str.charCodeAt(idx);
+  if (55296 <= code3 && code3 <= 56319) {
+    const hi = code3;
+    const low = str.charCodeAt(idx + 1);
+    if (56320 <= low && low <= 57343) {
+      return (hi - 55296) * 1024 + (low - 56320) + 65536;
+    }
+    return hi;
+  }
+  if (56320 <= code3 && code3 <= 57343) {
+    const hi = str.charCodeAt(idx - 1);
+    const low = code3;
+    if (55296 <= hi && hi <= 56319) {
+      return (hi - 55296) * 1024 + (low - 56320) + 65536;
+    }
+    return low;
+  }
+  return code3;
+};
+const isSurrogate = function(str, pos) {
+  let ref2, ref1;
+  return 55296 <= (ref2 = str.charCodeAt(pos)) && ref2 <= 56319 && (56320 <= (ref1 = str.charCodeAt(pos + 1)) && ref1 <= 57343);
+};
+const BreakType = {
+  NotBreak: 0,
+  BreakStart: 1,
+  Break: 2,
+  BreakLastRegional: 3,
+  BreakPenultimateRegional: 4
+};
+const shouldBreak = function(reverse, start2, mid2, end) {
+  const all = [start2].concat(mid2).concat([end]);
+  const previous = reverse ? start2 : all[all.length - 2];
+  const next = reverse ? all[1] : end;
+  let rIIndex = all.lastIndexOf(Regional_Indicator);
+  if (rIIndex > 0 && all.slice(1, rIIndex).every((c2) => c2 === Regional_Indicator) && (previous !== Prepend && previous !== Regional_Indicator)) {
+    if (all.filter((c2) => c2 === Regional_Indicator).length % 2 === 1) {
+      return BreakType.BreakLastRegional;
+    } else {
+      return BreakType.BreakPenultimateRegional;
+    }
+  }
+  if (previous === CR && next === LF) {
+    return BreakType.NotBreak;
+  }
+  if (previous === Control || previous === CR || previous === LF) {
+    if (next !== Extend && mid2.every((c2) => c2 === Extend)) {
+      return BreakType.Break;
+    } else {
+      return BreakType.BreakStart;
+    }
+  }
+  if (next === Control || next === CR || next === LF) {
+    return BreakType.BreakStart;
+  }
+  if (previous === L$2 && (next === L$2 || next === V$2 || next === LV || next === LVT)) {
+    return BreakType.NotBreak;
+  }
+  if ((previous === LV || previous === V$2) && (next === V$2 || next === T$2)) {
+    return BreakType.NotBreak;
+  }
+  if ((previous === LVT || previous === T$2) && next === T$2) {
+    return BreakType.NotBreak;
+  }
+  if (reverse) {
+    if (next === Extend) {
+      return BreakType.NotBreak;
+    }
+    if (next === ZWJ) {
+      if (previous == Other && mid2.length > 0 && mid2[0] == ZWJ) {
+        return end != ExtPict ? BreakType.BreakStart : BreakType.Break;
+      }
+      return BreakType.NotBreak;
+    }
+  } else {
+    if (next === Extend || next === ZWJ) {
+      return BreakType.NotBreak;
+    }
+  }
+  if (next === SpacingMark) {
+    return BreakType.NotBreak;
+  }
+  if (previous === Prepend) {
+    return BreakType.NotBreak;
+  }
+  if (reverse) {
+    if (previous == ZWJ && next == ExtPict && (start2 == ZWJ || start2 == Other)) {
+      return BreakType.NotBreak;
+    }
+  } else {
+    if (start2 == ExtPict && previous == ZWJ && next == ExtPict) {
+      return BreakType.NotBreak;
+    }
+  }
+  if (!reverse && mid2.indexOf(Regional_Indicator) >= 0) {
+    return BreakType.Break;
+  }
+  if (previous === Regional_Indicator && next === Regional_Indicator) {
+    return BreakType.NotBreak;
+  }
+  return BreakType.BreakStart;
+};
+const getUnicodeByteOffset = function(str, start2, unicodeOffset) {
+  while (unicodeOffset--) {
+    start2 += isSurrogate(str, start2) ? 2 : 1;
+  }
+  return start2;
+};
+const exports$1 = {};
+exports$1.nextBreak = function(string2, index2 = 0) {
+  if (index2 < 0) {
+    return 0;
+  }
+  if (index2 >= string2.length - 1) {
+    return string2.length;
+  }
+  const prev = classTrie.get(string2.codePointAt(index2));
+  const mid2 = [];
+  let i2, j2, ref1;
+  for (i2 = j2 = index2 + 1, ref1 = string2.length; j2 < ref1; i2 = j2 += 1) {
+    if (isSurrogate(string2, i2 - 1)) {
+      continue;
+    }
+    const next = classTrie.get(string2.codePointAt(i2));
+    if (shouldBreak(false, prev, mid2, next)) {
+      return i2;
+    }
+    mid2.push(next);
+  }
+  return string2.length;
+};
+exports$1.previousBreak = function(string2, index2 = string2.length) {
+  if (index2 > string2.length) {
+    return string2.length;
+  }
+  if (index2 <= 1) {
+    return 0;
+  }
+  index2--;
+  let mid2 = [];
+  let next = classTrie.get(codePointAt(string2, index2));
+  let i2, j2;
+  for (i2 = j2 = index2 - 1; j2 >= -1; i2 = j2 += -1) {
+    if (isSurrogate(string2, i2)) {
+      continue;
+    }
+    let prev = classTrie.get(codePointAt(string2, i2));
+    switch (shouldBreak(true, prev, mid2, next)) {
+      case BreakType.Break:
+        return i2 + mid2.length + 1;
+      case BreakType.BreakStart:
+        return i2 + 1;
+      case BreakType.BreakLastRegional:
+        const offset2 = getUnicodeByteOffset(string2, i2, mid2.concat(next).lastIndexOf(Regional_Indicator) + 1);
+        return offset2;
+      case BreakType.BreakPenultimateRegional:
+        return getUnicodeByteOffset(string2, i2, mid2.concat(next).lastIndexOf(Regional_Indicator));
+    }
+    mid2.unshift(prev);
+  }
+};
+exports$1.break = function(str) {
+  const res = [];
+  let index2 = 0;
+  let brk;
+  while ((brk = exports$1.nextBreak(str, index2)) < str.length) {
+    res.push(str.slice(index2, brk));
+    index2 = brk;
+  }
+  if (index2 < str.length) {
+    res.push(str.slice(index2));
+  }
+  return res;
+};
+exports$1.countBreaks = function(str) {
+  let count2 = 0;
+  let index2 = 0;
+  let brk;
+  while ((brk = exports$1.nextBreak(str, index2)) < str.length) {
+    index2 = brk;
+    count2++;
+  }
+  if (index2 < str.length) {
+    count2++;
+  }
+  return count2;
+};
+var GB = exports$1;
+var base32$1 = { exports: {} };
+var __viteBrowserExternal_crypto = new Proxy({}, {
+  get() {
+    throw new Error('Module "crypto" has been externalized for browser compatibility and cannot be accessed in client code.');
+  }
+});
+var __viteBrowserExternal_crypto$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  "default": __viteBrowserExternal_crypto
+}, Symbol.toStringTag, { value: "Module" }));
+var require$$0 = /* @__PURE__ */ getAugmentedNamespace(__viteBrowserExternal_crypto$1);
+var __viteBrowserExternal_fs = new Proxy({}, {
+  get() {
+    throw new Error('Module "fs" has been externalized for browser compatibility and cannot be accessed in client code.');
+  }
+});
+var __viteBrowserExternal_fs$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  "default": __viteBrowserExternal_fs
+}, Symbol.toStringTag, { value: "Module" }));
+var require$$1 = /* @__PURE__ */ getAugmentedNamespace(__viteBrowserExternal_fs$1);
+(function(module2) {
+  (function() {
+    var alphabet = "0123456789abcdefghjkmnpqrtuvwxyz";
+    var alias = { o: 0, i: 1, l: 1, s: 5 };
+    var lookup2 = function() {
+      var table3 = {};
+      for (var i2 = 0; i2 < alphabet.length; i2++) {
+        table3[alphabet[i2]] = i2;
+      }
+      for (var key in alias) {
+        if (!alias.hasOwnProperty(key))
+          continue;
+        table3[key] = table3["" + alias[key]];
+      }
+      lookup2 = function() {
+        return table3;
+      };
+      return table3;
+    };
+    function Encoder() {
+      var skip = 0;
+      var bits2 = 0;
+      this.output = "";
+      this.readByte = function(byte) {
+        if (typeof byte == "string")
+          byte = byte.charCodeAt(0);
+        if (skip < 0) {
+          bits2 |= byte >> -skip;
+        } else {
+          bits2 = byte << skip & 248;
+        }
+        if (skip > 3) {
+          skip -= 8;
+          return 1;
+        }
+        if (skip < 4) {
+          this.output += alphabet[bits2 >> 3];
+          skip += 5;
+        }
+        return 0;
+      };
+      this.finish = function(check2) {
+        var output = this.output + (skip < 0 ? alphabet[bits2 >> 3] : "") + (check2 ? "$" : "");
+        this.output = "";
+        return output;
+      };
+    }
+    Encoder.prototype.update = function(input, flush) {
+      for (var i2 = 0; i2 < input.length; ) {
+        i2 += this.readByte(input[i2]);
+      }
+      var output = this.output;
+      this.output = "";
+      if (flush) {
+        output += this.finish();
+      }
+      return output;
+    };
+    function Decoder() {
+      var skip = 0;
+      var byte = 0;
+      this.output = "";
+      this.readChar = function(char) {
+        if (typeof char != "string") {
+          if (typeof char == "number") {
+            char = String.fromCharCode(char);
+          }
+        }
+        char = char.toLowerCase();
+        var val = lookup2()[char];
+        if (typeof val == "undefined") {
+          return;
+        }
+        val <<= 3;
+        byte |= val >>> skip;
+        skip += 5;
+        if (skip >= 8) {
+          this.output += String.fromCharCode(byte);
+          skip -= 8;
+          if (skip > 0)
+            byte = val << 5 - skip & 255;
+          else
+            byte = 0;
+        }
+      };
+      this.finish = function(check2) {
+        var output = this.output + (skip < 0 ? alphabet[bits >> 3] : "") + (check2 ? "$" : "");
+        this.output = "";
+        return output;
+      };
+    }
+    Decoder.prototype.update = function(input, flush) {
+      for (var i2 = 0; i2 < input.length; i2++) {
+        this.readChar(input[i2]);
+      }
+      var output = this.output;
+      this.output = "";
+      if (flush) {
+        output += this.finish();
+      }
+      return output;
+    };
+    function encode2(input) {
+      var encoder = new Encoder();
+      var output = encoder.update(input, true);
+      return output;
+    }
+    function decode2(input) {
+      var decoder = new Decoder();
+      var output = decoder.update(input, true);
+      return output;
+    }
+    var crypto, fs;
+    function sha1(input, cb) {
+      if (typeof crypto == "undefined")
+        crypto = require$$0;
+      var hash2 = crypto.createHash("sha1");
+      hash2.digest = function(digest) {
+        return function() {
+          return encode2(digest.call(this, "binary"));
+        };
+      }(hash2.digest);
+      if (cb) {
+        if (typeof input == "string" || Buffer.isBuffer(input)) {
+          try {
+            return cb(null, sha1(input));
+          } catch (err) {
+            return cb(err, null);
+          }
+        }
+        if (!typeof input.on == "function")
+          return cb({ message: "Not a stream!" });
+        input.on("data", function(chunk) {
+          hash2.update(chunk);
+        });
+        input.on("end", function() {
+          cb(null, hash2.digest());
+        });
+        return;
+      }
+      if (input) {
+        return hash2.update(input).digest();
+      }
+      return hash2;
+    }
+    sha1.file = function(filename, cb) {
+      if (filename == "-") {
+        process.stdin.resume();
+        return sha1(process.stdin, cb);
+      }
+      if (typeof fs == "undefined")
+        fs = require$$1;
+      return fs.stat(filename, function(err, stats) {
+        if (err)
+          return cb(err, null);
+        if (stats.isDirectory())
+          return cb({ dir: true, message: "Is a directory" });
+        return sha1(require$$1.createReadStream(filename), cb);
+      });
+    };
+    var base322 = {
+      Decoder,
+      Encoder,
+      encode: encode2,
+      decode: decode2,
+      sha1
+    };
+    if (typeof window !== "undefined") {
+      window.base32 = base322;
+    }
+    if (module2.exports) {
+      module2.exports = base322;
+    }
+  })();
+})(base32$1);
+var base32 = base32$1.exports;
 var lodash = { exports: {} };
 /**
  * @license
@@ -71714,739 +72447,6 @@ const DATE_COMP_PADS = (() => {
   }
   return pads;
 })();
-var classesmjs = { "trie": "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", "classes": { "Other": 0, "Prepend": 1, "CR": 2, "LF": 3, "Control": 4, "Extend": 5, "Regional_Indicator": 6, "SpacingMark": 7, "L": 8, "V": 9, "T": 10, "LV": 11, "LVT": 12, "ZWJ": 13, "ExtPict": 14 } };
-var TINF_OK = 0;
-var TINF_DATA_ERROR = -3;
-function Tree() {
-  this.table = new Uint16Array(16);
-  this.trans = new Uint16Array(288);
-}
-function Data(source, dest) {
-  this.source = source;
-  this.sourceIndex = 0;
-  this.tag = 0;
-  this.bitcount = 0;
-  this.dest = dest;
-  this.destLen = 0;
-  this.ltree = new Tree();
-  this.dtree = new Tree();
-}
-var sltree = new Tree();
-var sdtree = new Tree();
-var length_bits = new Uint8Array(30);
-var length_base = new Uint16Array(30);
-var dist_bits = new Uint8Array(30);
-var dist_base = new Uint16Array(30);
-var clcidx = new Uint8Array([
-  16,
-  17,
-  18,
-  0,
-  8,
-  7,
-  9,
-  6,
-  10,
-  5,
-  11,
-  4,
-  12,
-  3,
-  13,
-  2,
-  14,
-  1,
-  15
-]);
-var code_tree = new Tree();
-var lengths = new Uint8Array(288 + 32);
-function tinf_build_bits_base(bits2, base2, delta2, first) {
-  var i2, sum2;
-  for (i2 = 0; i2 < delta2; ++i2)
-    bits2[i2] = 0;
-  for (i2 = 0; i2 < 30 - delta2; ++i2)
-    bits2[i2 + delta2] = i2 / delta2 | 0;
-  for (sum2 = first, i2 = 0; i2 < 30; ++i2) {
-    base2[i2] = sum2;
-    sum2 += 1 << bits2[i2];
-  }
-}
-function tinf_build_fixed_trees(lt2, dt) {
-  var i2;
-  for (i2 = 0; i2 < 7; ++i2)
-    lt2.table[i2] = 0;
-  lt2.table[7] = 24;
-  lt2.table[8] = 152;
-  lt2.table[9] = 112;
-  for (i2 = 0; i2 < 24; ++i2)
-    lt2.trans[i2] = 256 + i2;
-  for (i2 = 0; i2 < 144; ++i2)
-    lt2.trans[24 + i2] = i2;
-  for (i2 = 0; i2 < 8; ++i2)
-    lt2.trans[24 + 144 + i2] = 280 + i2;
-  for (i2 = 0; i2 < 112; ++i2)
-    lt2.trans[24 + 144 + 8 + i2] = 144 + i2;
-  for (i2 = 0; i2 < 5; ++i2)
-    dt.table[i2] = 0;
-  dt.table[5] = 32;
-  for (i2 = 0; i2 < 32; ++i2)
-    dt.trans[i2] = i2;
-}
-var offs = new Uint16Array(16);
-function tinf_build_tree(t2, lengths2, off, num2) {
-  var i2, sum2;
-  for (i2 = 0; i2 < 16; ++i2)
-    t2.table[i2] = 0;
-  for (i2 = 0; i2 < num2; ++i2)
-    t2.table[lengths2[off + i2]]++;
-  t2.table[0] = 0;
-  for (sum2 = 0, i2 = 0; i2 < 16; ++i2) {
-    offs[i2] = sum2;
-    sum2 += t2.table[i2];
-  }
-  for (i2 = 0; i2 < num2; ++i2) {
-    if (lengths2[off + i2])
-      t2.trans[offs[lengths2[off + i2]]++] = i2;
-  }
-}
-function tinf_getbit(d2) {
-  if (!d2.bitcount--) {
-    d2.tag = d2.source[d2.sourceIndex++];
-    d2.bitcount = 7;
-  }
-  var bit = d2.tag & 1;
-  d2.tag >>>= 1;
-  return bit;
-}
-function tinf_read_bits(d2, num2, base2) {
-  if (!num2)
-    return base2;
-  while (d2.bitcount < 24) {
-    d2.tag |= d2.source[d2.sourceIndex++] << d2.bitcount;
-    d2.bitcount += 8;
-  }
-  var val = d2.tag & 65535 >>> 16 - num2;
-  d2.tag >>>= num2;
-  d2.bitcount -= num2;
-  return val + base2;
-}
-function tinf_decode_symbol(d2, t2) {
-  while (d2.bitcount < 24) {
-    d2.tag |= d2.source[d2.sourceIndex++] << d2.bitcount;
-    d2.bitcount += 8;
-  }
-  var sum2 = 0, cur = 0, len2 = 0;
-  var tag = d2.tag;
-  do {
-    cur = 2 * cur + (tag & 1);
-    tag >>>= 1;
-    ++len2;
-    sum2 += t2.table[len2];
-    cur -= t2.table[len2];
-  } while (cur >= 0);
-  d2.tag = tag;
-  d2.bitcount -= len2;
-  return t2.trans[sum2 + cur];
-}
-function tinf_decode_trees(d2, lt2, dt) {
-  var hlit, hdist, hclen;
-  var i2, num2, length;
-  hlit = tinf_read_bits(d2, 5, 257);
-  hdist = tinf_read_bits(d2, 5, 1);
-  hclen = tinf_read_bits(d2, 4, 4);
-  for (i2 = 0; i2 < 19; ++i2)
-    lengths[i2] = 0;
-  for (i2 = 0; i2 < hclen; ++i2) {
-    var clen = tinf_read_bits(d2, 3, 0);
-    lengths[clcidx[i2]] = clen;
-  }
-  tinf_build_tree(code_tree, lengths, 0, 19);
-  for (num2 = 0; num2 < hlit + hdist; ) {
-    var sym = tinf_decode_symbol(d2, code_tree);
-    switch (sym) {
-      case 16:
-        var prev = lengths[num2 - 1];
-        for (length = tinf_read_bits(d2, 2, 3); length; --length) {
-          lengths[num2++] = prev;
-        }
-        break;
-      case 17:
-        for (length = tinf_read_bits(d2, 3, 3); length; --length) {
-          lengths[num2++] = 0;
-        }
-        break;
-      case 18:
-        for (length = tinf_read_bits(d2, 7, 11); length; --length) {
-          lengths[num2++] = 0;
-        }
-        break;
-      default:
-        lengths[num2++] = sym;
-        break;
-    }
-  }
-  tinf_build_tree(lt2, lengths, 0, hlit);
-  tinf_build_tree(dt, lengths, hlit, hdist);
-}
-function tinf_inflate_block_data(d2, lt2, dt) {
-  while (1) {
-    var sym = tinf_decode_symbol(d2, lt2);
-    if (sym === 256) {
-      return TINF_OK;
-    }
-    if (sym < 256) {
-      d2.dest[d2.destLen++] = sym;
-    } else {
-      var length, dist2, offs2;
-      var i2;
-      sym -= 257;
-      length = tinf_read_bits(d2, length_bits[sym], length_base[sym]);
-      dist2 = tinf_decode_symbol(d2, dt);
-      offs2 = d2.destLen - tinf_read_bits(d2, dist_bits[dist2], dist_base[dist2]);
-      for (i2 = offs2; i2 < offs2 + length; ++i2) {
-        d2.dest[d2.destLen++] = d2.dest[i2];
-      }
-    }
-  }
-}
-function tinf_inflate_uncompressed_block(d2) {
-  var length, invlength;
-  var i2;
-  while (d2.bitcount > 8) {
-    d2.sourceIndex--;
-    d2.bitcount -= 8;
-  }
-  length = d2.source[d2.sourceIndex + 1];
-  length = 256 * length + d2.source[d2.sourceIndex];
-  invlength = d2.source[d2.sourceIndex + 3];
-  invlength = 256 * invlength + d2.source[d2.sourceIndex + 2];
-  if (length !== (~invlength & 65535))
-    return TINF_DATA_ERROR;
-  d2.sourceIndex += 4;
-  for (i2 = length; i2; --i2)
-    d2.dest[d2.destLen++] = d2.source[d2.sourceIndex++];
-  d2.bitcount = 0;
-  return TINF_OK;
-}
-function tinf_uncompress(source, dest) {
-  var d2 = new Data(source, dest);
-  var bfinal, btype, res;
-  do {
-    bfinal = tinf_getbit(d2);
-    btype = tinf_read_bits(d2, 2, 0);
-    switch (btype) {
-      case 0:
-        res = tinf_inflate_uncompressed_block(d2);
-        break;
-      case 1:
-        res = tinf_inflate_block_data(d2, sltree, sdtree);
-        break;
-      case 2:
-        tinf_decode_trees(d2, d2.ltree, d2.dtree);
-        res = tinf_inflate_block_data(d2, d2.ltree, d2.dtree);
-        break;
-      default:
-        res = TINF_DATA_ERROR;
-    }
-    if (res !== TINF_OK)
-      throw new Error("Data error");
-  } while (!bfinal);
-  if (d2.destLen < d2.dest.length) {
-    if (typeof d2.dest.slice === "function")
-      return d2.dest.slice(0, d2.destLen);
-    else
-      return d2.dest.subarray(0, d2.destLen);
-  }
-  return d2.dest;
-}
-tinf_build_fixed_trees(sltree, sdtree);
-tinf_build_bits_base(length_bits, length_base, 4, 3);
-tinf_build_bits_base(dist_bits, dist_base, 2, 1);
-length_bits[28] = 0;
-length_base[28] = 258;
-const isBigEndian = new Uint8Array(new Uint32Array([305419896]).buffer)[0] === 18;
-const swap = (b2, n2, m2) => {
-  let i2 = b2[n2];
-  b2[n2] = b2[m2];
-  b2[m2] = i2;
-};
-const swap32 = (array2) => {
-  const len2 = array2.length;
-  for (let i2 = 0; i2 < len2; i2 += 4) {
-    swap(array2, i2, i2 + 3);
-    swap(array2, i2 + 1, i2 + 2);
-  }
-};
-const swap32LE$1 = (array2) => {
-  if (isBigEndian) {
-    swap32(array2);
-  }
-};
-const exports$2 = {
-  swap32LE: swap32LE$1
-};
-const swap32LE = exports$2.swap32LE;
-const SHIFT_1 = 6 + 5;
-const SHIFT_2 = 5;
-const SHIFT_1_2 = SHIFT_1 - SHIFT_2;
-const OMITTED_BMP_INDEX_1_LENGTH = 65536 >> SHIFT_1;
-const INDEX_2_BLOCK_LENGTH = 1 << SHIFT_1_2;
-const INDEX_2_MASK = INDEX_2_BLOCK_LENGTH - 1;
-const INDEX_SHIFT = 2;
-const DATA_BLOCK_LENGTH = 1 << SHIFT_2;
-const DATA_MASK = DATA_BLOCK_LENGTH - 1;
-const LSCP_INDEX_2_OFFSET = 65536 >> SHIFT_2;
-const LSCP_INDEX_2_LENGTH = 1024 >> SHIFT_2;
-const INDEX_2_BMP_LENGTH = LSCP_INDEX_2_OFFSET + LSCP_INDEX_2_LENGTH;
-const UTF8_2B_INDEX_2_OFFSET = INDEX_2_BMP_LENGTH;
-const UTF8_2B_INDEX_2_LENGTH = 2048 >> 6;
-const INDEX_1_OFFSET = UTF8_2B_INDEX_2_OFFSET + UTF8_2B_INDEX_2_LENGTH;
-const DATA_GRANULARITY = 1 << INDEX_SHIFT;
-class UnicodeTrie {
-  constructor(data2) {
-    const isBuffer = typeof data2.readUInt32BE === "function" && typeof data2.slice === "function";
-    if (isBuffer || data2 instanceof Uint8Array) {
-      let uncompressedLength;
-      if (isBuffer) {
-        this.highStart = data2.readUInt32LE(0);
-        this.errorValue = data2.readUInt32LE(4);
-        uncompressedLength = data2.readUInt32LE(8);
-        data2 = data2.slice(12);
-      } else {
-        const view = new DataView(data2.buffer);
-        this.highStart = view.getUint32(0, true);
-        this.errorValue = view.getUint32(4, true);
-        uncompressedLength = view.getUint32(8, true);
-        data2 = data2.subarray(12);
-      }
-      data2 = tinf_uncompress(data2, new Uint8Array(uncompressedLength));
-      data2 = tinf_uncompress(data2, new Uint8Array(uncompressedLength));
-      swap32LE(data2);
-      this.data = new Uint32Array(data2.buffer);
-    } else {
-      ({ data: this.data, highStart: this.highStart, errorValue: this.errorValue } = data2);
-    }
-  }
-  get(codePoint) {
-    let index2;
-    if (codePoint < 0 || codePoint > 1114111) {
-      return this.errorValue;
-    }
-    if (codePoint < 55296 || codePoint > 56319 && codePoint <= 65535) {
-      index2 = (this.data[codePoint >> SHIFT_2] << INDEX_SHIFT) + (codePoint & DATA_MASK);
-      return this.data[index2];
-    }
-    if (codePoint <= 65535) {
-      index2 = (this.data[LSCP_INDEX_2_OFFSET + (codePoint - 55296 >> SHIFT_2)] << INDEX_SHIFT) + (codePoint & DATA_MASK);
-      return this.data[index2];
-    }
-    if (codePoint < this.highStart) {
-      index2 = this.data[INDEX_1_OFFSET - OMITTED_BMP_INDEX_1_LENGTH + (codePoint >> SHIFT_1)];
-      index2 = this.data[index2 + (codePoint >> SHIFT_2 & INDEX_2_MASK)];
-      index2 = (index2 << INDEX_SHIFT) + (codePoint & DATA_MASK);
-      return this.data[index2];
-    }
-    return this.data[this.data.length - DATA_GRANULARITY];
-  }
-}
-const trie = classesmjs.trie;
-const { Other, Prepend, CR, LF, Control, Extend, Regional_Indicator, SpacingMark, L: L$2, V: V$2, T: T$2, LV, LVT, ZWJ, ExtPict } = classesmjs.classes;
-let data = null;
-if (globalThis["window"]) {
-  const bin = window.atob(trie);
-  data = new Uint8Array(bin.length);
-  for (let i2 = 0; i2 < bin.length; i2++)
-    data[i2] = bin.charCodeAt(i2);
-} else {
-  data = Buffer.from(trie, "base64");
-}
-const classTrie = new UnicodeTrie(data);
-const codePointAt = function(str, idx) {
-  const code3 = str.charCodeAt(idx);
-  if (55296 <= code3 && code3 <= 56319) {
-    const hi = code3;
-    const low = str.charCodeAt(idx + 1);
-    if (56320 <= low && low <= 57343) {
-      return (hi - 55296) * 1024 + (low - 56320) + 65536;
-    }
-    return hi;
-  }
-  if (56320 <= code3 && code3 <= 57343) {
-    const hi = str.charCodeAt(idx - 1);
-    const low = code3;
-    if (55296 <= hi && hi <= 56319) {
-      return (hi - 55296) * 1024 + (low - 56320) + 65536;
-    }
-    return low;
-  }
-  return code3;
-};
-const isSurrogate = function(str, pos) {
-  let ref2, ref1;
-  return 55296 <= (ref2 = str.charCodeAt(pos)) && ref2 <= 56319 && (56320 <= (ref1 = str.charCodeAt(pos + 1)) && ref1 <= 57343);
-};
-const BreakType = {
-  NotBreak: 0,
-  BreakStart: 1,
-  Break: 2,
-  BreakLastRegional: 3,
-  BreakPenultimateRegional: 4
-};
-const shouldBreak = function(reverse, start2, mid2, end) {
-  const all = [start2].concat(mid2).concat([end]);
-  const previous = reverse ? start2 : all[all.length - 2];
-  const next = reverse ? all[1] : end;
-  let rIIndex = all.lastIndexOf(Regional_Indicator);
-  if (rIIndex > 0 && all.slice(1, rIIndex).every((c2) => c2 === Regional_Indicator) && (previous !== Prepend && previous !== Regional_Indicator)) {
-    if (all.filter((c2) => c2 === Regional_Indicator).length % 2 === 1) {
-      return BreakType.BreakLastRegional;
-    } else {
-      return BreakType.BreakPenultimateRegional;
-    }
-  }
-  if (previous === CR && next === LF) {
-    return BreakType.NotBreak;
-  }
-  if (previous === Control || previous === CR || previous === LF) {
-    if (next !== Extend && mid2.every((c2) => c2 === Extend)) {
-      return BreakType.Break;
-    } else {
-      return BreakType.BreakStart;
-    }
-  }
-  if (next === Control || next === CR || next === LF) {
-    return BreakType.BreakStart;
-  }
-  if (previous === L$2 && (next === L$2 || next === V$2 || next === LV || next === LVT)) {
-    return BreakType.NotBreak;
-  }
-  if ((previous === LV || previous === V$2) && (next === V$2 || next === T$2)) {
-    return BreakType.NotBreak;
-  }
-  if ((previous === LVT || previous === T$2) && next === T$2) {
-    return BreakType.NotBreak;
-  }
-  if (reverse) {
-    if (next === Extend) {
-      return BreakType.NotBreak;
-    }
-    if (next === ZWJ) {
-      if (previous == Other && mid2.length > 0 && mid2[0] == ZWJ) {
-        return end != ExtPict ? BreakType.BreakStart : BreakType.Break;
-      }
-      return BreakType.NotBreak;
-    }
-  } else {
-    if (next === Extend || next === ZWJ) {
-      return BreakType.NotBreak;
-    }
-  }
-  if (next === SpacingMark) {
-    return BreakType.NotBreak;
-  }
-  if (previous === Prepend) {
-    return BreakType.NotBreak;
-  }
-  if (reverse) {
-    if (previous == ZWJ && next == ExtPict && (start2 == ZWJ || start2 == Other)) {
-      return BreakType.NotBreak;
-    }
-  } else {
-    if (start2 == ExtPict && previous == ZWJ && next == ExtPict) {
-      return BreakType.NotBreak;
-    }
-  }
-  if (!reverse && mid2.indexOf(Regional_Indicator) >= 0) {
-    return BreakType.Break;
-  }
-  if (previous === Regional_Indicator && next === Regional_Indicator) {
-    return BreakType.NotBreak;
-  }
-  return BreakType.BreakStart;
-};
-const getUnicodeByteOffset = function(str, start2, unicodeOffset) {
-  while (unicodeOffset--) {
-    start2 += isSurrogate(str, start2) ? 2 : 1;
-  }
-  return start2;
-};
-const exports$1 = {};
-exports$1.nextBreak = function(string2, index2 = 0) {
-  if (index2 < 0) {
-    return 0;
-  }
-  if (index2 >= string2.length - 1) {
-    return string2.length;
-  }
-  const prev = classTrie.get(string2.codePointAt(index2));
-  const mid2 = [];
-  let i2, j2, ref1;
-  for (i2 = j2 = index2 + 1, ref1 = string2.length; j2 < ref1; i2 = j2 += 1) {
-    if (isSurrogate(string2, i2 - 1)) {
-      continue;
-    }
-    const next = classTrie.get(string2.codePointAt(i2));
-    if (shouldBreak(false, prev, mid2, next)) {
-      return i2;
-    }
-    mid2.push(next);
-  }
-  return string2.length;
-};
-exports$1.previousBreak = function(string2, index2 = string2.length) {
-  if (index2 > string2.length) {
-    return string2.length;
-  }
-  if (index2 <= 1) {
-    return 0;
-  }
-  index2--;
-  let mid2 = [];
-  let next = classTrie.get(codePointAt(string2, index2));
-  let i2, j2;
-  for (i2 = j2 = index2 - 1; j2 >= -1; i2 = j2 += -1) {
-    if (isSurrogate(string2, i2)) {
-      continue;
-    }
-    let prev = classTrie.get(codePointAt(string2, i2));
-    switch (shouldBreak(true, prev, mid2, next)) {
-      case BreakType.Break:
-        return i2 + mid2.length + 1;
-      case BreakType.BreakStart:
-        return i2 + 1;
-      case BreakType.BreakLastRegional:
-        const offset2 = getUnicodeByteOffset(string2, i2, mid2.concat(next).lastIndexOf(Regional_Indicator) + 1);
-        return offset2;
-      case BreakType.BreakPenultimateRegional:
-        return getUnicodeByteOffset(string2, i2, mid2.concat(next).lastIndexOf(Regional_Indicator));
-    }
-    mid2.unshift(prev);
-  }
-};
-exports$1.break = function(str) {
-  const res = [];
-  let index2 = 0;
-  let brk;
-  while ((brk = exports$1.nextBreak(str, index2)) < str.length) {
-    res.push(str.slice(index2, brk));
-    index2 = brk;
-  }
-  if (index2 < str.length) {
-    res.push(str.slice(index2));
-  }
-  return res;
-};
-exports$1.countBreaks = function(str) {
-  let count2 = 0;
-  let index2 = 0;
-  let brk;
-  while ((brk = exports$1.nextBreak(str, index2)) < str.length) {
-    index2 = brk;
-    count2++;
-  }
-  if (index2 < str.length) {
-    count2++;
-  }
-  return count2;
-};
-var GB = exports$1;
-var base32$1 = { exports: {} };
-var __viteBrowserExternal_crypto = new Proxy({}, {
-  get() {
-    throw new Error('Module "crypto" has been externalized for browser compatibility and cannot be accessed in client code.');
-  }
-});
-var __viteBrowserExternal_crypto$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  "default": __viteBrowserExternal_crypto
-}, Symbol.toStringTag, { value: "Module" }));
-var require$$0 = /* @__PURE__ */ getAugmentedNamespace(__viteBrowserExternal_crypto$1);
-var __viteBrowserExternal_fs = new Proxy({}, {
-  get() {
-    throw new Error('Module "fs" has been externalized for browser compatibility and cannot be accessed in client code.');
-  }
-});
-var __viteBrowserExternal_fs$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  "default": __viteBrowserExternal_fs
-}, Symbol.toStringTag, { value: "Module" }));
-var require$$1 = /* @__PURE__ */ getAugmentedNamespace(__viteBrowserExternal_fs$1);
-(function(module2) {
-  (function() {
-    var alphabet = "0123456789abcdefghjkmnpqrtuvwxyz";
-    var alias = { o: 0, i: 1, l: 1, s: 5 };
-    var lookup2 = function() {
-      var table3 = {};
-      for (var i2 = 0; i2 < alphabet.length; i2++) {
-        table3[alphabet[i2]] = i2;
-      }
-      for (var key in alias) {
-        if (!alias.hasOwnProperty(key))
-          continue;
-        table3[key] = table3["" + alias[key]];
-      }
-      lookup2 = function() {
-        return table3;
-      };
-      return table3;
-    };
-    function Encoder() {
-      var skip = 0;
-      var bits2 = 0;
-      this.output = "";
-      this.readByte = function(byte) {
-        if (typeof byte == "string")
-          byte = byte.charCodeAt(0);
-        if (skip < 0) {
-          bits2 |= byte >> -skip;
-        } else {
-          bits2 = byte << skip & 248;
-        }
-        if (skip > 3) {
-          skip -= 8;
-          return 1;
-        }
-        if (skip < 4) {
-          this.output += alphabet[bits2 >> 3];
-          skip += 5;
-        }
-        return 0;
-      };
-      this.finish = function(check2) {
-        var output = this.output + (skip < 0 ? alphabet[bits2 >> 3] : "") + (check2 ? "$" : "");
-        this.output = "";
-        return output;
-      };
-    }
-    Encoder.prototype.update = function(input, flush) {
-      for (var i2 = 0; i2 < input.length; ) {
-        i2 += this.readByte(input[i2]);
-      }
-      var output = this.output;
-      this.output = "";
-      if (flush) {
-        output += this.finish();
-      }
-      return output;
-    };
-    function Decoder() {
-      var skip = 0;
-      var byte = 0;
-      this.output = "";
-      this.readChar = function(char) {
-        if (typeof char != "string") {
-          if (typeof char == "number") {
-            char = String.fromCharCode(char);
-          }
-        }
-        char = char.toLowerCase();
-        var val = lookup2()[char];
-        if (typeof val == "undefined") {
-          return;
-        }
-        val <<= 3;
-        byte |= val >>> skip;
-        skip += 5;
-        if (skip >= 8) {
-          this.output += String.fromCharCode(byte);
-          skip -= 8;
-          if (skip > 0)
-            byte = val << 5 - skip & 255;
-          else
-            byte = 0;
-        }
-      };
-      this.finish = function(check2) {
-        var output = this.output + (skip < 0 ? alphabet[bits >> 3] : "") + (check2 ? "$" : "");
-        this.output = "";
-        return output;
-      };
-    }
-    Decoder.prototype.update = function(input, flush) {
-      for (var i2 = 0; i2 < input.length; i2++) {
-        this.readChar(input[i2]);
-      }
-      var output = this.output;
-      this.output = "";
-      if (flush) {
-        output += this.finish();
-      }
-      return output;
-    };
-    function encode2(input) {
-      var encoder = new Encoder();
-      var output = encoder.update(input, true);
-      return output;
-    }
-    function decode2(input) {
-      var decoder = new Decoder();
-      var output = decoder.update(input, true);
-      return output;
-    }
-    var crypto, fs;
-    function sha1(input, cb) {
-      if (typeof crypto == "undefined")
-        crypto = require$$0;
-      var hash2 = crypto.createHash("sha1");
-      hash2.digest = function(digest) {
-        return function() {
-          return encode2(digest.call(this, "binary"));
-        };
-      }(hash2.digest);
-      if (cb) {
-        if (typeof input == "string" || Buffer.isBuffer(input)) {
-          try {
-            return cb(null, sha1(input));
-          } catch (err) {
-            return cb(err, null);
-          }
-        }
-        if (!typeof input.on == "function")
-          return cb({ message: "Not a stream!" });
-        input.on("data", function(chunk) {
-          hash2.update(chunk);
-        });
-        input.on("end", function() {
-          cb(null, hash2.digest());
-        });
-        return;
-      }
-      if (input) {
-        return hash2.update(input).digest();
-      }
-      return hash2;
-    }
-    sha1.file = function(filename, cb) {
-      if (filename == "-") {
-        process.stdin.resume();
-        return sha1(process.stdin, cb);
-      }
-      if (typeof fs == "undefined")
-        fs = require$$1;
-      return fs.stat(filename, function(err, stats) {
-        if (err)
-          return cb(err, null);
-        if (stats.isDirectory())
-          return cb({ dir: true, message: "Is a directory" });
-        return sha1(require$$1.createReadStream(filename), cb);
-      });
-    };
-    var base322 = {
-      Decoder,
-      Encoder,
-      encode: encode2,
-      decode: decode2,
-      sha1
-    };
-    if (typeof window !== "undefined") {
-      window.base32 = base322;
-    }
-    if (module2.exports) {
-      module2.exports = base322;
-    }
-  })();
-})(base32$1);
-var base32 = base32$1.exports;
 function _extends$1() {
   _extends$1 = Object.assign || function(target2) {
     for (var i2 = 1; i2 < arguments.length; i2++) {

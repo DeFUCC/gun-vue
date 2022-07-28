@@ -15,7 +15,7 @@ const _hoisted_3$1 = [
 function render$1(_ctx, _cache) {
   return openBlock(), createElementBlock("svg", _hoisted_1$1, _hoisted_3$1);
 }
-var __unplugin_components_2 = { name: "la-tools", render: render$1 };
+var __unplugin_components_0 = { name: "la-tools", render: render$1 };
 const _hoisted_1 = {
   preserveAspectRatio: "xMidYMid meet",
   viewBox: "0 0 512 512",
@@ -45,5 +45,5 @@ const _hoisted_4 = [
 function render(_ctx, _cache) {
   return openBlock(), createElementBlock("svg", _hoisted_1, _hoisted_4);
 }
-var __unplugin_components_3 = { name: "ion-enter-outline", render };
-export { __unplugin_components_2, __unplugin_components_3 };
+var __unplugin_components_1 = { name: "ion-enter-outline", render };
+export { __unplugin_components_0, __unplugin_components_1 };

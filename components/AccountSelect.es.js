@@ -70,5 +70,5 @@ const _sfc_main = {
   }
 };
 _sfc_main.__file = "src/account/AccountSelect.vue";
-var __unplugin_components_1 = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", render], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/account/AccountSelect.vue"]]);
-export { __unplugin_components_1 as default };
+var AccountSelect = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", render], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/account/AccountSelect.vue"]]);
+export { AccountSelect as default };

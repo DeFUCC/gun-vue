@@ -14,7 +14,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     default: withCtx(() => [
       createVNode(_component_Variant, { title: "Round" }, {
         default: withCtx(() => [
-          createVNode($setup["RoomIcon"])
+          createVNode($setup["RoomButton"])
         ]),
         _: 1
       })
@@ -23,15 +23,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   });
 }
 const _sfc_main = {
-  __name: "RoomIcon.story",
+  __name: "RoomButton.story",
   setup(__props, { expose }) {
     expose();
-    const RoomIcon = defineAsyncComponent(() => import("./RoomIcon.es.js"));
-    const __returned__ = { RoomIcon, defineAsyncComponent, reactive };
+    const RoomButton = defineAsyncComponent(() => import("./RoomButton.es.js"));
+    const __returned__ = { RoomButton, defineAsyncComponent, reactive };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
   }
 };
-_sfc_main.__file = "src/room/RoomIcon.story.vue";
-var RoomIcon_story = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", render], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/room/RoomIcon.story.vue"]]);
-export { RoomIcon_story as default };
+_sfc_main.__file = "src/room/RoomButton.story.vue";
+var RoomButton_story = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", render], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/room/RoomButton.story.vue"]]);
+export { RoomButton_story as default };

@@ -1,5 +1,5 @@
 var _a, _b, _c, _d;
-import { ColorHash, ref$1 as ref, computed$1 as computed, reactive$1 as reactive, ms, useStorage$1 as useStorage, watch$1 as watch, buffer, Gun, urlRegex, SEA, Fuse, watchEffect$1 as watchEffect, base32, browser, useCycleList, toReactive, markRaw$1 as markRaw, createDrauu, onMounted$1 as onMounted, nextTick$1 as nextTick } from "./vendor.es.js";
+import { ColorHash, ref$1 as ref, computed$1 as computed, reactive$1 as reactive, ms, useStorage$1 as useStorage, watch$1 as watch, buffer, Gun, urlRegex, SEA, Fuse, base32, watchEffect$1 as watchEffect, browser, useCycleList, toReactive, markRaw$1 as markRaw, createDrauu, onMounted$1 as onMounted, nextTick$1 as nextTick } from "./vendor.es.js";
 const color = {
   light: new ColorHash({
     saturation: [0.05, 0.08, 0.22],
@@ -469,216 +469,6 @@ function letterFilter(str) {
   let clean = str.toLowerCase().matchAll(/\p{L}/gu, "");
   return Array.from(clean).map((el) => el[0]).join("");
 }
-const rootRoom = {
-  "pub": "OUlhoY2Eq8QkZE_iWN3l6J2vvbkX33vowcFdqFoCoEQ.a-B1ImQK4aoiEpdW-38MAPc8oi16DHY57bDJ4dEZpX0",
-  "hosts": {
-    "jFjrmOEaRy-GAJlOCdG4SGoaLm_4AGMPP1sfmzYPwwo.mp2H7IQuTWlFSahN6ZnXN9Za0pD3thiIYUyGCaMel-M": {
-      "enc": 'SEA{"ct":"PA8eerE6Q6bqPj8D/GriEQl5ROWyfee2xKZn4WahCQGJVpbTXRv4z9HNCi8LMZ0OZjUruXqjgPEDPSkisnR9bxcY/yi5QfkFuf7L3K6Sk/Vy1rSsHCamfsRiAYv7g0FwERR/gJp11T/+i8wuQb1YpWqWsahWyO0R7SSr6brnh1lQ1dKbBeO5JDvOcyTcIxhN3hiNEUW/4Up4uE+K7xYLNtqFzw1r24RR8+Lf0dw0Omv5ow812XjilRDtSrbqo9Mh0q2IDoQISsckxZyo8SRWegWd1sE4sF5OD5YQKsst+CZIn5lJE5/kKXPFvT13q0nkezRgBb4je3LW8gvi6YJToPAPXcH3ZFsxxQyPGjtiZFB9AOXE7xsF6mnAfbHu7wG4UPsdStyuwdjhxyetazammbpXl8o43ol2F40cI8U=","iv":"PBEwNvl+HfbR9Jg0cPbp","s":"BCbU3Kpu0kkZ"}',
-      "profile": 'SEA{"m":{"c":"jFjrmOEaRy-GAJlOCdG4SGoaLm_4AGMPP1sfmzYPwwo.mp2H7IQuTWlFSahN6ZnXN9Za0pD3thiIYUyGCaMel-M","w":{"*":"profile"}},"s":"tthpCGQHmItvWUzD3tz7LhfJy6n4HPtqaoClvFb2EFEm6PZKmcxz3Qd0i1H2doedFUxp3t27PUCZXQVB7/alRA=="}',
-      "features": 'SEA{"m":{"c":"jFjrmOEaRy-GAJlOCdG4SGoaLm_4AGMPP1sfmzYPwwo.mp2H7IQuTWlFSahN6ZnXN9Za0pD3thiIYUyGCaMel-M","w":{"*":"features"}},"s":"TL7wGkNZ7Jll7DR/+bRrS9zhRt+nvPCaJ7SwhHpQmoI+CfCkxblx6PJMOEQIzNKhzhJEZW0LRZAwqX1z6KeSBQ=="}',
-      "hosts": 'SEA{"m":{"c":"jFjrmOEaRy-GAJlOCdG4SGoaLm_4AGMPP1sfmzYPwwo.mp2H7IQuTWlFSahN6ZnXN9Za0pD3thiIYUyGCaMel-M","w":{"*":"hosts"}},"s":"q4tm9rCoWjd4pJOjDon/eFsojjnrDfaZ3Zyuq60nyrjMOwhz9hzrSVGsW6u6SCXmhV4q+NnKUxE+zyqznHwoBQ=="}'
-    }
-  },
-  "features": {
-    "rooms": 'SEA{"m":{"c":"*","w":{"*":"rooms","+":"*"}},"s":"PIc+ho1QaIfttrMK2hflTi/OqCP+WTTLfRig/dvkGpMZAKuQwvgDpTOTncOfMm7KG0iKr0vY5X8v/27X49/9Hg=="}',
-    "space": 'SEA{"m":{"c":"*","w":{"*":"space","+":"*"}},"s":"HUvQ7cIOikwYiL9IoKEz1PSCwhAU1GyS7n/sket1VJm8CHC7uIXRI5fX1CVRCIIotA3Z6DYYYHHJPvf8qDv9pw=="}',
-    "posts": 'SEA{"m":{"c":"*","w":{"*":"posts","+":"*"}},"s":"wNpYVy+bsFSuRQA2zTku9ibWGrABqXh1x9eEuqTOZMlNKR5Yub0cdcjYH0Du2KqV/D75usxt8NzCvkoDJAgspQ=="}',
-    "chat": 'SEA{"m":{"c":"*","w":{"*":"chat","+":"*"}},"s":"ZVu4ieBsuL2U+goKYGKAKv2phRvoNwq3I1LkpduoAEIFmk34Yf1b6gxA+K10MnjVTe/MTXqUgoyDf9M54zTnsA=="}',
-    "dict": 'SEA{"m":{"c":"*","w":{"*":"dict","+":"*"}},"s":"kCGBB1BNafsY5ZJUBoFel7YnBoaNBRlWXIntXKdWhT39mra0kr+g2AEDg5UiLY+K28d9KJDtjTLMynfkwVOMOA=="}',
-    "projects": 'SEA{"m":{"c":"*","w":{"*":"projects","+":"*"}},"s":"KG5V3F50YAdpaRd3sP4I28sRzIJEelRI2NUjlDmhXhKfafMHvU4/iLnfOTi0+9Sq+O8+JcRNGEDVNlmLtrKP6A=="}'
-  }
-};
-const currentRoom = reactive({
-  pub: rootRoom.pub,
-  isRoot: computed(() => currentRoom.pub == rootRoom.pub),
-  hosts: {},
-  features: {},
-  profile: {}
-});
-watchEffect(() => {
-  const gun3 = useGun();
-  if (currentRoom.pub == rootRoom.pub) {
-    currentRoom.hosts = rootRoom.hosts;
-    currentRoom.features = rootRoom.features;
-  } else {
-    currentRoom.features = {};
-    currentRoom.hosts = {};
-    gun3.user(currentRoom.pub).get("hosts").map().once((d, k) => {
-      delete d._;
-      currentRoom.hosts[k] = d;
-    });
-    gun3.user(currentRoom.pub).get("features").map().once((d, k) => {
-      currentRoom.features[k] = d;
-    });
-  }
-});
-function useRoom(pub = currentRoom.pub) {
-  const room = reactive({
-    pub,
-    isRoot: pub != rootRoom.pub,
-    hosts: {},
-    features: {},
-    profile: {}
-  });
-  const gun3 = useGun();
-  gun3.user(pub).get("profile").map().on((d, k) => {
-    room.profile[k] = d;
-  });
-  gun3.user(pub).get("hosts").map().once((d, k) => {
-    if (d)
-      delete d._;
-    room.hosts[k] = d;
-  });
-  gun3.user(pub).get("features").map().once((d, k) => {
-    room.features[k] = d;
-  });
-  return {
-    room,
-    submitRoom,
-    enterRoom,
-    createRoom,
-    leaveRoom,
-    updateRoomProfile
-  };
-}
-function useRooms() {
-  const rooms = computed(() => {
-    return listPersonal("rooms", currentRoom.pub);
-  });
-  return { rooms, createRoom };
-}
-function updateRoomProfile(field, content) {
-  var _a2, _b2;
-  const gun3 = useGun();
-  const { user: user2 } = useUser();
-  let certificate = (_b2 = (_a2 = currentRoom.hosts) == null ? void 0 : _a2[user2.pub]) == null ? void 0 : _b2.profile;
-  gun3.user(currentRoom.pub).get("profile").get(field).put(content, null, { opt: { cert: certificate } });
-}
-async function createRoom({ pair, name } = {}) {
-  var _a2;
-  const { user: user2 } = useUser();
-  if (!pair)
-    return;
-  const certs = await generateCerts({
-    pair,
-    list: [
-      { tag: "profile", users: [user2.pub] },
-      { tag: "features", users: [user2.pub] },
-      { tag: "hosts", users: [user2.pub] }
-    ]
-  });
-  const features = await generateCerts({
-    pair,
-    list: [
-      { tag: "rooms", personal: true },
-      { tag: "space", personal: true },
-      { tag: "posts", personal: true },
-      { tag: "chat", personal: true },
-      { tag: "dict", personal: true },
-      { tag: "projects", personal: true }
-    ]
-  });
-  const enc = await SEA.encrypt(pair, user2.pair());
-  const dec = await SEA.decrypt(enc, user2.pair());
-  console.log("COPY THIS ROOM INFO TO USE IT AS A ROOT", {
-    pub: dec.pub,
-    hosts: { [user2.pub]: { enc, ...certs } },
-    features
-  }, "STORE THIS KEY PAIR IN A SAFE PLACE", dec);
-  const gun3 = useGun();
-  gun3.user().get("safe").get("rooms").get(dec.pub).put(enc);
-  gun3.user(currentRoom.pub).get("rooms").get(`${dec.pub}@${user2.pub}`).put(true, null, { opt: { cert: (_a2 = currentRoom == null ? void 0 : currentRoom.features) == null ? void 0 : _a2.rooms } });
-  const roomDb = gun3.user(dec.pub);
-  roomDb.get("hosts").get(user2.pub).put({
-    enc,
-    ...certs
-  }, null, { opt: { cert: certs.hosts } });
-  roomDb.get("features").put(features, null, { opt: { cert: certs.features } });
-  if (name) {
-    roomDb.get("profile").put({ name }, null, { opt: { cert: certs.profile } });
-  }
-}
-async function recreateRoom(enc) {
-  const dec = await SEA.decrypt(enc, user.pair());
-  createRoom({
-    pair: dec
-  });
-}
-async function submitRoom(pub) {
-  var _a2;
-  const gun3 = useGun();
-  const already = await gun3.user(currentRoom.pub).get("rooms").get(`${pub}@${user.pub}`).then();
-  gun3.user(currentRoom.pub).get("rooms").get(`${pub}@${user.pub}`).put(!already, null, { opt: { cert: (_a2 = currentRoom.features) == null ? void 0 : _a2.rooms } });
-}
-function joinRoom() {
-  var _a2;
-  const gun3 = useGun();
-  gun3.user(currentRoom.pub).get("space").get(user.pub).put(JSON.stringify({ x: Math.random(), y: Math.random() }), null, {
-    opt: { cert: (_a2 = currentRoom.features) == null ? void 0 : _a2.space }
-  });
-}
-function enterRoom(pub) {
-  currentRoom.pub = pub;
-}
-function leaveRoom() {
-  currentRoom.pub = rootRoom.pub;
-}
-async function addPersonal({
-  tag,
-  key,
-  text,
-  pub = currentRoom.pub,
-  cert
-} = {}) {
-  var _a2;
-  if (!cert)
-    cert = await gun.user(pub).get("features").get(tag).then();
-  if (!cert) {
-    cert = (_a2 = currentRoom.features) == null ? void 0 : _a2[`${tag}`];
-  }
-  if (!cert && pub != user.pub) {
-    console.log("No certificate found");
-    return;
-  }
-  gun.user(pub).get(`${tag}`).get(`${key}@${user.pub}`).put(text, null, { opt: { cert } });
-}
-function listPersonal(tag, pub = currentRoom.pub) {
-  const gun3 = useGun();
-  const records = reactive({});
-  gun3.user(pub).get(`${tag}`).map().on(function(data, key) {
-    let k = key.substring(0, 87);
-    records[k] = records[k] || {};
-    records[k][key.substring(88)] = data;
-  });
-  return records;
-}
-async function addHashedPersonal(tag, obj, pub = currentRoom.pub, cert) {
-  var _a2;
-  if (!cert)
-    cert = await gun.get(`~${pub}`).get("features").get(tag).then();
-  if (!cert && pub == rootRoom.pub) {
-    cert = (_a2 = rootRoom.features) == null ? void 0 : _a2[`#${tag}`];
-  }
-  if (!cert && pub != user.pub) {
-    console.log("No certificate found");
-    return;
-  }
-  const { hashed, hash } = await hashObj(obj);
-  gun.get(`~${pub}`).get(`#${tag}`).get(`${hash}@${user.pub}`).put(hashed, null, { opt: { cert } });
-}
-function getHashedPersonal(tag, hash, pub = currentRoom.pub) {
-  const record = reactive({});
-  gun.get(`~${pub}`).get(`#${tag}`).map().once(function(data, key) {
-    if (key.includes(hash)) {
-      record.hash = hash;
-      record.tag = tag;
-      record.data = safeJSONParse(data);
-      record.authors = record.authors || {};
-      record.authors[key.slice(-87)] = true;
-    }
-  });
-  return { record };
-}
 const colorDeep = useColor("deep");
 const selectedUser = reactive({
   pub: null
@@ -874,6 +664,215 @@ async function logEncPass(encPair, passphrase) {
   let pair = await SEA.decrypt(encPair, passphrase);
   auth(pair);
 }
+const rootRoom = {
+  "pub": "OUlhoY2Eq8QkZE_iWN3l6J2vvbkX33vowcFdqFoCoEQ.a-B1ImQK4aoiEpdW-38MAPc8oi16DHY57bDJ4dEZpX0",
+  "hosts": {
+    "jFjrmOEaRy-GAJlOCdG4SGoaLm_4AGMPP1sfmzYPwwo.mp2H7IQuTWlFSahN6ZnXN9Za0pD3thiIYUyGCaMel-M": {
+      "enc": 'SEA{"ct":"PA8eerE6Q6bqPj8D/GriEQl5ROWyfee2xKZn4WahCQGJVpbTXRv4z9HNCi8LMZ0OZjUruXqjgPEDPSkisnR9bxcY/yi5QfkFuf7L3K6Sk/Vy1rSsHCamfsRiAYv7g0FwERR/gJp11T/+i8wuQb1YpWqWsahWyO0R7SSr6brnh1lQ1dKbBeO5JDvOcyTcIxhN3hiNEUW/4Up4uE+K7xYLNtqFzw1r24RR8+Lf0dw0Omv5ow812XjilRDtSrbqo9Mh0q2IDoQISsckxZyo8SRWegWd1sE4sF5OD5YQKsst+CZIn5lJE5/kKXPFvT13q0nkezRgBb4je3LW8gvi6YJToPAPXcH3ZFsxxQyPGjtiZFB9AOXE7xsF6mnAfbHu7wG4UPsdStyuwdjhxyetazammbpXl8o43ol2F40cI8U=","iv":"PBEwNvl+HfbR9Jg0cPbp","s":"BCbU3Kpu0kkZ"}',
+      "profile": 'SEA{"m":{"c":"jFjrmOEaRy-GAJlOCdG4SGoaLm_4AGMPP1sfmzYPwwo.mp2H7IQuTWlFSahN6ZnXN9Za0pD3thiIYUyGCaMel-M","w":{"*":"profile"}},"s":"tthpCGQHmItvWUzD3tz7LhfJy6n4HPtqaoClvFb2EFEm6PZKmcxz3Qd0i1H2doedFUxp3t27PUCZXQVB7/alRA=="}',
+      "features": 'SEA{"m":{"c":"jFjrmOEaRy-GAJlOCdG4SGoaLm_4AGMPP1sfmzYPwwo.mp2H7IQuTWlFSahN6ZnXN9Za0pD3thiIYUyGCaMel-M","w":{"*":"features"}},"s":"TL7wGkNZ7Jll7DR/+bRrS9zhRt+nvPCaJ7SwhHpQmoI+CfCkxblx6PJMOEQIzNKhzhJEZW0LRZAwqX1z6KeSBQ=="}',
+      "hosts": 'SEA{"m":{"c":"jFjrmOEaRy-GAJlOCdG4SGoaLm_4AGMPP1sfmzYPwwo.mp2H7IQuTWlFSahN6ZnXN9Za0pD3thiIYUyGCaMel-M","w":{"*":"hosts"}},"s":"q4tm9rCoWjd4pJOjDon/eFsojjnrDfaZ3Zyuq60nyrjMOwhz9hzrSVGsW6u6SCXmhV4q+NnKUxE+zyqznHwoBQ=="}'
+    }
+  },
+  "features": {
+    "rooms": 'SEA{"m":{"c":"*","w":{"*":"rooms","+":"*"}},"s":"PIc+ho1QaIfttrMK2hflTi/OqCP+WTTLfRig/dvkGpMZAKuQwvgDpTOTncOfMm7KG0iKr0vY5X8v/27X49/9Hg=="}',
+    "space": 'SEA{"m":{"c":"*","w":{"*":"space","+":"*"}},"s":"HUvQ7cIOikwYiL9IoKEz1PSCwhAU1GyS7n/sket1VJm8CHC7uIXRI5fX1CVRCIIotA3Z6DYYYHHJPvf8qDv9pw=="}',
+    "posts": 'SEA{"m":{"c":"*","w":{"*":"posts","+":"*"}},"s":"wNpYVy+bsFSuRQA2zTku9ibWGrABqXh1x9eEuqTOZMlNKR5Yub0cdcjYH0Du2KqV/D75usxt8NzCvkoDJAgspQ=="}',
+    "chat": 'SEA{"m":{"c":"*","w":{"*":"chat","+":"*"}},"s":"ZVu4ieBsuL2U+goKYGKAKv2phRvoNwq3I1LkpduoAEIFmk34Yf1b6gxA+K10MnjVTe/MTXqUgoyDf9M54zTnsA=="}',
+    "dict": 'SEA{"m":{"c":"*","w":{"*":"dict","+":"*"}},"s":"kCGBB1BNafsY5ZJUBoFel7YnBoaNBRlWXIntXKdWhT39mra0kr+g2AEDg5UiLY+K28d9KJDtjTLMynfkwVOMOA=="}',
+    "projects": 'SEA{"m":{"c":"*","w":{"*":"projects","+":"*"}},"s":"KG5V3F50YAdpaRd3sP4I28sRzIJEelRI2NUjlDmhXhKfafMHvU4/iLnfOTi0+9Sq+O8+JcRNGEDVNlmLtrKP6A=="}'
+  }
+};
+const currentRoom = reactive({
+  pub: rootRoom.pub,
+  isRoot: computed(() => currentRoom.pub == rootRoom.pub),
+  hosts: {},
+  features: {},
+  profile: {}
+});
+watchEffect(() => {
+  const gun3 = useGun();
+  if (currentRoom.pub == rootRoom.pub) {
+    currentRoom.hosts = rootRoom.hosts;
+    currentRoom.features = rootRoom.features;
+  } else {
+    currentRoom.features = {};
+    currentRoom.hosts = {};
+    gun3.user(currentRoom.pub).get("hosts").map().once((d, k) => {
+      currentRoom.hosts[k] = d;
+    });
+    gun3.user(currentRoom.pub).get("features").map().once((d, k) => {
+      currentRoom.features[k] = d;
+    });
+  }
+});
+function useRoom(pub = currentRoom.pub) {
+  const room = reactive({
+    pub,
+    isRoot: pub != rootRoom.pub,
+    hosts: {},
+    features: {},
+    profile: {}
+  });
+  const gun3 = useGun();
+  gun3.user(pub).get("profile").map().on((d, k) => {
+    room.profile[k] = d;
+  });
+  gun3.user(pub).get("hosts").map().once((d, k) => {
+    room.hosts[k] = d;
+  });
+  gun3.user(pub).get("features").map().once((d, k) => {
+    room.features[k] = d;
+  });
+  return {
+    room,
+    submitRoom,
+    enterRoom,
+    createRoom,
+    leaveRoom,
+    updateRoomProfile
+  };
+}
+function useRoomLogo(pub = currentRoom.pub) {
+  const logo = ref();
+  gun.user(pub).get("profile").get("logo").on((hash) => {
+    if (!hash) {
+      logo.value = null;
+      return;
+    }
+    gun.get("#logos").get(hash).once((d) => {
+      logo.value = d;
+    });
+  });
+  async function uploadLogo(file) {
+    if (file) {
+      const hash = await hashText(file);
+      gun.get("#logos").get(hash).put(file);
+      updateRoomProfile("logo", hash);
+    } else {
+      removeLogo();
+    }
+  }
+  function removeLogo() {
+    updateRoomProfile("logo", null);
+  }
+  return {
+    logo,
+    uploadLogo,
+    removeLogo
+  };
+}
+function useRooms() {
+  const rooms = computed(() => {
+    return listPersonal("rooms", currentRoom.pub);
+  });
+  return { rooms, createRoom };
+}
+function listPersonal(tag, pub = currentRoom.pub) {
+  const gun3 = useGun();
+  const records = reactive({});
+  gun3.user(pub).get(`${tag}`).map().on(function(data, key) {
+    let k = key.substring(0, 87);
+    records[k] = records[k] || {};
+    records[k][key.substring(88)] = data;
+  });
+  return records;
+}
+function updateRoomProfile(field, content) {
+  var _a2, _b2;
+  const gun3 = useGun();
+  const { user: user2 } = useUser();
+  let certificate = (_b2 = (_a2 = currentRoom.hosts) == null ? void 0 : _a2[user2.pub]) == null ? void 0 : _b2.profile;
+  gun3.user(currentRoom.pub).get("profile").get(field).put(content, null, { opt: { cert: certificate } });
+}
+async function createRoom({ pair, name } = {}) {
+  var _a2;
+  const { user: user2 } = useUser();
+  if (!pair)
+    return;
+  const certs = await generateCerts({
+    pair,
+    list: [
+      { tag: "profile", users: [user2.pub] },
+      { tag: "features", users: [user2.pub] },
+      { tag: "hosts", users: [user2.pub] }
+    ]
+  });
+  const features = await generateCerts({
+    pair,
+    list: [
+      { tag: "rooms", personal: true },
+      { tag: "space", personal: true },
+      { tag: "posts", personal: true },
+      { tag: "chat", personal: true },
+      { tag: "dict", personal: true },
+      { tag: "projects", personal: true }
+    ]
+  });
+  const enc = await SEA.encrypt(pair, user2.pair());
+  const dec = await SEA.decrypt(enc, user2.pair());
+  console.log("COPY THIS ROOM INFO TO USE IT AS A ROOT", {
+    pub: dec.pub,
+    hosts: { [user2.pub]: { enc, ...certs } },
+    features
+  }, "STORE THIS KEY PAIR IN A SAFE PLACE", dec);
+  const gun3 = useGun();
+  gun3.user().get("safe").get("rooms").get(dec.pub).put(enc);
+  gun3.user(currentRoom.pub).get("rooms").get(`${dec.pub}@${user2.pub}`).put(true, null, { opt: { cert: (_a2 = currentRoom == null ? void 0 : currentRoom.features) == null ? void 0 : _a2.rooms } });
+  const roomDb = gun3.user(dec.pub);
+  roomDb.get("hosts").get(user2.pub).put({
+    enc,
+    ...certs
+  }, null, { opt: { cert: certs.hosts } });
+  roomDb.get("features").put(features, null, { opt: { cert: certs.features } });
+  if (name) {
+    roomDb.get("profile").put({ name }, null, { opt: { cert: certs.profile } });
+  }
+}
+async function recreateRoom(enc) {
+  const dec = await SEA.decrypt(enc, user.pair());
+  createRoom({
+    pair: dec
+  });
+}
+async function submitRoom(pub) {
+  var _a2;
+  const gun3 = useGun();
+  const already = await gun3.user(currentRoom.pub).get("rooms").get(`${pub}@${user.pub}`).then();
+  gun3.user(currentRoom.pub).get("rooms").get(`${pub}@${user.pub}`).put(!already, null, { opt: { cert: (_a2 = currentRoom.features) == null ? void 0 : _a2.rooms } });
+}
+function joinRoom() {
+  var _a2;
+  const gun3 = useGun();
+  gun3.user(currentRoom.pub).get("space").get(user.pub).put(JSON.stringify({ x: Math.random(), y: Math.random() }), null, {
+    opt: { cert: (_a2 = currentRoom.features) == null ? void 0 : _a2.space }
+  });
+}
+function enterRoom(pub) {
+  currentRoom.pub = pub;
+}
+function leaveRoom() {
+  currentRoom.pub = rootRoom.pub;
+}
+async function addPersonal({
+  tag,
+  key,
+  text,
+  pub = currentRoom.pub,
+  cert
+} = {}) {
+  var _a2;
+  if (!cert)
+    cert = await gun.user(pub).get("features").get(tag).then();
+  if (!cert) {
+    cert = (_a2 = currentRoom.features) == null ? void 0 : _a2[`${tag}`];
+  }
+  if (!cert && pub != user.pub) {
+    console.log("No certificate found");
+    return;
+  }
+  gun.user(pub).get(`${tag}`).get(`${key}@${user.pub}`).put(text, null, { opt: { cert } });
+}
 const newProject = reactive({
   title: "",
   public: true
@@ -1050,4 +1049,4 @@ function useDraw() {
     loadCanvas
   };
 }
-export { addHashedPersonal, addPersonal, addProfileField, auth, brush, createRoom, currentRoom, decFrom, defaultPeer, dictLang, dictRecord, drauu, drauuOptions, draw, encFor, enterRoom, genUUID, generateCerts, getHashedPersonal, getShortHash, gun, gun2, hasPass, hashObj, hashText, isHash, isMine, isPair, issueCert, joinRoom, leave, leaveRoom, letterFilter, listPersonal, loadCanvas, loadRelays, newProject, parseHashLink, parseLink, pass, peer, projectsPath, recreateRoom, relay, removeProject, renderStress, rootRoom, safeHash, safeJSONParse, selectedUser, soul, submitRoom, unsafeHash, updateProfile, updateProject, updateProjectField, updateRoomProfile, updateState, useAccount, useColor, useDefs, useDictAuthors, useDictLangs, useDictRecordsBy, useDictRecordsFor, useDraw, useGun, useGun2, usePass, usePassLink, useProject, useRelay, useRelays, useRoom, useRooms, useUser, useWord, useWords, user };
+export { addPersonal, addProfileField, auth, brush, createRoom, currentRoom, decFrom, defaultPeer, dictLang, dictRecord, drauu, drauuOptions, draw, encFor, enterRoom, genUUID, generateCerts, getShortHash, gun, gun2, hasPass, hashObj, hashText, isHash, isMine, isPair, issueCert, joinRoom, leave, leaveRoom, letterFilter, loadCanvas, loadRelays, newProject, parseHashLink, parseLink, pass, peer, projectsPath, recreateRoom, relay, removeProject, renderStress, rootRoom, safeHash, safeJSONParse, selectedUser, soul, submitRoom, unsafeHash, updateProfile, updateProject, updateProjectField, updateRoomProfile, updateState, useAccount, useColor, useDefs, useDictAuthors, useDictLangs, useDictRecordsBy, useDictRecordsFor, useDraw, useGun, useGun2, usePass, usePassLink, useProject, useRelay, useRelays, useRoom, useRoomLogo, useRooms, useUser, useWord, useWords, user };

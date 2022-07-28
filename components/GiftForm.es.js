@@ -1,12 +1,11 @@
 import { useUser } from "./useDraw.es.js";
-import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, createVNode$1 as createVNode, toDisplayString$1 as toDisplayString, withDirectives$1 as withDirectives, vModelText$1 as vModelText } from "./vendor.es.js";
-import { useGift } from "./useGifts.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, createVNode$1 as createVNode, toDisplayString$1 as toDisplayString, createBlock$1 as createBlock, withCtx$1 as withCtx, Fragment$1 as Fragment, renderList$1 as renderList, withDirectives$1 as withDirectives, vModelText$1 as vModelText } from "./vendor.es.js";
+import { useNewGift } from "./index.es2.js";
 import { useGuests } from "./useGuests.es.js";
-import __unplugin_components_1 from "./AccountSelect.es.js";
+import __unplugin_components_0$1 from "./AccountBadge.es.js";
+import { __unplugin_components_0 as __unplugin_components_0$2 } from "./times.es.js";
 import __unplugin_components_0 from "./UserIcon.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
-import "./times.es.js";
-import "./AccountBadge.es.js";
 import "./AccountAvatar.es.js";
 import "./UiLayer.es.js";
 import "./AccountHome.es.js";
@@ -38,6 +37,7 @@ import "./UserPanel.es.js";
 import "./exit-outline.es.js";
 import "./lock.es.js";
 import "./UserAvatar.es.js";
+import "./camera.es.js";
 import "./UserLogin.es.js";
 import "./UserCreate.es.js";
 import "./UserAuth.es.js";
@@ -50,11 +50,20 @@ const _hoisted_1 = { class: "flex" };
 const _hoisted_2 = { class: "w-160px p-4 text-center" };
 const _hoisted_3 = { class: "text-lg" };
 const _hoisted_4 = { class: "flex-1" };
-const _hoisted_5 = /* @__PURE__ */ createBaseVNode("div", { class: "font-mono text-sm m-4 opacity-50 break-all" }, null, -1);
-const _hoisted_6 = { class: "p-4 bg-light-300 bg-opacity-30 flex flex-wrap gap-4" };
+const _hoisted_5 = { class: "font-mono text-sm m-4 opacity-50 break-all" };
+const _hoisted_6 = { class: "p-4" };
+const _hoisted_7 = /* @__PURE__ */ createBaseVNode("div", { class: "flex-1" }, null, -1);
+const _hoisted_8 = {
+  key: 1,
+  class: "flex flex-col"
+};
+const _hoisted_9 = { class: "font-bold" };
+const _hoisted_10 = { class: "flex flex-wrap gap-3" };
+const _hoisted_11 = { class: "p-4 bg-light-300 bg-opacity-30 flex flex-wrap gap-4" };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_user_icon = __unplugin_components_0;
-  const _component_account_select = __unplugin_components_1;
+  const _component_la_times = __unplugin_components_0$2;
+  const _component_account_badge = __unplugin_components_0$1;
   return openBlock(), createElementBlock("div", _hoisted_1, [
     createBaseVNode("div", _hoisted_2, [
       createVNode(_component_user_icon, {
@@ -64,12 +73,34 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       createBaseVNode("div", _hoisted_3, toDisplayString($setup.user.name), 1)
     ]),
     createBaseVNode("div", _hoisted_4, [
-      _hoisted_5,
-      createVNode(_component_account_select, {
-        pub: $setup.gift.to,
-        "onUpdate:pub": _cache[0] || (_cache[0] = ($event) => $setup.gift.to = $event)
-      }, null, 8, ["pub"]),
+      createBaseVNode("div", _hoisted_5, toDisplayString($setup.gift), 1),
       createBaseVNode("div", _hoisted_6, [
+        $setup.gift.to ? (openBlock(), createBlock(_component_account_badge, {
+          key: 0,
+          pub: $setup.gift.to
+        }, {
+          default: withCtx(() => [
+            _hoisted_7,
+            createVNode(_component_la_times, {
+              class: "mr-2",
+              onClick: _cache[0] || (_cache[0] = ($event) => $setup.gift.to = "")
+            })
+          ]),
+          _: 1
+        }, 8, ["pub"])) : (openBlock(), createElementBlock("div", _hoisted_8, [
+          createBaseVNode("div", _hoisted_9, "USER SELECT OF " + toDisplayString($setup.count.total), 1),
+          createBaseVNode("div", _hoisted_10, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList($setup.guests, (guest) => {
+              return openBlock(), createBlock(_component_account_badge, {
+                key: guest,
+                onClick: ($event) => $setup.gift.to = guest.pub,
+                pub: guest.pub
+              }, null, 8, ["onClick", "pub"]);
+            }), 128))
+          ])
+        ]))
+      ]),
+      createBaseVNode("div", _hoisted_11, [
         withDirectives(createBaseVNode("input", {
           "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $setup.gift.qn = $event),
           placeholder: "Quantity"
@@ -91,19 +122,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       ]),
       createBaseVNode("button", {
         class: "button",
-        onClick: _cache[4] || (_cache[4] = ($event) => $setup.propose())
+        onClick: _cache[4] || (_cache[4] = ($event) => {
+          $setup.propose();
+          _ctx.$emit("sent");
+        })
       }, "Propose")
     ])
   ]);
 }
 const _sfc_main = {
   __name: "GiftForm",
-  setup(__props, { expose }) {
+  emits: ["sent"],
+  setup(__props, { expose, emit }) {
     expose();
     const { user } = useUser();
-    const { gift, propose } = useGift();
+    const { gift, propose } = useNewGift();
     const { guests, count } = useGuests();
-    const __returned__ = { user, gift, propose, guests, count, useGuests, useGift, useUser };
+    const __returned__ = { user, gift, propose, guests, count, emit, useGuests, useNewGift, useUser };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
   }
