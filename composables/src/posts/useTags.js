@@ -85,3 +85,55 @@ export function useTagList() {
 
   return { search, slug, tags, addTag };
 }
+
+
+
+export function listPersonal(tag, pub = currentRoom.pub) {
+  const gun = useGun();
+  const records = reactive({});
+  gun
+    .user(pub)
+    .get(`${tag}`)
+    .map()
+    .on(function (data, key) {
+      let k = key.substring(0, 87);
+      records[k] = records[k] || {};
+      records[k][key.substring(88)] = data;
+    });
+  return records;
+}
+
+export async function addHashedPersonal(tag, obj, pub = currentRoom.pub, cert) {
+  if (!cert) cert = await gun.get(`~${pub}`).get("features").get(tag).then();
+  if (!cert && pub == rootRoom.pub) {
+    cert = rootRoom.features?.[`#${tag}`];
+  }
+  if (!cert && pub != user.pub) {
+    console.log("No certificate found");
+    return;
+  }
+  const { hashed, hash } = await hashObj(obj);
+  gun
+    .get(`~${pub}`)
+    .get(`#${tag}`)
+    .get(`${hash}@${user.pub}`)
+    .put(hashed, null, { opt: { cert } });
+}
+
+export function getHashedPersonal(tag, hash, pub = currentRoom.pub) {
+  const record = reactive({});
+  gun
+    .get(`~${pub}`)
+    .get(`#${tag}`)
+    .map()
+    .once(function (data, key) {
+      if (key.includes(hash)) {
+        record.hash = hash;
+        record.tag = tag;
+        record.data = safeJSONParse(data);
+        record.authors = record.authors || {};
+        record.authors[key.slice(-87)] = true;
+      }
+    });
+  return { record };
+}

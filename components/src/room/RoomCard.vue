@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, useRoom, useBackground, currentRoom } from '#composables'
+import { useUser, useRoom, useBackground, currentRoom, useRoomLogo } from '#composables'
 import { computed } from 'vue';
 const props = defineProps({
   pub: { type: String },
@@ -13,7 +13,7 @@ const { room } = useRoom(props.pub)
 
 const bg = computed(() => useBackground({ pub: props.pub, size: 400 }))
 
-
+const { logo } = useRoomLogo(props.pub)
 
 </script>
 
@@ -22,6 +22,7 @@ const bg = computed(() => useBackground({ pub: props.pub, size: 400 }))
   :style="{ ...bg, border: room.pub == currentRoom.pub ? '2px solid currentColor' : '' }"
 ) 
   .p-4.font-bold.text-xl.flex.flex-wrap.items-center.flex.w-full
+    img.h-24.rounded-xl.mr-2(v-if="logo" :src="logo")
     .text-lg {{ room.profile.name }}
     .flex-1
     account-avatar.m-2(v-for="(enc, host) in room.hosts" :key="host" :pub="host" :size="40")

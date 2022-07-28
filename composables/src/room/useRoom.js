@@ -12,6 +12,7 @@ import {
   user,
   hashObj,
   safeJSONParse,
+  hashText
 } from "..";
 import { rootRoom } from "./rootRoom";
 import { reactive, computed, ref, watchEffect } from "vue";
@@ -100,11 +101,60 @@ export function useRoom(pub = currentRoom.pub) {
   };
 }
 
+export function useRoomLogo(pub = currentRoom.pub) {
+
+  const logo = ref()
+
+  gun.user(pub).get('profile').get('logo').on(hash => {
+    if (!hash) {
+      logo.value = null
+      return
+    }
+    gun.get('#logos').get(hash).once(d => {
+      logo.value = d
+    })
+  })
+
+  async function uploadLogo(file) {
+    if (file) {
+      const hash = await hashText(file)
+      gun.get('#logos').get(hash).put(file)
+      updateRoomProfile('logo', hash)
+    } else {
+      removeLogo()
+    }
+
+  }
+
+  function removeLogo() {
+    updateRoomProfile('logo', null)
+  }
+
+  return {
+    logo, uploadLogo, removeLogo
+  }
+}
+
 export function useRooms() {
   const rooms = computed(() => {
     return listPersonal("rooms", currentRoom.pub);
   });
   return { rooms, createRoom };
+}
+
+export function listPersonal(tag, pub = currentRoom.pub) {
+  const gun = useGun();
+  const records = reactive({});
+  gun
+    .user(pub)
+    .get(`${tag}`)
+    .map()
+    .on(function (data, key) {
+      let k = key.substring(0, 87);
+      records[k] = records[k] || {};
+      records[k][key.substring(88)] = data;
+    });
+  return records;
 }
 
 /**
@@ -267,54 +317,4 @@ export async function addPersonal({
     .get(`${tag}`)
     .get(`${key}@${user.pub}`)
     .put(text, null, { opt: { cert } });
-}
-
-export function listPersonal(tag, pub = currentRoom.pub) {
-  const gun = useGun();
-  const records = reactive({});
-  gun
-    .user(pub)
-    .get(`${tag}`)
-    .map()
-    .on(function (data, key) {
-      let k = key.substring(0, 87);
-      records[k] = records[k] || {};
-      records[k][key.substring(88)] = data;
-    });
-  return records;
-}
-
-export async function addHashedPersonal(tag, obj, pub = currentRoom.pub, cert) {
-  if (!cert) cert = await gun.get(`~${pub}`).get("features").get(tag).then();
-  if (!cert && pub == rootRoom.pub) {
-    cert = rootRoom.features?.[`#${tag}`];
-  }
-  if (!cert && pub != user.pub) {
-    console.log("No certificate found");
-    return;
-  }
-  const { hashed, hash } = await hashObj(obj);
-  gun
-    .get(`~${pub}`)
-    .get(`#${tag}`)
-    .get(`${hash}@${user.pub}`)
-    .put(hashed, null, { opt: { cert } });
-}
-
-export function getHashedPersonal(tag, hash, pub = currentRoom.pub) {
-  const record = reactive({});
-  gun
-    .get(`~${pub}`)
-    .get(`#${tag}`)
-    .map()
-    .once(function (data, key) {
-      if (key.includes(hash)) {
-        record.hash = hash;
-        record.tag = tag;
-        record.data = safeJSONParse(data);
-        record.authors = record.authors || {};
-        record.authors[key.slice(-87)] = true;
-      }
-    });
-  return { record };
 }

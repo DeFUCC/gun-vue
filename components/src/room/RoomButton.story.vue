@@ -1,8 +1,8 @@
 <script setup>
 import { defineAsyncComponent, reactive } from 'vue'
 
-const RoomIcon = defineAsyncComponent(() =>
-  import('./RoomIcon.vue')
+const RoomButton = defineAsyncComponent(() =>
+  import('./RoomButton.vue')
 )
 
 
@@ -12,7 +12,7 @@ const RoomIcon = defineAsyncComponent(() =>
 <template lang="pug">
 Story(title="Room/Icon" :layout="{ type: 'single' }")
   Variant(title="Round")
-    RoomIcon
+    RoomButton
 
   template(#controls)
     .p-2.flex.flex-col.gap-4
