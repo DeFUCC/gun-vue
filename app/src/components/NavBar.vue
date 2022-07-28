@@ -21,12 +21,12 @@ const color = useColor('light')
     )
 
     .flex-1
-
+    util-tools
     room-button(
       @room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)"
       :key="currentRoom.pub"
       )
-    util-tools
+
     user-icon(
       :size="40"
       @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
