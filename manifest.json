@@ -1,0 +1,35 @@
+{
+  "name": "Gun-Vue",
+  "short_name": "Gun-Vue",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "lang": "en",
+  "scope": "./",
+  "description": "Peer-to-peer graph database UI components",
+  "iconPath": "./gun-vue-logo.png",
+  "theme_color": "#43b883",
+  "homepage_url": "https://gun-vue.js.org",
+  "skylink": "AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A",
+  "orientation": "portrait",
+  "providedBy": { "name": "defucc", "url": "https://defucc.me" },
+  "icons": [
+    {
+      "src": "./gun-vue-logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    },
+    {
+      "src": "./gun-vue-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./gun-vue-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
