@@ -35,7 +35,7 @@ const color = useColor('light')
       )
 
 
-.flex.gap-2.p-2.items-center.bg-light-900.shadow-lg.z-30.overflow-x-scroll.overflow-y-hidden(:style="{ backgroundColor: color.hex(currentRoom.pub) }")
+.flex.gap-2.p-2.items-center.bg-light-900.shadow-lg.z-30.overflow-x-scroll.overflow-y-visible(:style="{ backgroundColor: color.hex(currentRoom.pub) }")
   router-link.link(
     v-for="(link, l) in routes" :key="link" 
     :to="l" ) 
@@ -49,7 +49,6 @@ const color = useColor('light')
     la-sun(v-if="link == 'Gifts'")
     la-toolbox(v-if="link == 'Projects'")
     .ml-2.hidden.sm_block.text-sm {{ link }}
-  .flex-1
 </template>
 
 <style lang="postcss" scoped>
