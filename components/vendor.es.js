@@ -1,4 +1,4 @@
-var style$1 = "";
+var style = "";
 function makeMap$1(str, expectsLowerCase) {
   const map2 = /* @__PURE__ */ Object.create(null);
   const list3 = str.split(",");
@@ -100593,7 +100593,6 @@ Editor.DropdownToolbar = DropdownToolbar;
 Editor.MdCatalog = MdCatalog;
 Editor.ModalToolbar = ModalToolbar;
 Editor.config = config;
-var style = "";
 function supportsGestureEvents() {
   try {
     return "constructor" in GestureEvent;
