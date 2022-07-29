@@ -42,8 +42,8 @@
     "floating-vue": "^2.0.0-beta.17",
     "force-graph": "^1.42.11",
     "fuse.js": "6.6.2",
+    "ink-mde": "^0.10.0",
     "jsqr": "^1.4.0",
-    "md-editor-v3": "^2.2.1",
     "url-regex": "^5.0.0",
     "vue": "^3.2.37"
   },

@@ -49,6 +49,9 @@ export default defineConfig({
         if (id.includes("jsqr")) {
           return "jsqr";
         }
+        if (id.includes("ink")) {
+          return "ink";
+        }
         if (id.includes("node_modules")) {
           return "vendor";
         }

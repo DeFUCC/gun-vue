@@ -1,13 +1,15 @@
 <script setup>
-import { useUser, useProject, updateProjectField } from '#composables';
+import { useUser, useProject, updateProjectField, useMd } from '#composables';
 import { toRef, ref, computed, watchEffect } from 'vue'
-import MdEditor from 'md-editor-v3';
+import Ink from 'ink-mde/vue'
 
 const props = defineProps({
   path: { type: String, default: '' },
 })
 
 const { user } = useUser()
+
+const md = useMd()
 
 const { project } = useProject(toRef(props, 'path'))
 
@@ -33,7 +35,8 @@ watchEffect(() => {
       )
     account-badge.absolute.bottom-4.right-4(:pub="path.slice(-87)")
   .flex.flex-col.gap-2
-    md-editor.m-2.p-2(v-if="!editable" v-model="project.text" preview-only)
-    md-editor(v-else v-model="text" language='en-US' @save="updateProjectField(path.slice(0, -88), 'text', $event)")
+    .p-2.markdown-body(v-html="md.render(text || '')" v-if="!editable")
+    Ink(v-else :modelValue="text" @update:modelValue="updateProjectField(path.slice(0, -88), 'text', $event)")
+
   pre.p-4.my-4.text-xs.overflow-scroll {{ project }}
 </template>
