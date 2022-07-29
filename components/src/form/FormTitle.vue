@@ -10,22 +10,25 @@ const emit = defineEmits(['update'])
 const content = ref('')
 const edit = ref(false)
 
-function update() {
-  emit('update', content.value);
+function update(ev) {
+  emit('update', ev.target.innerText);
+  ev.target.blur()
   edit.value = false
 }
+
 </script>
 
 <template lang='pug'>
-.flex.flex-col
-  .flex.items-center.mr-4.mb-2(v-if="!edit")
-    .break-all {{ text }}
-    la-pen.ml-2.cursor-pointer(@click="content = text; edit = true" v-if="editable && !edit")
-  form.flex.items-center(v-else action="javascript:void(0);")
-    input.my-2.p-2.shadow-lg.rounded-lg.w-full(v-if="editable && edit" type="text" v-model="content" @keyup.escape="edit = false" @keyup.enter="update()")
-    .-ml-20.flex
-      button.cursor-pointer(type="submit" @click="update()")
-        la-check
-      button.ml-2.cursor-pointer(v-if="edit" @click="edit = false")
-        la-times
+.flex.mt-12.mb-2.items-center.gap-4
+  h1.text-3xl.font-bold(
+    ref="content"
+    :contenteditable="editable" 
+    @focus="edit = true"
+    @blur="update($event)" 
+    @keydown.enter.prevent.stop="update($event)"
+    ) {{ text || '' }}
+  la-pen.text-2xl(
+    v-if="editable && !edit" 
+    @click="content.focus()"
+    )
 </template>
