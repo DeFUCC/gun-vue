@@ -3,7 +3,7 @@ import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, c
 import { useGifts } from "./useGifts.es.js";
 import __unplugin_components_0 from "./GiftCard.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
-import "./index.es.js";
+import "./index.es2.js";
 import "./AccountAvatar.es.js";
 const _hoisted_1 = { class: "flex flex-wrap gap-2" };
 const _hoisted_2 = { class: "flex flex-col gap-2" };

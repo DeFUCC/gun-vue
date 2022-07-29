@@ -1,6 +1,6 @@
 import { useUser } from "./useDraw.es.js";
 import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, createVNode$1 as createVNode, toDisplayString$1 as toDisplayString, createBlock$1 as createBlock, withCtx$1 as withCtx, Fragment$1 as Fragment, renderList$1 as renderList, withDirectives$1 as withDirectives, vModelText$1 as vModelText } from "./vendor.es.js";
-import { useNewGift } from "./index.es.js";
+import { useNewGift } from "./index.es2.js";
 import { useGuests } from "./useGuests.es.js";
 import __unplugin_components_0$1 from "./AccountBadge.es.js";
 import { __unplugin_components_0 as __unplugin_components_0$2 } from "./times.es.js";

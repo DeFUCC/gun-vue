@@ -36,7 +36,7 @@ const _sfc_main = {
       pub: "We2MxFrbFH37008fNmreSk9hdHLJNMVhrSMIIbOO5Ao.FbNrdt118-TCYzGYRo94Xa8EUWwwV-7DIopXSE9OZD8"
     });
     async function generate() {
-      const { SEA } = await import("./index.es2.js");
+      const { SEA } = await import("./index.es.js");
       const pair = await SEA.pair();
       state.pub = pair.pub;
     }

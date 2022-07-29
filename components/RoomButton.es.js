@@ -1,5 +1,5 @@
 import { currentRoom, useRoom, useGun, useUser, useRoomLogo, rootRoom, recreateRoom, useColor } from "./useDraw.es.js";
-import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, createVNode$1 as createVNode, pushScopeId$1 as pushScopeId, popScopeId$1 as popScopeId, ref$1 as ref, computed$1 as computed, nextTick$1 as nextTick, reactive$1 as reactive, onMounted$1 as onMounted, watch$1 as watch, toDisplayString$1 as toDisplayString, createBlock$1 as createBlock, createCommentVNode$1 as createCommentVNode, withDirectives$1 as withDirectives, vModelText$1 as vModelText, withKeys$1 as withKeys, Fragment$1 as Fragment, renderList$1 as renderList, withCtx$1 as withCtx, withModifiers$1 as withModifiers, normalizeStyle$1 as normalizeStyle } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, createVNode$1 as createVNode, pushScopeId$1 as pushScopeId, popScopeId$1 as popScopeId, ref$1 as ref, computed$1 as computed, nextTick$1 as nextTick, reactive$1 as reactive, onMounted$1 as onMounted, watch$1 as watch, toDisplayString$1 as toDisplayString, withKeys$1 as withKeys, withModifiers$1 as withModifiers, createBlock$1 as createBlock, createCommentVNode$1 as createCommentVNode, Fragment$1 as Fragment, renderList$1 as renderList, withCtx$1 as withCtx, normalizeStyle$1 as normalizeStyle } from "./vendor.es.js";
 import { useBackground } from "./useBackground.es.js";
 import { __unplugin_components_1 as __unplugin_components_1$5 } from "./UiPanel.es.js";
 import { parseMd, useMd } from "./useMd.es.js";
@@ -9,10 +9,10 @@ import { __unplugin_components_5 as __unplugin_components_5$1 } from "./check.es
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 import { __unplugin_components_5 as __unplugin_components_5$2 } from "./pen.es.js";
 import { __unplugin_components_2 as __unplugin_components_2$2 } from "./exit-outline.es.js";
-import { __unplugin_components_0 as __unplugin_components_0$6, __unplugin_components_1 as __unplugin_components_1$4 } from "./enter-outline.es.js";
-import __unplugin_components_0$7 from "./AccountBadge.es.js";
-import { __unplugin_components_0 as __unplugin_components_0$4 } from "./times.es.js";
-import { __unplugin_components_0 as __unplugin_components_0$5, __unplugin_components_1 as __unplugin_components_1$3, __unplugin_components_2 as __unplugin_components_2$1 } from "./camera.es.js";
+import { __unplugin_components_0 as __unplugin_components_0$5, __unplugin_components_1 as __unplugin_components_1$4 } from "./enter-outline.es.js";
+import __unplugin_components_0$6 from "./AccountBadge.es.js";
+import { __unplugin_components_0 as __unplugin_components_0$4, __unplugin_components_1 as __unplugin_components_1$3, __unplugin_components_2 as __unplugin_components_2$1 } from "./camera.es.js";
+import "./times.es.js";
 import "./AccountAvatar.es.js";
 import "./UiLayer.es.js";
 const _hoisted_1$f = {
@@ -25,23 +25,23 @@ const _hoisted_2$f = /* @__PURE__ */ createBaseVNode("path", {
   fill: "currentColor",
   d: "M2.875 6C1.32 6 0 7.254 0 8.813v14.374C0 24.747 1.32 26 2.875 26h26.25C30.68 26 32 24.746 32 23.187V8.813C32 7.255 30.68 6 29.125 6zm0 2h26.25c.516 0 .875.383.875.813v14.374c0 .43-.36.813-.875.813H2.875C2.359 24 2 23.617 2 23.187V8.813c0-.43.36-.812.875-.812zM5 11v10h3v-6.656l3 3.969l3-3.97V21h3V11h-3l-3 4l-3-4zm17 0v5h-3l4.5 5l4.5-5h-3v-5z"
 }, null, -1);
-const _hoisted_3$f = [
+const _hoisted_3$e = [
   _hoisted_2$f
 ];
 function render$f(_ctx, _cache) {
-  return openBlock(), createElementBlock("svg", _hoisted_1$f, _hoisted_3$f);
+  return openBlock(), createElementBlock("svg", _hoisted_1$f, _hoisted_3$e);
 }
 var __unplugin_components_1$2 = { name: "la-markdown", render: render$f };
 const _withScopeId = (n) => (pushScopeId("data-v-83e1cfda"), n = n(), popScopeId(), n);
 const _hoisted_1$e = { class: "flex flex-col" };
 const _hoisted_2$e = { class: "flex flex-col text-left mb-30" };
-const _hoisted_3$e = {
+const _hoisted_3$d = {
   id: "myMD",
   ref: "md",
   placeholder: "Main text content (with **markdown** support)"
 };
-const _hoisted_4$5 = { class: "flex flex-wrap bg-dark-100 p-4 fixed z-100 bottom-0 left-1 right-1" };
-const _hoisted_5$3 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", { class: "ml-2" }, "Save", -1));
+const _hoisted_4$4 = { class: "flex flex-wrap bg-dark-100 p-4 fixed z-100 bottom-0 left-1 right-1" };
+const _hoisted_5$2 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", { class: "ml-2" }, "Save", -1));
 const _hoisted_6$1 = {
   class: "m-1 button cursor-pointer flex items-center",
   for: "import-post"
@@ -55,15 +55,15 @@ function render$e(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_la_trash = __unplugin_components_0$3;
   return openBlock(), createElementBlock("div", _hoisted_1$e, [
     createBaseVNode("div", _hoisted_2$e, [
-      createBaseVNode("textarea", _hoisted_3$e, null, 512)
+      createBaseVNode("textarea", _hoisted_3$d, null, 512)
     ]),
-    createBaseVNode("div", _hoisted_4$5, [
+    createBaseVNode("div", _hoisted_4$4, [
       createBaseVNode("button", {
         class: "button m-1",
         onClick: _cache[0] || (_cache[0] = ($event) => _ctx.$emit("close"))
       }, [
         createVNode(_component_la_check),
-        _hoisted_5$3
+        _hoisted_5$2
       ]),
       createBaseVNode("label", _hoisted_6$1, [
         createVNode(_component_la_markdown),
@@ -129,63 +129,24 @@ const _sfc_main$6 = {
 };
 _sfc_main$6.__file = "src/form/FormText.vue";
 var __unplugin_components_6$1 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", render$e], ["__scopeId", "data-v-83e1cfda"], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/form/FormText.vue"]]);
-const _hoisted_1$d = { class: "flex flex-col" };
-const _hoisted_2$d = {
-  key: 0,
-  class: "flex items-center mr-4 mb-2"
-};
-const _hoisted_3$d = { class: "break-all" };
-const _hoisted_4$4 = {
-  key: 1,
-  class: "flex items-center",
-  action: "javascript:void(0);"
-};
-const _hoisted_5$2 = { class: "-ml-20 flex" };
+const _hoisted_1$d = { class: "flex mt-12 mb-2 items-center gap-4" };
+const _hoisted_2$d = ["contenteditable"];
 function render$d(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_la_pen = __unplugin_components_5$2;
-  const _component_la_check = __unplugin_components_5$1;
-  const _component_la_times = __unplugin_components_0$4;
   return openBlock(), createElementBlock("div", _hoisted_1$d, [
-    !$setup.edit ? (openBlock(), createElementBlock("div", _hoisted_2$d, [
-      createBaseVNode("div", _hoisted_3$d, toDisplayString($props.text), 1),
-      $props.editable && !$setup.edit ? (openBlock(), createBlock(_component_la_pen, {
-        key: 0,
-        class: "ml-2 cursor-pointer",
-        onClick: _cache[0] || (_cache[0] = ($event) => {
-          $setup.content = $props.text;
-          $setup.edit = true;
-        })
-      })) : createCommentVNode("v-if", true)
-    ])) : (openBlock(), createElementBlock("form", _hoisted_4$4, [
-      $props.editable && $setup.edit ? withDirectives((openBlock(), createElementBlock("input", {
-        key: 0,
-        class: "my-2 p-2 shadow-lg rounded-lg w-full",
-        type: "text",
-        "onUpdate:modelValue": _cache[1] || (_cache[1] = ($event) => $setup.content = $event),
-        onKeyup: [
-          _cache[2] || (_cache[2] = withKeys(($event) => $setup.edit = false, ["escape"])),
-          _cache[3] || (_cache[3] = withKeys(($event) => $setup.update(), ["enter"]))
-        ]
-      }, null, 544)), [
-        [vModelText, $setup.content]
-      ]) : createCommentVNode("v-if", true),
-      createBaseVNode("div", _hoisted_5$2, [
-        createBaseVNode("button", {
-          class: "cursor-pointer",
-          type: "submit",
-          onClick: _cache[4] || (_cache[4] = ($event) => $setup.update())
-        }, [
-          createVNode(_component_la_check)
-        ]),
-        $setup.edit ? (openBlock(), createElementBlock("button", {
-          key: 0,
-          class: "ml-2 cursor-pointer",
-          onClick: _cache[5] || (_cache[5] = ($event) => $setup.edit = false)
-        }, [
-          createVNode(_component_la_times)
-        ])) : createCommentVNode("v-if", true)
-      ])
-    ]))
+    createBaseVNode("h1", {
+      class: "text-3xl font-bold",
+      ref: "content",
+      contenteditable: $props.editable,
+      onFocus: _cache[0] || (_cache[0] = ($event) => $setup.edit = true),
+      onBlur: _cache[1] || (_cache[1] = ($event) => $setup.update($event)),
+      onKeydown: _cache[2] || (_cache[2] = withKeys(withModifiers(($event) => $setup.update($event), ["prevent", "stop"]), ["enter"]))
+    }, toDisplayString($props.text || ""), 41, _hoisted_2$d),
+    $props.editable && !$setup.edit ? (openBlock(), createBlock(_component_la_pen, {
+      key: 0,
+      class: "text-2xl",
+      onClick: _cache[3] || (_cache[3] = ($event) => $setup.content.focus())
+    })) : createCommentVNode("v-if", true)
   ]);
 }
 const _sfc_main$5 = {
@@ -200,8 +161,9 @@ const _sfc_main$5 = {
     const props = __props;
     const content = ref("");
     const edit = ref(false);
-    function update() {
-      emit("update", content.value);
+    function update(ev) {
+      emit("update", ev.target.innerText);
+      ev.target.blur();
       edit.value = false;
     }
     const __returned__ = { props, emit, content, edit, update, ref };
@@ -415,7 +377,7 @@ const _hoisted_1$3 = { class: "flex flex-col relative items-center justify-cente
 const _hoisted_2$3 = ["src"];
 const _hoisted_3$3 = { class: "text-2xl" };
 function render$3(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_la_camera = __unplugin_components_0$5;
+  const _component_la_camera = __unplugin_components_0$4;
   const _component_la_trash_alt = __unplugin_components_1$3;
   const _component_form_picture = __unplugin_components_2$1;
   return openBlock(), createElementBlock("div", _hoisted_1$3, [
@@ -471,7 +433,7 @@ const _hoisted_4$2 = /* @__PURE__ */ createBaseVNode("div", { class: "ml-2" }, "
 const _hoisted_5$1 = /* @__PURE__ */ createBaseVNode("div", { class: "ml-2" }, "Leave", -1);
 function render$2(_ctx, _cache, $props, $setup, $data, $options) {
   var _a;
-  const _component_la_tools = __unplugin_components_0$6;
+  const _component_la_tools = __unplugin_components_0$5;
   const _component_ion_enter_outline = __unplugin_components_1$4;
   const _component_ion_exit_outline = __unplugin_components_2$2;
   return openBlock(), createElementBlock("div", _hoisted_1$2, [
@@ -547,7 +509,7 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   var _a, _b;
   const _component_room_logo = __unplugin_components_0$1;
   const _component_form_title = __unplugin_components_1$1;
-  const _component_account_badge = __unplugin_components_0$7;
+  const _component_account_badge = __unplugin_components_0$6;
   const _component_room_actions = __unplugin_components_3;
   const _component_room_features = __unplugin_components_4;
   const _component_la_pen = __unplugin_components_5$2;

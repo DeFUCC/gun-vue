@@ -1,6 +1,6 @@
 import { useUser, useColor } from "./useDraw.es.js";
 import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, createVNode$1 as createVNode, toDisplayString$1 as toDisplayString, createCommentVNode$1 as createCommentVNode, Fragment$1 as Fragment, withModifiers$1 as withModifiers, normalizeStyle$1 as normalizeStyle, computed$1 as computed, useTimeAgo } from "./vendor.es.js";
-import { useGift, giftState } from "./index.es.js";
+import { useGift, giftState } from "./index.es2.js";
 import __unplugin_components_0$1 from "./AccountAvatar.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 const _hoisted_1$1 = {

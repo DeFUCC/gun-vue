@@ -1,6 +1,6 @@
 import { reactive$1 as reactive } from "./vendor.es.js";
 import { useUser, useGun } from "./useDraw.es.js";
-import { giftPath } from "./index.es.js";
+import { giftPath } from "./index.es2.js";
 function useGifts() {
   const { user } = useUser();
   const gun = useGun();
