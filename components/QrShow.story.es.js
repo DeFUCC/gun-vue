@@ -52,7 +52,7 @@ const _sfc_main = {
       margin: 6
     });
     async function generate() {
-      const { SEA } = await import("./index.es.js");
+      const { SEA } = await import("./index.es2.js");
       state.data = (await SEA.pair()).pub;
     }
     const __returned__ = { QrShow, state, generate, defineAsyncComponent, reactive };

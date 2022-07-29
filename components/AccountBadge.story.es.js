@@ -54,7 +54,7 @@ const _sfc_main = {
     });
     function mySetup() {
       onMounted(async () => {
-        const { useGuests } = await import("./index.es.js");
+        const { useGuests } = await import("./index.es2.js");
         const { guests } = useGuests();
         watchOnce(guests, (g) => {
           state.pub = Object.keys(guests)[0];

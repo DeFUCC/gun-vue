@@ -89,7 +89,7 @@ const _sfc_main = {
       size: 40
     });
     async function generate() {
-      const { SEA } = await import("./index.es.js");
+      const { SEA } = await import("./index.es2.js");
       gift.from = (await SEA.pair()).pub;
       gift.to = (await SEA.pair()).pub;
     }
@@ -99,7 +99,7 @@ const _sfc_main = {
       });
     });
     watch(gift, async () => {
-      const { hashObj } = await import("./index.es.js");
+      const { hashObj } = await import("./index.es2.js");
       hashed.value = await hashObj(gift);
     });
     const __returned__ = { GiftCard, gift, hashed, state, generate, defineAsyncComponent, onMounted, reactive, ref, watch, nextTick, computedAsync };

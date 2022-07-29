@@ -1,4 +1,4 @@
-import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, withDirectives$1 as withDirectives, vModelText$1 as vModelText, withKeys$1 as withKeys, withModifiers$1 as withModifiers, createVNode$1 as createVNode, createCommentVNode$1 as createCommentVNode, ref$1 as ref, onMounted$1 as onMounted, toRef, withCtx$1 as withCtx, Fragment$1 as Fragment, renderList$1 as renderList, createBlock$1 as createBlock, normalizeStyle$1 as normalizeStyle, TransitionGroup, watch$1 as watch, nextTick$1 as nextTick, toDisplayString$1 as toDisplayString, computed$1 as computed, useMediaQuery$1 as useMediaQuery, onClickOutside$1 as onClickOutside, reactive$1 as reactive, watchEffect$1 as watchEffect, useCssVars$1 as useCssVars, unref$1 as unref, forceGraph, useBrowserLocation, useClipboard, useShare, Editor, renderSlot$1 as renderSlot, createTextVNode$1 as createTextVNode } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, withDirectives$1 as withDirectives, vModelText$1 as vModelText, withKeys$1 as withKeys, withModifiers$1 as withModifiers, createVNode$1 as createVNode, createCommentVNode$1 as createCommentVNode, ref$1 as ref, onMounted$1 as onMounted, toRef, withCtx$1 as withCtx, Fragment$1 as Fragment, renderList$1 as renderList, createBlock$1 as createBlock, normalizeStyle$1 as normalizeStyle, TransitionGroup, watch$1 as watch, nextTick$1 as nextTick, toDisplayString$1 as toDisplayString, computed$1 as computed, useMediaQuery$1 as useMediaQuery, onClickOutside$1 as onClickOutside, reactive$1 as reactive, watchEffect$1 as watchEffect, useCssVars$1 as useCssVars, unref$1 as unref, forceGraph, useBrowserLocation, useClipboard, useShare, k, renderSlot$1 as renderSlot, createTextVNode$1 as createTextVNode } from "./vendor.es.js";
 import "./AccountAvatar.es.js";
 import __unplugin_components_0$2 from "./AccountBadge.es.js";
 import "./AccountHome.es.js";
@@ -331,7 +331,7 @@ const _sfc_main$n = {
     const gun2 = useGun();
     const { user: user2 } = useUser();
     const def = ref();
-    gun2.get("dict").get("#def").get(props.hash).once((d, k) => {
+    gun2.get("dict").get("#def").get(props.hash).once((d, k2) => {
       def.value = JSON.parse(d);
     });
     const links = useDictRecordsFor(props.hash);
@@ -389,7 +389,7 @@ const _sfc_main$k = {
     const gun2 = useGun();
     const { user: user2 } = useUser();
     const def = ref();
-    gun2.get("dict").get("#def").get(props.hash).once((d, k) => {
+    gun2.get("dict").get("#def").get(props.hash).once((d, k2) => {
       def.value = JSON.parse(d);
     });
     const links = useDictRecordsFor(props.hash);
@@ -733,7 +733,7 @@ const _sfc_main$7 = {
     const { user: user2 } = useUser();
     const starred = ref(false);
     const myStar = user2.db.get("posts").get(`${props.tag}`).get(props.hash);
-    myStar.on((d, k) => {
+    myStar.on((d, k2) => {
       starred.value = d;
     });
     function toggleStar(tag = props.tag, hash = props.hash) {
@@ -778,13 +778,14 @@ const _sfc_main$5 = {
     expose();
     const props = __props;
     const { user: user2 } = useUser();
+    const md = useMd();
     const { project } = useProject(toRef(props, "path"));
     const editable = computed(() => props.path.includes(user2.pub));
     const text = ref("");
     watchEffect(() => {
       text.value = project.value.text;
     });
-    const __returned__ = { props, user: user2, project, editable, text, useUser, useProject, updateProjectField, toRef, ref, computed, watchEffect, MdEditor: Editor };
+    const __returned__ = { props, user: user2, md, project, editable, text, useUser, useProject, updateProjectField, useMd, toRef, ref, computed, watchEffect, Ink: k };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
   }

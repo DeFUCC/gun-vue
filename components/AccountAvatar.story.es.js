@@ -66,7 +66,7 @@ const _sfc_main = {
       border: 2
     });
     async function generate() {
-      const { SEA } = await import("./index.es.js");
+      const { SEA } = await import("./index.es2.js");
       const pair = await SEA.pair();
       state.pub = pair.pub;
     }
