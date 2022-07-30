@@ -1,6 +1,6 @@
-import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, withDirectives$1 as withDirectives, vModelText$1 as vModelText, withKeys$1 as withKeys, withModifiers$1 as withModifiers, createVNode$1 as createVNode, createCommentVNode$1 as createCommentVNode, ref$1 as ref, onMounted$1 as onMounted, toRef, withCtx$1 as withCtx, Fragment$1 as Fragment, renderList$1 as renderList, createBlock$1 as createBlock, normalizeStyle$1 as normalizeStyle, TransitionGroup, watch$1 as watch, nextTick$1 as nextTick, toDisplayString$1 as toDisplayString, computed$1 as computed, useMediaQuery$1 as useMediaQuery, onClickOutside$1 as onClickOutside, reactive$1 as reactive, watchEffect$1 as watchEffect, useCssVars$1 as useCssVars, unref$1 as unref, forceGraph, useBrowserLocation, useClipboard, useShare, k, renderSlot$1 as renderSlot, createTextVNode$1 as createTextVNode } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, withDirectives$1 as withDirectives, vModelText$1 as vModelText, withKeys$1 as withKeys, withModifiers$1 as withModifiers, createVNode$1 as createVNode, createCommentVNode$1 as createCommentVNode, ref$1 as ref, onMounted$1 as onMounted, toRef, createBlock$1 as createBlock, computed$1 as computed, refDebounced$1 as refDebounced, watch$1 as watch, nextTick$1 as nextTick, VirtualList, toDisplayString$1 as toDisplayString, useMediaQuery$1 as useMediaQuery, onClickOutside$1 as onClickOutside, reactive$1 as reactive, watchEffect$1 as watchEffect, useCssVars$1 as useCssVars, unref$1 as unref, forceGraph, useBrowserLocation, useClipboard, useShare, k, normalizeStyle$1 as normalizeStyle, renderSlot$1 as renderSlot, createTextVNode$1 as createTextVNode } from "./vendor.es.js";
 import "./AccountAvatar.es.js";
-import __unplugin_components_0$2 from "./AccountBadge.es.js";
+import __unplugin_components_0$1 from "./AccountBadge.es.js";
 import "./AccountHome.es.js";
 import "./AccountSelect.es.js";
 import "./AccountStars.es.js";
@@ -49,7 +49,7 @@ import "./UserProfile.es.js";
 import "./UserRooms.es.js";
 import "./UtilGraph.es.js";
 import "./UtilRelay.es.js";
-const _hoisted_1$4 = {
+const _hoisted_1$3 = {
   preserveAspectRatio: "xMidYMid meet",
   viewBox: "0 0 32 32",
   width: "1.2em",
@@ -63,10 +63,10 @@ const _hoisted_3$2 = [
   _hoisted_2$3
 ];
 function render$4(_ctx, _cache) {
-  return openBlock(), createElementBlock("svg", _hoisted_1$4, _hoisted_3$2);
+  return openBlock(), createElementBlock("svg", _hoisted_1$3, _hoisted_3$2);
 }
-var __unplugin_components_0$1 = { name: "la-comment-dots", render: render$4 };
-const _hoisted_1$3 = {
+var __unplugin_components_0 = { name: "la-comment-dots", render: render$4 };
+const _hoisted_1$2 = {
   key: 0,
   class: "flex gap-2"
 };
@@ -75,8 +75,8 @@ const _hoisted_2$2 = {
   class: "p-4 flex flex-col items-center"
 };
 function render$3(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_la_comment_dots = __unplugin_components_0$1;
-  return $setup.user.pub ? (openBlock(), createElementBlock("div", _hoisted_1$3, [
+  const _component_la_comment_dots = __unplugin_components_0;
+  return $setup.user.pub ? (openBlock(), createElementBlock("div", _hoisted_1$2, [
     withDirectives(createBaseVNode("textarea", {
       class: "p-2 rounded-xl bg-light-200 flex-1",
       "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => $setup.message = $event),
@@ -117,28 +117,14 @@ const _sfc_main$w = {
 };
 _sfc_main$w.__file = "src/chat/ChatInput.vue";
 var __unplugin_components_2 = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["render", render$3], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/chat/ChatInput.vue"]]);
-const _hoisted_1$2 = {
-  class: "flex flex-col bg-opacity-80 p-4 gap-2 overflow-y-scroll scroll-smooth flex-auto",
-  ref: "chatWindow"
-};
 function render$2(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_chat_message = __unplugin_components_0;
-  return openBlock(), createElementBlock("div", _hoisted_1$2, [
-    createVNode(TransitionGroup, { name: "fade" }, {
-      default: withCtx(() => [
-        (openBlock(true), createElementBlock(Fragment, null, renderList($props.messages, (message, key) => {
-          return openBlock(), createBlock(_component_chat_message, {
-            style: normalizeStyle({ order: Math.round(Number(message.timestamp) / 1e3) - 1640995200 }),
-            key,
-            author: message.author,
-            timestamp: message.timestamp,
-            text: message.text
-          }, null, 8, ["style", "author", "timestamp", "text"]);
-        }), 128))
-      ]),
-      _: 1
-    })
-  ], 512);
+  return openBlock(), createBlock($setup["VirtualList"], {
+    class: "flex flex-col bg-opacity-80 p-4 gap-2 overflow-y-scroll scroll-smooth flex-auto",
+    ref: "list",
+    "data-key": "timestamp",
+    "data-sources": $setup.sorted,
+    "data-component": $setup.ChatMessage
+  }, null, 8, ["data-sources"]);
 }
 const _sfc_main$v = {
   __name: "ChatMessages",
@@ -148,13 +134,16 @@ const _sfc_main$v = {
   setup(__props, { expose }) {
     expose();
     const props = __props;
-    const chatWindow = ref();
-    watch(() => props.messages, () => {
+    const list = ref();
+    const messageArray = computed(() => Object.values(props.messages || {}));
+    const debList = refDebounced(messageArray);
+    const sorted = computed(() => debList.value.sort((a, b) => a.timestamp > b.timestamp ? 1 : -1));
+    watch(debList, () => {
       nextTick(() => {
-        chatWindow.value.scrollTo(0, chatWindow.value.scrollHeight);
+        list.value.scrollToBottom();
       });
     }, { deep: true });
-    const __returned__ = { props, chatWindow, ref, watch, nextTick };
+    const __returned__ = { props, list, messageArray, debList, sorted, ref, watch, nextTick, computed, refDebounced, VirtualList, ChatMessage };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
   }
@@ -847,7 +836,7 @@ const _hoisted_2 = /* @__PURE__ */ createBaseVNode("div", { class: "flex-1" }, n
 const _hoisted_3 = { class: "ml-2 text-sm opacity-20 hover_opacity-80 transition cursor-default text-dark-200" };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _a, _b;
-  const _component_account_badge = __unplugin_components_0$2;
+  const _component_account_badge = __unplugin_components_0$1;
   return openBlock(), createElementBlock("div", {
     class: "p-1 flex flex-col w-full gap-1",
     style: normalizeStyle({ alignItems: $setup.isMe ? "end" : "start" })
@@ -858,10 +847,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [
       createVNode(_component_account_badge, {
         class: "opacity-50 hover_opacity-90 transition",
-        pub: $props.author,
+        pub: $props.source.author,
         showName: true,
         size: 20,
-        onClick: _cache[0] || (_cache[0] = ($event) => $setup.selectedUser.pub = $props.author)
+        onClick: _cache[0] || (_cache[0] = ($event) => $setup.selectedUser.pub = $props.source.author)
       }, null, 8, ["pub"]),
       createBaseVNode("div", _hoisted_1, toDisplayString((_a = $setup.dateTime) == null ? void 0 : _a.time), 1),
       _hoisted_2,
@@ -869,10 +858,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     ], 4),
     createBaseVNode("div", {
       class: "px-2 py-1 bg-light-300 bg-opacity-80 rounded-b-xl max-w-max break-all overflow-hidden",
-      style: normalizeStyle({ borderTopLeftRadius: $setup.isMe ? "12px" : "0px", borderTopRightRadius: $setup.isMe ? "0px" : "12px", fontSize: $props.text == $setup.getFirstEmoji($props.text) ? "4em" : "1em" })
+      style: normalizeStyle({ borderTopLeftRadius: $setup.isMe ? "12px" : "0px", borderTopRightRadius: $setup.isMe ? "0px" : "12px", fontSize: $props.source.text == $setup.getFirstEmoji($props.source.text) ? "4em" : "1em" })
     }, [
       renderSlot(_ctx.$slots, "default", {}, () => [
-        createTextVNode(toDisplayString($props.text), 1)
+        createTextVNode(toDisplayString($props.source.text), 1)
       ])
     ], 4)
   ], 4);
@@ -880,18 +869,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 const _sfc_main = {
   __name: "ChatMessage",
   props: {
-    author: String,
-    timestamp: [String, Number],
-    text: String
+    source: {
+      type: Object,
+      default: {
+        author: "",
+        timestamp: "",
+        text: "empty"
+      }
+    }
   },
   setup(__props, { expose }) {
     expose();
     const props = __props;
     const dateTime = computed(() => {
-      return formatDate(Number(props.timestamp));
+      return formatDate(Number(props.source.timestamp));
     });
     const { user: user2 } = useUser();
-    const isMe = computed(() => props.author == user2.pub);
+    const isMe = computed(() => props.source.author == user2.pub);
     function formatDate(timestamp) {
       if (!timestamp)
         return;
@@ -910,9 +904,9 @@ const _sfc_main = {
   }
 };
 _sfc_main.__file = "src/chat/ChatMessage.vue";
-var __unplugin_components_0 = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", render], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/chat/ChatMessage.vue"]]);
-var ChatMessage = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+var ChatMessage = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", render], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/chat/ChatMessage.vue"]]);
+var ChatMessage$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  "default": __unplugin_components_0
+  "default": ChatMessage
 }, Symbol.toStringTag, { value: "Module" }));
-export { ChatMessage, ChatRoom$1 as ChatRoom };
+export { ChatMessage$1 as ChatMessage, ChatRoom$1 as ChatRoom };
