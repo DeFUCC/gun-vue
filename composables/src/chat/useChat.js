@@ -52,6 +52,7 @@ export function useChat() {
     return msgs;
   });
 
+
   function send(message) {
     if (!message) return;
     let now = Date.now();
@@ -65,6 +66,6 @@ export function useChat() {
     addChat,
     currentChat,
     chats,
-    messages,
+    messages
   };
 }

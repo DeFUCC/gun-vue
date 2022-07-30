@@ -76,6 +76,7 @@ importers:
       vite: 2.9.14
       vite-plugin-windicss: ^1.8.7
       vue: ^3.2.37
+      vue3-virtual-scroll-list: ^0.2.0
       windicss: ^3.5.6
     dependencies:
       '@gun-vue/composables': link:../composables
@@ -90,6 +91,7 @@ importers:
       jsqr: 1.4.0
       url-regex: 5.0.0
       vue: 3.2.37
+      vue3-virtual-scroll-list: 0.2.0_vue@3.2.37
     devDependencies:
       '@vitejs/plugin-vue': 2.3.3_vite@2.9.14+vue@3.2.37
       histoire: 0.8.4_vite@2.9.14+vue@3.2.37
@@ -7410,6 +7412,14 @@ packages:
       '@vue/runtime-dom': 3.2.37
       '@vue/server-renderer': 3.2.37_vue@3.2.37
       '@vue/shared': 3.2.37
+
+  /vue3-virtual-scroll-list/0.2.0_vue@3.2.37:
+    resolution: {integrity: sha512-BPReKBDAVvJ+VgBAHK0qLLhZpOkl/bgB3q+8Do5moc9KUJKFDf8o0/tjAUKaim5ihj254IuJGFyZCUl4aWW/0w==}
+    peerDependencies:
+      vue: '>=3.0.0'
+    dependencies:
+      vue: 3.2.37
+    dev: false
 
   /w3c-keyname/2.2.5:
     resolution: {integrity: sha512-WJrK7i6w+ULuZsGscCezbCH4Aev5U3xY87vnSimzzEgPQhb0Sa0a1rE3c2jtEwrFtSfi61Jefw3jI5/DD/3jbQ==}
