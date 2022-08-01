@@ -6,11 +6,7 @@ const props = defineProps({
   gift: {
     type: Object,
     default: {
-      project: '',
-      from: '',
-      to: '',
-      qn: 0,
-      ql: ''
+
     }
   }
 })
@@ -28,28 +24,35 @@ const { project } = useProject(props.gift?.project)
 </script>
 
 <template lang='pug'>
-.flex
+.flex.flex-col
+  .grid.p-4.gap-2.items-center(style="grid-template-columns: 1fr 10fr;")
 
-  .w-160px.p-4.text-center
-    user-icon.pointer-events-none(:size="150")
-    .text-lg {{ user.name }}
-  .flex-1
-    .font-mono.text-sm.m-4.opacity-50.break-all {{ gift }}
-    .p-4
-      account-badge(:pub="gift.to" v-if="gift.to")
-        .flex-1
-        la-times.mr-2(@click="gift.to = ''")
-      .flex.flex-col(v-else)
-        .font-bold USER SELECT OF {{ count.total }}
+    .p-2 FROM
+    .flex-1 
+      account-badge(:pub="user.pub")
 
-        .flex.flex-wrap.gap-3
-          account-badge(v-for="guest of guests" :key="guest" @click="gift.to = guest.pub" :pub="guest.pub")
-    .p-4.bg-light-300.bg-opacity-30.flex.flex-wrap.gap-4
-      input(v-model="gift.qn"  placeholder="Quantity")
-      input(v-model="gift.ql" placeholder="Quality")
-      textarea(v-model="gift.wish" placeholder="Wish")
-    .flex
-      ProjectCard(:project="project" :path="gift.project")
+    .p-2 TO
+    account-badge(:pub="gift.to" v-if="gift.to")
+      .flex-1
+      la-times.mr-2(@click="gift.to = ''")
+    .flex.flex-col(v-else)
+      .font-bold USER SELECT OF {{ count.total }}
+      .flex.flex-wrap.gap-3
+        account-badge(v-for="guest of guests" :key="guest" @click="gift.to = guest.pub" :pub="guest.pub")
+
+    .p-2 Project
+    project-card(:project="project" :path="gift.project")
+
+    .p-2 Quantity
+    input(v-model="gift.qn"  placeholder="Quantity")
+
+    .p-2 Quality
+    input(v-model="gift.ql" placeholder="Quality")
+
+    .p-2 Wish 
+    textarea(v-model="gift.wish" placeholder="Wish")
+
+
     button.button(@click="propose(); $emit('sent')") Propose
-
+    .font-mono.text-sm.m-4.opacity-50.break-all.col-span-2 {{ gift }}
 </template>

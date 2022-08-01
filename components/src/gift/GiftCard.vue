@@ -30,7 +30,7 @@ const time = useTimeAgo(gift.date)
       .text-xl.font-bold {{ gift.qn }}
     .flex.flex-col
       .text-lg.font-bold {{ gift.ql }}
-    .flex-1
+    .flex-1 
     .flex-auto(v-if="gift.wish") {{ gift.wish }}
 
     .p-2(v-if="gift.date") {{ time }}
