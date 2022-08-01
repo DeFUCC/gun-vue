@@ -58,7 +58,7 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 900,
         "resizable": true,
         "title": "Gun Vue",
         "width": 800,

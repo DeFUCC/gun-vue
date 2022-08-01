@@ -1,13 +1,29 @@
 <script setup>
-import { useGuests, useNewGift, useUser } from '#composables'
+import { useGuests, useNewGift, useUser, useProject } from '#composables'
+import ProjectCard from '../project/ProjectCard.vue';
+
+const props = defineProps({
+  gift: {
+    type: Object,
+    default: {
+      project: '',
+      from: '',
+      to: '',
+      qn: 0,
+      ql: ''
+    }
+  }
+})
 
 const { user } = useUser()
 
-const { gift, propose } = useNewGift()
+const { gift, propose } = useNewGift(props.gift)
 
 const { guests, count } = useGuests()
 
 const emit = defineEmits(['sent'])
+
+const { project } = useProject(props.gift?.project)
 
 </script>
 
@@ -32,6 +48,8 @@ const emit = defineEmits(['sent'])
       input(v-model="gift.qn"  placeholder="Quantity")
       input(v-model="gift.ql" placeholder="Quality")
       textarea(v-model="gift.wish" placeholder="Wish")
+    .flex
+      ProjectCard(:project="project" :path="gift.project")
     button.button(@click="propose(); $emit('sent')") Propose
 
 </template>

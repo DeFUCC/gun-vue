@@ -27,6 +27,7 @@ const bg = computed(() => useBackground({ pub: props.pub, size: 600, light: 0.5,
   account-profile.p-4(:pub="pub")
   .p-4.flex.flex-col
     mate-list(:pub="pub" @browse="$emit('browse', $event)")
+    gift-wallets(:pub="pub")
     //- account-stars(:pub="pub" @feed="$emit('feed', $event)")
     account-reactions.m-2(:pub="pub" @post="$emit('post', $event)")
 </template>

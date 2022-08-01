@@ -24,7 +24,8 @@ function isSafe() {
       user-profile
       chat-private-list(@chat="$emit('chat', $event)")
       mate-list(:pub="user.pub"  @browse="$emit('user', $event)")
-      user-rooms(@browse="$emit('room', $event)")
+      gift-wallets(:pub="user.pub")
+      UserRooms(@browse="$emit('room', $event)")
     button.p-4.m-4.rounded-xl.font-bold.text-lg.shadow-md(
       @click="$emit('user', user.pub); $emit('close')"
       :style="{ backgroundColor: user.color }"

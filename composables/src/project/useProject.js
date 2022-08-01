@@ -45,6 +45,7 @@ export function updateProjectField(title, field, value) {
 
 
 export function useProject(path = ref()) {
+  path = ref(path)
   const gun = useGun()
   const project = computed(() => {
     const proj = reactive({})

@@ -41,9 +41,11 @@ watchEffect(() => {
     form-title(
       :text="project.title" 
       :editable="editable" 
-      @update="updateProjectField(props.path.slice(0, -88), 'title', $event)")
+      @update="updateProjectField(path.slice(0, -88), 'title', $event)")
 
     account-badge.absolute.bottom-4.right-4(:pub="path.slice(-87)")
+  .flex.items-center.justify-center
+    gift-button(:gift="{ project: path, to: path.slice(-87) }")
   .flex.flex-col.gap-2.m-2.bg-light-200.p-2.rounded-xl.shadow
     .p-2.markdown-body(v-html="md.render(text || '')" v-if="!editable")
     Ink(v-else :modelValue="text" @update:modelValue="updateProjectField(path.slice(0, -88), 'text', $event)")
