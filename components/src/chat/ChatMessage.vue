@@ -4,7 +4,8 @@ import { selectedUser, useUser, getFirstEmoji } from '..';
 
 const props = defineProps({
   source: {
-    type: Object, default: {
+    type: Object,
+    default: {
       author: '',
       timestamp: '',
       text: 'empty'

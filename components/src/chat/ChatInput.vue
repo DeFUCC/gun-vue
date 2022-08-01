@@ -13,6 +13,7 @@ function send() {
   message.value = ''
 }
 
+
 </script>
 
 <template lang="pug">

@@ -14,7 +14,7 @@ const messageArray = computed(() => Object.values(props.messages || {}))
 const debList = refDebounced(messageArray)
 const sorted = computed(() => debList.value.sort((a, b) => a.timestamp > b.timestamp ? 1 : -1))
 
-watch(debList, () => {
+watch(sorted, () => {
   nextTick(() => {
     list.value.scrollToBottom()
   });
