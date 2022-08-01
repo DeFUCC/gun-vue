@@ -376,7 +376,7 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
     ], 6),
     $setup.draw.enabled ? (openBlock(), createElementBlock("div", {
       key: 0,
-      class: normalizeClass(["flex flex-wrap text-xl p-2 gap-2 justify-center rounded-md bg-main shadow transition-opacity duration-200 dark_border dark_border-gray-400 dark_border-opacity-10 bg-light-300 dark_bg-dark-300 bg-opacity-30", $setup.draw.enabled ? "" : $setup.draw.pinned ? "opacity-40 hover_opacity-90" : "opacity-0 pointer-events-none"]),
+      class: normalizeClass(["flex flex-wrap text-xl p-2 gap-2 justify-center rounded-md bg-main shadow transition-opacity duration-200 dark_border dark_border-gray-400 dark_border-opacity-10 bg-light-300 dark_bg-dark-300 bg-opacity-30", $setup.draw.enabled ? "" : $setup.draw.pinned ? "opacity-40 hover_opacity-90" : "pointer-events-none"]),
       "storage-key": "slidev-drawing-pos",
       "initial-x": 10,
       "initial-y": 10
