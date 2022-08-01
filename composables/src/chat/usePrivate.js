@@ -5,7 +5,7 @@
 
 import { reactive, computed, ref } from "vue"
 import { useAccount, useUser, useGun, SEA } from '..'
-
+import { refDebounced } from '@vueuse/core'
 
 export function usePrivateChat(pub, { parse = true } = {}) {
 
@@ -65,9 +65,14 @@ export function usePrivateChat(pub, { parse = true } = {}) {
     gun.user().get('chat').get(pub).get(today).set(enc)
   }
 
+  const messageList = computed(() => Object.values(messages || {}))
+  const debList = refDebounced(messageList)
+  const sorted = computed(() => debList.value.sort((a, b) => a.timestamp > b.timestamp ? 1 : -1))
+
   return {
     send,
     messages,
+    sorted
   };
 }
 

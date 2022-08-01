@@ -6,6 +6,7 @@
 import { ref, reactive, computed } from "vue";
 import slugify from "slugify";
 import { useUser, useGun, currentRoom } from "..";
+import { refDebounced } from '@vueuse/core'
 
 export function useChat() {
   const gun = useGun();
@@ -52,6 +53,10 @@ export function useChat() {
     return msgs;
   });
 
+  const messageList = computed(() => Object.values(messages.value || {}))
+  const debList = refDebounced(messageList)
+  const sorted = computed(() => debList.value.sort((a, b) => a.timestamp > b.timestamp ? 1 : -1))
+
 
   function send(message) {
     if (!message) return;
@@ -66,6 +71,7 @@ export function useChat() {
     addChat,
     currentChat,
     chats,
-    messages
+    messages,
+    sorted
   };
 }

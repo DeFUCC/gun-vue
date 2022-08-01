@@ -9,7 +9,7 @@ const emit = defineEmits('user')
 
 const { account } = useAccount(toRef(props, 'pub'));
 
-const { send, messages } = usePrivateChat(props.pub)
+const { send, sorted } = usePrivateChat(props.pub)
 
 </script>
 
@@ -19,7 +19,7 @@ const { send, messages } = usePrivateChat(props.pub)
     account-avatar(:pub="pub" @click="$emit('user')")
     .text-lg.font-bold.p-2 {{ account.profile?.name }}
     .text-lg {{ account.lastSeen }}
-  chat-messages.bg-dark-50(:messages="messages")
+  chat-messages.bg-dark-50(:messages="sorted")
   .flex-0.bg-light-900.p-4
     chat-input(@submit="send($event)")
 </template>

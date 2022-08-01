@@ -19,13 +19,13 @@ function click() {
   audio.play()
 }
 
-const { send, currentChat, messages } = useChat()
+const { send, currentChat, sorted } = useChat()
 
 watch(() => props.topic, topic => {
   currentChat.value = topic
 }, { immediate: true })
 
-watch(messages, () => {
+watch(sorted, () => {
   click()
 }, { deep: true });
 
@@ -37,7 +37,7 @@ watch(messages, () => {
 .flex.flex-col.overflow-y-scroll(style="flex: 1000 1 auto")
   .px-4.py-6.flex.flex-wrap.items-center.text-center
     .flex-1.ml-2.font-bold {{ currentChat }}
-  chat-messages(:messages="messages")
+  chat-messages(:messages="sorted")
   .p-4.bg-dark-50.bg-opacity-80.flex.gap-2.flex.sticky.bottom-0
     chat-input.flex-auto(@submit="send($event)")
 </template>
