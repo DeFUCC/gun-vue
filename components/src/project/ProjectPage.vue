@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, useProject, updateProjectField, useMd } from '#composables';
+import { useUser, useProject, updateProjectField, useMd, useProjectGifts } from '#composables';
 import { toRef, ref, computed, watchEffect } from 'vue'
 import InkMde from 'ink-mde/vue'
 
@@ -23,7 +23,7 @@ watchEffect(() => {
   text.value = project.value.text
 })
 
-
+const { gifts } = useProjectGifts(props.path)
 
 </script>
 
@@ -53,4 +53,12 @@ watchEffect(() => {
     InkMde(v-else :modelValue="text" @update:modelValue="updateProjectField(path.slice(0, -88), 'text', $event)")
 
   pre.p-4.my-4.text-xs.overflow-scroll {{ project }}
+  .p-2 
+    .text-xl.my-4 Gifts
+    .flex.flex-wrap.gap-2
+      gift-card.cursor-pointer(
+        @click="$emit('open', hash)"
+        v-for="(gift, hash) in gifts" :key="hash"
+        :hash="hash"
+        )
 </template>
