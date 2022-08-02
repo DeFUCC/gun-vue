@@ -11,7 +11,7 @@ import Fuse from "fuse.js";
 
 
 
-export function useProjects() {
+export function useProjects(pub = currentRoom.pub) {
 
   const search = ref('')
   const projects = reactive({})
@@ -36,25 +36,25 @@ export function useProjects() {
   const gun = useGun()
 
   gun
-    .user(currentRoom.pub)
+    .user(pub)
     .get(projectsPath)
     .map()
     .on((d, k) => {
       if (d == null) { delete projects[k]; return }
-      const data = { ...d }
+      const data = { ...d, path: k }
       delete data._
       projects[k] = data
     })
 
-  return { search, projects, candidates }
+  return { projects, search, candidates }
 }
 
 
-export function countProjects() {
+export function countProjects(pub = currentRoom.pub) {
   const list = reactive({})
   const gun = useGun()
   gun
-    .user(currentRoom.pub)
+    .user(pub)
     .get(projectsPath)
     .map()
     .on((d, k) => {

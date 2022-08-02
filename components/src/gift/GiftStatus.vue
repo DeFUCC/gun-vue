@@ -1,0 +1,15 @@
+<script setup>
+const props = defineProps({
+  state: {
+    type: [String, Boolean],
+    default: ''
+  }
+})
+</script>
+
+<template lang='pug'>
+.py-1.rounded-lg.flex.justify-center.text-center.text-sm.bg-dark-50.bg-opacity-20
+  la-check(v-if="state === true")
+  la-times(v-else-if="state === false")
+  .p-1(v-else) {{ state }}
+</template>

@@ -54,8 +54,8 @@ const props = defineProps({
         la-youtube.mx-1(v-if="project?.youtube")
         mdi-text-long.mx-1(v-if="project?.text")
         ui-link(:url="project?.link" v-if="project?.link")
-        .text-xs
-          slot
+        .flex-1
+        slot
     //- .flex.gap-1.rounded-xl.p-1.bg-dark-50.bg-opacity-20.flex-wrap.items-center(style="flex: 1 1 130px" v-if="actions")
     //- post-action-react(:authors="authors" @user="$emit('user', $event)" :hash="hash" :tag="tag" :back="back")
 

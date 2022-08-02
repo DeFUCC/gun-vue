@@ -8,22 +8,20 @@ const { gifts, to, from } = useMyGifts()
 <template lang='pug'>
 .flex.flex-col
   .text-lg My Gifts
-  .flex.flex-col
-    .text-lg.font-bold My accounts and wallets 
+  .text-lg.my-6.font-bold Sent
+  .flex.flex-wrap.gap-2
 
-  .flex.gap-2
-    .flex.flex-col
-      .text-lg Sent
-      gift-card(
-        v-for="(gift, hash) in from" 
-        :key="hash"
-        :hash="hash"
-        )
-    .flex.flex-col
-      .text-lg Received
-      gift-card(
-        v-for="(gift, hash) in to" 
-        :key="hash"
-        :hash="hash"
-        )
+    gift-card(
+      v-for="(gift, hash) in from" 
+      :key="hash"
+      :hash="hash"
+      )
+  .text-lg.my-6.font-bold Received
+  .flex.flex-wrap.gap-2
+
+    gift-card(
+      v-for="(gift, hash) in to" 
+      :key="hash"
+      :hash="hash"
+      )
 </template>

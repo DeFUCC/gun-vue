@@ -1,6 +1,8 @@
 <script setup>
 import { reactive, computed, ref } from 'vue'
 
+const emit = defineEmits(['sent'])
+
 const props = defineProps({
   gift: {
     type: Object,
@@ -16,9 +18,6 @@ const props = defineProps({
 
 const open = ref()
 
-function fund() {
-  console.log('funded!', props.gift)
-}
 
 </script>
 
@@ -26,5 +25,5 @@ function fund() {
 button.button(@click="open = true") Fund it now!
 ui-layer(:open="open" @close="open = false")
   .p-2
-    gift-form(:gift="gift")
+    gift-form(:gift="gift" @sent="open = false; $emit('sent', $event)")
 </template>

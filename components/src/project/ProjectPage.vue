@@ -1,7 +1,9 @@
 <script setup>
 import { useUser, useProject, updateProjectField, useMd } from '#composables';
 import { toRef, ref, computed, watchEffect } from 'vue'
-import Ink from 'ink-mde/vue'
+import InkMde from 'ink-mde/vue'
+
+const emit = defineEmits(['gift-sent'])
 
 const props = defineProps({
   path: { type: String, default: '' },
@@ -45,10 +47,10 @@ watchEffect(() => {
 
     account-badge.absolute.bottom-4.right-4(:pub="path.slice(-87)")
   .flex.items-center.justify-center
-    gift-button(:gift="{ project: path, to: path.slice(-87) }")
+    gift-button(:gift="{ project: path, to: path.slice(-87) }" @sent="$emit('gift-sent', $event)")
   .flex.flex-col.gap-2.m-2.bg-light-200.p-2.rounded-xl.shadow
     .p-2.markdown-body(v-html="md.render(text || '')" v-if="!editable")
-    Ink(v-else :modelValue="text" @update:modelValue="updateProjectField(path.slice(0, -88), 'text', $event)")
+    InkMde(v-else :modelValue="text" @update:modelValue="updateProjectField(path.slice(0, -88), 'text', $event)")
 
   pre.p-4.my-4.text-xs.overflow-scroll {{ project }}
 </template>

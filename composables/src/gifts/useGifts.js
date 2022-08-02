@@ -1,14 +1,9 @@
 import { useNow } from '@vueuse/core'
 import { SEA } from 'gun'
 import { reactive, computed } from 'vue'
-import { useGun, useUser, hashObj } from '..'
+import { useGun, useUser, hashObj, currentRoom } from '..'
 
 import { giftPath } from '.'
-
-
-
-
-
 
 export function useGifts() {
   const { user } = useUser()
@@ -18,29 +13,15 @@ export function useGifts() {
   const proposed = reactive({})
   const gifts = reactive({})
 
-
-  gun.get(giftPath).map().once(async (d, k) => {
-    try {
-      const obj = JSON.parse(d)
-
-      obj.sent = await gun.user(obj.from).get(giftPath).get(k)
-      obj.received = await gun.user(obj.to).get(giftPath).get(k)
-
-      if (d.includes(user?.pub)) {
-        my[k] = obj
+  gun.user(currentRoom.pub).get('gifts').map().once((data, key) => {
+    gun.get(giftPath).get(key.slice(0, -88)).once((d, k) => {
+      try {
+        const obj = JSON.parse(d)
+        gifts[k] = obj
+      } catch (e) {
+        // gifts[k] = d
       }
-
-      if (obj.sent) {
-        if (!obj.received)
-          proposed[k] = obj
-        else
-          gifts[k] = obj
-      }
-
-
-    } catch (e) {
-      // gifts[k] = d
-    }
+    })
   })
 
   return { my, proposed, gifts }

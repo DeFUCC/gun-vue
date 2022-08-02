@@ -200,6 +200,7 @@ export async function createRoom({ pair, name } = {}) {
       { tag: "chat", personal: true },
       { tag: "dict", personal: true },
       { tag: "projects", personal: true },
+      { tag: "gifts", personal: true },
     ],
   });
 
