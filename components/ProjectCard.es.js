@@ -1,6 +1,6 @@
 import { useUser, useColor, removeProject, currentRoom } from "./useDraw.es.js";
 import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, withModifiers$1 as withModifiers, createVNode$1 as createVNode, createCommentVNode$1 as createCommentVNode, createBaseVNode$1 as createBaseVNode, normalizeStyle$1 as normalizeStyle, toDisplayString$1 as toDisplayString, createBlock$1 as createBlock, renderSlot$1 as renderSlot, pushScopeId$1 as pushScopeId, popScopeId$1 as popScopeId } from "./vendor.es.js";
-import { __unplugin_components_4, __unplugin_components_2, __unplugin_components_3 } from "./youtube.es.js";
+import { __unplugin_components_4, __unplugin_components_0 as __unplugin_components_0$3, __unplugin_components_1 } from "./youtube.es.js";
 import __unplugin_components_0$2 from "./AccountBadge.es.js";
 import { __unplugin_components_0 as __unplugin_components_0$1 } from "./trash.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
@@ -32,13 +32,13 @@ const _hoisted_9 = {
   class: "statement"
 };
 const _hoisted_10 = { class: "flex items-center flex-wrap items-center mt-2 gap-2" };
-const _hoisted_11 = { class: "text-xs" };
+const _hoisted_11 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", { class: "flex-1" }, null, -1));
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k;
   const _component_la_trash = __unplugin_components_0$1;
   const _component_account_badge = __unplugin_components_0$2;
-  const _component_la_youtube = __unplugin_components_2;
-  const _component_mdi_text_long = __unplugin_components_3;
+  const _component_la_youtube = __unplugin_components_0$3;
+  const _component_mdi_text_long = __unplugin_components_1;
   const _component_ui_link = __unplugin_components_4;
   return openBlock(), createElementBlock("div", {
     class: "card",
@@ -87,9 +87,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             key: 2,
             url: (_k = $props.project) == null ? void 0 : _k.link
           }, null, 8, ["url"])) : createCommentVNode("v-if", true),
-          createBaseVNode("div", _hoisted_11, [
-            renderSlot(_ctx.$slots, "default", {}, void 0, true)
-          ])
+          _hoisted_11,
+          renderSlot(_ctx.$slots, "default", {}, void 0, true)
         ])
       ])
     ])

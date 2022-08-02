@@ -1,9 +1,9 @@
-import { __unplugin_components_0 } from "./times.es.js";
+import { __unplugin_components_2 as __unplugin_components_2$1 } from "./times.es.js";
 import { openBlock$1 as openBlock, createBlock$1 as createBlock, withCtx$1 as withCtx, withDirectives$1 as withDirectives, vShow$1 as vShow, createBaseVNode$1 as createBaseVNode, createVNode$1 as createVNode, createElementBlock$1 as createElementBlock, createCommentVNode$1 as createCommentVNode, renderSlot$1 as renderSlot, normalizeStyle$1 as normalizeStyle, TransitionGroup, Transition$1 as Transition } from "./vendor.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 const _hoisted_1 = { class: "fixed w-full h-full top-0 left-0 z-500 flex flex-col items-end" };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_la_times = __unplugin_components_0;
+  const _component_la_times = __unplugin_components_2$1;
   return openBlock(), createBlock(Transition, {
     name: "fade",
     persisted: ""
@@ -60,5 +60,5 @@ const _sfc_main = {
   }
 };
 _sfc_main.__file = "src/ui/UiPanel.vue";
-var __unplugin_components_1 = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", render], ["__scopeId", "data-v-a0c4bd64"], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/ui/UiPanel.vue"]]);
-export { __unplugin_components_1 };
+var __unplugin_components_2 = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", render], ["__scopeId", "data-v-a0c4bd64"], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/ui/UiPanel.vue"]]);
+export { __unplugin_components_2 };

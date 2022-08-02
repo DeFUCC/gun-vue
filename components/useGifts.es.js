@@ -1,28 +1,19 @@
 import { reactive$1 as reactive } from "./vendor.es.js";
-import { useUser, useGun } from "./useDraw.es.js";
-import { giftPath } from "./index.es2.js";
+import { useUser, useGun, currentRoom, giftPath } from "./useDraw.es.js";
 function useGifts() {
-  const { user } = useUser();
+  useUser();
   const gun = useGun();
   const my = reactive({});
   const proposed = reactive({});
   const gifts = reactive({});
-  gun.get(giftPath).map().once(async (d, k) => {
-    try {
-      const obj = JSON.parse(d);
-      obj.sent = await gun.user(obj.from).get(giftPath).get(k);
-      obj.received = await gun.user(obj.to).get(giftPath).get(k);
-      if (d.includes(user == null ? void 0 : user.pub)) {
-        my[k] = obj;
+  gun.user(currentRoom.pub).get("gifts").map().once((data, key) => {
+    gun.get(giftPath).get(key.slice(0, -88)).once((d, k) => {
+      try {
+        const obj = JSON.parse(d);
+        gifts[k] = obj;
+      } catch (e) {
       }
-      if (obj.sent) {
-        if (!obj.received)
-          proposed[k] = obj;
-        else
-          gifts[k] = obj;
-      }
-    } catch (e) {
-    }
+    });
   });
   return { my, proposed, gifts };
 }

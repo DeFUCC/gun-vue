@@ -1,10 +1,64 @@
-import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, toDisplayString$1 as toDisplayString, createCommentVNode$1 as createCommentVNode, createVNode$1 as createVNode, withCtx$1 as withCtx, normalizeStyle$1 as normalizeStyle, computed$1 as computed, createBaseVNode$1 as createBaseVNode, createBlock$1 as createBlock, TransitionGroup, Fragment$1 as Fragment, renderList$1 as renderList, Transition$1 as Transition, ref$1 as ref } from "./vendor.es.js";
-import { useColor, user } from "./useDraw.es.js";
-import { isEmoji, useMates } from "./useMates.es.js";
+import { useUser, useGun, useColor, user } from "./useDraw.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, createCommentVNode$1 as createCommentVNode, createVNode$1 as createVNode, toDisplayString$1 as toDisplayString, computed$1 as computed, reactive$1 as reactive, withCtx$1 as withCtx, normalizeStyle$1 as normalizeStyle, createBlock$1 as createBlock, TransitionGroup, Fragment$1 as Fragment, renderList$1 as renderList, Transition$1 as Transition, ref$1 as ref } from "./vendor.es.js";
 import __unplugin_components_0$1 from "./AccountBadge.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
+import { isEmoji, useMates } from "./useMates.es.js";
 import { __unplugin_components_0 as __unplugin_components_0$2, __unplugin_components_1 as __unplugin_components_1$1 } from "./angle-up.es.js";
 import { usePrivateChatCount } from "./usePrivate.es.js";
+const _hoisted_1$4 = { class: "flex flex-col p-4 w-full" };
+const _hoisted_2$3 = { class: "text-xl flex gap-2" };
+const _hoisted_3$2 = { key: 0 };
+const _hoisted_4$1 = /* @__PURE__ */ createBaseVNode("span", null, "wallets", -1);
+const _hoisted_5$1 = /* @__PURE__ */ createBaseVNode("div", { class: "flex-1" }, null, -1);
+const _hoisted_6 = { class: "flex flex-col" };
+const _hoisted_7 = {
+  key: 0,
+  action: "javascript:void(0)"
+};
+const _hoisted_8 = /* @__PURE__ */ createBaseVNode("button", { class: "button" }, "Add wallet", -1);
+const _hoisted_9 = [
+  _hoisted_8
+];
+function render$4(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_account_badge = __unplugin_components_0$1;
+  return openBlock(), createElementBlock("div", _hoisted_1$4, [
+    createBaseVNode("div", _hoisted_2$3, [
+      $setup.my ? (openBlock(), createElementBlock("span", _hoisted_3$2, "My")) : createCommentVNode("v-if", true),
+      _hoisted_4$1,
+      _hoisted_5$1,
+      createVNode(_component_account_badge, { pub: $props.pub }, null, 8, ["pub"])
+    ]),
+    createBaseVNode("div", _hoisted_6, [
+      createBaseVNode("p", null, toDisplayString($setup.wallets), 1)
+    ]),
+    $setup.user.pub == $props.pub ? (openBlock(), createElementBlock("form", _hoisted_7, _hoisted_9)) : createCommentVNode("v-if", true)
+  ]);
+}
+const _sfc_main$3 = {
+  __name: "GiftWallets",
+  props: {
+    pub: {
+      type: String,
+      default: ""
+    }
+  },
+  setup(__props, { expose }) {
+    expose();
+    const props = __props;
+    const { user: user2 } = useUser();
+    const gun = useGun();
+    const my = computed(() => user2.pub == props.pub);
+    const wallets = reactive({});
+    gun.user(props.pub).get("wallets").map().on((d, k) => {
+      wallets[k] = d;
+    });
+    const __returned__ = { props, user: user2, gun, my, wallets, useGun, useUser, computed, reactive };
+    Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
+    return __returned__;
+  }
+};
+_sfc_main$3.__file = "src/gift/GiftWallets.vue";
+var __unplugin_components_7 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", render$4], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/gift/GiftWallets.vue"]]);
 const _hoisted_1$3 = {
   key: 0,
   class: "px-2 text-2xl"
@@ -165,4 +219,4 @@ const _sfc_main = {
 };
 _sfc_main.__file = "src/chat/private/ChatPrivateCount.vue";
 var __unplugin_components_1 = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", render], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/chat/private/ChatPrivateCount.vue"]]);
-export { __unplugin_components_1, __unplugin_components_6 };
+export { __unplugin_components_1, __unplugin_components_6, __unplugin_components_7 };

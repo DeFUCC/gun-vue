@@ -1,8 +1,8 @@
 import { useColor, useUser } from "./useDraw.es.js";
 import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, withModifiers$1 as withModifiers, createVNode$1 as createVNode, createCommentVNode$1 as createCommentVNode, withDirectives$1 as withDirectives, vModelText$1 as vModelText, toDisplayString$1 as toDisplayString, normalizeStyle$1 as normalizeStyle, computed$1 as computed, ref$1 as ref, withCtx$1 as withCtx, Fragment$1 as Fragment, renderList$1 as renderList, TransitionGroup, vShow$1 as vShow, createBlock$1 as createBlock } from "./vendor.es.js";
 import { useReaction, useReactions, countRating } from "./useReactions.es.js";
-import __unplugin_components_0$2 from "./AccountBadge.es.js";
-import { __unplugin_components_0 as __unplugin_components_0$1 } from "./times.es.js";
+import __unplugin_components_0$1 from "./AccountBadge.es.js";
+import { __unplugin_components_2 as __unplugin_components_2$1 } from "./times.es.js";
 import { __unplugin_components_1 as __unplugin_components_1$1 } from "./plus.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 const _hoisted_1$2 = {
@@ -29,7 +29,7 @@ const _hoisted_1$1 = {
 const _hoisted_2$1 = { class: "px-2 py-1 text-xl w-36px" };
 function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_la_plus = __unplugin_components_1$1;
-  const _component_la_times = __unplugin_components_0$1;
+  const _component_la_times = __unplugin_components_2$1;
   const _component_la_minus = __unplugin_components_2;
   return $setup.user.pub ? (openBlock(), createElementBlock("button", {
     key: 0,
@@ -101,7 +101,7 @@ const _hoisted_5 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _a;
   const _component_post_reaction_button = __unplugin_components_0;
-  const _component_account_badge = __unplugin_components_0$2;
+  const _component_account_badge = __unplugin_components_0$1;
   return openBlock(), createElementBlock("div", _hoisted_1, [
     createBaseVNode("div", _hoisted_2, toDisplayString($setup.rating > 0 ? "+" : "") + toDisplayString($setup.rating), 1),
     createVNode(_component_post_reaction_button, {

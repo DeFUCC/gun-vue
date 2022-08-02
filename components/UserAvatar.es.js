@@ -1,6 +1,6 @@
 import { useUser, useGun, hashText } from "./useDraw.es.js";
 import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createVNode$1 as createVNode, withCtx$1 as withCtx, createBaseVNode$1 as createBaseVNode, createBlock$1 as createBlock, withModifiers$1 as withModifiers, ref$1 as ref } from "./vendor.es.js";
-import { __unplugin_components_2, __unplugin_components_0 as __unplugin_components_0$2, __unplugin_components_1 } from "./camera.es.js";
+import { __unplugin_components_3, __unplugin_components_1, __unplugin_components_2 } from "./camera.es.js";
 import __unplugin_components_0$1 from "./AccountAvatar.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 import "./useFile.es.js";
@@ -11,9 +11,9 @@ const _hoisted_1 = { class: "flex flex-col relative items-center justify-center"
 const _hoisted_2 = { class: "text-2xl" };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_account_avatar = __unplugin_components_0$1;
-  const _component_la_camera = __unplugin_components_0$2;
-  const _component_la_trash_alt = __unplugin_components_1;
-  const _component_form_picture = __unplugin_components_2;
+  const _component_la_camera = __unplugin_components_1;
+  const _component_la_trash_alt = __unplugin_components_2;
+  const _component_form_picture = __unplugin_components_3;
   return openBlock(), createElementBlock("div", _hoisted_1, [
     createVNode(_component_account_avatar, {
       pub: $setup.user.pub,

@@ -1,8 +1,8 @@
 import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, normalizeStyle$1 as normalizeStyle, createBaseVNode$1 as createBaseVNode, createVNode$1 as createVNode, toDisplayString$1 as toDisplayString, createBlock$1 as createBlock, createCommentVNode$1 as createCommentVNode, computed$1 as computed } from "./vendor.es.js";
 import { useUser, useColor } from "./useDraw.es.js";
 import { useBackground } from "./useBackground.es.js";
-import { __unplugin_components_2 as __unplugin_components_2$1 } from "./exit-outline.es.js";
-import { __unplugin_components_1 as __unplugin_components_1$1, __unplugin_components_2 as __unplugin_components_2$2 } from "./lock.es.js";
+import { __unplugin_components_5 } from "./exit-outline.es.js";
+import { __unplugin_components_3 as __unplugin_components_3$1, __unplugin_components_4 } from "./lock.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 import { __unplugin_components_1 } from "./MateButton.es.js";
 import __unplugin_components_0 from "./UserAvatar.es.js";
@@ -44,9 +44,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_user_avatar = __unplugin_components_0;
   const _component_mate_button = __unplugin_components_1;
   const _component_util_pulse = __unplugin_components_2;
-  const _component_la_lock = __unplugin_components_1$1;
-  const _component_la_unlock = __unplugin_components_2$2;
-  const _component_ion_exit_outline = __unplugin_components_2$1;
+  const _component_la_lock = __unplugin_components_3$1;
+  const _component_la_unlock = __unplugin_components_4;
+  const _component_ion_exit_outline = __unplugin_components_5;
   return $setup.user.is ? (openBlock(), createElementBlock("div", {
     key: 0,
     class: "p-4 flex items-center",

@@ -1,4 +1,4 @@
-import { reactive$1 as reactive, ref$1 as ref, SEA, computed$1 as computed } from "./vendor.es.js";
+import { reactive$1 as reactive, ref$1 as ref, SEA, computed$1 as computed, refDebounced$1 as refDebounced } from "./vendor.es.js";
 import { useGun, useUser } from "./useDraw.es.js";
 function usePrivateChat(pub, { parse = true } = {}) {
   const gun = useGun();
@@ -42,9 +42,13 @@ function usePrivateChat(pub, { parse = true } = {}) {
     const enc = await SEA.encrypt(toSend, work);
     gun.user().get("chat").get(pub).get(today).set(enc);
   }
+  const messageList = computed(() => Object.values(messages || {}));
+  const debList = refDebounced(messageList);
+  const sorted = computed(() => debList.value.sort((a, b) => a.timestamp > b.timestamp ? 1 : -1));
   return {
     send,
-    messages
+    messages,
+    sorted
   };
 }
 function usePrivateChatCount(pub) {

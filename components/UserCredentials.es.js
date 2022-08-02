@@ -1,10 +1,10 @@
 import { useUser, usePass } from "./useDraw.es.js";
 import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, renderSlot$1 as renderSlot, createVNode$1 as createVNode, createBlock$1 as createBlock, toDisplayString$1 as toDisplayString, normalizeStyle$1 as normalizeStyle, normalizeClass$1 as normalizeClass, createCommentVNode$1 as createCommentVNode, withCtx$1 as withCtx, Transition$1 as Transition, TransitionGroup, ref$1 as ref, useClipboard, useShare, computed$1 as computed } from "./vendor.es.js";
 import { downloadFile } from "./useFile.es.js";
-import { __unplugin_components_5 } from "./check.es.js";
-import __unplugin_components_1$1 from "./QrShow.es.js";
+import { __unplugin_components_1 } from "./check.es.js";
+import __unplugin_components_9 from "./QrShow.es.js";
 import { __unplugin_components_6, __unplugin_components_8 } from "./qrcode.es.js";
-import { __unplugin_components_1, __unplugin_components_2 as __unplugin_components_2$2 } from "./lock.es.js";
+import { __unplugin_components_3 as __unplugin_components_3$1, __unplugin_components_4 as __unplugin_components_4$1 } from "./lock.es.js";
 import __unplugin_components_0$1 from "./UserPass.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 import "./eye.es.js";
@@ -24,7 +24,7 @@ const _hoisted_3$4 = [
 function render$4(_ctx, _cache) {
   return openBlock(), createElementBlock("svg", _hoisted_1$4, _hoisted_3$4);
 }
-var __unplugin_components_2$1 = { name: "la-link", render: render$4 };
+var __unplugin_components_5 = { name: "la-link", render: render$4 };
 const _hoisted_1$3 = {
   preserveAspectRatio: "xMidYMid meet",
   viewBox: "0 0 32 32",
@@ -33,7 +33,7 @@ const _hoisted_1$3 = {
 };
 const _hoisted_2$3 = /* @__PURE__ */ createBaseVNode("path", {
   fill: "currentColor",
-  d: "M10 5v1.9l-5.992 3.903V27h23.984V10.803L22 6.898V5H10zm2 2h8v7.682l-4 2.591l-4-2.591V7zm1 2v2h6V9h-6zm-3 .285v4.102l-3.156-2.045L10 9.285zm12 0l3.156 2.057L22 13.387V9.285zM13 12v2h6v-2h-6zm-6.992 1.184L16 19.656l9.992-6.472V25H6.008V13.184z"
+  d: "M19.719 5.281L18.28 6.72L24.563 13H11c-3.855 0-7 3.145-7 7s3.145 7 7 7v-2c-2.773 0-5-2.227-5-5s2.227-5 5-5h13.563l-6.282 6.281l1.438 1.438l8-8l.687-.719l-.687-.719z"
 }, null, -1);
 const _hoisted_3$3 = [
   _hoisted_2$3
@@ -41,7 +41,7 @@ const _hoisted_3$3 = [
 function render$3(_ctx, _cache) {
   return openBlock(), createElementBlock("svg", _hoisted_1$3, _hoisted_3$3);
 }
-var __unplugin_components_7 = { name: "la-envelope-open-text", render: render$3 };
+var __unplugin_components_3 = { name: "la-share", render: render$3 };
 const _hoisted_1$2 = {
   preserveAspectRatio: "xMidYMid meet",
   viewBox: "0 0 32 32",
@@ -58,7 +58,7 @@ const _hoisted_3$2 = [
 function render$2(_ctx, _cache) {
   return openBlock(), createElementBlock("svg", _hoisted_1$2, _hoisted_3$2);
 }
-var __unplugin_components_2 = { name: "la-copy", render: render$2 };
+var __unplugin_components_4 = { name: "la-copy", render: render$2 };
 const _hoisted_1$1 = {
   preserveAspectRatio: "xMidYMid meet",
   viewBox: "0 0 32 32",
@@ -67,7 +67,7 @@ const _hoisted_1$1 = {
 };
 const _hoisted_2$1 = /* @__PURE__ */ createBaseVNode("path", {
   fill: "currentColor",
-  d: "M19.719 5.281L18.28 6.72L24.563 13H11c-3.855 0-7 3.145-7 7s3.145 7 7 7v-2c-2.773 0-5-2.227-5-5s2.227-5 5-5h13.563l-6.282 6.281l1.438 1.438l8-8l.687-.719l-.687-.719z"
+  d: "M10 5v1.9l-5.992 3.903V27h23.984V10.803L22 6.898V5H10zm2 2h8v7.682l-4 2.591l-4-2.591V7zm1 2v2h6V9h-6zm-3 .285v4.102l-3.156-2.045L10 9.285zm12 0l3.156 2.057L22 13.387V9.285zM13 12v2h6v-2h-6zm-6.992 1.184L16 19.656l9.992-6.472V25H6.008V13.184z"
 }, null, -1);
 const _hoisted_3$1 = [
   _hoisted_2$1
@@ -75,7 +75,7 @@ const _hoisted_3$1 = [
 function render$1(_ctx, _cache) {
   return openBlock(), createElementBlock("svg", _hoisted_1$1, _hoisted_3$1);
 }
-var __unplugin_components_3 = { name: "la-share", render: render$1 };
+var __unplugin_components_7 = { name: "la-envelope-open-text", render: render$1 };
 const _hoisted_1 = {
   key: 0,
   class: "flex flex-col items-stretch pb-4 border-1 border-dark-100 border-opacity-10 max-w-120 mx-auto"
@@ -111,16 +111,16 @@ const _hoisted_17 = /* @__PURE__ */ createBaseVNode("div", { class: "ml-2" }, "I
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _a;
   const _component_user_pass = __unplugin_components_0$1;
-  const _component_la_lock = __unplugin_components_1;
-  const _component_la_unlock = __unplugin_components_2$2;
+  const _component_la_lock = __unplugin_components_3$1;
+  const _component_la_unlock = __unplugin_components_4$1;
   const _component_la_share = __unplugin_components_3;
-  const _component_la_copy = __unplugin_components_2;
-  const _component_la_link = __unplugin_components_2$1;
+  const _component_la_copy = __unplugin_components_4;
+  const _component_la_link = __unplugin_components_5;
   const _component_la_qrcode = __unplugin_components_6;
   const _component_la_envelope_open_text = __unplugin_components_7;
   const _component_la_file_code = __unplugin_components_8;
-  const _component_qr_show = __unplugin_components_1$1;
-  const _component_la_check = __unplugin_components_5;
+  const _component_qr_show = __unplugin_components_9;
+  const _component_la_check = __unplugin_components_1;
   return $setup.user.is && !((_a = $setup.user.safe) == null ? void 0 : _a.saved) ? (openBlock(), createElementBlock("div", _hoisted_1, [
     renderSlot(_ctx.$slots, "default", {}, () => [
       _hoisted_2

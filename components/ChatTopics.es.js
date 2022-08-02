@@ -2,8 +2,8 @@ import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, t
 import { useUser, currentRoom } from "./useDraw.es.js";
 import { useChat } from "./useChat.es.js";
 import { useBackground } from "./useBackground.es.js";
-import __unplugin_components_0$1 from "./AccountAvatar.es.js";
-import { __unplugin_components_0 } from "./times.es.js";
+import __unplugin_components_0 from "./AccountAvatar.es.js";
+import { __unplugin_components_2 } from "./times.es.js";
 import { __unplugin_components_1 } from "./plus.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 const _hoisted_1 = {
@@ -24,8 +24,8 @@ const _hoisted_7 = ["onClick"];
 const _hoisted_8 = { class: "flex-1" };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_la_plus = __unplugin_components_1;
-  const _component_la_times = __unplugin_components_0;
-  const _component_account_avatar = __unplugin_components_0$1;
+  const _component_la_times = __unplugin_components_2;
+  const _component_account_avatar = __unplugin_components_0;
   return openBlock(), createElementBlock(Fragment, null, [
     !$setup.panelOpen && !$setup.isLarge ? (openBlock(), createElementBlock("button", {
       key: 0,

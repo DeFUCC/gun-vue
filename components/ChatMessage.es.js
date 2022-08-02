@@ -1,4 +1,4 @@
-import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, withDirectives$1 as withDirectives, vModelText$1 as vModelText, withKeys$1 as withKeys, withModifiers$1 as withModifiers, createVNode$1 as createVNode, createCommentVNode$1 as createCommentVNode, ref$1 as ref, onMounted$1 as onMounted, toRef, createBlock$1 as createBlock, computed$1 as computed, refDebounced$1 as refDebounced, watch$1 as watch, nextTick$1 as nextTick, VirtualList, toDisplayString$1 as toDisplayString, useMediaQuery$1 as useMediaQuery, onClickOutside$1 as onClickOutside, reactive$1 as reactive, watchEffect$1 as watchEffect, useCssVars$1 as useCssVars, unref$1 as unref, forceGraph, useBrowserLocation, useClipboard, useShare, k, normalizeStyle$1 as normalizeStyle, renderSlot$1 as renderSlot, createTextVNode$1 as createTextVNode } from "./vendor.es.js";
+import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, withDirectives$1 as withDirectives, vModelText$1 as vModelText, withKeys$1 as withKeys, withModifiers$1 as withModifiers, createVNode$1 as createVNode, createCommentVNode$1 as createCommentVNode, ref$1 as ref, onMounted$1 as onMounted, toRef, createBlock$1 as createBlock, watch$1 as watch, nextTick$1 as nextTick, computed$1 as computed, refDebounced$1 as refDebounced, VirtualList, toDisplayString$1 as toDisplayString, useMediaQuery$1 as useMediaQuery, onClickOutside$1 as onClickOutside, reactive$1 as reactive, watchEffect$1 as watchEffect, useCssVars$1 as useCssVars, unref$1 as unref, forceGraph, useBrowserLocation, useClipboard, useShare, k, normalizeStyle$1 as normalizeStyle, renderSlot$1 as renderSlot, createTextVNode$1 as createTextVNode } from "./vendor.es.js";
 import "./AccountAvatar.es.js";
 import __unplugin_components_0$1 from "./AccountBadge.es.js";
 import "./AccountHome.es.js";
@@ -99,7 +99,7 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
     }, "Log in to post messages")
   ]));
 }
-const _sfc_main$w = {
+const _sfc_main$x = {
   __name: "ChatInput",
   emits: ["submit"],
   setup(__props, { expose, emit }) {
@@ -115,41 +115,38 @@ const _sfc_main$w = {
     return __returned__;
   }
 };
-_sfc_main$w.__file = "src/chat/ChatInput.vue";
-var __unplugin_components_2 = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["render", render$3], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/chat/ChatInput.vue"]]);
+_sfc_main$x.__file = "src/chat/ChatInput.vue";
+var __unplugin_components_2 = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["render", render$3], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/chat/ChatInput.vue"]]);
 function render$2(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createBlock($setup["VirtualList"], {
     class: "flex flex-col bg-opacity-80 p-4 gap-2 overflow-y-scroll scroll-smooth flex-auto",
     ref: "list",
     "data-key": "timestamp",
-    "data-sources": $setup.sorted,
+    "data-sources": $props.messages,
     "data-component": $setup.ChatMessage
   }, null, 8, ["data-sources"]);
 }
-const _sfc_main$v = {
+const _sfc_main$w = {
   __name: "ChatMessages",
   props: {
-    messages: { type: Object }
+    messages: { type: Array }
   },
   setup(__props, { expose }) {
     expose();
     const props = __props;
     const list = ref();
-    const messageArray = computed(() => Object.values(props.messages || {}));
-    const debList = refDebounced(messageArray);
-    const sorted = computed(() => debList.value.sort((a, b) => a.timestamp > b.timestamp ? 1 : -1));
-    watch(sorted, () => {
+    watch(() => props.messages, () => {
       nextTick(() => {
         list.value.scrollToBottom();
       });
     }, { deep: true });
-    const __returned__ = { props, list, messageArray, debList, sorted, ref, watch, nextTick, computed, refDebounced, VirtualList, ChatMessage };
+    const __returned__ = { props, list, ref, watch, nextTick, computed, refDebounced, VirtualList, ChatMessage };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
   }
 };
-_sfc_main$v.__file = "src/chat/ChatMessages.vue";
-var __unplugin_components_1 = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["render", render$2], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/chat/ChatMessages.vue"]]);
+_sfc_main$w.__file = "src/chat/ChatMessages.vue";
+var __unplugin_components_1 = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["render", render$2], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/chat/ChatMessages.vue"]]);
 const _hoisted_1$1 = {
   class: "flex flex-col overflow-y-scroll",
   style: { "flex": "1000 1 auto" }
@@ -164,7 +161,7 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
     createBaseVNode("div", _hoisted_2$1, [
       createBaseVNode("div", _hoisted_3$1, toDisplayString($setup.currentChat), 1)
     ]),
-    createVNode(_component_chat_messages, { messages: $setup.messages }, null, 8, ["messages"]),
+    createVNode(_component_chat_messages, { messages: $setup.sorted }, null, 8, ["messages"]),
     createBaseVNode("div", _hoisted_4, [
       createVNode(_component_chat_input, {
         class: "flex-auto",
@@ -173,7 +170,7 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
     ])
   ]);
 }
-const _sfc_main$u = {
+const _sfc_main$v = {
   __name: "ChatRoom",
   props: {
     title: { type: String, default: "Topics" },
@@ -191,25 +188,25 @@ const _sfc_main$u = {
       }
       audio.play();
     }
-    const { send, currentChat, messages } = useChat();
+    const { send, currentChat, sorted } = useChat();
     watch(() => props.topic, (topic) => {
       currentChat.value = topic;
     }, { immediate: true });
-    watch(messages, () => {
+    watch(sorted, () => {
       click();
     }, { deep: true });
-    const __returned__ = { props, audio, click, send, currentChat, messages, ref, computed, watch, nextTick, useMediaQuery, onClickOutside, useChat, useUser, useBackground, currentRoom };
+    const __returned__ = { props, audio, click, send, currentChat, sorted, ref, computed, watch, nextTick, useMediaQuery, onClickOutside, useChat, useUser, useBackground, currentRoom };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
   }
 };
-_sfc_main$u.__file = "src/chat/ChatRoom.vue";
-var ChatRoom = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["render", render$1], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/chat/ChatRoom.vue"]]);
+_sfc_main$v.__file = "src/chat/ChatRoom.vue";
+var ChatRoom = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["render", render$1], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/chat/ChatRoom.vue"]]);
 var ChatRoom$1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   "default": ChatRoom
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$t = {
+const _sfc_main$u = {
   __name: "ChatPrivate",
   props: {
     pub: String
@@ -219,14 +216,14 @@ const _sfc_main$t = {
     expose();
     const props = __props;
     const { account } = useAccount(toRef(props, "pub"));
-    const { send, messages } = usePrivateChat(props.pub);
-    const __returned__ = { props, emit, account, send, messages, ref, reactive, computed, toRef, useAccount, usePrivateChat };
+    const { send, sorted } = usePrivateChat(props.pub);
+    const __returned__ = { props, emit, account, send, sorted, ref, reactive, computed, toRef, useAccount, usePrivateChat };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
   }
 };
-_sfc_main$t.__file = "src/chat/private/ChatPrivate.vue";
-const _sfc_main$s = {
+_sfc_main$u.__file = "src/chat/private/ChatPrivate.vue";
+const _sfc_main$t = {
   __name: "DictBy",
   props: {
     author: String
@@ -242,8 +239,8 @@ const _sfc_main$s = {
     return __returned__;
   }
 };
-_sfc_main$s.__file = "src/dict/DictBy.vue";
-const _sfc_main$r = {
+_sfc_main$t.__file = "src/dict/DictBy.vue";
+const _sfc_main$s = {
   __name: "DictPanel",
   emits: ["home", "my", "authors"],
   setup(__props, { expose }) {
@@ -254,8 +251,8 @@ const _sfc_main$r = {
     return __returned__;
   }
 };
-_sfc_main$r.__file = "src/dict/DictPanel.vue";
-const _sfc_main$q = {
+_sfc_main$s.__file = "src/dict/DictPanel.vue";
+const _sfc_main$r = {
   __name: "DictAuthors",
   emits: ["author"],
   setup(__props, { expose }) {
@@ -266,9 +263,9 @@ const _sfc_main$q = {
     return __returned__;
   }
 };
-_sfc_main$q.__file = "src/dict/DictAuthors.vue";
+_sfc_main$r.__file = "src/dict/DictAuthors.vue";
 var DictLinkButton_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _sfc_main$p = {
+const _sfc_main$q = {
   __name: "DictLinkButton",
   props: {
     type: String,
@@ -284,8 +281,8 @@ const _sfc_main$p = {
     return __returned__;
   }
 };
-_sfc_main$p.__file = "src/dict/link/DictLinkButton.vue";
-const _sfc_main$o = {
+_sfc_main$q.__file = "src/dict/link/DictLinkButton.vue";
+const _sfc_main$p = {
   __name: "DictLinkList",
   props: {
     links: [Array, Object],
@@ -305,9 +302,9 @@ const _sfc_main$o = {
     return __returned__;
   }
 };
-_sfc_main$o.__file = "src/dict/link/DictLinkList.vue";
+_sfc_main$p.__file = "src/dict/link/DictLinkList.vue";
 var DictDefCard_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _sfc_main$n = {
+const _sfc_main$o = {
   __name: "DictDefCard",
   props: {
     hash: String,
@@ -329,9 +326,9 @@ const _sfc_main$n = {
     return __returned__;
   }
 };
-_sfc_main$n.__file = "src/dict/def/DictDefCard.vue";
+_sfc_main$o.__file = "src/dict/def/DictDefCard.vue";
 var DictWordCard_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _sfc_main$m = {
+const _sfc_main$n = {
   __name: "DictWordCard",
   props: {
     hash: String
@@ -349,8 +346,8 @@ const _sfc_main$m = {
     return __returned__;
   }
 };
-_sfc_main$m.__file = "src/dict/word/DictWordCard.vue";
-const _sfc_main$l = {
+_sfc_main$n.__file = "src/dict/word/DictWordCard.vue";
+const _sfc_main$m = {
   __name: "DictDefList",
   emits: ["def", "root"],
   setup(__props, { expose }) {
@@ -363,9 +360,9 @@ const _sfc_main$l = {
     return __returned__;
   }
 };
-_sfc_main$l.__file = "src/dict/def/DictDefList.vue";
+_sfc_main$m.__file = "src/dict/def/DictDefList.vue";
 var DictDefPage_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _sfc_main$k = {
+const _sfc_main$l = {
   __name: "DictDefPage",
   props: {
     hash: String
@@ -387,8 +384,8 @@ const _sfc_main$k = {
     return __returned__;
   }
 };
-_sfc_main$k.__file = "src/dict/def/DictDefPage.vue";
-const _sfc_main$j = {
+_sfc_main$l.__file = "src/dict/def/DictDefPage.vue";
+const _sfc_main$k = {
   __name: "DictWordList",
   emits: ["word", "root"],
   setup(__props, { expose }) {
@@ -401,9 +398,9 @@ const _sfc_main$j = {
     return __returned__;
   }
 };
-_sfc_main$j.__file = "src/dict/word/DictWordList.vue";
+_sfc_main$k.__file = "src/dict/word/DictWordList.vue";
 var DictWordPage_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _sfc_main$i = {
+const _sfc_main$j = {
   __name: "DictWordPage",
   props: {
     hash: String
@@ -421,9 +418,9 @@ const _sfc_main$i = {
     return __returned__;
   }
 };
-_sfc_main$i.__file = "src/dict/word/DictWordPage.vue";
+_sfc_main$j.__file = "src/dict/word/DictWordPage.vue";
 var EmbedYoutube_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _sfc_main$h = {
+const _sfc_main$i = {
   __name: "EmbedYoutube",
   props: ["video"],
   setup(__props, { expose }) {
@@ -433,9 +430,9 @@ const _sfc_main$h = {
     return __returned__;
   }
 };
-_sfc_main$h.__file = "src/embed/EmbedYoutube.vue";
+_sfc_main$i.__file = "src/embed/EmbedYoutube.vue";
 var FormLink_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _sfc_main$g = {
+const _sfc_main$h = {
   __name: "FormLink",
   emits: ["update"],
   setup(__props, { expose, emit }) {
@@ -462,9 +459,9 @@ const _sfc_main$g = {
     return __returned__;
   }
 };
-_sfc_main$g.__file = "src/form/FormLink.vue";
+_sfc_main$h.__file = "src/form/FormLink.vue";
 var FormYoutube_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _sfc_main$f = {
+const _sfc_main$g = {
   __name: "FormYoutube",
   props: {
     id: { type: String }
@@ -496,7 +493,32 @@ const _sfc_main$f = {
     return __returned__;
   }
 };
-_sfc_main$f.__file = "src/form/FormYoutube.vue";
+_sfc_main$g.__file = "src/form/FormYoutube.vue";
+const _sfc_main$f = {
+  __name: "GiftButton",
+  props: {
+    gift: {
+      type: Object,
+      default: {
+        project: "",
+        from: "",
+        to: "",
+        qn: 0,
+        ql: ""
+      }
+    }
+  },
+  emits: ["sent"],
+  setup(__props, { expose, emit }) {
+    expose();
+    const props = __props;
+    const open = ref();
+    const __returned__ = { emit, props, open, reactive, computed, ref };
+    Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
+    return __returned__;
+  }
+};
+_sfc_main$f.__file = "src/gift/GiftButton.vue";
 var PostForm_vue_vue_type_style_index_0_scoped_true_lang = "";
 const _sfc_main$e = {
   __name: "PostForm",
@@ -763,7 +785,8 @@ const _sfc_main$5 = {
   props: {
     path: { type: String, default: "" }
   },
-  setup(__props, { expose }) {
+  emits: ["gift-sent"],
+  setup(__props, { expose, emit }) {
     expose();
     const props = __props;
     const { user: user2 } = useUser();
@@ -774,7 +797,7 @@ const _sfc_main$5 = {
     watchEffect(() => {
       text.value = project.value.text;
     });
-    const __returned__ = { props, user: user2, md, project, editable, text, useUser, useProject, updateProjectField, useMd, toRef, ref, computed, watchEffect, Ink: k };
+    const __returned__ = { emit, props, user: user2, md, project, editable, text, useUser, useProject, updateProjectField, useMd, toRef, ref, computed, watchEffect, InkMde: k };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
   }

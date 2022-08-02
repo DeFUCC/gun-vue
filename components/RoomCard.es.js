@@ -58,5 +58,5 @@ const _sfc_main = {
   }
 };
 _sfc_main.__file = "src/room/RoomCard.vue";
-var __unplugin_components_2 = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", render], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/room/RoomCard.vue"]]);
-export { __unplugin_components_2 };
+var __unplugin_components_5 = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", render], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/room/RoomCard.vue"]]);
+export { __unplugin_components_5 };

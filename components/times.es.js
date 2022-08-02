@@ -15,5 +15,5 @@ const _hoisted_3 = [
 function render(_ctx, _cache) {
   return openBlock(), createElementBlock("svg", _hoisted_1, _hoisted_3);
 }
-var __unplugin_components_0 = { name: "la-times", render };
-export { __unplugin_components_0 };
+var __unplugin_components_2 = { name: "la-times", render };
+export { __unplugin_components_2 };

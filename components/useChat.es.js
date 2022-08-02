@@ -1,4 +1,4 @@
-import { ref$1 as ref, reactive$1 as reactive, computed$1 as computed, slugify } from "./vendor.es.js";
+import { ref$1 as ref, reactive$1 as reactive, computed$1 as computed, refDebounced$1 as refDebounced, slugify } from "./vendor.es.js";
 import { useGun, useUser, currentRoom } from "./useDraw.es.js";
 function useChat() {
   const gun = useGun();
@@ -35,6 +35,9 @@ function useChat() {
     });
     return msgs;
   });
+  const messageList = computed(() => Object.values(messages.value || {}));
+  const debList = refDebounced(messageList);
+  const sorted = computed(() => debList.value.sort((a, b) => a.timestamp > b.timestamp ? 1 : -1));
   function send(message) {
     if (!message)
       return;
@@ -46,7 +49,8 @@ function useChat() {
     addChat,
     currentChat,
     chats,
-    messages
+    messages,
+    sorted
   };
 }
 export { useChat };

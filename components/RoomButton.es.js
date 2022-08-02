@@ -1,41 +1,41 @@
-import { currentRoom, useRoom, useGun, useUser, useRoomLogo, rootRoom, recreateRoom, useColor } from "./useDraw.es.js";
+import { currentRoom, useUser, useRoom, rootRoom, recreateRoom, useColor, useGun, useRoomLogo } from "./useDraw.es.js";
 import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, createVNode$1 as createVNode, pushScopeId$1 as pushScopeId, popScopeId$1 as popScopeId, ref$1 as ref, computed$1 as computed, nextTick$1 as nextTick, reactive$1 as reactive, onMounted$1 as onMounted, watch$1 as watch, toDisplayString$1 as toDisplayString, withKeys$1 as withKeys, withModifiers$1 as withModifiers, createBlock$1 as createBlock, createCommentVNode$1 as createCommentVNode, Fragment$1 as Fragment, renderList$1 as renderList, withCtx$1 as withCtx, normalizeStyle$1 as normalizeStyle } from "./vendor.es.js";
 import { useBackground } from "./useBackground.es.js";
-import { __unplugin_components_1 as __unplugin_components_1$5 } from "./UiPanel.es.js";
+import { __unplugin_components_2 as __unplugin_components_2$3 } from "./UiPanel.es.js";
 import { parseMd, useMd } from "./useMd.es.js";
 import { uploadText } from "./useFile.es.js";
 import { __unplugin_components_0 as __unplugin_components_0$3 } from "./trash.es.js";
-import { __unplugin_components_5 as __unplugin_components_5$1 } from "./check.es.js";
+import { __unplugin_components_1 as __unplugin_components_1$3 } from "./check.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
-import { __unplugin_components_5 as __unplugin_components_5$2 } from "./pen.es.js";
-import { __unplugin_components_2 as __unplugin_components_2$2 } from "./exit-outline.es.js";
-import { __unplugin_components_0 as __unplugin_components_0$5, __unplugin_components_1 as __unplugin_components_1$4 } from "./enter-outline.es.js";
-import __unplugin_components_0$6 from "./AccountBadge.es.js";
-import { __unplugin_components_0 as __unplugin_components_0$4, __unplugin_components_1 as __unplugin_components_1$3, __unplugin_components_2 as __unplugin_components_2$1 } from "./camera.es.js";
+import { __unplugin_components_0 as __unplugin_components_0$4 } from "./pen.es.js";
+import { __unplugin_components_5 as __unplugin_components_5$1 } from "./exit-outline.es.js";
+import { __unplugin_components_4 as __unplugin_components_4$2, __unplugin_components_3 as __unplugin_components_3$2 } from "./tools.es.js";
+import __unplugin_components_0$5 from "./AccountBadge.es.js";
+import { __unplugin_components_1 as __unplugin_components_1$4, __unplugin_components_2 as __unplugin_components_2$2, __unplugin_components_3 as __unplugin_components_3$3 } from "./camera.es.js";
 import "./times.es.js";
 import "./AccountAvatar.es.js";
 import "./UiLayer.es.js";
-const _hoisted_1$f = {
+const _hoisted_1$g = {
   preserveAspectRatio: "xMidYMid meet",
   viewBox: "0 0 32 32",
   width: "1.2em",
   height: "1.2em"
 };
-const _hoisted_2$f = /* @__PURE__ */ createBaseVNode("path", {
+const _hoisted_2$g = /* @__PURE__ */ createBaseVNode("path", {
   fill: "currentColor",
   d: "M2.875 6C1.32 6 0 7.254 0 8.813v14.374C0 24.747 1.32 26 2.875 26h26.25C30.68 26 32 24.746 32 23.187V8.813C32 7.255 30.68 6 29.125 6zm0 2h26.25c.516 0 .875.383.875.813v14.374c0 .43-.36.813-.875.813H2.875C2.359 24 2 23.617 2 23.187V8.813c0-.43.36-.812.875-.812zM5 11v10h3v-6.656l3 3.969l3-3.97V21h3V11h-3l-3 4l-3-4zm17 0v5h-3l4.5 5l4.5-5h-3v-5z"
 }, null, -1);
-const _hoisted_3$e = [
-  _hoisted_2$f
+const _hoisted_3$f = [
+  _hoisted_2$g
 ];
-function render$f(_ctx, _cache) {
-  return openBlock(), createElementBlock("svg", _hoisted_1$f, _hoisted_3$e);
+function render$g(_ctx, _cache) {
+  return openBlock(), createElementBlock("svg", _hoisted_1$g, _hoisted_3$f);
 }
-var __unplugin_components_1$2 = { name: "la-markdown", render: render$f };
+var __unplugin_components_1$2 = { name: "la-markdown", render: render$g };
 const _withScopeId = (n) => (pushScopeId("data-v-83e1cfda"), n = n(), popScopeId(), n);
-const _hoisted_1$e = { class: "flex flex-col" };
-const _hoisted_2$e = { class: "flex flex-col text-left mb-30" };
-const _hoisted_3$d = {
+const _hoisted_1$f = { class: "flex flex-col" };
+const _hoisted_2$f = { class: "flex flex-col text-left mb-30" };
+const _hoisted_3$e = {
   id: "myMD",
   ref: "md",
   placeholder: "Main text content (with **markdown** support)"
@@ -49,13 +49,13 @@ const _hoisted_6$1 = {
 const _hoisted_7$1 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", { class: "ml-2" }, "Load", -1));
 const _hoisted_8$1 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", { class: "flex-1" }, null, -1));
 const _hoisted_9$1 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", { class: "ml-2" }, "Reset", -1));
-function render$e(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_la_check = __unplugin_components_5$1;
+function render$f(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_la_check = __unplugin_components_1$3;
   const _component_la_markdown = __unplugin_components_1$2;
   const _component_la_trash = __unplugin_components_0$3;
-  return openBlock(), createElementBlock("div", _hoisted_1$e, [
-    createBaseVNode("div", _hoisted_2$e, [
-      createBaseVNode("textarea", _hoisted_3$d, null, 512)
+  return openBlock(), createElementBlock("div", _hoisted_1$f, [
+    createBaseVNode("div", _hoisted_2$f, [
+      createBaseVNode("textarea", _hoisted_3$e, null, 512)
     ]),
     createBaseVNode("div", _hoisted_4$4, [
       createBaseVNode("button", {
@@ -128,12 +128,12 @@ const _sfc_main$6 = {
   }
 };
 _sfc_main$6.__file = "src/form/FormText.vue";
-var __unplugin_components_6$1 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", render$e], ["__scopeId", "data-v-83e1cfda"], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/form/FormText.vue"]]);
-const _hoisted_1$d = { class: "flex mt-12 mb-2 items-center gap-4" };
-const _hoisted_2$d = ["contenteditable"];
-function render$d(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_la_pen = __unplugin_components_5$2;
-  return openBlock(), createElementBlock("div", _hoisted_1$d, [
+var __unplugin_components_8$1 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", render$f], ["__scopeId", "data-v-83e1cfda"], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/form/FormText.vue"]]);
+const _hoisted_1$e = { class: "flex mt-12 mb-2 items-center gap-4" };
+const _hoisted_2$e = ["contenteditable"];
+function render$e(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_la_pen = __unplugin_components_0$4;
+  return openBlock(), createElementBlock("div", _hoisted_1$e, [
     createBaseVNode("h1", {
       class: "text-3xl font-bold",
       ref: "content",
@@ -141,7 +141,7 @@ function render$d(_ctx, _cache, $props, $setup, $data, $options) {
       onFocus: _cache[0] || (_cache[0] = ($event) => $setup.edit = true),
       onBlur: _cache[1] || (_cache[1] = ($event) => $setup.update($event)),
       onKeydown: _cache[2] || (_cache[2] = withKeys(withModifiers(($event) => $setup.update($event), ["prevent", "stop"]), ["enter"]))
-    }, toDisplayString($props.text || ""), 41, _hoisted_2$d),
+    }, toDisplayString($props.text || ""), 41, _hoisted_2$e),
     $props.editable && !$setup.edit ? (openBlock(), createBlock(_component_la_pen, {
       key: 0,
       class: "text-2xl",
@@ -172,7 +172,24 @@ const _sfc_main$5 = {
   }
 };
 _sfc_main$5.__file = "src/form/FormTitle.vue";
-var __unplugin_components_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", render$d], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/form/FormTitle.vue"]]);
+var __unplugin_components_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", render$e], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/form/FormTitle.vue"]]);
+const _hoisted_1$d = {
+  preserveAspectRatio: "xMidYMid meet",
+  viewBox: "0 0 32 32",
+  width: "1.2em",
+  height: "1.2em"
+};
+const _hoisted_2$d = /* @__PURE__ */ createBaseVNode("path", {
+  fill: "currentColor",
+  d: "M16 3c-3.035 0-5.586 1.965-6.625 4.625l1.844.75C11.977 6.434 13.836 5 16 5c2.754 0 5 2.246 5 5v3H6v16h20V13h-3v-3c0-3.844-3.156-7-7-7zM8 15h16v12H8z"
+}, null, -1);
+const _hoisted_3$d = [
+  _hoisted_2$d
+];
+function render$d(_ctx, _cache) {
+  return openBlock(), createElementBlock("svg", _hoisted_1$d, _hoisted_3$d);
+}
+var __unplugin_components_8 = { name: "la-lock-open", render: render$d };
 const _hoisted_1$c = {
   preserveAspectRatio: "xMidYMid meet",
   viewBox: "0 0 32 32",
@@ -181,7 +198,7 @@ const _hoisted_1$c = {
 };
 const _hoisted_2$c = /* @__PURE__ */ createBaseVNode("path", {
   fill: "currentColor",
-  d: "M16 3c-3.035 0-5.586 1.965-6.625 4.625l1.844.75C11.977 6.434 13.836 5 16 5c2.754 0 5 2.246 5 5v3H6v16h20V13h-3v-3c0-3.844-3.156-7-7-7zM8 15h16v12H8z"
+  d: "M15 3v5h2V3zM7.5 6.094L6.094 7.5l3.531 3.563l1.438-1.438zm17 0l-3.563 3.531l1.438 1.438L25.906 7.5zM16 9c-3.855 0-7 3.145-7 7s3.145 7 7 7s7-3.145 7-7s-3.145-7-7-7zm0 2c2.773 0 5 2.227 5 5s-2.227 5-5 5s-5-2.227-5-5s2.227-5 5-5zM3 15v2h5v-2zm21 0v2h5v-2zM9.625 20.938L6.094 24.5L7.5 25.906l3.563-3.531zm12.75 0l-1.438 1.437l3.563 3.531l1.406-1.406zM15 24v5h2v-5z"
 }, null, -1);
 const _hoisted_3$c = [
   _hoisted_2$c
@@ -189,7 +206,7 @@ const _hoisted_3$c = [
 function render$c(_ctx, _cache) {
   return openBlock(), createElementBlock("svg", _hoisted_1$c, _hoisted_3$c);
 }
-var __unplugin_components_7 = { name: "la-lock-open", render: render$c };
+var __unplugin_components_7 = { name: "la-sun", render: render$c };
 const _hoisted_1$b = {
   preserveAspectRatio: "xMidYMid meet",
   viewBox: "0 0 32 32",
@@ -274,7 +291,7 @@ const _hoisted_3$7 = [
 function render$7(_ctx, _cache) {
   return openBlock(), createElementBlock("svg", _hoisted_1$7, _hoisted_3$7);
 }
-var __unplugin_components_2 = { name: "ph-house", render: render$7 };
+var __unplugin_components_2$1 = { name: "ph-house", render: render$7 };
 const _hoisted_1$6 = {
   preserveAspectRatio: "xMidYMid meet",
   viewBox: "0 0 256 256",
@@ -316,12 +333,13 @@ const _hoisted_4$3 = { class: "px-1 font-bold" };
 function render$4(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ph_hands_clapping = __unplugin_components_0$2;
   const _component_ph_newspaper = __unplugin_components_1;
-  const _component_ph_house = __unplugin_components_2;
+  const _component_ph_house = __unplugin_components_2$1;
   const _component_la_broadcast_tower = __unplugin_components_3$1;
   const _component_ph_users = __unplugin_components_4$1;
   const _component_ph_books = __unplugin_components_5;
   const _component_la_toolbox = __unplugin_components_6;
-  const _component_la_lock_open = __unplugin_components_7;
+  const _component_la_sun = __unplugin_components_7;
+  const _component_la_lock_open = __unplugin_components_8;
   return openBlock(), createElementBlock("div", _hoisted_1$4, [
     (openBlock(), createElementBlock(Fragment, null, renderList($setup.names, (cert, c) => {
       return createBaseVNode("div", {
@@ -337,7 +355,8 @@ function render$4(_ctx, _cache, $props, $setup, $data, $options) {
           c == "topics" ? (openBlock(), createBlock(_component_la_broadcast_tower, { key: 3 })) : createCommentVNode("v-if", true),
           c == "users" ? (openBlock(), createBlock(_component_ph_users, { key: 4 })) : createCommentVNode("v-if", true),
           c == "dict" ? (openBlock(), createBlock(_component_ph_books, { key: 5 })) : createCommentVNode("v-if", true),
-          c == "projects" ? (openBlock(), createBlock(_component_la_toolbox, { key: 6 })) : createCommentVNode("v-if", true)
+          c == "projects" ? (openBlock(), createBlock(_component_la_toolbox, { key: 6 })) : createCommentVNode("v-if", true),
+          c == "gifts" ? (openBlock(), createBlock(_component_la_sun, { key: 7 })) : createCommentVNode("v-if", true)
         ]),
         createBaseVNode("div", _hoisted_4$3, toDisplayString($setup.names[c]), 1),
         $props.features[c] || c == "users" && $props.features.space || c == "topics" && $props.features.chat ? (openBlock(), createBlock(_component_la_lock_open, {
@@ -364,6 +383,7 @@ const _sfc_main$4 = {
       users: "Users",
       rooms: "Rooms",
       projects: "Projects",
+      gifts: "Gifts",
       dict: "Dictionary"
     };
     const __returned__ = { props, names, ref };
@@ -373,70 +393,20 @@ const _sfc_main$4 = {
 };
 _sfc_main$4.__file = "src/room/RoomFeatures.vue";
 var __unplugin_components_4 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", render$4], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/room/RoomFeatures.vue"]]);
-const _hoisted_1$3 = { class: "flex flex-col relative items-center justify-center" };
-const _hoisted_2$3 = ["src"];
-const _hoisted_3$3 = { class: "text-2xl" };
-function render$3(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_la_camera = __unplugin_components_0$4;
-  const _component_la_trash_alt = __unplugin_components_1$3;
-  const _component_form_picture = __unplugin_components_2$1;
-  return openBlock(), createElementBlock("div", _hoisted_1$3, [
-    createBaseVNode("img", {
-      src: $setup.logo || "/gun-vue-logo.svg"
-    }, null, 8, _hoisted_2$3),
-    $setup.room.hosts[$setup.user.pub] ? (openBlock(), createBlock(_component_form_picture, {
-      key: 0,
-      class: "absolute",
-      options: { picSize: $setup.props.pic, preserveRatio: false },
-      onUpdate: _cache[1] || (_cache[1] = ($event) => $setup.uploadLogo($event))
-    }, {
-      default: withCtx(() => [
-        createBaseVNode("div", _hoisted_3$3, [
-          !$setup.logo ? (openBlock(), createBlock(_component_la_camera, { key: 0 })) : (openBlock(), createBlock(_component_la_trash_alt, {
-            key: 1,
-            onClick: _cache[0] || (_cache[0] = withModifiers(($event) => $setup.removeLogo(), ["stop", "prevent"]))
-          }))
-        ])
-      ]),
-      _: 1
-    }, 8, ["options"])) : createCommentVNode("v-if", true)
-  ]);
-}
-const _sfc_main$3 = {
-  __name: "RoomLogo",
-  props: {
-    pub: { type: String, default: currentRoom.pub },
-    size: { type: Number, default: 120 },
-    pic: { type: Number, default: 200 }
-  },
-  setup(__props, { expose }) {
-    expose();
-    const props = __props;
-    const { room, updateRoomProfile } = useRoom();
-    const gun = useGun();
-    const { user } = useUser();
-    const { logo, uploadLogo, removeLogo } = useRoomLogo(props.pub);
-    const __returned__ = { room, updateRoomProfile, gun, user, props, logo, uploadLogo, removeLogo, useRoom, useUser, useGun, useRoomLogo, currentRoom, ref, computed };
-    Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
-    return __returned__;
-  }
-};
-_sfc_main$3.__file = "src/room/RoomLogo.vue";
-var __unplugin_components_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", render$3], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/room/RoomLogo.vue"]]);
-const _hoisted_1$2 = { class: "flex flex-wrap items-center gap-2" };
-const _hoisted_2$2 = /* @__PURE__ */ createBaseVNode("div", { class: "ml-2" }, "Renew", -1);
-const _hoisted_3$2 = {
+const _hoisted_1$3 = { class: "flex flex-wrap items-center gap-2" };
+const _hoisted_2$3 = /* @__PURE__ */ createBaseVNode("div", { class: "ml-2" }, "Renew", -1);
+const _hoisted_3$3 = {
   key: 1,
   class: "flex flex-wrap py-4"
 };
 const _hoisted_4$2 = /* @__PURE__ */ createBaseVNode("div", { class: "ml-2" }, "Enter", -1);
 const _hoisted_5$1 = /* @__PURE__ */ createBaseVNode("div", { class: "ml-2" }, "Leave", -1);
-function render$2(_ctx, _cache, $props, $setup, $data, $options) {
+function render$3(_ctx, _cache, $props, $setup, $data, $options) {
   var _a;
-  const _component_la_tools = __unplugin_components_0$5;
-  const _component_ion_enter_outline = __unplugin_components_1$4;
-  const _component_ion_exit_outline = __unplugin_components_2$2;
-  return openBlock(), createElementBlock("div", _hoisted_1$2, [
+  const _component_la_tools = __unplugin_components_4$2;
+  const _component_ion_enter_outline = __unplugin_components_3$2;
+  const _component_ion_exit_outline = __unplugin_components_5$1;
+  return openBlock(), createElementBlock("div", _hoisted_1$3, [
     ((_a = $setup.room.hosts) == null ? void 0 : _a[$setup.user.pub]) ? (openBlock(), createElementBlock("button", {
       key: 0,
       class: "button",
@@ -446,9 +416,9 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
       })
     }, [
       createVNode(_component_la_tools),
-      _hoisted_2$2
+      _hoisted_2$3
     ])) : createCommentVNode("v-if", true),
-    $setup.roomPub != $setup.rootRoom.pub ? (openBlock(), createElementBlock("div", _hoisted_3$2, [
+    $setup.roomPub != $setup.rootRoom.pub ? (openBlock(), createElementBlock("div", _hoisted_3$3, [
       $setup.currentRoom.pub !== $setup.roomPub ? (openBlock(), createElementBlock("button", {
         key: 0,
         class: "button",
@@ -467,7 +437,7 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
     ])) : createCommentVNode("v-if", true)
   ]);
 }
-const _sfc_main$2 = {
+const _sfc_main$3 = {
   __name: "RoomActions",
   props: {
     pub: { type: String, default: currentRoom.pub }
@@ -489,8 +459,58 @@ const _sfc_main$2 = {
     return __returned__;
   }
 };
-_sfc_main$2.__file = "src/room/RoomActions.vue";
-var __unplugin_components_3 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", render$2], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/room/RoomActions.vue"]]);
+_sfc_main$3.__file = "src/room/RoomActions.vue";
+var __unplugin_components_3 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", render$3], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/room/RoomActions.vue"]]);
+const _hoisted_1$2 = { class: "flex flex-col relative items-center justify-center" };
+const _hoisted_2$2 = ["src"];
+const _hoisted_3$2 = { class: "text-2xl" };
+function render$2(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_la_camera = __unplugin_components_1$4;
+  const _component_la_trash_alt = __unplugin_components_2$2;
+  const _component_form_picture = __unplugin_components_3$3;
+  return openBlock(), createElementBlock("div", _hoisted_1$2, [
+    createBaseVNode("img", {
+      src: $setup.logo || "/gun-vue-logo.svg"
+    }, null, 8, _hoisted_2$2),
+    $setup.room.hosts[$setup.user.pub] ? (openBlock(), createBlock(_component_form_picture, {
+      key: 0,
+      class: "absolute",
+      options: { picSize: $setup.props.pic, preserveRatio: false },
+      onUpdate: _cache[1] || (_cache[1] = ($event) => $setup.uploadLogo($event))
+    }, {
+      default: withCtx(() => [
+        createBaseVNode("div", _hoisted_3$2, [
+          !$setup.logo ? (openBlock(), createBlock(_component_la_camera, { key: 0 })) : (openBlock(), createBlock(_component_la_trash_alt, {
+            key: 1,
+            onClick: _cache[0] || (_cache[0] = withModifiers(($event) => $setup.removeLogo(), ["stop", "prevent"]))
+          }))
+        ])
+      ]),
+      _: 1
+    }, 8, ["options"])) : createCommentVNode("v-if", true)
+  ]);
+}
+const _sfc_main$2 = {
+  __name: "RoomLogo",
+  props: {
+    pub: { type: String, default: currentRoom.pub },
+    size: { type: Number, default: 120 },
+    pic: { type: Number, default: 200 }
+  },
+  setup(__props, { expose }) {
+    expose();
+    const props = __props;
+    const { room, updateRoomProfile } = useRoom();
+    const gun = useGun();
+    const { user } = useUser();
+    const { logo, uploadLogo, removeLogo } = useRoomLogo(props.pub);
+    const __returned__ = { room, updateRoomProfile, gun, user, props, logo, uploadLogo, removeLogo, useRoom, useUser, useGun, useRoomLogo, currentRoom, ref, computed };
+    Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
+    return __returned__;
+  }
+};
+_sfc_main$2.__file = "src/room/RoomLogo.vue";
+var __unplugin_components_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", render$2], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/room/RoomLogo.vue"]]);
 const _hoisted_1$1 = { class: "flex flex-col items-stretch" };
 const _hoisted_2$1 = { class: "w-200 max-w-full flex flex-col items-stretche bg-light-100 bg-opacity-20 p-4 md_p-12 shadow-xl backdrop-blur-md backdrop-filter rounded-t-xl" };
 const _hoisted_3$1 = { class: "flex flex-wrap items-center gap-8" };
@@ -509,11 +529,11 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   var _a, _b;
   const _component_room_logo = __unplugin_components_0$1;
   const _component_form_title = __unplugin_components_1$1;
-  const _component_account_badge = __unplugin_components_0$6;
+  const _component_account_badge = __unplugin_components_0$5;
   const _component_room_actions = __unplugin_components_3;
   const _component_room_features = __unplugin_components_4;
-  const _component_la_pen = __unplugin_components_5$2;
-  const _component_form_text = __unplugin_components_6$1;
+  const _component_la_pen = __unplugin_components_0$4;
+  const _component_form_text = __unplugin_components_8$1;
   return openBlock(), createElementBlock("div", _hoisted_1$1, [
     createBaseVNode("div", {
       class: "pt-32 px-2 md_px-8 bg-cover relative flex flex-col items-center",
@@ -630,7 +650,7 @@ const _hoisted_4 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _a, _b, _c, _d;
   const _component_room_page = __unplugin_components_0;
-  const _component_ui_panel = __unplugin_components_1$5;
+  const _component_ui_panel = __unplugin_components_2$3;
   return openBlock(), createElementBlock("div", _hoisted_1, [
     createBaseVNode("button", {
       class: "button",
@@ -693,5 +713,5 @@ const _sfc_main = {
   }
 };
 _sfc_main.__file = "src/room/RoomButton.vue";
-var RoomButton = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", render], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/room/RoomButton.vue"]]);
-export { RoomButton as default };
+var __unplugin_components_2 = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", render], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/room/RoomButton.vue"]]);
+export { __unplugin_components_2 as default };

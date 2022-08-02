@@ -7,7 +7,7 @@ import { __unplugin_components_9 } from "./PostCard.es.js";
 import { __unplugin_components_0 as __unplugin_components_0$2 } from "./trash.es.js";
 import { __unplugin_components_1, __unplugin_components_0 as __unplugin_components_0$1 } from "./angle-up.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
-import { __unplugin_components_1 as __unplugin_components_1$2, __unplugin_components_6 } from "./ChatPrivateCount.es.js";
+import { __unplugin_components_1 as __unplugin_components_1$2, __unplugin_components_6 as __unplugin_components_6$1, __unplugin_components_7 } from "./ChatPrivateCount.es.js";
 import { __unplugin_components_1 as __unplugin_components_1$1 } from "./MateButton.es.js";
 import __unplugin_components_0$3 from "./AccountAvatar.es.js";
 import "./useZip.es.js";
@@ -142,7 +142,7 @@ const _sfc_main$2 = {
   }
 };
 _sfc_main$2.__file = "src/account/AccountReactions.vue";
-var __unplugin_components_5 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", render$2], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/account/AccountReactions.vue"]]);
+var __unplugin_components_6 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", render$2], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/account/AccountReactions.vue"]]);
 const _hoisted_1$1 = { class: "flex flex-col break-all" };
 const _hoisted_2$1 = {
   class: "mr-2 font-bold",
@@ -208,8 +208,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_mate_button = __unplugin_components_1$1;
   const _component_chat_private_count = __unplugin_components_1$2;
   const _component_account_profile = __unplugin_components_3$1;
-  const _component_mate_list = __unplugin_components_6;
-  const _component_account_reactions = __unplugin_components_5;
+  const _component_mate_list = __unplugin_components_6$1;
+  const _component_gift_wallets = __unplugin_components_7;
+  const _component_account_reactions = __unplugin_components_6;
   return openBlock(), createElementBlock("div", _hoisted_1, [
     createBaseVNode("div", {
       class: "p-4 flex items-center bg-cover border-b-6",
@@ -243,6 +244,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         pub: $props.pub,
         onBrowse: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("browse", $event))
       }, null, 8, ["pub"]),
+      createVNode(_component_gift_wallets, { pub: $props.pub }, null, 8, ["pub"]),
       createVNode(_component_account_reactions, {
         class: "m-2",
         pub: $props.pub,

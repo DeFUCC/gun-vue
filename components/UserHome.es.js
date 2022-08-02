@@ -1,7 +1,7 @@
 import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, toDisplayString$1 as toDisplayString, Fragment$1 as Fragment, renderList$1 as renderList, createVNode$1 as createVNode, withCtx$1 as withCtx, createBlock$1 as createBlock, renderSlot$1 as renderSlot, normalizeStyle$1 as normalizeStyle, createTextVNode$1 as createTextVNode, computed$1 as computed, ref$1 as ref } from "./vendor.es.js";
 import { useUser } from "./useDraw.es.js";
-import __unplugin_components_7 from "./UserRooms.es.js";
-import { __unplugin_components_1 as __unplugin_components_1$1, __unplugin_components_6 } from "./ChatPrivateCount.es.js";
+import __unplugin_components_8 from "./UserRooms.es.js";
+import { __unplugin_components_1 as __unplugin_components_1$1, __unplugin_components_6, __unplugin_components_7 } from "./ChatPrivateCount.es.js";
 import { usePrivateChatList } from "./usePrivate.es.js";
 import __unplugin_components_0 from "./AccountBadge.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
@@ -13,7 +13,7 @@ import __unplugin_components_0$1 from "./UserCredentials.es.js";
 import "./RoomCard.es.js";
 import "./useBackground.es.js";
 import "./AccountAvatar.es.js";
-import "./enter-outline.es.js";
+import "./tools.es.js";
 import "./eye.es.js";
 import "./angle-up.es.js";
 import "./useMates.es.js";
@@ -91,7 +91,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_user_profile = __unplugin_components_4;
   const _component_chat_private_list = __unplugin_components_5;
   const _component_mate_list = __unplugin_components_6;
-  const _component_user_rooms = __unplugin_components_7;
+  const _component_gift_wallets = __unplugin_components_7;
+  const _component_UserRooms = __unplugin_components_8;
   return openBlock(), createElementBlock("div", _hoisted_1, [
     createVNode(_component_ui_layer, {
       open: $setup.user.is && !((_a = $setup.user.safe) == null ? void 0 : _a.saved),
@@ -121,7 +122,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           pub: $setup.user.pub,
           onBrowse: _cache[4] || (_cache[4] = ($event) => _ctx.$emit("user", $event))
         }, null, 8, ["pub"]),
-        createVNode(_component_user_rooms, {
+        createVNode(_component_gift_wallets, {
+          pub: $setup.user.pub
+        }, null, 8, ["pub"]),
+        createVNode(_component_UserRooms, {
           onBrowse: _cache[5] || (_cache[5] = ($event) => _ctx.$emit("room", $event))
         })
       ]),

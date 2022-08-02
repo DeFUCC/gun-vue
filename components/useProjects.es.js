@@ -1,6 +1,6 @@
 import { ref$1 as ref, reactive$1 as reactive, computed$1 as computed, Fuse } from "./vendor.es.js";
-import { newProject, useGun, currentRoom, projectsPath } from "./useDraw.es.js";
-function useProjects() {
+import { newProject, useGun, projectsPath, currentRoom } from "./useDraw.es.js";
+function useProjects(pub = currentRoom.pub) {
   const search = ref("");
   const projects = reactive({});
   const fuse = computed(() => {
@@ -19,21 +19,21 @@ function useProjects() {
     }
   });
   const gun = useGun();
-  gun.user(currentRoom.pub).get(projectsPath).map().on((d, k) => {
+  gun.user(pub).get(projectsPath).map().on((d, k) => {
     if (d == null) {
       delete projects[k];
       return;
     }
-    const data = { ...d };
+    const data = { ...d, path: k };
     delete data._;
     projects[k] = data;
   });
-  return { search, projects, candidates };
+  return { projects, search, candidates };
 }
-function countProjects() {
+function countProjects(pub = currentRoom.pub) {
   const list = reactive({});
   const gun = useGun();
-  gun.user(currentRoom.pub).get(projectsPath).map().on((d, k) => {
+  gun.user(pub).get(projectsPath).map().on((d, k) => {
     if (d == null) {
       delete list[k];
       return;

@@ -1,8 +1,8 @@
 import { useGun, currentRoom, useColor } from "./useDraw.es.js";
 import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, toDisplayString$1 as toDisplayString, createCommentVNode$1 as createCommentVNode, reactive$1 as reactive, computed$1 as computed, createBaseVNode$1 as createBaseVNode, normalizeStyle$1 as normalizeStyle, createVNode$1 as createVNode, createBlock$1 as createBlock, renderSlot$1 as renderSlot, pushScopeId$1 as pushScopeId, popScopeId$1 as popScopeId, ref$1 as ref, watchEffect$1 as watchEffect } from "./vendor.es.js";
 import { usePost } from "./useZip.es.js";
-import { __unplugin_components_1 } from "./PostActionReact.es.js";
-import { __unplugin_components_2, __unplugin_components_3, __unplugin_components_4 } from "./youtube.es.js";
+import { __unplugin_components_1 as __unplugin_components_1$1 } from "./PostActionReact.es.js";
+import { __unplugin_components_0 as __unplugin_components_0$1, __unplugin_components_1, __unplugin_components_4 } from "./youtube.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 const _hoisted_1$1 = {
   key: 0,
@@ -71,10 +71,10 @@ const _hoisted_11 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k;
   const _component_post_link = __unplugin_components_0;
-  const _component_la_youtube = __unplugin_components_2;
-  const _component_mdi_text_long = __unplugin_components_3;
+  const _component_la_youtube = __unplugin_components_0$1;
+  const _component_mdi_text_long = __unplugin_components_1;
   const _component_ui_link = __unplugin_components_4;
-  const _component_post_action_react = __unplugin_components_1;
+  const _component_post_action_react = __unplugin_components_1$1;
   return openBlock(), createElementBlock("div", {
     class: "card",
     style: normalizeStyle({ backgroundImage: `url(${((_a = $setup.post) == null ? void 0 : _a.cover) || ((_b = $setup.post) == null ? void 0 : _b.raw)})`, backgroundColor: $setup.colorDeep.hex($props.hash) })

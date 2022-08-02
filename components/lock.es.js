@@ -15,7 +15,7 @@ const _hoisted_3$1 = [
 function render$1(_ctx, _cache) {
   return openBlock(), createElementBlock("svg", _hoisted_1$1, _hoisted_3$1);
 }
-var __unplugin_components_2 = { name: "la-unlock", render: render$1 };
+var __unplugin_components_4 = { name: "la-unlock", render: render$1 };
 const _hoisted_1 = {
   preserveAspectRatio: "xMidYMid meet",
   viewBox: "0 0 32 32",
@@ -32,5 +32,5 @@ const _hoisted_3 = [
 function render(_ctx, _cache) {
   return openBlock(), createElementBlock("svg", _hoisted_1, _hoisted_3);
 }
-var __unplugin_components_1 = { name: "la-lock", render };
-export { __unplugin_components_1, __unplugin_components_2 };
+var __unplugin_components_3 = { name: "la-lock", render };
+export { __unplugin_components_3, __unplugin_components_4 };
