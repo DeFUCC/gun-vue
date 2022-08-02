@@ -3,7 +3,7 @@ import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, c
 import { __unplugin_components_2 } from "./times.es.js";
 import { __unplugin_components_1 as __unplugin_components_1$1 } from "./check.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
-import __unplugin_components_0$1 from "./AccountBadge.es.js";
+import __unplugin_components_0 from "./AccountBadge.es.js";
 import { useGift, giftState } from "./useGift.es.js";
 import "./AccountAvatar.es.js";
 const _hoisted_1$1 = { class: "py-1 rounded-lg flex justify-center text-center text-sm bg-dark-50 bg-opacity-20" };
@@ -70,7 +70,7 @@ const _hoisted_19 = { class: "p-0" };
 const _hoisted_20 = { class: "font-mono text-8px mb-0 mt-2" };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _a;
-  const _component_account_badge = __unplugin_components_0$1;
+  const _component_account_badge = __unplugin_components_0;
   const _component_gift_status = __unplugin_components_1;
   return openBlock(), createElementBlock("div", {
     class: "p-2 rounded-xl bg-light-200 bg-opacity-90 flex shadow-lg flex-col items-center border-2",
@@ -168,5 +168,5 @@ const _sfc_main = {
   }
 };
 _sfc_main.__file = "src/gift/GiftCard.vue";
-var __unplugin_components_0 = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", render], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/gift/GiftCard.vue"]]);
-export { __unplugin_components_0 as default };
+var __unplugin_components_4 = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", render], ["__file", "/Users/davay/Documents/\u0424\u0420\u0423\u041A\u0422/DeFUCC/gun-vue/components/src/gift/GiftCard.vue"]]);
+export { __unplugin_components_4 as default };

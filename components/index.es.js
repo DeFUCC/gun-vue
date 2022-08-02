@@ -13,7 +13,7 @@ export { useGuests } from "./useGuests.es.js";
 export { useSpace, useSvgMouse } from "./useSpace.es.js";
 export { useBackground } from "./useBackground.es.js";
 export { getFirstEmoji, isEmoji, useMate, useMates } from "./useMates.es.js";
-export { useGifts, useMyGifts } from "./useGifts.es.js";
+export { useGifts, useMyGifts, useProjectGifts } from "./useGifts.es.js";
 export { giftState, useGift, useNewGift } from "./useGift.es.js";
 export { countProjects, useProjects } from "./useProjects.es.js";
 function useTagList() {

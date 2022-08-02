@@ -30,6 +30,7 @@ import "./youtube.es.js";
 import "./PostActionReact.es.js";
 import "./ProjectList.es.js";
 import "./ProjectCard.es.js";
+import { useProjectGifts } from "./useGifts.es.js";
 import "./QrLoad.es.js";
 import "./RoomCard.es.js";
 import "./RoomList.es.js";
@@ -797,7 +798,8 @@ const _sfc_main$5 = {
     watchEffect(() => {
       text.value = project.value.text;
     });
-    const __returned__ = { emit, props, user: user2, md, project, editable, text, useUser, useProject, updateProjectField, useMd, toRef, ref, computed, watchEffect, InkMde: k };
+    const { gifts } = useProjectGifts(props.path);
+    const __returned__ = { emit, props, user: user2, md, project, editable, text, gifts, useUser, useProject, updateProjectField, useMd, useProjectGifts, toRef, ref, computed, watchEffect, InkMde: k };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
   }

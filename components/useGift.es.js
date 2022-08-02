@@ -8,7 +8,7 @@ function useGift(hash) {
     to: false,
     complete: computed(() => state.from && state.to)
   });
-  gun.get(giftPath).get(hash).once((d, k) => {
+  gun.get("#" + giftPath).get(hash).once((d, k) => {
     try {
       Object.assign(gift, JSON.parse(d));
       gun.user(gift.from).get(giftPath).get(k).on((d2) => {
@@ -69,7 +69,7 @@ function useNewGift(giftConf) {
         opt: { cert: currentRoom.features.gifts }
       });
     }
-    gun.get(giftPath).get(hash2).put(hashed);
+    gun.get("#" + giftPath).get(hash2).put(hashed);
     gun.user().get(giftPath).get(hash2).put("proposed", () => {
       pause();
       proposed.value = true;

@@ -875,7 +875,7 @@ async function logEncPass(encPair, passphrase) {
   let pair = await SEA.decrypt(encPair, passphrase);
   auth(pair);
 }
-const giftPath = "#gifts2025";
+const giftPath = "gifts";
 const defaultGift = {
   from: "",
   to: "",

@@ -1,6 +1,6 @@
 import "./useDraw.es.js";
 import { openBlock$1 as openBlock, createElementBlock$1 as createElementBlock, createBaseVNode$1 as createBaseVNode, Fragment$1 as Fragment, renderList$1 as renderList, createBlock$1 as createBlock } from "./vendor.es.js";
-import __unplugin_components_0 from "./GiftCard.es.js";
+import __unplugin_components_4 from "./GiftCard.es.js";
 import { _export_sfc } from "./plugin-vue_export-helper.es.js";
 import { useGifts } from "./useGifts.es.js";
 import "./times.es.js";
@@ -12,7 +12,7 @@ const _hoisted_1 = { class: "flex flex-wrap gap-2" };
 const _hoisted_2 = { class: "flex flex-wrap gap-2" };
 const _hoisted_3 = /* @__PURE__ */ createBaseVNode("div", { class: "text-lg font-bold w-full" }, "ALL", -1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_gift_card = __unplugin_components_0;
+  const _component_gift_card = __unplugin_components_4;
   return openBlock(), createElementBlock("div", _hoisted_1, [
     createBaseVNode("div", _hoisted_2, [
       _hoisted_3,
