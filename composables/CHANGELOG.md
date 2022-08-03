@@ -1,5 +1,12 @@
 # @gun-vue/composables
 
+## 0.11.1
+
+### Patch Changes
+
+- 51b00989: Gifts are connected to the rooms and the projects. Rooms are gift collections - nice for indexing and showing project gifts.
+- 9b131abe: Chat has virtual scrolling and debounced sorting, so it should be quite stable even for thousands of messages.
+
 ## 0.11.0
 
 ### Minor Changes
