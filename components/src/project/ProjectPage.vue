@@ -3,7 +3,7 @@ import { useUser, useProject, updateProjectField, useMd, useProjectGifts } from 
 import { toRef, ref, computed, watchEffect } from 'vue'
 import InkMde from 'ink-mde/vue'
 
-const emit = defineEmits(['gift-sent'])
+const emit = defineEmits(['gift'])
 
 const props = defineProps({
   path: { type: String, default: '' },
@@ -23,7 +23,9 @@ watchEffect(() => {
   text.value = project.value.text
 })
 
-const { gifts } = useProjectGifts(props.path)
+const { gifts, collections } = useProjectGifts(props.path)
+
+
 
 </script>
 
@@ -46,19 +48,37 @@ const { gifts } = useProjectGifts(props.path)
       @update="updateProjectField(path.slice(0, -88), 'title', $event)")
 
     account-badge.absolute.bottom-4.right-4(:pub="path.slice(-87)")
-  .flex.items-center.justify-center
-    gift-button(:gift="{ project: path, to: path.slice(-87) }" @sent="$emit('gift-sent', $event)")
+
   .flex.flex-col.gap-2.m-2.bg-light-200.p-2.rounded-xl.shadow
     .p-2.markdown-body(v-html="md.render(text || '')" v-if="!editable")
     InkMde(v-else :modelValue="text" @update:modelValue="updateProjectField(path.slice(0, -88), 'text', $event)")
 
-  pre.p-4.my-4.text-xs.overflow-scroll {{ project }}
-  .p-2 
-    .text-xl.my-4 Gifts
-    .flex.flex-wrap.gap-2
-      gift-card.cursor-pointer(
-        @click="$emit('open', hash)"
-        v-for="(gift, hash) in gifts" :key="hash"
-        :hash="hash"
-        )
+  //- pre.p-4.my-4.text-xs.overflow-scroll {{ project }}
+  .text-xl.my-4.p-4.font-bold.flex.items-center Project funding
+    .flex-1
+    gift-button(:gift="{ project: path, to: path.slice(-87) }" @sent="$emit('gift-sent', $event)")
+  .p-2.flex.flex-col.gap-4
+
+    .flex.flex-col.gap-2.p-2.bg-dark-50.rounded-xl.bg-opacity-10.shadow-xl(v-for="(ql, qlName ) in collections" :key="ql")
+      .p-2.w-full.flex.items-center.gap-2
+        .text-xl.font-bold {{ ql.sum }} 
+        .text-xl {{ qlName }}
+        .opacity-50 by
+        .flex.flex-wrap.gap-2 
+          account-badge(
+            @click="$emit('gift',)"
+            v-for="(sum, pub) in ql.from" 
+            :key="sum" 
+            :pub="pub"
+            ) 
+            .mr-2 {{ sum }} {{ qlName }}
+
+      template(v-if="collections?.[qlName]?.from?.[user.pub] || path.includes(user.pub)")
+        gift-card.cursor-pointer(
+          @click="$emit('open', hash)"
+          v-for="(gift, hash) in ql.list" 
+          :key="hash"
+          :hash="hash"
+          v-show="gift.from == user.pub || gift.to == user.pub"
+          )
 </template>

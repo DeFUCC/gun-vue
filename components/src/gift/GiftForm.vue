@@ -32,6 +32,15 @@ const color = useColor()
 .flex.flex-col.max-w-140
   .grid.p-4.gap-2.items-center(style="grid-template-columns: 1fr 10fr;")
 
+    .p-2.text-right Quantity
+    input(v-model="newGift.qn"  type="number" placeholder="Quantity")
+
+    .p-2.text-right Quality
+    input(v-model="newGift.ql" placeholder="Quality")
+
+    .px-2.text-right.self-start Wish 
+    textarea(v-model="newGift.wish" placeholder="Wish")
+
     .p-2.text-right FROM
     .flex-1 
       account-badge(:pub="user.pub" v-if="user.pub")
@@ -63,14 +72,7 @@ const color = useColor()
       .flex.flex-wrap.gap-3
         account-badge(v-for="guest of guests" :key="guest" @click="newGift.to = guest.pub" :pub="guest.pub")
 
-    .p-2.text-right Quantity
-    input(v-model="newGift.qn"  placeholder="Quantity")
 
-    .p-2.text-right Quality
-    input(v-model="newGift.ql" placeholder="Quality")
-
-    .px-2.text-right.self-start Wish 
-    textarea(v-model="newGift.wish" placeholder="Wish")
 
     .flex(v-if="valid")
       .flex.flex-col

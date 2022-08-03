@@ -13,7 +13,8 @@ export function useGift(hash) {
   const state = reactive({
     from: false,
     to: false,
-    complete: computed(() => state.from && state.to)
+    complete: computed(() => state.from && state.to),
+    status: computed(() => state.from ? state.to ? 'complete' : 'proposed' : 'canceled')
   })
   gun.get('#' + giftPath).get(hash).once((d, k) => {
     try {
@@ -28,8 +29,7 @@ export function useGift(hash) {
     }
 
   })
-  const status = computed(() => state.from ? state.to ? 'complete' : 'proposed' : 'canceled')
-  return { gift, state, status }
+  return { gift, state }
 }
 
 
@@ -47,7 +47,7 @@ export function useNewGift(giftConf) {
   const gift = reactive({
     from: computed(() => user?.pub),
     to: '',
-    qn: 0,
+    qn: null,
     ql: null,
     wish: '',
     project: '',
@@ -55,14 +55,19 @@ export function useNewGift(giftConf) {
     room: computed(() => currentRoom.pub)
   })
 
-  const cleanGift = computed(() => removeEmpty(gift))
+  const cleanGift = computed(() => {
+    let g = removeEmpty(gift)
+    g.qn = Number(g.qn)
+    return g
+  })
 
   const required = ['from', 'to', 'qn', 'ql']
 
   const valid = computed(() => {
-    return required.reduce((acc, val) => {
+    const isFilled = required.reduce((acc, val) => {
       return acc && gift[val]
     }, true)
+    return isFilled
   })
 
   watch(gift, g => {
@@ -72,7 +77,7 @@ export function useNewGift(giftConf) {
   })
 
   const hash = computedAsync(async () => {
-    const { hash, hashed } = await hashObj(gift)
+    const { hash, hashed } = await hashObj(cleanGift.value)
     return hash
   })
 
@@ -85,27 +90,30 @@ export function useNewGift(giftConf) {
   async function propose() {
 
     const { hash, hashed } = await hashObj(cleanGift.value)
-    console.log('gift publishing', currentRoom.features)
+
+    gun.get('#' + giftPath).get(hash).put(hashed)
+
+    gun.user().get(giftPath).get(hash).put('proposed', () => {
+      pause()
+      proposed.value = true
+    })
+
     if (currentRoom.features?.gifts) {
-      console.log('gift published')
+
       gun
         .user(currentRoom.pub)
         .get('gifts')
         .get(`${hash}@${user.pub}`)
         .put(
           true,
-          null,
+          () => {
+            console.log(`gift ${hash} published`)
+          },
           {
             opt: { cert: currentRoom.features.gifts }
           }
         )
     }
-
-    gun.get('#' + giftPath).get(hash).put(hashed)
-    gun.user().get(giftPath).get(hash).put('proposed', () => {
-      pause()
-      proposed.value = true
-    })
 
   }
 

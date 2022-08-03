@@ -1,7 +1,6 @@
 <script setup>
 import { safeHash } from '#composables';
 
-safeHash
 </script>
 
 <template lang='pug'>
