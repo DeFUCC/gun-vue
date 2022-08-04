@@ -1,7 +1,7 @@
 <script setup>
 import { useGifts } from '#composables'
 
-const { gifts, my, proposed } = useGifts()
+const { gifts } = useGifts()
 
 const emit = defineEmits(['open'])
 

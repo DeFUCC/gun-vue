@@ -1,6 +1,6 @@
 import { useNow } from '@vueuse/core'
 import { SEA } from 'gun'
-import { reactive, computed, watchEffect } from 'vue'
+import { reactive, computed, watch } from 'vue'
 import { useGun, useUser, hashObj, currentRoom } from '..'
 
 import { giftPath } from '.'
@@ -11,7 +11,7 @@ export function useGifts() {
 
   const gifts = reactive({})
 
-  gun.user(currentRoom.pub).get('gifts').map().once((data, key) => {
+  gun.user(currentRoom.pub).get(giftPath).map().once((data, key) => {
     gun.get('#' + giftPath).get(key.slice(0, -88)).once((d, k) => {
       try {
         const obj = JSON.parse(d)
@@ -32,6 +32,7 @@ export function useMyGifts() {
   const gifts = reactive({})
   const from = reactive({})
   const to = reactive({})
+
   gun.user().get(giftPath).map().on((d, hash) => {
     gun.get('#' + giftPath).get(hash).once(d => {
       try {
@@ -49,7 +50,7 @@ export function useMyGifts() {
 
   const newGifts = reactive({})
 
-  gun.user(currentRoom.pub).get(giftPath).map().on(async (d, path) => {
+  gun.user(currentRoom.pub).get(giftPath).map().once(async (d, path) => {
     let hash = path.slice(0, -88)
     gun.get('#' + giftPath).get(hash).once(async (d) => {
       try {
@@ -72,12 +73,14 @@ export function useProjectGifts(path) {
   const pub = path.slice(-87)
   const gun = useGun()
   const gifts = reactive({})
+
   gun.user(pub).get(giftPath).map().on((d, hash) => {
     gun.get('#' + giftPath).get(hash).once(d => {
       try {
         d = JSON.parse(d)
         if (d.project == path) {
           gifts[hash] = { ...d, state: {} }
+
           gun.user(d.from).get(giftPath).get(hash).on(data => { gifts[hash].state.from = data })
           gun.user(d.to).get(giftPath).get(hash).on(data => { gifts[hash].state.to = data })
         }
@@ -88,7 +91,7 @@ export function useProjectGifts(path) {
 
   const collections = reactive({})
 
-  watchEffect(() => {
+  watch(gifts, () => {
 
     for (let hash in gifts) {
       let gift = gifts[hash]
@@ -101,6 +104,7 @@ export function useProjectGifts(path) {
       collections[q].from = {}
 
       for (let hash in collections[q].list) {
+
         let colG = collections[q].list[hash]
         if (!(colG.state.from && colG.state.to)) continue
         collections[q].sum += Number(colG.qn)

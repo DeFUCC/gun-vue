@@ -22,6 +22,7 @@ export function useGift(hash) {
       Object.assign(gift, JSON.parse(d))
 
       gun.user(gift.from).get(giftPath).get(k).on(d => { state.from = d })
+
       gun.user(gift.to).get(giftPath).get(k).on(d => { state.to = d })
 
     } catch (e) {
@@ -51,7 +52,7 @@ export function useNewGift(giftConf) {
     ql: null,
     wish: '',
     project: '',
-    date: computed(() => now.value.toString()),
+    date: computed(() => now.value.toLocaleString('en-GB')),
     room: computed(() => currentRoom.pub)
   })
 
@@ -102,7 +103,7 @@ export function useNewGift(giftConf) {
 
       gun
         .user(currentRoom.pub)
-        .get('gifts')
+        .get(giftPath)
         .get(`${hash}@${user.pub}`)
         .put(
           true,

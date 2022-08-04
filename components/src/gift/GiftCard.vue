@@ -64,10 +64,13 @@ const roomTitle = computed(() => {
       .text-xs {{ date }}
       .p-0 {{ time }}
   .flex.gap-2
+
     template(v-if="gift.from == user.pub")
       button.button(@click.stop.prevent="giftState(hash, true)" v-if="!state.from") Propose
       button.button(@click.stop.prevent="giftState(hash, false)" v-else) Cancel
-    template(v-if="gift.to == user?.pub")
+
+    template(v-if="gift.to == user.pub")
       button.button(@click.stop.prevent="giftState(hash, true)" v-if="!state.to") Accept
       button.button(@click.stop.prevent="giftState(hash, false)" v-if="state.to") Reject
+
 </template>
