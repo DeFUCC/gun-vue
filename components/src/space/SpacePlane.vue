@@ -58,6 +58,7 @@ onBeforeUnmount(() => {
     @click="join()"
     :style="{ borderColor: user.color }"
     ) Click here to join the space
+
   space-draw.z-2000
   svg.h-full.w-full.z-200.bg-dark-100.bg-opacity-5.cursor-pointer(
     ref="plane"
@@ -80,8 +81,12 @@ onBeforeUnmount(() => {
 
     text.text-xs(text-anchor="end" :transform="`translate(${pos[0] + width / 2 - 10} ${pos[1] - height / 2 + 20})`") {{ pos }}
 
-    g.opacity-40(v-for="guest in guests" :key="guest" v-html="guest.draw")
-    svg(ref="paper" :class="{ 'pointer-events-none': !draw.enabled, 'touch-none': draw.enabled }")
+    g.opacity-90(v-for="guest in guests" :key="guest" v-html="guest.draw")
+    svg.opacity-10(
+      :x="pos[0] - width / 2 - pad"
+      :y="pos[1] - height / 2 - pad"
+      :viewBox="`${-pad + pos[0] - width / 2} ${-pad + pos[1] - height / 2} ${width + 2 * pad} ${height + 2 * pad}`",
+      ref="paper" :class="{ 'pointer-events-none': !draw.enabled, 'touch-none': draw.enabled }")
 
     rect(
       ref="area"

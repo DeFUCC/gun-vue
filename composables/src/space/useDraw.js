@@ -50,7 +50,7 @@ let disableDump = false
 export const drauuOptions = reactive({
   brush,
   acceptsInputTypes: computed(() => draw.enabled ? undefined : ['pen']),
-  coordinateTransform: true,
+  // coordinateTransform: true,
 })
 export const drauu = markRaw(createDrauu(drauuOptions))
 
@@ -88,7 +88,8 @@ export function useDraw() {
       if (!disableDump) {
         let content = drauu.dump()
         draw.content = content
-        drawing.put(content, null, { opt: { cert: currentRoom.features?.space } })
+
+        gun.user(currentRoom.pub).get('space').get(user.pub).get('draw').put(content, null, { opt: { cert: currentRoom.features?.space } })
       }
     })
     onMounted(() => {
