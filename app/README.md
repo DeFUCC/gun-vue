@@ -27,3 +27,4 @@ A starter GUN client built with Vite plus some very useful plugins. With local e
 - [vue3-virtual-scroll-list](https://github.com/reactjser/vue3-virtual-scroll-list) - Virtual scrolling for long lists like chat messages ([docs](https://vue3-virtual-scroll-list-examples-xi.vercel.app/#/))
 - [ink-mde/vue](https://github.com/voraciousdev/ink-mde/tree/main/packages/vue) - The flexible TypeScript Markdown editor that powers octo.app - packaged as a Vue 3 component. (Adds 1Mb of scripts to the app, should be replaced with a more lightweight solution)
 - [Tauri](https://tauri.app) - Build an optimized, secure, and frontend-independent application for multi-platform deployment.
+- [Capacitor](https://capacitorjs.com) - Build iOS and Android apps from the web app with ease

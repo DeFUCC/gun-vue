@@ -16,6 +16,9 @@
     "start": "node start.js"
   },
   "dependencies": {
+    "@capacitor/android": "^4.0.1",
+    "@capacitor/core": "^4.0.1",
+    "@capacitor/ios": "^4.0.1",
     "@gun-vue/components": "workspace:^",
     "@gun-vue/composables": "workspace:^",
     "@gun-vue/relay": "workspace:^",
@@ -25,6 +28,7 @@
     "vue-router": "^4.1.3"
   },
   "devDependencies": {
+    "@capacitor/cli": "^4.0.1",
     "@iconify/json": "^2.1.87",
     "@tauri-apps/cli": "^1.0.5",
     "@vitejs/plugin-vue": "^3.0.1",
