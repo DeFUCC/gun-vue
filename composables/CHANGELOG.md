@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.11.2
+
+### Patch Changes
+
+- gifts connected with projects
+
 ## 0.11.1
 
 ### Patch Changes
