@@ -72,16 +72,18 @@ export function useSpace({
     });
   }
 
-  function placePoint() {
-    const pointPos = [pos[0] + space.my.mouse.x, pos[1] + space.my.mouse.y].map(Math.round)
-    console.log(pointPos)
-    space.db.get(user.pub).get(`${pointPos[0]},${pointPos[1]}`).put({
-      title: 'point',
-      url: 'https://gun-vue.js.org'
-    }, null, {
-      opt: { cert: currentRoom.features?.space },
-    });
-  }
+  // function placePoint() {
+  //   const pointPos = [pos[0] + space.my.mouse.x, pos[1] + space.my.mouse.y].map(Math.round)
+  //   console.log(pointPos)
+  //   space.db.get(user.pub).set({
+  //     title: 'point',
+  //     x: pointPos[0],
+  //     y: pointPos[1],
+  //     url: 'https://gun-vue.js.org'
+  //   }, null, {
+  //     opt: { cert: currentRoom.features?.space },
+  //   });
+  // }
 
   const allGuests = reactive({});
   const mates = reactive({});
@@ -99,16 +101,13 @@ export function useSpace({
 
   const guestCount = computed(() => Object.keys(guests.value).length);
 
-  space.db.get(user.pub).on((p) => {
-    space.my.pos = typeof p == "string" ? JSON.parse(p) : p;
-  });
-
-  space.db.map().once(async (pos, pub) => {
+  gun.user(currentRoom.pub).get("space").map().once(async (pos, pub) => {
     if (pub == user.pub) {
       space.joined = true;
     }
     allGuests[pub] = {
       pub: pub,
+      draw: '',
       blink: false,
       pulse: 0,
       hasPos: false,
@@ -118,10 +117,16 @@ export function useSpace({
       }
     };
 
-    space.db.get(pub).get('pos').on((d, k) => {
+
+
+    gun.user(currentRoom.pub).get("space").get(pub).get('pos').on((d, k) => {
       allGuests[pub].hasPos = true;
       allGuests[pub].pos = typeof d == "string" ? JSON.parse(d) : d;
     });
+
+    gun.user(currentRoom.pub).get("space").get(pub).get('draw').on(d => {
+      allGuests[pub].draw = d
+    })
 
     gun
       .user(pub)
@@ -138,10 +143,7 @@ export function useSpace({
         mates[pub][k] = d;
       });
 
-    space.db.get(pub).get('draw').on(d => {
-      if (!d) return
-      allGuests[pub].draw = d
-    })
+
   });
 
   const seeds = {}; //random seeds to scatter the arrows a little - depends on the `randomness` option
@@ -192,8 +194,7 @@ export function useSpace({
     zoom,
     area,
     join,
-    place,
-    placePoint
+    place
   };
 }
 

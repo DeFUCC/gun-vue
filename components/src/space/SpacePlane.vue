@@ -16,7 +16,7 @@ const { user } = useUser()
 
 const colorDeep = useColor('deep')
 
-const { space, plane, pos, zoom, links, width, height, guests, guestCount, area, join, place, placePoint } = useSpace({
+const { space, plane, pos, zoom, links, width, height, guests, guestCount, area, join, place } = useSpace({
   TIMEOUT: 10000,
 })
 
@@ -78,7 +78,6 @@ const selectedUser = reactive({
   space-draw.z-2000
   svg.h-full.w-full.z-200.bg-dark-100.bg-opacity-5.cursor-pointer.touch-none(
     ref="plane"
-    @dblclick.stop.prevent="placePoint()"
     @click="!user.is ? user.auth = true : null; "
     version="1.1",
     baseProfile="full",
@@ -97,7 +96,7 @@ const selectedUser = reactive({
 
     text.text-xs(text-anchor="end" :transform="`translate(${pos[0] + width / 2 - 10} ${pos[1] - height / 2 + 20})`") {{ pos }}
 
-    g.opacity-90(v-for="guest in guests" :key="guest" v-html="guest.draw")
+    g.opacity-90(v-for="guest in guests" :key="guest.draw" v-html="guest.draw")
     svg.opacity-70(
       :x="pos[0] - width / 2 - pad"
       :y="pos[1] - height / 2 - pad"
