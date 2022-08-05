@@ -1,7 +1,7 @@
 <script setup>
 import { useGun, useUser } from '#composables';
 import { computed, reactive, ref } from 'vue'
-import vSelect from 'vue-select'
+import vSelect from 'vue-select' // https://vue-select.org/
 import 'vue-select/dist/vue-select.css';
 import { currencies } from './currencies.js';
 
