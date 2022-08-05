@@ -24,7 +24,7 @@ function setBrushColor(color) {
     :style="{ opacity: draw.enabled ? 0.2 : 1 }"
     )
     carbon-pen
-  .flex.flex-wrap.text-xl.p-2.gap-2.justify-center.rounded-md.bg-main.shadow.transition-opacity.duration-200.dark_border.dark_border-gray-400.dark_border-opacity-10.bg-light-300.dark_bg-dark-300.bg-opacity-30(
+  .flex.flex-wrap.text-xl.p-2.gap-2.justify-center.rounded-md.bg-main.shadow.transition-opacity.duration-200.dark_border.dark_border-gray-400.dark_border-opacity-10.bg-light-300.dark_bg-dark-300.bg-opacity-90(
     :class="draw.enabled ? '' : draw.pinned ? 'opacity-40 hover_opacity-90' : 'pointer-events-none'", 
     v-if="draw.enabled"
     storage-key="slidev-drawing-pos", 

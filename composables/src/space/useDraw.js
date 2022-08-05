@@ -1,6 +1,6 @@
 import { computed, markRaw, nextTick, reactive, ref, watch, onMounted } from 'vue'
 import { createDrauu } from 'drauu'
-import { toReactive, useStorage, useCycleList } from '@vueuse/core'
+import { toReactive, useStorage, useCycleList, useDebounceFn } from '@vueuse/core'
 
 import { useGun, currentRoom, useUser } from '../'
 
@@ -83,7 +83,8 @@ export function useDraw() {
       draw.content = d
       loadCanvas()
     })
-    drauu.on('changed', () => {
+
+    const debouncedDraw = useDebounceFn(() => {
       updateState()
       if (!disableDump) {
         let content = drauu.dump()
@@ -91,7 +92,9 @@ export function useDraw() {
 
         gun.user(currentRoom.pub).get('space').get(user.pub).get('draw').put(content, null, { opt: { cert: currentRoom.features?.space } })
       }
-    })
+    }, 200)
+
+    drauu.on('changed', debouncedDraw)
     onMounted(() => {
       nextTick(() => {
         loadCanvas()

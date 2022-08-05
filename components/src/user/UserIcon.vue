@@ -31,16 +31,4 @@ div.z-1000
       @close="user.auth = false"
       @post="$emit('post', safeHash($event)); user.auth = false"
       )
-  ui-layer(
-    :open="selectedUser.pub" 
-    @close="selectedUser.pub = null"
-    )
-    account-home.max-w-600px(
-      :pub="selectedUser.pub" 
-      @user="$emit('user', $event)" 
-      @post="$emit('post', safeHash($event))"
-      @chat="$emit('chat', selectedUser.pub)"
-      @close="selectedUser.pub = null"
-      :key="selectedUser.pub"
-      )
 </template>

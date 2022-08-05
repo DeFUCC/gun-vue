@@ -1,14 +1,14 @@
 <script setup>
 import { watch } from 'vue'
-import { useSpace, useUser, useColor, useRoom, selectedUser } from '#composables'
+import { useSpace, useUser, useColor, useRoom } from '#composables'
 import { useDrag, usePinch } from '@vueuse/gesture'
 import { useDraw } from '#composables'
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
 
 const props = defineProps({
   pad: { type: Number, default: 50 },
 })
-const emit = defineEmits(['user', 'enter', 'leave'])
+const emit = defineEmits(['user', 'enter', 'leave', 'chat'])
 
 const { user } = useUser()
 
@@ -49,6 +49,10 @@ onBeforeUnmount(() => {
   drauu.unmount()
 })
 
+const selectedUser = reactive({
+  pub: ''
+})
+
 </script>
 
 <template lang='pug'>
@@ -60,7 +64,7 @@ onBeforeUnmount(() => {
     ) Click here to join the space
 
   space-draw.z-2000
-  svg.h-full.w-full.z-200.bg-dark-100.bg-opacity-5.cursor-pointer(
+  svg.h-full.w-full.z-200.bg-dark-100.bg-opacity-5.cursor-pointer.touch-none(
     ref="plane"
     @dblclick="place({ x: 0, y: 0 })"
     @click="place({ x: pos[0], y: pos[1] }); !user.is ? user.auth = true : null"
@@ -82,7 +86,7 @@ onBeforeUnmount(() => {
     text.text-xs(text-anchor="end" :transform="`translate(${pos[0] + width / 2 - 10} ${pos[1] - height / 2 + 20})`") {{ pos }}
 
     g.opacity-90(v-for="guest in guests" :key="guest" v-html="guest.draw")
-    svg.opacity-10(
+    svg.opacity-70(
       :x="pos[0] - width / 2 - pad"
       :y="pos[1] - height / 2 - pad"
       :viewBox="`${-pad + pos[0] - width / 2} ${-pad + pos[1] - height / 2} ${width + 2 * pad} ${height + 2 * pad}`",
@@ -128,5 +132,16 @@ onBeforeUnmount(() => {
         @click="selectedUser.pub = guest.pub"
         :style="{ transform: `translate(${guest?.pos?.x}px, ${guest?.pos?.y}px)` }"
         )
-
+  ui-layer.z-4000(
+    :open="selectedUser.pub" 
+    @close="selectedUser.pub = null"
+    )
+    account-home.max-w-600px(
+      :pub="selectedUser.pub" 
+      @user="$emit('user', $event)" 
+      @post="$emit('post', safeHash($event))"
+      @chat="$emit('chat', selectedUser.pub)"
+      @close="selectedUser.pub = null"
+      :key="selectedUser.pub"
+      )
 </template>

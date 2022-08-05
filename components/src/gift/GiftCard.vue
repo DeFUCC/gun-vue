@@ -26,32 +26,34 @@ const roomTitle = computed(() => {
 </script>
 
 <template lang='pug'>
-.p-2.rounded-xl.bg-light-200.bg-opacity-90.flex.shadow-lg.flex-wrap.gap-2.items-center.border-2.relative(
+.p-0.rounded-xl.bg-light-200.bg-opacity-90.flex.shadow-lg.flex-wrap.gap-2.items-center.border-2.relative(
   :style="{ backgroundColor: state.complete ? color.hex(hash) : '#ccc3', borderColor: !state.complete ? color.hex(hash) : 'transparent' }"
   v-if="Object.keys(gift).length > 0"
   ) 
-  .font-mono.text-7px.absolute.bottom-1.right-2.opacity-40 {{ hash }}
-  .flex-auto.flex.flex.flex-col.px-2(
-    style="flex: 1 1 20px"
-  )
+  //- .font-mono.text-7px.absolute.-bottom-2.right-2.opacity-40(
+    :style="{ color: color.hex(hash) }"
+    ) {{ hash }}
+  .flex-0.flex.flex-wrap.px-2.gap-2(
+    )
     .flex.flex-col
       .text-xl.font-bold {{ gift.qn }}
     .flex.flex-col
       .text-lg.font-bold {{ gift.ql }}
-  .flex.items-center.gap-2
+  .flex.items-center.gap-2.flex-0
 
     .flex.flex-col.gap-2.text-xs
       account-badge(:pub="gift.from")
         gift-status.mr-2(:state="state.from")
     la-arrow-right.m-2
+
     .flex.flex-col.gap-2.text-xs
       account-badge(:pub="gift.to")
         gift-status.mr-2(:state="state.to")
-  .flex.gap-2.p-2.items-center.flex-wrap(
-    v-if="gift.wish"
-    style="flex: 100 1 200px"
-    )  {{ gift.wish }}
+
   slot
+  .flex.flex-1.gap-2.p-2.items-center.flex-wrap.leading-tight.text-xs(
+    style="flex: 1 1 20%"
+    )  {{ gift.wish }}
   .flex.gap-2.flex-wrap
     .flex.flex-col.gap-1(v-if="gift.room != currentRoom.pub") 
       .text-xs ROOM 

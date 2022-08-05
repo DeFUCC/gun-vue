@@ -11,5 +11,5 @@ const props = defineProps({
 .py-1.rounded-lg.flex.justify-center.text-center.text-sm
   la-check(v-if="state === true")
   la-times(v-else-if="state === false")
-  .p-1(v-else) {{ state }}
+  .p-0(v-else) {{ state }}
 </template>

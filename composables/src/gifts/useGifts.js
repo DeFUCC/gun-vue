@@ -1,4 +1,4 @@
-import { useNow } from '@vueuse/core'
+import { useNow, watchThrottled } from '@vueuse/core'
 import { SEA } from 'gun'
 import { reactive, computed, watch } from 'vue'
 import { useGun, useUser, hashObj, currentRoom } from '..'
@@ -74,7 +74,7 @@ export function useProjectGifts(path) {
   const gun = useGun()
   const gifts = reactive({})
 
-  gun.user(pub).get(giftPath).map().on((d, hash) => {
+  gun.user(pub).get(giftPath).map().once((d, hash) => {
     gun.get('#' + giftPath).get(hash).once(d => {
       try {
         d = JSON.parse(d)
@@ -89,10 +89,10 @@ export function useProjectGifts(path) {
     })
   })
 
-  const collections = reactive({})
 
-  watch(gifts, () => {
 
+  const collections = computed(() => {
+    let collections = {}
     for (let hash in gifts) {
       let gift = gifts[hash]
       collections[gift.ql] = collections[gift.ql] || { list: {}, sum: 0, from: {} }
@@ -113,8 +113,10 @@ export function useProjectGifts(path) {
       }
 
     }
-
+    return collections
   })
+
+
 
   return { gifts, collections }
 }

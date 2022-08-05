@@ -25,7 +25,9 @@ watchEffect(() => {
 
 const { gifts, collections } = useProjectGifts(props.path)
 
+function enableFunding() {
 
+}
 
 </script>
 
@@ -54,10 +56,14 @@ const { gifts, collections } = useProjectGifts(props.path)
     InkMde(v-else :modelValue="text" @update:modelValue="updateProjectField(path.slice(0, -88), 'text', $event)")
 
   //- pre.p-4.my-4.text-xs.overflow-scroll {{ project }}
-  .text-xl.my-4.p-4.font-bold.flex.items-center Project funding
+  .text-xl.my-4.p-4.flex.items-center() 
+    .font-bold Project funding
     .flex-1
-    gift-button(:gift="{ project: path, to: path.slice(-87) }" @sent="$emit('gift-sent', $event)")
-  .p-2.flex.flex-col.gap-4
+    template(v-if="!project.funding")
+      button.button(v-if="path.includes(user.pub)" @click="updateProjectField(path.slice(0, -88), 'funding', true)") Enable Funding
+      .text-xs(v-else) Funding not yet enabled by the author
+    gift-button(v-if="project.funding" :gift="{ project: path, to: path.slice(-87) }" @sent="$emit('gift-sent', $event)")
+  .p-2.flex.flex-col.gap-4(v-if="project.funding")
 
     .flex.flex-col.gap-2.p-2.bg-dark-50.rounded-xl.bg-opacity-10.shadow-xl(v-for="(ql, qlName ) in collections" :key="ql")
       .p-2.w-full.flex.items-center.gap-2

@@ -27,12 +27,12 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 <template lang="pug">
 .p-0.flex.flex-col.h-100vh(style="flex: 1000 1 100%" )
 
-  nav-bar
+  nav-bar(v-if="route.path != '/'")
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in")
       keep-alive
         component.flex-auto.overflow-y-scroll(:is="Component")
-  nav-footer(v-if="$route.path == '/'")
+nav-footer(v-if="$route.path == '/'")
 </template>
 
 <style lang="postcss">
