@@ -1,6 +1,15 @@
 <script setup>
 import { currentRoom } from '#composables'
 
+const props = defineProps({
+  coord: {
+    type: String,
+    default: '200,300'
+  }
+})
+
+
+
 let audio
 
 function enter() {
@@ -25,6 +34,8 @@ function leave() {
 <template lang='pug'>
 .flex.flex-col.items-centerl.w-full.items-stretch.relative
   space-plane.h-90vh(
+    :coord="coord"
+    @update:coord="$router.replace($event)"
     @user="$router.push('/users/' + $event)" 
     @chat="$router.push('/my/chat/' + $event)" 
     :key="currentRoom.pub" 

@@ -5,7 +5,7 @@
 
 import { useGun } from "..";
 import { useSvgMouse } from "../ui";
-import { user } from "../user";
+import { useUser } from "../user";
 import { computed, ref, reactive, watchEffect } from "vue";
 import { getFirstEmoji, currentRoom } from "..";
 import { getArrow } from "curved-arrows";
@@ -41,10 +41,11 @@ export function useSpace({
   const { area, mouse } = useSvgMouse(plane);
 
   const { width, height } = useElementBounding(plane);
-  const position = reactive([0, 0])
+  const pos = reactive([0, 0])
   const zoom = useClamp(1, 0.5, 2)
 
   const gun = useGun();
+  const { user } = useUser()
 
   const space = reactive({
     title: "space",
@@ -64,11 +65,17 @@ export function useSpace({
   function place({ x = mouse.x, y = mouse.y } = {}) {
     if (!user.pub) return;
     if (!space.joined) join();
-    position[0] = x
-    position[1] = y
+    pos[0] = x
+    pos[1] = y
+    console.log({ x, y })
     space.db.get(user.pub).get('pos').put(JSON.stringify({ x, y }), null, {
       opt: { cert: currentRoom.features?.space },
     });
+  }
+
+  function placePoint() {
+    const pointPos = [pos[0] + space.my.mouse.x, pos[1] + space.my.mouse.y].map(Math.round)
+    console.log(pointPos)
   }
 
   const allGuests = reactive({});
@@ -87,8 +94,9 @@ export function useSpace({
 
   const guestCount = computed(() => Object.keys(guests.value).length);
 
-  space.db.get(user.pub).on((pos) => {
-    space.my.pos = typeof pos == "string" ? JSON.parse(pos) : pos;
+  space.db.get(user.pub).on((p) => {
+    space.my.pos = typeof p == "string" ? JSON.parse(p) : p;
+
   });
 
   space.db.map().once(async (pos, pub) => {
@@ -176,11 +184,12 @@ export function useSpace({
     plane,
     width,
     height,
-    position,
+    pos,
     zoom,
     area,
     join,
     place,
+    placePoint
   };
 }
 

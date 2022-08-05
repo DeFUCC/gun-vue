@@ -4,19 +4,22 @@ import { useSpace, useUser, useColor, useRoom } from '#composables'
 import { useDrag, usePinch } from '@vueuse/gesture'
 import { useDraw } from '#composables'
 import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
+import { useDebounceFn, useThrottleFn } from '@vueuse/core'
 
 const props = defineProps({
   pad: { type: Number, default: 50 },
+  coord: { type: String, default: '' }
 })
-const emit = defineEmits(['user', 'enter', 'leave', 'chat'])
+const emit = defineEmits(['user', 'enter', 'leave', 'chat', 'update:coord'])
 
 const { user } = useUser()
 
 const colorDeep = useColor('deep')
 
-const { space, plane, position: pos, links, width, height, guests, guestCount, area, join, place } = useSpace({
+const { space, plane, pos, zoom, links, width, height, guests, guestCount, area, join, place, placePoint } = useSpace({
   TIMEOUT: 10000,
 })
+
 
 watch(guestCount, (next, prev) => {
 
@@ -27,11 +30,18 @@ watch(guestCount, (next, prev) => {
   }
 })
 
+const debouncedCoord = useDebounceFn((pos) => {
+  place({ x: pos[0], y: pos[1] })
+  emit('update:coord', `${pos[0]},${pos[1]}`)
+}, 200)
+
 useDrag(e => {
+  if (!(e.delta[0] && e.delta[1])) return
   if (draw.ing) return
   const [x, y] = e.delta
   pos[0] -= x
   pos[1] -= y
+  debouncedCoord(pos)
 }, {
   domTarget: plane,
 })
@@ -53,21 +63,23 @@ const selectedUser = reactive({
   pub: ''
 })
 
+
+
 </script>
 
 <template lang='pug'>
 .flex.flex-col.items-center
   .text-2xl.p-8.top-15vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-4(
     v-if="!space.joined && user.is" 
-    @click="join()"
+    @click="join();"
     :style="{ borderColor: user.color }"
     ) Click here to join the space
 
   space-draw.z-2000
   svg.h-full.w-full.z-200.bg-dark-100.bg-opacity-5.cursor-pointer.touch-none(
     ref="plane"
-    @dblclick="place({ x: 0, y: 0 })"
-    @click="place({ x: pos[0], y: pos[1] }); !user.is ? user.auth = true : null"
+    @dblclick.stop.prevent="placePoint()"
+    @click="!user.is ? user.auth = true : null; "
     version="1.1",
     baseProfile="full",
     :viewBox="`${-pad + pos[0] - width / 2} ${-pad + pos[1] - height / 2} ${width + 2 * pad} ${height + 2 * pad}`",
