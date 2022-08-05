@@ -24,12 +24,13 @@ function isSafe() {
       user-profile
       chat-private-list(@chat="$emit('chat', $event)")
       mate-list(:pub="user.pub"  @browse="$emit('user', $event)")
-      gift-wallets(:pub="user.pub")
+      .text-xl.p-4 My wallets
+        gift-wallets(:pub="user.pub")
       UserRooms(@browse="$emit('room', $event)")
     button.p-4.m-4.rounded-xl.font-bold.text-lg.shadow-md(
       @click="$emit('user', user.pub); $emit('close')"
       :style="{ backgroundColor: user.color }"
-    )
+      )
       slot  My public profile
     
 </template>

@@ -25,9 +25,6 @@ watchEffect(() => {
 
 const { gifts, collections } = useProjectGifts(props.path)
 
-function enableFunding() {
-
-}
 
 </script>
 
@@ -43,6 +40,7 @@ function enableFunding() {
       )
 
     form-picture(@update="updateProjectField(path.slice(0, -88), 'cover', $event)" v-if="editable")
+
 
     form-title(
       :text="project.title" 
@@ -62,7 +60,7 @@ function enableFunding() {
     template(v-if="!project.funding")
       button.button(v-if="path.includes(user.pub)" @click="updateProjectField(path.slice(0, -88), 'funding', true)") Enable Funding
       .text-xs(v-else) Funding not yet enabled by the author
-    gift-button(v-if="project.funding" :gift="{ project: path, to: path.slice(-87) }" @sent="$emit('gift-sent', $event)")
+    gift-button(v-if="project.funding" :gift="{ project: path, to: path.slice(-87) }" @sent="$emit('gift', $event)")
   .p-2.flex.flex-col.gap-4(v-if="project.funding")
 
     .flex.flex-col.gap-2.p-2.bg-dark-50.rounded-xl.bg-opacity-10.shadow-xl(v-for="(ql, qlName ) in collections" :key="ql")

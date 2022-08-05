@@ -8,6 +8,5 @@ import { currentRoom, rootRoom } from '#composables';
     @browse="$router.push(`/${$event}/`)" 
     :key="currentRoom.pub"
     )
-    nav-bar.sticky.top-0
 
 </template>

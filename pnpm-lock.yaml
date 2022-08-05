@@ -65,6 +65,7 @@ importers:
 
   components:
     specifiers:
+      '@coders-tm/vue-number-format': ^3.1.2
       '@gun-vue/composables': workspace:^
       '@qrcode/svg': ^1.0.0-beta.2
       '@vitejs/plugin-vue': 2.3.3
@@ -84,9 +85,11 @@ importers:
       vite: 2.9.14
       vite-plugin-windicss: ^1.8.7
       vue: ^3.2.37
+      vue-select: 4.0.0-beta.3
       vue3-virtual-scroll-list: ^0.2.0
       windicss: ^3.5.6
     dependencies:
+      '@coders-tm/vue-number-format': 3.1.2
       '@gun-vue/composables': link:../composables
       '@qrcode/svg': 1.0.0-beta.2
       '@vueuse/core': 9.0.0_vue@3.2.37
@@ -99,6 +102,7 @@ importers:
       jsqr: 1.4.0
       url-regex: 5.0.0
       vue: 3.2.37
+      vue-select: 4.0.0-beta.3_vue@3.2.37
       vue3-virtual-scroll-list: 0.2.0_vue@3.2.37
     devDependencies:
       '@vitejs/plugin-vue': 2.3.3_vite@2.9.14+vue@3.2.37
@@ -1771,6 +1775,10 @@ packages:
       '@codemirror/state': 6.1.0
       style-mod: 4.0.0
       w3c-keyname: 2.2.5
+    dev: false
+
+  /@coders-tm/vue-number-format/3.1.2:
+    resolution: {integrity: sha512-crj93a/NGIRBeblHzLolRspgVCIDp4MRaxCT67+TixQZY3NvpHdm02wFTc7m+AbYjZRZiPWA89uENELza+E4Hw==}
     dev: false
 
   /@drauu/core/0.3.0:
@@ -7879,6 +7887,14 @@ packages:
       vue: ^3.2.0
     dependencies:
       '@vue/devtools-api': 6.2.1
+      vue: 3.2.37
+    dev: false
+
+  /vue-select/4.0.0-beta.3_vue@3.2.37:
+    resolution: {integrity: sha512-sXufbTDluz26a39UUZE9jeh9Hojnn8zr9qDDUlVEBc7E0F+h3+Nzy8YzyFHuVNrrYLmK0zrPkb7hWFulAEW41Q==}
+    peerDependencies:
+      vue: 3.x
+    dependencies:
       vue: 3.2.37
     dev: false
 
