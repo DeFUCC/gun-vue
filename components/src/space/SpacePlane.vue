@@ -82,7 +82,7 @@ const selectedUser = reactive({
     @click="!user.is ? user.auth = true : null; "
     version="1.1",
     baseProfile="full",
-    :viewBox="`${-pad + pos[0] - width / 2} ${-pad + pos[1] - height / 2} ${width + 2 * pad} ${height + 2 * pad}`",
+    :viewBox="`${-pad + pos[0] - width / 2} ${-pad + pos[1] - height / 2} ${width * zoom + 2 * pad} ${height * zoom + 2 * pad}`",
     xmlns="http://www.w3.org/2000/svg",
     font-family="Commissioner , sans-serif"
     text-anchor="middle",

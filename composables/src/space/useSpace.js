@@ -67,7 +67,6 @@ export function useSpace({
     if (!space.joined) join();
     pos[0] = x
     pos[1] = y
-    console.log({ x, y })
     space.db.get(user.pub).get('pos').put(JSON.stringify({ x, y }), null, {
       opt: { cert: currentRoom.features?.space },
     });
@@ -76,6 +75,12 @@ export function useSpace({
   function placePoint() {
     const pointPos = [pos[0] + space.my.mouse.x, pos[1] + space.my.mouse.y].map(Math.round)
     console.log(pointPos)
+    space.db.get(user.pub).get(`${pointPos[0]},${pointPos[1]}`).put({
+      title: 'point',
+      url: 'https://gun-vue.js.org'
+    }, null, {
+      opt: { cert: currentRoom.features?.space },
+    });
   }
 
   const allGuests = reactive({});
@@ -96,7 +101,6 @@ export function useSpace({
 
   space.db.get(user.pub).on((p) => {
     space.my.pos = typeof p == "string" ? JSON.parse(p) : p;
-
   });
 
   space.db.map().once(async (pos, pub) => {
