@@ -3,7 +3,19 @@ import { useRoom, rootRoom, currentRoom, useColor, useUser, useBackground, useMd
 import { ref, computed, reactive } from 'vue'
 
 const props = defineProps({
-  pub: String
+  pub: String,
+  titles: {
+    default: {
+      space: 'Space',
+      topics: 'Topics',
+      posts: 'Posts',
+      projects: 'Projects',
+      gifts: 'Gifts',
+      dict: 'Dictionary',
+      users: 'Users',
+      rooms: 'Rooms',
+    }
+  }
 })
 
 defineEmits(['rooms', 'browse'])
@@ -56,7 +68,20 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
           room-actions(:pub="roomPub")
   slot
   .flex.flex-col.items-center.bg-light-300
-    room-features.my-4(:features="room.features" @browse="$emit('browse', $event)")
+
+
+
+    .flex.flex-wrap.items-center.gap-2.p-4
+      room-feature(
+        v-for="(title, c) in titles" :key="c"
+        :cert="room.features[c]"
+        :type="c"
+        :title="title"
+        :pub="pub || currentRoom.pub"
+        :open="room.features[c] || (c == 'users' && room.features.space) || (c == 'topics' && room.features.chat)"
+          @click="$emit('browse', c)" 
+          )
+
     .max-w-200.relative
       .flex.items-center(v-if="edit.text === false" ) 
         .p-8.markdown-body(v-html="md.render(room.profile?.text || '')")
