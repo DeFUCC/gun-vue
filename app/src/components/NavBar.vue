@@ -23,15 +23,7 @@ const color = useColor('light')
     )
     .flex-0.ml-10.flex.flex-wrap.items-center
       .px-2.text-4xl.flex-1.flex.justify-center
-        ph-house-simple(v-if="routes[route.path] == 'Home'")
-        ph-hands-clapping(v-if="routes[route.path] == 'Space'")
-        ph-newspaper(v-if="routes[route.path] == 'Posts'")
-        ph-house(v-if="routes[route.path] == 'Rooms'")
-        la-broadcast-tower(v-if="routes[route.path] == 'Topics'")
-        ph-users(v-if="routes[route.path] == 'Users'")
-        ph-books(v-if="routes[route.path] == 'Dictionary'")
-        la-sun(v-if="routes[route.path] == 'Gifts'")
-        la-toolbox(v-if="routes[route.path] == 'Projects'")
+        room-feature-icon(:icon="route.path")
       .p-0.text-lg.flex-auto.text-center {{ routes[route.path] }}
     .flex-auto
     util-tools

@@ -2,6 +2,7 @@
 
 export { default as RoomCard } from './RoomCard.vue'
 export { default as RoomFeatures } from './RoomFeatures.vue'
+export { default as RoomFeatureIcon } from './RoomFeatureIcon.vue'
 export { default as RoomForm } from './RoomForm.vue'
 export { default as RoomLogo } from './RoomLogo.vue'
 export { default as RoomList } from './RoomList.vue'
