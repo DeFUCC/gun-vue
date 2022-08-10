@@ -8,7 +8,7 @@ export default {
   initiated: false,
   init({
     host = process.env.RELAY_HOST,
-    store = process.env.RELAY_STORE || false,
+    store = process.env.RELAY_STORE != 'false' || false,
     port = process.env.RELAY_PORT || 4200,
     path = process.env.RELAY_PATH || "public",
     showQr = process.env.RELAY_QR || false,
