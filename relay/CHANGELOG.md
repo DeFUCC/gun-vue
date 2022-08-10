@@ -1,5 +1,11 @@
 # @gun-vue/relay
 
+## 0.3.8
+
+### Patch Changes
+
+- Gun is now v.0.2020.1238
+
 ## 0.3.7
 
 ### Patch Changes
