@@ -73,9 +73,9 @@ const selectedUser = reactive({
     v-if="!space.joined && user.is" 
     @click="join();"
     :style="{ borderColor: user.color }"
-    ) Click here to join the space
+    ) Click anywhere to join the space
 
-  space-draw.z-2000
+  space-draw.z-500
   svg.h-full.w-full.z-200.bg-dark-100.bg-opacity-5.cursor-pointer.touch-none(
     ref="plane"
     @click="!user.is ? user.auth = true : null; "

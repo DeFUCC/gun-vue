@@ -17,7 +17,7 @@ function setBrushColor(color) {
 </script>
 
 <template lang="pug">
-.z-400.absolute.top-4.left-4.right-4
+.z-10.absolute.top-4.left-4.right-4
   button.text-6xl.absolute(
     @click="draw.enabled = !draw.enabled"
     :class="{ active: draw.enabled }"

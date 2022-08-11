@@ -12,7 +12,8 @@ const count = countProjects()
     .flex-1
     .text-lg {{ count }}
   router-view(v-slot="{ Component }")
-    transition(name="fade")
-      keep-alive
+    keep-alive
+      transition(name="fade" mode="out-in")
+
         component(:is="Component" )
 </template>

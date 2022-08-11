@@ -35,7 +35,6 @@ function leave() {
 .flex.flex-col.items-centerl.w-full.items-stretch.relative
   space-plane.h-90vh(
     :coord="coord"
-    @update:coord="$router.replace($event)"
     @user="$router.push('/users/' + $event)" 
     @chat="$router.push('/my/chat/' + $event)" 
     :key="currentRoom.pub" 

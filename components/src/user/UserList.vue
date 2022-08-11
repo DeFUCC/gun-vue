@@ -25,20 +25,21 @@ const isInRoom = computed(() => guests.guests[user.pub])
 </script>
 
 <template lang='pug'>
-.absolute.left-0.top-2.z-200.flex.gap-2
-  button.flex.items-center.p-4.bg-light-200.w-60.shadow-lg(@mousedown.stop.prevent="open = true")
-    la-users.text-3xl
-    .ml-1 Users list
-    .flex-1
-    button.button(v-if="user.is && !isInRoom" @click.stop.prevent="joinRoom()")
-      la-plus
-      .ml-2 Join
+
+button.absolute.flex.items-center.m-4.p-2.left-0.bottom-0.z-200(@mousedown.stop.prevent="open = true" v-if="!open && !isLarge")
+  la-users.text-3xl
+  .ml-1.flex.items-center.gap-2 Users list
+    la-angle-up
+  .flex-1
+button.button.absolute.flex.items-center.m-4.p-2.right-0.top-0.z-200(v-if="user.is && !isInRoom" @click.stop.prevent="joinRoom()")
+  la-plus
+  .ml-2 Join
 transition(name="fade")
-  .absolute.left-0.top-20.w-60.bg-light-200.z-100.overflow-y-scroll.px-2.max-h-full(ref="panel" v-if="isLarge || (open && !isLarge)" )
-    .flex.flex-col.my-6.gap-2(v-for="state in ['online', 'offline']" :key="state")
-      .flex.items-center.bg-light-400.py-2
+  .absolute.left-0.bottom-0.w-60.bg-light-200.bg-opacity-70.z-100.overflow-y-scroll.px-2.max-h-full.flex.flex-col.gap-2.p-2.rounded-tr-xl(ref="panel" v-if="isLarge || (open && !isLarge)" )
+    .flex.flex-col.gap-2(v-for="state in ['online', 'offline']" :key="state")
+      .flex.items-center
         .text-xl.mr-2.capitalize {{ state }}
-        .px-2.py-1.bg-light-900.rounded-xl.font-bold {{ guests.count[state] }}
+        .px-2.py-1.rounded-xl.font-bold {{ guests.count[state] }}
       .flex.flex-wrap
         transition-group(name="fade")
           account-badge.shadow-md.m-1(

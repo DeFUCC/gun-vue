@@ -3,6 +3,12 @@ import { computed, reactive, watchEffect, onMounted } from 'vue'
 import { useColor, useMates, useGun, currentRoom, gunAvatar, user } from '#composables';
 import ForceGraph from 'force-graph';
 
+import { ref } from 'vue'
+import { useResizeObserver } from '@vueuse/core'
+
+const graph = ref(null)
+
+
 //https://github.com/vasturiano/force-graph
 
 const emit = defineEmits(['user'])
@@ -41,48 +47,57 @@ const links = computed(() => {
   return arr
 })
 
+const Graph = ForceGraph()
+  .width(600)
+  .nodeId('pub')
+  .nodeColor('color')
+  // .nodeVal(node => {
+  //   if (node.pub == user.pub) {
+  //     return 100
+  //   } else {
+  //     return Object.keys(node.links).length + 1
+  //   }
+  // })
+  .nodeRelSize(4)
+  .linkDirectionalArrowLength(4)
+  .linkDirectionalArrowRelPos(1)
+  .linkLabel('emoji')
+  .linkCurvature(0.02)
+  .linkColor(link => {
+    return colorDeep.hex(link.source?.pub || 0)
+  })
+  .linkWidth((link) => {
+    if (link.back) return 3
+    return 1
+  })
+  .onNodeDragEnd(node => {
+    node.fx = node.x;
+    node.fy = node.y;
+  }).onNodeClick(node => {
+    // Center/zoom on node
+    Graph.centerAt(node.x, node.y, 1000);
+    Graph.zoom(4, 2000);
+  })
+  .onNodeClick((node, ev) => {
+    emit('user', node.pub)
+  });
 
 onMounted(() => {
-  const Graph = ForceGraph()(document.getElementById('graph'))
-    .nodeId('pub')
-    .nodeColor('color')
-    // .nodeVal(node => {
-    //   if (node.pub == user.pub) {
-    //     return 100
-    //   } else {
-    //     return Object.keys(node.links).length + 1
-    //   }
-    // })
-    .nodeRelSize(4)
-    .linkDirectionalArrowLength(4)
-    .linkDirectionalArrowRelPos(1)
-    .linkLabel('emoji')
-    .linkCurvature(0.02)
-    .linkColor(link => {
-      return colorDeep.hex(link.source?.pub || 0)
-    })
-    .linkWidth((link) => {
-      if (link.back) return 3
-      return 1
-    })
-    .onNodeDragEnd(node => {
-      node.fx = node.x;
-      node.fy = node.y;
-    }).onNodeClick(node => {
-      // Center/zoom on node
-      Graph.centerAt(node.x, node.y, 1000);
-      Graph.zoom(4, 2000);
-    })
-    .onNodeClick((node, ev) => {
-      emit('user', node.pub)
-    });
+  Graph(document.getElementById('graph'))
+})
 
-  watchEffect(() => Graph.graphData({ nodes: Object.values(guests), links: links.value }))
+watchEffect(() => Graph.graphData({ nodes: Object.values(guests), links: links.value }))
 
+useResizeObserver(graph, (entries) => {
+  const entry = entries[0]
+  const { width, height } = entry.contentRect
+  Graph.width(width);
+  Graph.height(height)
 })
 
 </script>
 
 <template lang='pug'>
-#graph.bg-light-700.overflow-hidden
+.bg-light-700.overflow-none.w-full.max-w-90vw.max-h-90vh.h-full(ref="graph")
+  #graph
 </template>

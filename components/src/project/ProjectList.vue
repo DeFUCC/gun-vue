@@ -10,7 +10,7 @@ defineEmits(['open'])
 .flex.flex-col
   .p-2.flex.flex-col.gap-2
     input.p-2.rounded-xl.shadow(v-model="newProject.title" placeholder="Start typing a project title")
-  .flex.flex-wrap.gap-2.p-2
+  .flex.flex-col.gap-4.p-2
     transition-group(name="list")
       project-card(
         v-for="(proj, path) in candidates" 

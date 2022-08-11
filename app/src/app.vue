@@ -57,8 +57,8 @@ body {
   display: grid;
   width: 100%;
   height: 100vh;
-  grid-template-columns: minmax(1fr, 100px) auto auto;
-  grid-template-rows: 0.3fr auto auto;
+  grid-template-columns: fit-content(20%) auto auto;
+  grid-template-rows: 0.1fr auto auto;
   gap: 0px 0px;
   grid-template-areas:
     "Side Top Top"
