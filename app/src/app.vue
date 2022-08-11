@@ -25,14 +25,15 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 </script>
 
 <template lang="pug">
-.p-0.flex.flex-col.h-100vh(style="flex: 1000 1 100%" )
-
-  nav-bar
-  router-view(v-slot="{ Component }")
-    transition(name="fade" mode="out-in")
-      keep-alive
-        component.flex-auto.overflow-y-scroll(:is="Component")
-nav-footer(v-if="$route.path == '/'")
+.app-container
+  side-bar.Side
+  nav-bar.Top
+  .grid.Main.overflow-y-scroll.max-h-full
+    router-view(v-slot="{ Component }")
+      transition(name="fade" mode="out-in")
+        keep-alive
+          component(:is="Component")
+  nav-footer.Footer(v-if="$route.path == '/'")
 </template>
 
 <style lang="postcss">
@@ -43,12 +44,41 @@ html {
 }
 
 body {
-  @apply bg-light-600 dark_bg-dark-200;
+  @apply bg-light-500 dark_bg-dark-200;
   overscroll-behavior-y: none;
   touch-action: pan-x pan-y;
 }
 
 #app {
-  @apply min-h-100vh max-h-100vh flex flex-col;
+  @apply min-h-100vh max-h-100vh flex;
+}
+
+.app-container {
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  grid-template-columns: minmax(1fr, 100px) auto auto;
+  grid-template-rows: 0.3fr auto auto;
+  gap: 0px 0px;
+  grid-template-areas:
+    "Side Top Top"
+    "Side Main Main"
+    "Side Footer Footer";
+}
+
+.Main {
+  grid-area: Main;
+}
+
+.Footer {
+  grid-area: Footer;
+}
+
+.Side {
+  grid-area: Side;
+}
+
+.Top {
+  grid-area: Top;
 }
 </style>
