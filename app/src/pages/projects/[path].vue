@@ -5,10 +5,11 @@ const props = defineProps({
   path: { type: String }
 })
 
-
-
 </script>
 
 <template lang='pug'>
-project-page(:path="path" :key="path" @gift="$router.push(`/gifts/${safeHash($event)}`)")
+project-page(
+  :path="path" 
+  @gift="$router.push(`/gifts/${safeHash($event)}`)"
+)
 </template>

@@ -17,6 +17,8 @@ const { project } = useProject(toRef(props, 'path'))
 
 const editable = computed(() => props.path.includes(user.pub))
 
+const editing = ref(false)
+
 const text = ref('')
 
 watchEffect(() => {
@@ -49,8 +51,9 @@ const { gifts, collections } = useProjectGifts(props.path)
 
     account-badge.absolute.bottom-4.right-4(:pub="path.slice(-87)")
 
-  .flex.flex-col.gap-2.m-2.bg-light-200.p-2.rounded-xl.shadow
-    .p-2.markdown-body(v-html="md.render(text || '')" v-if="!editable")
+  .flex.flex-col.gap-2.m-2.bg-light-200.p-2.rounded-xl.shadow.relative
+    la-pen.cursor-pointer.text-2xl.absolute.top-2.right-2.z-2(@click="editing = !editing" v-if="editable")
+    .p-2.markdown-body(v-html="md.render(text || '')" v-if="!editing || !editable")
     InkMde(v-else :modelValue="text" @update:modelValue="updateProjectField(path.slice(0, -88), 'text', $event)")
 
   //- pre.p-4.my-4.text-xs.overflow-scroll {{ project }}
@@ -70,7 +73,6 @@ const { gifts, collections } = useProjectGifts(props.path)
         .opacity-50 by
         .flex.flex-wrap.gap-2 
           account-badge(
-            @click="$emit('gift',)"
             v-for="(sum, pub) in ql.from" 
             :key="sum" 
             :pub="pub"

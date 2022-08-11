@@ -26,53 +26,54 @@ const roomTitle = computed(() => {
 </script>
 
 <template lang='pug'>
-.p-0.rounded-xl.bg-light-200.bg-opacity-90.flex.shadow-lg.flex-wrap.gap-2.items-center.border-2.relative(
-  :style="{ backgroundColor: state.complete ? color.hex(hash) : '#ccc3', borderColor: !state.complete ? color.hex(hash) : 'transparent' }"
+.flex.p-0.rounded-xl.shadow-lg.border-2.relative.overflow-hidden(
+  :style="{ opacity: state.complete ? 1 : 0.5 }"
   v-if="Object.keys(gift).length > 0"
   ) 
   //- .font-mono.text-7px.absolute.-bottom-2.right-2.opacity-40(
     :style="{ color: color.hex(hash) }"
     ) {{ hash }}
-  .flex-0.flex.flex-wrap.px-2.gap-2(
-    )
-    .flex.flex-col
-      .text-xl.font-bold {{ gift.qn }}
-    .flex.flex-col
-      .text-lg.font-bold {{ gift.ql }}
-  .flex.items-center.gap-2.flex-0
+  .w-3.min-w-3.h-full.flex-0(:style="{ backgroundColor: color.hex(hash) }")
+  .flex.flex-wrap.gap-2.items-center.px-2
+    .flex-0.flex.flex-wrap.px-2.gap-2
+      .flex.flex-col
+        .text-xl.font-bold {{ gift.qn }}
+      .flex.flex-col
+        .text-lg.font-bold {{ gift.ql }}
+    .flex.items-center.gap-2.flex-0
 
-    .flex.flex-col.gap-2.text-xs
-      account-badge(:pub="gift.from")
-        gift-status.mr-2(:state="state.from")
-    la-arrow-right.m-2
+      .flex.flex-col.gap-2.text-xs
+        account-badge(:pub="gift.from" :style="{ opacity: state.from ? 1 : 0.4 }")
+          gift-status.mr-2(:state="state.from")
+      la-arrow-right.m-2
 
-    .flex.flex-col.gap-2.text-xs
-      account-badge(:pub="gift.to")
-        gift-status.mr-2(:state="state.to")
+      .flex.flex-col.gap-2.text-xs
+        account-badge(:pub="gift.to" :style="{ opacity: state.to ? 1 : 0.4 }")
+          gift-status.mr-2(:state="state.to")
 
-  slot
-  .flex.flex-1.gap-2.p-2.items-center.flex-wrap.leading-tight.text-xs(
-    style="flex: 1 1 20%"
-    )  {{ gift.wish }}
-  .flex.gap-2.flex-wrap
-    .flex.flex-col.gap-1(v-if="gift.room != currentRoom.pub") 
-      .text-xs ROOM 
-      .p-0 {{ roomTitle }}
+    slot
+    .flex.flex-1.gap-2.p-2.items-center.flex-wrap.leading-tight.text-xs(
+      style="flex: 1 1 20%"
+      )  {{ gift.wish }}
+    .flex.gap-2.flex-wrap
+      .flex.flex-col.gap-1(v-if="gift.room != currentRoom.pub") 
+        .text-xs ROOM 
+        .p-0 {{ roomTitle }}
 
-    .flex.flex-col.gap-1(v-if="gift.project") 
-      .text-xs PROJECT
-      .p-0 {{ gift.project.slice(0, -88) }}
-    .flex.flex-col.gap-1(v-if="gift.date") 
-      .text-xs {{ date }}
-      .p-0 {{ time }}
-  .flex.gap-2
+      .flex.flex-col.gap-1(v-if="gift.project") 
+        .text-xs PROJECT
+        .p-0 {{ gift.project.slice(0, -88) }}
+      .flex.flex-col.gap-1(v-if="gift.date") 
+        .text-xs {{ date }}
+        .p-0 {{ time }}
+    .flex.gap-2
 
-    template(v-if="gift.from == user.pub")
-      button.button(@click.stop.prevent="giftState(hash, true)" v-if="!state.from") Propose
-      button.button(@click.stop.prevent="giftState(hash, false)" v-else) Cancel
+      template(v-if="gift.from == user.pub")
+        button.button(@click.stop.prevent="giftState(hash, true)" v-if="!state.from") Propose
+        button.button(@click.stop.prevent="giftState(hash, false)" v-else) Cancel
 
-    template(v-if="gift.to == user.pub")
-      button.button(@click.stop.prevent="giftState(hash, true)" v-if="!state.to") Accept
-      button.button(@click.stop.prevent="giftState(hash, false)" v-if="state.to") Reject
+      template(v-if="gift.to == user.pub")
+        button.button(@click.stop.prevent="giftState(hash, true)" v-if="!state.to") Accept
+        button.button(@click.stop.prevent="giftState(hash, false)" v-if="state.to") Reject
 
 </template>

@@ -9,7 +9,7 @@ import { SEA } from 'gun'
 export const newProject = reactive({
   title: '',
   public: true,
-  funding: true
+  funding: false
 })
 
 export async function updateProject({ publish = true } = {}) {
