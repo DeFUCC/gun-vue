@@ -1,5 +1,14 @@
 # @gun-vue/app
 
+## 0.11.4
+
+### Patch Changes
+
+- Better app UI: grid, sidebar and bug fixes. Better gifts/wallets. + GUN version update 0.2020.1238
+- Updated dependencies
+  - @gun-vue/components@0.11.4
+  - @gun-vue/composables@0.11.4
+
 ## 0.11.3
 
 ### Patch Changes

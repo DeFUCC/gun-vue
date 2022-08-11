@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.11.4
+
+### Patch Changes
+
+- Better app UI: grid, sidebar and bug fixes. Better gifts/wallets. + GUN version update 0.2020.1238
+
 ## 0.11.2
 
 ### Patch Changes
