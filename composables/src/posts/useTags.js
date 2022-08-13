@@ -88,7 +88,7 @@ export function useTagList() {
 
 
 
-export function listPersonal(tag, pub = currentRoom.pub) {
+export function listPersonalTag(tag, pub = currentRoom.pub) {
   const gun = useGun();
   const records = reactive({});
   gun

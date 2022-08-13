@@ -60,6 +60,6 @@
   "devDependencies": {
     "jsdoc-to-markdown": "^7.1.1",
     "pug": "^3.0.2",
-    "vite": "^3.0.5"
+    "vite": "^3.0.7"
   }
 }

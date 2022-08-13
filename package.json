@@ -21,7 +21,7 @@
     "version": "pnpm changeset version"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.24.1",
+    "@changesets/cli": "^2.24.2",
     "@skynetlabs/skynet-nodejs": "^2.8.0",
     "dotenv": "^16.0.1"
   }
