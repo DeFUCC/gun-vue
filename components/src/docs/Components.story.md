@@ -1,8 +1,8 @@
-<template>
-  <Story title="Components" docs-only icon="la:book-open" group="docs" />
-</template>
-
-<docs lang="md">
+---
+title: Components
+icon: la:book-open
+group: docs
+---
 
 ![](/components.svg)
 
@@ -74,8 +74,3 @@ const router = createRouter({
 
 export default router
 ```
-
-</docs>
-
-<style scoped>
-</style>
