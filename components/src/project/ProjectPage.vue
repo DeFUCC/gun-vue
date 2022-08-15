@@ -3,7 +3,7 @@ import { useUser, useProject, updateProjectField, useMd, useProjectGifts } from 
 import { toRef, ref, computed, watchEffect } from 'vue'
 import InkMde from 'ink-mde/vue'
 
-const emit = defineEmits(['gift'])
+const emit = defineEmits(['gift', 'user'])
 
 const props = defineProps({
   path: { type: String, default: '' },
@@ -49,7 +49,7 @@ const { gifts, collections } = useProjectGifts(props.path)
       :editable="editable" 
       @update="updateProjectField(path.slice(0, -88), 'title', $event)")
 
-    account-badge.absolute.bottom-4.right-4(:pub="path.slice(-87)")
+    account-badge.absolute.bottom-4.right-4(:pub="path.slice(-87)" @click="$emit('user', path.slice(-87))")
 
   .flex.flex-col.gap-2.m-2.bg-light-200.p-2.rounded-xl.shadow.relative
     la-pen.cursor-pointer.text-2xl.absolute.top-2.right-2.z-2(@click="editing = !editing" v-if="editable")

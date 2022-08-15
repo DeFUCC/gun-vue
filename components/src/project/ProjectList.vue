@@ -1,6 +1,11 @@
 <script setup>
 import { useProjects, updateProject, newProject } from '#composables';
-const { search, projects, candidates } = useProjects()
+
+const props = defineProps({
+  pub: { type: String }
+})
+
+const { search, projects, candidates } = useProjects(props.pub)
 
 defineEmits(['open'])
 

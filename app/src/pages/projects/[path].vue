@@ -11,5 +11,6 @@ const props = defineProps({
 project-page(
   :path="path" 
   @gift="$router.push(`/gifts/${safeHash($event)}`)"
+  @user="$router.push(`/users/${$event}`)"
 )
 </template>

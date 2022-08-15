@@ -25,6 +25,7 @@ onMounted(() => {
     :key="pub"
     @post="$router.push(`/posts/${safeHash($event)}`)"
     @chat="$router.push(`/my/chat/${pub}`)" 
+    @project="$router.push(`/projects/${$event}`)"
     )
   router-view(v-slot="{ Component }")
     transition(name="fade")
