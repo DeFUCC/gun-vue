@@ -1,8 +1,13 @@
----
-title: Composables
-icon: la:book
-group: docs
----
+<template>
+  <Story
+    title="Composables"
+    docs-only
+    icon="la:book-open"
+    group="docs"
+  />
+</template>
+
+<docs lang="md">
 
 ![](/composables.svg)
 
@@ -94,3 +99,17 @@ const user = useUser();
 <hr />
 
 {{/orphans~}}
+
+</docs>
+
+<style scoped>
+  hr {
+    height: 1px;
+    background-color: #3333;
+    margin: 2em 0 8em 0;
+  }
+
+  h3 {
+    margin-top: 3em;
+  }
+</style>
