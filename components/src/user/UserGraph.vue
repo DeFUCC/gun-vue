@@ -51,18 +51,18 @@ const Graph = ForceGraph()
   .width(600)
   .nodeId('pub')
   .nodeColor('color')
-  // .nodeVal(node => {
-  //   if (node.pub == user.pub) {
-  //     return 100
-  //   } else {
-  //     return Object.keys(node.links).length + 1
-  //   }
-  // })
+  .nodeVal(node => {
+    if (node.pub == user.pub) {
+      return 10
+    } else {
+      return 1 // Object.keys(node.links).length + 1
+    }
+  })
   .nodeRelSize(4)
   .linkDirectionalArrowLength(4)
   .linkDirectionalArrowRelPos(1)
   .linkLabel('emoji')
-  .linkCurvature(0.02)
+  .linkCurvature(0.2)
   .linkColor(link => {
     return colorDeep.hex(link.source?.pub || 0)
   })

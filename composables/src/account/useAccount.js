@@ -3,7 +3,7 @@
  * @module useAccount
  * */
 
-import { useGun } from "..";
+import { useGun, useUser, SEA } from "..";
 import { useColor } from "../ui";
 import { computed, reactive, ref } from "vue";
 import ms from "ms";
@@ -44,7 +44,9 @@ const colorDeep = useColor("deep");
 export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
   const gun = useGun();
   pub = ref(pub);
+  const { user } = useUser()
   const account = computed(() => {
+
     const obj = reactive({
       pub,
       color: computed(() => (pub.value ? colorDeep.hex(pub.value) : "gray")),
@@ -64,6 +66,14 @@ export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
       db: gun.user(pub.value),
     });
 
+    if (user.is) {
+      gun.user().get('petnames').get(pub.value).on(async d => {
+        obj.petname = await SEA.decrypt(d, user.pair())
+      })
+    }
+
+
+
     gun
       .user(pub.value)
       .get("pulse")
@@ -80,5 +90,14 @@ export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
     return obj;
   });
 
-  return { account };
+  return { account, setPetname };
+}
+
+
+async function setPetname(pub, name) {
+  const { user } = useUser()
+  if (!user.is) return
+  const gun = useGun();
+  const enc = await SEA.encrypt(name, user.pair())
+  gun.user().get('petnames').get(pub).put(enc)
 }
