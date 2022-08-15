@@ -1,5 +1,11 @@
 # @gun-vue/repo
 
+## 0.11.5
+
+### Patch Changes
+
+- Composables export fix
+
 ## 0.11.4
 
 ### Patch Changes
