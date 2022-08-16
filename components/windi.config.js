@@ -3,4 +3,5 @@ import { defineConfig } from "windicss/helpers";
 
 export default defineConfig({
   separator: "_",
+  safelist: 'animate-bounce',
 });

@@ -26,6 +26,7 @@ const color = useColor('light')
     util-tools
     room-button(
       @room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)"
+      @browse="$router.push(`/${$event}/`)" 
       :key="currentRoom.pub"
       )
 

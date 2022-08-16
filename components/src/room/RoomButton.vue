@@ -2,7 +2,7 @@
 import { useRoom, useColor, currentRoom, useBackground, useRoomLogo } from '#composables';
 import { ref, computed } from 'vue'
 
-defineEmits(['room', 'rooms'])
+defineEmits(['room', 'rooms', 'browse'])
 
 const open = ref(false)
 
@@ -31,7 +31,12 @@ const { logo } = useRoomLogo(currentRoom.pub)
     .text-2xl.font-normal @
     .ml-1.text-sm(v-if="current?.room?.profile?.name") {{ current?.room.profile.name.substring(0, 15) }}
   ui-panel.break-all(:open="open" :closeButton="false" @close="open = false")
-    room-page(@room="$emit('room', $event)" :key="currentRoom.pub" @rooms="$emit('rooms')")
+    room-page(
+      @room="$emit('room', $event)" 
+      :key="currentRoom.pub" 
+      @rooms="$emit('rooms')"
+      @browse="$emit('browse', $event); open = false" 
+      )
       button.button.m-4(@click="$emit('rooms'); open = false") Browse rooms
       
 

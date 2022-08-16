@@ -8,6 +8,7 @@ import { newProject } from './useProject'
 import { useGun } from "../gun"
 import { currentRoom } from "../room"
 import Fuse from "fuse.js";
+import { isHash } from "../crypto"
 
 
 
@@ -44,6 +45,9 @@ export function useProjects(pub = currentRoom.pub) {
       const data = { ...d, path: k }
       delete data._
       projects[k] = data
+      if (isHash(data?.cover)) {
+        gun.get('#cover').get(data.cover).once(d => projects[k].cover = d)
+      }
     })
 
   return { projects, search, candidates }

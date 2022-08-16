@@ -8,7 +8,7 @@
 import { SEA } from "../gun/";
 
 export function isHash(str) {
-  return str.length == 44 && str.charAt(43) == '='
+  return typeof str == 'string' && str.length == 44 && str.charAt(43) == '='
 }
 
 /**

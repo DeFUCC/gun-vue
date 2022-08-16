@@ -1,5 +1,4 @@
 <script setup>
-import { safeHash } from '#composables';
 
 const props = defineProps({
   path: { type: String }
@@ -10,7 +9,7 @@ const props = defineProps({
 <template lang='pug'>
 project-page(
   :path="path" 
-  @gift="$router.push(`/gifts/${safeHash($event)}`)"
+  @gift="$router.push(`/gifts/${$event}`)"
   @user="$router.push(`/users/${$event}`)"
 )
 </template>

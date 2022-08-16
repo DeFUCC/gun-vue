@@ -20,7 +20,7 @@ export function useGift(hash) {
     try {
 
       Object.assign(gift, JSON.parse(d))
-
+      console.log
       gun.user(gift.from).get(giftPath).get(k).on(d => { state.from = d })
 
       gun.user(gift.to).get(giftPath).get(k).on(d => { state.to = d })
@@ -52,7 +52,7 @@ export function useNewGift(giftConf) {
     ql: null,
     wish: '',
     project: '',
-    date: computed(() => now.value.toLocaleString('en-GB')),
+    date: computed(() => now.value.getTime()),
     room: computed(() => currentRoom.pub)
   })
 
@@ -91,6 +91,7 @@ export function useNewGift(giftConf) {
   async function propose() {
 
     const { hash, hashed } = await hashObj(cleanGift.value)
+    console.log(hash, hashed)
 
     gun.get('#' + giftPath).get(hash).put(hashed)
 
@@ -126,7 +127,7 @@ export function removeEmptyKeys(obj) {
   return Object.entries(obj)
     .filter(([_, v]) => !!v)
     .reduce(
-      (acc, [k, v]) => ({ ...acc, [k]: v === Object(v) ? removeEmpty(v) : v }),
+      (acc, [k, v]) => ({ ...acc, [k]: v === Object(v) ? removeEmptyKeys(v) : v }),
       {}
     );
 }

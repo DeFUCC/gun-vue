@@ -78,8 +78,8 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
         :title="title"
         :pub="pub || currentRoom.pub"
         :open="room.features[c] || (c == 'users' && room.features.space) || (c == 'topics' && room.features.chat)"
-          @click="$emit('browse', c)" 
-          )
+        @click="$emit('browse', c)" 
+        )
 
     .max-w-200.relative
       .flex.items-center(v-if="edit.text === false" ) 

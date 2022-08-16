@@ -32,7 +32,7 @@ const props = defineProps({
 
 <template lang='pug'>
 .card(
-  :style="{ backgroundImage: `url(${project?.cover || project?.raw})`, backgroundColor: project.color }"
+  :style="{ background: `url(${project?.cover || project?.raw})`, backgroundColor: project.color }"
   )
   .absolute.top-2.right-2(@click.stop.prevent="removeProject(path)" v-if="path.includes(user.pub) || currentRoom.hosts[user.pub]")
     la-trash
@@ -69,7 +69,7 @@ const props = defineProps({
 
 <style lang="postcss" scoped>
 .card {
-  @apply transition duration-300ms ease-out min-w-280px pl-2 rounded-2xl cursor-pointer flex flex-wrap items-end bg-cover bg-center;
+  @apply transition duration-300ms ease-out min-w-280px p-2px pl-2 rounded-2xl cursor-pointer flex flex-wrap items-end bg-cover bg-center;
   filter: grayscale(10%) brightness(95%);
 }
 

@@ -1,5 +1,5 @@
 <script setup>
-import { useGun, useUser } from '#composables';
+import { genUUID, useGun, useUser } from '#composables';
 import { computed, reactive, ref } from 'vue'
 import vSelect from 'vue-select' // https://vue-select.org/
 import 'vue-select/dist/vue-select.css';
@@ -43,13 +43,14 @@ const newWallet = reactive({
 })
 
 function addWallet() {
-  gun.user(props.pub).get('wallets').set(newWallet)
+  const uuid = genUUID()
+  gun.user().get('wallets').get(uuid).put(newWallet)
   open.value = false
 }
 
 function removeWallet(key) {
   console.log(key)
-  gun.user(props.pub).get('wallets').get(key).put(null)
+  gun.user().get('wallets').get(key).put(null)
 }
 
 
@@ -63,7 +64,7 @@ function removeWallet(key) {
       v-for="(wallet, key) in wallets" :key="wallet" 
       :wallet="wallet"
       :style="{ backgroundColor: wallet == activeWallet ? '#3333' : '' }"
-      @click="$emit('wallet', wallet)"
+      @click="wallet != activeWallet ? $emit('wallet', wallet) : $emit('clear')"
       )
       la-trash-alt.opacity-40.hover_opacity-90(v-if="user.pub == pub" @click="removeWallet(key)")
 

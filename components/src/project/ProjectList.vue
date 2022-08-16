@@ -1,5 +1,5 @@
 <script setup>
-import { useProjects, updateProject, newProject } from '#composables';
+import { useProjects, addProject, newProject } from '#composables';
 
 const props = defineProps({
   pub: { type: String }
@@ -26,5 +26,5 @@ defineEmits(['open'])
         :style="{ opacity: 1 - proj.score }"
         )
   .p-2.flex.flex-col.gap-2
-    button.button(@click="updateProject()" key="button" v-if="newProject.title") Add Project {{ newProject.title }}
+    button.button(@click="addProject()" key="button" v-if="newProject.title") Add Project {{ newProject.title }}
 </template>

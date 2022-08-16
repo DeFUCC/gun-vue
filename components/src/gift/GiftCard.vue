@@ -64,7 +64,7 @@ const roomTitle = computed(() => {
         .text-xs PROJECT
         .p-0 {{ gift.project.slice(0, -88) }}
       .flex.flex-col.gap-1(v-if="gift.date") 
-        .text-xs {{ date }}
+        .text-xs {{ gift.date }}
         .p-0 {{ time }}
     .flex.gap-2
 
