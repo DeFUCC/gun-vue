@@ -6,3 +6,4 @@ export { default as AccountProfile } from "./AccountProfile.vue";
 export { default as AccountReactions } from "./AccountReactions.vue";
 export { default as AccountSelect } from "./AccountSelect.vue";
 export { default as AccountStars } from "./AccountStars.vue";
+export { default as AccountPetname } from "./AccountPetname.vue";

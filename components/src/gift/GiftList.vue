@@ -3,7 +3,7 @@ import { useGifts } from '#composables'
 
 const { gifts } = useGifts()
 
-const emit = defineEmits(['open'])
+const emit = defineEmits(['open', 'project'])
 
 </script>
 
@@ -12,9 +12,8 @@ const emit = defineEmits(['open'])
   .text-lg.font-bold.w-full ALL
   gift-card.cursor-pointer(
     @click="$emit('open', hash)"
+    @project="$emit('project', $event)"
     v-for="(gift, hash) in gifts" :key="hash"
     :hash="hash"
-    )
-
-    
+    )    
 </template>

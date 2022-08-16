@@ -94,7 +94,7 @@ export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
 }
 
 
-async function setPetname(pub, name) {
+export async function setPetname(pub, name) {
   const { user } = useUser()
   if (!user.is) return
   const gun = useGun();

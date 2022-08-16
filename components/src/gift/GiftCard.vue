@@ -1,11 +1,13 @@
 <script setup>
-import { giftState, useColor, useUser, useGift, useGun, currentRoom } from '#composables'
+import { giftState, useColor, useUser, useGift, useGun, currentRoom, useProject } from '#composables'
 import { computed, ref } from 'vue'
 import { useTimeAgo } from '@vueuse/core'
 
 const props = defineProps({
   hash: String,
 })
+
+const emit = defineEmits(['project'])
 
 const { user } = useUser()
 
@@ -22,6 +24,9 @@ const roomTitle = computed(() => {
   gun.user(gift.room).get('profile').get('name').on(d => title.value = d)
   return title.value
 })
+
+
+const { project } = useProject(computed(() => gift.project))
 
 </script>
 
@@ -52,20 +57,25 @@ const roomTitle = computed(() => {
           gift-status.mr-2(:state="state.to")
 
     slot
-    .flex.flex-1.gap-2.p-2.items-center.flex-wrap.leading-tight.text-xs(
-      style="flex: 1 1 20%"
-      )  {{ gift.wish }}
+
     .flex.gap-2.flex-wrap
       .flex.flex-col.gap-1(v-if="gift.room != currentRoom.pub") 
         .text-xs ROOM 
         .p-0 {{ roomTitle }}
-
+      .flex.flex-col.gap-1(v-if="gift.date") 
+        .text-xs {{ date }}
+        .p-0 {{ time }}
       .flex.flex-col.gap-1(v-if="gift.project") 
         .text-xs PROJECT
-        .p-0 {{ gift.project.slice(0, -88) }}
-      .flex.flex-col.gap-1(v-if="gift.date") 
-        .text-xs {{ gift.date }}
-        .p-0 {{ time }}
+        .py-1.px-2.rounded-lg.text-sm(
+          @click="$emit('project', gift.project)"
+          :style="{ backgroundColor: project.color }"
+          ) {{ project.title }}
+
+      .flex.flex-1.gap-2.p-2.items-center.flex-wrap.leading-tight.text-xs(
+      style="flex: 1 1 20%"
+      )  {{ gift.wish }}
+
     .flex.gap-2
 
       template(v-if="gift.from == user.pub")

@@ -46,9 +46,6 @@ export function updateProjectField(title, field, value) {
   })
 }
 
-
-
-
 export function useProject(path = ref()) {
   const gun = useGun()
 
