@@ -19,5 +19,5 @@
 			"#composables": ["../composables/src/"],
 		}
 	},
-	"include": ["./", "../composables/*"]
+	"include": ["./src", "../composables/*"],
 }
