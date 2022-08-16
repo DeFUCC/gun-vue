@@ -6,7 +6,7 @@
 import { computed, reactive, ref } from "vue";
 import ms from "ms";
 
-import { useGun, gun, useRoom, currentRoom, useUser } from "..";
+import { useGun, gun, useRoom, currentRoom, useUser, removeEmptyKeys } from "..";
 import { useZip } from "../file/";
 import { hashObj, hashText, safeHash } from "../crypto";
 
@@ -98,10 +98,11 @@ export function usePost({ hash = "", loadMedia = true } = {}) {
 
 export async function addPost(to, post) {
   const { user } = useUser();
-  const { icon, cover, text } = post;
-  post.icon = await saveToHash("icon", post.icon);
-  post.cover = await saveToHash("cover", post.cover);
-  post.text = await saveToHash("text", post.text);
+  const { icon, cover, content } = post;
+  post.icon = await saveToHash("icon", icon);
+  post.cover = await saveToHash("cover", cover);
+  post.content = await saveToHash("content", content);
+  post = removeEmptyKeys(post)
   const { hashed, hash } = await hashObj(post);
   console.log(hash, post, to)
   gun.get('posts').get(`#index`).get(`${hash}`).put(hashed);

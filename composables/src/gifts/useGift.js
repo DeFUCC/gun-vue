@@ -57,7 +57,7 @@ export function useNewGift(giftConf) {
   })
 
   const cleanGift = computed(() => {
-    let g = removeEmpty(gift)
+    let g = removeEmptyKeys(gift)
     g.qn = Number(g.qn)
     return g
   })
@@ -122,7 +122,7 @@ export function useNewGift(giftConf) {
 
 }
 
-function removeEmpty(obj) {
+export function removeEmptyKeys(obj) {
   return Object.entries(obj)
     .filter(([_, v]) => !!v)
     .reduce(
