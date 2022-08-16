@@ -66,10 +66,9 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
               account-badge( :pub="host" :selectable="true")
 
           room-actions(:pub="roomPub")
+
   slot
   .flex.flex-col.items-center.bg-light-300
-
-
 
     .flex.flex-wrap.items-center.gap-2.p-4
       room-feature(

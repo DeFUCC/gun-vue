@@ -30,7 +30,8 @@ const { projects } = useProjects(props.pub)
     mate-button.m-4(:pub="pub")
     chat-private-count(:pub="pub" v-if="user.is" @chat="$emit('chat')")
   .p-2.flex(:style="{ backgroundColor: account.color }" v-if="pub != user.pub")
-    .flex.items-center.gap-2
+
+    #petname.flex.items-center.gap-2(v-if="user.is")
       account-avatar(:pub="pub" :size="40")
       .text-lg.flex.items-center.gap-2(v-if="account?.petname && !editPetname") {{ account?.petname }}
         la-pen(@click="editPetname = !editPetname")
@@ -41,6 +42,7 @@ const { projects } = useProjects(props.pub)
         @keydown.enter="setPetname(pub, petname); editPetname = false"
         @keydown.escape="editPetname = false"
         )
+
   account-profile.p-4(:pub="pub")
   .p-4.flex.flex-col
     mate-list(:pub="pub" @browse="$emit('browse', $event)")
