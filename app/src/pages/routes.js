@@ -2,11 +2,11 @@ export const routes = {
   '/': "Home",
   "/space/": "Space",
   "/topics/": "Topics",
-  "/posts/": "Posts",
-  "/users/": "Users",
-  "/rooms/": "Rooms",
   "/projects/": "Projects",
   '/gifts/': "Gifts",
+  "/users/": "Users",
+  "/rooms/": "Hubs",
+  "/posts/": "Posts",
   '/dict/': "Dictionary",
 };
 

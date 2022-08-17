@@ -19,7 +19,7 @@ style="flex: 0 0 auto"
     ph-house-simple(v-if="link == 'Home'")
     ph-hands-clapping(v-if="link == 'Space'")
     ph-newspaper(v-if="link == 'Posts'")
-    ph-house(v-if="link == 'Rooms'")
+    ph-house(v-if="link == 'Hubs'")
     la-broadcast-tower(v-if="link == 'Topics'")
     ph-users(v-if="link == 'Users'")
     ph-books(v-if="link == 'Dictionary'")
