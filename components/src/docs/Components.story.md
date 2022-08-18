@@ -40,7 +40,7 @@ app.mount('#app')
 
 ```
 
-3. You can use any of the Gun-Vue components in any SFC in your app.
+3. Then you can use any of the Gun-Vue components in any template of your app.
 
 ```html
 <template>
@@ -48,13 +48,13 @@ app.mount('#app')
 </template>
 ```
 
-4. Or you can use Gun-Vue components as routes directly in your `./router/index.js`.
+1. Or you can use Gun-Vue components as routes directly in your `./router.js`.
 
 ```js
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
-import { RoomList } from '@gun-vue/components'
+import { RoomList, AccountHome } from '@gun-vue/components'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -68,6 +68,12 @@ const router = createRouter({
       path: '/rooms',
       name: 'rooms',
       component: RoomList
+    },
+        {
+      path: '/users/:pub',
+      name: 'user',
+      component: AccountHome,
+      props: true
     }
   ]
 })
