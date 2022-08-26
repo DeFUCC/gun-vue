@@ -8,7 +8,7 @@ import { computed, reactive, watch } from 'vue'
 import { useStorage } from "@vueuse/core";
 import ms from 'ms'
 
-export const defaultPeer = "https://etogun.glitch.me/gun";
+export const defaultPeer = "https://relay.peer.ooo";
 export const peer = useStorage("peer", defaultPeer);
 
 /**
