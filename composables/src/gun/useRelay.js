@@ -8,7 +8,7 @@ import { computed, reactive, watch } from 'vue'
 import { useStorage } from "@vueuse/core";
 import ms from 'ms'
 
-export const defaultPeer = "https://relay.peer.ooo";
+export const defaultPeer = "https://relay.peer.ooo/gun";
 export const peer = useStorage("peer", defaultPeer);
 
 /**
