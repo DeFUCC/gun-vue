@@ -1,28 +1,29 @@
 {
-  "name": "@gun-vue/repo",
-  "version": "0.11.5",
-  "private": true,
-  "homepage": "https://gun-vue.js.org",
-  "funding": {
-    "type": "ko-fi",
-    "url": "https://ko-fi.com/davay"
-  },
-  "type": "module",
-  "scripts": {
-    "app": "cd app && pnpm tauri dev",
-    "build": "cd composables && pnpm run build && pnpm run doc && cd .. && cd components && pnpm run build && pnpm run story:build && cd .. && cd app && pnpm run build ",
-    "change": "pnpm changeset",
-    "deploy": "sh deploy.sh",
-    "histoire": "cd components && pnpm run story:dev",
-    "publish": "pnpm run build && pnpm changeset publish",
-    "relay": "cd relay && pnpm run start",
-    "sky": "node deploy-to-skynet.js",
-    "tauri": "cd app && pnpm tauri build",
-    "version": "pnpm changeset version"
-  },
-  "devDependencies": {
-    "@changesets/cli": "^2.24.4",
-    "@skynetlabs/skynet-nodejs": "^2.8.0",
-    "dotenv": "^16.0.2"
-  }
+	"name": "@gun-vue/repo",
+	"version": "0.11.5",
+	"private": true,
+	"homepage": "https://gun-vue.js.org",
+	"funding": {
+		"type": "ko-fi",
+		"url": "https://ko-fi.com/davay"
+	},
+	"type": "module",
+	"scripts": {
+		"app": "cd app && pnpm tauri dev",
+		"build": "cd composables && pnpm run build && pnpm run doc && cd .. && cd components && pnpm run build && pnpm run story:build && cd .. && cd app && pnpm run build ",
+		"change": "pnpm changeset",
+		"deploy": "sh deploy.sh",
+		"histoire": "cd components && pnpm run story:dev",
+		"publish": "pnpm run build && pnpm changeset publish",
+		"relay": "cd relay && pnpm run start",
+		"sky": "node deploy-to-skynet.js",
+		"tauri": "cd app && pnpm tauri build",
+		"version": "pnpm changeset version"
+	},
+	"devDependencies": {
+		"@changesets/cli": "^2.25.0",
+		"@skynetlabs/skynet-nodejs": "^2.9.0",
+		"cli-progress": "3.11.2",
+		"dotenv": "^16.0.3"
+	}
 }
