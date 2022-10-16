@@ -13,7 +13,7 @@ const { user } = useUser()
 
 const md = useMd()
 
-const { project, updateField, updateCover } = useProject(toRef(props, 'path'))
+const { project, updateField, updateCover } = useProject(props.path)
 
 const editable = computed(() => props.path.includes(user.pub))
 
@@ -22,7 +22,7 @@ const editing = ref(false)
 const text = ref('')
 
 watchEffect(() => {
-  text.value = project.value.text
+  text.value = project.text
 })
 
 

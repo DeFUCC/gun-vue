@@ -46,7 +46,35 @@ export function updateProjectField(title, field, value) {
   })
 }
 
-export function useProject(path = ref()) {
+export function useProject(path) {
+  const gun = useGun()
+
+  const project = reactive({})
+
+  gun.user(currentRoom.pub).get(projectsPath).get(path).map().on(async (d, k) => {
+    if (k == 'cover' && isHash(d)) {
+      project[k] = await gun.get('#cover').get(d).then()
+    } else {
+      project[k] = d
+    }
+  })
+
+
+  function updateField(field, value) {
+    updateProjectField(path.slice(0, -88), field, value)
+  }
+
+  async function updateCover(image) {
+    console.log(image)
+    const hash = await hashText(image)
+    gun.get('#cover').get(hash).put(image)
+    updateField('cover', hash)
+  }
+
+  return { project, updateField, updateCover }
+}
+
+export function useComputedProject(path = ref()) {
   const gun = useGun()
 
   const project = computed(() => {
@@ -95,7 +123,7 @@ export async function removeProject(path) {
     })
 
   }
-
+  console.error("Can't delete the project")
 
 }
 

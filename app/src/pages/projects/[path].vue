@@ -9,6 +9,7 @@ const props = defineProps({
 <template lang='pug'>
 project-page(
   :path="path" 
+  :key="path"
   @gift="$router.push(`/gifts/${$event}`)"
   @user="$router.push(`/users/${$event}`)"
 )
