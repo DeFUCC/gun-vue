@@ -23,6 +23,7 @@
 	"devDependencies": {
 		"@changesets/cli": "^2.25.0",
 		"@skynetlabs/skynet-nodejs": "^2.9.0",
+		"@volar/vue-language-plugin-pug": "1.0.9",
 		"cli-progress": "3.11.2",
 		"dotenv": "^16.0.3"
 	}
