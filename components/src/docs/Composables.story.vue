@@ -95,11 +95,6 @@ const user = useUser();
 </td>
     </tr>
 <tr>
-    <td><a href="#uselog" >useLog</a></td>
-    <td><p>Reactive version of <code>gun-util</code> Date tree</p>
-</td>
-    </tr>
-<tr>
     <td><a href="#useworker" >useWorker</a></td>
     <td><p>Worker wrapper for heavy functions</p>
 </td>
@@ -666,13 +661,6 @@ const { relays, errors, loadRelays } = useRelays()
 | hostname | <code>String</code> | 
 | url | <code>String</code> | 
 | ping | <code>Number</code> | 
-
-<hr />
-
-<a name="module_useLog"></a>
-
-## useLog
-Reactive version of `gun-util` Date tree
 
 <hr />
 
