@@ -12,7 +12,8 @@ const RoomButton = defineAsyncComponent(() =>
 <template lang="pug">
 Story(title="Room/Icon" :layout="{ type: 'single' }")
   Variant(title="Round")
-    RoomButton
+    Suspense
+      RoomButton
 
   template(#controls)
     .p-2.flex.flex-col.gap-4

@@ -22,7 +22,8 @@ async function generate() {
 <template lang="pug">
 Story(title="Qr/Show" icon="la:qrcode")
   Variant(title="Round")
-    QrShow(v-bind="state")
+    Suspense
+      QrShow(v-bind="state")
 
   template(#controls)
     .p-2.flex.flex-col.gap-4
