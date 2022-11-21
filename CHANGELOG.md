@@ -1,5 +1,11 @@
 # @gun-vue/repo
 
+## 0.11.6
+
+### Patch Changes
+
+- 6863ea4f: type module composables
+
 ## 0.11.5
 
 ### Patch Changes

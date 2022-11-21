@@ -1,5 +1,14 @@
 # @gun-vue/app
 
+## 0.11.6
+
+### Patch Changes
+
+- 6863ea4f: type module composables
+- Updated dependencies [6863ea4f]
+  - @gun-vue/components@0.11.6
+  - @gun-vue/composables@0.11.6
+
 ## 0.11.5
 
 ### Patch Changes
