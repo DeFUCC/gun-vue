@@ -41,9 +41,10 @@ export default defineConfig({
     lib: {
       entry: path.resolve(dirname, "/src/index.js"),
       name: "components",
-      formats: ["es"],
+      formats: ["es","cjs"],
     },
-    sourcemap: true,
+    emptyOutDir: true,
+    map: true,
     rollupOptions: {
       manualChunks: (id) => {
         if (id.includes("jsqr")) {

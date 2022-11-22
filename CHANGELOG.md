@@ -1,5 +1,11 @@
 # @gun-vue/repo
 
+## 0.11.8
+
+### Patch Changes
+
+- Export fix
+
 ## 0.11.7
 
 ### Patch Changes
