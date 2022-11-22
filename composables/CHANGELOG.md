@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.11.7
+
+### Patch Changes
+
+- More consistent docs
+
 ## 0.11.6
 
 ### Patch Changes
