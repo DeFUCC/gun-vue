@@ -29,6 +29,37 @@ import { useUser } from "@gun-vue/composables";
 const user = useUser();
 ```
 
+#### SSG environment notice (Nuxt, Vitepress etc.)
+
+Gun-Vue is client-side only and it may throw errors being executed during the SSG/SSR build process. The way to deal with it is to make the your GUN-enabled components asynchronous.
+
+### 1. Make your component async
+
+```vue
+<script setup>
+const { useAccount } = await import('@gun-vue/composables')
+
+const { account } = useAccount()
+</script>
+
+<template>
+	<div></div>
+</template>
+```
+
+### 2. Put it to load only on client side. 
+
+```html
+<ClientOnly>
+  <Suspense>
+    <YourComponent />
+  </Suspense>
+</ClientOnly>
+```
+
+This prevents any code from running during build stage.
+
+~~~~~~~~~~
 
 
 ## Modules
