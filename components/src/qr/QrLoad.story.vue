@@ -17,8 +17,9 @@ const state = reactive({
 <template lang="pug">
 Story(title="Qr/Load" icon="la:qrcode")
   Variant(title="Round")
-    Suspense
-      QrLoad(v-bind="state" @loaded="state.data = $event")
+    ClientOnly
+      Suspense
+        QrLoad(v-bind="state" @loaded="state.data = $event")
 
   template(#controls)
     .p-4.flex.flex-col.gap-4

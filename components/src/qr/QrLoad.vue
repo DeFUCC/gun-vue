@@ -1,10 +1,10 @@
 <script setup>
-import jsQR from "jsqr";
 
 const emit = defineEmits(["loaded"]);
 
 async function processFile(file) {
   const imageData = await imageDataFromFile(file);
+  const jsQR = await import('jsqr')
   const result = jsQR(imageData.data, imageData.width, imageData.height);
   emit("loaded", result?.data);
 }
