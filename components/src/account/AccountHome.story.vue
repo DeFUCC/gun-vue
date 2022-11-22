@@ -25,7 +25,9 @@ function mySetup() {
 <template lang="pug">
 Story(title="Account/Home" icon="la:home" :setup-app="mySetup")
   Variant(title="Round")
-    AccountHome(:pub="state.pub" :key="state.pub")
+    ClientOnly
+      Suspense
+        AccountHome(:pub="state.pub" :key="state.pub")
 
   template(#controls)
     .p-2.flex.flex-col.gap-4

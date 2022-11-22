@@ -25,7 +25,9 @@ function mySetup() {
 <template lang="pug">
 Story(title="Account/Badge" icon="la:id-badge" :setup-app="mySetup")
   Variant(title="Round")
-    AccountBadge(v-bind="state")
+    ClientOnly
+      Suspense
+        AccountBadge(v-bind="state")
 
   template(#controls)
     .p-2.flex.flex-col.gap-4

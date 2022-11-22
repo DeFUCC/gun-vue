@@ -29,6 +29,8 @@ It's just the beginning and not all the functions are reliably implemented yet. 
 
 **And there's more!**
 
+[READ FULL DOCUMENTATION ONLINE](https://gun-vue.js.org/docs)
+
 ## How to use
 
 1. Install the library:
@@ -53,8 +55,38 @@ const { account, auth, leave } = useAccount();
 
 ```html
 <div v-for="(data,field) in account.profile" :key="field">
-  {{ field }} - {{ data }}
+	{{ field }} - {{ data }}
 </div>
 ```
 
-[READ FULL DOCS ONLINE](https://gun-vue.js.org/docs)
+#### SSG environment notice (Nuxt, Vitepress etc.)
+
+Gun-Vue is client-side only and it may throw errors being executed during the SSG/SSR build process. One way to deal with it is to make the your GUN-enabled components asynchronous.
+
+### 1. Make your component async
+
+```vue
+<script setup async>
+	const { useAccount } = await import("@gun-vue/composables");
+
+	const { account } = useAccount();
+</script>
+
+<template>
+	<div>{{ account.profile?.name }}</div>
+</template>
+```
+
+### 2. Put it to load only on client side.
+
+```html
+<ClientOnly>
+	<Suspense>
+		<YourComponent />
+	</Suspense>
+</ClientOnly>
+```
+
+This should prevent any Gun-Vue related code from running during build stage.
+
+- [ ] Refactor the code to be more useable and tree-shakeable in SSG environment. Help needed!
