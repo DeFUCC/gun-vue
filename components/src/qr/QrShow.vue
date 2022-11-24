@@ -1,6 +1,6 @@
 <script setup>
-import qrcode from "@qrcode/svg";
-import { computed } from 'vue'
+
+import { computedAsync } from '@vueuse/core'
 
 const props = defineProps({
   data: String,
@@ -8,8 +8,11 @@ const props = defineProps({
   margin: { type: Number, default: 4 }
 });
 
-const src = computed(() => {
+
+
+const src = computedAsync(async () => {
   if (!props.data) return;
+
   return qrcode(props.data, {
     size: props.size,
     margin: props.margin,
