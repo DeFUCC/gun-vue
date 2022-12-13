@@ -24,7 +24,7 @@
     },
     "./*": "./*"
   },
-  "main": "./dist/components.cjs",
+  "main": "./dist/components.js",
   "module": "./dist/components.js",
   "files": [
     "dist"
