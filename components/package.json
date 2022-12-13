@@ -45,7 +45,6 @@
     "floating-vue": "^2.0.0-beta.20",
     "force-graph": "^1.42.16",
     "fuse.js": "6.6.2",
-    "ink-mde": "^0.18.1",
     "jsqr": "^1.4.0",
     "url-regex": "^5.0.0",
     "vue": "^3.2.45",
@@ -54,13 +53,13 @@
   },
   "devDependencies": {
     "@histoire/plugin-vue": "^0.11.9",
-    "@vitejs/plugin-vue": "3.2.0",
+    "@vitejs/plugin-vue": "4.0.0",
     "histoire": "^0.11.9",
     "pug": "^3.0.2",
-    "unplugin-icons": "^0.14.14",
-    "unplugin-vue-components": "^0.22.11",
-    "vite": "3.2.5",
-    "vite-plugin-windicss": "^1.8.8",
+    "unplugin-icons": "^0.14.15",
+    "unplugin-vue-components": "^0.22.12",
+    "vite": "4.0.1",
+    "vite-plugin-windicss": "^1.8.10",
     "windicss": "^3.5.6"
   },
   "peerDependencies": {

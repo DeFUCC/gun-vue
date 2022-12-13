@@ -16,9 +16,9 @@
 		"start": "node start.js"
 	},
 	"dependencies": {
-		"@capacitor/android": "^4.6.0",
-		"@capacitor/core": "^4.6.0",
-		"@capacitor/ios": "^4.6.0",
+		"@capacitor/android": "^4.6.1",
+		"@capacitor/core": "^4.6.1",
+		"@capacitor/ios": "^4.6.1",
 		"@gun-vue/components": "workspace:^",
 		"@gun-vue/composables": "workspace:^",
 		"@gun-vue/relay": "workspace:^",
@@ -28,18 +28,18 @@
 		"vue-router": "^4.1.6"
 	},
 	"devDependencies": {
-		"@capacitor/cli": "^4.6.0",
-		"@iconify/json": "^2.1.148",
-		"@tauri-apps/cli": "^1.2.1",
-		"@vitejs/plugin-vue": "^3.2.0",
+		"@capacitor/cli": "^4.6.1",
+		"@iconify/json": "^2.1.151",
+		"@tauri-apps/cli": "^1.2.2",
+		"@vitejs/plugin-vue": "^4.0.0",
 		"pug": "3.0.2",
-		"unplugin-icons": "^0.14.14",
-		"unplugin-vue-components": "^0.22.11",
-		"vite": "^3.2.5",
-		"vite-plugin-pages": "^0.27.1",
+		"unplugin-icons": "^0.14.15",
+		"unplugin-vue-components": "^0.22.12",
+		"vite": "^4.0.1",
+		"vite-plugin-pages": "^0.28.0",
 		"vite-plugin-pages-sitemap": "^1.4.0",
-		"vite-plugin-pwa": "^0.13.3",
-		"vite-plugin-windicss": "^1.8.8",
+		"vite-plugin-pwa": "^0.14.0",
+		"vite-plugin-windicss": "^1.8.10",
 		"windicss": "^3.5.6"
 	}
 }

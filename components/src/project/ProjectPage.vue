@@ -1,7 +1,6 @@
 <script setup>
 import { useUser, useProject, useMd, useProjectGifts } from '#composables';
 import { toRef, ref, computed, watchEffect } from 'vue'
-import InkMde from 'ink-mde/vue'
 
 const emit = defineEmits(['gift', 'user'])
 
