@@ -1,50 +1,46 @@
 <template>
-  <Story
-    title="Composables"
-    docs-only
-    icon="la:book-open"
-    group="docs"
-  />
+  <Story title="Composables" docs-only icon="la:book-open" group="docs" />
 </template>
 
 <docs lang="md">
 
-{{readme}}
+  {{{readme}}}
 
-~~~~~~~~~~
+  ~~~~~~~~~~
 
 
-{{#modules~}}
-{{#if @first~}}
-{{>heading-indent}}Modules
+  {{#modules~}}
+  {{#if @first~}}
+  {{>heading-indent}}Modules
 
-<table>
-  <thead>
-    <tr>
-      <th>Module</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-{{/if~}}
-    <tr>
-    <td><a href="#{{{toLowerCase name}}}" >{{name}}</a></td>
-    <td>{{{md (inlineLinks description)}}}</td>
-    </tr>
-{{#if @last~}}
-  </tbody>
-</table>
+  <table>
+    <thead>
+      <tr>
+        <th>Module</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{/if~}}
+      <tr>
+        <td><a href="#{{{toLowerCase name}}}">{{name}}</a></td>
+        <td>{{{md (inlineLinks description)}}}</td>
+      </tr>
+      {{#if @last~}}
+    </tbody>
+  </table>
 
-{{/if~}}
-{{/modules}}
+  {{/if~}}
+  {{/modules}}
 
-{{#orphans ~}}
-{{>header~}}
-{{>body}}
-{{>member-index~}}
-{{>separator~}}
+  {{#orphans ~}}
+  {{>header~}}
+  {{>body}}
+  {{>member-index~}}
+  {{>separator~}}
 
-{{#children inherited=undefined ~}}
-{{>heading-indent}}{{>sig-name}}
+  {{#children inherited=undefined ~}}
+  {{>heading-indent}}{{>sig-name}}
   {{>deprecated~}}
   {{>description~}}
 
@@ -74,14 +70,14 @@
   {{>params~}}
   {{>properties~}}
   {{>examples~}}
-{{>member-index~}}
-{{>separator~}}
-{{>members~}}
-{{/children~}}
+  {{>member-index~}}
+  {{>separator~}}
+  {{>members~}}
+  {{/children~}}
 
-<hr />
+  <hr />
 
-{{/orphans~}}
+  {{/orphans~}}
 
 </docs>
 

@@ -1,27 +1,22 @@
 <template>
-  <Story
-    title="Composables"
-    docs-only
-    icon="la:book-open"
-    group="docs"
-  />
+  <Story title="Composables" docs-only icon="la:book-open" group="docs" />
 </template>
 
 <docs lang="md">
 
-# Gun DB + Vue UI composables collection
+  # Gun DB + Vue UI composables collection
 
-A Composition API &#x60;use&#x60; functions set for Gun.js and Vue 3 reactivity system
+A Composition API `use` functions set for Gun.js and Vue 3 reactivity system
 
 ![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/docs/public/media/svg/composables.svg)
 
 [gun-vue.js.org](https://gun-vue.js.org)
 
-It&#x27;s just the beginning and not all the functions are reliably implemented yet. So you&#x27;re welcome to collaborate on existing and new features of the library.
+It's just the beginning and not all the functions are reliably implemented yet. So you're welcome to collaborate on existing and new features of the library.
 
-- **User** - the &#x60;gun.user()&#x60; system management
+- **User** - the `gun.user()` system management
 - **Account** - user profile interface
-- **Color** - the &#x60;color-hash&#x60; interface to generate colors for hashes and pubs
+- **Color** - the `color-hash` interface to generate colors for hashes and pubs
 - **Crypto** - the main cryptographic primitives like e2e encrypted messaging and more
 - **Date Tree** - the very performant concept of Date Tree graphs from [gun-util](https://github.com/diatche/gun-util#DateTree) made reactive and easy to use
 - **File** - some bindings to manage file uploads and downloads
@@ -38,7 +33,7 @@ It&#x27;s just the beginning and not all the functions are reliably implemented 
 
 ... and more!
 
-**And there&#x27;s more!**
+**And there's more!**
 
 [READ FULL DOCUMENTATION ONLINE](https://gun-vue.js.org/docs)
 
@@ -46,29 +41,29 @@ It&#x27;s just the beginning and not all the functions are reliably implemented 
 
 1. Install the library:
 
-&#x60;&#x60;&#x60;shell
+```shell
 npm i @gun-vue/composables
-&#x60;&#x60;&#x60;
+```
 
 2. Import any of the functions you need:
 
-&#x60;&#x60;&#x60;js
-import { useAccount } from &quot;@gun-vue/composables&quot;;
-&#x60;&#x60;&#x60;
+```js
+import { useAccount } from "@gun-vue/composables";
+```
 
 3. Instantiate the function inside your Vue SFC
 
-&#x60;&#x60;&#x60;js
-const { account, auth, leave } &#x3D; useAccount();
-&#x60;&#x60;&#x60;
+```js
+const { account, auth, leave } = useAccount();
+```
 
 4. Use the reactive state in your template to drive the component:
 
-&#x60;&#x60;&#x60;html
-&lt;div v-for&#x3D;&quot;(data,field) in account.profile&quot; :key&#x3D;&quot;field&quot;&gt;
+```html
+<div v-for="(data,field) in account.profile" :key="field">
 	{{ field }} - {{ data }}
-&lt;/div&gt;
-&#x60;&#x60;&#x60;
+</div>
+```
 
 #### SSG environment notice (Nuxt, Vitepress etc.)
 
@@ -76,177 +71,178 @@ Gun-Vue is client-side only and it may throw errors being executed during the SS
 
 ### 1. Make your component async
 
-&#x60;&#x60;&#x60;vue
-&lt;script setup async&gt;
-	const { useAccount } &#x3D; await import(&quot;@gun-vue/composables&quot;);
+```vue
+<script setup async>
+	const { useAccount } = await import("@gun-vue/composables");
 
-	const { account } &#x3D; useAccount();
-&lt;/script&gt;
+	const { account } = useAccount();
+</script>
 
-&lt;template&gt;
-	&lt;div&gt;{{ account.profile?.name }}&lt;/div&gt;
-&lt;/template&gt;
-&#x60;&#x60;&#x60;
+<template>
+	<div>{{ account.profile?.name }}</div>
+</template>
+```
 
 ### 2. Put it to load only on client side.
 
-&#x60;&#x60;&#x60;html
-&lt;ClientOnly&gt;
-	&lt;Suspense&gt;
-		&lt;YourComponent /&gt;
-	&lt;/Suspense&gt;
-&lt;/ClientOnly&gt;
-&#x60;&#x60;&#x60;
+```html
+<ClientOnly>
+	<Suspense>
+		<YourComponent />
+	</Suspense>
+</ClientOnly>
+```
 
 This should prevent any Gun-Vue related code from running during build stage.
 
 - [ ] Refactor the code to be more useable and tree-shakeable in SSG environment. Help needed!
 
 
-~~~~~~~~~~
+  ~~~~~~~~~~
 
 
 ## Modules
 
-<table>
-  <thead>
-    <tr>
-      <th>Module</th><th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
+  <table>
+    <thead>
+      <tr>
+        <th>Module</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
 <tr>
-    <td><a href="#useaccount" >useAccount</a></td>
-    <td><p>Basic user management</p>
+        <td><a href="#useaccount">useAccount</a></td>
+        <td><p>Basic user management</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#usechat" >useChat</a></td>
-    <td><p>Basic public chat</p>
+        <td><a href="#usechat">useChat</a></td>
+        <td><p>Basic public chat</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#useprivatechat" >usePrivateChat</a></td>
-    <td><p>Basic private chat</p>
+        <td><a href="#useprivatechat">usePrivateChat</a></td>
+        <td><p>Basic private chat</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#usecrypto" >useCrypto</a></td>
-    <td><p>SEA cryptography abstraction</p>
+        <td><a href="#usecrypto">useCrypto</a></td>
+        <td><p>SEA cryptography abstraction</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#usedictionary" >useDictionary</a></td>
-    <td></td>
-    </tr>
+        <td><a href="#usedictionary">useDictionary</a></td>
+        <td></td>
+      </tr>
 <tr>
-    <td><a href="#usefile" >useFile</a></td>
-    <td><p>File handling functions</p>
+        <td><a href="#usefile">useFile</a></td>
+        <td><p>File handling functions</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#usemd" >useMd</a></td>
-    <td><p>Handle Markdown files</p>
+        <td><a href="#usemd">useMd</a></td>
+        <td><p>Handle Markdown files</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#usezip" >useZip</a></td>
-    <td><p>Read and write zip files</p>
+        <td><a href="#usezip">useZip</a></td>
+        <td><p>Read and write zip files</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#usegun" >useGun</a></td>
-    <td><p>Gun DB initialization and basic methods</p>
+        <td><a href="#usegun">useGun</a></td>
+        <td><p>Gun DB initialization and basic methods</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#userelay" >useRelay</a></td>
-    <td><p>Relay connection management</p>
+        <td><a href="#userelay">useRelay</a></td>
+        <td><p>Relay connection management</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#userelays" >useRelays</a></td>
-    <td><p>Loads the <a href="https://github.com/amark/gun/wiki/volunteer.dht">list of active volunteer DHT gun nodes</a>  and benchmarks ping for them</p>
+        <td><a href="#userelays">useRelays</a></td>
+        <td><p>Loads the <a href="https://github.com/amark/gun/wiki/volunteer.dht">list of active volunteer DHT gun nodes</a>  and benchmarks ping for them</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#useworker" >useWorker</a></td>
-    <td><p>Worker wrapper for heavy functions</p>
+        <td><a href="#useworker">useWorker</a></td>
+        <td><p>Worker wrapper for heavy functions</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#usepost" >usePost</a></td>
-    <td><p>Get and handle a particular post by it&#39;s tag and hash</p>
+        <td><a href="#usepost">usePost</a></td>
+        <td><p>Get and handle a particular post by it&#39;s tag and hash</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#useposts" >usePosts</a></td>
-    <td><p>Get and handle a particular post by it&#39;s tag and hash</p>
+        <td><a href="#useposts">usePosts</a></td>
+        <td><p>Get and handle a particular post by it&#39;s tag and hash</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#usereaction" >useReaction</a></td>
-    <td><p>React to posts with emojis</p>
+        <td><a href="#usereaction">useReaction</a></td>
+        <td><p>React to posts with emojis</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#usereactions" >useReactions</a></td>
-    <td><p>Reactions to posts with emojis</p>
+        <td><a href="#usereactions">useReactions</a></td>
+        <td><p>Reactions to posts with emojis</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#usetags" >useTags</a></td>
-    <td><p>Get and handle a particular post by it&#39;s tag and hash</p>
+        <td><a href="#usetags">useTags</a></td>
+        <td><p>Get and handle a particular post by it&#39;s tag and hash</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#projects" >Projects</a></td>
-    <td></td>
-    </tr>
+        <td><a href="#projects">Projects</a></td>
+        <td></td>
+      </tr>
 <tr>
-    <td><a href="#useroom" >useRoom</a></td>
-    <td></td>
-    </tr>
+        <td><a href="#useroom">useRoom</a></td>
+        <td></td>
+      </tr>
 <tr>
-    <td><a href="#usespace" >useSpace</a></td>
-    <td><p>A 2D-space</p>
+        <td><a href="#usespace">useSpace</a></td>
+        <td><p>A 2D-space</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#usecolor" >useColor</a></td>
-    <td><p>Deterministic colors derived from oub keys, hashes or any other string data</p>
+        <td><a href="#usecolor">useColor</a></td>
+        <td><p>Deterministic colors derived from oub keys, hashes or any other string data</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#usemouse" >useMouse</a></td>
-    <td><p>Handle mouse movement inside an SVG</p>
+        <td><a href="#usemouse">useMouse</a></td>
+        <td><p>Handle mouse movement inside an SVG</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#usemates" >useMates</a></td>
-    <td><p>Connections between accounts</p>
+        <td><a href="#usemates">useMates</a></td>
+        <td><p>Connections between accounts</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#usepass" >usePass</a></td>
-    <td><p>Manage user&#39;s password and credentials</p>
+        <td><a href="#usepass">usePass</a></td>
+        <td><p>Manage user&#39;s password and credentials</p>
 </td>
-    </tr>
+      </tr>
 <tr>
-    <td><a href="#useuser" >useUser</a></td>
-    <td><p>Basic user management</p>
+        <td><a href="#useuser">useUser</a></td>
+        <td><p>Basic user management</p>
 </td>
-    </tr>
+      </tr>
 </tbody>
-</table>
+  </table>
 
 
-<a name="module_useAccount"></a>
+  <a name="module_useAccount"></a>
 
 ## useAccount
 Basic user management
 
-
+  
 * [useAccount](#module_useAccount)
     * _static_
         * [.useAccount(pub)](#module_useAccount.useAccount) ⇒ <code>account</code>
@@ -292,26 +288,26 @@ generatePair()
 
 <hr />
 
-<a name="module_useChat"></a>
+  <a name="module_useChat"></a>
 
 ## useChat
 Basic public chat
 
-<hr />
+  <hr />
 
-<a name="module_usePrivateChat"></a>
+  <a name="module_usePrivateChat"></a>
 
 ## usePrivateChat
 Basic private chat
 
-<hr />
+  <hr />
 
-<a name="module_useCrypto"></a>
+  <a name="module_useCrypto"></a>
 
 ## useCrypto
 SEA cryptography abstraction
 
-
+  
 * [useCrypto](#module_useCrypto)
     * _static_
         * [.encFor(data, sender, receiver)](#module_useCrypto.encFor) ⇒ <code>String</code>
@@ -366,10 +362,10 @@ SEA cryptography abstraction
 
 <hr />
 
-<a name="module_useDictionary"></a>
+  <a name="module_useDictionary"></a>
 
 ## useDictionary
-
+  
 * [useDictionary](#module_useDictionary)
     * [.useWords()](#module_useDictionary.useWords) ⇒ <code>useWords</code>
     * [.useDefs()](#module_useDictionary.useDefs) ⇒ <code>useDefs</code>
@@ -382,12 +378,12 @@ SEA cryptography abstraction
 
 <hr />
 
-<a name="module_useFile"></a>
+  <a name="module_useFile"></a>
 
 ## useFile
 File handling functions
 
-
+  
 * [useFile](#module_useFile)
     * _static_
         * [.downloadFile(text, fileType, fileName)](#module_useFile.downloadFile)
@@ -453,12 +449,12 @@ watch(()=>state.output, file => src.value = file.content)
 
 <hr />
 
-<a name="module_useMd"></a>
+  <a name="module_useMd"></a>
 
 ## useMd
 Handle Markdown files
 
-
+  
 * [useMd](#module_useMd)
     * _static_
         * [.createMd(md)](#module_useMd.createMd) ⇒
@@ -494,13 +490,13 @@ Handle Markdown files
 
 <hr />
 
-<a name="module_useZip"></a>
+  <a name="module_useZip"></a>
 
 ## useZip
 Read and write zip files
 
 **See**: https://github.com/Stuk/jszip  
-
+  
 * [useZip](#module_useZip)
     * _static_
         * [.useZip()](#module_useZip.useZip) ⇒ <code>useZip</code>
@@ -569,12 +565,12 @@ Zips the whole post object
 
 <hr />
 
-<a name="module_useGun"></a>
+  <a name="module_useGun"></a>
 
 ## useGun
 Gun DB initialization and basic methods
 
-
+  
 * [useGun](#module_useGun)
     * _static_
         * [.gun](#module_useGun.gun)
@@ -627,12 +623,12 @@ A wrapper for `Gun.text.random`
 
 <hr />
 
-<a name="module_useRelay"></a>
+  <a name="module_useRelay"></a>
 
 ## useRelay
 Relay connection management
 
-
+  
 * [useRelay](#module_useRelay)
     * _static_
         * [.useRelay()](#module_useRelay.useRelay) ⇒ <code>useRelay</code>
@@ -681,12 +677,12 @@ const { relay, setPeer, resetPeer } = useRelay()
 ```
 <hr />
 
-<a name="module_useRelays"></a>
+  <a name="module_useRelays"></a>
 
 ## useRelays
 Loads the [list of active volunteer DHT gun nodes](https://github.com/amark/gun/wiki/volunteer.dht)  and benchmarks ping for them
 
-
+  
 * [useRelays](#module_useRelays)
     * _static_
         * [.loadRelays(loadRelaysOptions)](#module_useRelays.loadRelays) ⇒ <code>relays</code>
@@ -739,12 +735,12 @@ const { relays, errors, loadRelays } = useRelays()
 
 <hr />
 
-<a name="module_useWorker"></a>
+  <a name="module_useWorker"></a>
 
 ## useWorker
 Worker wrapper for heavy functions
 
-
+  
 * [useWorker](#module_useWorker)
     * [.newWorker](#module_useWorker.newWorker)
     * [.sortByDate(e)](#module_useWorker.sortByDate)
@@ -768,12 +764,12 @@ It should contain a `postMessage` method to reply to any incoming `postMessage` 
 
 <hr />
 
-<a name="module_usePost"></a>
+  <a name="module_usePost"></a>
 
 ## usePost
 Get and handle a particular post by it's tag and hash
 
-
+  
 * [usePost](#module_usePost)
     * _static_
         * [.usePost(options)](#module_usePost.usePost) ⇒ <code>Post</code>
@@ -878,12 +874,12 @@ downloadPost(post)
 ```
 <hr />
 
-<a name="module_usePosts"></a>
+  <a name="module_usePosts"></a>
 
 ## usePosts
 Get and handle a particular post by it's tag and hash
 
-
+  
 * [usePosts](#module_usePosts)
     * _static_
         * [.usePosts(tag, options)](#module_usePosts.usePosts) ⇒ <code>usePosts</code>
@@ -952,26 +948,26 @@ import { uploadFeed } from '@gun-vue/composables'
 
 <hr />
 
-<a name="module_useReaction"></a>
+  <a name="module_useReaction"></a>
 
 ## useReaction
 React to posts with emojis
 
-<hr />
+  <hr />
 
-<a name="module_useReactions"></a>
+  <a name="module_useReactions"></a>
 
 ## useReactions
 Reactions to posts with emojis
 
-<hr />
+  <hr />
 
-<a name="module_useTags"></a>
+  <a name="module_useTags"></a>
 
 ## useTags
 Get and handle a particular post by it's tag and hash
 
-
+  
 * [useTags](#module_useTags)
     * _static_
         * [.useTagList()](#module_useTags.useTagList) ⇒ <code>useTagList</code>
@@ -993,15 +989,15 @@ Get and handle a particular post by it's tag and hash
 
 <hr />
 
-<a name="module_Projects"></a>
+  <a name="module_Projects"></a>
 
 ## Projects
-<hr />
+  <hr />
 
-<a name="module_useRoom"></a>
+  <a name="module_useRoom"></a>
 
 ## useRoom
-
+  
 * [useRoom](#module_useRoom)
     * [.useRoom()](#module_useRoom.useRoom) ⇒ <code>useRoom</code>
     * [.updateRoomProfile(field, content)](#module_useRoom.updateRoomProfile)
@@ -1037,12 +1033,12 @@ Get and handle a particular post by it's tag and hash
 
 <hr />
 
-<a name="module_useSpace"></a>
+  <a name="module_useSpace"></a>
 
 ## useSpace
 A 2D-space
 
-
+  
 * [useSpace](#module_useSpace)
     * _static_
         * [.useSpace()](#module_useSpace.useSpace) ⇒ <code>useSpace</code>
@@ -1074,12 +1070,12 @@ TIMEOUT: 10000,
 
 <hr />
 
-<a name="module_useColor"></a>
+  <a name="module_useColor"></a>
 
 ## useColor
 Deterministic colors derived from oub keys, hashes or any other string data
 
-### useColor(palette) ⇒ <code>ColorHash</code>
+  ### useColor(palette) ⇒ <code>ColorHash</code>
   Get a color generator of a certain palette
 
 **Returns**: <code>ColorHash</code> - Color-Hash instance  
@@ -1098,12 +1094,12 @@ const color = colorDeep.hex('any text data')
 ```
 <hr />
 
-<a name="module_useMouse"></a>
+  <a name="module_useMouse"></a>
 
 ## useMouse
 Handle mouse movement inside an SVG
 
-
+  
 * [useMouse](#module_useMouse)
     * _static_
         * [.useSvgMouse()](#module_useMouse.useSvgMouse) ⇒ <code>useMouse</code>
@@ -1136,12 +1132,12 @@ Handle mouse movement inside an SVG
 
 <hr />
 
-<a name="module_useMates"></a>
+  <a name="module_useMates"></a>
 
 ## useMates
 Connections between accounts
 
-
+  
 * [useMates](#module_useMates)
     * _static_
         * [.useMates(pub)](#module_useMates.useMates) ⇒ <code>useMates</code>
@@ -1197,12 +1193,12 @@ Connections between accounts
 
 <hr />
 
-<a name="module_usePass"></a>
+  <a name="module_usePass"></a>
 
 ## usePass
 Manage user's password and credentials
 
-
+  
 * [usePass](#module_usePass)
     * _static_
         * [.usePass()](#module_usePass.usePass) ⇒ <code>usePass</code>
@@ -1232,12 +1228,12 @@ Manage user's password and credentials
 
 <hr />
 
-<a name="module_useUser"></a>
+  <a name="module_useUser"></a>
 
 ## useUser
 Basic user management
 
-
+  
 * [useUser](#module_useUser)
     * _static_
         * [.useUser()](#module_useUser.useUser) ⇒ <code>useUser</code>
