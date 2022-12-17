@@ -14,11 +14,6 @@ export const GunVuePlugin = {
   }
 }
 
-import { resolveComponent } from 'vue'
-
-resolveComponent()
-
-
 export * from './all.js'
 export * from "#composables";
 
