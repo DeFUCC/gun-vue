@@ -15,12 +15,6 @@ export default defineConfig({
     },
     sourcemap: true,
     rollupOptions: {
-      manualChunks: (id) => {
-        if (id.includes("node_modules")) {
-          return "vendor";
-        }
-        // return path.parse(id).name;
-      },
       // external: ["vue"],
       output: {
         minifyInternalExports: false,

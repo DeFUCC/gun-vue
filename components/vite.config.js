@@ -41,27 +41,11 @@ export default defineConfig({
     lib: {
       entry: path.resolve(dirname, "/src/index.js"),
       name: "components",
-      formats: ["es","cjs"],
+      formats: ["es", "cjs"],
     },
     emptyOutDir: true,
     map: true,
     rollupOptions: {
-      manualChunks: (id) => {
-        if (id.includes("jsqr")) {
-          return "jsqr";
-        }
-        if (id.includes("ink")) {
-          return "ink";
-        }
-        if (id.includes("node_modules")) {
-          return "vendor";
-        }
-        if (id.includes("composables")) {
-          return "composables";
-        }
-
-        // return path.parse(id).name;
-      },
       external: ["vue"],
       output: {
         minifyInternalExports: false,

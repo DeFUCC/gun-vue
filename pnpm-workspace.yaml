@@ -5,3 +5,4 @@ packages:
   - "components"
   - "docs"
   - "."
+  - "test"
