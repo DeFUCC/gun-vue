@@ -1,5 +1,18 @@
 # @gun-vue/app
 
+## 0.12.0
+
+### Minor Changes
+
+- More stable builds with no manual chunking. Also a dedicated test app just started to evolve.
+
+### Patch Changes
+
+- Updated dependencies
+  - @gun-vue/components@0.12.0
+  - @gun-vue/composables@0.12.0
+  - @gun-vue/relay@0.4.0
+
 ## 0.11.8
 
 ### Patch Changes

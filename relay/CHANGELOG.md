@@ -1,5 +1,11 @@
 # @gun-vue/relay
 
+## 0.4.0
+
+### Minor Changes
+
+- More stable builds with no manual chunking. Also a dedicated test app just started to evolve.
+
 ## 0.3.8
 
 ### Patch Changes
