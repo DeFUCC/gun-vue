@@ -108,11 +108,10 @@ export default defineConfig({
 		chunkSizeWarningLimit: 100000000,
 		cssCodeSplit: false,
 		rollupOptions: {
-			inlineDynamicImports: true,
 			output: {
-				manualChunks: () => "everything.js",
+				inlineDynamicImports: true,
 			},
-		},
+		}
 	},
 	optimizeDeps: {
 		include: ["vue", "vue-router", "@vueuse/core"],
