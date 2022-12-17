@@ -25,6 +25,8 @@
 		"@skynetlabs/skynet-nodejs": "^2.9.0",
 		"@volar/vue-language-plugin-pug": "1.0.13",
 		"cli-progress": "3.11.2",
-		"dotenv": "^16.0.3"
+		"dotenv": "^16.0.3",
+		"eslint-plugin-vue":"^9.8.0",
+		"eslint-plugin-vue-pug":"^0.5.5"
 	}
 }

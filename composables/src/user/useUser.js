@@ -5,8 +5,7 @@
 
 import { gun, useGun } from "..";
 import { useColor } from "../ui";
-import { computed, reactive, ref } from "vue";
-import ms from "ms";
+import { computed, reactive } from "vue";
 
 const colorDeep = useColor("deep");
 

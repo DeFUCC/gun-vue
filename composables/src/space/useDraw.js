@@ -1,4 +1,4 @@
-import { computed, markRaw, nextTick, reactive, ref, watch, onMounted } from 'vue'
+import { computed, markRaw, nextTick, reactive, ref, onMounted } from 'vue'
 import { createDrauu } from 'drauu'
 import { toReactive, useStorage, useCycleList, useDebounceFn } from '@vueuse/core'
 
@@ -54,7 +54,7 @@ export const drauuOptions = reactive({
 })
 export const drauu = markRaw(createDrauu(drauuOptions))
 
-export function loadCanvas(page) {
+export function loadCanvas() {
   disableDump = true
   if (draw.content != null)
     drauu.load(draw.content)
@@ -111,6 +111,7 @@ export function useDraw() {
       drawing.put('', null, { opt: { cert: currentRoom.features?.space } })
     }
 
+    const brushColors = []
     window.addEventListener('keydown', (e) => {
       if (!draw.enabled)
         return

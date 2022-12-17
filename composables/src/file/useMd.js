@@ -19,7 +19,7 @@ import externalLinks from "markdown-it-external-links";
  * @returns Markdown text file ready to download
  */
 
-export function createMd({ frontmatter = null, text = "" } = md) {
+export function createMd({ frontmatter = null, text = "" } = {}) {
   let front = "";
   if (typeof frontmatter == "object") {
     let yml = yaml.stringify(frontmatter);
@@ -36,7 +36,7 @@ ${yml}---
  * @returns {Md} - An object with md frontmatter and content
  */
 export function parseMd(file) {
-  const yamlBlockPattern = /^(?:\-\-\-)(.*?)(?:\-\-\-|\.\.\.)(?:\n*\s*)(.*)/s;
+  const yamlBlockPattern = /^(?:---)(.*?)(?:---|\.\.\.)(?:\n*\s*)(.*)/s;
   const yml = yamlBlockPattern.exec(file.trim());
   let frontmatter, content;
 

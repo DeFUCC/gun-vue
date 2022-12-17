@@ -6,7 +6,7 @@
 
 import JSZip from "jszip";
 import { downloadFile, base64Extension, base64FileType } from "./useFile";
-import { genUUID, SEA } from "../gun/";
+import { genUUID } from "../gun/";
 import { createMd } from "./useMd";
 import { loadFromHash } from "../posts";
 
@@ -66,7 +66,7 @@ export function useZip() {
    */
 
   async function zipPost(post = {}) {
-    let { icon, cover, text, title, statement } = post;
+    let { text, title, statement } = post;
     delete post?.text;
     if (!title) {
       title = statement ? statement.split(0, 12) : genUUID();
@@ -98,7 +98,7 @@ export function useZip() {
     });
   }
 
-  async function downloadZip({ title = "", addDate = true } = {}) {
+  async function downloadZip({ title = "" } = {}) {
     let now = new Date();
     const offset = now.getTimezoneOffset();
     now = new Date(now.getTime() - offset * 60 * 1000);

@@ -52,14 +52,14 @@ export function useSvgMouse(area = ref(null)) {
     document.removeEventListener("mousemove", getCursorPosition);
   });
 
-  function getCursorPosition(event, rect = area.value) {
+  function getCursorPosition(event, rect = area.value, corr = false) {
     const svgElement = rect.closest("svg");
     if (!svgElement) return;
     var svgPoint = svgElement.createSVGPoint();
     svgPoint.x = event.clientX;
     svgPoint.y = event.clientY;
     let correct = svgPoint.matrixTransform(svgElement.getScreenCTM().inverse());
-    if (false) {
+    if (corr) {
       let bounds = rect.getBBox();
       mouse.x =
         correct.x < bounds.width

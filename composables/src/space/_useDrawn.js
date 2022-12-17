@@ -2,8 +2,6 @@ import { computed, markRaw, nextTick, reactive, ref, watch, onMounted } from 'vu
 import { createDrauu } from 'drauu'
 import { toReactive, useStorage, useCycleList } from '@vueuse/core'
 
-import { useGun, useUser } from '..'
-
 
 export const brushColors = [
   '#000000',
@@ -19,7 +17,6 @@ export const drawingState = ref()
 const pages = toReactive(useStorage('drawings', {}))
 
 const currentPage = ref('/')
-const isPresenter = ref()
 
 export const drawingEnabled = ref(false)
 export const drawingPinned = useStorage('drawing-pinned', false)
@@ -36,7 +33,6 @@ export const brush = toReactive(useStorage('drawing-brush', {
 }))
 
 const _mode = ref('stylus')
-const syncUp = computed(() => isPresenter.value)
 let disableDump = false
 
 export const drawingMode = computed({
@@ -158,7 +154,7 @@ export function useDraw() {
   return {
     brush, brushColors, brushSizes, canClear,
     canRedo, canUndo, clearDrauu, currentPage,
-    drauu, drawingEnabled, drawingMode, drawingPinned, drauu, drawingEnabled, loadCanvas
+    drauu, drawingEnabled, drawingMode, drawingPinned, loadCanvas
   }
 }
 

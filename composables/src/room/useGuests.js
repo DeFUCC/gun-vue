@@ -1,5 +1,5 @@
-import { computed, ref, reactive, watchEffect } from "vue";
-import { useGun, useAccount, getFirstEmoji, currentRoom } from "..";
+import { computed, reactive, watchEffect } from "vue";
+import { useGun, useAccount, currentRoom } from "..";
 
 let startTime = Date.now();
 

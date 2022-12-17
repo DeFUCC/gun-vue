@@ -119,7 +119,7 @@ export function useSpace({
 
 
 
-    gun.user(currentRoom.pub).get("space").get(pub).get('pos').on((d, k) => {
+    gun.user(currentRoom.pub).get("space").get(pub).get('pos').on((d) => {
       allGuests[pub].hasPos = true;
       allGuests[pub].pos = typeof d == "string" ? JSON.parse(d) : d;
     });

@@ -72,7 +72,7 @@ export async function getShortHash(text, seed) {
 // Buffer -> Base64 String -> Url Safe Base64 String
 export function safeHash(unsafe) {
   if (!unsafe) return;
-  const encode_regex = /[\+=\/]/g;
+  const encode_regex = /[+=/]/g;
   return unsafe.replace(encode_regex, encodeChar);
 }
 
@@ -90,7 +90,7 @@ function encodeChar(c) {
 // Url Safe Base64 String -> Base64 String -> Buffer
 export function unsafeHash(safe) {
   if (!safe) return;
-  const decode_regex = /[\._\-]/g;
+  const decode_regex = /[._-]/g;
   return safe.replace(decode_regex, decodeChar);
 }
 

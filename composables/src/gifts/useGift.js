@@ -78,7 +78,7 @@ export function useNewGift(giftConf) {
   })
 
   const hash = computedAsync(async () => {
-    const { hash, hashed } = await hashObj(cleanGift.value)
+    const { hash } = await hashObj(cleanGift.value)
     return hash
   })
 
@@ -125,7 +125,7 @@ export function useNewGift(giftConf) {
 
 export function removeEmptyKeys(obj) {
   return Object.entries(obj)
-    .filter(([_, v]) => !!v)
+    .filter(([_, v]) => { _; return !!v })
     .reduce(
       (acc, [k, v]) => ({ ...acc, [k]: v === Object(v) ? removeEmptyKeys(v) : v }),
       {}

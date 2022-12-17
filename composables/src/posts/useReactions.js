@@ -3,8 +3,8 @@
  * @module useReactions
  */
 
-import { useGun, currentRoom, isEmoji, useUser, reactToPost } from '../';
-import { reactive, ref, computed } from 'vue'
+import { useGun, currentRoom, } from '../';
+import { reactive } from 'vue'
 
 
 export function useReactions(authors) {

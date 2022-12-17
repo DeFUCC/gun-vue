@@ -1,12 +1,10 @@
-import { useNow, watchThrottled } from '@vueuse/core'
-import { SEA } from 'gun'
-import { reactive, computed, watch } from 'vue'
-import { useGun, useUser, hashObj, currentRoom } from '..'
+import { reactive, computed } from 'vue'
+import { useGun, useUser, currentRoom } from '..'
 
 import { giftPath } from '.'
 
 export function useGifts() {
-  const { user } = useUser()
+
   const gun = useGun()
 
   const gifts = reactive({})
@@ -44,7 +42,9 @@ export function useMyGifts() {
         if (d.to == user.pub) {
           to[hash] = d
         }
-      } catch { }
+      } catch (e) {
+        console.log(e)
+      }
     })
   })
 
@@ -61,7 +61,9 @@ export function useMyGifts() {
             newGifts[hash] = d
           }
         }
-      } catch { }
+      } catch (e) {
+        console.log(e)
+      }
     })
   })
 
@@ -85,7 +87,9 @@ export function useProjectGifts(path) {
           gun.user(d.to).get(giftPath).get(hash).on(data => { gifts[hash].state.to = data })
         }
 
-      } catch { }
+      } catch (e) {
+        console.log(e)
+      }
     })
   })
 

@@ -61,7 +61,7 @@ watch(
 function setPeer(url) {
   peer.value = url
   window.location.reload()
-};
+}
 
 function resetPeer() {
   peer.value = defaultPeer

@@ -6,7 +6,7 @@
 import { computed, reactive, ref } from "vue";
 import ms from "ms";
 
-import { useGun, gun, useRoom, currentRoom, useUser, removeEmptyKeys } from "..";
+import { useGun, gun, currentRoom, useUser, removeEmptyKeys } from "..";
 import { useZip } from "../file/";
 import { hashObj, hashText, safeHash } from "../crypto";
 
@@ -27,7 +27,7 @@ export function usePost({ hash = "", loadMedia = true } = {}) {
     .get('posts')
     .get(`#index`)
     .get(hash)
-    .on(async (d, k) => {
+    .on(async (d) => {
       try {
         Object.assign(post, JSON.parse(d));
       } catch (e) {
@@ -130,13 +130,10 @@ export async function downloadPost(post) {
 
   const { zipPost, addFile, downloadZip } = useZip();
 
-  let singleFile = false;
-
   if (title && !post.raw) {
     await zipPost({ ...post });
   } else {
     title = "file";
-    singleFile = true;
     const hash = await hashText(post.raw);
     await addFile({
       title: safeHash(hash),
@@ -194,6 +191,7 @@ export async function parsePost(data) {
  */
 
 export function usePostTimestamp({ tag, hash } = {}) {
+  tag
   const timestamp = ref(0)
 
   const msTime = computed(() => ms(Date.now() - timestamp.value || 1000))

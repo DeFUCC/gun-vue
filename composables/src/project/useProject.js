@@ -1,4 +1,4 @@
-import { reactive, ref, computed, onBeforeUnmount } from 'vue'
+import { reactive, ref, computed } from 'vue'
 import { gun, useGun2, useGun, genUUID } from '../gun'
 import { currentRoom } from '../room'
 import { useUser } from '../user'

@@ -4,11 +4,11 @@
  */
 
 import { reactive, computed, ref } from "vue"
-import { useAccount, useUser, useGun, SEA } from '..'
+import { useUser, useGun, SEA } from '..'
 import { refDebounced } from '@vueuse/core'
 
 export function usePrivateChat(pub, { parse = true } = {}) {
-
+  parse
   const gun = useGun();
   const { user } = useUser();
   const messages = reactive({});

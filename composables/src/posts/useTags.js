@@ -8,6 +8,7 @@ import slugify from "slugify";
 import Fuse from "fuse.js";
 import { useGun } from "../gun";
 import { hashText } from "../crypto";
+import { currentRoom } from "../room";
 
 /**
  * @typedef useTagList
@@ -70,7 +71,7 @@ export function useTagList() {
     .on((d, k) => {
       if (!d) return;
       try {
-        data = JSON.parse(d); //ignore objects
+        JSON.parse(d); //ignore objects
       } catch (e) {
         tags.list[k] = d; // assumes tag is a plain string
       }
@@ -103,37 +104,37 @@ export function listPersonalTag(tag, pub = currentRoom.pub) {
   return records;
 }
 
-export async function addHashedPersonal(tag, obj, pub = currentRoom.pub, cert) {
-  if (!cert) cert = await gun.get(`~${pub}`).get("features").get(tag).then();
-  if (!cert && pub == rootRoom.pub) {
-    cert = rootRoom.features?.[`#${tag}`];
-  }
-  if (!cert && pub != user.pub) {
-    console.log("No certificate found");
-    return;
-  }
-  const { hashed, hash } = await hashObj(obj);
-  gun
-    .get(`~${pub}`)
-    .get(`#${tag}`)
-    .get(`${hash}@${user.pub}`)
-    .put(hashed, null, { opt: { cert } });
-}
+// export async function addHashedPersonal(tag, obj, pub = currentRoom.pub, cert) {
+//   if (!cert) cert = await gun.get(`~${pub}`).get("features").get(tag).then();
+//   if (!cert && pub == rootRoom.pub) {
+//     cert = rootRoom.features?.[`#${tag}`];
+//   }
+//   if (!cert && pub != user.pub) {
+//     console.log("No certificate found");
+//     return;
+//   }
+//   const { hashed, hash } = await hashObj(obj);
+//   gun
+//     .get(`~${pub}`)
+//     .get(`#${tag}`)
+//     .get(`${hash}@${user.pub}`)
+//     .put(hashed, null, { opt: { cert } });
+// }
 
-export function getHashedPersonal(tag, hash, pub = currentRoom.pub) {
-  const record = reactive({});
-  gun
-    .get(`~${pub}`)
-    .get(`#${tag}`)
-    .map()
-    .once(function (data, key) {
-      if (key.includes(hash)) {
-        record.hash = hash;
-        record.tag = tag;
-        record.data = safeJSONParse(data);
-        record.authors = record.authors || {};
-        record.authors[key.slice(-87)] = true;
-      }
-    });
-  return { record };
-}
+// export function getHashedPersonal(tag, hash, pub = currentRoom.pub) {
+//   const record = reactive({});
+//   gun
+//     .get(`~${pub}`)
+//     .get(`#${tag}`)
+//     .map()
+//     .once(function (data, key) {
+//       if (key.includes(hash)) {
+//         record.hash = hash;
+//         record.tag = tag;
+//         record.data = safeJSONParse(data);
+//         record.authors = record.authors || {};
+//         record.authors[key.slice(-87)] = true;
+//       }
+//     });
+//   return { record };
+// }

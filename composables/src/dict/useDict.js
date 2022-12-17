@@ -6,7 +6,7 @@ import Fuse from "fuse.js";
 import { ref, reactive, computed, watch } from 'vue'
 import { useStorage } from '@vueuse/core';
 
-import { useGun, currentRoom, hashText, useUser, useColor, hashObj } from '..';
+import { useGun, currentRoom, hashText, useUser, hashObj } from '..';
 
 
 export const dictRecord = reactive({
@@ -29,8 +29,6 @@ watch(dictRecord, () => {
 
 export function useWords() {
   const gun = useGun()
-  const { user } = useUser()
-
   const input = ref('')
   const word = computed(() => letterFilter(input.value))
 
@@ -94,7 +92,7 @@ export function useWord(hash) {
 
   const word = ref()
 
-  gun.get('dict').get('#word').get(hash).once((d, k) => {
+  gun.get('dict').get('#word').get(hash).once((d) => {
     word.value = letterFilter(d)
   })
   return { word }

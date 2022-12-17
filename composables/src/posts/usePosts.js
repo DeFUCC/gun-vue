@@ -7,9 +7,9 @@ import { computed, reactive, ref } from "vue";
 
 import JSZip from "jszip";
 
-import { detectMimeType, useZip, parseMd, currentRoom, useUser, isHash } from "..";
-import { useGun, gun } from "../gun";
-import { parsePost, addPost, usePost } from ".";
+import { detectMimeType, useZip, parseMd, currentRoom } from "..";
+import { useGun } from "../gun";
+import { addPost, usePost } from ".";
 
 /**
  * @typedef usePosts
@@ -124,6 +124,7 @@ export async function downloadFeed(tag, posts) {
   if (!posts) return;
 
   const { zip, zipPost, downloadZip } = useZip();
+  zip
   const fullPosts = {};
   for (let hash in posts) {
     fullPosts[hash] = usePost({ tag, hash }).post;

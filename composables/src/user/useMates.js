@@ -3,7 +3,7 @@
  * @module useMates
  */
 
-import { reactive, watch, ref, computed } from "vue";
+import { reactive, ref } from "vue";
 import { useGun, user } from "..";
 import GB from "grapheme-breaker-mjs";
 

@@ -4,14 +4,11 @@
 
 import {
   SEA,
-  useGun2,
   gun,
   useGun,
   generateCerts,
   useUser,
   user,
-  hashObj,
-  safeJSONParse,
   hashText
 } from "..";
 import { rootRoom } from "./rootRoom";
