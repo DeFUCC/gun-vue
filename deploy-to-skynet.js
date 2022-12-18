@@ -1,6 +1,8 @@
 import { SkynetClient, genKeyPairFromSeed } from '@skynetlabs/skynet-nodejs';
 import 'dotenv/config'
 
+/* global process */
+
 deployToSkynet()
 
 export async function deployToSkynet({
