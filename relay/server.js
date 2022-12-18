@@ -3,11 +3,14 @@ import Gun from "gun";
 import qr from "qrcode-terminal";
 import ip from "ip";
 import 'dotenv/config'
+import setSelfAdjustingInterval from 'self-adjusting-interval';
+
+/* global process */
 
 export default {
   initiated: false,
   init({
-    host = process.env.RELAY_HOST,
+    host = process.env.RELAY_HOST || ip.address(),
     store = process.env.RELAY_STORE != 'false' || false,
     port = process.env.RELAY_PORT || 4200,
     path = process.env.RELAY_PATH || "public",
@@ -27,27 +30,28 @@ export default {
       web: server,
     });
 
-    if (!host) host = ip.address();
     const link = "http://" + host + (port ? ":" + port : "");
     let totalConnections = 0;
     let activeWires = 0;
 
     const db = gun.get(host);
 
-    setInterval(() => {
+    setSelfAdjustingInterval(() => {
       db.get("pulse").put(Date.now());
     }, 500);
 
-    gun.on("hi", (ev) => {
+    gun.on("hi", () => {
       totalConnections += 1;
       db.get("totalConnections").put(totalConnections);
       activeWires += 1;
       db.get("activeWires").put(activeWires);
+      console.log('hi')
     });
 
-    gun.on("bye", (ev) => {
+    gun.on("bye", () => {
       activeWires -= 1;
       db.get("activeWires").put(activeWires);
+      console.log('bye')
     });
 
     db.get("host").put(host);
