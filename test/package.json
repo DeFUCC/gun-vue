@@ -10,20 +10,20 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@gun-vue/components": "workspace:^",
     "vue": "^3.2.45",
-    "vue-router": "^4.1.6",
-    "@gun-vue/components": "workspace:^"
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.1.4",
+    "@rushstack/eslint-patch": "^1.2.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/test-utils": "^2.2.6",
-    "eslint": "^8.22.0",
-    "eslint-plugin-vue": "^9.3.0",
+    "eslint": "^8.30.0",
+    "eslint-plugin-vue": "^9.8.0",
     "jsdom": "^20.0.3",
-    "prettier": "^2.7.1",
-    "vite": "^4.0.0",
-    "vitest": "^0.25.6"
+    "prettier": "^2.8.1",
+    "vite": "^4.0.2",
+    "vitest": "^0.26.0"
   }
 }

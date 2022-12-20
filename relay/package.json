@@ -25,7 +25,7 @@
     "gun": "0.2020.1238",
     "ip": "^2.0.0",
     "qrcode-terminal": "^0.12.0",
-    "self-adjusting-interval":"1.0.0"
+    "self-adjusting-interval": "1.0.0"
   },
   "desciprion": "A simple gun peer relay for free tier hosting"
 }
