@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/repo",
-	"version": "0.12.0",
+	"version": "0.12.1",
 	"private": true,
 	"homepage": "https://gun-vue.js.org",
 	"funding": {
@@ -13,6 +13,7 @@
 		"build": "cd composables && pnpm run build && pnpm run doc && cd .. && cd components && pnpm run build && pnpm run story:build && cd .. && cd app && pnpm run build ",
 		"change": "pnpm changeset",
 		"deploy": "sh deploy.sh",
+		"dev": "cd app && pnpm run dev",
 		"histoire": "cd components && pnpm run story:dev",
 		"publish": "pnpm run build && pnpm changeset publish",
 		"relay": "cd relay && pnpm run start",
@@ -28,6 +29,6 @@
 		"dotenv": "^16.0.3",
 		"eslint-plugin-vue": "^9.8.0",
 		"eslint-plugin-vue-pug": "^0.5.5",
-		"vite": "^4.0.2"
+		"vite": "^4.0.3"
 	}
 }

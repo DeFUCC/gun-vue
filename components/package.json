@@ -1,6 +1,6 @@
 {
   "name": "@gun-vue/components",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "homepage": "https://gun-vue.js.org",
   "bugs": {
     "url": "https://github.com/defucc/gun-vue/issues"
@@ -39,7 +39,7 @@
     "@coders-tm/vue-number-format": "^3.3.1",
     "@gun-vue/composables": "workspace:^",
     "@qrcode/svg": "^1.0.0-beta.2",
-    "@vueuse/core": "9.8.2",
+    "@vueuse/core": "9.9.0",
     "@vueuse/gesture": "^2.0.0-beta.1",
     "@vueuse/sound": "^2.0.0",
     "floating-vue": "^2.0.0-beta.20",
@@ -52,13 +52,13 @@
     "vue3-virtual-scroll-list": "^0.2.1"
   },
   "devDependencies": {
-    "@histoire/plugin-vue": "0.12.2",
+    "@histoire/plugin-vue": "0.12.4",
     "@vitejs/plugin-vue": "4.0.0",
-    "histoire": "0.12.2",
+    "histoire": "0.12.4",
     "pug": "^3.0.2",
     "unplugin-icons": "^0.14.15",
     "unplugin-vue-components": "^0.22.12",
-    "vite": "4.0.2",
+    "vite": "4.0.3",
     "vite-plugin-windicss": "^1.8.10",
     "windicss": "^3.5.6"
   },

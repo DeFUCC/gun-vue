@@ -1,5 +1,13 @@
 # @gun-vue/test
 
+## 0.12.1
+
+### Patch Changes
+
+- Update GUN to v.0.2020.1239
+- Updated dependencies
+  - @gun-vue/components@0.12.1
+
 ## 0.12.0
 
 ### Minor Changes

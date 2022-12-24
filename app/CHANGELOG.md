@@ -1,5 +1,15 @@
 # @gun-vue/app
 
+## 0.12.1
+
+### Patch Changes
+
+- Update GUN to v.0.2020.1239
+- Updated dependencies
+  - @gun-vue/composables@0.12.1
+  - @gun-vue/components@0.12.1
+  - @gun-vue/relay@0.4.1
+
 ## 0.12.0
 
 ### Minor Changes
