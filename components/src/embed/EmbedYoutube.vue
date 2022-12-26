@@ -1,5 +1,10 @@
 <script setup>
-defineProps(['video']);
+defineProps({
+  video: {
+    type: String,
+    default: ''
+  }
+});
 </script>
 
 <template lang="pug">

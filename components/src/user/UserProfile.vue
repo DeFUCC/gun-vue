@@ -10,7 +10,7 @@ const newField = ref('')
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col
   .flex.flex-col.p-2
     user-profile-field(

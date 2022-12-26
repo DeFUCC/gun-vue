@@ -1,3 +1,4 @@
+
 <script setup>
 import { ref, watchEffect, computed } from 'vue'
 import { useColor, usePosts, useGun, useUser, usePost, useMd } from '#composables';
@@ -12,7 +13,7 @@ const props = defineProps({
   hash: { type: String, default: '' },
 })
 
-defineEmits(['close', 'browse'])
+defineEmits(['close', 'browse', 'user'])
 
 const colorLight = computed(() => useColor('light').hex(props.hash))
 const colorDeep = computed(() => useColor('deep').hex(props.hash))
@@ -22,20 +23,21 @@ const { post, download, downloading, } = usePost({ hash: props.hash })
 const { posts, backlinks } = usePosts(props.hash)
 
 </script>
+<!-- eslint-disable vue/no-v-html -->
 
-<template lang='pug'>
+<template lang="pug">
 .rounded-lg.max-w-65ch.flex.flex-col.mx-auto.items-stretch.justify-center.w-full.overscroll-contain.bg-light-200
   .flex.flex-wrap 
     post-line(
-      style="flex: 1 1 220px"
-      v-for="(authors, hash) in backlinks" 
-      :key="hash" 
-      :hash="hash"
+      v-for="(authors, ahash) in backlinks"
+      :key="ahash" 
+      style="flex: 1 1 220px" 
+      :hash="ahash"
       :tag="tag"
       :authors="authors"
       :back="true"
       @user="$emit('user', $event)"
-      @click="$emit('browse', hash)"
+      @click="$emit('browse', ahash)"
       )
 
   .z-30.flex.flex-wrap.items-center.w-full.px-4.py-2.sticky.top-0.shadow-xl.filter.grayscale-70.hover-grayscale-0.transition.duration-400ms(:style="{ backgroundColor: colorDeep }") 
@@ -66,8 +68,8 @@ const { posts, backlinks } = usePosts(props.hash)
       .w-full.flex.flex-col.items-stretch
         .p-2
           img.w-20.h-20.rounded-full.m-2(
-            style="flex:0 1 40px"
-            v-if="post.icon" 
+            v-if="post.icon"
+            style="flex:0 1 40px" 
             :src="post.icon" 
             :style="{ borderColor: colorDeep }"
             )
@@ -75,7 +77,10 @@ const { posts, backlinks } = usePosts(props.hash)
 
             v-if="post?.title"
             ) {{ post?.title }}
-          ui-link(:url="post?.link" v-if="post?.link")
+          ui-link(
+            v-if="post?.link" 
+            :url="post?.link"
+            )
           .m-2(v-if="post?.statement") {{ post?.statement }} 
         .flex-auto
         .flex.flex-wrap.p-4.bg-dark-50.bg-opacity-25.w-full.items-center.gap-1.text-sm
@@ -89,6 +94,11 @@ const { posts, backlinks } = usePosts(props.hash)
       v-if="post?.text" 
       v-html="md.render(post?.text)"
       )
-    post-list(  :tag="hash" :key="tag" :header="false" @browse="$emit('browse', $event)")
+    post-list(
+      :key="tag" 
+      :tag="hash" 
+      :header="false" 
+      @browse="$emit('browse', $event)"
+      )
 
 </template>

@@ -2,7 +2,7 @@
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col
   router-view
 </template>

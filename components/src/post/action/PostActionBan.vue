@@ -21,7 +21,10 @@ async function banPost() {
 
 </script>
 
-<template lang='pug'>
-button.m-1.button.items-center(@click.stop.prevent="banPost()" :style="{ color: banned ? 'red' : 'inherit' }")
+<template lang="pug">
+button.m-1.button.items-center(
+  :style="{ color: banned ? 'red' : 'inherit' }" 
+  @click.stop.prevent="banPost()"
+  )
   la-trash-alt
 </template>

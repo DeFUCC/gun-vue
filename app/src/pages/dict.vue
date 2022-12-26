@@ -4,7 +4,7 @@ import { dictLang, languages, useDictLangs } from '#composables'
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col
   dict-panel(
     @home="$router.push('/dict/')"

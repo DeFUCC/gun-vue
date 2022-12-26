@@ -2,7 +2,7 @@
 import { useWord, useColor, letterFilter, dictRecord, useDictRecordsFor, useUser } from '#composables';
 
 const props = defineProps({
-  hash: String
+  hash: { type: String, default: '' }
 })
 
 defineEmits(['def'])
@@ -16,11 +16,14 @@ const links = useDictRecordsFor(props.hash)
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.items-center.px-2.py-1.rounded-lg.bg-light-700.cursor-pointer.capitalize(:style="{ backgroundColor: color.hex(hash) }" )
   .text-xl {{ letterFilter(word) }}
   slot
-  dict-link-list(:links="links" @def="$emit('def', $event)")
+  dict-link-list(
+    :links="links" 
+    @def="$emit('def', $event)"
+    )
   dict-link-button(
     :hash="hash"
     type="word"

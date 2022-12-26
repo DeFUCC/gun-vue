@@ -1,6 +1,6 @@
 <script setup >
-import { useGun, useUser, gunAvatar, useColor } from '#composables'
-import { computed, ref, watch } from 'vue'
+import { useGun, gunAvatar, useColor } from '#composables'
+import { ref, watch } from 'vue'
 
 const props = defineProps({
   pub: { type: String, default: '' },
@@ -30,7 +30,7 @@ gun.user(props.pub).get('avatar').on(hash => {
 
 const blink = ref()
 
-gun.user(props.pub).get('pulse').on(d => {
+gun.user(props.pub).get('pulse').on(() => {
   blink.value = !blink.value
 })
 
@@ -39,13 +39,16 @@ gun.user(props.pub).get('pulse').on(d => {
 <template lang="pug">
 .flex.flex-col
   img.border.rounded-full.overflow-hidden.transition.duration-500.ease-out(
-    :style="{ borderColor: blink ? colorDeep.hex(pub) : 'transparent', borderWidth: `${border}px` }"
-    v-if="pub",
+    v-if="pub"
+    :style="{ borderColor: blink ? colorDeep.hex(pub) : 'transparent', borderWidth: `${border}px` }",
     :width="size"
     :height="size"
     :src="avatar"
   )
-  .p-2(v-else :style="{ fontSize: size + 'px' }")
+  .p-2(
+    v-else
+    :style="{ fontSize: size + 'px' }"
+  )
     la-user
   
 </template>

@@ -15,15 +15,18 @@ const { emoji, isMate, toggleMate } = useMate(props.pub)
 <template lang="pug">
 .flex.items-center(v-if="user.is && user.pub != pub")
   button.flex.items-center.rounded-2xl.shadow-xl.px-2.text-3xl.bg-light-500(
-    @click="toggleMate()" 
-    :style="{ backgroundColor: isMate ? colorDeep.hex(pub) : '' }"
+    :style="{ backgroundColor: isMate ? colorDeep.hex(pub) : '' }" 
+    @click="toggleMate()"
     )
-    account-badge(:pub="user.pub" :showName="false")
+    account-badge(
+      :pub="user.pub" 
+      :show-name="false"
+      )
     .p-2(v-if="isMate") {{ isMate }}
     input.mx-1.rounded-2xl.w-46px.p-2.rounded-lg.shadow-inner.text-center(
       v-if="!isMate" 
-      type="text" 
       v-model="emoji" 
+      type="text" 
       placeholder="" 
       @click.stop.prevent
       )

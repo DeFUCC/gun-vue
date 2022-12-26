@@ -6,7 +6,7 @@ const props = defineProps({
   pub: { type: String, default: '' }
 })
 
-const emit = defineEmits(['feed'])
+defineEmits(['feed'])
 
 const posts = reactive({})
 
@@ -27,15 +27,18 @@ gun.user(props.pub).get('feeds').map().once(function (list, tag) {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col(v-if="Object.keys(posts).length > 0")
   .text-lg.ml-2.mb-2.font-bold Stars
-  .p-2(v-for="(feed, tag) in posts" :key="tag")
+  .p-2(
+    v-for="(feed, tag) in posts" 
+    :key="tag"
+    )
     transition-group(name="list")
       .text-lg.font-bold.cursor-pointer(
+        v-if="Object.values(feed).length > 0"
         :key="tag"
         @click="$emit('feed', tag)" 
-        v-if="Object.values(feed).length > 0"
         ) # {{ tag }}
     .flex.flex-wrap
       transition-group(name="list")

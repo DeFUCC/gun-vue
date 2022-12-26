@@ -1,11 +1,14 @@
 <script setup>
-import { ref, reactive, computed, toRef } from "vue"
+import { toRef } from "vue"
 import { useAccount, usePrivateChat } from '#composables'
 const props = defineProps({
-  pub: String
+  pub: {
+    default: '',
+    type: String
+  }
 })
 
-const emit = defineEmits('user')
+defineEmits('user')
 
 const { account } = useAccount(toRef(props, 'pub'));
 
@@ -16,7 +19,10 @@ const { send, sorted } = usePrivateChat(props.pub)
 <template lang="pug">
 .m-0.flex.flex-col
   .flex-0.p-4.flex.flex-wrap.items-center
-    account-avatar(:pub="pub" @click="$emit('user')")
+    account-avatar(
+      :pub="pub" 
+      @click="$emit('user')"
+      )
     .text-lg.font-bold.p-2 {{ account.profile?.name }}
     .text-lg {{ account.lastSeen }}
   chat-messages.bg-dark-50(:messages="sorted")

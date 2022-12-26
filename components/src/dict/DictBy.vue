@@ -4,7 +4,7 @@ import { useUser, useDictRecordsBy } from '#composables';
 import { computed } from 'vue'
 
 const props = defineProps({
-  author: String
+  author: { type: String, default: '' }
 })
 
 const { user } = useUser()
@@ -15,7 +15,7 @@ const records = computed(() => useDictRecordsBy(pub.value))
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .p-8.bg-light-200(v-if="user.is") 
   .text-xl.mb-4 Records by {{ pub == user.pub ? 'me' : pub }}
   p {{ records }}

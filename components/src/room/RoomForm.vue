@@ -32,7 +32,7 @@ const bg = computed(() => useBackground({ pub: create.pair?.pub, size: 620 }))
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.bg-cover.rounded-2xl.p-8.max-w-620px.bg-light-800.justify-center(v-if="user.pub" :style="{ ...bg }")
   .flex
     button.button.m-2.flex-1(@click="genPair()" ) Generate a new room

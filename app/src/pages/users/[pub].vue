@@ -16,7 +16,7 @@ onMounted(() => {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .p-0
   ui-layer(:open="open" :closeButton="false"  @close="$router.push('/users/')")
     account-home(

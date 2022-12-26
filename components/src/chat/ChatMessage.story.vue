@@ -13,7 +13,10 @@ const state = reactive({
 </script>
 
 <template lang="pug">
-Story(title="Chat/Message" icon="la:envelope")
+Story(
+  title="Chat/Message" 
+  icon="la:envelope"
+  )
   Variant(title="Round")
     ChatMessage(v-bind="state")
 

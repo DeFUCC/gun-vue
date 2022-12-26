@@ -7,10 +7,10 @@ const props = defineProps({
   field: { type: String, default: 'cover' },
   options: {
     type: Object,
-    default: {
+    default: () => ({
       picSize: 800,
       preserveRatio: true
-    }
+    })
   }
 })
 
@@ -36,13 +36,26 @@ watch(picture, pic => {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-wrap
-  input.hidden(type="file" v-if="!picture" :id="id"  @change="handleChange" accept="image/*")
-  label.m-1.button.cursor-pointer(@click="add = true" :class="{ active: picture }" :for="id")
+  input.hidden(
+    v-if="!picture" 
+    :id="id" 
+    type="file"  
+    accept="image/*"
+    @change="handleChange"
+    )
+  label.m-1.button.cursor-pointer(
+    :class="{ active: picture }" 
+    :for="id" 
+    @click="add = true"
+    )
     slot
       la-image
-  ui-layer.max-h-60vh.mt-20(:open="add" @close="add = false")
+  ui-layer.max-h-60vh.mt-20(
+    :open="add" 
+    @close="add = false"
+    )
     button.button.fixed.text-2xl.opacity-40.hover-opacity-100.m-4
       la-check(@click="add = false")
     button.button.fixed.text-2xl.opacity-40.hover-opacity-100.mt-4.ml-18

@@ -14,7 +14,7 @@ onMounted(() => {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 ui-layer(:open="open" :closeButton="false"  @close="$router.push(`/users/${pub}`)")
   chat-private.w-90vw.h-80vh(:pub="pub")
 

@@ -12,7 +12,7 @@ onMounted(() => {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col
   .flex.items-center
     .text-lg.text-left Volunteer relay peers:

@@ -6,25 +6,35 @@ const props = defineProps({
   enabled: { type: Boolean, default: false },
 })
 
-const emit = defineEmits(['enable', 'gift'])
+const emit = defineEmits(['enable', 'gift', 'open'])
 
 const { gifts, collections } = useProjectGifts(props.path)
 
 const { user } = useUser()
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col
   .text-xl.my-4.p-2.flex.items-center
     .font-bold Project funding
     .flex-1
     template(v-if="!enabled")
-      button.button(v-if="path.includes(user.pub)" @click="$emit('enable')") Enable Funding
+      button.button(
+        v-if="path.includes(user.pub)" 
+        @click="$emit('enable')"
+        ) Enable Funding
       .text-xs(v-else) Funding not yet enabled by the author
-    gift-button(v-else :gift="{ project: path, to: path.slice(-87) }" @sent="$emit('gift', $event)")
+    gift-button(
+      v-else 
+      :gift="{ project: path, to: path.slice(-87) }" 
+      @sent="$emit('gift', $event)"
+      )
 
   .p-2.flex.flex-col.gap-4(v-if="enabled")
-    .flex.flex-col.gap-2.p-2.bg-dark-50.rounded-xl.bg-opacity-10.shadow-xl(v-for="(ql, qlName ) in collections" :key="ql")
+    .flex.flex-col.gap-2.p-2.bg-dark-50.rounded-xl.bg-opacity-10.shadow-xl(
+      v-for="(ql, qlName ) in collections" 
+      :key="ql"
+      )
       .p-2.w-full.flex.items-center.gap-2
         .text-xl.font-bold {{ ql.sum }} 
         .text-xl {{ qlName }}
@@ -39,10 +49,10 @@ const { user } = useUser()
 
       template(v-if="collections?.[qlName]?.from?.[user.pub] || path.includes(user.pub)")
         gift-card.cursor-pointer(
-          @click="$emit('open', hash)"
-          v-for="(gift, hash) in ql.list" 
+          v-for="(gift, hash) in ql.list"
+          v-show="gift.from == user.pub || gift.to == user.pub" 
           :key="hash"
           :hash="hash"
-          v-show="gift.from == user.pub || gift.to == user.pub"
+          @click="$emit('open', hash)"
           )
 </template>

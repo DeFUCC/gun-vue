@@ -76,7 +76,7 @@ input#qr-input(
   type="file",
   accept="image/*",
   @change="processFile($event.target.files[0])"
-)
+  )
 </template>
 
 

@@ -5,7 +5,7 @@ import { useMyGifts } from '#composables';
 const { gifts, to, from, newGifts } = useMyGifts()
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col
   .text-lg My Gifts
   template(v-if="Object.keys(newGifts).length > 0")

@@ -1,18 +1,18 @@
 <script setup>
-import { reactive, computed, ref } from 'vue'
+import { ref } from 'vue'
 
-const emit = defineEmits(['sent'])
+defineEmits(['sent'])
 
-const props = defineProps({
+defineProps({
   gift: {
     type: Object,
-    default: {
+    default: () => ({
       project: '',
       from: '',
       to: '',
       qn: 0,
       ql: ''
-    }
+    })
   }
 })
 
@@ -21,9 +21,15 @@ const open = ref()
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 button.button(@click="open = true") Fund it now!
-ui-layer(:open="open" @close="open = false")
+ui-layer(
+  :open="open" 
+  @close="open = false"
+  )
   .p-2
-    gift-form(:gift="gift" @sent="open = false; $emit('sent', $event)")
+    gift-form(
+      :gift="gift" 
+      @sent="open = false; $emit('sent', $event)"
+      )
 </template>

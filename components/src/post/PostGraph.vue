@@ -82,7 +82,7 @@ onMounted(() => {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex
   #graph.bg-light-100.bg-opacity-70.backdrop-blur-md.backdrop-filter.overflow-hidden.max-h-60vh.min-h-400
   slot

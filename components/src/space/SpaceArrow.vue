@@ -14,7 +14,7 @@ const props = defineProps({
 const colorDeep = useColor('deep')
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 g.arrow(ref="handle")
   line(
     :x1="link.arrow.sx"

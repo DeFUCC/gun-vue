@@ -3,8 +3,12 @@ import { ref } from 'vue'
 import { useGun, useUser, useColor, useDictRecordsFor, dictRecord, langParts } from '#composables';
 
 const props = defineProps({
-  hash: String,
-  authors: Object,
+  hash: {
+    type: String, default: ''
+  },
+  authors: {
+    type: Object, default: () => ({})
+  },
 })
 
 const color = useColor('light')
@@ -14,14 +18,14 @@ const { user } = useUser()
 
 const def = ref()
 
-gun.get('dict').get('#def').get(props.hash).once((d, k) => {
+gun.get('dict').get('#def').get(props.hash).once((d) => {
   def.value = JSON.parse(d)
 })
 
 const links = useDictRecordsFor(props.hash)
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.rounded-xl.text-xl.p-2(
   :style="{ backgroundColor: color.hex(hash) }"
   ) 
@@ -36,7 +40,10 @@ const links = useDictRecordsFor(props.hash)
       p {{ def?.part }}
     slot
     .flex-1
-    dict-link-list(:links="links" type="word")
+    dict-link-list(
+      :links="links" 
+      type="word"
+      )
     dict-link-button(
       :hash="hash"
       type="def"

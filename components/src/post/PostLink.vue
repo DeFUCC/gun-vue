@@ -1,9 +1,18 @@
 <script setup>
-import { useGun, currentRoom } from '#composables'
-import { reactive, computed } from 'vue'
+import {
+  useGun,
+  currentRoom
+} from '#composables'
+import {
+  reactive,
+  computed
+} from 'vue'
 
 const props = defineProps({
-  hash: { type: String, default: '' },
+  hash: {
+    type: String,
+    default: ''
+  },
 })
 
 const gun = useGun()
@@ -23,9 +32,8 @@ gun.user(currentRoom.pub).get('posts').map().once((d, k) => {
 // })
 
 const count = computed(() => Object.keys(comments).length)
-
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 button.m-1.flex.items-center.items-center.px-2.py-1.bg-light-700.dark-bg-dark-50.rounded-lg(v-if="count > 0") {{ count }}
 </template>

@@ -12,7 +12,7 @@ function isSafe() {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.items-center.w-full
   ui-layer(:open="user.is && !user.safe?.saved" closeButton @close="isSafe()")
     user-credentials(@close="isSafe()")

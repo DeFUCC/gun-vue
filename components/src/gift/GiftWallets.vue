@@ -13,7 +13,8 @@ const props = defineProps({
     default: ''
   },
   activeWallet: {
-    type: Object
+    type: Object,
+    default: () => ({})
   }
 })
 
@@ -57,19 +58,29 @@ function removeWallet(key) {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.gap-2
   .flex.flex-col.gap-2
     gift-wallet.cursor-pointer(
-      v-for="(wallet, key) in wallets" :key="wallet" 
+      v-for="(wallet, key) in wallets" 
+      :key="wallet" 
       :wallet="wallet"
       :style="{ backgroundColor: wallet == activeWallet ? '#3333' : '' }"
       @click="wallet != activeWallet ? $emit('wallet', wallet) : $emit('clear')"
       )
-      la-trash-alt.opacity-40.hover-opacity-90(v-if="user.pub == pub" @click="removeWallet(key)")
+      la-trash-alt.opacity-40.hover-opacity-90(
+        v-if="user.pub == pub" 
+        @click="removeWallet(key)"
+        )
 
-  button.button(@click="open = true" v-if="user.pub == pub") Add a wallet
-ui-layer(:open="open" @close="open = false")
+  button.button(
+    v-if="user.pub == pub" 
+    @click="open = true"
+    ) Add a wallet
+ui-layer(
+  :open="open" 
+  @close="open = false"
+  )
   .p-2
     .text-xl Add a new wallet
     .grid.grid-cols-2.gap-2(style="grid-template-columns: 1fr 6fr;")
@@ -78,21 +89,23 @@ ui-layer(:open="open" @close="open = false")
       vSelect.rounded-xl(
         v-model="newWallet.currency"
         :options="currencies"
-        :appendToBody="true"
+        :append-to-body="true"
         placeholder="Your account currency"
         :taggable="true"
-        :pushTags="true"
+        :push-tags="true"
       )
 
       .p-2 Account
       textarea.shadow-lg.rounded-xl.p-2(
-        type="text" v-model="newWallet.account" 
+        v-model="newWallet.account" 
+        type="text" 
         placeholder="Your account details"
         )
 
       .p-2 URL
       input.shadow-lg.rounded-xl.p-2(
-        type="text" v-model="newWallet.url" 
+        v-model="newWallet.url" 
+        type="text" 
         placeholder="Link to the payment gateway"
         )
       .p-2 PREVIEW

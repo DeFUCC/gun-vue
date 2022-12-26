@@ -17,9 +17,7 @@ const numOpts = {
 const props = defineProps({
   gift: {
     type: Object,
-    default: {
-
-    }
+    default: () => ({})
   }
 })
 
@@ -67,58 +65,82 @@ const userProjects = computed(() => {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.max-w-140
   .grid.p-4.gap-2.items-center(style="grid-template-columns: 1fr 10fr;")
 
     .p-2.text-right FROM
     .flex-1 
-      account-badge(:pub="user.pub" v-if="user.pub")
+      account-badge(
+        v-if="user.pub" 
+        :pub="user.pub"
+        )
       user-auth(v-else)
 
     .p-2.text-right TO 
-    account-badge(:pub="newGift.to" v-if="newGift.to")
+    account-badge(
+      v-if="newGift.to" 
+      :pub="newGift.to"
+      )
       .flex-1
       la-times.mr-2(@click="newGift.to = ''; newGift.wallet = null")
     .flex.flex-col(v-else)
       .font-bold USER SELECT OF {{ Object.keys(guestsWithWallets).length }}
       .flex.flex-wrap.gap-3
-        account-badge(v-for="guest of guestsWithWallets" :key="guest" @click="newGift.to = guest.pub" :pub="guest.pub")
+        account-badge(
+          v-for="guest of guestsWithWallets" 
+          :key="guest" 
+          :pub="guest.pub" 
+          @click="newGift.to = guest.pub"
+          )
 
     template(v-if="newGift.to")
       .p-2.text-right WALLET
       gift-wallets(
         :key="newGift.to"
         :pub="newGift.to" 
-        @wallet="newGift.wallet = $event" 
+        :active-wallet="newGift.wallet" 
+        @wallet="newGift.wallet = $event"
         @clear="newGift.wallet = null"
-        :activeWallet="newGift.wallet"
         )
       template(v-if="newGift.wallet")
         .p-2.text-right Quantity
-        number(v-model="newGift.qn" v-bind="numOpts" placeholder="Quantity")
+        number(
+          v-model="newGift.qn" 
+          v-bind="numOpts" 
+          placeholder="Quantity")
 
         .p-2.text-right Quality
         //- input(v-model="newGift.ql" placeholder="Quality")
         vSelect.rounded-xl(
           v-model="newGift.ql"
           :options="currencies"
-          :appendToBody="true"
+          :append-to-body="true"
           placeholder="Currency abbreviation or short object description"
           :taggable="true"
-          :pushTags="true"
+          :push-tags="true"
           )
 
         .p-2.text-right.self-start Wish 
-        textarea.p-2(v-model="newGift.wish" placeholder="Wish")
+        textarea.p-2(
+          v-model="newGift.wish" 
+          placeholder="Wish"
+          )
 
         .p-2.text-right PROJECT 
-          .w-full(v-if="!newGift.project") SELECT
-        project-card(:project="project" :path="newGift.project" v-if="newGift.project")
+          .w-full(
+            v-if="!newGift.project"
+            ) SELECT
+        project-card(
+          v-if="newGift.project" 
+          :project="project" 
+          :path="newGift.project"
+          )
           la-times(@click="newGift.project = null")
         .flex.flex-wrap.gap-1(v-else)
           .p-2.rounded-xl.cursor-pointer(
-            v-for="(proj, p) in userProjects" :key="p"
+            v-for="(proj, p) in userProjects" 
+            :key="p"
             :style="{ backgroundColor: proj.color }"
             @click="newGift.project = proj.path"
             )

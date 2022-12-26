@@ -19,7 +19,7 @@ const { logo, uploadLogo, removeLogo } = useRoomLogo(props.pub)
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.relative.items-center.justify-center
   img(:src="logo || '/gun-vue-logo.svg'")
 

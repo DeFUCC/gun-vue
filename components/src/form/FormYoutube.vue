@@ -4,8 +4,8 @@ const link = ref()
 
 const emit = defineEmits(['update', 'close']);
 
-const props = defineProps({
-  id: { type: String },
+defineProps({
+  id: { type: String, default: '' },
 })
 
 const add = ref()
@@ -20,7 +20,7 @@ watch(link, lnk => {
 
 
 function youtubeLinkParser(url) {
-  var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+  var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|\?v=)([^#&?]*).*/;
   var match = url.match(regExp);
   if (match && match[2].length == 11) {
     return match[2];
@@ -28,19 +28,20 @@ function youtubeLinkParser(url) {
     return null;
   }
 }
-
-
-
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-wrap
   button.button.m-1(
-    @click="add = !add" 
-    :class="{ active: link }"
+    :class="{ active: link }" 
+    @click="add = !add"
     )
     la-youtube
-  ui-layer(:open="add" @close="add = false" :offset="'12vh'")
+  ui-layer(
+    :open="add" 
+    :offset="'12vh'" 
+    @close="add = false"
+    )
     .p-4.text-lg
       .flex.items-center.mb-2.gap-2
         la-youtube.text-2xl
@@ -50,8 +51,15 @@ function youtubeLinkParser(url) {
           la-check(@click="add = false")
         button.button.text-xl
           la-trash-alt(@click="link = null; add = false")
-      input.p-4.my-4.w-full.border-1.border-dark-300(v-model="link" autofocus placeholder="Paste a Youtube video link")
-      embed-youtube.min-w-80vw.mt-2(v-if="id" :video="id")
+      input.p-4.my-4.w-full.border-1.border-dark-300(
+        v-model="link" 
+        autofocus 
+        placeholder="Paste a Youtube video link"
+        )
+      embed-youtube.min-w-80vw.mt-2(
+        v-if="id" 
+        :video="id"
+        )
 </template>
 
 <style lang="postcss" scoped>

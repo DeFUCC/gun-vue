@@ -5,7 +5,7 @@ const count = countProjects()
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.flex-auto.relative
   router-link.py-2.px-4.flex.bg-dark-100.bg-opacity-10(to="/projects/") 
     .font-bold.text-xl PROJECTS

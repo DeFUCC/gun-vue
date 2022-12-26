@@ -2,6 +2,6 @@
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .p-0
 </template>

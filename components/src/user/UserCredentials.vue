@@ -31,7 +31,7 @@ const encPair = computed(() => {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.items-stretch.pb-4.border-1.border-dark-100.border-opacity-10.max-w-120.mx-auto(v-if="user.is && !user.safe?.saved")
   slot
     .mt-4.mx-6 Please make sure to safely store your cryptographic keypair to be able to use it again later

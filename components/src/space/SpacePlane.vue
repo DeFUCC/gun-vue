@@ -67,7 +67,7 @@ const selectedUser = reactive({
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.items-center
   .text-2xl.p-8.top-15vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-4(
     v-if="!space.joined && user.is" 

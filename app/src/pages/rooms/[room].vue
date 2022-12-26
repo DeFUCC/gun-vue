@@ -4,7 +4,7 @@ const props = defineProps({
 })
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 ui-layer(:open="true" @close="$router.push('/rooms/')")
   room-page( 
     style="flex: 1 1 200px"

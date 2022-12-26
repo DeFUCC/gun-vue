@@ -1,5 +1,5 @@
 <script setup>
-import { computed, defineAsyncComponent, onMounted, reactive } from 'vue'
+import { defineAsyncComponent, onMounted, reactive } from 'vue'
 import { watchOnce } from '@vueuse/core'
 
 
@@ -14,7 +14,7 @@ function mySetup() {
   onMounted(async () => {
     const { useGuests } = await import('#composables')
     const { guests } = useGuests()
-    watchOnce(guests, g => {
+    watchOnce(guests, () => {
       state.pub = Object.keys(guests)[0]
     })
   })
@@ -23,11 +23,18 @@ function mySetup() {
 </script>
 
 <template lang="pug">
-Story(title="Account/Home" icon="la:home" :setup-app="mySetup")
+Story(
+  title="Account/Home" 
+  icon="la:home" 
+  :setup-app="mySetup"
+  )
   Variant(title="Round")
     ClientOnly
       Suspense
-        AccountHome(:pub="state.pub" :key="state.pub")
+        AccountHome(
+          :key="state.pub" 
+          :pub="state.pub"
+          )
 
   template(#controls)
     .p-2.flex.flex-col.gap-4

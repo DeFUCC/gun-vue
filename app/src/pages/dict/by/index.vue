@@ -2,6 +2,6 @@
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 dict-authors(@author="$router.push(`/dict/by/${$event}`)")
 </template>

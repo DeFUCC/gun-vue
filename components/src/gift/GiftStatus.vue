@@ -7,7 +7,7 @@ const props = defineProps({
 })
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .py-1.rounded-lg.flex.justify-center.text-center.text-sm
   la-check(v-if="state === true")
   la-times(v-else-if="state === false")

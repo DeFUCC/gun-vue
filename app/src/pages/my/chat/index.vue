@@ -2,7 +2,7 @@
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 
 chat-private-list(@chat="$router.push(`/my/chat/${$event}`)")
 </template>

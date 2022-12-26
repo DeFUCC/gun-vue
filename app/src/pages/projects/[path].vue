@@ -6,7 +6,7 @@ const props = defineProps({
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 project-page(
   :path="path" 
   :key="path"

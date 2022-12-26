@@ -6,11 +6,11 @@ const props = defineProps({
   index: { type: Number, default: 0 },
   source: {
     type: Object,
-    default: {
+    default: () => ({
       author: '',
       timestamp: '',
       text: 'empty'
-    }
+    })
   }
 })
 
@@ -49,15 +49,23 @@ onMounted(() => {
 
 </script>
 
-<template lang='pug'>
-.px-1.py-2px.flex.flex-col.w-full.gap-1(:style="{ alignItems: isMe ? 'end' : 'start' }" ref="message")
+<template lang="pug">
+.px-1.py-2px.flex.flex-col.w-full.gap-1(
+  ref="message" 
+  :style="{ alignItems: isMe ? 'end' : 'start' }"
+  )
   .flex.items-center.w-full.mt-2(
-    :style="{ flexDirection: isMe ? 'row-reverse' : 'row' }"
-    :id="`chat-${index}`"
-    :data-pub="source.author"
     v-show="fresh"
+    :id="`chat-${index}`"
+    :style="{ flexDirection: isMe ? 'row-reverse' : 'row' }"
+    :data-pub="source.author"
     )
-    account-badge.opacity-50.hover-opacity-90.transition(:pub="source.author" :showName="true" :size="20" @click="selectedUser.pub = source.author")
+    account-badge.opacity-50.hover-opacity-90.transition(
+      :pub="source.author" 
+      :show-name="true" 
+      :size="20" 
+      @click="selectedUser.pub = source.author"
+      )
     .ml-2.text-sm.opacity-20.hover-opacity-80.transition.cursor-default.text-light-200  {{ dateTime?.time }}
     .flex-1
     .ml-2.text-sm.opacity-20.hover-opacity-80.transition.cursor-default.text-dark-200 {{ dateTime?.date }} 

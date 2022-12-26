@@ -1,6 +1,5 @@
 <script setup>
 import { defineAsyncComponent, reactive } from 'vue'
-import { hstEvent } from 'histoire/client'
 
 const AccountStars = defineAsyncComponent(() => import('./AccountStars.vue'))
 const AccountSelect = defineAsyncComponent(() => import('./AccountSelect.vue'))
@@ -14,7 +13,10 @@ const state = reactive({
 </script>
 
 <template lang="pug">
-Story(title="Account/Stars" icon="la:star")
+Story(
+  title="Account/Stars" 
+  icon="la:star"
+  )
   Variant(title="Round")
     AccountStars(v-model:pub="state.pub")
 

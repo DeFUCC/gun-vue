@@ -1,9 +1,13 @@
 <script setup>
-import { useGun, useUser, useColor, useDictRecordsFor, dictRecord, langParts } from '#composables';
+import { useUser, dictRecord } from '#composables';
 
-const props = defineProps({
-  type: String,
-  hash: String,
+defineProps({
+  type: {
+    type: String, default: ''
+  },
+  hash: {
+    type: String, default: ''
+  },
   my: Boolean
 })
 
@@ -11,12 +15,12 @@ const { user } = useUser()
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 la-link.link(
   v-if="user.is"
-  @click.stop.prevent="dictRecord[type] = dictRecord[type] == hash ? null : hash"
   :class="{ active: dictRecord[type] == hash }"
   :style="{ color: my ? 'red' : '' }"
+  @click.stop.prevent="dictRecord[type] = dictRecord[type] == hash ? null : hash"
   )
 </template>
 

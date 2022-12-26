@@ -29,7 +29,7 @@ watchEffect(() => {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col
   .p-2.relative(:style="{ background: `url(${project.cover}) center`, backgroundColor: project.color }")
 

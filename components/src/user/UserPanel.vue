@@ -11,7 +11,7 @@ const bg = computed(() => useBackground({ pub: user.pub, size: 600, light: 0.5, 
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .p-4.flex.items-center(
   v-if="user.is"
   :style="{ ...bg }"

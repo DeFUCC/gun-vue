@@ -12,7 +12,10 @@ const state = reactive({
 </script>
 
 <template lang="pug">
-Story(title="Project/Card" icon="la:toolbox")
+Story(
+  title="Project/Card" 
+  icon="la:toolbox"
+  )
   Variant(title="Round")
     ProjectCard(v-bind="state")
 

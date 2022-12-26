@@ -1,5 +1,5 @@
 <script setup>
-import { defineAsyncComponent, onMounted, reactive } from 'vue'
+import { defineAsyncComponent, reactive } from 'vue'
 
 const AccountAvatar = defineAsyncComponent(() =>
   import('./AccountAvatar.vue')
@@ -21,7 +21,10 @@ async function generate() {
 </script>
 
 <template lang="pug">
-Story(title="Account/Avatar" icon="la:user")
+Story(
+  title="Account/Avatar" 
+  icon="la:user"
+  )
   Variant(title="Round")
     AccountAvatar(v-bind="state")
   template(#controls)
@@ -29,16 +32,16 @@ Story(title="Account/Avatar" icon="la:user")
       .flex.gap-2
         label(for="size") Size
         input#size(
-          type="range"
           v-model="state.size"
+          type="range"
           :min="40"
           :max="500"
           )
       .flex.gap-2
         label(for="size") Border
         input#size(
-          type="range"
           v-model="state.border"
+          type="range"
           :min="0"
           :max="20"
           )

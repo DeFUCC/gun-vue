@@ -9,8 +9,8 @@ defineEmits(['user'])
 
 const props = defineProps({
   hash: { type: String, default: '' },
-  authors: Object,
-  tag: [String, Boolean],
+  authors: { type: Object, default: () => ({}) },
+  tag: { type: [String, Boolean], default: '' },
   back: Boolean,
   actions: { type: Boolean, default: true }
 })
@@ -19,16 +19,25 @@ const { post } = usePost({ hash: props.hash })
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .card(
   :style="{ backgroundImage: `url(${post?.cover || post?.raw})`, backgroundColor: colorDeep.hex(hash) }"
   )
-  .p-0(style="flex: 12 1 120px" :style="{ paddingTop: post?.cover || post?.raw ? '18em' : '0' }")
+  .p-0(
+    style="flex: 12 1 120px" 
+    :style="{ paddingTop: post?.cover || post?.raw ? '18em' : '0' }"
+    )
   .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-lg.rounded-2xl.bg-light-100.backdrop-blur-sm.backdrop-filter.shadow-md(
     style="flex: 14 1 620px"
   )
-    .p-0(style="flex: 1 1 40px" v-if="post?.icon" )
-      img.w-20.max-h-20.rounded-full.m-2(:src="post.icon" width="40px")
+    .p-0(
+      v-if="post?.icon" 
+      style="flex: 1 1 40px" 
+      )
+      img.w-20.max-h-20.rounded-full.m-2(
+        :src="post.icon" 
+        width="40px"
+        )
     .flex.flex-col.p-2.overflow-hidden(style="flex: 10 1 280px")
       .px-2
         .flex.items-center
@@ -39,14 +48,23 @@ const { post } = usePost({ hash: props.hash })
       .flex.items-center.flex-wrap.items-center.mt-2.gap-2
         la-youtube.mx-1(v-if="post?.youtube")
         mdi-text-long.mx-1(v-if="post?.text")
-        ui-link(:url="post?.link" v-if="post?.link")
+        ui-link(
+          v-if="post?.link" 
+          :url="post?.link"
+          )
 
         slot
-    .flex.gap-1.rounded-xl.p-1.bg-dark-50.bg-opacity-20.flex-wrap.items-center(style="flex: 1 1 130px" v-if="actions")
-      post-action-react(:authors="authors" @user="$emit('user', $event)" :hash="hash" :tag="tag" :back="back")
-
-
-
+    .flex.gap-1.rounded-xl.p-1.bg-dark-50.bg-opacity-20.flex-wrap.items-center(
+      v-if="actions" 
+      style="flex: 1 1 130px"
+      )
+      post-action-react(
+        :authors="authors" 
+        :hash="hash" 
+        :tag="tag" 
+        :back="back"
+        @user="$emit('user', $event)" 
+        )
       //- post-action-update(:hash="hash" )
       //- post-action-ban(:hash="hash" :tag="tag")
 

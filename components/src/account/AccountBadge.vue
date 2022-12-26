@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watchEffect } from 'vue'
-import { useGun, useColor, selectedUser, useUser } from '#composables'
+import { useGun, useColor, selectedUser, useUser, SEA } from '#composables'
 
 const props = defineProps({
   pub: { type: String, default: '' },
@@ -39,15 +39,17 @@ function select() {
 <template lang="pug">
 .frame.p-2px.flex.items-center.rounded-full.bg-light-900.cursor-pointer.shadow.transition.duration-400.ease-in(
   :style="{ backgroundColor: colorDeep.hex(pub), flexDirection: vertical ? 'column' : 'row' }"
-  @click="select()"
   :title="showName ? petname ? petname : pub : name"
+  @click="select()"
   )
-  account-avatar(:pub="pub" :size="size")
+  account-avatar(
+    :pub="pub" 
+    :size="size"
+    )
   .mx-2.font-bold.text-sm.max-w-8ch.overflow-ellipsis.overflow-hidden.whitespace-nowrap(v-if="showName && name") {{ name }}
   .tip.mx-2.font-bold.text-sm.max-w-8ch.overflow-ellipsis.overflow-hidden.whitespace-nowrap.absolute.opacity-0.hover-opacity-100.transition-all.duration-300.ease-in.text-center.transform.translate-y-2.p-1.rounded-lg(
-    v-else
-    :style="{ transform: `translateY(${-size - 5}px) translateX(-50%)`, backgroundColor: colorDeep.hex(pub) }"
     v-if="name"
+    :style="{ transform: `translateY(${-size - 5}px) translateX(-50%)`, backgroundColor: colorDeep.hex(pub) }"
     ) {{ name }}
   slot
 </template>

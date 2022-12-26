@@ -7,7 +7,7 @@ const props = defineProps({
 })
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 ph-house-simple(v-if="icon.includes('home') || icon == '/'")
 ph-hands-clapping(v-if="icon.includes('space')")
 ph-newspaper(v-if="icon.includes('posts')")

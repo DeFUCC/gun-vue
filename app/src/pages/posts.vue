@@ -5,7 +5,7 @@ import { ref, computed } from 'vue'
 const showGraph = ref()
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.flex-auto.relative
   post-list.w-full(
     tag='PvRPp6Qs4F5fkSx9CnWfUsN2QkpmsIkaVxvpGf6iK18='

@@ -2,7 +2,7 @@
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.bg-dark-50.bg-opacity-70
   .text-xl.text-center.mt-2.font-bold.flex.items-center.justify-center.gap-2
     a.underline(href="https://gun.eco" target="_blank") Gun

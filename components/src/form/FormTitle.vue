@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-const props = defineProps({
-  text: String,
+defineProps({
+  text: { type: String, default: '' },
   editable: Boolean,
 })
 
@@ -18,7 +18,7 @@ function update(ev) {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.mt-12.mb-2.items-center.gap-4
   h1.text-3xl.font-bold(
     ref="content"

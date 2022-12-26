@@ -11,7 +11,10 @@ const state = reactive({
 </script>
 
 <template lang="pug">
-Story(title="Chat/Room" icon="la:home")
+Story(
+  title="Chat/Room" 
+  icon="la:home"
+  )
   Variant(title="Round")
     ChatRoom(v-bind="state")
 

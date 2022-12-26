@@ -24,7 +24,7 @@ const isInRoom = computed(() => guests.guests[user.pub])
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 
 button.absolute.flex.items-center.m-4.p-2.left-0.bottom-0.z-200(@mousedown.stop.prevent="open = true" v-if="!open && !isLarge")
   la-users.text-3xl

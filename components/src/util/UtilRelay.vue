@@ -13,7 +13,7 @@ const { relays, loadRelays } = useRelays()
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .cursor-pointer.relative.text-left
   button.flex(@click="open = true")
     carbon-bare-metal-server-01.text-xl.-mt-1

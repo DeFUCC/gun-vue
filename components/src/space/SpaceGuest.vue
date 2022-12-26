@@ -76,7 +76,7 @@ gun.user(props.pub).get('avatar').on(hash => {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 g.guest(
   :opacity="isOffline ? 0.1 : 1"
 )

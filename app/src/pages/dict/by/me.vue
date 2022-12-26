@@ -2,6 +2,6 @@
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 dict-by
 </template>

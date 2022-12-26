@@ -1,6 +1,5 @@
 <script setup>
 import { defineAsyncComponent, onMounted, reactive, ref, watch, nextTick } from 'vue'
-import { computedAsync } from '@vueuse/core'
 
 const GiftCard = defineAsyncComponent(() =>
   import('./GiftCard.vue')
@@ -44,22 +43,25 @@ watch(gift, async () => {
 <template lang="pug">
 Story(title="Gift/Card")
   Variant(title="Round")
-    GiftCard(:gift="gift" :hash="hashed?.hash")
+    GiftCard(
+      :gift="gift" 
+      :hash="hashed?.hash"
+      )
   template(#controls)
     .p-2.flex.flex-col.gap-4
       .flex.gap-2
         label(for="qn") Quantity
         input#qn(
-          type="range"
           v-model="gift.qn"
+          type="range"
           :min="1"
           :max="10000"
           )
       .flex.gap-2
         label(for="qn") Quality
         input#qn.flex-1.bg-transparent.shadow.border-1.rounded(
-          type="text"
           v-model="gift.ql"
+          type="text"
           )
       .flex.gap-2
         label(for="wish") Wish

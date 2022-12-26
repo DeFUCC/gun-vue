@@ -12,7 +12,7 @@ const address = computed(() => {
 })
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex
   button.button.p-4.transition.bg-light-800.shadow-lg.flex.items-center.justify-center(@click="open = !open")
     ion-share-outline

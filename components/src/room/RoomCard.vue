@@ -17,7 +17,7 @@ const { logo } = useRoomLogo(props.pub)
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .rounded-xl.shadow-md.text-sm.bg-cover.cursor-pointer.hover-shadow-lg.transition.duration-300ms.filter.brightness-95.hover-brightness-100.flex.flex-wrap.overflow-hidden(
   :style="{ ...bg, border: room.pub == currentRoom.pub ? '2px solid currentColor' : '' }"
 ) 

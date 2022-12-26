@@ -4,7 +4,7 @@ const { pass } = usePass();
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.mt-4.bg-light-700.p-4.m-2.shadow-lg.rounded-xl
   .flex.items-center.mb-4
     .mx-2

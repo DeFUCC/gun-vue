@@ -22,7 +22,7 @@ const path = computed(() => {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col()
   ui-layer(:open="true" :closeButton="false" @close="$router.push(`/posts/`)")
     post-page.w-full(

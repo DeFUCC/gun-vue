@@ -2,7 +2,7 @@
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col
   room-list.p-8(@browse="$router.push(`/rooms/${$event}`)" )
   router-view(v-slot="{ Component }")

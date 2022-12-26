@@ -13,7 +13,7 @@ watch(() => props.hash, hash => {
 }, { immediate: true })
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 dict-def-page.m-4(
   :hash="unsafeHash(hash)" :key="hash"
     @word="$router.push(`/dict/words/${safeHash($event)}`)"

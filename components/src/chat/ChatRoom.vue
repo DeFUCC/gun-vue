@@ -1,7 +1,7 @@
 <script setup>
-import { ref, computed, watch, nextTick } from 'vue'
-import { useMediaQuery, onClickOutside } from '@vueuse/core'
-import { useChat, useUser, useBackground, currentRoom } from '#composables';
+import { watch } from 'vue'
+
+import { useChat } from '#composables';
 
 const props = defineProps({
   title: { type: String, default: 'Topics' },
@@ -31,7 +31,7 @@ watch(sorted, () => {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 
 
 .flex.flex-col.overflow-y-scroll(style="flex: 1000 1 auto")

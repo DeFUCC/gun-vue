@@ -40,7 +40,7 @@ function removeAvatar() {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.relative.items-center.justify-center
   account-avatar(:pub="user.pub" :size="size" )
 

@@ -4,7 +4,7 @@ import { currentRoom } from '#composables';
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.items-center.relative
   user-list( @user="$router.push(`/users/${$event}`)" :key="currentRoom.pub")
   user-graph( @user="$router.push(`/users/${$event}`)" :key="currentRoom.pub")

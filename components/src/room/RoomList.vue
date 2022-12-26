@@ -9,7 +9,7 @@ const { rooms } = useRooms()
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.mb-4 
   .flex.flex-wrap.gap-4.my-4
     room-form(@room="$emit('browse', $event)")

@@ -12,7 +12,7 @@ const props = defineProps({
   path: { type: String, default: '' },
   project: {
     type: Object,
-    default: {
+    default: () => ({
       title: '',
       statement: '',
       color: '',
@@ -23,23 +23,35 @@ const props = defineProps({
       objects: [],
       events: [],
       text: ''
-    }
+    })
   }
 })
 
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .card(
   :style="{ background: `url(${project?.cover || project?.raw})`, backgroundColor: project.color }"
   )
-  .absolute.top-2.right-2(@click.stop.prevent="removeProject(path)" v-if="path.includes(user.pub) || currentRoom.hosts[user.pub]")
+  .absolute.top-2.right-2(
+    v-if="path.includes(user.pub) || currentRoom.hosts[user.pub]" 
+    @click.stop.prevent="removeProject(path)"
+    )
     la-trash
-  .p-0(style="flex: 12 1 120px" :style="{ paddingTop: project?.cover || project?.raw ? '18em' : '0' }")
+  .p-0(
+    style="flex: 12 1 120px" 
+    :style="{ paddingTop: project?.cover || project?.raw ? '18em' : '0' }"
+    )
   .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-lg.rounded-2xl.bg-light-100.backdrop-blur-sm.backdrop-filter.shadow-md
-    .p-0(style="flex: 1 1 40px" v-if="project?.icon" )
-      img.w-20.max-h-20.rounded-full.m-2(:src="project.icon" width="40px")
+    .p-0(
+      v-if="project?.icon" 
+      style="flex: 1 1 40px" 
+      )
+      img.w-20.max-h-20.rounded-full.m-2(
+        :src="project.icon" 
+        width="40px"
+        )
     .flex.flex-col.p-2.overflow-hidden(style="flex: 10 1 280px")
       .px-2
         .flex.items-center
@@ -48,7 +60,10 @@ const props = defineProps({
           .flex.items-center.flex-wrap.items-center.mt-2.gap-2
             la-youtube.mx-1(v-if="project?.youtube")
             mdi-text-long.mx-1(v-if="project?.text")
-            ui-link(:url="project?.link" v-if="project?.link")
+            ui-link(
+              v-if="project?.link" 
+              :url="project?.link"
+              )
             .flex-1
             slot
           .flex-1

@@ -2,7 +2,7 @@
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col
   user-home(
     @room="$router.push(`/rooms/${$event}`)" 

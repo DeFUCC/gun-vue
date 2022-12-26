@@ -7,7 +7,7 @@ const show = reactive({
 })
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.justify-end.relative.gap-3.items-center
   //- util-share
   //- button.button.m-2(@click="show.log = !show.log")

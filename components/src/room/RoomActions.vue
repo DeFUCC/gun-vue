@@ -21,7 +21,7 @@ const roomPub = computed(() => {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-wrap.items-center.gap-2
   button.button(v-if="room.hosts?.[user.pub]" @click="recreateRoom(room.hosts?.[user.pub]?.enc)")
     la-tools

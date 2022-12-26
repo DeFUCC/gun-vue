@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref, watchEffect, watch, computed, nextTick } from 'vue'
+import { ref, watchEffect } from 'vue'
 const add = ref()
 const url = ref()
 const input = ref()
@@ -23,11 +23,17 @@ watchEffect(() => {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-wrap
-  button.button.m-1(@click="add = !add" :class="{ active: link }")
+  button.button.m-1(
+    :class="{ active: link }" 
+    @click="add = !add"
+    )
     la-link
-  ui-layer.mt-20(:open="add" @close="add = false")
+  ui-layer.mt-20(
+    :open="add" 
+    @close="add = false"
+    )
     .p-4.max-w-600px
       .flex.items-center.gap-4
         la-link.text-2xl
@@ -36,7 +42,12 @@ watchEffect(() => {
           la-check(@click="add = false")
         button.button.text-xl
           la-trash-alt(@click="url = null; add = false")
-      input.text-sm.p-4.my-4(ref="input" type="url" v-model="url" placeholder="Paste a URL")
+      input.text-sm.p-4.my-4(
+        ref="input" 
+        v-model="url" 
+        type="url" 
+        placeholder="Paste a URL"
+        )
 </template>
 
 <style lang="postcss" scoped>

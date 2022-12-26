@@ -31,7 +31,7 @@ function leave() {
 }
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.items-centerl.w-full.items-stretch.relative
   space-plane.h-90vh(
     :coord="coord"

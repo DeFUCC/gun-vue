@@ -2,20 +2,21 @@
 
 import { isEmoji } from '#composables';
 const props = defineProps({
-  reactions: Object,
-  current: String
+  reactions: { type: Object, default: () => ({}) },
+  current: { type: String, default: '' }
 })
 
 const emit = defineEmits(['update:current'])
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .p-2.flex.flex-wrap.bg-light-800.shadow-md.rounded-xl.gap-2
   transition-group(name="fade")
     .flex.py-2.items-center.cursor-pointer.bg-light-100.rounded-xl.shadow-lg.px-4(
-      style="flex: 1 1 10px"
+      v-for="(hashes, reaction) in reactions"
+      :key="reaction"
+      style="flex: 1 1 10px" 
       :style="{ backgroundColor: current == reaction ? '#999' : '' }"
-      v-for="(hashes, reaction) in reactions" :key="reaction"
       @click="emit('update:current', reaction)"
       )
       .text-4xl {{ isEmoji(reaction) ? reaction : '👋' }}

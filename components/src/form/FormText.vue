@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref, onMounted, watch, computed, nextTick } from 'vue'
+import { ref, computed, nextTick } from 'vue'
 // import SimpleMDE from 'simplemde'
 // import 'simplemde/dist/simplemde.min.css'
 import { uploadText, parseMd } from '#composables'
@@ -7,7 +7,7 @@ import { uploadText, parseMd } from '#composables'
 const emit = defineEmits(['update:text', 'frontmatter', 'close'])
 
 const props = defineProps({
-  text: { type: String }
+  text: { type: String, default: '' }
 })
 
 let simplemde
@@ -49,10 +49,13 @@ function importPostFile(event) {
 }
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col
   .flex.flex-col.text-left.mb-30
-    textarea#myMD(ref="md"  placeholder="Main text content (with **markdown** support)")
+    textarea#myMD(
+      ref="md"  
+      placeholder="Main text content (with **markdown** support)"
+      )
   .flex.flex-wrap.bg-dark-100.p-4.fixed.z-100.bottom-0.left-1.right-1
     button.button.m-1(@click="$emit('close')")
       la-check
@@ -61,10 +64,10 @@ function importPostFile(event) {
       la-markdown
       .ml-2 Load
     input#import-post.hidden(
-      tabindex="-1"
-      type="file",
-      accept="text/markdown",
       ref="file"
+      tabindex="-1",
+      type="file",
+      accept="text/markdown"
       @change="importPostFile($event)"
     )
     .flex-1

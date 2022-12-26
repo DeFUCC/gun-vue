@@ -1,6 +1,6 @@
 <script setup>
-import { useUser, setPetname } from '#composables'
-import { computed, watch, ref } from 'vue'
+import { useUser, setPetname, SEA } from '#composables'
+import { watch, ref } from 'vue'
 import { Dropdown } from 'floating-vue'
 
 const props = defineProps({
@@ -33,9 +33,12 @@ const petnameRules = {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.items-center.gap-2.px-2(v-if="user.is")
-  account-avatar(:pub="pub" :size="40")
+  account-avatar(
+    :pub="pub" 
+    :size="40"
+    )
   .text-lg.flex.items-center.gap-2(v-if="petname && !editPetname") {{ petname }}
     la-pen(@click="editPetname = !editPetname")
   input.m-1.p-2.rounded-lg(
@@ -51,12 +54,22 @@ const petnameRules = {
     template(#popper)
       .text-xs.px-4.py-2.leading-5
         ul.max-w-120
-          li.flex.gap-2.items-start(v-for="(state, rule) in petnameRules" :key="rule")
-            input.my-2(type="checkbox" :checked="state" disabled)
+          li.flex.gap-2.items-start(
+            v-for="(state, rule) in petnameRules" 
+            :key="rule"
+            )
+            input.my-2(
+              type="checkbox" 
+              :checked="state" 
+              disabled
+              )
             .p-0 {{ rule }}
 
 
-        a.font-bold.underline(href="http://www.skyhunter.com/marcs/petnames/IntroPetNames.html" target="_blank") Stiegler, 2005
+        a.font-bold.underline(
+          href="http://www.skyhunter.com/marcs/petnames/IntroPetNames.html"
+          target="_blank"
+          ) Stiegler, 2005
 
 </template>
 

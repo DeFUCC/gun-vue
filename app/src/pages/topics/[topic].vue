@@ -7,6 +7,6 @@ const props = defineProps({
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 chat-room(:key="currentRoom.pub" :topic="topic")
 </template>

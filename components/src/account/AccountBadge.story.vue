@@ -14,7 +14,7 @@ function mySetup() {
   onMounted(async () => {
     const { useGuests } = await import('#composables')
     const { guests } = useGuests()
-    watchOnce(guests, g => {
+    watchOnce(guests, () => {
       state.pub = Object.keys(guests)[0]
     })
   })
@@ -23,7 +23,11 @@ function mySetup() {
 </script>
 
 <template lang="pug">
-Story(title="Account/Badge" icon="la:id-badge" :setup-app="mySetup")
+Story(
+  title="Account/Badge" 
+  icon="la:id-badge" 
+  :setup-app="mySetup"
+  )
   Variant(title="Round")
     ClientOnly
       Suspense
@@ -34,8 +38,8 @@ Story(title="Account/Badge" icon="la:id-badge" :setup-app="mySetup")
       .flex.gap-2
         label(for="size") Size
         input#size(
-          type="range"
           v-model="state.size"
+          type="range"
           :min="40"
           :max="500"
           )

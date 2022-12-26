@@ -20,7 +20,10 @@ async function generate() {
 </script>
 
 <template lang="pug">
-Story(title="Qr/Show" icon="la:qrcode")
+Story(
+  title="Qr/Show" 
+  icon="la:qrcode"
+  )
   Variant(title="Round")
     Suspense
       QrShow(v-bind="state")
@@ -30,8 +33,8 @@ Story(title="Qr/Show" icon="la:qrcode")
       .flex.gap-2
         label(for="size") Size
         input#size(
-          type="range"
           v-model="state.size"
+          type="range"
           :min="40"
           :max="500"
           )

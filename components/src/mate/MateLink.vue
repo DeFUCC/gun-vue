@@ -5,15 +5,15 @@ import { computed } from 'vue';
 const colorDeep = useColor('deep')
 
 const props = defineProps({
-  emoji: String,
-  from: String,
-  to: String,
-  back: String,
+  emoji: { type: String, default: '' },
+  from: { type: String, default: '' },
+  to: { type: String, default: '' },
+  back: { type: String, default: '' },
 })
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.cursor-pointer.items-center.rounded-full.m-1.shadow-sm.hover-shadow-md.transition.duration-200ms.ease-out.filter.grayscale-10.hover-grayscale-0.justify-between(
   :style="{ backgroundColor: colorDeep.hex(from) + '33' }"
   ) 

@@ -1,9 +1,12 @@
 <script setup>
-import { useGun, currentRoom, isEmoji, useUser, reactToPost, useUserPosts, } from '#composables';
-import { reactive, ref, computed } from 'vue'
+import { useUser, reactToPost, useUserPosts, } from '#composables';
+import { ref, computed } from 'vue'
 
 const props = defineProps({
-  pub: String,
+  pub: {
+    default: '',
+    type: String
+  },
 })
 
 const { user } = useUser()
@@ -22,16 +25,20 @@ const postList = computed(() => {
 
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col
   .text-xl.font-bold.mb-2 {{ isMe ? 'My ' : '' }} Posts
   .flex.flex-col.gap-4
-    post-reaction-tabs(:reactions="userPosts" v-model:current="postReaction")
+    post-reaction-tabs(
+      v-model:current="postReaction" 
+      :reactions="userPosts"
+      )
     transition(name="fade")
       .flex.flex-col.bg-light-800.rounded-2xl.gap-4(v-if="postReaction")
         transition-group(name="fade")
           .p-0.relative(
-            v-for="(from, hash) in postList" :key="hash"
+            v-for="(from, hash) in postList" 
+            :key="hash"
           )
             .absolute.top-2.left-2.button.p-2.z-100.text-2xl.opacity-30.hover-opacity-100.transition.cursor-pointer(
               v-if="isMe"
@@ -41,7 +48,7 @@ const postList = computed(() => {
             post-card(
               style="flex: 1 1 100px"
               :hash="hash"
-              @click="emit('post', hash)"
               :actions="false"
+              @click="emit('post', hash)"
               )
 </template>
