@@ -60,8 +60,6 @@
     "unplugin-icons": "^0.14.15",
     "unplugin-vue-components": "^0.22.12",
     "vite": "4.0.3",
-    "vite-plugin-windicss": "^1.8.10",
-    "windicss": "^3.5.6",
     "unocss": "^0.48.0",
     "@unocss/extractor-pug": "0.48.0"
   },

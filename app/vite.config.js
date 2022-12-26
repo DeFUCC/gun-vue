@@ -8,7 +8,6 @@ import generateSitemap from 'vite-plugin-pages-sitemap'
 
 import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
-// import WindiCSS from "vite-plugin-windicss";
 import Unocss from 'unocss/vite'
 import { presetUno, presetIcons, transformerDirectives, extractorSplit } from "unocss";
 import extractorPug from '@unocss/extractor-pug'

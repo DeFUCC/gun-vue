@@ -1,6 +1,3 @@
-
-
-// import "virtual:windi.css";
 import '@unocss/reset/tailwind.css'
 import 'uno.css'
 import "./styles/index.css";

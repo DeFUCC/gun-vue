@@ -22,7 +22,7 @@ A starter GUN client built with Vite plus some very useful plugins. With local e
   - [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import) - Auto import APIs on-demand for Vite, Webpack and Rollup
   - [Histoire](https://histoire.dev/) - Component stories showcase builder
 - [pug](https://pugjs.org) - Pug – robust, elegant, feature rich template engine for Node.js
-- [windicss](https://windicss.org/) - Next generation utility-first CSS framework.
+- [unocss](https://github.com/unocss/unocss) - The instant on-demand atomic CSS engine. 
 - [ola](https://github.com/franciscop/ola) - 🌊 Smooth animation library for interpolating numbers
 - [vue3-virtual-scroll-list](https://github.com/reactjser/vue3-virtual-scroll-list) - Virtual scrolling for long lists like chat messages ([docs](https://vue3-virtual-scroll-list-examples-xi.vercel.app/#/))
 - [ink-mde/vue](https://github.com/voraciousdev/ink-mde/tree/main/packages/vue) - The flexible TypeScript Markdown editor that powers octo.app - packaged as a Vue 3 component. (Adds 1Mb of scripts to the app, should be replaced with a more lightweight solution)
