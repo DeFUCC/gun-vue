@@ -94,12 +94,12 @@ function setBrushColor(color) {
 button {
   transition: all 100ms ease-out;
   @apply p-0.5 transform hover-bg-opacity-0 hover-bg-dark-900;
+}
 
-  & svg,
-  & div {
-    transition: all 100ms ease-out;
-    @apply transform scale-80 hover-scale-120;
-  }
+button svg,
+button div {
+  transition: all 100ms ease-out;
+  @apply transform scale-80 hover-scale-120;
 }
 
 .active {

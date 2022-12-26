@@ -56,9 +56,9 @@ g.arrow(ref="handle")
 .arrow {
   opacity: 0.5;
   transition: all 200ms ease-in;
+}
 
-  &:hover {
-    opacity: 1;
-  }
+.arrow:hover {
+  opacity: 1;
 }
 </style>

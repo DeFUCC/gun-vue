@@ -30,9 +30,9 @@ style="flex: 0 0 auto"
 
 .link {
   @apply p-2 text-xl rounded-xl cursor-pointer flex items-center transition;
+}
 
-  &:hover {
-    @apply bg-light-600;
-  }
+.link:hover {
+  @apply bg-light-600;
 }
 </style>
