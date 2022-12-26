@@ -1,20 +1,14 @@
 <script setup>
-import { currentRoom, useBackground, useColor } from '#composables';
-import { useRoute } from "vue-router"
-
 import routes from '../pages/routes'
-
-const route = useRoute()
-
-const color = useColor('light')
 </script>
 
-<template lang='pug'>
+<template lang="pug">
 .flex.flex-col.gap-1.px-1.pt-18.shadow-lg.z-30.overflow-x-scroll.overflow-y-visible.transition.bg-light-900.min-w-12(
 style="flex: 0 0 auto"
   )
   router-link.flex.items-center.px-3.py-3.link(
-    v-for="(link, l) in routes" :key="link" 
+    v-for="(link, l) in routes" 
+    :key="link" 
     :to="l" ) 
     ph-house-simple(v-if="link == 'Home'")
     ph-hands-clapping(v-if="link == 'Space'")
@@ -26,7 +20,7 @@ style="flex: 0 0 auto"
     la-sun(v-if="link == 'Gifts'")
     la-toolbox(v-if="link == 'Projects'")
 
-    .ml-2.hidden.transition.sm_block.text-sm {{ link }}
+    .ml-2.hidden.transition.sm-block.text-sm {{ link }}
 </template>
 
 <style lang="postcss" scoped>

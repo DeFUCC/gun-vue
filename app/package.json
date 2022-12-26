@@ -25,7 +25,8 @@
 		"@vueuse/core": "9.9.0",
 		"ola": "^1.2.1",
 		"vue": "^3.2.45",
-		"vue-router": "^4.1.6"
+		"vue-router": "^4.1.6",
+		"@unocss/reset": "0.48.0"
 	},
 	"devDependencies": {
 		"@capacitor/cli": "^4.6.1",
@@ -40,6 +41,8 @@
 		"vite-plugin-pages-sitemap": "^1.4.5",
 		"vite-plugin-pwa": "^0.14.0",
 		"vite-plugin-windicss": "^1.8.10",
-		"windicss": "^3.5.6"
+		"windicss": "^3.5.6",
+		"unocss": "^0.48.0",
+		"@unocss/extractor-pug": "0.48.0"
 	}
 }

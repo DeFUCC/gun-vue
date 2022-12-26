@@ -38,9 +38,9 @@ const links = useDictRecordsFor(props.hash)
 <style lang="postcss" scoped>
 .link {
   @apply transition ml-2 p-1 bg-light-100 rounded-xl text-xl cursor-pointer;
+}
 
-  &.active {
-    @apply bg-dark-50 text-light-200;
-  }
+.link.active {
+  @apply bg-dark-50 text-light-200;
 }
 </style>

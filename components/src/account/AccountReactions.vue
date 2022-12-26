@@ -33,7 +33,7 @@ const postList = computed(() => {
           .p-0.relative(
             v-for="(from, hash) in postList" :key="hash"
           )
-            .absolute.top-2.left-2.button.p-2.z-100.text-2xl.opacity-30.hover_opacity-100.transition.cursor-pointer(
+            .absolute.top-2.left-2.button.p-2.z-100.text-2xl.opacity-30.hover-opacity-100.transition.cursor-pointer(
               v-if="isMe"
               @click="reactToPost({ tag: from, hash: hash, reaction: postReaction })"
             ) 

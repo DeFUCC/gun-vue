@@ -1,7 +1,10 @@
 import { createApp } from "vue";
 import App from "./app.vue";
 
-import "virtual:windi.css";
+import '@unocss/reset/tailwind.css'
+import 'uno.css'
+
+// import "virtual:windi.css";
 import "#components/styles/index.css"; // use '@gun-vue/components/styles/index.css' in your apps
 
 import { createRouter, createWebHashHistory } from "vue-router";

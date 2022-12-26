@@ -49,7 +49,8 @@
     "url-regex": "^5.0.0",
     "vue": "^3.2.45",
     "vue-select": "4.0.0-beta.6",
-    "vue3-virtual-scroll-list": "^0.2.1"
+    "vue3-virtual-scroll-list": "^0.2.1",
+    "@unocss/reset": "0.48.0"
   },
   "devDependencies": {
     "@histoire/plugin-vue": "0.12.4",
@@ -60,7 +61,9 @@
     "unplugin-vue-components": "^0.22.12",
     "vite": "4.0.3",
     "vite-plugin-windicss": "^1.8.10",
-    "windicss": "^3.5.6"
+    "windicss": "^3.5.6",
+    "unocss": "^0.48.0",
+    "@unocss/extractor-pug": "0.48.0"
   },
   "peerDependencies": {
     "vue": "^3.2.37"

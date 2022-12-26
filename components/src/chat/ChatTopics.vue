@@ -21,13 +21,13 @@ const chatsPanel = ref()
 const panelOpen = ref(true)
 const isLarge = useMediaQuery('(min-width: 640px)')
 
-onClickOutside(chatsPanel, (event) => !isLarge.value ? panelOpen.value = false : null)
+onClickOutside(chatsPanel, () => !isLarge.value ? panelOpen.value = false : null)
 </script>
 
 <template lang='pug'>
 button.button.absolute.z-200.top-4.left-4(@click="panelOpen = true" v-if="(!panelOpen && !isLarge)") {{ title }}
 transition(name="fade")
-  .px-1.py-2.flex.flex-col.bg-dark-50.bg-opacity-95.gap-2.min-h-full.overflow-y-scroll.scroll-smooth.absolute.sm_static.z-20.w-220px.max-w-full.max-h-full.text-light-900.backdrop-filter.backdrop-blur-xl(style="flex: 0 1 320px" v-if="isLarge || (panelOpen && !isLarge)" ref="chatsPanel")
+  .px-1.py-2.flex.flex-col.bg-dark-50.bg-opacity-95.gap-2.min-h-full.overflow-y-scroll.scroll-smooth.absolute.sm-static.z-20.w-220px.max-w-full.max-h-full.text-light-900.backdrop-filter.backdrop-blur-xl(style="flex: 0 1 320px" v-if="isLarge || (panelOpen && !isLarge)" ref="chatsPanel")
     .flex.flex-wrap
       .text-xl.font-bold.p-2 {{ title }}
       .flex-1

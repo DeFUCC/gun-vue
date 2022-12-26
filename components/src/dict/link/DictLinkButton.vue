@@ -23,9 +23,9 @@ la-link.link(
 <style lang="postcss" scoped>
 .link {
   @apply cursor-pointer transition ml-2 p-1 bg-light-100 rounded-xl text-xl;
+}
 
-  &.active {
-    @apply bg-dark-50 text-light-200;
-  }
+.link.active {
+  @apply bg-dark-50 text-light-200;
 }
 </style>

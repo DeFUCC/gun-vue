@@ -44,7 +44,7 @@ function select() {
   )
   account-avatar(:pub="pub" :size="size")
   .mx-2.font-bold.text-sm.max-w-8ch.overflow-ellipsis.overflow-hidden.whitespace-nowrap(v-if="showName && name") {{ name }}
-  .tip.mx-2.font-bold.text-sm.max-w-8ch.overflow-ellipsis.overflow-hidden.whitespace-nowrap.absolute.opacity-0.hover_opacity-100.transition-all.duration-300.ease-in.text-center.transform.translate-y-2.p-1.rounded-lg(
+  .tip.mx-2.font-bold.text-sm.max-w-8ch.overflow-ellipsis.overflow-hidden.whitespace-nowrap.absolute.opacity-0.hover-opacity-100.transition-all.duration-300.ease-in.text-center.transform.translate-y-2.p-1.rounded-lg(
     v-else
     :style="{ transform: `translateY(${-size - 5}px) translateX(-50%)`, backgroundColor: colorDeep.hex(pub) }"
     v-if="name"

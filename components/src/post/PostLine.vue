@@ -23,7 +23,7 @@ const { post } = usePost({ hash: props.hash })
 .line(
   :style="{ backgroundColor: colorDeep.hex(hash) }"
   )
-  .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-lg.rounded-lg.bg-light-100.bg-opacity-90.backdrop-blur-sm.backdrop-filter.shadow-md.hover_bg-opacity-20.transition-all
+  .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-lg.rounded-lg.bg-light-100.bg-opacity-90.backdrop-blur-sm.backdrop-filter.shadow-md.hover-bg-opacity-20.transition-all
     .p-0(style="flex: 1 1" v-if="post?.icon" )
       img.w-10.max-h-10.rounded-full.m-2(:src="post.icon")
     .flex.flex-col.p-1.overflow-hidden(style="flex: 10 1 180px")

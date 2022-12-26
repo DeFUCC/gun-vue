@@ -1,9 +1,13 @@
 import { defineConfig } from "vite";
-import WindiCSS from "vite-plugin-windicss";
 import vue from "@vitejs/plugin-vue";
 import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
 import Components from "unplugin-vue-components/vite";
+
+// import WindiCSS from "vite-plugin-windicss";
+import Unocss from 'unocss/vite'
+import { presetUno, presetIcons, transformerDirectives, extractorSplit } from "unocss";
+import extractorPug from '@unocss/extractor-pug'
 
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -35,7 +39,25 @@ export default defineConfig({
         }),
       ],
     }),
-    WindiCSS(),
+    // WindiCSS(),
+    Unocss({
+      presets: [
+        presetIcons({
+          extraProperties: {
+            'display': 'inline-block',
+            'vertical-align': 'middle',
+          },
+        }),
+        presetUno()
+      ],
+      transformers: [
+        transformerDirectives(),
+      ],
+      extractors: [
+        extractorPug(),
+        extractorSplit,
+      ],
+    }),
   ],
   build: {
     lib: {

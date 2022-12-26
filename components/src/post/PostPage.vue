@@ -38,8 +38,8 @@ const { posts, backlinks } = usePosts(props.hash)
       @click="$emit('browse', hash)"
       )
 
-  .z-30.flex.flex-wrap.items-center.w-full.px-4.py-2.sticky.top-0.shadow-xl.filter.grayscale-70.hover_grayscale-0.transition.duration-400ms(:style="{ backgroundColor: colorDeep }") 
-    .hover_underline.text-md.cursor-pointer.font-bold.flex(@click="$emit('close')") 
+  .z-30.flex.flex-wrap.items-center.w-full.px-4.py-2.sticky.top-0.shadow-xl.filter.grayscale-70.hover-grayscale-0.transition.duration-400ms(:style="{ backgroundColor: colorDeep }") 
+    .hover-underline.text-md.cursor-pointer.font-bold.flex(@click="$emit('close')") 
       .p-0 #
     .ml-1.break-all.font-bold {{ post?.title }} 
     .flex-1 

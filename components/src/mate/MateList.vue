@@ -18,7 +18,7 @@ const open = ref(true)
 
 <template lang='pug'>
 .flex.flex-col(v-if="Object.keys(mates).length > 0")
-  .flex.p-4.bg-light-900.rounded-xl.mb-2.items-center.cursor-pointer.shadow-sm.hover_shadow-md.transition(@click="open = !open")
+  .flex.p-4.bg-light-900.rounded-xl.mb-2.items-center.cursor-pointer.shadow-sm.hover-shadow-md.transition(@click="open = !open")
     .text-lg.font-bold {{ pub == user.pub ? 'My mates' : "Mates" }}
     .flex-1
     .mr-2.font-bold {{ Object.keys(mates).length }}

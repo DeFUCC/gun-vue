@@ -35,7 +35,7 @@ export default defineConfig({
       },
       {
         title: 'Tools',
-        include: file => true,
+        include: () => true,
       },
     ],
   },

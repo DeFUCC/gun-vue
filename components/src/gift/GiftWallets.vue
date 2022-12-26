@@ -66,7 +66,7 @@ function removeWallet(key) {
       :style="{ backgroundColor: wallet == activeWallet ? '#3333' : '' }"
       @click="wallet != activeWallet ? $emit('wallet', wallet) : $emit('clear')"
       )
-      la-trash-alt.opacity-40.hover_opacity-90(v-if="user.pub == pub" @click="removeWallet(key)")
+      la-trash-alt.opacity-40.hover-opacity-90(v-if="user.pub == pub" @click="removeWallet(key)")
 
   button.button(@click="open = true" v-if="user.pub == pub") Add a wallet
 ui-layer(:open="open" @close="open = false")

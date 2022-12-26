@@ -4,17 +4,22 @@ import Components from "unplugin-vue-components/vite";
 import Pages from "vite-plugin-pages";
 import generateSitemap from 'vite-plugin-pages-sitemap'
 
-import { VitePWA } from "vite-plugin-pwa";
+// import { VitePWA } from "vite-plugin-pwa";
 
 import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
-import WindiCSS from "vite-plugin-windicss";
+// import WindiCSS from "vite-plugin-windicss";
+import Unocss from 'unocss/vite'
+import { presetUno, presetIcons, transformerDirectives, extractorSplit } from "unocss";
+import extractorPug from '@unocss/extractor-pug'
 
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
+
+/* globals process */
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -32,13 +37,31 @@ export default defineConfig({
 			routeBlockLang: 'yaml',
 			onRoutesGenerated: routes => (generateSitemap({ routes, hostname: 'https://gun-vue.js.org' })),
 		}),
-		WindiCSS({
-			scan: {
-				dirs: ["src", "../components/src"],
-				include: ["index.md"],
-				exclude: ["**/examples/**/*", "/node_modules/"],
-				fileExtensions: ["vue", "ts", "md"],
-			},
+		// WindiCSS({
+		// 	scan: {
+		// 		dirs: ["src", "../components/src"],
+		// 		include: ["index.md"],
+		// 		exclude: ["**/examples/**/*", "/node_modules/"],
+		// 		fileExtensions: ["vue", "ts", "md"],
+		// 	},
+		// }),
+		Unocss({
+			presets: [
+				presetIcons({
+					extraProperties: {
+						'display': 'inline-block',
+						'vertical-align': 'middle',
+					},
+				}),
+				presetUno()
+			],
+			transformers: [
+				transformerDirectives(),
+			],
+			extractors: [
+				extractorPug(),
+				extractorSplit,
+			],
 		}),
 		Icons({
 			/* options */

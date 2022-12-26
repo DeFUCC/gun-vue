@@ -14,7 +14,7 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-.flex.cursor-pointer.items-center.rounded-full.m-1.shadow-sm.hover_shadow-md.transition.duration-200ms.ease-out.filter.grayscale-10.hover_grayscale-0.justify-between(
+.flex.cursor-pointer.items-center.rounded-full.m-1.shadow-sm.hover-shadow-md.transition.duration-200ms.ease-out.filter.grayscale-10.hover-grayscale-0.justify-between(
   :style="{ backgroundColor: colorDeep.hex(from) + '33' }"
   ) 
   .px-2.text-2xl(
