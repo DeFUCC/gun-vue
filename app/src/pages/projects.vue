@@ -10,11 +10,11 @@ const countMy = countProjects(user.pub)
 
 <template lang="pug">
 .flex.flex-col.flex-auto.relative
-  .py-2.px-4.flex.bg-dark-100.bg-opacity-10
+  router-link.py-2.px-4.flex.bg-dark-100.bg-opacity-10.gap-2(to="/projects/")
     .font-bold.text-xl PROJECTS
     .flex.flex-auto.items-center.gap-2
       router-link.link(to="/projects/my/") My {{ countMy }} 
-      router-link.link(to="/projects/") Public {{ count }}
+      router-link.link(to="/projects/public/") Public {{ count }}
   router-view(v-slot="{ Component }")
     keep-alive
       transition(

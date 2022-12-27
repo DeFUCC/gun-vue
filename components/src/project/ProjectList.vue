@@ -27,7 +27,7 @@ defineEmits(['open'])
         :path="proj.item.path"
         :style="{ opacity: 1 - proj.score }"
         @click="$emit('open', proj.item.path)"
-        ) {{ proj.item.path }}
+        )
   .p-2.flex.flex-col.gap-2
     button.button(
       v-if="newProject.title" 
