@@ -1,5 +1,12 @@
 # @gun-vue/components
 
+## 0.12.2
+
+### Patch Changes
+
+- 56d8ceb6: uno.css instead of windicss
+- much cleaner code with eslint
+
 ## 0.12.1
 
 ### Patch Changes
