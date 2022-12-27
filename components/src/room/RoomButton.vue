@@ -24,16 +24,23 @@ const { logo } = useRoomLogo(currentRoom.pub)
 <template lang="pug">
 .mx-2
   button.button(
-    @click="open = true" 
-    :style="{ ...bg }"
+    :style="{ ...bg }" 
+    @click="open = true"
     )
-    img.h-12.rounded-xl.mr-2(v-if="logo" :src="logo")
+    img.h-12.rounded-xl.mr-2(
+      v-if="logo" 
+      :src="logo"
+      )
     .text-2xl.font-normal @
     .ml-1.text-sm(v-if="current?.room?.profile?.name") {{ current?.room.profile.name.substring(0, 15) }}
-  ui-panel.break-all(:open="open" :closeButton="false" @close="open = false")
+  ui-panel.break-all(
+    :open="open" 
+    :close-button="false" 
+    @close="open = false"
+    )
     room-page(
-      @room="$emit('room', $event)" 
       :key="currentRoom.pub" 
+      @room="$emit('room', $event)" 
       @rooms="$emit('rooms')"
       @browse="$emit('browse', $event); open = false" 
       )

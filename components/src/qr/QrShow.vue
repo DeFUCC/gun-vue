@@ -1,6 +1,6 @@
 
 <script setup>
-import QRCode from 'qrcode-svg'
+import QRCode from '@qrcode/svg'
 import { computedAsync } from '@vueuse/core'
 
 const props = defineProps({

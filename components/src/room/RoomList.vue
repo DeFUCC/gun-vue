@@ -14,11 +14,16 @@ const { rooms } = useRooms()
   .flex.flex-wrap.gap-4.my-4
     room-form(@room="$emit('browse', $event)")
     room-card( 
+      v-for="(authors, pub) in rooms"
+      :key="pub" 
       style="flex: 1 1 200px"
-      v-for="(authors, pub) in rooms" :key="pub"
       :pub="pub"
       @click="$emit('browse', pub)"
       )
-      post-action-react(:authors="authors" :hash="pub" tag="rooms")
+      post-action-react(
+        :authors="authors" 
+        :hash="pub" 
+        tag="rooms"
+        )
   
 </template> 

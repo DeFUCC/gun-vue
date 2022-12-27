@@ -8,7 +8,10 @@ const UserGraph = defineAsyncComponent(() =>
 </script>
 
 <template lang="pug">
-Story(title="User/Graph" icon="la:sitemap")
+Story(
+  title="User/Graph" 
+  icon="la:sitemap"
+  )
   Variant(title="Round")
     UserGraph
 

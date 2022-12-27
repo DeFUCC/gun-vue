@@ -19,14 +19,14 @@ function setBrushColor(color) {
 <template lang="pug">
 .z-10.absolute.top-4.left-4.right-4
   button.text-6xl.absolute(
-    @click="draw.enabled = !draw.enabled"
     :class="{ active: draw.enabled }"
     :style="{ opacity: draw.enabled ? 0.2 : 1 }"
+    @click="draw.enabled = !draw.enabled"
     )
     carbon-pen
   .flex.flex-wrap.text-xl.p-2.gap-2.justify-center.rounded-md.bg-main.shadow.transition-opacity.duration-200.dark-border.dark-border-gray-400.dark-border-opacity-10.bg-light-300.dark-bg-dark-300.bg-opacity-90(
-    :class="draw.enabled ? '' : draw.pinned ? 'opacity-40 hover-opacity-90' : 'pointer-events-none'", 
-    v-if="draw.enabled"
+    v-if="draw.enabled", 
+    :class="draw.enabled ? '' : draw.pinned ? 'opacity-40 hover-opacity-90' : 'pointer-events-none'"
     storage-key="slidev-drawing-pos", 
     :initial-x="10", 
     :initial-y="10"
@@ -34,19 +34,42 @@ function setBrushColor(color) {
     button.w-6.flex.items-center.justify-center(@click="brush.size = draw.sizes.next()")
       .bg-current.rounded-full(:style="{ width: brush.size + 4 + 'px', height: brush.size + 4 + 'px', backgroundColor: brush.color }")
     .is-group.flex.gap-2.px-2.py-1
-      button(:class="{ active: draw.mode == 'stylus' }", @click="setDrawingMode('stylus')")
-        carbon:pen
+      button(
+        :class="{ active: draw.mode == 'stylus' }",
+        @click="setDrawingMode('stylus')"
+        )
+          carbon:pen
 
-      button(:class="{ active: draw.mode == 'line' }", @click="setDrawingMode('line')")
-        svg.-mt-1(width="1em", height="1em", preserveAspectRatio="xMidYMid meet", viewBox="0 0 24 24")
-          path(d="M21.71 3.29a1 1 0 0 0-1.42 0l-18 18a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l18-18a1 1 0 0 0 0-1.42z", fill="currentColor")
-      button(:class="{ active: draw.mode == 'arrow' }", @click="setDrawingMode('arrow')")
+      button(
+        :class="{ active: draw.mode == 'line' }", 
+        @click="setDrawingMode('line')"
+        )
+        svg.-mt-1(
+          width="1em", 
+          height="1em", 
+          preserveAspectRatio="xMidYMid meet", 
+          viewBox="0 0 24 24"
+          )
+          path(
+            d="M21.71 3.29a1 1 0 0 0-1.42 0l-18 18a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l18-18a1 1 0 0 0 0-1.42z", 
+            fill="currentColor"
+            )
+      button(
+        :class="{ active: draw.mode == 'arrow' }", 
+        @click="setDrawingMode('arrow')"
+        )
         carbon:arrow-up-right
 
-      button(:class="{ active: draw.mode == 'ellipse' }", @click="setDrawingMode('ellipse')")
+      button(
+        :class="{ active: draw.mode == 'ellipse' }", 
+        @click="setDrawingMode('ellipse')"
+        )
         carbon:radio-button
 
-      button(:class="{ active: draw.mode == 'rectangle' }", @click="setDrawingMode('rectangle')")
+      button(
+        :class="{ active: draw.mode == 'rectangle' }", 
+        @click="setDrawingMode('rectangle')"
+        )
         carbon:checkbox
 
     //  TODO: not sure why it's not working! 
@@ -57,7 +80,8 @@ function setBrushColor(color) {
 
     .is-group.flex.flex-wrap
       button(
-        v-for="color of draw.colors", :key="color", 
+        v-for="color of draw.colors", 
+        :key="color", 
         :class="brush.color === color ? 'active' : 'shallow'", 
         @click="setBrushColor(color)"
         )
@@ -67,26 +91,37 @@ function setBrushColor(color) {
           )
 
 
-    button(:class="{ disabled: !draw.canUndo }", @click="drauu.undo()")
+    button(
+      :class="{ disabled: !draw.canUndo }", 
+      @click="drauu.undo()"
+      )
       carbon:undo
-    button(:class="{ disabled: !draw.canRedo }", @click="drauu.redo()")
+    button(
+      :class="{ disabled: !draw.canRedo }", 
+      @click="drauu.redo()"
+      )
       carbon:redo
 
-    button(:class="{ disabled: !draw.canClear }", @click="draw.clear()")
+    button(
+      :class="{ disabled: !draw.canClear }", 
+      @click="draw.clear()"
+      )
       carbon:delete
 
-    button(:class="{ shallow: !draw.pinned }", @click="draw.pinned = !draw.pinned")
+    button(
+      :class="{ shallow: !draw.pinned }", 
+      @click="draw.pinned = !draw.pinned")
       carbon:pin-filled.transform.-rotate-45(v-show="draw.pinned")
       carbon:pin(v-show="!draw.pinned")
 
 
-    button(v-if="draw.enabled", :class="{ shallow: !draw.enabled }", @click="draw.enabled = !draw.enabled")
+    button(
+      v-if="draw.enabled", 
+      :class="{ shallow: !draw.enabled }", 
+      @click="draw.enabled = !draw.enabled")
       carbon:error(v-show="draw.pinned")
       carbon:close-outline(v-show="!draw.pinned")
 
-
-            
-            
 </template>
 
 

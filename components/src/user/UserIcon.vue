@@ -17,8 +17,8 @@ div.z-1000
   account-avatar.cursor-pointer(
     :size="size" 
     :border="2" 
-    @click="user.auth = true" 
-    :pub="user.pub"
+    :pub="user.pub" 
+    @click="user.auth = true"
     )
   ui-panel(
     :open="user.auth" 

@@ -13,7 +13,10 @@ const state = reactive({
 </script>
 
 <template lang="pug">
-Story(title="User/Avatar" icon="la:user")
+Story(
+  title="User/Avatar" 
+  icon="la:user"
+  )
   Variant(title="Round")
     UserAvatar(v-bind="state")
 
@@ -22,8 +25,8 @@ Story(title="User/Avatar" icon="la:user")
       .flex.gap-2
         label(for="size") Size
         input#size(
-          type="range"
           v-model="state.size"
+          type="range"
           :min="40"
           :max="500"
           )

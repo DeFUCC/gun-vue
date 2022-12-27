@@ -6,7 +6,10 @@ const UserList = defineAsyncComponent(() => import('./UserList.vue'))
 </script>
 
 <template lang="pug">
-Story(title="User/List" icon="la:home")
+Story(
+  title="User/List" 
+  icon="la:home"
+  )
   Variant(title="Round")
     UserList
 

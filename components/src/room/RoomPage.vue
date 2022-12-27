@@ -1,20 +1,24 @@
+
 <script setup>
 import { useRoom, rootRoom, currentRoom, useColor, useUser, useBackground, useMd } from '#composables';
 import { ref, computed, reactive } from 'vue'
 
 const props = defineProps({
-  pub: String,
+  pub: { type: String, default: '' },
   titles: {
-    default: {
-      space: 'Space',
-      topics: 'Topics',
-      posts: 'Posts',
-      projects: 'Projects',
-      gifts: 'Gifts',
-      dict: 'Dictionary',
-      users: 'Users',
-      rooms: 'Rooms',
-    }
+    type: Object,
+    default: () => ({
+      default: {
+        space: 'Space',
+        topics: 'Topics',
+        posts: 'Posts',
+        projects: 'Projects',
+        gifts: 'Gifts',
+        dict: 'Dictionary',
+        users: 'Users',
+        rooms: 'Rooms',
+      }
+    })
   }
 })
 
@@ -46,7 +50,7 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
 
 
 </script>
-
+<!-- eslint-disable vue/no-v-html -->
 <template lang="pug">
 .flex.flex-col.items-stretch
   .pt-32.px-2.md-px-8.bg-cover.relative.flex.flex-col.items-center(:style="{ ...bg }")
@@ -62,8 +66,14 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
           .text-md {{ room.profile.description }}
           .flex.items-center.flex-wrap
             .font-bold.mr-2 Hosts: 
-            .p-2.flex.flex-col.items-start.gap-2(v-for="(enc, host) in room.hosts" :key="host")
-              account-badge( :pub="host" :selectable="true")
+            .p-2.flex.flex-col.items-start.gap-2(
+              v-for="(enc, host) in room.hosts" 
+              :key="host"
+              )
+              account-badge( 
+                :pub="host" 
+                :selectable="true"
+                )
 
           room-actions(:pub="roomPub")
 
@@ -72,7 +82,8 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
 
     .flex.flex-wrap.items-center.gap-2.p-4
       room-feature(
-        v-for="(title, c) in titles" :key="c"
+        v-for="(title, c) in titles" 
+        :key="c"
         :cert="room.features[c]"
         :type="c"
         :title="title"
@@ -84,7 +95,14 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
     .max-w-200.relative
       .flex.items-center(v-if="edit.text === false" ) 
         .p-8.markdown-body(v-html="md.render(room.profile?.text || '')")
-        button.button.absolute.top-4.right-4.z-200(@click="edit.text = room.profile?.text || ''" v-if="room.hosts?.[user.pub]")
+        button.button.absolute.top-4.right-4.z-200(
+          v-if="room.hosts?.[user.pub]" 
+          @click="edit.text = room.profile?.text || ''"
+          )
           la-pen
-      form-text(v-else v-model:text="edit.text" @close="updateRoomProfile('text', edit.text); edit.text = false")
+      form-text(
+        v-else 
+        v-model:text="edit.text" 
+        @close="updateRoomProfile('text', edit.text); edit.text = false"
+        )
 </template>

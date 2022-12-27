@@ -23,14 +23,23 @@ const roomPub = computed(() => {
 
 <template lang="pug">
 .flex.flex-wrap.items-center.gap-2
-  button.button(v-if="room.hosts?.[user.pub]" @click="recreateRoom(room.hosts?.[user.pub]?.enc)")
+  button.button(
+    v-if="room.hosts?.[user.pub]" 
+    @click="recreateRoom(room.hosts?.[user.pub]?.enc)"
+    )
     la-tools
     .ml-2 Renew
   .flex.flex-wrap.py-4(v-if="roomPub != rootRoom.pub")
-    button.button(@click="enterRoom(roomPub)" v-if="currentRoom.pub !== roomPub")
+    button.button(
+      v-if="currentRoom.pub !== roomPub" 
+      @click="enterRoom(roomPub)"
+      )
       ion-enter-outline
       .ml-2 Enter
-    button.button(@click="leaveRoom()" v-else)
+    button.button(
+      v-else 
+      @click="leaveRoom()"
+      )
       ion-exit-outline
       .ml-2 Leave
 </template>

@@ -31,9 +31,14 @@ function isLink(text) {
       button.p-1(@click="edit = true")
         la-pen
     .p-1.flex.items-center.flex-1(v-else)
-      input.p-2.rounded-xl.pr-16(type="text", v-model="text" @keydown.enter="update()")
+      input.p-2.rounded-xl.pr-16(
+        v-model="text", 
+        type="text" 
+        @keydown.enter="update()")
       .-ml-16
-        button.p-1(type="submit" @click="update()")
+        button.p-1(
+          type="submit" 
+          @click="update()")
           la-check
         button.p-1(@click="text = ''; edit = false")
           la-times

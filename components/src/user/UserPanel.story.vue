@@ -6,7 +6,10 @@ const UserPanel = defineAsyncComponent(() => import('./UserPanel.vue'))
 </script>
 
 <template lang="pug">
-Story(title="User/Panel" icon="la:address-book")
+Story(
+  title="User/Panel" 
+  icon="la:address-book"
+  )
   Variant(title="Round")
     UserPanel
 

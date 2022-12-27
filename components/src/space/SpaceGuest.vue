@@ -4,8 +4,8 @@ import { computed, ref, watch } from 'vue'
 const props = defineProps(
   {
     pub: { type: String, default: '' },
-    pos: { type: Object, default: { x: 0, y: 0 } },
-    mouse: { type: Object, default: { x: 0, y: 0 } },
+    pos: { type: Object, default: () => ({ x: 0, y: 0 }) },
+    mouse: { type: Object, default: () => ({ x: 0, y: 0 }) },
     pulse: { type: Number, default: 0 },
     blink: { type: Boolean, default: false },
     size: { type: Number, default: 100 }
@@ -15,7 +15,7 @@ const TIMEOUT = 10000
 
 const age = computed(() => Date.now() - Number(props.pulse))
 
-const isOffline = computed(() => age > TIMEOUT)
+const isOffline = computed(() => age.value > TIMEOUT)
 
 const colorDeep = useColor()
 const color = computed(() => colorDeep.hex(props.pub))
@@ -90,5 +90,12 @@ g.guest(
     :stroke="blink ? color : 'transparent'"
   )
 
-  image(:xlink:href="avatar" x="-25" y="-25" height="50" width="50" clip-path="url(#mask)")
+  image(
+    :xlink:href="avatar" 
+    x="-25" 
+    y="-25" 
+    height="50" 
+    width="50" 
+    clip-path="url(#mask)"
+    )
 </template>

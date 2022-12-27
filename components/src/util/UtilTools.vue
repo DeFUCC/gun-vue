@@ -21,7 +21,9 @@ const show = reactive({
 
   //- ui-layer(:open="show.log" @close="show.log = false")
   //-   log-tree
-  ui-layer(:open="show.graph" @close="show.graph = false")
+  ui-layer(
+    :open="show.graph" 
+    @close="show.graph = false")
     util-graph
 
 </template>

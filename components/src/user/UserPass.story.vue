@@ -6,7 +6,10 @@ const UserPass = defineAsyncComponent(() => import('./UserPass.vue'))
 </script>
 
 <template lang="pug">
-Story(title="User/Pass" icon="la:passport")
+Story(
+  title="User/Pass" 
+  icon="la:passport"
+  )
   Variant(title="Round")
     UserPass
 

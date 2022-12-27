@@ -6,7 +6,9 @@ const UserRooms = defineAsyncComponent(() => import('./UserRooms.vue'))
 </script>
 
 <template lang="pug">
-Story(title="User/Rooms" icon="la:route")
+Story(
+  title="User/Rooms" 
+  icon="la:route")
   Variant(title="Round")
     UserRooms
 

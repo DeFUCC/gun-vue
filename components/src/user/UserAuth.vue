@@ -55,28 +55,33 @@ async function decode() {
       .p-1.ml-1.font-bold JSON
   form.flex(v-if="passphrase !== null")
     input.py-1.px-4.m-1.rounded-xl(
-      autofocus type="text" 
       v-model="passphrase" 
+      autofocus 
+      type="text" 
       placeholder="Enter the password"
       )
-    button.button.text-2xl(@click="decode()" type="submit")
+    button.button.text-2xl(
+      type="submit" 
+      @click="decode()"
+      )
       la-sign-in-alt
   .hidden
     qr-load(@loaded="pair = $event")
     input#json-input(
+      ref="file" 
       tabindex="-1" 
       type="file" 
       accept="application/json" 
-      ref="file" 
       @change="uploadText($event, file => pair = file)"
       )
   .flex.flex-wrap
     transition(name="fade")
       textarea.p-2.text-sm.flex-1.w-full(
-        rows="6" cols="40" 
         v-if="current == 'key'" 
-        v-model="pair" 
         key="text" 
+        v-model="pair" 
+        rows="6" 
+        cols="40" 
         placeholder="Paste your key pair here"
         )
 </template> 

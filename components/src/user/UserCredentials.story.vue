@@ -8,7 +8,10 @@ const UserCredentials = defineAsyncComponent(() =>
 </script>
 
 <template lang="pug">
-Story(title="User/Credentials" icon="la:suitcase")
+Story(
+  title="User/Credentials" 
+  icon="la:suitcase"
+  )
   Variant(title="Round")
     UserCredentials
 

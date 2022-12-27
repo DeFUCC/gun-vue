@@ -18,7 +18,10 @@ async function generate() {
 </script>
 
 <template lang="pug">
-Story(title="Room/List" :layout="{ type: 'single', iframe: false }")
+Story(
+  title="Room/List" 
+  :layout="{ type: 'single', iframe: false }"
+  )
   Variant(title="Round")
     RoomList(v-bind="state")
 

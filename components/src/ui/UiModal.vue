@@ -1,6 +1,6 @@
 <script setup>
 const props = defineProps({
-  open: { default: false }
+  open: { type: Boolean, default: false }
 })
 const emit = defineEmits(['close'])
 </script>

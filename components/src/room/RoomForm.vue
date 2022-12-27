@@ -33,12 +33,26 @@ const bg = computed(() => useBackground({ pub: create.pair?.pub, size: 620 }))
 </script>
 
 <template lang="pug">
-.flex.flex-col.bg-cover.rounded-2xl.p-8.max-w-620px.bg-light-800.justify-center(v-if="user.pub" :style="{ ...bg }")
+.flex.flex-col.bg-cover.rounded-2xl.p-8.max-w-620px.bg-light-800.justify-center(
+  v-if="user.pub" 
+  :style="{ ...bg }"
+  )
   .flex
     button.button.m-2.flex-1(@click="genPair()" ) Generate a new room
-    button.button.m-2(@click="reset()" v-if="create.pair" ) Reset
-  input.p-2.m-2.rounded-xl(type="text" v-if="create.pair" v-model="create.name" placeholder="New room name")
+    button.button.m-2(
+      v-if="create.pair" 
+      @click="reset()" 
+      ) Reset
+  input.p-2.m-2.rounded-xl(
+    v-if="create.pair" 
+    v-model="create.name" 
+    type="text" 
+    placeholder="New room name"
+    )
   transition(name="fade")
-    button.button.m-2.flex-1(@click="createIt()" v-if="create.pair && create.name" ) Add room
+    button.button.m-2.flex-1(
+      v-if="create.pair && create.name" 
+      @click="createIt()" 
+      ) Add room
 
 </template> 

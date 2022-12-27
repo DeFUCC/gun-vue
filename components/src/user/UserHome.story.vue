@@ -8,7 +8,10 @@ const UserHome = defineAsyncComponent(() =>
 </script>
 
 <template lang="pug">
-Story(title="User/Home" icon="la:home")
+Story(
+  title="User/Home" 
+  icon="la:home"
+  )
   Variant(title="Round")
     UserHome
 

@@ -3,7 +3,7 @@ import { useRelay, useRelays } from '#composables'
 import { ref } from 'vue'
 
 const props = defineProps({
-  text: { type: String }
+  text: { type: String, default: '' }
 })
 
 const { relay, setPeer, resetPeer } = useRelay()
@@ -21,7 +21,9 @@ const { relays, loadRelays } = useRelays()
     .p-1.bottom-0.left-2.rounded-full.transition.duration-300ms.ease-in-out.opacity-50.absolute(
       :style="{ backgroundColor: relay.blink ? 'white' : 'black' }"
       )
-  ui-layer(:open="open" @close="open = false")
+  ui-layer(
+    :open="open" 
+    @close="open = false")
     .p-4.min-w-60vw.max-w-full
       .h-2.w-full.mb-2.rounded-full.transition-all.duration-300.ease-in-out.opacity-40(
         :style="{ backgroundColor: relay.blink ? 'white' : 'black' }"

@@ -8,7 +8,10 @@ const UserAuth = defineAsyncComponent(() =>
 </script>
 
 <template lang="pug">
-Story(title="User/Auth" icon="la:key")
+Story(
+  title="User/Auth" 
+  icon="la:key"
+  )
   Variant(title="Round")
     UserAuth
 

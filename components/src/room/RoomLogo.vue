@@ -30,5 +30,8 @@ const { logo, uploadLogo, removeLogo } = useRoomLogo(props.pub)
     )
     .text-2xl
       la-camera(v-if="!logo")
-      la-trash-alt(v-else @click.stop.prevent="removeLogo()")
+      la-trash-alt(
+        v-else 
+      @click.stop.prevent="removeLogo()"
+      )
 </template>

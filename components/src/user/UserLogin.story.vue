@@ -6,7 +6,10 @@ const UserLogin = defineAsyncComponent(() => import('./UserLogin.vue'))
 </script>
 
 <template lang="pug">
-Story(title="User/Login" icon="la:theater-masks")
+Story(
+  title="User/Login" 
+  icon="la:theater-masks"
+  )
   Variant(title="Round")
     UserLogin
 

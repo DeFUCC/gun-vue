@@ -10,7 +10,10 @@ const RoomButton = defineAsyncComponent(() =>
 </script>
 
 <template lang="pug">
-Story(title="Room/Icon" :layout="{ type: 'single' }")
+Story(
+  title="Room/Icon" 
+  :layout="{ type: 'single' }"
+  )
   Variant(title="Round")
     ClientOnly
       Suspense

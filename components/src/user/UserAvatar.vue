@@ -42,7 +42,10 @@ function removeAvatar() {
 
 <template lang="pug">
 .flex.flex-col.relative.items-center.justify-center
-  account-avatar(:pub="user.pub" :size="size" )
+  account-avatar(
+    :pub="user.pub" 
+    :size="size" 
+    )
 
   form-picture.absolute(
     :options="{ picSize: props.pic, preserveRatio: false }"
@@ -50,5 +53,8 @@ function removeAvatar() {
     )
     .text-2xl
       la-camera(v-if="!avatar")
-      la-trash-alt(v-else @click.stop.prevent="removeAvatar()")
+      la-trash-alt(
+        v-else 
+        @click.stop.prevent="removeAvatar()"
+        )
 </template>

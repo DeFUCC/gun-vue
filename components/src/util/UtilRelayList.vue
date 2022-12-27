@@ -21,10 +21,11 @@ onMounted(() => {
       la-redo-alt
   ul.flex.flex-col.font-normal.items-start
     li.flex.w-full.text-left.p-1.hover-bg-light-500.cursor-pointer(
-      v-for="link in relays" :key="link.host" 
-      @click="setPeer(link.url)"
+      v-for="link in relays" 
+      :key="link.host" 
       :class="{ active: link.url == relay.peer }"
       :style="{ order: link.ping }"
+      @click="setPeer(link.url)"
       ) 
       .flex-1.underline {{ link.host }}
       .font-bold {{ link.ping }} ms

@@ -6,7 +6,9 @@ const UserProfile = defineAsyncComponent(() => import('./UserProfile.vue'))
 </script>
 
 <template lang="pug">
-Story(title="User/Profile" icon="la:passport")
+Story(
+  title="User/Profile" 
+  icon="la:passport")
   Variant(title="Round")
     UserProfile
 

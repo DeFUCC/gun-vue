@@ -6,7 +6,7 @@ import { useDraggable } from '@vueuse/core'
 const emit = defineEmits(['user'])
 
 const props = defineProps({
-  link: Object,
+  link: { type: Object, default: () => ({}) },
   head: { type: Number, default: 6 },
   randomness: { type: Number, default: 0.1 }
 })
@@ -39,13 +39,13 @@ g.arrow(ref="handle")
     )
   g.handle
     circle.cursor-pointer(
-      @click.prevent.stop="$emit('user', link.mate)"
       :cx="link.arrow.c1x"
       :cy="link.arrow.c1y"
-      :r="18"
       stroke-width="2"
+      :r="18"
       :stroke="colorDeep.hex(link.user)"
       :fill="colorDeep.hex(link.mate)"
+      @click.prevent.stop="$emit('user', link.mate)"
       )
     text.text-2xl.pointer-events-none(
       :transform="`translate(${link.arrow.c1x}, ${link.arrow.c1y}) rotate(${0})`"

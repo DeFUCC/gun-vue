@@ -20,12 +20,15 @@ const { pass } = usePass();
       :placeholder="`Your passphrase of ${pass.minLength} or more letters`"
     )
     button.button.items-center(
-      @click="pass.set()",
-      v-if="pass.input.length >= pass.minLength"
+      v-if="pass.input.length >= pass.minLength",
+      @click="pass.set()"
     ) 
       la-check
       .ml-2 Set
-    button.button.items-center(v-if="pass?.safe?.enc" @click="pass.show = !pass.show")
+    button.button.items-center(
+      v-if="pass?.safe?.enc" 
+      @click="pass.show = !pass.show"
+      )
       la-eye
       .ml-2 Show
 </template>

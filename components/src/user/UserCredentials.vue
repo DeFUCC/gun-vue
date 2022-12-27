@@ -44,15 +44,26 @@ const encPair = computed(() => {
       .text-sm {{ safePair ? 'Encrypted' : 'Plain Text' }}
       .text-m Key Pair
     .flex.flex-wrap
-      button.m-2.button.items-center(v-if="canShare" @click="share({ title: 'Your key pair', text: encPair })" :class="{ active: current == 'pass' }")
+      button.m-2.button.items-center(
+        v-if="canShare" 
+        :class="{ active: current == 'pass' }" 
+        @click="share({ title: 'Your key pair', text: encPair })"
+        )
         la-share
         .px-1 Share
-      button.m-2.button.items-center(v-if="canCopy" @click="copy(encPair)")
+      button.m-2.button.items-center(
+        v-if="canCopy" 
+        @click="copy(encPair)"
+        )
         la-copy
         transition(name="fade")
           .px-2(v-if="copied") Copied!
           .px-2(v-else) Copy
-      a.m-2.button.items-center(@click="show('links')" target="_blank" :href="safePair ? pass.links.pass : pass.links.pair" )
+      a.m-2.button.items-center(
+        :href="safePair ? pass.links.pass : pass.links.pair" 
+        target="_blank" 
+        @click="show('links')" 
+        )
         la-link
         .px-2 Link
       button.m-2.button.items-center(@click="show('qr')")
@@ -67,16 +78,21 @@ const encPair = computed(() => {
   .flex.w-full.justify-center.mt-4(v-if="current")
     transition-group(name="fade")
       textarea.p-4.text-sm.flex-1.rounded-xl(
-        rows="9",
         v-if="current == 'key'",
-        :value="encPair",
-        key="text"
+        key="text",
+        rows="9",
+        :value="encPair"
       )
-      qr-show.max-w-600px(v-if="current == 'qr'" key="qr" :data="safePair ? pass.links.pass : pass.links.pair")
+      qr-show.max-w-600px(
+        v-if="current == 'qr'" 
+        key="qr" 
+        :data="safePair ? pass.links.pass : pass.links.pair"
+        )
   button.button.mx-8.justify-center(@click="$emit('close')")
     la-check
     .ml-2 I've stored my key securely
 </template>
 
 <style scoped>
+
 </style>

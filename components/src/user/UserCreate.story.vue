@@ -8,7 +8,10 @@ const UserCreate = defineAsyncComponent(() =>
 </script>
 
 <template lang="pug">
-Story(title="User/Create" icon="la:magnet")
+Story(
+  title="User/Create" 
+  icon="la:magnet"
+  )
   Variant(title="Round")
     UserCreate
 
