@@ -4,5 +4,9 @@ import { currentRoom } from '#components';
 
 <template lang="pug">
 .flex.flex-col
-  project-list(:key="currentRoom.pub" @open="$router.push(`/projects/${encodeURI($event)}`)")
+  project-list(
+    :key="currentRoom.pub"
+    :pub="currentRoom.pub"
+    @open="$router.push(`/projects/${encodeURI($event)}`)"
+    )
 </template>

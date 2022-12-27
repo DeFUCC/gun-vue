@@ -10,8 +10,6 @@ import { currentRoom } from "../room"
 import Fuse from "fuse.js";
 import { isHash } from "../crypto"
 
-
-
 export function useProjects(pub = currentRoom.pub) {
 
   const search = ref('')

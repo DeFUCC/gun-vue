@@ -15,12 +15,13 @@ export const newProject = reactive({
   author: ''
 })
 
-export async function addProject({ publish = true } = {}) {
+export async function addProject() {
   const gun = useGun()
   const { user } = useUser()
-  const id = genUUID()
+  const id = genUUID(6)
+  newProject.author = user.pub
   const link = gun.user().get(projectsPath).get(id).put(newProject, () => {
-    if (!publish) return
+    if (!newProject.public) return
 
     gun
       .user(currentRoom.pub)
@@ -94,7 +95,6 @@ export function useComputedProject(path = ref()) {
   }
 
   async function updateCover(image) {
-    console.log(image)
     const hash = await hashText(image)
     gun.get('#cover').get(hash).put(image)
     updateField('cover', hash)

@@ -1,9 +1,9 @@
-<script setup >
+<script setup>
 import { useGun, gunAvatar, useColor } from '#composables'
 import { ref, watch } from 'vue'
 
 const props = defineProps({
-  pub: { type: String, default: '' },
+  pub: { type: String, default: 'OKrDaDeD8VeA27d673RqlodSnebnaDq6Ci23Ys_ABWE.q8fI2lkxO46R8TMjeUeAf7I0yBS5mdH_Cb9_285Wkqk' },
   size: { type: Number, default: 42, },
   border: { type: Number, default: 2, },
 });
@@ -14,7 +14,7 @@ const gun = useGun()
 
 const avatar = ref()
 
-watch(() => props.pub, () => {
+watch(() => props.pub, (p) => {
   avatar.value = gunAvatar({ pub: props.pub, size: props.size * 4 })
 }, { immediate: true })
 

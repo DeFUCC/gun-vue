@@ -65,9 +65,10 @@ const props = defineProps({
               :url="project?.link"
               )
             .flex-1
-            slot
+            .text-xs.break-all.p-2
+              slot
           .flex-1
-          account-badge(:pub="path.slice(-87)")
+          //- account-badge(:pub="path.slice(-87)")
         .statement(v-if="project?.statement") {{ project.statement }}
 
     //- .flex.gap-1.rounded-xl.p-1.bg-dark-50.bg-opacity-20.flex-wrap.items-center(style="flex: 1 1 130px" v-if="actions")

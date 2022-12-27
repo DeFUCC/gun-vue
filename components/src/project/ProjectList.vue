@@ -1,8 +1,8 @@
 <script setup>
-import { useProjects, addProject, newProject } from '#composables';
+import { useProjects, addProject, newProject, currentRoom } from '#composables';
 
 const props = defineProps({
-  pub: { type: String, default: '' }
+  pub: { type: String, default: currentRoom?.pub }
 })
 
 const { search, projects, candidates } = useProjects(props.pub)
@@ -12,7 +12,7 @@ defineEmits(['open'])
 </script>
 
 <template lang="pug">
-.flex.flex-col
+.flex.flex-col 
   .p-2.flex.flex-col.gap-2
     input.p-2.rounded-xl.shadow(
       v-model="newProject.title" 
@@ -27,7 +27,7 @@ defineEmits(['open'])
         :path="proj.item.path"
         :style="{ opacity: 1 - proj.score }"
         @click="$emit('open', proj.item.path)"
-        )
+        ) {{ proj.item.path }}
   .p-2.flex.flex-col.gap-2
     button.button(
       v-if="newProject.title" 
