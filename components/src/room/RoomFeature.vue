@@ -3,7 +3,7 @@ import { currentRoom, useGun } from '#composables';
 import { ref, reactive, computed } from 'vue'
 const props = defineProps({
   cert: { type: String, default: '' },
-  open: { type: Boolean, default: false },
+  open: { type: [Boolean, String], default: false },
   title: { type: String, default: '' },
   type: { type: String, default: '' },
   pub: { type: String, default: '' },

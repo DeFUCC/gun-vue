@@ -57,7 +57,7 @@ transition(name="fade")
         :key="top"
         @click="$emit('topic', top); panelOpen = false"
         ) 
-        .flex-1 {{ topic }}
+        .flex-1 {{ top }}
         account-avatar(
           v-for="(isAuthor, author) in authors" 
           :key="author" 

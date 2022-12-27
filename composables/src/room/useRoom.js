@@ -57,6 +57,7 @@ watchEffect(() => {
  */
 
 export function useRoom(pub = currentRoom.pub) {
+
   const room = reactive({
     pub,
     isRoot: pub != rootRoom.pub,
