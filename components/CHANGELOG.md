@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.12.3
+
+### Patch Changes
+
+- Uno.css fully landed. Icons are all class based now. And project section gradually evolves.
+- Updated dependencies
+  - @gun-vue/composables@0.12.3
+
 ## 0.12.2
 
 ### Patch Changes

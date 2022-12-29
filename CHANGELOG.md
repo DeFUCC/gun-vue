@@ -1,5 +1,11 @@
 # @gun-vue/repo
 
+## 0.12.3
+
+### Patch Changes
+
+- Uno.css fully landed. Icons are all class based now. And project section gradually evolves.
+
 ## 0.12.1
 
 ### Patch Changes
