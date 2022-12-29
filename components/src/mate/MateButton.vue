@@ -30,6 +30,6 @@ const { emoji, isMate, toggleMate } = useMate(props.pub)
       placeholder="" 
       @click.stop.prevent
       )
-    la-plus(v-if="!isMate")
-    la-times(v-else)
+    .i-la-plus(v-if="!isMate")
+    .i-la-times(v-else)
 </template>

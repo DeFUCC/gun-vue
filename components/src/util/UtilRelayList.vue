@@ -18,7 +18,7 @@ onMounted(() => {
     .text-lg.text-left Volunteer relay peers:
     .flex-auto
     button.button.m-1(@click="loadRelays()")
-      la-redo-alt
+      .i-la-redo-alt
   ul.flex.flex-col.font-normal.items-start
     li.flex.w-full.text-left.p-1.hover-bg-light-500.cursor-pointer(
       v-for="link in relays" 

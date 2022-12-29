@@ -52,8 +52,8 @@ function removeAvatar() {
     @update="uploadAvatar($event)"
     )
     .text-2xl
-      la-camera(v-if="!avatar")
-      la-trash-alt(
+      .i-la-camera(v-if="!avatar")
+      .i-la-trash-alt(
         v-else 
         @click.stop.prevent="removeAvatar()"
         )

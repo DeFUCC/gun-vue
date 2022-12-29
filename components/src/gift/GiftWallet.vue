@@ -19,7 +19,7 @@ const { text, copy, copied, isSupported } = useClipboard({ source: props.wallet?
     .text-xs.overflow-ellipsis.break-all(
       v-html="wallet.account"
       )
-    la-copy.w-10(
+    .i-la-copy.w-10(
       v-if="isSupported" 
       :class="{ 'animate-bounce': copied }" 
       @click.stop="copy()"
@@ -29,6 +29,6 @@ const { text, copy, copied, isSupported } = useClipboard({ source: props.wallet?
     :href="wallet.url" 
     target="_blank"
     )
-    la-link
+    .i-la-link
   slot
 </template>

@@ -87,7 +87,7 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
       :options="{ picSize: 400, preserveRatio: false }" 
       @update="postData.icon = $event"
       )
-      la-info-circle
+      .i-la-info-circle
     form-picture(@update="postData.cover = $event")
     form-link(@update="postData.link = $event")
     form-youtube(@update="postData.youtube = $event")
@@ -95,7 +95,7 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
       :class="{ active: postData.text }" 
       @click="add.text = true"
       )
-      mdi-text-long
+      .i-mdi-text-long
     .flex-1
     .flex.justify-center.flex-1
       button.plus.button.flex-1.justify-center.m-1(
@@ -103,10 +103,10 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
         type="submit" 
         @click="submit()"
         )
-        la-check
+        .i-la-check
         .font-bold.ml-2 Submit
       button.m-1.button.text-xl( @click="reset()")
-        la-trash-alt
+        .i-la-trash-alt
   ui-layer(
     :open="add.youtube" 
     :offset="'22vh'" 

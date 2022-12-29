@@ -46,9 +46,9 @@ const { posts, backlinks } = usePosts(props.hash)
     .ml-1.break-all.font-bold {{ post?.title }} 
     .flex-1 
     button.p-2( @click="$router.back()") 
-      la-angle-left
+      .i-la-angle-left
     button.p-2( @click="$emit('close')") 
-      la-times
+      .i-la-times
 
 
 
@@ -87,8 +87,8 @@ const { posts, backlinks } = usePosts(props.hash)
           util-share
           post-action-update(:hash="hash" )
           button.button.flex.items-center(@click="download()")
-            la-file-download(v-if="!downloading")
-            la-redo-alt.animate-spin(v-else)
+            .i-la-file-download(v-if="!downloading")
+            .i-la-redo-alt.animate-spin(v-else)
 
     .text-md.markdown-body.bg-light-200.rounded-2xl.m-1.px-4.py-4.leading-relaxed.max-w-55ch.z-10.overflow-scroll.max-h-50vh(
       v-if="post?.text" 

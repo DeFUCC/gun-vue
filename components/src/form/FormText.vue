@@ -58,10 +58,10 @@ function importPostFile(event) {
       )
   .flex.flex-wrap.bg-dark-100.p-4.fixed.z-100.bottom-0.left-1.right-1
     button.button.m-1(@click="$emit('close')")
-      la-check
+      .i-la-check
       .ml-2 Save
     label.m-1.button.cursor-pointer.flex.items-center(for="import-post")
-      la-markdown
+      .i-la-markdown
       .ml-2 Load
     input#import-post.hidden(
       ref="file"
@@ -72,7 +72,7 @@ function importPostFile(event) {
     )
     .flex-1
     button.button.m-1(@click="text = ''")
-      la-trash
+      .i-la-trash
       .ml-2 Reset
 </template>
 

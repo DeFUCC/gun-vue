@@ -28,8 +28,8 @@ const open = ref(false)
     .text-lg.font-bold My rooms
     .flex-1 
     .text-md.font-bold.mr-2 {{ Object.keys(rooms).length }}
-    la-angle-down(v-if="!open")
-    la-angle-up(v-else)
+    .i-la-angle-down(v-if="!open")
+    .i-la-angle-up(v-else)
   transition(
     name="fade" 
     mode="out-in")
@@ -42,12 +42,12 @@ const open = ref(false)
         )
           .p-4.flex.flex-wrap.gap-1
             button.button(@click="$emit('browse', room)")
-              la-eye
+              .i-la-eye
               .ml-2 View
             button.button(@click="enterRoom(room)")
-              ion-enter-outline
+              .i-ion-enter-outline
               .ml-2 Enter
             button.button(@click="recreateRoom(enc)")
-              la-tools
+              .i-la-tools
               .ml-2 Renew
 </template>

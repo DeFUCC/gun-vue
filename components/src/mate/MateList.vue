@@ -22,8 +22,8 @@ const open = ref(true)
     .text-lg.font-bold {{ pub == user.pub ? 'My mates' : "Mates" }}
     .flex-1
     .mr-2.font-bold {{ Object.keys(mates).length }}
-    la-angle-down(v-if="!open")
-    la-angle-up(v-else)
+    .i-la-angle-down(v-if="!open")
+    .i-la-angle-up(v-else)
   transition(name="fade")
     .flex.flex-wrap.bg-light-500.rounded-xl.p-2(v-if="open")
       transition-group(name="fade")

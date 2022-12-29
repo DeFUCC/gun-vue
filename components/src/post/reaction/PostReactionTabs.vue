@@ -21,7 +21,7 @@ const emit = defineEmits(['update:current'])
       )
       .text-4xl {{ isEmoji(reaction) ? reaction : '👋' }}
       .flex-1.w-4
-      la-angle-up(v-if="current == reaction")
-      la-angle-down(v-else)
+      .i-la-angle-up(v-if="current == reaction")
+      .i-la-angle-down(v-else)
       .text-lg.ml-1 {{ Object.keys(hashes).length }}
 </template>

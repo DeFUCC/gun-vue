@@ -3,7 +3,7 @@ import { ref, watchEffect } from 'vue'
 import { useGun, useColor, selectedUser, useUser, SEA } from '#composables'
 
 const props = defineProps({
-  pub: { type: String, default: 'OKrDaDeD8VeA27d673RqlodSnebnaDq6Ci23Ys_ABWE.q8fI2lkxO46R8TMjeUeAf7I0yBS5mdH_Cb9_285Wkqk' },
+  pub: { type: String, default: '' },
   showName: { type: Boolean, default: true },
   size: { type: Number, default: 30 },
   selectable: Boolean,

@@ -1,7 +1,5 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import Icons from "unplugin-icons/vite";
-import IconsResolver from "unplugin-icons/resolver";
 import Components from "unplugin-vue-components/vite";
 import Unocss from 'unocss/vite'
 import { presetUno, presetIcons, transformerDirectives, extractorSplit } from "unocss";
@@ -21,9 +19,6 @@ export default defineConfig({
   },
   plugins: [
     vue(),
-    Icons({
-      /* options */
-    }),
     Components({
       dirs: ["src"],
       extensions: ["vue"],
@@ -31,11 +26,6 @@ export default defineConfig({
       globalNamespaces: ["global"],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       exclude: [/node_modules/, /\.git/],
-      resolvers: [
-        IconsResolver({
-          componentPrefix: "",
-        }),
-      ],
     }),
     // WindiCSS(),
     Unocss({

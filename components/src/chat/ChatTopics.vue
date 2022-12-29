@@ -43,8 +43,8 @@ transition(name="fade")
           name="fade" 
           mode="out-in"
           )
-          la-plus(v-if="!adding")
-          la-times(v-else)
+          .i-la-plus(v-if="!adding")
+          .i-la-times(v-else)
     .flex.flex-wrap(v-if="adding")
       input.p-2.m-2.w-full.rounded-xl.text-dark-800(
         v-model="newChat" 

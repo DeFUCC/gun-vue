@@ -19,13 +19,13 @@ const links = useDictRecordsFor(props.hash)
   .flex.items-center.rounded-lg.capitalize.mb-4
     .text-2xl.font-bold {{ letterFilter(word) }}
 
-    la-link.link(
+    .i-la-link.link(
       :class="{ active: dictRecord.word == hash || links[dictRecord.def] }"
       @click.stop.prevent="dictRecord.word = dictRecord.word == hash ? null : hash"
       )
     .flex-1
     button.cursor-pointer.p-2(@click="$emit('close')")
-      la-times.text-xl
+      .i-la-times.text-xl
   .flex.flex-wrap.gap-2
     .p-0(
       v-for="(authors, h) in links" 

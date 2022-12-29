@@ -23,8 +23,8 @@ const bg = computed(() => useBackground({ pub: user.pub, size: 600, light: 0.5, 
   .flex-1 
   util-pulse(:blink="user.blink")
   button.p-2.text-2xl(@click="user.db.get('safe').get('saved').put(!user.safe.saved)")
-    la-lock(v-if="user.safe.saved")
-    la-unlock(v-else)
+    .i-la-lock(v-if="user.safe.saved")
+    .i-la-unlock(v-else)
   button.text-2xl.ml-1.p-2(@click="leave()")
-    ion-exit-outline
+    .i-ion-exit-outline
 </template>

@@ -6,8 +6,6 @@ import generateSitemap from 'vite-plugin-pages-sitemap'
 
 // import { VitePWA } from "vite-plugin-pwa";
 
-import Icons from "unplugin-icons/vite";
-import IconsResolver from "unplugin-icons/resolver";
 import Unocss from 'unocss/vite'
 import { presetUno, presetIcons, transformerDirectives, extractorSplit } from "unocss";
 import extractorPug from '@unocss/extractor-pug'
@@ -62,9 +60,6 @@ export default defineConfig({
 				extractorSplit,
 			],
 		}),
-		Icons({
-			/* options */
-		}),
 		Components({
 			dirs: ["src/components"],
 			extensions: ["vue"],
@@ -72,11 +67,6 @@ export default defineConfig({
 			globalNamespaces: ["global"],
 			include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
 			exclude: [/node_modules/, /\.git/],
-			resolvers: [
-				IconsResolver({
-					componentPrefix: "",
-				}),
-			],
 		}),
 		// VitePWA({
 		//   registerType: "autoUpdate",

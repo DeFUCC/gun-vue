@@ -16,12 +16,12 @@ const showGraph = ref()
     :header="false"
     )
     button.button(@click="showGraph = !showGraph" :class="{ active: showGraph }")
-      la-eye
+      .i-la-eye
       .ml-2 Graph
   transition(name="fade")
     post-graph.absolute.top-2.right-2.left-2.z-10(@post="$router.push(`/posts/${safeHash($event)}`)" v-if="showGraph")
       button.button.fixed.top-40.right-8(@click="showGraph = false" v-if="showGraph")
-        la-times.text-2xl
+        .i-la-times.text-2xl
   router-view(v-slot="{ Component }")
     transition(name="fade")
       keep-alive

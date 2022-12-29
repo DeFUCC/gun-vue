@@ -30,15 +30,15 @@ button.absolute.flex.items-center.m-4.p-2.left-0.bottom-0.z-200(
   v-if="!open && !isLarge" 
   @mousedown.stop.prevent="open = true"
   )
-  la-users.text-3xl
+  .i-la-users.text-3xl
   .ml-1.flex.items-center.gap-2 Users list
-    la-angle-up
+    .i-la-angle-up
   .flex-1
 button.button.absolute.flex.items-center.m-4.p-2.right-0.top-0.z-200(
   v-if="user.is && !isInRoom" 
   @click.stop.prevent="joinRoom()"
   )
-  la-plus
+  .i-la-plus
   .ml-2 Join
 transition(name="fade")
   .absolute.left-0.bottom-0.w-60.bg-light-200.bg-opacity-70.z-100.overflow-y-scroll.px-2.max-h-full.flex.flex-col.gap-2.p-2.rounded-tr-xl(

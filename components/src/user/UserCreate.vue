@@ -44,7 +44,7 @@ function createUser() {
   .flex.flex-col
     .flex.justify-center.my-4
       button.m-2.button.items-center(v-if="history.length > 2" @click="undo()")
-        la-undo.text-2xl
+        .i-la-undo.text-2xl
       button.m-2.button.items-center(@click="generatePair()")
         fad-random-1dice.text-3xl
     input.p-4.rounded-2xl.my-2(

@@ -24,6 +24,6 @@ const newField = ref('')
         placeholder="New profile field" 
         @keydown.enter="addProfileField(newField)")
       button.m-2.button.items-center(@click="addProfileField(newField)")
-        la-plus
+        .i-la-plus
         .p-1.text-sm Add
 </template>

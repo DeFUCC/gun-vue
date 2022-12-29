@@ -11,10 +11,10 @@ const show = reactive({
 .flex.justify-end.relative.gap-3.items-center
   //- util-share
   //- button.button.m-2(@click="show.log = !show.log")
-  //-   la-info-circle
+  //-   .i-la-info-circle
   //-   .ml-2 Log
   button.flex.items-center(@click="show.graph = !show.graph")
-    mdi-graph-outline
+    .i-mdi-graph-outline
   button.flex.items-center
     util-relay
 

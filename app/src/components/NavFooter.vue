@@ -4,36 +4,41 @@
 
 <template lang="pug">
 .flex.flex-col.bg-dark-50.bg-opacity-70
-  .text-xl.text-center.mt-2.font-bold.flex.items-center.justify-center.gap-2
-    a.underline(href="https://gun.eco" target="_blank") Gun
-    span + 
-    a.underline(href="https://vuejs.org" target="_blank") Vue
-    span = ✨
   .flex.flex-wrap.justify-center.z-200.text-2xl.w-full.gap-4.py-4
-    a.btn(href="/components/" target="_blank")
-      la-book
+    a.btn(
+      href="/components/" 
+      target="_blank")
+      .i-la-book
       .bar
         .title Documentation
         .subtitle Component stories 
-    a.btn(href="https://www.npmjs.com/org/gun-vue" target="_blank")
-      la-npm
+    a.btn(
+      href="https://www.npmjs.com/org/gun-vue" 
+      target="_blank")
+      .i-la-npm
       .bar
         .title Packages
         .subtitle Install and use
-    a.btn(href="https://github.com/defucc/gun-vue" target="_blank")
-      la-github
+    a.btn(
+      href="https://github.com/defucc/gun-vue" 
+      target="_blank")
+      .i-la-github
       .bar
         .title Repository
         .subtitle Contribute code
-    a.btn(href="https://ko-fi.com/davay" target="_blank" title="Sponsorship")
-      cib-ko-fi
+    a.btn(
+      href="https://github.com/sponsors/davay42" 
+      target="_blank" 
+      title="Sponsor us")
+      .i-la-money-bill-wave
       .bar
         .title Support
-        .subtitle Donate money
+        .subtitle Sponsor us
     a.btn(
-      href="https://homescreen.hns.siasky.net/#/skylink/AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A" target="_blank"
+      href="https://homescreen.hns.siasky.net/#/skylink/AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A" 
+      target="_blank"
       )
-      simple-icons-skynet
+      .i-simple-icons-skynet
       .bar
         .title Homescreen
         .subtitle Install the skapp

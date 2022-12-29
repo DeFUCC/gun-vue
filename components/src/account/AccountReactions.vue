@@ -44,7 +44,7 @@ const postList = computed(() => {
               v-if="isMe"
               @click="reactToPost({ tag: from, hash: hash, reaction: postReaction })"
             ) 
-              la-trash
+              .i-la-trash
             post-card(
               style="flex: 1 1 100px"
               :hash="hash"

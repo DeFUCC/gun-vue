@@ -26,7 +26,7 @@ transition(name="fade")
           v-if="closeButton" 
           @click="$emit('close')"
           )
-          la-times
+          .i-la-times
         slot
 </template>
 

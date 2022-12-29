@@ -27,7 +27,7 @@ function update(ev) {
     @blur="update($event)" 
     @keydown.enter.prevent.stop="update($event)"
     ) {{ text || '' }}
-  la-pen.text-2xl(
+  .i-la-pen.text-2xl(
     v-if="editable && !edit" 
     @click="content.focus()"
     )

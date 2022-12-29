@@ -36,7 +36,7 @@ function youtubeLinkParser(url) {
     :class="{ active: link }" 
     @click="add = !add"
     )
-    la-youtube
+    .i-la-youtube
   ui-layer(
     :open="add" 
     :offset="'12vh'" 
@@ -44,13 +44,13 @@ function youtubeLinkParser(url) {
     )
     .p-4.text-lg
       .flex.items-center.mb-2.gap-2
-        la-youtube.text-2xl
+        .i-la-youtube.text-2xl
         .text-xl.ml-2 Add a youtube video
         .flex-1
         button.button.text-xl
-          la-check(@click="add = false")
+          .i-la-check(@click="add = false")
         button.button.text-xl
-          la-trash-alt(@click="link = null; add = false")
+          .i-la-trash-alt(@click="link = null; add = false")
       input.p-4.my-4.w-full.border-1.border-dark-300(
         v-model="link" 
         autofocus 

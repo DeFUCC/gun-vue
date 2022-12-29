@@ -28,6 +28,6 @@ const count = computed(() => {
   .text-4xl 
     room-feature-icon(:icon="type")
   .px-1.font-bold() {{ title }}
-  la-lock-open.text-xs.absolute.top-1.right-1.opacity-30(v-if="open")
+  .i-la-lock-open.text-xs.absolute.top-1.right-1.opacity-30(v-if="open")
   .absolute.bottom-1.right-1.text-xs.opacity-30 {{ Object.keys(count).length }}
 </template>

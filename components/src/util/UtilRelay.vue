@@ -16,7 +16,7 @@ const { relays, loadRelays } = useRelays()
 <template lang="pug">
 .cursor-pointer.relative.text-left
   button.flex(@click="open = true")
-    carbon-bare-metal-server-01.text-xl.-mt-1
+    .i-carbon-bare-metal-server-01.text-xl.-mt-1
     .ml-2.font-bold(v-if="text") {{ text }}
     .p-1.bottom-0.left-2.rounded-full.transition.duration-300ms.ease-in-out.opacity-50.absolute(
       :style="{ backgroundColor: relay.blink ? 'white' : 'black' }"

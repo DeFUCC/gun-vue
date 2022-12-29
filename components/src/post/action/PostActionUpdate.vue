@@ -12,7 +12,7 @@ const { timestamp, msTime, refresh } = usePostTimestamp(props)
 
 <template lang="pug">
 button.m-1.button.items-center(@click.stop.prevent="refresh()")
-  mdi-watering-can-outline
+  .i-mdi-watering-can-outline
   .num.p-0.ml-1.text-sm {{ msTime }}
 
 </template>

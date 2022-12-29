@@ -53,7 +53,7 @@ const { project } = useProject(computed(() => gift.project))
           :style="{ opacity: state.from ? 1 : 0.4 }"
           )
           gift-status.mr-2(:state="state.from")
-      la-arrow-right.m-2
+      .i-la-arrow-right.m-2
 
       .flex.flex-col.gap-2.text-xs
         account-badge(

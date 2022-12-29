@@ -11,6 +11,6 @@ transition(name="fade")
     .bg-dark-200.bg-opacity-30.w-full.h-full.absolute.z-2.cursor-pointer(@click="$emit('close')")
     .bg-light-100.rounded-3xl.flex.flex-col.z-202.text-center.relative.shadow-2xl.overflow-hidden.p-6.bottom-0.top-0.overflow-y-scroll.max-h-70vh.min-w-80
       button.button.absolute.right-0.top-0(@click="$emit('close')")
-        la-times
+        .i-la-times
       slot
 </template>

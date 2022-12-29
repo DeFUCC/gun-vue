@@ -38,7 +38,7 @@ const props = defineProps({
     v-if="path.includes(user.pub) || currentRoom.hosts[user.pub]" 
     @click.stop.prevent="removeProject(path)"
     )
-    la-trash
+    .i-la-trash
   .p-0(
     style="flex: 12 1 120px" 
     :style="{ paddingTop: project?.cover || project?.raw ? '18em' : '0' }"
@@ -58,8 +58,8 @@ const props = defineProps({
           .text-xl.font-bold.my-2(v-if="project?.title") {{ project.title }}
 
           .flex.items-center.flex-wrap.items-center.mt-2.gap-2
-            la-youtube.mx-1(v-if="project?.youtube")
-            mdi-text-long.mx-1(v-if="project?.text")
+            .i-la-youtube.mx-1(v-if="project?.youtube")
+            .i-mdi-text-long.mx-1(v-if="project?.text")
             ui-link(
               v-if="project?.link" 
               :url="project?.link"

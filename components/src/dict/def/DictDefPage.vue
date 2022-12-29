@@ -33,7 +33,7 @@ const links = useDictRecordsFor(props.hash)
       style="text-decoration-line: underline"
       :style="{ textDecorationStyle: langParts[def?.part]?.underline, textDecorationColor: color.hex(hash) }"
       ) {{ def?.text }}
-      la-link.link(
+      .i-la-link.link(
         v-if="user.is"
         :class="{ active: dictRecord.def == hash || links[dictRecord.word] }"
         @click.stop.prevent="dictRecord.def = dictRecord.def == hash ? null : hash"
@@ -41,7 +41,7 @@ const links = useDictRecordsFor(props.hash)
 
       .flex-1
       button.cursor-pointer.p-2(@click="$emit('close')")
-        la-times.text-xl
+        .i-la-times.text-xl
     .flex
       .inline-flex.text-sm.gap-2
         .font-bold {{ def?.lang }}

@@ -24,7 +24,7 @@ button.rounded-2xl.text-lg.bg-light-200.flex.items-center.pl-1.pr-1.mr-1(
     v-if="!isMy"
     @click.stop.prevent="emit('react', '👍')" 
     )
-    la-plus
+    .i-la-plus
   .flex.items-center(v-if="!isMy")
     input.py-1.px-2.w-36px.rounded-xl.mx-1.text-center(
       v-if="!isMy" 
@@ -38,10 +38,10 @@ button.rounded-2xl.text-lg.bg-light-200.flex.items-center.pl-1.pr-1.mr-1(
     @click.stop.prevent="emit('react', reaction)"
     )
     .px-2.py-1.text-xl.w-36px {{ reaction }}
-    la-times
+    .i-la-times
   button.rounded-2xl.flex.items-center.pl-1.pr-1.mr-1(
     v-if="!isMy"
     @click.stop.prevent="emit('react', '🗑')"
   )
-    la-minus
+    .i-la-minus
 </template>

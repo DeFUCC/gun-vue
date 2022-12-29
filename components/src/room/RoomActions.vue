@@ -27,19 +27,19 @@ const roomPub = computed(() => {
     v-if="room.hosts?.[user.pub]" 
     @click="recreateRoom(room.hosts?.[user.pub]?.enc)"
     )
-    la-tools
+    .i-la-tools
     .ml-2 Renew
   .flex.flex-wrap.py-4(v-if="roomPub != rootRoom.pub")
     button.button(
       v-if="currentRoom.pub !== roomPub" 
       @click="enterRoom(roomPub)"
       )
-      ion-enter-outline
+      .i-ion-enter-outline
       .ml-2 Enter
     button.button(
       v-else 
       @click="leaveRoom()"
       )
-      ion-exit-outline
+      .i-ion-exit-outline
       .ml-2 Leave
 </template>

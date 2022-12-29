@@ -29,8 +29,8 @@ const { logo, uploadLogo, removeLogo } = useRoomLogo(props.pub)
     @update="uploadLogo($event)"
     )
     .text-2xl
-      la-camera(v-if="!logo")
-      la-trash-alt(
+      .i-la-camera(v-if="!logo")
+      .i-la-trash-alt(
         v-else 
       @click.stop.prevent="removeLogo()"
       )

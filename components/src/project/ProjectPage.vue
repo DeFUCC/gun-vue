@@ -47,7 +47,7 @@ watch(() => project.text, (t) => {
 <!-- eslint-disable vue/no-v-html -->
 <template lang="pug">
 .flex.flex-col
-  .p-2.relative(:style="{ background: `url(${project.cover}) center`, backgroundColor: project.color }")
+  .p-2.relative(:style="{ background: `url(${project.cover}) center`, backgroundColor: project.color, paddingTop: project.cover || project.color ? '120px' : '' }")
 
     input.absolute.top-4.right-4(
       v-if="editable" 
@@ -71,7 +71,7 @@ watch(() => project.text, (t) => {
       @click="$emit('user', path.slice(-87))")
 
   .flex.flex-col.gap-2.m-2.bg-light-200.p-2.rounded-xl.shadow.relative
-    la-pen.cursor-pointer.text-2xl.absolute.top-2.right-2.z-2(
+    .i-la-pen.cursor-pointer.text-2xl.absolute.top-2.right-2.z-2(
       v-if="editable" 
       @click="editing = !editing"
       )

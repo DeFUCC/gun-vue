@@ -26,5 +26,5 @@ button.m-1.button.items-center(
   :style="{ color: banned ? 'red' : 'inherit' }" 
   @click.stop.prevent="banPost()"
   )
-  la-trash-alt
+  .i-la-trash-alt
 </template>

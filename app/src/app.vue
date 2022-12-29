@@ -30,7 +30,9 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
   nav-bar.Top
   .grid.Main.overflow-y-scroll.max-h-full
     router-view(v-slot="{ Component }")
-      transition(name="fade" mode="out-in")
+      transition(
+        name="fade" 
+        mode="out-in")
         keep-alive
           component(:is="Component")
   nav-footer.Footer(v-if="$route.path == '/'")

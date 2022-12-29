@@ -51,15 +51,15 @@ watch(picture, pic => {
     @click="add = true"
     )
     slot
-      la-image
+      .i-la-image
   ui-layer.max-h-60vh.mt-20(
     :open="add" 
     @close="add = false"
     )
     button.button.fixed.text-2xl.opacity-40.hover-opacity-100.m-4
-      la-check(@click="add = false")
+      .i-la-check(@click="add = false")
     button.button.fixed.text-2xl.opacity-40.hover-opacity-100.mt-4.ml-18
-      la-trash-alt(@click="picture = ''; add = false")
+      .i-la-trash-alt(@click="picture = ''; add = false")
     img(:src="picture")
 </template>
 

@@ -27,6 +27,6 @@ button.m-1.button.items-center(
   v-if="user.is"
     @click.stop.prevent="toggleStar()"
     )
-  la-star(v-if="!starred")
-  la-star-solid(v-else)
+  .i-la-star(v-if="!starred")
+  .i-la-star-solid(v-else)
 </template>

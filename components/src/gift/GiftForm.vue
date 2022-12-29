@@ -83,7 +83,7 @@ const userProjects = computed(() => {
       :pub="newGift.to"
       )
       .flex-1
-      la-times.mr-2(@click="newGift.to = ''; newGift.wallet = null")
+      .i-la-times.mr-2(@click="newGift.to = ''; newGift.wallet = null")
     .flex.flex-col(v-else)
       .font-bold USER SELECT OF {{ Object.keys(guestsWithWallets).length }}
       .flex.flex-wrap.gap-3
@@ -136,7 +136,7 @@ const userProjects = computed(() => {
           :project="project" 
           :path="newGift.project"
           )
-          la-times(@click="newGift.project = null")
+          .i-la-times(@click="newGift.project = null")
         .flex.flex-wrap.gap-1(v-else)
           .p-2.rounded-xl.cursor-pointer(
             v-for="(proj, p) in userProjects" 

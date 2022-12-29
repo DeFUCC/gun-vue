@@ -40,7 +40,7 @@ const petnameRules = {
     :size="40"
     )
   .text-lg.flex.items-center.gap-2(v-if="petname && !editPetname") {{ petname }}
-    la-pen(@click="editPetname = !editPetname")
+    .i-la-pen(@click="editPetname = !editPetname")
   input.m-1.p-2.rounded-lg(
     v-else 
     v-model="newName" 
@@ -50,7 +50,7 @@ const petnameRules = {
     )
   .flex-1
   Dropdown
-    la-info-circle.cursor-pointer
+    .i-la-info-circle.cursor-pointer
     template(#popper)
       .text-xs.px-4.py-2.leading-5
         ul.max-w-120

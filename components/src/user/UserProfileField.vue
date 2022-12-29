@@ -29,7 +29,7 @@ function isLink(text) {
       .p-0(v-if="!isLink(content)") {{ content }}
       a.font-bold.underline(v-else :href="content" target="_blank") {{ content }} 
       button.p-1(@click="edit = true")
-        la-pen
+        .i-la-pen
     .p-1.flex.items-center.flex-1(v-else)
       input.p-2.rounded-xl.pr-16(
         v-model="text", 
@@ -39,7 +39,7 @@ function isLink(text) {
         button.p-1(
           type="submit" 
           @click="update()")
-          la-check
+          .i-la-check
         button.p-1(@click="text = ''; edit = false")
-          la-times
+          .i-la-times
 </template>

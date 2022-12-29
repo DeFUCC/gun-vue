@@ -16,7 +16,7 @@ defineProps({
   .flex.items-center(v-if="pub")
     account-badge(:pub="pub" )
     .flex-1
-    la-times.mr-2.cursor-pointer(@click="$emit('update:pub', '')")
+    .i-la-times.mr-2.cursor-pointer(@click="$emit('update:pub', '')")
   .flex.flex-col(v-else)
     .flex.items-center.p-2
       .font-bold SELECT A USER

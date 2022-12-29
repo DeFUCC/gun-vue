@@ -46,8 +46,8 @@ const { post } = usePost({ hash: props.hash })
           post-link(:hash="hash")
         .statement(v-if="post?.statement") {{ post.statement }}
       .flex.items-center.flex-wrap.items-center.mt-2.gap-2
-        la-youtube.mx-1(v-if="post?.youtube")
-        mdi-text-long.mx-1(v-if="post?.text")
+        .i-la-youtube.mx-1(v-if="post?.youtube")
+        .i-mdi-text-long.mx-1(v-if="post?.text")
         ui-link(
           v-if="post?.link" 
           :url="post?.link"

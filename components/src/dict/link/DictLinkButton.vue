@@ -16,7 +16,7 @@ const { user } = useUser()
 </script>
 
 <template lang="pug">
-la-link.link(
+.i-la-link.link(
   v-if="user.is"
   :class="{ active: dictRecord[type] == hash }"
   :style="{ color: my ? 'red' : '' }"

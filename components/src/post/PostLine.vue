@@ -33,9 +33,9 @@ const { post } = usePost({ hash: props.hash })
       .px-2
         .flex.flex-wrap.items-center.gap-2
           .font-bold.my-2(v-if="post?.title || post?.statement") {{ post.title || post.statement.slice(0, 64) }}
-          la-youtube(v-if="post?.youtube")
-          mdi-text-long(v-if="post?.text")
-          la-link(
+          .i-la-youtube(v-if="post?.youtube")
+          .i-mdi-text-long(v-if="post?.text")
+          .i-la-link(
             v-if="post?.link" 
             :url="post?.link"
             )
