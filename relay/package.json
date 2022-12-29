@@ -11,8 +11,8 @@
     "directory": "relay"
   },
   "funding": {
-    "type": "ko-fi",
-    "url": "https://ko-fi.com/davay"
+    "type": "github",
+    "url": "https://github.com/sponsors/davay42"
   },
   "type": "module",
   "main": "server.js",

@@ -11,8 +11,8 @@
 		"directory": "composables"
 	},
 	"funding": {
-		"type": "ko-fi",
-		"url": "https://ko-fi.com/davay"
+		"type": "github",
+		"url": "https://github.com/sponsors/davay42"
 	},
 	"license": "MIT",
 	"author": "davay42 <davay@defucc.me>",

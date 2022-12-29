@@ -4,8 +4,8 @@
 	"private": true,
 	"homepage": "https://gun-vue.js.org",
 	"funding": {
-		"type": "ko-fi",
-		"url": "https://ko-fi.com/davay"
+		"type": "github",
+		"url": "https://github.com/sponsors/davay42"
 	},
 	"author": "davay42 <davay@defucc.me>",
 	"scripts": {
