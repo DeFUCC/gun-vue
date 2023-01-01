@@ -56,7 +56,7 @@
 		"slugify": "^1.6.5",
 		"url-regex": "^5.0.0",
 		"vue": "^3.2.45",
-		"yaml": "^2.2.0"
+		"yaml": "^2.2.1"
 	},
 	"devDependencies": {
 		"jsdoc-to-markdown": "^8.0.0",
