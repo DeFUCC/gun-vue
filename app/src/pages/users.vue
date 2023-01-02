@@ -6,8 +6,12 @@ import { currentRoom } from '#composables';
 
 <template lang="pug">
 .flex.items-center.relative
-  user-list( @user="$router.push(`/users/${$event}`)" :key="currentRoom.pub")
-  user-graph( @user="$router.push(`/users/${$event}`)" :key="currentRoom.pub")
+  user-list(
+    :key="currentRoom.pub" 
+    @user="$router.push(`/users/${$event}`)")
+  user-graph(
+    :key="currentRoom.pub" 
+    @user="$router.push(`/users/${$event}`)")
   router-view(v-slot="{ Component }")
     transition(name="fade")
       keep-alive

@@ -13,7 +13,9 @@ import { dictLang, languages, useDictLangs } from '#composables'
     button.button(@click="$router.push('/dict/by/me/')") My
     button.button(@click="$router.push('/dict/by/')") Authors
   router-view(v-slot="{ Component }")
-    transition(name="fade" mode="out-in")
+    transition(
+      name="fade" 
+      mode="out-in")
       keep-alive
         component.sticky.top-0.shadow-lg.z-20(:is="Component" )
   .flex.flex-wrap.gap-4.p-4(:key="dictLang")

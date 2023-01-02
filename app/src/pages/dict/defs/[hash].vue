@@ -3,7 +3,7 @@ import { unsafeHash, safeHash, dictRecord } from '#composables';
 import { watch } from 'vue';
 
 const props = defineProps({
-  hash: { type: String }
+  hash: { type: String, default: '' }
 })
 
 watch(() => props.hash, hash => {
@@ -15,8 +15,9 @@ watch(() => props.hash, hash => {
 
 <template lang="pug">
 dict-def-page.m-4(
-  :hash="unsafeHash(hash)" :key="hash"
-    @word="$router.push(`/dict/words/${safeHash($event)}`)"
-    @close="$router.push(`/dict/`)"
-)
+  :key="hash" 
+  :hash="unsafeHash(hash)"
+  @word="$router.push(`/dict/words/${safeHash($event)}`)"
+  @close="$router.push(`/dict/`)"
+  )
 </template>

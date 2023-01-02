@@ -18,11 +18,14 @@ onMounted(() => {
 
 <template lang="pug">
 .p-0
-  ui-layer(:open="open" :closeButton="false"  @close="$router.push('/users/')")
+  ui-layer(
+    :open="open" 
+    :close-button="false"  
+    @close="$router.push('/users/')")
     account-home(
+    :key="pub" 
     :pub="pub" 
-    @browse="$router.push(`/users/${$event}`)" 
-    :key="pub"
+    @browse="$router.push(`/users/${$event}`)"
     @post="$router.push(`/posts/${safeHash($event)}`)"
     @chat="$router.push(`/my/chat/${pub}`)" 
     @project="$router.push(`/projects/${$event}`)"

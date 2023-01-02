@@ -16,6 +16,10 @@ onMounted(() => {
 
 <template lang="pug">
 
-chat-private.h-80vh(:pub="pub" :key="pub" @user="$router.push(`/users/${pub}`)")
+chat-private.h-80vh(
+  :key="pub" 
+  :pub="pub" 
+  @user="$router.push(`/users/${pub}`)"
+  )
 
 </template>
