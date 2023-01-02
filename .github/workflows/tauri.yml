@@ -21,10 +21,9 @@ jobs:
         with:
           node-version: 16
 
-      - name: Rust setup
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
+      - name: Install Rust (Stable)
+        run:
+          curl https://sh.rustup.rs -sSf | sh -s -- -y
 
       - uses: pnpm/action-setup@v2
         name: Install pnpm
