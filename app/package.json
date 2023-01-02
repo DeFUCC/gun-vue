@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/app",
-	"version": "0.12.3",
+	"version": "0.12.4",
 	"private": true,
 	"homepage": "https://gun-vue.js.org",
 	"funding": {
@@ -30,7 +30,7 @@
 	},
 	"devDependencies": {
 		"@capacitor/cli": "^4.6.1",
-		"@iconify/json": "^2.1.159",
+		"@iconify/json": "^2.2.0",
 		"@tauri-apps/cli": "^1.2.2",
 		"@unocss/extractor-pug": "0.48.0",
 		"@vitejs/plugin-vue": "^4.0.0",

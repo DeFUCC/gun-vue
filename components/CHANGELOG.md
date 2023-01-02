@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.12.4
+
+### Patch Changes
+
+- fix icons
+- Updated dependencies
+  - @gun-vue/composables@0.12.4
+
 ## 0.12.3
 
 ### Patch Changes

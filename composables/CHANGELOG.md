@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.12.4
+
+### Patch Changes
+
+- fix icons
+
 ## 0.12.3
 
 ### Patch Changes

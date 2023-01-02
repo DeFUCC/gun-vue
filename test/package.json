@@ -1,6 +1,6 @@
 {
   "name": "@gun-vue/test",
-  "version": "0.12.3",
+  "version": "0.12.4",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -24,6 +24,6 @@
     "jsdom": "^20.0.3",
     "prettier": "^2.8.1",
     "vite": "^4.0.3",
-    "vitest": "^0.26.2"
+    "vitest": "^0.26.3"
   }
 }
