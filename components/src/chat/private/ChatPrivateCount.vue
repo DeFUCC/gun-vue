@@ -19,6 +19,6 @@ const { count, available } = usePrivateChatCount(props.pub)
   :style="{ opacity: available ? 1 : 0.1 }"
   @click="$emit('chat')"
   )
-  ph-chats-light.text-xl
+  .i-ph-chats-light.text-xl
   .font-bold.text-lg.mx-2 {{ count }}
 </template>
