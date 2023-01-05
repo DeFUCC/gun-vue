@@ -1,0 +1,43 @@
+{
+	"$id": "https://gun-vue.js.org/project.schema.json",
+	"title": "Project",
+	"description": "A collaborative project, published for p2p development and realization",
+	"type": "object",
+	"properties": {
+		"id": {
+			"description": "The unique identifier for a project",
+			"type": "string",
+			"format": "UUID"
+		},
+		"title": {
+			"description": "Name of the project",
+			"type": "string"
+		},
+		"author": {
+			"description": "Project author's pub key",
+			"type": "string"
+		},
+		"cover": {
+			"description": "Big cover picture",
+			"type": "string",
+			"maxFileSize": "2MB",
+			"contentEncoding": "base64",
+			"contentMediaType": "image/webp"
+		},
+		"tags": {
+			"description": "Tags for the project",
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"minItems": 1,
+			"uniqueItems": true
+		}
+	},
+	"required": [
+		"id",
+		"title",
+		"author",
+		"tags"
+	]
+}
