@@ -40,11 +40,11 @@
     "@gun-vue/composables": "workspace:^",
     "@qrcode/svg": "^1.0.0-beta.2",
     "@unocss/reset": "0.48.0",
-    "@vueuse/core": "9.9.0",
+    "@vueuse/core": "9.10.0",
     "@vueuse/gesture": "^2.0.0-beta.1",
     "@vueuse/sound": "^2.0.0",
     "floating-vue": "^2.0.0-beta.20",
-    "force-graph": "^1.42.16",
+    "force-graph": "^1.42.18",
     "fuse.js": "6.6.2",
     "jsqr": "^1.4.0",
     "url-regex": "^5.0.0",
@@ -60,7 +60,7 @@
     "pug": "^3.0.2",
     "unocss": "^0.48.0",
     "unplugin-vue-components": "^0.22.12",
-    "vite": "4.0.3"
+    "vite": "4.0.4"
   },
   "peerDependencies": {
     "vue": "^3.2.37"

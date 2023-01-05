@@ -37,9 +37,9 @@
 		"serve": "vite preview"
 	},
 	"dependencies": {
-		"@vueuse/core": "9.9.0",
-		"@vueuse/integrations": "^9.9.0",
-		"@vueuse/math": "^9.9.0",
+		"@vueuse/core": "9.10.0",
+		"@vueuse/integrations": "^9.10.0",
+		"@vueuse/math": "^9.10.0",
 		"base32": "^0.0.7",
 		"buffer": "^6.0.3",
 		"color-hash": "^2.0.2",
@@ -61,6 +61,6 @@
 	"devDependencies": {
 		"jsdoc-to-markdown": "^8.0.0",
 		"pug": "^3.0.2",
-		"vite": "^4.0.3"
+		"vite": "^4.0.4"
 	}
 }
