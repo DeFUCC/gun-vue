@@ -4,5 +4,5 @@
       "@volar/vue-language-plugin-pug"
     ]
   },
-  "exclude": ["node_modules", "_dist"]
+  "exclude": ["node_modules", "_dist","**/node_modules", "**/dist"]
 }

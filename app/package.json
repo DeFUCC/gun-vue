@@ -9,7 +9,7 @@
 	},
 	"author": "davay42 <davay@defucc.me>",
 	"scripts": {
-		"build": "vite  build --base=./ --emptyOutDir",
+		"build": "vite build --base=./ --emptyOutDir",
 		"deploy": "sh deploy.sh",
 		"dev": "vite --host",
 		"preview": "vite preview --host",

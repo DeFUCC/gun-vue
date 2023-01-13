@@ -34,14 +34,6 @@ export default defineConfig({
 			routeBlockLang: 'yaml',
 			onRoutesGenerated: routes => (generateSitemap({ routes, hostname: 'https://gun-vue.js.org' })),
 		}),
-		// WindiCSS({
-		// 	scan: {
-		// 		dirs: ["src", "../components/src"],
-		// 		include: ["index.md"],
-		// 		exclude: ["**/examples/**/*", "/node_modules/"],
-		// 		fileExtensions: ["vue", "ts", "md"],
-		// 	},
-		// }),
 		Unocss({
 			presets: [
 				presetIcons({
@@ -69,44 +61,44 @@ export default defineConfig({
 			exclude: [/node_modules/, /\.git/],
 		}),
 		// VitePWA({
-		//   registerType: "autoUpdate",
-		//   workbox: {
-		//     maximumFileSizeToCacheInBytes: 4000000
-		//   },
-		//   manifest: {
-		//     name: "Gun-Vue",
-		//     short_name: "Gun-Vue",
-		//     description: "Peer-to-peer graph database UI components",
-		//     iconPath: "./gun-vue-logo.png",
-		//     theme_color: "#43b883",
-		//     display: "standalone",
-		//     homepage_url: "https://gun-vue.js.org",
-		//     skylink: "AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A",
-		//     orientation: "portrait",
-		//     providedBy: {
-		//       name: "defucc",
-		//       url: "https://defucc.me",
-		//     },
-		//     icons: [
-		//       {
-		//         src: "./gun-vue-logo.svg",
-		//         type: "image/svg+xml",
-		//         sizes: "512x512",
-		//       },
-		//       {
-		//         src: "./gun-vue-logo.png",
-		//         sizes: "192x192",
-		//         type: "image/png",
-		//         purpose: "any maskable",
-		//       },
-		//       {
-		//         src: "./gun-vue-logo.png",
-		//         sizes: "512x512",
-		//         type: "image/png",
-		//         purpose: "any maskable",
-		//       },
-		//     ],
-		//   },
+		// 	registerType: "autoUpdate",
+		// 	workbox: {
+		// 		maximumFileSizeToCacheInBytes: 4000000
+		// 	},
+		// 	manifest: {
+		// 		name: "Gun-Vue",
+		// 		short_name: "Gun-Vue",
+		// 		description: "Peer-to-peer graph database UI components",
+		// 		iconPath: "./gun-vue-logo.png",
+		// 		theme_color: "#43b883",
+		// 		display: "standalone",
+		// 		homepage_url: "https://gun-vue.js.org",
+		// 		skylink: "AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A",
+		// 		orientation: "portrait",
+		// 		providedBy: {
+		// 			name: "defucc",
+		// 			url: "https://defucc.me",
+		// 		},
+		// 		icons: [
+		// 			{
+		// 				src: "./gun-vue-logo.svg",
+		// 				type: "image/svg+xml",
+		// 				sizes: "512x512",
+		// 			},
+		// 			{
+		// 				src: "./gun-vue-logo.png",
+		// 				sizes: "192x192",
+		// 				type: "image/png",
+		// 				purpose: "any maskable",
+		// 			},
+		// 			{
+		// 				src: "./gun-vue-logo.png",
+		// 				sizes: "512x512",
+		// 				type: "image/png",
+		// 				purpose: "any maskable",
+		// 			},
+		// 		],
+		// 	},
 		// }),
 	],
 	base: './',
