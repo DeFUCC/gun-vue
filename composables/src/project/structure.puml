@@ -1,0 +1,248 @@
+@startuml Designs
+left to right direction
+object Profile {
+  first_name
+  last_name
+  avatar
+  ...
+}
+
+map Account {
+  pub => 
+  profile *-> Profile
+  roles =>
+}
+
+package Projects {
+map Design {
+  id => 
+  idea => 
+  author =>
+  designer => 
+  projects =>
+}
+map Opportunity {
+  project =>
+  start =>
+  end =>
+  do =>
+  what =>
+  users =>
+}
+
+object ProjectTypes {
+  event
+  object
+}
+
+map Project {
+  id => 
+  maker => 
+  type *-> ProjectTypes
+  place =>
+  date =>
+  design =>
+  opportunities =>
+  plans =>
+}
+
+map Plan {
+  id => 
+  planner => 
+  tasks =>
+  purchases =>
+  project =>
+  crafts =>
+}
+
+map Task {
+  id => 
+  start =>
+  end =>
+  quantity =>
+  quality =>
+  doer => 
+  plan => 
+  result => 
+  materials =>
+  tools =>
+  skills =>
+}
+
+map Purchase {
+  id => 
+  quantity =>
+  quality =>
+  doer => 
+  plan =>
+  thing =>
+}
+
+}
+
+
+package Team {
+map Designer {
+  designs =>
+}
+map Maker {
+  projects =>
+  plans =>
+  crafts =>
+  tools =>
+  materials =>
+}
+map Doer {
+  tasks =>
+  purchases =>
+  skills =>
+}
+}
+
+package Exchange {
+
+object DonationModes {
+  public
+  private
+  anonymous
+}
+
+object DonationStatuses {
+  proposed
+  canceled
+  accepted
+  complete
+  refused
+}
+
+map Donation {
+  id =>
+  from =>
+  to =>
+  quality =>
+  quantity =>
+  for =>
+  status *-> DonationStatuses
+  mode *-> DonationModes
+  type =>
+}
+
+map Present {
+  id =>
+  from =>
+  to =>
+  quality =>
+  quantity =>
+  donation =>
+  status =>
+}
+}
+
+package Public {
+map Sponsor {
+  donations =>
+}
+map User {
+  opportunities =>
+}
+map Worker {
+  results =>
+}
+map Seller {
+  things =>
+}
+map Host {
+  places =>
+}
+}
+
+package World {
+map Tool {
+  owner =>
+  status =>
+  quantity =>
+  quality =>
+}
+map Material {
+  owner =>
+  status =>
+  quality =>
+  quantity =>
+}
+map Result {
+  task =>
+  quantity =>
+  quality =>
+}
+map Thing {
+  purchase =>
+  quantity =>
+  quality =>
+}
+map Skill {
+  do =>
+}
+map Craft {
+  skills =>
+}
+}
+
+Account ---- Maker
+Account ---- Designer
+Account ---- Doer
+Account -- Sponsor
+Account -- Worker
+Account -- Seller
+Account -- User
+Account -- Host
+
+
+Designer::designs ---> Design 
+Maker::projects ---> Project 
+Maker::plans ---> Plan 
+Doer::tasks ---> Task 
+Doer::purchases ---> Purchase 
+Sponsor::donations ---> Donation
+User::opportunities ---> Opportunity
+Worker::results --> Result
+Seller::things --> Thing
+
+Plan::planner ..> Maker
+Task::doer ..> Doer
+Purchase::doer ..> Doer
+Project::maker ..> Maker
+Design::author ..> Designer
+Opportunity::users ...> User
+Donation::to ---> Team
+Donation::from ...> Sponsor
+Present::to ---> Sponsor
+Present::from ...> Maker
+
+Design::projects --> Project
+Project::design ...> Design
+Project::place --> Host
+Project::plans --> Plan
+Project::opportunities --> Opportunity
+Plan::tasks --> Task
+Plan::purchases --> Purchase
+Plan::crafts --> Craft
+Purchase::plan ..> Plan
+Task::plan ..> Plan
+Task::tools --> Tool
+Task::materials --> Material
+Task::skills --> Skill
+Result::task ..> Task
+Opportunity::project ..> Project
+
+Donation::for --> Project
+Task::result --> Result
+Purchase::thing --> Thing
+Thing::purchase ..> Purchase
+Maker::tools --> Tool
+Maker::materials --> Material
+Maker::crafts --> Craft
+Doer::skills --> Skill
+Craft::skills --> Skill
+
+
+@enduml
