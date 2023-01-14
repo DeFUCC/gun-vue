@@ -48,7 +48,7 @@
 		"fuse.js": "^6.6.2",
 		"grapheme-breaker-mjs": "^1.0.4",
 		"gun": "^0.2020.1239",
-		"gun-avatar": "1.6.4",
+		"gun-avatar": "1.6.6",
 		"jszip": "^3.10.1",
 		"markdown-it": "^13.0.1",
 		"markdown-it-external-links": "^0.0.6",

@@ -13,6 +13,6 @@ export * from "./space/";
 export * from "./ui/";
 export * from "./user/";
 
-export * from "gun-avatar";
+export { gunAvatar } from "gun-avatar";
 export { default as ms } from "ms";
 export { default as slugify } from "slugify";

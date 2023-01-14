@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useGun, gunAvatar, useColor } from '#composables'
 import { ref, watch } from 'vue'
 

@@ -2,6 +2,7 @@
  * Gun DB initialization and basic methods
  * @module useGun
  */
+import type {IGun, IGunInstance} from 'gun'
 
 import Gun from "gun/gun";
 import "gun/lib/then";
@@ -25,10 +26,10 @@ import { peer } from './useRelay'
 // https://github.com/draeder/gun-relays
 
 /** The main Gun instance for database operations */
-export let gun;
+export let gun: IGunInstance;
 
 /** Secondary Gun instance for key management */
-export let gun2;
+export let gun2: IGunInstance;
 
 /**
  * Instantiate a Gun instance for DB manipulations
@@ -40,7 +41,7 @@ export let gun2;
  * const gun = useGun()
  */
 
-export function useGun(opts = { localStorage: false }) {
+export function useGun(opts = { localStorage: false }): IGunInstance {
   if (!gun) {
     gun = Gun({ peers: [peer.value], ...opts });
   }
@@ -49,11 +50,11 @@ export function useGun(opts = { localStorage: false }) {
 
 /**
  * get a secondary Gun instance for certificate management
- * @param {object} options - options fot this gun instance, like { localstorage:true }
+ * @param {object} opts - options fot this gun instance, like { localstorage:true }
  * @returns {Gun}
  */
 
-export function useGun2(opts = { localStorage: false }) {
+export function useGun2(opts: object = { localStorage: false }):IGunInstance {
   if (!gun2) {
     gun2 = Gun({ peers: [peer.value], ...opts });
   }
@@ -71,6 +72,8 @@ export { default as SEA } from "gun/sea.js";
  * A wrapper for `Gun.node.soul`
  * @function soul
  */
+
+// @ts-ignore
 export const soul = Gun?.node?.soul;
 
 /**
@@ -78,6 +81,8 @@ export const soul = Gun?.node?.soul;
  * A wrapper for `Gun.text.random`
  * @function genUUID
  */
-export const genUUID = Gun?.text?.random;
+
+// @ts-ignore
+export const genUUID:Function = Gun?.text?.random;
 
 

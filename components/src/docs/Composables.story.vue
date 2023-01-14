@@ -112,11 +112,6 @@ This should prevent any Gun-Vue related code from running during build stage.
     </thead>
     <tbody>
 <tr>
-        <td><a href="#useaccount">useAccount</a></td>
-        <td><p>Basic user management</p>
-</td>
-      </tr>
-<tr>
         <td><a href="#usechat">useChat</a></td>
         <td><p>Basic public chat</p>
 </td>
@@ -148,11 +143,6 @@ This should prevent any Gun-Vue related code from running during build stage.
 <tr>
         <td><a href="#usezip">useZip</a></td>
         <td><p>Read and write zip files</p>
-</td>
-      </tr>
-<tr>
-        <td><a href="#usegun">useGun</a></td>
-        <td><p>Gun DB initialization and basic methods</p>
 </td>
       </tr>
 <tr>
@@ -236,57 +226,6 @@ This should prevent any Gun-Vue related code from running during build stage.
 </tbody>
   </table>
 
-
-  <a name="module_useAccount"></a>
-
-## useAccount
-Basic user management
-
-  
-* [useAccount](#module_useAccount)
-    * _static_
-        * [.useAccount(pub)](#module_useAccount.useAccount) ⇒ <code>account</code>
-    * _inner_
-        * [~account](#module_useAccount..account) : <code>computed(object)</code>
-
-### useAccount(pub) ⇒ <code>account</code>
-  Load and handle user's account by a public key
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| pub | <code>ref(string)</code> \| <code>string</code> | The public key of a user as a string or a ref |
-
-**Example**  
-```js
-import { ref } from 'vue'
-import { useAccount, SEA } from '@gun-vue/composables'
-
-const pub = ref()
-
-async function generatePair() {
- pub.value = await SEA.pair()
-}
-
-const { account } = useAccount(pub)
-
-generatePair()
-```
-### account : <code>computed(object)</code>
-  Reactive account data
-
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| pub | <code>string</code> | the pub key |
-| color | <code>string</code> | the color hash of the pub key |
-| profile | <code>object</code> | all the profile fields of the account |
-| pulse | <code>number</code> | the recent presence timestamp |
-| blink | <code>boolean</code> | on/off switching pulse |
-| lastSeen | <code>&#x27;online&#x27;</code> \| <code>string</code> | a human readable last seen status ('online' if less than TIMEOUT) |
-
-<hr />
 
   <a name="module_useChat"></a>
 
@@ -562,64 +501,6 @@ Zips the whole post object
 | addMd | <code>function</code> | add a MD file to the zip |
 | addFile | <code>function</code> | add a binary file to the zip |
 | downloadZip | <code>function</code> | initiate the download of the zip file |
-
-<hr />
-
-  <a name="module_useGun"></a>
-
-## useGun
-Gun DB initialization and basic methods
-
-  
-* [useGun](#module_useGun)
-    * _static_
-        * [.gun](#module_useGun.gun)
-        * [.gun2](#module_useGun.gun2)
-        * [.useGun(options)](#module_useGun.useGun) ⇒ <code>Gun</code>
-        * [.useGun2(options)](#module_useGun.useGun2) ⇒ <code>Gun</code>
-    * _inner_
-        * [~SEA](#module_useGun..SEA)
-        * [~soul()](#module_useGun..soul)
-        * [~genUUID()](#module_useGun..genUUID)
-
-### gun
-  The main Gun instance for database operations
-
-### gun2
-  Secondary Gun instance for key management
-
-### useGun(options) ⇒ <code>Gun</code>
-  Instantiate a Gun instance for DB manipulations
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| options | <code>Object</code> | options fot this gun instance, like { localstorage:true } |
-
-**Example**  
-```js
-import { useGun } from '@gun-vue/composables'
-
-const gun = useGun()
-```
-### useGun2(options) ⇒ <code>Gun</code>
-  get a secondary Gun instance for certificate management
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| options | <code>object</code> | options fot this gun instance, like { localstorage:true } |
-
-### SEA
-  SEA library
-
-### soul()
-  **Get a soul for any given node**
-A wrapper for `Gun.node.soul`
-
-### genUUID()
-  **Generate a random UUID**
-A wrapper for `Gun.text.random`
 
 <hr />
 

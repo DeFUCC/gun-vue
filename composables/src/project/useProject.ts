@@ -5,6 +5,7 @@ import { useUser } from '../user'
 import { projectsPath } from '.'
 import { SEA } from 'gun'
 import { hashText, isHash } from '../crypto'
+import { Project } from './projects'
 
 
 export const newProject = reactive({
@@ -29,28 +30,31 @@ export async function addProject() {
       .get(id + '@' + user.pub)
       .put(
         link,
-        null,
+        undefined,
         {
           opt:
             { cert: currentRoom.features?.projects }
         }
       )
-    newProject.title = null
+    newProject.title = ''
   })
 
 }
 
-export function updateProjectField(title, field, value) {
+export function updateProjectField(title:string, field:string, value:string) {
   const proj = gun.user().get(projectsPath).get(title)
   proj.get(field).put(value, () => {
     proj.get('updatedAt').put(Date.now())
   })
 }
 
-export function useProject(path) {
+export function useProject(path: string) {
   const gun = useGun()
 
-  const project = reactive({})
+  const project: Project = reactive({
+    id: '0',
+    type: 'event'
+  })
 
   gun.user(currentRoom.pub).get(projectsPath).get(path).map().on(async (d, k) => {
     if (k == 'cover' && isHash(d)) {
@@ -61,13 +65,14 @@ export function useProject(path) {
   })
 
 
-  function updateField(field, value) {
+  function updateField(field:string, value:string) {
     updateProjectField(path.slice(0, -88), field, value)
   }
 
-  async function updateCover(image) {
+  async function updateCover(image:string) {
     console.log(image)
     const hash = await hashText(image)
+    if(!hash) return
     gun.get('#cover').get(hash).put(image)
     updateField('cover', hash)
   }
@@ -79,7 +84,7 @@ export function useComputedProject(path = ref()) {
   const gun = useGun()
 
   const project = computed(() => {
-    const proj = reactive({})
+    const proj:Project = reactive({})
     gun.user(currentRoom.pub).get(projectsPath).get(path.value).map().on(async (d, k) => {
       if (k == 'cover' && isHash(d)) {
         proj[k] = await gun.get('#cover').get(d).then()
@@ -90,12 +95,13 @@ export function useComputedProject(path = ref()) {
     return proj
   })
 
-  function updateField(field, value) {
+  function updateField(field:string, value:string) {
     updateProjectField(path.value.slice(0, -88), field, value)
   }
 
-  async function updateCover(image) {
+  async function updateCover(image:string) {
     const hash = await hashText(image)
+    if (!hash) return
     gun.get('#cover').get(hash).put(image)
     updateField('cover', hash)
   }
@@ -105,13 +111,13 @@ export function useComputedProject(path = ref()) {
 
 
 
-export async function removeProject(path) {
+export async function removeProject(path:string) {
   const gun = useGun()
   const gun2 = useGun2()
   const { user } = useUser()
 
   if (path.includes(user.pub)) {
-    gun.user(currentRoom.pub).get(projectsPath).get(path).put(null, null, {
+    gun.user(currentRoom.pub).get(projectsPath).get(path).put(null, undefined, {
       opt:
         { cert: currentRoom.features?.projects }
     })
