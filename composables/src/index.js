@@ -16,3 +16,6 @@ export * from "./user/";
 export { gunAvatar } from "gun-avatar";
 export { default as ms } from "ms";
 export { default as slugify } from "slugify";
+
+
+export const defaultPeer = "https://gun.defucc.me/gun";

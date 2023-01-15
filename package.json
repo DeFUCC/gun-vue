@@ -4,8 +4,8 @@
 	"private": true,
 	"homepage": "https://gun-vue.js.org",
 	"funding": {
-		"type": "ko-fi",
-		"url": "https://ko-fi.com/davay"
+		"type": "github",
+		"url": "https://github.com/sponsors/davay42"
 	},
 	"type": "module",
 	"scripts": {
@@ -19,7 +19,8 @@
 		"relay": "cd relay && pnpm run start",
 		"sky": "node deploy-to-skynet.js",
 		"tauri": "cd app && pnpm tauri build",
-		"version": "pnpm changeset version"
+		"version": "pnpm changeset version",
+		"types": "cd composables && tsc"
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.26.0",

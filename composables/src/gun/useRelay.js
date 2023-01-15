@@ -7,8 +7,9 @@ import { useGun } from '.'
 import { computed, reactive, watch } from 'vue'
 import { useStorage } from "@vueuse/core";
 import ms from 'ms'
+import { defaultPeer } from '..';
 
-export const defaultPeer = "https://gun.defucc.me/gun";
+
 export const peer = useStorage("peer", defaultPeer);
 
 /**

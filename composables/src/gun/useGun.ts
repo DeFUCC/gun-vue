@@ -20,6 +20,7 @@ import "gun/lib/webrtc";
 // window.global = {}
 
 import { peer } from './useRelay'
+import { shallowReactive } from 'vue';
 
 
 // https://github.com/amark/gun/wiki/volunteer.dht
@@ -31,32 +32,31 @@ export let gun: IGunInstance;
 /** Secondary Gun instance for key management */
 export let gun2: IGunInstance;
 
+export const gunInstances = shallowReactive([])
+
 /**
  * Instantiate a Gun instance for DB manipulations
- * @param {Object} options - options fot this gun instance, like { localstorage:true }
- * @returns {Gun}
  * @example
  * import { useGun } from '@gun-vue/composables'
- *
  * const gun = useGun()
  */
 
-export function useGun(opts = { localStorage: false }): IGunInstance {
+export function useGun(options: object = { localStorage: false }): IGunInstance {
   if (!gun) {
-    gun = Gun({ peers: [peer.value], ...opts });
+    gun = Gun({ peers: [peer.value], ...options });
+    gunInstances.push(gun)
   }
   return gun;
 }
 
 /**
  * get a secondary Gun instance for certificate management
- * @param {object} opts - options fot this gun instance, like { localstorage:true }
- * @returns {Gun}
  */
 
-export function useGun2(opts: object = { localStorage: false }):IGunInstance {
+export function useGun2(options: object = { localStorage: false }):IGunInstance {
   if (!gun2) {
-    gun2 = Gun({ peers: [peer.value], ...opts });
+    gun2 = Gun({ peers: [peer.value], ...options });
+    gunInstances.push(gun2)
   }
   return gun2;
 }
