@@ -23,7 +23,7 @@ function setBrushColor(color) {
     :style="{ opacity: draw.enabled ? 0.2 : 1 }"
     @click="draw.enabled = !draw.enabled"
     )
-    carbon-pen
+    .i-carbon-pen
   .flex.flex-wrap.text-xl.p-2.gap-2.justify-center.rounded-md.bg-main.shadow.transition-opacity.duration-200.dark-border.dark-border-gray-400.dark-border-opacity-10.bg-light-300.dark-bg-dark-300.bg-opacity-90(
     v-if="draw.enabled", 
     :class="draw.enabled ? '' : draw.pinned ? 'opacity-40 hover-opacity-90' : 'pointer-events-none'"
@@ -38,7 +38,7 @@ function setBrushColor(color) {
         :class="{ active: draw.mode == 'stylus' }",
         @click="setDrawingMode('stylus')"
         )
-          carbon:pen
+          .i-carbon-pen
 
       button(
         :class="{ active: draw.mode == 'line' }", 
@@ -58,24 +58,24 @@ function setBrushColor(color) {
         :class="{ active: draw.mode == 'arrow' }", 
         @click="setDrawingMode('arrow')"
         )
-        carbon:arrow-up-right
+        .i-carbon-arrow-up-right
 
       button(
         :class="{ active: draw.mode == 'ellipse' }", 
         @click="setDrawingMode('ellipse')"
         )
-        carbon:radio-button
+        .i-carbon-radio-button
 
       button(
         :class="{ active: draw.mode == 'rectangle' }", 
         @click="setDrawingMode('rectangle')"
         )
-        carbon:checkbox
+        .i-carbon-checkbox
 
     //  TODO: not sure why it's not working! 
     //
       <button class="icon-btn" :class="{ shallow: draw.mode != 'eraseLine' }" @click="setDrawingMode('eraseLine')">
-        <carbon:erase />
+        <.i-carbon-erase />
         </button> 
 
     .is-group.flex.flex-wrap
@@ -95,32 +95,32 @@ function setBrushColor(color) {
       :class="{ disabled: !draw.canUndo }", 
       @click="drauu.undo()"
       )
-      carbon:undo
+      .i-carbon-undo
     button(
       :class="{ disabled: !draw.canRedo }", 
       @click="drauu.redo()"
       )
-      carbon:redo
+      .i-carbon-redo
 
     button(
       :class="{ disabled: !draw.canClear }", 
       @click="draw.clear()"
       )
-      carbon:delete
+      .i-carbon-delete
 
     button(
       :class="{ shallow: !draw.pinned }", 
       @click="draw.pinned = !draw.pinned")
-      carbon:pin-filled.transform.-rotate-45(v-show="draw.pinned")
-      carbon:pin(v-show="!draw.pinned")
+      .i-carbon-pin-filled.transform.-rotate-45(v-show="draw.pinned")
+      .i-carbon-pin(v-show="!draw.pinned")
 
 
     button(
       v-if="draw.enabled", 
       :class="{ shallow: !draw.enabled }", 
       @click="draw.enabled = !draw.enabled")
-      carbon:error(v-show="draw.pinned")
-      carbon:close-outline(v-show="!draw.pinned")
+      .i-carbon-error(v-show="draw.pinned")
+      .i-carbon-close-outline(v-show="!draw.pinned")
 
 </template>
 

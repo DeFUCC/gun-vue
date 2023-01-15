@@ -6,6 +6,8 @@
 import { gun, useGun } from "..";
 import { useColor } from "../ui";
 import { computed, reactive } from "vue";
+import type { ComputedRef } from 'vue'
+import type { IGunInstance, IGunUserInstance, ISEAPair } from 'gun'
 
 const colorDeep = useColor("deep");
 
@@ -72,14 +74,30 @@ export const selectedUser = reactive({
  * }
 
  */
+interface User {
+	initiated: boolean;
+	auth: boolean; is: any;
+	name: string;
+	pub: string;
+	color: string;
+	pulse: number;
+	pulser: any;
+	blink: boolean;
+	safe: {
+		saved: any;
+		password: any;
+	};
+	db?: IGunUserInstance
+	pair(): any;
+}
 
-export const user = reactive({
+export const user: User = reactive({
 	initiated: false,
 	auth: false,
 	is: null,
 	name: "",
-	pub: computed(() => user?.is?.pub),
-	color: computed(() => (user.pub ? colorDeep.hex(user.pub) : "gray")),
+	pub: computed(() => user?.is?.pub) as unknown as string,
+	color: computed(() => (user.pub ? colorDeep.hex(user.pub) : "gray")) as unknown as string,
 	pulse: 0,
 	pulser: null,
 	blink: false,
@@ -87,17 +105,12 @@ export const user = reactive({
 		saved: null,
 		password: null,
 	},
-	pair() {
+	db: undefined,
+	pair(): ISEAPair {
+		//@ts-ignore
 		return gun?.user?.()?._?.sea;
 	},
 });
-
-/**
- * @typedef useUser
- * @property {User} user - the user interface
- * @property {Function} auth - auth with a pair
- * @property {Function} leave - log out
- */
 
 /**
  * Get access to current logged in user
@@ -108,8 +121,13 @@ export const user = reactive({
  * const { user, auth, leave } = useUser()
  */
 
-export function useUser() {
+interface UseUser {
+	user: User
+	auth: (pair: ISEAPair, cb?: (pair: ISEAPair) => void) => Promise<void>
+	leave: () => void
+}
 
+export function useUser(): UseUser {
 
 	if (!user.initiated) {
 		const gun = useGun();
@@ -124,7 +142,6 @@ export function useUser() {
 		});
 		user.initiated = true;
 	}
-
 
 	return { user, auth, leave };
 }
@@ -176,7 +193,7 @@ function init() {
  * }
  */
 
-export async function auth(pair, cb = () => { }) {
+export async function auth(pair: ISEAPair, cb = (pair: ISEAPair) => { }) {
 	if (!isPair(pair)) {
 		// pair = await SEA.pair();
 		console.log("incorrect pair", pair);
@@ -209,21 +226,20 @@ export function leave() {
 	}, 500);
 }
 
-export function isMine(soul) {
+export function isMine(soul: string) {
 	if (!soul) return;
 	return soul.slice(1, 88) == user.pub;
 }
 
+
 /**
  * Add a field to the User profile
- * @param {String} name
- * @example
- * import { addProfileField } from '@gun-vue/composables'
- *
- * addProfileField( 'city' )
- */
+ * @param {String} title
+ * @example import { addProfileField } from '@gun-vue/composables'
 
-export function addProfileField(title) {
+addProfileField( 'city' )
+ */
+export function addProfileField(title: string) {
 	gun.user().get("profile").get(title).put("");
 }
 
@@ -237,7 +253,7 @@ export function addProfileField(title) {
  * updateProfile( 'city', 'Moscow' )
  */
 
-export function updateProfile(field, data) {
+export function updateProfile(field: string, data: string) {
 	if (field && data !== undefined) {
 		gun.user().get("profile").get(field).put(data);
 	}
@@ -249,8 +265,8 @@ export function updateProfile(field, data) {
  * @returns {Boolean}
  */
 
-export function isPair(pair) {
-	return (
+export function isPair(pair: ISEAPair): boolean {
+	return Boolean(
 		pair &&
 		typeof pair == "object" &&
 		pair.pub &&

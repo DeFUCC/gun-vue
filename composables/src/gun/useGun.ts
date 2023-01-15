@@ -2,7 +2,7 @@
  * Gun DB initialization and basic methods
  * @module useGun
  */
-import type { IGunInstance } from 'gun'
+import type { GunOptions, IGunInstance } from 'gun'
 
 import Gun from "gun/gun";
 import "gun/lib/then";
@@ -41,9 +41,13 @@ export const gunInstances = shallowReactive([])
  * const gun = useGun()
  */
 
-export function useGun(options: object = { localStorage: false }): IGunInstance {
+export function useGun(options: GunOptions = { localStorage: false }): IGunInstance {
   if (!gun) {
-    gun = Gun({ peers: [peer.value], ...options });
+    const opts = { peers: [peer.value] }
+    if (typeof options === 'object') {
+      Object.assign(opts, options)
+    }
+    gun = Gun(opts);
     gunInstances.push(gun)
   }
   return gun;

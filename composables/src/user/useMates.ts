@@ -3,21 +3,21 @@
  * @module useMates
  */
 
-import { reactive, ref } from "vue";
+import { reactive, Ref, ref } from "vue";
 import { useGun, user } from "..";
 import GB from "grapheme-breaker-mjs";
 
-/**
- * @typedef {reactive} useMates
- */
+interface Mate {
+	emoji: string
+	text: string
+	back?: string
+}
 
 /**
  * Get a reactive list of the user's mates
- * @param {String} pub
- * @returns {useMates}
  */
 
-export function useMates(pub) {
+export function useMates(pub: string) {
 	if (!pub) {
 		pub = user.pub;
 	}
@@ -27,12 +27,12 @@ export function useMates(pub) {
 		.user(pub)
 		.get("mates")
 		.map()
-		.once((text, matePub) => {
+		.once((text: string, matePub: string) => {
 			if (text) {
 				mates[matePub] = {
 					emoji: getFirstEmoji(text),
 					text,
-				};
+				} as Mate
 				gun
 					.user(matePub)
 					.get("mates")
@@ -53,11 +53,9 @@ export function useMates(pub) {
 
 /**
  * Break the string into graphemes and return the first one if it's an emoji
- * @param {String} text
- * @returns {String} Emoji
  */
 
-export function getFirstEmoji(text, def = "👋") {
+export function getFirstEmoji(text: string, def = "👋"): string {
 	if (!text || typeof text != "string") return;
 	let em = GB.break(text)[0];
 	if (isEmoji(em)) {
@@ -69,11 +67,9 @@ export function getFirstEmoji(text, def = "👋") {
 
 /**
  * Check if the text has emojis
- * @param {String} text
- * @returns {Boolean}
  */
 
-export function isEmoji(text) {
+export function isEmoji(text: string): boolean {
 	return /\p{Extended_Pictographic}/u.test(text);
 }
 
@@ -86,13 +82,11 @@ export function isEmoji(text) {
 
 /**
  * Make mates with some account by current user
- * @param {String} pub
- * @returns {useMate}
  */
 
-export function useMate(pub) {
+export function useMate(pub: string) {
 	const emoji = ref("👋");
-	const isMate = ref(false);
+	const isMate: Ref<string | boolean> = ref(false);
 
 	const dbMate = user.db.get("mates").get(pub);
 
