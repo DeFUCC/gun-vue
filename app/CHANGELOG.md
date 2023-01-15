@@ -1,5 +1,14 @@
 # @gun-vue/app
 
+## 0.12.5
+
+### Patch Changes
+
+- af064992: Typescript transition started. For the sake of future developers. It's quite nice to see the types infered out of existing js code. And we can gradually add more typing without breaking anything. So let's go!
+- Updated dependencies [af064992]
+  - @gun-vue/composables@0.12.5
+  - @gun-vue/components@0.12.5
+
 ## 0.12.4
 
 ### Patch Changes

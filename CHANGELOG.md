@@ -1,5 +1,11 @@
 # @gun-vue/repo
 
+## 0.12.5
+
+### Patch Changes
+
+- af064992: Typescript transition started. For the sake of future developers. It's quite nice to see the types infered out of existing js code. And we can gradually add more typing without breaking anything. So let's go!
+
 ## 0.12.4
 
 ### Patch Changes
