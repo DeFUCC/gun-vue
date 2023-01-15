@@ -3,27 +3,17 @@
  * @module useRelays
  */
 
-/**
- * @typedef {Object} useRelays
- * @property {Object} Relays
- * @property {Object} Errors
- * @property {Function} loadRelays
- */
 
-/**
- * @typedef {Object} loadRelaysOptions
- * @property {String} source
- */
+interface Relay {
+  host: string
+  url: string
+  ping: string
+}
 
-/**
- * @typedef {Object[]} Relays 
- * @property {String} hostname
- * @property {String} url
- * @property {Number} ping
- */
+type Relays = Relay[]
 
 
-import urlRegex from 'url-regex'
+import * as urlRegex from 'url-regex'
 import { reactive } from 'vue'
 import { relay } from './useRelay'
 
@@ -32,19 +22,17 @@ const errors = reactive({})
 
 /**
  * Load the list of the relays
- * @param {Object} loadRelaysOptions
- * @returns {relays} 
  */
 
 export async function loadRelays({
   source = 'https://raw.githubusercontent.com/wiki/amark/gun/volunteer.dht.md'
-} = {}) {
+} = {}): Promise<{}> {
   let res = await fetch(source)
   let data = await res.text()
-  let urls = data.match(urlRegex())
+  const urls = data.match(urlRegex())
   urls.push(relay.peer)
-  urls = Array.from(urls)
-  urls.forEach((u) => {
+  const urlList = Array.from(urls)
+  urlList.forEach((u) => {
     let testUrl = new URL(u)
     if (testUrl.pathname === '/gun' && testUrl.pathname.indexOf('~~') === -1) {
       let startMoment = performance.now()
@@ -57,11 +45,12 @@ export async function loadRelays({
       }).then(response => {
         let endMoment = performance.now()
         if (response.ok) {
-          relays[testUrl.hostname] = {
+          const rel: Relay = {
             host: testUrl.hostname,
             ping: (endMoment - startMoment).toFixed(),
             url: testUrl.href
           }
+          relays[testUrl.hostname] = rel
         } else {
           errors[testUrl.hostname] = response
         }
@@ -81,7 +70,7 @@ export async function loadRelays({
  * const { relays, errors, loadRelays } = useRelays()
  */
 
-export function useRelays() {
+export function useRelays(): { relays: {}, errors: {}, loadRelays: () => void } {
   return { relays, errors, loadRelays }
 }
 

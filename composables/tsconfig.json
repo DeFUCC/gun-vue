@@ -6,7 +6,8 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "declarationDir": "public/types",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "module": "ESNext",
   },
   "vueCompilerOptions": {
     "plugins": [

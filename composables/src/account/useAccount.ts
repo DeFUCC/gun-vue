@@ -7,8 +7,8 @@ interface Profile {
   name?: string
   first_name?: string
   last_name?: string
-	birth_day?: string
-	[key:string]:string | undefined
+  birth_day?: string
+  [key: string]: string | undefined
 }
 
 interface Account {
@@ -17,14 +17,16 @@ interface Account {
   pulse: number
   blink: boolean
   profile: Profile
-	petname?: string
-	[key:string]: any
+  petname?: string
+  db?: object
+  [key: string]: string | ComputedRef | number | Profile | boolean | Ref | object
 }
 
 import { useGun, useUser, SEA } from "../index.js";
 import { useColor } from "../ui/index.js";
 import { computed, ComputedRef, reactive, Ref, ref } from "vue";
 import ms from "ms";
+
 
 const colorDeep = useColor("deep");
 
@@ -67,15 +69,15 @@ export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
   const { user } = useUser()
   const account = computed(() => {
 
-    const acc:Account = reactive({
-      pub:pub.value,
+    const acc: Account = reactive({
+      pub: pub.value,
       color: computed(() => (pub.value ? colorDeep.hex(pub.value) : "gray")),
       profile: {
         name: "",
       },
       pulse: 0,
       lastSeen: computed(() => {
-        let time = Date.now() - acc.pulse;
+        const time = Date.now() - acc.pulse;
         if (time > TIMEOUT) {
           return ms(time);
         } else {
@@ -87,7 +89,7 @@ export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
     });
 
     if (user.is) {
-      gun.user().get('petnames').get(pub.value).on(async(d:string) => {
+      gun.user().get('petnames').get(pub.value).on(async (d: string) => {
         acc.petname = await SEA.decrypt(d, user.pair())
       })
     }
@@ -104,7 +106,7 @@ export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
       .back()
       .get("profile")
       .map()
-      .on((data:string, key:string) => {
+      .on((data: string, key: string) => {
         acc.profile[key] = data;
       });
     return acc;
@@ -114,7 +116,7 @@ export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
 }
 
 
-export async function setPetname(pub:string, name:string) {
+export async function setPetname(pub: string, name: string) {
   const { user } = useUser()
   if (!user.is) return
   const gun = useGun();

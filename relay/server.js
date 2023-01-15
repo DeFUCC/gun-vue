@@ -65,7 +65,7 @@ export default {
     console.log("Gun peer link is " + link + "/gun");
     console.log("Data storage is " + (store ? "enabled" : "disabled"));
 
-    if (showQr) {
+    if (showQr != false) {
       console.log("----------");
       qr.generate(link);
       console.log("----------");

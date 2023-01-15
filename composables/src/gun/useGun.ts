@@ -2,7 +2,7 @@
  * Gun DB initialization and basic methods
  * @module useGun
  */
-import type {IGun, IGunInstance} from 'gun'
+import type { IGunInstance } from 'gun'
 
 import Gun from "gun/gun";
 import "gun/lib/then";
@@ -53,7 +53,7 @@ export function useGun(options: object = { localStorage: false }): IGunInstance 
  * get a secondary Gun instance for certificate management
  */
 
-export function useGun2(options: object = { localStorage: false }):IGunInstance {
+export function useGun2(options: object = { localStorage: false }): IGunInstance {
   if (!gun2) {
     gun2 = Gun({ peers: [peer.value], ...options });
     gunInstances.push(gun2)
@@ -73,7 +73,7 @@ export { default as SEA } from "gun/sea.js";
  * @function soul
  */
 
-// @ts-ignore
+// @ts-ignore: Incorrect GUN types
 export const soul = Gun?.node?.soul;
 
 /**
@@ -82,7 +82,7 @@ export const soul = Gun?.node?.soul;
  * @function genUUID
  */
 
-// @ts-ignore
-export const genUUID:Function = Gun?.text?.random;
+// @ts-ignore: Incorrect Gun types
+export const genUUID: (num: number) => string = Gun?.text?.random;
 
 

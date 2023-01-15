@@ -2,7 +2,7 @@ import { computed, markRaw, nextTick, reactive, ref, onMounted } from 'vue'
 import { createDrauu } from 'drauu'
 import { toReactive, useStorage, useCycleList, useDebounceFn } from '@vueuse/core'
 
-import { useGun, currentRoom, useUser } from '../'
+import { useGun, currentRoom, useUser } from '..'
 
 export const draw = reactive({
   colors: [

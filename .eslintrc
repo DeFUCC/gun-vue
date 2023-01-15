@@ -16,7 +16,14 @@
         {
             "files": ["composables/*", "components/*", "app/*", "relay/*"],
             "excludedFiles": ["**/dist/*", "**/_dist/*"]
-        }
+        },
+        {
+			// enable the rule specifically for TypeScript files
+			"files": ["*.ts", "*.tsx"],
+			"parserOptions": {
+				"parser": "@typescript-eslint/parser"
+			}
+		}
     ],
     "parserOptions": {
         "ecmaVersion": "latest",
@@ -28,6 +35,9 @@
     ],
     "rules": {
         "no-unused-vars": 0,
-        "vue/multi-word-component-names": 0
+        "vue/multi-word-component-names": 0,
+        "@typescript-eslint/ban-ts-comment": {
+            "ts-ignore": "allow-with-description"
+        }
     }
 }

@@ -5,12 +5,13 @@
 
 import { useGun } from '.'
 import { computed, reactive, watch } from 'vue'
+import type { Ref } from 'vue'
 import { useStorage } from "@vueuse/core";
 import ms from 'ms'
-import { defaultPeer } from '..';
 
+const defaultPeer = "https://gun.defucc.me/gun";
 
-export const peer = useStorage("peer", defaultPeer);
+export const peer: Ref = useStorage("peer", defaultPeer);
 
 /**
  * @typedef {reactive} Relay Peer server status reactive object
@@ -37,7 +38,19 @@ export const peer = useStorage("peer", defaultPeer);
  * }
  */
 
-export const relay = reactive({
+interface Relay {
+  peer: string
+  host: string
+  status: string
+  pulse: number
+  lag: number
+  started: number
+  diff: number
+  age: string
+  blink: boolean
+}
+
+export const relay: Relay = reactive({
   list: [],
   peer: peer.value,
   host: new URL(peer.value).hostname,
@@ -59,7 +72,7 @@ watch(
   },
 )
 
-function setPeer(url) {
+function setPeer(url: string) {
   peer.value = url
   window.location.reload()
 }
@@ -79,13 +92,15 @@ function resetPeer() {
  *
  * const { relay, setPeer, resetPeer } = useRelay()
  */
-export function useRelay() {
+export function useRelay(): { relay: Relay, setPeer: (url: string) => void, resetPeer: () => void } {
   const gun = useGun()
   if (relay.pulse == 0) {
     gun
       .get(relay.host)
       .map()
-      .on((d, k) => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+      .on((d: string, k: string) => {
         relay[k] = d
       })
   }

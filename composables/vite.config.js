@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [moduleExclude("text-encoding")],
   build: {
     lib: {
-      entry: path.resolve(dirname, "./src/index.js"),
+      entry: path.resolve(dirname, "./src/index.ts"),
       name: "composables",
       formats: ["es", "cjs"],
     },

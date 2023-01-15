@@ -146,16 +146,6 @@ This should prevent any Gun-Vue related code from running during build stage.
 </td>
       </tr>
 <tr>
-        <td><a href="#userelay">useRelay</a></td>
-        <td><p>Relay connection management</p>
-</td>
-      </tr>
-<tr>
-        <td><a href="#userelays">useRelays</a></td>
-        <td><p>Loads the <a href="https://github.com/amark/gun/wiki/volunteer.dht">list of active volunteer DHT gun nodes</a>  and benchmarks ping for them</p>
-</td>
-      </tr>
-<tr>
         <td><a href="#useworker">useWorker</a></td>
         <td><p>Worker wrapper for heavy functions</p>
 </td>
@@ -501,118 +491,6 @@ Zips the whole post object
 | addMd | <code>function</code> | add a MD file to the zip |
 | addFile | <code>function</code> | add a binary file to the zip |
 | downloadZip | <code>function</code> | initiate the download of the zip file |
-
-<hr />
-
-  <a name="module_useRelay"></a>
-
-## useRelay
-Relay connection management
-
-  
-* [useRelay](#module_useRelay)
-    * _static_
-        * [.useRelay()](#module_useRelay.useRelay) ⇒ <code>useRelay</code>
-    * _inner_
-        * [~Relay](#module_useRelay..Relay) : <code>reactive</code>
-
-### useRelay() ⇒ <code>useRelay</code>
-  Peer server status monitor
-
-**Example**  
-```js
-import { useRelay } from '@gun-vue/composables';
-
-const { relay, setPeer, resetPeer } = useRelay()
-```
-### Relay : <code>reactive</code>
-  Peer server status reactive object
-
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| host | <code>String</code> | the current peer server URL |
-| status | <code>String</code> | current connection status |
-| started | <code>Number</code> | the timestamp of server started current session |
-| pulse | <code>Number</code> | last received timestamp |
-| lag | <code>Number</code> | drift of the timestamp in ms |
-| diff | <code>Number</code> | age of the session in ms |
-| age | <code>String</code> | age of the session in human readable format |
-| blink | <code>Boolean</code> | a Boolean toggled every time the new pulse comes to drive animations |
-
-**Example**  
-```js
-{
-"peer": "https://etogun.glitch.me/gun",
-"host": "6db1edbb5aae",
-"status": "running",
-"started": 1642666725795,
-"pulse": 1642677007483,
-"lag": 8,
-"diff": 10281688,
-"age": "3h",
-"delay": 22,
-"blink": true
-}
-```
-<hr />
-
-  <a name="module_useRelays"></a>
-
-## useRelays
-Loads the [list of active volunteer DHT gun nodes](https://github.com/amark/gun/wiki/volunteer.dht)  and benchmarks ping for them
-
-  
-* [useRelays](#module_useRelays)
-    * _static_
-        * [.loadRelays(loadRelaysOptions)](#module_useRelays.loadRelays) ⇒ <code>relays</code>
-        * [.useRelays()](#module_useRelays.useRelays) ⇒ <code>useRelays</code>
-    * _inner_
-        * [~useRelays](#module_useRelays..useRelays) : <code>Object</code>
-        * [~loadRelaysOptions](#module_useRelays..loadRelaysOptions) : <code>Object</code>
-        * [~Relays](#module_useRelays..Relays) : <code>Array.&lt;Object&gt;</code>
-
-### loadRelays(loadRelaysOptions) ⇒ <code>relays</code>
-  Load the list of the relays
-
-
-| Param | Type |
-| --- | --- |
-| loadRelaysOptions | <code>Object</code> | 
-
-### useRelays() ⇒ <code>useRelays</code>
-  Gets the list of actual gun relays and tool to update the list
-
-**Example**  
-```js
-import { useRelays } from '@gun-vue/composables'
-const { relays, errors, loadRelays } = useRelays()
-```
-### useRelays : <code>Object</code>
-  **Properties**
-
-| Name | Type |
-| --- | --- |
-| Relays | <code>Object</code> | 
-| Errors | <code>Object</code> | 
-| loadRelays | <code>function</code> | 
-
-### loadRelaysOptions : <code>Object</code>
-  **Properties**
-
-| Name | Type |
-| --- | --- |
-| source | <code>String</code> | 
-
-### Relays : <code>Array.&lt;Object&gt;</code>
-  **Properties**
-
-| Name | Type |
-| --- | --- |
-| hostname | <code>String</code> | 
-| url | <code>String</code> | 
-| ping | <code>Number</code> | 
 
 <hr />
 

@@ -16,6 +16,7 @@
 		"dev": "cd app && pnpm run dev",
 		"histoire": "cd components && pnpm run story:dev",
 		"publish": "pnpm run build && pnpm changeset publish",
+		"preview": "cd app && pnpm run preview",
 		"relay": "cd relay && pnpm run start",
 		"sky": "node deploy-to-skynet.js",
 		"tauri": "cd app && pnpm tauri build",
