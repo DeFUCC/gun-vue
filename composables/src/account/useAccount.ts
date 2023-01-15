@@ -3,9 +3,27 @@
  * @module useAccount
  * */
 
-import { useGun, useUser, SEA } from "..";
-import { useColor } from "../ui";
-import { computed, reactive, ref } from "vue";
+interface Profile {
+  name?: string
+  first_name?: string
+  last_name?: string
+	birth_day?: string
+	[key:string]:string | undefined
+}
+
+interface Account {
+  pub: string | Ref
+  color: ComputedRef
+  pulse: number
+  blink: boolean
+  profile: Profile
+	petname?: string
+	[key:string]: any
+}
+
+import { useGun, useUser, SEA } from "../index.js";
+import { useColor } from "../ui/index.js";
+import { computed, ComputedRef, reactive, Ref, ref } from "vue";
 import ms from "ms";
 
 const colorDeep = useColor("deep");
@@ -24,7 +42,7 @@ const colorDeep = useColor("deep");
 
 /**
  * Load and handle user's account by a public key
- * @param {ref(string) | string} pub - The public key of a user as a string or a ref
+ * @param (Ref | string} pub - The public key of a user as a string or a ref
  * @returns {account}
  * @example
  * import { ref } from 'vue'
@@ -41,7 +59,7 @@ const colorDeep = useColor("deep");
  * generatePair()
  */
 
-import { Account } from "./Account";
+
 
 export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
   const gun = useGun();
@@ -50,7 +68,7 @@ export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
   const account = computed(() => {
 
     const acc:Account = reactive({
-      pub,
+      pub:pub.value,
       color: computed(() => (pub.value ? colorDeep.hex(pub.value) : "gray")),
       profile: {
         name: "",
@@ -69,7 +87,7 @@ export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
     });
 
     if (user.is) {
-      gun.user().get('petnames').get(pub.value).on(async d => {
+      gun.user().get('petnames').get(pub.value).on(async(d:string) => {
         acc.petname = await SEA.decrypt(d, user.pair())
       })
     }

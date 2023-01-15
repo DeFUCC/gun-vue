@@ -1,8 +1,0 @@
-{
-  "vueCompilerOptions": {
-    "plugins": [
-      "@volar/vue-language-plugin-pug"
-    ]
-  },
-  "exclude": ["node_modules", "_dist","**/node_modules", "**/dist"]
-}

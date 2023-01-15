@@ -8,4 +8,5 @@ radata
 app/public/docs
 app/public/components
 app/public/sitemap.xml
+composables/public/types
 .env

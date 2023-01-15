@@ -112,6 +112,11 @@ This should prevent any Gun-Vue related code from running during build stage.
     </thead>
     <tbody>
 <tr>
+        <td><a href="#useaccount">useAccount</a></td>
+        <td><p>Basic user management</p>
+</td>
+      </tr>
+<tr>
         <td><a href="#usechat">useChat</a></td>
         <td><p>Basic public chat</p>
 </td>
@@ -226,6 +231,57 @@ This should prevent any Gun-Vue related code from running during build stage.
 </tbody>
   </table>
 
+
+  <a name="module_useAccount"></a>
+
+## useAccount
+Basic user management
+
+  
+* [useAccount](#module_useAccount)
+    * _static_
+        * [.useAccount((Ref)](#module_useAccount.useAccount) ⇒ <code>account</code>
+    * _inner_
+        * [~account](#module_useAccount..account) : <code>computed(object)</code>
+
+### useAccount((Ref) ⇒ <code>account</code>
+  Load and handle user's account by a public key
+
+
+| Param | Description |
+| --- | --- |
+| (Ref | | string} pub - The public key of a user as a string or a ref |
+
+**Example**  
+```js
+import { ref } from 'vue'
+import { useAccount, SEA } from '@gun-vue/composables'
+
+const pub = ref()
+
+async function generatePair() {
+ pub.value = await SEA.pair()
+}
+
+const { account } = useAccount(pub)
+
+generatePair()
+```
+### account : <code>computed(object)</code>
+  Reactive account data
+
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| pub | <code>string</code> | the pub key |
+| color | <code>string</code> | the color hash of the pub key |
+| profile | <code>object</code> | all the profile fields of the account |
+| pulse | <code>number</code> | the recent presence timestamp |
+| blink | <code>boolean</code> | on/off switching pulse |
+| lastSeen | <code>&#x27;online&#x27;</code> \| <code>string</code> | a human readable last seen status ('online' if less than TIMEOUT) |
+
+<hr />
 
   <a name="module_useChat"></a>
 
@@ -1213,7 +1269,7 @@ updateProfile( 'city', 'Moscow' )
 | pulse | <code>Number</code> | latest timestamp from the user. It's emitted every second. Offline timeout is set to 10 seconds. |
 | blink | <code>Boolean</code> | A boolean that toggles on every timestamp received |
 | lastSeen | <code>Sting</code> | Shows 'online' if recent pulse is less then 10s ago or a human readable time string |
-| db | <code>gun</code> | `gun.user(pub)` ref to query any additional user data |
+| db | [<code>gun</code>](#gun) | `gun.user(pub)` ref to query any additional user data |
 
 **Example**  
 ```js
@@ -1281,6 +1337,80 @@ updateProfile( 'city', 'Moscow' )
 | leave | <code>function</code> | log out |
 
 <hr />
+
+  <a name="gun"></a>
+
+## gun
+The main Gun instance for database operations
+
+**Kind**: global variable  
+  <hr />
+
+  <a name="gun2"></a>
+
+## gun2
+Secondary Gun instance for key management
+
+**Kind**: global variable  
+  <hr />
+
+  <a name="SEA"></a>
+
+## SEA
+SEA library
+
+**Kind**: global constant  
+  <hr />
+
+  <a name="useGun"></a>
+
+## useGun(options) ⇒ <code>Gun</code>
+Instantiate a Gun instance for DB manipulations
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| options | <code>Object</code> | options fot this gun instance, like { localstorage:true } |
+
+**Example**  
+```js
+import { useGun } from '@gun-vue/composables'
+
+const gun = useGun()
+```
+  <hr />
+
+  <a name="useGun2"></a>
+
+## useGun2(opts) ⇒ <code>Gun</code>
+get a secondary Gun instance for certificate management
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| opts | <code>object</code> | options fot this gun instance, like { localstorage:true } |
+
+  <hr />
+
+  <a name="soul"></a>
+
+## soul()
+**Get a soul for any given node**
+A wrapper for `Gun.node.soul`
+
+**Kind**: global function  
+  <hr />
+
+  <a name="genUUID"></a>
+
+## genUUID()
+**Generate a random UUID**
+A wrapper for `Gun.text.random`
+
+**Kind**: global function  
+  <hr />
 
 </docs>
 

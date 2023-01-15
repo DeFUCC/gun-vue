@@ -30,7 +30,7 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "vite build",
+		"build": "tsc && vite build",
 		"deploy": "sh deploy.sh",
 		"dev": "vite",
 		"doc": "cd jsdoc2md && sh docs.sh",
