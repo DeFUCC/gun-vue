@@ -11,12 +11,13 @@
 		"module": "ESNext",
 		"moduleResolution": "Node",
 		"resolveJsonModule": true,
+		"declarationMap": true,
 		"isolatedModules": true,
 		"noEmit": true,
 		"baseUrl": "./",
 		"paths": {
-			"#composables": ["../composables/src/"],
+			"#composables": ["../composables/src/"]
 		}
 	},
-	"include": ["./src", "../composables/*"],
+	"include": ["./src", "../composables/*"]
 }

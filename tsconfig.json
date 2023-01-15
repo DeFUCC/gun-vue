@@ -14,6 +14,6 @@
 	"vueCompilerOptions": {
 		"plugins": ["@volar/vue-language-plugin-pug"]
 	},
-	"include": ["src/**/*"],
+	"include": ["composables", "components"],
 	"exclude": ["node_modules", "_dist/**", "**/node_modules/**", "**/dist"]
 }

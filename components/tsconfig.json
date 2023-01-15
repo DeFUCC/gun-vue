@@ -13,11 +13,12 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"noEmit": true,
+		"declarationMap": true,
 		"baseUrl": "./",
 		"paths": {
 			"@/*": ["./*"],
-			"#composables": ["../composables/src/"],
-		},
+			"#composables": ["../composables/src/"]
+		}
 	},
 	"include": ["./src"]
 }

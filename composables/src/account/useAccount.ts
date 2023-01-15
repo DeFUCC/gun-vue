@@ -3,7 +3,7 @@
  * @module useAccount
  * */
 
-interface Profile {
+export interface Profile {
   name?: string
   first_name?: string
   last_name?: string
@@ -11,7 +11,7 @@ interface Profile {
   [key: string]: string | undefined
 }
 
-interface Account {
+export interface Account {
   pub: string | Ref
   color: ComputedRef
   pulse: number
