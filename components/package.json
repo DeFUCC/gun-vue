@@ -27,7 +27,8 @@
   "main": "./dist/components.js",
   "module": "./dist/components.js",
   "files": [
-    "dist"
+    "/dist",
+    "components.d.ts"
   ],
   "scripts": {
     "build": "vite build",

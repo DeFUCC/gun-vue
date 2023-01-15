@@ -18,7 +18,7 @@
 		"paths": {
 			"@/*": ["./*"],
 			"#composables": ["../composables/src/"],
-		}
+		},
 	},
 	"include": ["./src"]
 }

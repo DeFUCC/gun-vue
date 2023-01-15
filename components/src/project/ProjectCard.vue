@@ -8,7 +8,7 @@ const colorDeep = useColor('deep')
 
 defineEmits(['user'])
 
-const props = defineProps({
+defineProps({
   path: { type: String, default: '' },
   project: {
     type: Object,

@@ -5,7 +5,7 @@ const props = defineProps({
   pub: { type: String, default: currentRoom?.pub }
 })
 
-const { search, projects, candidates } = useProjects(props.pub)
+const { candidates } = useProjects(props.pub)
 
 defineEmits(['open'])
 
