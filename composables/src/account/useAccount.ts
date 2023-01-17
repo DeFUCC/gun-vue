@@ -13,7 +13,7 @@ export interface Profile {
 
 export interface Account {
   pub: string | Ref
-  color: ComputedRef
+  color: string
   pulse: number
   blink: boolean
   profile: Profile
