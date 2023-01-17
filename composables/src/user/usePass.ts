@@ -15,7 +15,7 @@ import { ISEAPair } from "gun";
  * @property {Object} dec
  */
 
-interface Pass {
+export interface Pass {
 	input: string
 	show: boolean
 	safePair: boolean

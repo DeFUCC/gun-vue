@@ -44,7 +44,7 @@ const colorDeep = useColor("deep");
 
 /**
  * Load and handle user's account by a public key
- * @param (Ref | string} pub - The public key of a user as a string or a ref
+ * @param {Ref | string} pub - The public key of a user as a string or a ref
  * @returns {account}
  * @example
  * import { ref } from 'vue'
