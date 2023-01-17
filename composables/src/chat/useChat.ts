@@ -3,10 +3,16 @@
  * @module useChat
  */
 
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed, ComputedRef } from "vue";
 import slugify from "slugify";
 import { useUser, useGun, currentRoom } from "..";
 import { refDebounced } from '@vueuse/core'
+
+export interface Message {
+  timestamp: string | number
+  author?: string
+  text: string
+}
 
 export function useChat() {
   const gun = useGun();
@@ -19,7 +25,7 @@ export function useChat() {
 
   const chatDb = gun.user(currentRoom.pub).get("chat");
 
-  chatDb.map().on((d, k) => {
+  chatDb.map().on((d: string, k: string) => {
     const [title, author] = k.split("@");
     chats[title] = chats[title] || {};
     if (d) {
@@ -29,7 +35,7 @@ export function useChat() {
     }
   });
 
-  function addChat(title) {
+  function addChat(title: string) {
     chatDb
       .get(`${slugify(title) || title}@${user.pub}`)
       .put(true, null, { opt: { cert: currentRoom.features.chat } });
@@ -39,16 +45,17 @@ export function useChat() {
     gun.user(currentRoom.pub).get("chat/" + currentChat.value)
   );
 
-  const messages = computed(() => {
+  const messages: ComputedRef<{ [key: string]: Message }> = computed(() => {
     const msgs = reactive({});
     topicDb.value.map().on((text, k) => {
       const timestamp = k.substring(0, 13);
       const author = k.substring(14);
-      msgs[k] = {
+      const message: Message = {
         timestamp,
         author,
         text,
       };
+      msgs[k] = message
     });
     return msgs;
   });
@@ -58,7 +65,7 @@ export function useChat() {
   const sorted = computed(() => debList.value.sort((a, b) => a.timestamp > b.timestamp ? 1 : -1))
 
 
-  function send(message) {
+  function send(message: string) {
     if (!message) return;
     let now = Date.now();
     topicDb.value
