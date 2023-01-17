@@ -1,5 +1,5 @@
 import { computed, markRaw, nextTick, reactive, ref, onMounted } from 'vue'
-import { createDrauu } from 'drauu'
+import { createDrauu, Drauu, Options } from 'drauu'
 import { toReactive, useStorage, useCycleList, useDebounceFn } from '@vueuse/core'
 
 import { useGun, currentRoom, useUser } from '..'
@@ -35,24 +35,27 @@ export const draw = reactive({
   canClear: false,
   ing: false,
   initiated: false,
-  content: ''
+  content: '',
+  clear: undefined
 })
 
 export const brush = toReactive(useStorage('drawing-brush', {
   color: draw.colors[0],
   size: 10,
   mode: 'stylus',
+  arrowEnd: false
 }))
 
 const _mode = ref('stylus')
 let disableDump = false
 
-export const drauuOptions = reactive({
+//@ts-ignore - fix types later
+export const drauuOptions: Options = reactive({
   brush,
   acceptsInputTypes: computed(() => draw.enabled ? undefined : ['pen']),
   // coordinateTransform: true,
 })
-export const drauu = markRaw(createDrauu(drauuOptions))
+export const drauu: Drauu = markRaw(createDrauu(drauuOptions))
 
 export function loadCanvas() {
   disableDump = true

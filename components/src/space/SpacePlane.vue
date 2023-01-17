@@ -1,49 +1,26 @@
-
 <script setup>
-import {
-  watch
-} from 'vue'
-import {
-  useSpace,
-  useUser,
-  useColor,
-  useRoom
-} from '#composables'
-import {
-  useDrag,
-  usePinch
-} from '@vueuse/gesture'
-import {
-  useDraw
-} from '#composables'
-import {
-  ref,
-  reactive,
-  onMounted,
-  onBeforeUnmount
-} from 'vue'
-import {
-  useDebounceFn,
-  useThrottleFn
-} from '@vueuse/core'
+import { watch } from "vue";
+import { useSpace, useUser, useColor, useRoom } from "#composables";
+import { useDrag, usePinch } from "@vueuse/gesture";
+import { useDraw } from "#composables";
+import { ref, reactive, onMounted, onBeforeUnmount } from "vue";
+import { useDebounceFn, useThrottleFn } from "@vueuse/core";
 
 const props = defineProps({
   pad: {
     type: Number,
-    default: 50
+    default: 50,
   },
   coord: {
     type: String,
-    default: ''
-  }
-})
-const emit = defineEmits(['user', 'enter', 'leave', 'chat', 'update:coord'])
+    default: "",
+  },
+});
+const emit = defineEmits(["user", "enter", "leave", "chat", "update:coord"]);
 
-const {
-  user
-} = useUser()
+const { user } = useUser();
 
-const colorDeep = useColor('deep')
+const colorDeep = useColor("deep");
 
 const {
   space,
@@ -57,63 +34,62 @@ const {
   guestCount,
   area,
   join,
-  place
+  place,
 } = useSpace({
   TIMEOUT: 10000,
-})
+});
 
 watch(guestCount, (next, prev) => {
-
   if (next > prev) {
-    emit('enter')
+    emit("enter");
   } else {
-    emit('leave')
+    emit("leave");
   }
-})
+});
 
 const debouncedCoord = useDebounceFn((pos) => {
   place({
     x: pos[0],
-    y: pos[1]
-  })
-  emit('update:coord', `${pos[0]},${pos[1]}`)
-}, 200)
+    y: pos[1],
+  });
+  emit("update:coord", `${pos[0]},${pos[1]}`);
+}, 200);
 
-useDrag(e => {
-  if (!(e.delta[0] && e.delta[1])) return
-  if (draw.ing) return
-  const [x, y] = e.delta
-  pos[0] -= x
-  pos[1] -= y
-  debouncedCoord(pos)
-}, {
-  domTarget: plane,
-})
+useDrag(
+  (e) => {
+    if (!(e.delta[0] && e.delta[1])) return;
+    if (draw.ing) return;
+    const [x, y] = e.delta;
+    pos[0] -= x;
+    pos[1] -= y;
+    debouncedCoord(pos);
+  },
+  {
+    domTarget: plane,
+  }
+);
 
-const paper = ref()
+const paper = ref();
 
-const {
-  drauu,
-  draw,
-  loadCanvas
-} = useDraw()
+const { drauu, draw, loadCanvas } = useDraw();
 
 onMounted(() => {
-  drauu.mount(paper.value, paper.value.parentElement)
-  loadCanvas()
-})
+  drauu.mount(paper.value, paper.value.parentElement);
+  loadCanvas();
+});
 
 onBeforeUnmount(() => {
-  drauu.unmount()
-})
+  drauu.unmount();
+});
 
 const selectedUser = reactive({
-  pub: ''
-})
+  pub: "",
+});
 </script>
 <!-- eslint-disable vue/no-v-html -->
 <template lang="pug">
 .flex.flex-col.items-center
+  p {{ links }}
   .text-2xl.p-8.top-15vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-4(
     v-if="!space.joined && user.is" 
     :style="{ borderColor: user.color }"
@@ -213,7 +189,7 @@ const selectedUser = reactive({
         @click="selectedUser.pub = guest.pub"
         )
   ui-layer.z-4000(
-    :open="selectedUser.pub" 
+    :open="!!selectedUser.pub" 
     @close="selectedUser.pub = null"
     )
     account-home.max-w-600px(

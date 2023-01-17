@@ -8,12 +8,26 @@ import { useSvgMouse } from "../ui";
 import { useUser } from "../user";
 import { computed, ref, reactive, watchEffect } from "vue";
 import { getFirstEmoji, currentRoom } from "..";
-import { getArrow } from "curved-arrows";
+import { ArrowDescriptor, getArrow } from "curved-arrows";
 import { useElementBounding } from "@vueuse/core";
 import { useClamp } from '@vueuse/math'
 
+
+
+interface Guest {
+  pub: string
+  draw: string
+  blink: boolean
+  pulse: number
+  hasPos: boolean
+  pos: {
+    x: number
+    y: number
+  };
+}
+
 /**
- * @typedef {Object} useSpace
+ * @interface UseSpace
  * @property {reactive} space The main object
  * @property {reactive} guests Active guests
  * @property {reactive} links Links between active guests
@@ -24,9 +38,10 @@ import { useClamp } from '@vueuse/math'
  * @property {Function} join Join the space with the current user
  */
 
+
+
 /**
  *  A space to navigate with mouse clicks
- * @returns {useSpace}
  * @example
  * const { space, plane, links, width, height, guests, area, join } = useSpace({
  * TIMEOUT: 10000,
@@ -85,7 +100,7 @@ export function useSpace({
   //   });
   // }
 
-  const allGuests = reactive({});
+  const allGuests: { [key: string]: Guest } = reactive({});
   const mates = reactive({});
   const links = reactive({});
 
@@ -105,7 +120,7 @@ export function useSpace({
     if (pub == user.pub) {
       space.joined = true;
     }
-    allGuests[pub] = {
+    const guest: Guest = {
       pub: pub,
       draw: '',
       blink: false,
@@ -116,29 +131,30 @@ export function useSpace({
         y: 0,
       }
     };
+    allGuests[pub] = guest
 
 
 
-    gun.user(currentRoom.pub).get("space").get(pub).get('pos').on((d) => {
+    gun.user(currentRoom.pub).get("space").get(pub).get('pos').on((d: string) => {
       allGuests[pub].hasPos = true;
       allGuests[pub].pos = typeof d == "string" ? JSON.parse(d) : d;
     });
 
-    gun.user(currentRoom.pub).get("space").get(pub).get('draw').on(d => {
+    gun.user(currentRoom.pub).get("space").get(pub).get('draw').on((d: string) => {
       allGuests[pub].draw = d
     })
 
     gun
       .user(pub)
       .get("pulse")
-      .on((d) => {
-        allGuests[pub].pulse = d;
+      .on((d: string) => {
+        allGuests[pub].pulse = Number(d);
         allGuests[pub].blink = !allGuests[pub].blink;
       })
       .back()
       .get("mates")
       .map()
-      .on((d, k) => {
+      .on((d: string, k: string) => {
         mates[pub] = mates[pub] || {};
         mates[pub][k] = d;
       });
@@ -198,7 +214,21 @@ export function useSpace({
   };
 }
 
-function generateArrow(pos1, pos2, seed = 0) {
+export interface Pos { x: number; y: number }
+export interface Arrow {
+  sx: number
+  sy: number
+  c1x: number
+  c1y: number
+  c2x: number
+  c2y: number
+  ex: number
+  ey: number
+  ae: number
+  as: number
+}
+
+function generateArrow(pos1: Pos, pos2: Pos, seed = 0): Arrow {
   let arrowArray = getArrow(
     pos1.x,
     pos1.y,
