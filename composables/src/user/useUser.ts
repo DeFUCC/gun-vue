@@ -89,7 +89,7 @@ export interface User {
 		password: any
 	};
 	db?: IGunUserInstance
-	pair(): any;
+	pair(): ISEAPair;
 }
 
 export const user: User = reactive({

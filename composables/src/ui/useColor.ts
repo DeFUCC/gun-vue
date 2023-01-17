@@ -5,6 +5,8 @@
 
 import ColorHash from "color-hash";
 
+export type Palette = 'light' | 'regular' | 'deep' | 'dark'
+
 const color = {
   light: new ColorHash({
     saturation: [0.05, 0.08, 0.22],
@@ -30,7 +32,7 @@ const color = {
 
 /**
  * Get a color generator of a certain palette
- * @param {('light'|'regular'|'deep'|'dark')} palette
+ * @param {Palette} palette
  * @returns {ColorHash} Color-Hash instance
  * @see https://github.com/zenozeng/color-hash
  * @example
@@ -40,7 +42,7 @@ const color = {
  * // color == '#e052ae'
  */
 
-export function useColor(palette = "deep") {
+export function useColor(palette: Palette = "deep"): ColorHash {
   if (typeof palette == "object") {
     return new ColorHash(palette);
   }
