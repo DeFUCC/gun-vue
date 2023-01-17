@@ -4,7 +4,7 @@
 
 <docs lang="md">
 
-# Gun DB + Vue UI composables collection
+  # Gun DB + Vue UI composables collection
 
 A Composition API `use` functions set for Gun.js and Vue 3 reactivity system
 
@@ -122,11 +122,6 @@ This should prevent any Gun-Vue related code from running during build stage.
 </td>
       </tr>
 <tr>
-        <td><a href="#usecrypto">useCrypto</a></td>
-        <td><p>SEA cryptography abstraction</p>
-</td>
-      </tr>
-<tr>
         <td><a href="#usedictionary">useDictionary</a></td>
         <td></td>
       </tr>
@@ -215,66 +210,6 @@ Basic public chat
 Basic private chat
 
   <hr />
-
-  <a name="module_useCrypto"></a>
-
-## useCrypto
-SEA cryptography abstraction
-
-  
-* [useCrypto](#module_useCrypto)
-    * _static_
-        * [.encFor(data, sender, receiver)](#module_useCrypto.encFor) ⇒ <code>String</code>
-        * [.decFrom(data, sender, receiver)](#module_useCrypto.decFrom) ⇒ <code>String</code>
-        * [.getShortHash(text, seed)](#module_useCrypto.getShortHash) ⇒ <code>String</code>
-    * _inner_
-        * [~Entity](#module_useCrypto..Entity) : <code>Object</code>
-
-### encFor(data, sender, receiver) ⇒ <code>String</code>
-  Encrypt data for one receiver entity
-1. Generates encryption secret using bob's epub and current user pair
-2. Enctypts data with this secret
-
-**Returns**: <code>String</code> - Encrypted data string to be sent  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| data | <code>String</code> | Stringified data to be encrypted |
-| sender | <code>Entity</code> | An object with `pub` and `epub` strings - the user.is object of the reciever's account |
-| receiver | <code>SEAPair</code> | SEA Pair of the sender – `epriv` key will be used to encrypt the data |
-
-### decFrom(data, sender, receiver) ⇒ <code>String</code>
-  Decrypt a private message from an entity
-1. Generates secret using senders `epub` and current user pair
-2. Decrypts the data with this secret
-
-**Returns**: <code>String</code> - Decrypted data  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| data | <code>String</code> | Encrypted private data |
-| sender | <code>Entity</code> | An object with `pub` and `epub` strings - the user.is object of the sender's account |
-| receiver | <code>SEAPair</code> | SEA Pair of the receiver – `epriv` key will be used to encrypt the data |
-
-### getShortHash(text, seed) ⇒ <code>String</code>
-  Calculate a hex hash for any string data
-
-**Returns**: <code>String</code> - The hex encoded SHA-1 hash  
-
-| Param | Type |
-| --- | --- |
-| text | <code>String</code> | 
-| seed | <code>String</code> | 
-
-### Entity : <code>Object</code>
-  **Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| pub | <code>String</code> | the public key |
-| epub | <code>String</code> | the elliplic encryption epub |
-
-<hr />
 
   <a name="module_useDictionary"></a>
 
@@ -879,13 +814,13 @@ Handle mouse movement inside an SVG
 </docs>
 
 <style scoped>
-hr {
-  height: 1px;
-  background-color: #3333;
-  margin: 2em 0 8em 0;
-}
+  hr {
+    height: 1px;
+    background-color: #3333;
+    margin: 2em 0 8em 0;
+  }
 
-h3 {
-  margin-top: 3em;
-}
+  h3 {
+    margin-top: 3em;
+  }
 </style>

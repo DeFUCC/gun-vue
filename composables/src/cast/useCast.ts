@@ -1,14 +1,15 @@
 import { useTimestamp } from '@vueuse/core'
 import { useDevicesList, useEventListener, useStorage } from '@vueuse/core'
 import { ref, reactive, computed, watch, shallowRef, nextTick } from 'vue'
+import type { Ref } from 'vue'
+import type { Options } from 'recordrtc'
 
-export const currentCamera = useStorage('cast-camera', 'default')
-export const currentMic = useStorage('cast-mic', 'default')
-export const showRecordingDialog = ref()
+export const currentCamera: Ref<string> = useStorage('cast-camera', 'default')
+export const currentMic: Ref<string> = useStorage('cast-mic', 'default')
 
 export const recordingName = ref('')
 export const recordCamera = ref(true)
-export const mimeType = useStorage('slidev-record-mimetype', 'video/webm')
+export const mimeType: Ref<string> = useStorage('slidev-record-mimetype', 'video/webm')
 
 export const mimeExtMap = {
   'video/webm': 'webm',
@@ -16,10 +17,10 @@ export const mimeExtMap = {
   'video/x-matroska;codecs=avc1': 'mkv',
 }
 
-export function getFilename(media, mimeType) {
+export function getFilename(media: string, mimeType: string) {
   const d = new Date()
 
-  const pad = (v) => `${v}`.padStart(2, '0')
+  const pad = (v: number) => `${v}`.padStart(2, '0')
 
   const date = `${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}`
 
@@ -40,8 +41,6 @@ export const fileNames = reactive({
   camera: computed(() => getFilename('camera', mimeType.value)),
 })
 
-
-
 export const {
   devices,
   videoInputs: cameras,
@@ -60,7 +59,7 @@ export const {
   },
 })
 
-export function download(name, url) {
+export function download(name: string, url: string) {
   const a = document.createElement('a')
   a.setAttribute('href', url)
   a.setAttribute('download', name)
@@ -71,7 +70,7 @@ export function download(name, url) {
 
 export function useRecording() {
   const recording = ref(false)
-  const recordingStartedAt = ref()
+  const recordingStartedAt = ref(0)
 
   const timestamp = useTimestamp()
 
@@ -90,7 +89,7 @@ export function useRecording() {
   const streamCapture = shallowRef()
   const streamSlides = shallowRef()
 
-  const config = {
+  const config: Options = {
     type: 'video',
     bitsPerSecond: 4 * 256 * 8 * 1024,
     // Extending recording limit as default is only 1h (see https://github.com/muaz-khan/RecordRTC/issues/144)
@@ -150,7 +149,7 @@ export function useRecording() {
     }
   })
 
-  async function startRecording(customConfig) {
+  async function startRecording(customConfig = {}) {
     await ensureDevicesListPermissions()
     const { default: Recorder } = await import('recordrtc')
     await startCameraStream()
@@ -161,8 +160,6 @@ export function useRecording() {
         frameRate: 30,
         width: 3840,
         height: 2160,
-        cursor: 'motion',
-        resizeMode: 'crop-and-scale',
       },
     })
     streamCapture.value.addEventListener('inactive', stopRecording)
@@ -221,7 +218,7 @@ export function useRecording() {
     })
   }
 
-  function closeStream(stream) {
+  function closeStream(stream: Ref) {
     const s = stream.value
     if (!s)
       return
