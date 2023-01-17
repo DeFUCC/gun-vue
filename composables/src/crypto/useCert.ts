@@ -1,12 +1,22 @@
 import { SEA } from "..";
 
+import type { ISEAPair } from 'gun'
+
+export interface CertOptions {
+  pair: ISEAPair,
+  tag: string,
+  dot: string,
+  users: string,
+  personal: boolean
+}
+
 export async function issueCert({
   pair,
   tag = "word",
   dot = '',
   users = "*",
   personal = false,
-} = {}) {
+}: CertOptions): Promise<string | void> {
   let policy = { "*": `${tag}` };
   if (dot) {
     policy["."] = dot;
@@ -22,9 +32,7 @@ export async function issueCert({
   }
 }
 
-window.issueCert = issueCert;
-
-export async function generateCerts({ pair, list = [] } = {}) {
+export async function generateCerts({ pair, list = [] }: { pair: ISEAPair, list: CertOptions[] }): Promise<{ [key: string]: string }> {
   const all = {};
   for (let opt of list) {
     all[opt.tag] = await issueCert({ ...opt, pair });

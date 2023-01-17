@@ -4,7 +4,7 @@
 
 <docs lang="md">
 
-  # Gun DB + Vue UI composables collection
+# Gun DB + Vue UI composables collection
 
 A Composition API `use` functions set for Gun.js and Vue 3 reactivity system
 
@@ -879,13 +879,13 @@ Handle mouse movement inside an SVG
 </docs>
 
 <style scoped>
-  hr {
-    height: 1px;
-    background-color: #3333;
-    margin: 2em 0 8em 0;
-  }
+hr {
+  height: 1px;
+  background-color: #3333;
+  margin: 2em 0 8em 0;
+}
 
-  h3 {
-    margin-top: 3em;
-  }
+h3 {
+  margin-top: 3em;
+}
 </style>
