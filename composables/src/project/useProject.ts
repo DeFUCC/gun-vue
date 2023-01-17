@@ -5,7 +5,18 @@ import { useUser } from '../user'
 import { projectsPath } from '.'
 import { SEA } from 'gun'
 import { hashText, isHash } from '../crypto'
-import { Project } from './projects'
+
+
+export interface Item {
+  id?: string
+  [key: string]: string | undefined
+}
+
+export type ProjectType = 'event' | 'object'
+
+export interface Project extends Item {
+  type?: ProjectType,
+}
 
 
 export const newProject = reactive({
@@ -41,7 +52,7 @@ export async function addProject() {
 
 }
 
-export function updateProjectField(title:string, field:string, value:string) {
+export function updateProjectField(title: string, field: string, value: string) {
   const proj = gun.user().get(projectsPath).get(title)
   proj.get(field).put(value, () => {
     proj.get('updatedAt').put(Date.now())
@@ -65,14 +76,14 @@ export function useProject(path: string) {
   })
 
 
-  function updateField(field:string, value:string) {
+  function updateField(field: string, value: string) {
     updateProjectField(path.slice(0, -88), field, value)
   }
 
-  async function updateCover(image:string) {
+  async function updateCover(image: string) {
     console.log(image)
     const hash = await hashText(image)
-    if(!hash) return
+    if (!hash) return
     gun.get('#cover').get(hash).put(image)
     updateField('cover', hash)
   }
@@ -84,7 +95,7 @@ export function useComputedProject(path = ref()) {
   const gun = useGun()
 
   const project = computed(() => {
-    const proj:Project = reactive({})
+    const proj: Project = reactive({})
     gun.user(currentRoom.pub).get(projectsPath).get(path.value).map().on(async (d, k) => {
       if (k == 'cover' && isHash(d)) {
         proj[k] = await gun.get('#cover').get(d).then()
@@ -95,11 +106,11 @@ export function useComputedProject(path = ref()) {
     return proj
   })
 
-  function updateField(field:string, value:string) {
+  function updateField(field: string, value: string) {
     updateProjectField(path.value.slice(0, -88), field, value)
   }
 
-  async function updateCover(image:string) {
+  async function updateCover(image: string) {
     const hash = await hashText(image)
     if (!hash) return
     gun.get('#cover').get(hash).put(image)
@@ -111,7 +122,7 @@ export function useComputedProject(path = ref()) {
 
 
 
-export async function removeProject(path:string) {
+export async function removeProject(path: string) {
   const gun = useGun()
   const gun2 = useGun2()
   const { user } = useUser()

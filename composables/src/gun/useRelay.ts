@@ -38,7 +38,7 @@ export const peer: Ref = useStorage("peer", defaultPeer);
  * }
  */
 
-interface Relay {
+export interface Relay {
   peer: string
   host: string
   status: string

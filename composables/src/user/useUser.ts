@@ -122,7 +122,7 @@ export const user: User = reactive({
  * const { user, auth, leave } = useUser()
  */
 
-interface UseUser {
+export interface UseUser {
 	user: User
 	auth: (pair: ISEAPair, cb?: (pair: ISEAPair) => void) => Promise<void>
 	leave: () => void

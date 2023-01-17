@@ -186,8 +186,6 @@ export async function parsePost(data) {
 
 /**
  * Get and update the timestamp of an immutable post
- * @param {object} options - {tag, hash} 
- * @returns {} - {timestamp, msTime, refresh}
  */
 
 export function usePostTimestamp({ tag, hash } = {}) {
