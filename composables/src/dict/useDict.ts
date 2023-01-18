@@ -3,18 +3,23 @@
  */
 
 import Fuse from "fuse.js";
-import { ref, reactive, computed, watch } from 'vue'
+import { ref, reactive, computed, watch, type Ref, ComputedRef } from 'vue'
 import { useStorage } from '@vueuse/core';
 
 import { useGun, currentRoom, hashText, useUser, hashObj } from '..';
 
+interface DictRecord {
+  word: string
+  def: string
+}
 
-export const dictRecord = reactive({
+
+export const dictRecord: DictRecord = reactive({
   word: null,
   def: null
 })
 
-export const dictLang = useStorage('dict-lang', 'en')
+export const dictLang: Ref = useStorage('dict-lang', 'en')
 
 watch(dictRecord, () => {
   if (dictRecord.word && dictRecord.def) {
@@ -24,7 +29,6 @@ watch(dictRecord, () => {
 
 /**
  * Use filtrable words list
- * @returns {useWords}
  */
 
 export function useWords() {
@@ -62,14 +66,14 @@ export function useWords() {
     linked[hash] = linked[hash] || await gun.get('dict').get('#word').get(hash).then()
   })
 
-  const words = reactive({})
+  const words: { [key: string]: string } = reactive({})
 
   gun.get('dict').get('#word').map().once((d, k) => {
     if (d.includes(' ')) return
     words[k] = d
   })
 
-  const fuse = computed(() => {
+  const fuse: ComputedRef<Fuse<{ text: string; hash: string; }>> = computed(() => {
     let arr = Object.entries(words).map(entry => {
       return { text: entry[1], hash: entry[0] }
     })
@@ -84,15 +88,16 @@ export function useWords() {
   return { input, found, words, linked, word, addWord }
 }
 
+/**
+ * Get a word by it's hash
+ */
 
-
-
-export function useWord(hash) {
+export function useWord(hash: string) {
   const gun = useGun()
 
-  const word = ref()
+  const word = ref('')
 
-  gun.get('dict').get('#word').get(hash).once((d) => {
+  gun.get('dict').get('#word').get(hash).once((d: string) => {
     word.value = letterFilter(d)
   })
   return { word }
@@ -101,7 +106,6 @@ export function useWord(hash) {
 
 /**
  * Dictionary definitions browser
- * @returns {useDefs}
  */
 
 export function useDefs() {
@@ -164,7 +168,7 @@ export function useDefs() {
 
 
 
-async function addRecord({ word, def } = {}) {
+async function addRecord({ word, def }: { word: string, def: string }) {
 
   const gun = useGun()
   const { user } = useUser();
@@ -182,7 +186,7 @@ async function addRecord({ word, def } = {}) {
   dictRecord.def = null
 }
 
-export function useDictRecordsFor(hash) {
+export function useDictRecordsFor(hash: string) {
   const gun = useGun()
   const links = reactive({})
   gun
@@ -283,7 +287,7 @@ export function parseHashLink(link) {
 }
 
 
-export function renderStress({ text, stress } = {}) {
+export function renderStress({ text, stress }: { text: string, stress: number }) {
   const stressMark = '&#x301;'
   if (!text) return;
   let str = text.slice(0, stress + 1) + stressMark + text.slice(stress + 1);

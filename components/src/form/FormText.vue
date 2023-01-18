@@ -36,7 +36,7 @@ nextTick(() => {
 })
 
 function importPostFile(event) {
-  uploadText(event, (file) => {
+  uploadText(event.target?.files, (file) => {
     let { frontmatter, content } = parseMd(file);
     emit('frontmatter', frontmatter)
     if (content) {
