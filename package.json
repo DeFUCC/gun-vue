@@ -21,7 +21,7 @@
 		"sky": "node deploy-to-skynet.js",
 		"tauri": "cd app && pnpm tauri build",
 		"version": "pnpm changeset version",
-		"types": "cd composables && tsc"
+		"types": "cd composables && tsc && cd .. && typedoc"
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.26.0",

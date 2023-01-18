@@ -14,7 +14,7 @@ import { useClamp } from '@vueuse/math'
 
 
 
-interface Guest {
+export interface Guest {
   pub: string
   draw: string
   blink: boolean

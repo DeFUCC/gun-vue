@@ -112,15 +112,6 @@ This should prevent any Gun-Vue related code from running during build stage.
     </thead>
     <tbody>
 <tr>
-        <td><a href="#usedictionary">useDictionary</a></td>
-        <td></td>
-      </tr>
-<tr>
-        <td><a href="#usefile">useFile</a></td>
-        <td><p>File handling functions</p>
-</td>
-      </tr>
-<tr>
         <td><a href="#usemd">useMd</a></td>
         <td><p>Handle Markdown files</p>
 </td>
@@ -171,93 +162,6 @@ This should prevent any Gun-Vue related code from running during build stage.
 </tbody>
   </table>
 
-
-  <a name="module_useDictionary"></a>
-
-## useDictionary
-  
-* [useDictionary](#module_useDictionary)
-    * [.useWords()](#module_useDictionary.useWords) ⇒ <code>useWords</code>
-    * [.useDefs()](#module_useDictionary.useDefs) ⇒ <code>useDefs</code>
-
-### useWords() ⇒ <code>useWords</code>
-  Use filtrable words list
-
-### useDefs() ⇒ <code>useDefs</code>
-  Dictionary definitions browser
-
-<hr />
-
-  <a name="module_useFile"></a>
-
-## useFile
-File handling functions
-
-  
-* [useFile](#module_useFile)
-    * _static_
-        * [.downloadFile(text, fileType, fileName)](#module_useFile.downloadFile)
-        * [.uploadText(event, callback)](#module_useFile.uploadText)
-        * [.usePictureUpload(Options)](#module_useFile.usePictureUpload) ⇒ <code>PictureUploadData</code>
-    * _inner_
-        * [~PictureUploadOptions](#module_useFile..PictureUploadOptions) : <code>Object</code>
-        * [~PictureUploadData](#module_useFile..PictureUploadData) : <code>Object</code>
-
-### downloadFile(text, fileType, fileName)
-  A method to download any text as a file
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| text | <code>String</code> | the text to download |
-| fileType | <code>String</code> | the file type like "application/json" |
-| fileName | <code>String</code> | the full file name like "myKey.json" |
-
-### uploadText(event, callback)
-  Upload and parse JSON keypair
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| event | <code>Event</code> | `$event` from the `@change` handler |
-| callback | <code>function</code> | a function to handle the loaded file from the reader |
-
-### usePictureUpload(Options) ⇒ <code>PictureUploadData</code>
-  Process an uploaded picture by rendering in into a canvas with given size. Returns a base64 encoded image to be stored and displayed as `img.src`
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| Options | <code>PictureUploadOptions</code> | uploader options |
-
-**Example**  
-```js
-const src = ref(null)
-
-const {state, handleUpload} = usePictureUpload({
- preserveRatio: true,
-})
-
-watch(()=>state.output, file => src.value = file.content)
-```
-### PictureUploadOptions : <code>Object</code>
-  **Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| preserveRatio | <code>Boolean</code> | should we preserve the original picture aspect ratio? Default: `false` |
-| picSize | <code>Number</code> | width of the rendered picture |
-| maxSize | <code>Number</code> | maximum size of an uploaded picture |
-
-### PictureUploadData : <code>Object</code>
-  **Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| state | <code>reactive</code> | a reactive object with the state of the upload |
-| handleUpload | <code>function</code> | handler function to use with `@change="handleUpload"` on an `<input type="file">` element |
-
-<hr />
 
   <a name="module_useMd"></a>
 

@@ -8,7 +8,7 @@ import { useStorage } from '@vueuse/core';
 
 import { useGun, currentRoom, hashText, useUser, hashObj } from '..';
 
-interface DictRecord {
+export interface DictRecord {
   word: string
   def: string
 }

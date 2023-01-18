@@ -64,11 +64,17 @@ export function uploadText(files: FileList, callback: Function = (r: any) => con
 // https://zocada.com/compress-resize-images-javascript-browser/
 
 /**
- * @typedef {Object} PictureUploadOptions
- * @property {Boolean} preserveRatio - should we preserve the original picture aspect ratio? Default: `false`
- * @property {Number} picSize - width of the rendered picture
- * @property {Number} maxSize - maximum size of an uploaded picture
+ * @interface PictureUploadOptions
+ * @param  preserveRatio - should we preserve the original picture aspect ratio? Default: `false`
+ * @param picSize - width of the rendered picture
+ * @param  maxSize - maximum size of an uploaded picture
  */
+
+export interface PictureUploadOptions {
+  preserveRatio?: boolean
+  picSize?: number
+  maxSize?: number
+}
 
 /**
  * @interface PictureUploadData
@@ -103,7 +109,7 @@ export function usePictureUpload({
   preserveRatio = false,
   picSize = 100,
   maxSize = 10240000,
-} = {}): PictureUploadData {
+}: PictureUploadOptions): PictureUploadData {
   const state: UploadState = reactive({
     errors: [],
     status: '',
@@ -297,7 +303,7 @@ var signatures = {
   "/9j/": "image/jpg",
 };
 
-export function detectMimeType(b64) {
+export function detectMimeType(b64: string) {
   for (var s in signatures) {
     if (b64.indexOf(s) === 0) {
       return signatures[s];

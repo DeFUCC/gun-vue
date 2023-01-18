@@ -18,6 +18,6 @@
 	"exclude": ["node_modules", "_dist/**", "**/node_modules/**", "**/dist"],
 	"typedocOptions": {
 		"entryPoints": ["composables/src/index.ts"],
-		"out": "composables/docs"
+		"out": "app/public/composables"
 	}
 }
