@@ -19,7 +19,6 @@ export interface Account {
   profile: Profile
   petname?: string
   db?: object
-  [key: string]: string | ComputedRef | number | Profile | boolean | Ref | object
 }
 
 import { useGun, useUser, SEA } from "../index.js";

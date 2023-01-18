@@ -7,19 +7,21 @@ import yaml from "yaml";
 import markdown from "markdown-it";
 import externalLinks from "markdown-it-external-links";
 
-/**
- * @typedef {Object} Md
- * @property {Object} frontmatter
- * @property {object} content
- */
+export interface MdContent {
+  frontmatter?: object;
+  content?: string;
+}
 
 /**
- *  Create markdown with frontmatter
- * @param {Md} md -  frontmatter,content
- * @returns Markdown text file ready to download
+ *  Join markdown with frontmatter object and render to a string
  */
-
-export function createMd({ frontmatter = null, text = "" }: { frontmatter?: object, text?: string }) {
+export function createMd({
+  frontmatter = null,
+  text = "",
+}: {
+  frontmatter?: object;
+  text?: string;
+}) {
   let front = "";
   if (typeof frontmatter == "object") {
     let yml = yaml.stringify(frontmatter);
@@ -32,36 +34,44 @@ ${yml}---
 
 /**
  * Parse text content of a markdown file into an object
- * @param {String} file - Text form of an uploaded file
- * @returns {Md} - An object with md frontmatter and content
+ * @param file - Text form of an uploaded file
+ * @returns An object with md frontmatter and content
  */
-export function parseMd(file) {
+export function parseMd(file: string): MdContent {
   const yamlBlockPattern = /^(?:---)(.*?)(?:---|\.\.\.)(?:\n*\s*)(.*)/s;
+
+  const md: MdContent = {
+    frontmatter: {},
+    content: "",
+  };
   const yml = yamlBlockPattern.exec(file.trim());
-  let frontmatter, content;
 
   if (yml) {
-    frontmatter = yml[1];
-    content = yml?.[2];
+    let frontmatter = yml[1];
+    md.content = yml?.[2];
     try {
-      frontmatter = yaml.parse(frontmatter);
-    } catch {
-      frontmatter = {};
-    }
-    return { frontmatter, content };
-  } else {
-    return { frontmatter: {}, content: file.trim() };
+      md.frontmatter = yaml.parse(frontmatter);
+    } catch { }
   }
+  return md;
 }
 
-export function useMd() {
-  const md = new markdown({
-    linkify: true,
-    typographer: true,
-  });
 
-  md.use(externalLinks, {
-    externalTarget: "_blank",
-  });
+let md: markdown
+/**
+ * Markdown-it instance to parse MD content
+ * @returns Markdown-it instance
+ */
+export function useMd() {
+  if (!md) {
+    md = new markdown({
+      linkify: true,
+      typographer: true,
+    });
+
+    md.use(externalLinks, {
+      externalTarget: "_blank",
+    });
+  }
   return md;
 }

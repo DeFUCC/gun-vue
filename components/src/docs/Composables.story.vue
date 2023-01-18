@@ -112,11 +112,6 @@ This should prevent any Gun-Vue related code from running during build stage.
     </thead>
     <tbody>
 <tr>
-        <td><a href="#usemd">useMd</a></td>
-        <td><p>Handle Markdown files</p>
-</td>
-      </tr>
-<tr>
         <td><a href="#usezip">useZip</a></td>
         <td><p>Read and write zip files</p>
 </td>
@@ -162,47 +157,6 @@ This should prevent any Gun-Vue related code from running during build stage.
 </tbody>
   </table>
 
-
-  <a name="module_useMd"></a>
-
-## useMd
-Handle Markdown files
-
-  
-* [useMd](#module_useMd)
-    * _static_
-        * [.createMd(md)](#module_useMd.createMd) ⇒
-        * [.parseMd(file)](#module_useMd.parseMd) ⇒ <code>Md</code>
-    * _inner_
-        * [~Md](#module_useMd..Md) : <code>Object</code>
-
-### createMd(md) ⇒
-  Create markdown with frontmatter
-
-**Returns**: Markdown text file ready to download  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| md | <code>Md</code> | frontmatter,content |
-
-### parseMd(file) ⇒ <code>Md</code>
-  Parse text content of a markdown file into an object
-
-**Returns**: <code>Md</code> - - An object with md frontmatter and content  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| file | <code>String</code> | Text form of an uploaded file |
-
-### Md : <code>Object</code>
-  **Properties**
-
-| Name | Type |
-| --- | --- |
-| frontmatter | <code>Object</code> | 
-| content | <code>object</code> | 
-
-<hr />
 
   <a name="module_useZip"></a>
 

@@ -85,8 +85,7 @@ export interface User {
 	pulser: any
 	blink: boolean
 	safe: {
-		saved: any
-		password: any
+		[key: string]: string | undefined
 	};
 	db?: IGunUserInstance
 	pair(): ISEAPair;
@@ -103,8 +102,8 @@ export const user: User = reactive({
 	pulser: null,
 	blink: false,
 	safe: {
-		saved: null,
-		password: null,
+		saved: '',
+		password: '',
 	},
 	db: undefined,
 	pair(): ISEAPair {
