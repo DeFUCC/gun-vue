@@ -14,12 +14,6 @@
 			"patterns": [
 				"composables/**/*.ts"
 			]
-		},
-		{
-			"type": "Components",
-			"patterns": [
-				"components/components.d.ts"
-			]
 		}
 	],
 	"output": [
@@ -30,18 +24,6 @@
 					"first": true,
 					"components": [
 						"Composables"
-					]
-				},
-				{
-					"first": true,
-					"components": [
-						"Components"
-					]
-				},
-				{
-					"type": "Dependencies",
-					"components": [
-						"Dependency"
 					]
 				}
 			]
