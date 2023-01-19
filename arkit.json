@@ -1,0 +1,50 @@
+{
+	"$schema": "https://arkit.pro/schema.json",
+	"excludePatterns": [
+		"test/**",
+		"tests/**",
+		"**/*.test.*",
+		"**/*.spec.*",
+		"**/node_modules/**",
+		"**/public/**"
+	],
+	"components": [
+		{
+			"type": "Composables",
+			"patterns": [
+				"composables/**/*.ts"
+			]
+		},
+		{
+			"type": "Components",
+			"patterns": [
+				"components/components.d.ts"
+			]
+		}
+	],
+	"output": [
+		{
+			"path": "app/public/arkit.svg",
+			"groups": [
+				{
+					"first": true,
+					"components": [
+						"Composables"
+					]
+				},
+				{
+					"first": true,
+					"components": [
+						"Components"
+					]
+				},
+				{
+					"type": "Dependencies",
+					"components": [
+						"Dependency"
+					]
+				}
+			]
+		}
+	]
+}
