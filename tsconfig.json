@@ -7,7 +7,7 @@
 		"declaration": true,
 		"emitDeclarationOnly": true,
 		"declarationMap": true,
-		"declarationDir": "public/types",
+		"declarationDir": "composables/public/types",
 		"skipLibCheck": true,
 		"module": "ESNext",
 		"allowSyntheticDefaultImports": true

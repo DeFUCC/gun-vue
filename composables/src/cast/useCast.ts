@@ -17,7 +17,9 @@ export const mimeExtMap = {
   'video/x-matroska;codecs=avc1': 'mkv',
 }
 
-export function getFilename(media: string, mimeType: string) {
+export type MimeTypes = 'video/webm' | 'video/webm;codecs=h264' | 'video/x-matroska;codecs=avc1' | undefined
+
+export function getFilename(media: string, mimeType: MimeTypes) {
   const d = new Date()
 
   const pad = (v: number) => `${v}`.padStart(2, '0')
@@ -37,8 +39,8 @@ export function getSupportedMimeTypes() {
 }
 
 export const fileNames = reactive({
-  screen: computed(() => getFilename('screen', mimeType.value)),
-  camera: computed(() => getFilename('camera', mimeType.value)),
+  screen: computed(() => getFilename('screen', mimeType.value as MimeTypes)),
+  camera: computed(() => getFilename('camera', mimeType.value as MimeTypes)),
 })
 
 export const {
@@ -74,7 +76,7 @@ export function useRecording() {
 
   const timestamp = useTimestamp()
 
-  watch(recording, r => r ? recordingStartedAt.value = Date.now() : recordingStartedAt.value = null)
+  watch(recording, r => r ? recordingStartedAt.value = Date.now() : recordingStartedAt.value = 0)
 
   const recordingTime = computed(() => {
     if (!recordingStartedAt.value) return 0
@@ -166,7 +168,7 @@ export function useRecording() {
 
     // We need to create a new Stream to merge video and audio to have the inactive event working on streamCapture
     streamSlides.value = new MediaStream()
-    streamCapture.value.getVideoTracks().forEach(videoTrack => streamSlides.value.addTrack(videoTrack))
+    streamCapture.value.getVideoTracks().forEach((videoTrack: MediaStreamTrack) => streamSlides.value.addTrack(videoTrack))
 
     // merge config
     Object.assign(config, customConfig)
@@ -200,7 +202,7 @@ export function useRecording() {
       if (recordCamera.value) {
         const blob = recorderCamera.value.getBlob()
         const url = URL.createObjectURL(blob)
-        download(getFilename('camera', config.mimeType), url)
+        download(getFilename('camera', config.mimeType as MimeTypes), url)
         window.URL.revokeObjectURL(url)
       }
       recorderCamera.value = undefined
@@ -210,7 +212,7 @@ export function useRecording() {
     recorderSlides.value?.stopRecording(() => {
       const blob = recorderSlides.value.getBlob()
       const url = URL.createObjectURL(blob)
-      download(getFilename('screen', config.mimeType), url)
+      download(getFilename('screen', config.mimeType as MimeTypes), url)
       window.URL.revokeObjectURL(url)
       closeStream(streamCapture)
       closeStream(streamSlides)
@@ -222,7 +224,7 @@ export function useRecording() {
     const s = stream.value
     if (!s)
       return
-    s.getTracks().forEach((i) => {
+    s.getTracks().forEach((i: MediaStreamTrack) => {
       i.stop()
       s.removeTrack(i)
     })

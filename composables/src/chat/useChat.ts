@@ -19,7 +19,7 @@ export function useChat() {
   const { user } = useUser();
 
   const currentChat = ref("general");
-  const chats = reactive({
+  const chats: { [key: string]: { [key: string]: string } } = reactive({
     general: {},
   });
 
@@ -38,7 +38,7 @@ export function useChat() {
   function addChat(title: string) {
     chatDb
       .get(`${slugify(title) || title}@${user.pub}`)
-      .put(true, null, { opt: { cert: currentRoom.features.chat } });
+      .put(true, undefined, { opt: { cert: currentRoom.features.chat } });
   }
 
   const topicDb = computed(() =>
@@ -46,7 +46,7 @@ export function useChat() {
   );
 
   const messages: ComputedRef<{ [key: string]: Message }> = computed(() => {
-    const msgs = reactive({});
+    const msgs: { [k: string]: Message } = reactive({});
     topicDb.value.map().on((text, k) => {
       const timestamp = k.substring(0, 13);
       const author = k.substring(14);
@@ -70,7 +70,7 @@ export function useChat() {
     let now = Date.now();
     topicDb.value
       .get(`${now}@${user.pub}`)
-      .put(message, null, { opt: { cert: currentRoom.features.chat } });
+      .put(message, undefined, { opt: { cert: currentRoom.features.chat } });
   }
 
   return {

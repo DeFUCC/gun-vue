@@ -1,13 +1,19 @@
 import { SEA } from "..";
 
-import type { ISEAPair } from 'gun'
+import type { IPolicy, ISEAPair, LEX } from 'gun'
 
 export interface CertOptions {
-  pair: ISEAPair,
+  pair: ISEAPair | { priv: string; pub: string; },
   tag: string,
-  dot: string,
-  users: string,
-  personal: boolean
+  dot?: string,
+  users?: string,
+  personal?: boolean
+}
+
+export interface Policy {
+  "*": string
+  "."?: string
+  "+"?: string
 }
 
 export async function issueCert({
@@ -17,9 +23,9 @@ export async function issueCert({
   users = "*",
   personal = false,
 }: CertOptions): Promise<string | void> {
-  let policy = { "*": `${tag}` };
+  let policy: IPolicy = { "*": `${tag}` };
   if (dot) {
-    policy["."] = dot;
+    policy["."] = dot as LEX;
   }
   if (personal) {
     policy["+"] = "*";
@@ -32,8 +38,8 @@ export async function issueCert({
   }
 }
 
-export async function generateCerts({ pair, list = [] }: { pair: ISEAPair, list: CertOptions[] }): Promise<{ [key: string]: string }> {
-  const all = {};
+export async function generateCerts({ pair, list = [] }: { pair: ISEAPair, list: CertOptions[] }): Promise<{ [key: string]: string | void }> {
+  const all: { [k: string]: string | void } = {};
   for (let opt of list) {
     all[opt.tag] = await issueCert({ ...opt, pair });
   }

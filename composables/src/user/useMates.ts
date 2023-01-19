@@ -5,6 +5,7 @@
 
 import { reactive, Ref, ref } from "vue";
 import { useGun, user } from "..";
+//@ts-ignore - no types found
 import GB from "grapheme-breaker-mjs";
 
 interface Mate {
@@ -21,7 +22,7 @@ export function useMates(pub: string) {
 	if (!pub) {
 		pub = user.pub;
 	}
-	const mates = reactive({});
+	const mates: { [key: string]: Mate } = reactive({});
 	const gun = useGun();
 	gun
 		.user(pub)
@@ -29,10 +30,11 @@ export function useMates(pub: string) {
 		.map()
 		.once((text: string, matePub: string) => {
 			if (text) {
-				mates[matePub] = {
+				const mate: Mate = {
 					emoji: getFirstEmoji(text),
 					text,
-				} as Mate
+				}
+				mates[matePub] = mate
 				gun
 					.user(matePub)
 					.get("mates")
@@ -56,7 +58,7 @@ export function useMates(pub: string) {
  */
 
 export function getFirstEmoji(text: string, def = "👋"): string {
-	if (!text || typeof text != "string") return;
+	if (!text || typeof text != "string") return '';
 	let em = GB.break(text)[0];
 	if (isEmoji(em)) {
 		return em;
@@ -88,14 +90,14 @@ export function useMate(pub: string) {
 	const emoji = ref("👋");
 	const isMate: Ref<string | boolean> = ref(false);
 
-	const dbMate = user.db.get("mates").get(pub);
+	const dbMate = user?.db?.get("mates").get(pub);
 
-	dbMate.on((d) => {
+	dbMate?.on((d) => {
 		isMate.value = getFirstEmoji(d);
 	});
 
 	function toggleMate() {
-		dbMate.put(isMate.value ? false : getFirstEmoji(emoji.value));
+		dbMate?.put(isMate.value ? false : getFirstEmoji(emoji.value));
 	}
 	return { emoji, isMate, toggleMate };
 }

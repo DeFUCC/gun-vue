@@ -6,6 +6,7 @@
 import { computed, reactive, watchEffect } from "vue";
 import type { ComputedRef, } from 'vue'
 import { gun, useGun, SEA, auth, isPair, user } from "..";
+//@ts-ignore no types
 import base32 from "base32";
 import { ISEAPair } from "gun";
 
@@ -23,10 +24,12 @@ export interface Pass {
 	safe: {
 		enc?: string
 		pass?: string
+		[key: string]: string | undefined
 	};
 	dec: {
 		pass?: string
 		pair?: ISEAPair
+		[key: string]: string | undefined | ISEAPair
 	};
 	links: {
 		pass: ComputedRef<string> | string;
@@ -89,7 +92,7 @@ export function usePass(): UsePass {
 			.user()
 			.get("safe")
 			.map()
-			.on((d, k) => {
+			.on((d: string, k: string) => {
 				pass.safe[k] = d;
 			});
 
@@ -98,11 +101,12 @@ export function usePass(): UsePass {
 				pass.dec = {};
 				return;
 			}
-			if (pass?.show && pass?.safe?.pass) {
+			if (pass?.safe?.pass) {
 				pass.dec.pass = await SEA.decrypt(pass.safe.pass, user.pair());
-				pass.input = pass.dec.pass;
+				pass.input = pass.dec.pass || '';
 			}
-			if (pass.show && pass?.safe?.enc) {
+			if (pass?.safe?.enc) {
+				//@ts-ignore wrong types
 				pass.dec.pair = await SEA.decrypt(pass.safe.enc, pass.dec.pass);
 			}
 		});
@@ -111,13 +115,6 @@ export function usePass(): UsePass {
 
 	return { pass, setPass, logWithPass };
 }
-
-/**
- * @typedef {Object} usePass
- * @property {Pass} pass - the reactive password object
- * @property {Function} setPass
- * @property {Function} logWithPass
- */
 
 export async function hasPass(pub: string) {
 	return await gun.get(`~${pub}`).get("safe").get("enc").then();
@@ -132,8 +129,8 @@ async function logWithPass(pub: string, passphrase: string) {
 async function setPass(text: string) {
 	let encPair = await SEA.encrypt(user.pair(), text);
 	let encPass = await SEA.encrypt(text, user.pair());
-	user.db.get("safe").get("enc").put(encPair);
-	user.db.get("safe").get("pass").put(encPass);
+	gun.user().get("safe").get("enc").put(encPair);
+	gun.user().get("safe").get("pass").put(encPass);
 }
 
 export function usePassLink(data: string, passPhrase: string) {
