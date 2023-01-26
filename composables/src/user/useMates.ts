@@ -8,7 +8,7 @@ import { useGun, user } from "..";
 //@ts-ignore - no types found
 import GB from "grapheme-breaker-mjs";
 
-interface Mate {
+export interface Mate {
 	emoji: string
 	text: string
 	back?: string

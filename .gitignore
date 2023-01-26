@@ -10,5 +10,5 @@ app/public/components
 app/public/composables
 app/public/sitemap.xml
 composables/public/types
-composables/docs
+composables/docs/
 .env

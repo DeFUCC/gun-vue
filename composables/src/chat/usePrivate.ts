@@ -26,7 +26,6 @@ export function usePrivateChat(pub: string, { parse = true } = {}) {
     .get(user.pub)
     .map()
     .once(function (d, k) {
-      //@ts-expect-error this isn't typed
       parseMessages(d, k, pub, this)
     })
 
@@ -35,7 +34,6 @@ export function usePrivateChat(pub: string, { parse = true } = {}) {
     .get(pub)
     .map()
     .once(function (d, k) {
-      //@ts-expect-error this isn't typed
       parseMessages(d, k, user.pub, this)
     })
 
@@ -45,7 +43,6 @@ export function usePrivateChat(pub: string, { parse = true } = {}) {
       if (d && d.startsWith('SEA')) {
         const secret = await SEA.secret(epub.value, user.pair())
         const work = await SEA.work(secret, undefined, undefined, { salt: today })
-        //@ts-expect-error incorrect SEA.decrypt types
         const dec = await SEA.decrypt(d, work)
         if (!dec || typeof dec != 'object') return
         const message: Message = {
@@ -68,7 +65,6 @@ export function usePrivateChat(pub: string, { parse = true } = {}) {
     const today = theDate.toLocaleDateString('en-CA')
     const secret = await SEA.secret(epub.value, user.pair())
     const work = await SEA.work(secret, undefined, undefined, { salt: today })
-    //@ts-expect-error incorrect SEA.encrypt types
     const enc = await SEA.encrypt(toSend, work)
 
     //@ts-expect-error - Incorrect gun.set() typings

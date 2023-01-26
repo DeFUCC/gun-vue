@@ -34,13 +34,14 @@
 		"deploy": "sh deploy.sh",
 		"dev": "vite",
 		"doc": "cd jsdoc2md && sh docs.sh",
+		"docs": "typedoc && vitepress dev docs",
 		"serve": "vite preview"
 	},
 	"dependencies": {
 		"@types/recordrtc": "^5.6.10",
-		"@vueuse/core": "9.11.0",
-		"@vueuse/integrations": "^9.11.0",
-		"@vueuse/math": "^9.11.0",
+		"@vueuse/core": "9.11.1",
+		"@vueuse/integrations": "^9.11.1",
+		"@vueuse/math": "^9.11.1",
 		"base32": "^0.0.7",
 		"buffer": "^6.0.3",
 		"color-hash": "^2.0.2",
@@ -49,7 +50,7 @@
 		"fuse.js": "^6.6.2",
 		"grapheme-breaker-mjs": "^1.0.4",
 		"gun": "^0.2020.1239",
-		"gun-avatar": "1.7.0",
+		"gun-avatar": "1.9.0",
 		"jszip": "^3.10.1",
 		"markdown-it": "^13.0.1",
 		"markdown-it-external-links": "^0.0.6",
@@ -64,6 +65,7 @@
 		"@types/color-hash": "^1.0.2",
 		"jsdoc-to-markdown": "^8.0.0",
 		"pug": "^3.0.2",
-		"vite": "^4.0.4"
+		"vite": "^4.0.4",
+		"vitepress": "^1.0.0-alpha.40"
 	}
 }

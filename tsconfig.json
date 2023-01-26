@@ -1,9 +1,9 @@
 {
 	"compilerOptions": {
-		"strict": true,
 		"target": "es2020",
 		"moduleResolution": "node",
 		"allowJs": true,
+		"isolatedModules": true,
 		"declaration": true,
 		"emitDeclarationOnly": true,
 		"declarationMap": true,
@@ -25,6 +25,11 @@
 	],
 	"typedocOptions": {
 		"entryPoints": ["composables/src/index.ts"],
-		"out": "app/public/composables"
+		"out": "composables/docs/",
+		"githubPages": false,
+		"entryPointStrategy": "expand",
+		"allReflectionsHaveOwnDocument": true,
+		"readme": "composables/index.md",
+		"name": "Gun-Vue composables"
 	}
 }

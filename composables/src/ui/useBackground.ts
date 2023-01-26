@@ -7,13 +7,15 @@ export function useBackground({
   overlay = 0.5,
   draw = "squares",
   attachment = "fixed",
+  dark = false
 }: {
   pub: string
   size?: number
   light?: number
   overlay?: number
-  draw?: string
+  draw?: "squares" | "circles"
   attachment?: string
+  dark?: boolean
 }) {
 
   if (!pub) return;
@@ -25,6 +27,7 @@ export function useBackground({
         draw,
         reflect: false,
         size: size,
+        dark
       })})`,
     backgroundSize: "cover, cover",
     backgroundAttachment: `${attachment},${attachment}`,
