@@ -31,7 +31,7 @@
 		"@volar/vue-language-plugin-pug": "1.0.24",
 		"cli-progress": "3.11.2",
 		"dotenv": "^16.0.3",
-		"eslint": "^8.32.0",
+		"eslint": "^8.33.0",
 		"eslint-plugin-vue": "^9.9.0",
 		"eslint-plugin-vue-pug": "^0.5.5",
 		"typedoc": "0.23.24",

@@ -1,6 +1,5 @@
 <script setup>
-import '@gun-vue/components/dist/style.css'
-import { UserHome, RoomCard } from "@gun-vue/components";
+import "@gun-vue/components/dist/style.css";
 </script>
 
 <template>

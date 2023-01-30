@@ -42,7 +42,7 @@ const selected = ref()
       .font-bold.px-1(@click.stop.prevent="selected = selected ? null : emoji") {{ list.length }}
 
       transition-group(name="fade")
-        template(v-if="list.length < 4 || selected == emoji")
+        template(v-if="4 > list.length || selected == emoji")
           account-badge.rounded-full.shadow-md.min-w-6(
             v-for="(author) in list" 
             v-show="author"
