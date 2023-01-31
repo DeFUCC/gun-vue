@@ -4,7 +4,7 @@
  * @group Posts
  */
 
-import { computed, reactive, ref } from "vue";
+import { computed, reactive, ref, shallowReactive } from "vue";
 
 import JSZip, { JSZipObject } from "jszip";
 
@@ -121,13 +121,13 @@ export async function downloadFeed(tag: string, posts: PostList) {
   if (!posts) return;
 
   const { zip, zipPost, downloadZip } = useZip();
-  zip
-  const fullPosts = {};
+  const fullPosts = shallowReactive({});
   for (let hash in posts) {
-    fullPosts[hash] = usePost({ tag, hash }).post;
-    await zipPost({ ...fullPosts[hash] });
+    const { post } = usePost({ tag, hash })
+    fullPosts[hash] = post
+    if (!post.title) continue
+    await zipPost(post);
   }
-
   await downloadZip({ title: `#${tag}` });
   return true;
 }

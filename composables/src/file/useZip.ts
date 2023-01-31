@@ -10,6 +10,7 @@ import { downloadFile, base64Extension, base64FileType } from "./useFile";
 import { genUUID } from "../gun";
 import { createMd } from "./useMd";
 import { loadFromHash } from "../posts";
+import { toRaw } from "vue";
 
 /**
  * @typedef useZip
@@ -22,7 +23,6 @@ import { loadFromHash } from "../posts";
 
 /**
  * Zip file creation toolbox
- * @returns {useZip}
  * @example
  * import {useZip} from '@gun-vue/composables'
  * const { zip, zipPost, addMd, addFile, downloadZip } = useZip()
@@ -35,7 +35,6 @@ export function useZip() {
    * Add a binary file to the zip
    * @async
    * @param {Object} options
-   * @returns {String} the resulting filename
    * @example
    *  if (post.cover) { // a base64 encoded picture
    *   const fileName = await addFile({
@@ -61,7 +60,10 @@ export function useZip() {
   }
 
   function addMd({ md, title }: {
-    md: object
+    md: {
+      frontmatter: object
+      text: string
+    }
     title: string
   }) {
     zip.file(`${title}/index.md`, createMd(md));
@@ -77,9 +79,11 @@ export function useZip() {
     text?: string
     title?: string
     statement?: string
+    content?: string
   }) {
-    let { text, title, statement } = post;
+    let { text, title, statement, content } = post;
     delete post?.text;
+    delete post?.content
     if (!title) {
       title = statement ? statement.slice(0, 12) : genUUID();
     }
@@ -105,7 +109,7 @@ export function useZip() {
       title,
       md: {
         frontmatter: post,
-        text,
+        text: text || content,
       },
     });
   }

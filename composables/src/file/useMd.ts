@@ -33,8 +33,9 @@ export function createMd({
     front = `---
 ${yml}---
  `;
-    return front + text;
   }
+  return front + text;
+
 }
 
 /**
