@@ -1,5 +1,5 @@
 <script setup>
-import { currentRoom } from '#components';
+import { currentRoom } from '#composables';
 </script>
 
 <template lang="pug">

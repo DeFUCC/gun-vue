@@ -1,4 +1,4 @@
-![@gun-vue logo](https://raw.githubusercontent.com/davay42/gun-vue/master/app/public/gun-vue-logo.svg)
+![@gun-vue logo](https://gun-vue.js.org/media/gun-vue-logo.svg)
 
 ## [gun-vue.js.org](https://gun-vue.js.org)
 
@@ -46,7 +46,6 @@ A simple no-store Gun server to throw at any free tier Node.js environment.
 
 The main [gun-vue.js.org](https://gun-vue.js.org) site is an example Vite SPA. It's also easily built into a desktop app with [Tauri](https://tauri.app).
 
-
 ---
 
 ## Watch the development video blog at [youtube](https://www.youtube.com/watch?v=gwZUQcCp01U&list=PLncuCCb2zjt6wmlSNLiK1lZl150qX-rAw)
@@ -63,5 +62,5 @@ npm i -G pnpm
 pnpm i
 ```
 
-3. Use `demo`, and `histoire` scripts in the root `package.json` to run corresponding dev servers.
+3. Use `dev`, `docs` and `histoire` scripts in the root `package.json` to run corresponding dev servers.
 4. Use `npm run build` to build the whole project to the `_dist` folder.

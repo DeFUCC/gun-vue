@@ -2,7 +2,7 @@
 
 A Composition API `use` functions set for Gun.js and Vue 3 reactivity system
 
-![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/docs/public/media/svg/composables.svg)
+![@gun-vue composables logo](https://gun-vue.js.org/media/svg/composables.svg)
 
 [gun-vue.js.org](https://gun-vue.js.org)
 

@@ -10,8 +10,15 @@
       target="_blank")
       .i-la-book
       .bar
-        .title Documentation
+        .title Components
         .subtitle Component stories 
+    a.btn(
+      href="/composables/" 
+      target="_blank")
+      .i-la-book
+      .bar
+        .title Composables
+        .subtitle Reactive interfaces
     a.btn(
       href="https://www.npmjs.com/org/gun-vue" 
       target="_blank")
@@ -58,6 +65,6 @@
 }
 
 .bar {
-  @apply flex-1 pb-1 flex flex-col gap-1;
+  @apply flex-1 pb-1 flex flex-col gap-0;
 }
 </style>

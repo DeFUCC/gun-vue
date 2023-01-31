@@ -22,9 +22,8 @@
   "module": "./dist/components.js",
   "types": "./dist/types/components/src/all.d.ts",
   "files": [
-    "dist",
+    "dist"
   ],
-
   "scripts": {
     "build": "vite build && vue-tsc",
     "story:build": "histoire build",
