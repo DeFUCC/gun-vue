@@ -1,11 +1,12 @@
 /**
  * Worker wrapper for heavy functions
- * @module useWorker
+ * @module Worker
+ * @group Helpers
  */
 
 /**
  * Example sorter function for a dated list object
- * @param {Object} e - the worker post event with a `data` object with a list of records to sort by the date keys
+ * @param  e - the worker post event with a `data` object with a list of records to sort by the date keys
  */
 export function sortByDate(e) {
   const arr = Object.entries(e.data);
@@ -23,10 +24,9 @@ export function sortByDate(e) {
 /**
  * Create a new worker for a function
  * It should contain a `postMessage` method to reply to any incoming `postMessage` from the main script
- * @param {Function} funcObj
  */
 
-export const newWorker = function (funcObj) {
+export const newWorker = function (funcObj: Function) {
   // Build a worker from an anonymous function body
   var blobURL = URL.createObjectURL(
     new Blob(["onmessage=", funcObj.toString()], {

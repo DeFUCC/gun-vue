@@ -1,6 +1,7 @@
 /**
  * Gun DB initialization and basic methods
- * @module useGun
+ * @module Gun
+ * @group Database
  */
 import type { GunOptions, IGunInstance } from 'gun'
 
@@ -87,6 +88,6 @@ export const soul = Gun?.node?.soul;
  */
 
 // @ts-ignore: Incorrect Gun types
-export const genUUID: () => string = Gun?.text?.random;
+export const genUUID: (num?: number) => string = Gun?.text?.random;
 
 

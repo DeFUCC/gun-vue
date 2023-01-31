@@ -1,3 +1,8 @@
+/**
+ * File handling functions
+ * @module Torrent
+ * @group Files
+ * */
 
 import { ref } from 'vue'
 

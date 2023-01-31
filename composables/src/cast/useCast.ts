@@ -1,5 +1,6 @@
 /**
  * @module Cast
+ * @group Files
  */
 
 import { useTimestamp } from '@vueuse/core'

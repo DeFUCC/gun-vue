@@ -1,6 +1,7 @@
 /**
  * Deterministic colors derived from oub keys, hashes or any other string data
- * @module useColor
+ * @module Color
+ * @group UI
  * */
 
 import ColorHash from "color-hash";

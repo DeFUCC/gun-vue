@@ -1,27 +1,69 @@
 /**
  * Get and handle a particular post by it's tag and hash
- * @module usePost
+ * @module Post
+ * @group Posts
  */
 
 import { computed, reactive, ref } from "vue";
 import ms from "ms";
 
 import { useGun, gun, currentRoom, useUser, removeEmptyKeys } from "..";
-import { useZip } from "../file/";
+import { useZip } from "../file";
 import { hashObj, hashText, safeHash } from "../crypto";
+
+export interface PostContent {
+  title?: string
+  statement?: string
+  cover?: string
+  icon?: string
+  youtube?: string
+  content?: string
+  raw?: string
+  text?: string
+}
+
+/**
+ * @example
+ * {
+ *  "empty": false,
+ *  "tag": "ds",
+ *  "hash": "C8trDBYNyvxVedHK4Q0IuUarc/k2/iiv8opPfoAU0xA=",
+ *  "data": {
+ *    "cover": "data:image/png;base64,..........",
+ *    "icon": "data:image/png;base64,..........",
+ *    "title": "OSS",
+ *    "statement": "New live album by tsoop",
+ *    "youtube": "K2MwpOd8vEI",
+ *    "content": "It's mostly op-z + op-1 with my own Unity visuals based on [Chromatone](https://chromatone.center) system.\n\n### 2021\nFirst played live at April 20th **2021**.\n\n### Into 2022\nIt's an ongoing live album to be recorded throughout the **2022**."
+ * },
+ *  "timestamp": 1642590655747,
+ *  "lastUpdated": "1d"
+ * }
+ */
+export interface Post {
+  empty?: boolean
+  tag?: string
+  hash?: string
+  data?: PostContent
+  download?: Function
+  timestamp?: number
+  lastUpdated?: string
+}
 
 /**
  * An interface to manage a post
- * @param {Object} options
- * @returns {Post}
  * @example
  * const post = usePost({ tag: 'tag', hash: postHash })
  */
 
-export function usePost({ hash = "", loadMedia = true } = {}) {
+export function usePost({ hash = "", loadMedia = true }: {
+  tag?: string
+  hash: string
+  loadMedia?: boolean
+}) {
   const gun = useGun();
 
-  const post = reactive({});
+  const post: PostContent = reactive({});
 
   gun
     .get('posts')
@@ -59,35 +101,12 @@ export function usePost({ hash = "", loadMedia = true } = {}) {
   return { post, download, downloading };
 }
 
-/**
- * @typedef {Object} Post
- * @property {Boolean} empty - whether the post has contents
- * @property {String} tag - the tag under which the post was published
- * @property {String} hash - the hash of the contents
- * @property {Object} data - the contents of the post
- * @property {Function} download - use this function to download the post as a Markdown file
- * @example
- * {
- *  "empty": false,
- *  "tag": "ds",
- *  "hash": "C8trDBYNyvxVedHK4Q0IuUarc/k2/iiv8opPfoAU0xA=",
- *  "data": {
- *    "cover": "data:image/png;base64,..........",
- *    "icon": "data:image/png;base64,..........",
- *    "title": "OSS",
- *    "statement": "New live album by tsoop",
- *    "youtube": "K2MwpOd8vEI",
- *    "content": "It's mostly op-z + op-1 with my own Unity visuals based on [Chromatone](https://chromatone.center) system.\n\n### 2021\nFirst played live at April 20th **2021**.\n\n### Into 2022\nIt's an ongoing live album to be recorded throughout the **2022**."
- * },
- *  "timestamp": 1642590655747,
- *  "lastUpdated": "1d"
- * }
- */
+
+
+
 
 /**
  * Add a new post to a tag
- * @param {String} tag
- * @param {Object} post
  * @example
  * import { addPost } from '@gun-vue/composables'
  *
@@ -125,7 +144,7 @@ export async function addPost(to, post) {
  * downloadPost(post)
  */
 
-export async function downloadPost(post) {
+export async function downloadPost(post: PostContent) {
   let { title } = post;
 
   const { zipPost, addFile, downloadZip } = useZip();
@@ -145,7 +164,7 @@ export async function downloadPost(post) {
   return true;
 }
 
-export async function loadFromHash(category, hash) {
+export async function loadFromHash(category: string, hash: string): Promise<string> {
   if (
     category &&
     hash &&
@@ -158,7 +177,7 @@ export async function loadFromHash(category, hash) {
   return hash;
 }
 
-async function saveToHash(category, text) {
+async function saveToHash(category: string, text: string) {
   if (category && text) {
     const hash = await hashText(text);
     gun.get('posts').get(`#${category}`).get(`${hash}`).put(text);
@@ -170,16 +189,15 @@ async function saveToHash(category, text) {
 
 /**
  * Parse a post string from db
- * @param {String} data Stringified data from the hashed post
  * @returns {Object} Post object
  */
 
-export async function parsePost(data) {
+export async function parsePost(data: string): Promise<string> {
   let post;
   try {
     post = JSON.parse(data);
   } catch (e) {
-    post = { base64: data };
+    post = data
   }
   return post;
 }
@@ -188,8 +206,10 @@ export async function parsePost(data) {
  * Get and update the timestamp of an immutable post
  */
 
-export function usePostTimestamp({ tag, hash } = {}) {
-  tag
+export function usePostTimestamp({ hash }: {
+  hash: string
+}) {
+
   const timestamp = ref(0)
 
   const msTime = computed(() => ms(Date.now() - timestamp.value || 1000))

@@ -1,3 +1,8 @@
+/**
+ * @module Project
+ * @group Projects
+ */
+
 import { reactive, ref, computed } from 'vue'
 import { gun, useGun2, useGun, genUUID } from '../gun'
 import { currentRoom } from '../room'

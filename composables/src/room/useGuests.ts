@@ -1,3 +1,8 @@
+/**
+ * @module Guests
+ * @group Rooms
+ */
+
 import { computed, reactive, watchEffect } from "vue";
 import { useGun, useAccount, currentRoom } from "..";
 

@@ -1,6 +1,7 @@
 /**
  * Basic private chat
  * @module PrivateChat
+ * @group Chat
  */
 
 import { reactive, computed, ref } from "vue"

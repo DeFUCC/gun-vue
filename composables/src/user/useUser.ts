@@ -1,5 +1,6 @@
 /**
  * @module User
+ * @group Users
  */
 
 import { gun, useGun } from "..";
@@ -85,11 +86,6 @@ export const user: User = reactive({
 });
 
 
-export interface UseUser {
-	user: User
-	auth: (pair: ISEAPair, cb?: (pair: ISEAPair) => void) => Promise<void>
-	leave: () => void
-}
 
 /**
  * Get access to current logged in user
@@ -99,7 +95,7 @@ export interface UseUser {
  * const { user, auth, leave } = useUser()
  */
 
-export function useUser(): UseUser {
+export function useUser() {
 	if (!user.initiated) {
 		const gun = useGun();
 		user.db = gun.user();

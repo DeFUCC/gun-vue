@@ -10,7 +10,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "cd app && pnpm run dev",
-		"build": "cd composables && pnpm run lib-build && pnpm run docs && cd .. && cd components && pnpm run build && pnpm run story:build && cd .. && cd app && pnpm run build ",
+		"build": "cd composables && pnpm run lib-build && pnpm run docs-build && cd .. && cd components && pnpm run build && pnpm run story:build && cd .. && cd app && pnpm run build ",
 		"change": "pnpm changeset",
 		"deploy": "sh deploy.sh",
 		"histoire": "cd components && pnpm run story:dev",

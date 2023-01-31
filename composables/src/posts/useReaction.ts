@@ -1,16 +1,24 @@
 /**
  * React to posts with emojis
- * @module useReaction
+ * @module Reaction
+ * @group Posts
  */
 
 
 import { useUser, currentRoom, getFirstEmoji, useGun } from '..';
 import { ref, watchEffect } from 'vue'
+import { IGunChain, IGunUserInstance } from 'gun';
 
 const rootsTags = ['rooms']
 
+export interface ReactionVector {
+  tag: string
+  hash: string
+  back: string
+}
 
-export function useReaction({ tag, hash, back } = {}) {
+
+export function useReaction({ tag, hash, back }: ReactionVector) {
 
   const { user } = useUser();
 
@@ -37,17 +45,21 @@ export function useReaction({ tag, hash, back } = {}) {
   })
 
 
-  function react(r) {
+
+
+  function react(r: string) {
     reactToPost({ tag, hash, back, reaction: getFirstEmoji(r ? r : reaction.value) })
   }
   return { reaction, react }
 }
 
+export interface Reaction extends ReactionVector {
+  reaction: string | boolean
+}
 
-export async function reactToPost({ tag, hash, back, reaction = true } = {}) {
+export async function reactToPost({ tag, hash, back, reaction = true }: Reaction) {
   const { user } = useUser();
   const gun = useGun();
-  console.log(tag, hash, reaction)
   if (tag == "rooms") {
     let myPost = gun.user(currentRoom.pub).get(tag).get(`${hash}@${user.pub}`);
     let current = await myPost.then();
@@ -55,15 +67,16 @@ export async function reactToPost({ tag, hash, back, reaction = true } = {}) {
       opt: { cert: currentRoom.features?.[tag] },
     });
   } else {
-    let myLink = gun.user(currentRoom.pub).get("posts");
+    const postList = gun.user(currentRoom.pub).get("posts");
+    let myLink: string
     if (!back) {
-      myLink = myLink.get(`${tag}:${hash}@${user.pub}`);
+      myLink = `${tag}:${hash}@${user.pub}`
     } else {
-      myLink = myLink.get(`${hash}:${tag}@${user.pub}`);
+      myLink = `${hash}:${tag}@${user.pub}`
     }
-
-    let current = await myLink.then();
-    myLink.put(!current ? reaction : null, null, {
+    const postLink = postList.get(myLink)
+    let current = await postLink.then();
+    postLink.put(!current ? reaction : null, null, {
       opt: { cert: currentRoom.features?.posts },
     });
   }

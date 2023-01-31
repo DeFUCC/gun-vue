@@ -1,13 +1,17 @@
 /**
  * Reactions to posts with emojis
- * @module useReactions
+ * @module Reactions
+ * @group Posts
  */
 
-import { useGun, currentRoom, } from '../';
+import { useGun, currentRoom } from '..';
 import { reactive } from 'vue'
+import type { PostList } from './usePosts'
+
+export interface AuthorList { [key: string]: string }
 
 
-export function useReactions(authors) {
+export function useReactions(authors: AuthorList) {
   const reactions = {}
   for (let pub in authors) {
     let reaction = authors[pub]
@@ -20,7 +24,7 @@ export function useReactions(authors) {
   return reactions
 }
 
-export function countRating(authors) {
+export function countRating(authors: AuthorList) {
   let count = 0
   for (let author in authors) {
     if (authors[author] && authors[author] != '🗑') {
@@ -33,7 +37,7 @@ export function countRating(authors) {
 }
 
 
-export function useUserPosts(pub) {
+export function useUserPosts(pub: string): PostList {
   const gun = useGun()
   const posts = reactive({})
   gun.user(currentRoom.pub).get('posts').map().on((d, k) => {

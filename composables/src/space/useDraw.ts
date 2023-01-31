@@ -1,3 +1,8 @@
+/**
+ * @module Draw
+ * @group Space
+ */
+
 import { computed, markRaw, nextTick, reactive, ref, onMounted } from 'vue'
 import { createDrauu, Drauu, Options } from 'drauu'
 import { toReactive, useStorage, useCycleList, useDebounceFn } from '@vueuse/core'

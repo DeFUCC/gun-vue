@@ -1,6 +1,9 @@
 /**
- * @module useRoom
+ * @module Room
+ * @group Rooms
  */
+
+export * from "./rootRoom";
 
 import {
   SEA,

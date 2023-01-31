@@ -1,6 +1,7 @@
 /**
  * Basic user management
- * @module useAccount
+ * @module Account
+ * @group Users
  * */
 
 /**
@@ -35,6 +36,7 @@ import { MaybeRef } from "@vueuse/core"
 
 
 const colorDeep = useColor("deep");
+const TIMEOUT = 10000
 
 /**
  * Load and handle user's account by a public key
@@ -53,7 +55,10 @@ const colorDeep = useColor("deep");
  * 
  * generatePair()
  */
-export function useAccount(pubKey: MaybeRef<string> = ref(), { TIMEOUT = 10000 } = {}) {
+export function useAccount(pubKey: MaybeRef<string>): {
+  account: ComputedRef<Account>
+  setPetname: Function
+} {
   const gun = useGun();
   const pub = ref(pubKey);
   const { user } = useUser()

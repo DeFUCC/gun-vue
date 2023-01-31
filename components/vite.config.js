@@ -51,7 +51,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(dirname, "/src/index.js"),
       name: "components",
-      formats: ["es", "cjs"],
+      formats: ["es"],
     },
     emptyOutDir: true,
     map: true,

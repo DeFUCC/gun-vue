@@ -1,6 +1,7 @@
 /**
  * A 2D-space
- * @module useSpace
+ * @module Space
+ * @group Space
  */
 
 import { useGun } from "..";

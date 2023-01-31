@@ -1,3 +1,9 @@
+/**
+ * @module rootRoom
+ * @group Rooms
+ */
+
+
 export const rootRoom = {
   "pub": "OUlhoY2Eq8QkZE_iWN3l6J2vvbkX33vowcFdqFoCoEQ.a-B1ImQK4aoiEpdW-38MAPc8oi16DHY57bDJ4dEZpX0",
   "hosts": {

@@ -1,41 +1,40 @@
 /**
  * Get and handle a particular post by it's tag and hash
- * @module usePosts
+ * @module Posts
+ * @group Posts
  */
 
 import { computed, reactive, ref } from "vue";
 
-import JSZip from "jszip";
+import JSZip, { JSZipObject } from "jszip";
 
 import { detectMimeType, useZip, parseMd, currentRoom } from "..";
 import { useGun } from "../gun";
 import { addPost, usePost } from ".";
+import type { PostContent } from './usePost'
 
 /**
- * @typedef usePosts
- * @property {ref} posts -  the reactive list of hashed data
- * @property {ref} timestamps - reactive timestamps list for all posts in a list
- * @property {computed} count - the number of posts in a feed
- * @property {Function} downloadPosts - Download all posts in a zip file
- * @property {Function} uploadPosts - upload a zip file with posts
+ * A list of posts
  */
+export interface PostList {
+  [key: string]: {
+    [key: string]: string
+  }
+}
 
 /**
  * Use a list of immutable data from a #tag
- * @param {String} tag - A vue ref to watch - generated from props by `toRef(props,'tag')`
- * @param {Object} options - Options for the feed
- * @returns {usePosts}
  * @example
  * import { usePosts } from '@gun-vue/composables'
  *
  * const { posts, timestamps, count, uploadPosts, downloadPosts} = usePosts('MyTag')
  */
-export function usePosts(tag) {
+export function usePosts(tag: string) {
   if (!tag) return
   const gun = useGun();
 
-  const posts = reactive({});
-  const backlinks = reactive({});
+  const posts: PostList = reactive({});
+  const backlinks: PostList = reactive({});
 
   gun
     .user(currentRoom.pub)
@@ -112,15 +111,13 @@ export function usePosts(tag) {
 /**
  * Export a list of posts as a zip file
  * @async
- * @param {String} tag - Name of the tag
- * @param {Object} posts - Posts to export
  * @example
  * import {downloadFeed} from '@gun-vue/components'
  *
  * downloadFeed('myTag',posts)
  */
 
-export async function downloadFeed(tag, posts) {
+export async function downloadFeed(tag: string, posts: PostList) {
   if (!posts) return;
 
   const { zip, zipPost, downloadZip } = useZip();
@@ -137,17 +134,17 @@ export async function downloadFeed(tag, posts) {
 
 /**
  * Upload zip files and add all the MD files from it to the tag
- * @param {String} tag - a tag to add the posts to
- * @param {FileList} files - File list from the input `@change` event
  * @example
  * import { uploadFeed } from '@gun-vue/composables'
  * @example @lang html
  * <input type="file" @change="uploadFeed( 'myTag', $event.target.files )" />
  */
-export function uploadFeed(tag, files) {
+export function uploadFeed(tag: string, files: FileList) {
   [...files].forEach(async (file) => {
-    const zip = await JSZip.loadAsync(file);
+    const zip = await JSZip.loadAsync(file)
+    //@ts-expect-error
     if (zip.comment) {
+      //@ts-expect-error
       console.info("Zip file comment: " + zip.comment);
     }
     zip.forEach(async (path, entry) => {

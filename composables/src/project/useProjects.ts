@@ -1,5 +1,6 @@
 /**
  * @module Projects
+ * @group Projects
  */
 
 import { computed, reactive, ref } from "vue"
@@ -16,7 +17,7 @@ export function useProjects(pub = currentRoom.pub) {
   const projects = reactive({})
 
   const fuse = computed(() => {
-    const list = Object.entries(projects).map(arr => ({ ...arr[1], path: arr[0] }))
+    const list = Object.entries(projects).map(arr => ({ ...arr[1] as object, path: arr[0] }))
     return new Fuse(list, {
       includeScore: true,
       ignoreLocation: true,
@@ -28,7 +29,7 @@ export function useProjects(pub = currentRoom.pub) {
     if (newProject.title) {
       return fuse.value.search(newProject.title)
     } else {
-      return Object.entries(projects).map(arr => ({ item: { ...arr[1], path: arr[0] } }))
+      return Object.entries(projects).map(arr => ({ item: { ...arr[1] as object, path: arr[0] } }))
     }
   });
 

@@ -1,3 +1,9 @@
+/**
+ * Gift economy
+ * @module Gift
+ * @group Gift economy
+ * */
+
 import { giftPath } from '.'
 import { useUser } from '../user'
 import { reactive, computed, ref, watch } from 'vue'
@@ -7,9 +13,20 @@ import { useGun } from '../gun'
 import { computedAsync } from '@vueuse/core'
 import { currentRoom } from '../room'
 
-export function useGift(hash) {
+export interface Gift {
+  from?: string
+  to?: string
+  qn?: number
+  ql?: string
+  wish?: string
+  project?: string
+  room?: string
+  date?: number
+}
+
+export function useGift(hash: string) {
   const gun = useGun()
-  const gift = reactive({})
+  const gift: Gift = reactive({})
   const state = reactive({
     from: false,
     to: false,
@@ -34,18 +51,18 @@ export function useGift(hash) {
 }
 
 
-export async function giftState(hash, state = true) {
+export async function giftState(hash: string, state = true) {
   const { user } = useUser()
   user.db.get(giftPath).get(hash).put(state)
 }
 
 
-export function useNewGift(giftConf) {
+export function useNewGift(giftConf: Gift) {
   const { user } = useUser()
 
   const { now, pause } = useNow({ interval: 1000, controls: true })
 
-  const gift = reactive({
+  const gift: Gift = reactive({
     from: computed(() => user?.pub),
     to: '',
     qn: null,
@@ -123,7 +140,7 @@ export function useNewGift(giftConf) {
 
 }
 
-export function removeEmptyKeys(obj) {
+export function removeEmptyKeys(obj: object) {
   return Object.entries(obj)
     .filter(([_, v]) => { _; return !!v })
     .reduce(

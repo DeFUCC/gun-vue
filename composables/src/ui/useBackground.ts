@@ -1,3 +1,8 @@
+/**
+ * @module Background
+ * @group UI
+ */
+
 import { gunAvatar } from "..";
 
 export function useBackground({

@@ -1,6 +1,7 @@
 /**
  * File handling functions
  * @module File
+ * @group Files
  * */
 
 import { reactive } from "vue";

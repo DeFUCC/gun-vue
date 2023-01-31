@@ -26,8 +26,8 @@
 		"githubPages": false,
 		"entryPointStrategy": "expand",
 		"allReflectionsHaveOwnDocument": true,
-		"readme": "index.md",
 		"name": "Gun-Vue composables",
-		"defaultCategory": "Composables"
+		"defaultCategory": "Composables",
+		"exclude": ["**/index.ts"]
 	}
 }

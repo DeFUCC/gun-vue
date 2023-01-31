@@ -1,13 +1,23 @@
+/**
+ * Gift economy
+ * @module Gifts
+ * @group Gift economy
+ * */
+
+
 import { reactive, computed } from 'vue'
 import { useGun, useUser, currentRoom } from '..'
 
 import { giftPath } from '.'
+import type { Gift } from './useGift'
+
+export interface GiftList { [key: string]: Gift }
 
 export function useGifts() {
 
   const gun = useGun()
 
-  const gifts = reactive({})
+  const gifts: GiftList = reactive({})
 
   gun.user(currentRoom.pub).get(giftPath).map().once((data, key) => {
     gun.get('#' + giftPath).get(key.slice(0, -88)).once((d, k) => {
@@ -27,9 +37,9 @@ export function useGifts() {
 export function useMyGifts() {
   const { user } = useUser()
   const gun = useGun()
-  const gifts = reactive({})
-  const from = reactive({})
-  const to = reactive({})
+  const gifts: GiftList = reactive({})
+  const from: GiftList = reactive({})
+  const to: GiftList = reactive({})
 
   gun.user().get(giftPath).map().on((d, hash) => {
     gun.get('#' + giftPath).get(hash).once(d => {
@@ -48,7 +58,7 @@ export function useMyGifts() {
     })
   })
 
-  const newGifts = reactive({})
+  const newGifts: GiftList = reactive({})
 
   gun.user(currentRoom.pub).get(giftPath).map().once(async (d, path) => {
     let hash = path.slice(0, -88)
@@ -71,7 +81,7 @@ export function useMyGifts() {
   return { gifts, from, to, newGifts }
 }
 
-export function useProjectGifts(path) {
+export function useProjectGifts(path: string) {
   const pub = path.slice(-87)
   const gun = useGun()
   const gifts = reactive({})

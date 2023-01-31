@@ -1,6 +1,7 @@
 /**
  * Read and write zip files
- * @module useZip
+ * @module Zip
+ * @group Files
  * @see https://github.com/Stuk/jszip
  * */
 
@@ -49,7 +50,7 @@ export function useZip() {
   async function addFile({ title, file, folder = "." }: {
     title: string
     file: string
-    folder: string
+    folder?: string
   }) {
     const fileType = base64FileType(file);
     const extension = base64Extension(file);
@@ -73,9 +74,9 @@ export function useZip() {
    */
 
   async function zipPost(post: {
-    text: string
-    title: string
-    statement: string
+    text?: string
+    title?: string
+    statement?: string
   }) {
     let { text, title, statement } = post;
     delete post?.text;

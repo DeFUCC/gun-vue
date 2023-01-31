@@ -13,6 +13,7 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"declaration": true,
+		"emitDeclarationOnly": true,
 		"declarationMap": true,
 		"baseUrl": "./",
 		"paths": {

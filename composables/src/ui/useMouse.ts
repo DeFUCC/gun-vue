@@ -1,6 +1,7 @@
 /**
  * Handle mouse movement inside an SVG
- * @module useMouse
+ * @module Mouse
+ * @group UI
  * */
 
 import { useMousePressed, useMouseInElement } from "@vueuse/core";

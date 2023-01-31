@@ -1,6 +1,7 @@
 /**
  * Handle Markdown files
  * @module Md
+ * @group Files
  * */
 
 import yaml from "yaml";
@@ -8,7 +9,11 @@ import markdown from "markdown-it";
 import externalLinks from "markdown-it-external-links";
 
 export interface MdContent {
-  frontmatter?: object;
+  frontmatter?: {
+    title?: string
+    icon?: string
+    cover?: string
+  };
   content?: string;
 }
 

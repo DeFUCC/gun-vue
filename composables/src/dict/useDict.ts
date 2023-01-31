@@ -1,5 +1,6 @@
 /**
  * @module Dict
+ * @group Dictionary
  */
 
 export * from './langs'

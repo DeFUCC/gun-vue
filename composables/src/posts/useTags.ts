@@ -1,6 +1,7 @@
 /**
  * Get and handle a particular post by it's tag and hash
- * @module useTags
+ * @module Tags
+ * @group Posts
  */
 
 import { computed, reactive, ref } from "vue";
@@ -9,18 +10,11 @@ import Fuse from "fuse.js";
 import { useGun } from "../gun";
 import { hashText } from "../crypto";
 import { currentRoom } from "../room";
+import { PostList } from "./usePosts";
 
-/**
- * @typedef useTagList
- * @property {ref} search - a ref to bind to an input element
- * @property {computed} slug - a slugified search query - url safe verion to be used as a tag
- * @property {Tags} tags - the object to handle all the tags
- * @property {Function} addTag - add a slug tag to the list
- */
 
 /**
  * Toolkit to deal with the available tags
- * @returns {useTagList}
  */
 export function useTagList() {
   const gun = useGun();
@@ -89,7 +83,7 @@ export function useTagList() {
 
 
 
-export function listPersonalTag(tag, pub = currentRoom.pub) {
+export function listPersonalTag(tag: string, pub = currentRoom.pub): PostList {
   const gun = useGun();
   const records = reactive({});
   gun

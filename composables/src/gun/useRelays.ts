@@ -1,8 +1,8 @@
 /**
  * Loads the [list of active volunteer DHT gun nodes](https://github.com/amark/gun/wiki/volunteer.dht)  and benchmarks ping for them
- * @module useRelays
+ * @module Relays
+ * @group Database
  */
-
 
 interface Relay {
   host: string

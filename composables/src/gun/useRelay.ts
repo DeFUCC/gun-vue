@@ -1,6 +1,7 @@
 /**
  * Relay connection management
- * @module useRelay
+ * @module Relay
+ * @group Database
  */
 
 import { useGun } from '.'
@@ -14,15 +15,7 @@ const defaultPeer = "https://gun.defucc.me/gun";
 export const peer: Ref = useStorage("peer", defaultPeer);
 
 /**
- * @typedef {reactive} Relay Peer server status reactive object
- * @property {String} host the current peer server URL
- * @property {String} status current connection status
- * @property {Number} started the timestamp of server started current session
- * @property {Number} pulse last received timestamp
- * @property {Number} lag drift of the timestamp in ms
- * @property {Number} diff age of the session in ms
- * @property {String} age age of the session in human readable format
- * @property {Boolean} blink a Boolean toggled every time the new pulse comes to drive animations
+ * Peer server status reactive object
  * @example
  * {
  * "peer": "https://etogun.glitch.me/gun",

@@ -1,5 +1,6 @@
 /**
  * @module Certificates
+ * @group Crypto
  */
 
 import { SEA } from "..";
