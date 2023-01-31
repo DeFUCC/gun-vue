@@ -9,19 +9,19 @@
 	},
 	"type": "module",
 	"scripts": {
-		"app": "cd app && pnpm tauri dev",
-		"build": "cd composables && pnpm run build && pnpm run doc && cd .. && cd components && pnpm run build && pnpm run story:build && cd .. && cd app && pnpm run build ",
+		"dev": "cd app && pnpm run dev",
+		"build": "cd composables && pnpm run lib-build && pnpm run docs && cd .. && cd components && pnpm run build && pnpm run story:build && cd .. && cd app && pnpm run build ",
 		"change": "pnpm changeset",
 		"deploy": "sh deploy.sh",
-		"dev": "cd app && pnpm run dev",
 		"histoire": "cd components && pnpm run story:dev",
-		"publish": "pnpm run build && pnpm changeset publish",
+		"docs": "cd composables && pnpm run docs",
 		"preview": "cd app && pnpm run preview",
 		"relay": "cd relay && pnpm run start",
 		"sky": "node deploy-to-skynet.js",
+		"app": "cd app && pnpm tauri dev",
 		"tauri": "cd app && pnpm tauri build",
 		"version": "pnpm changeset version",
-		"types": "cd composables && typedoc"
+		"publish": "pnpm run build && pnpm changeset publish"
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.26.0",

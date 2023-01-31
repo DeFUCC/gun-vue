@@ -1,3 +1,7 @@
+/**
+ * @module Certificates
+ */
+
 import { SEA } from "..";
 
 import type { IPolicy, ISEAPair, LEX } from 'gun'

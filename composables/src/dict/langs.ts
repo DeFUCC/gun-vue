@@ -1,3 +1,4 @@
+
 export const langParts = {
   noun: {
     en: 'noun',

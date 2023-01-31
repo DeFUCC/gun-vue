@@ -6,7 +6,7 @@
 
 import JSZip from "jszip";
 import { downloadFile, base64Extension, base64FileType } from "./useFile";
-import { genUUID } from "../gun/";
+import { genUUID } from "../gun";
 import { createMd } from "./useMd";
 import { loadFromHash } from "../posts";
 
@@ -46,17 +46,24 @@ export function useZip() {
    * }
    */
 
-  async function addFile({ title, file, folder = "." } = {}) {
+  async function addFile({ title, file, folder = "." }: {
+    title: string
+    file: string
+    folder: string
+  }) {
     const fileType = base64FileType(file);
     const extension = base64Extension(file);
     const blob = await fetch(file).then((res) => res.blob());
     const fileName = `${title}.${extension}`;
-    zip.file(`${folder}/${fileName}`, blob, fileType);
+    zip.file(`${folder}/${fileName}`, blob);
     return fileName;
   }
 
-  function addMd({ md, title } = {}) {
-    zip.file(`${title}/index.md`, createMd(md), "text/markdown");
+  function addMd({ md, title }: {
+    md: object
+    title: string
+  }) {
+    zip.file(`${title}/index.md`, createMd(md));
   }
 
   /**
@@ -65,11 +72,15 @@ export function useZip() {
    * @async
    */
 
-  async function zipPost(post = {}) {
+  async function zipPost(post: {
+    text: string
+    title: string
+    statement: string
+  }) {
     let { text, title, statement } = post;
     delete post?.text;
     if (!title) {
-      title = statement ? statement.split(0, 12) : genUUID();
+      title = statement ? statement.slice(0, 12) : genUUID();
     }
 
     const files = ["cover", "icon"];

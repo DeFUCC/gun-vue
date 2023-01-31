@@ -21,12 +21,13 @@
 		"**/public/**"
 	],
 	"typedocOptions": {
-		"entryPoints": ["src/index.ts"],
+		"entryPoints": ["src"],
 		"out": "docs/",
 		"githubPages": false,
 		"entryPointStrategy": "expand",
 		"allReflectionsHaveOwnDocument": true,
 		"readme": "index.md",
-		"name": "Gun-Vue composables"
+		"name": "Gun-Vue composables",
+		"defaultCategory": "Composables"
 	}
 }

@@ -1,6 +1,6 @@
 /**
  * Basic public chat
- * @module useChat
+ * @module Chat
  */
 
 import { ref, reactive, computed, ComputedRef } from "vue";

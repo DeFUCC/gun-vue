@@ -3,6 +3,9 @@
  * @module useAccount
  * */
 
+/**
+ * @group Account
+ */
 export interface Profile {
   name?: string
   first_name?: string
@@ -11,6 +14,9 @@ export interface Profile {
   [key: string]: string | undefined
 }
 
+/**
+ * @group Account
+ */
 export interface Account {
   pub: string | Ref
   color: string
@@ -31,19 +37,8 @@ import { MaybeRef } from "@vueuse/core"
 const colorDeep = useColor("deep");
 
 /**
- * @typedef {computed(object)} account 
- * Reactive account data
- * @property {string} pub   the pub key
- * @property {string} color the color hash of the pub key
- * @property {object} profile all the profile fields of the account
- * @property {number} pulse the recent presence timestamp
- * @property {boolean} blink on/off switching pulse
- * @property {'online' | string} lastSeen a human readable last seen status ('online' if less than TIMEOUT)
- */
-
-
-/**
  * Load and handle user's account by a public key
+ * @group Account
  * @example
  * import { ref } from 'vue'
  * import { useAccount, SEA } from '@gun-vue/composables'
@@ -58,9 +53,6 @@ const colorDeep = useColor("deep");
  * 
  * generatePair()
  */
-
-
-
 export function useAccount(pubKey: MaybeRef<string> = ref(), { TIMEOUT = 10000 } = {}) {
   const gun = useGun();
   const pub = ref(pubKey);
@@ -92,8 +84,6 @@ export function useAccount(pubKey: MaybeRef<string> = ref(), { TIMEOUT = 10000 }
       })
     }
 
-
-
     gun
       .user(pub.value)
       .get("pulse")
@@ -113,7 +103,9 @@ export function useAccount(pubKey: MaybeRef<string> = ref(), { TIMEOUT = 10000 }
   return { account, setPetname };
 }
 
-
+/**
+ * @group Account
+ */
 export async function setPetname(pub: string, name: string) {
   const { user } = useUser()
   if (!user.is) return

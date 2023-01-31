@@ -17,24 +17,18 @@
 	"license": "MIT",
 	"author": "davay42 <davay@defucc.me>",
 	"type": "module",
-	"exports": {
-		".": {
-			"import": "./dist/composables.js",
-			"require": "./dist/composables.cjs"
-		},
-		"./*": "./*"
-	},
-	"main": "./dist/composables.js",
-	"module": "./dist/composables.js",
+	"exports": "./lib/composables.js",
+	"main": "./lib/composables.js",
+	"module": "./lib/composables.js",
 	"files": [
-		"dist"
+		"lib"
 	],
 	"scripts": {
-		"build": "tsc && vite build",
-		"deploy": "sh deploy.sh",
-		"dev": "vite",
+		"lib-build": "tsc && vite build --config vite.config.lib.js",
 		"doc": "cd jsdoc2md && sh docs.sh",
-		"docs": "typedoc && vitepress dev docs",
+		"docs": "typedoc && vitepress dev",
+		"td": "typedoc --watch",
+		"docs-build": "typedoc && vitepress build",
 		"serve": "vite preview"
 	},
 	"dependencies": {

@@ -1,6 +1,6 @@
 /**
  * SEA cryptography abstraction
- * @module useCrypto
+ * @module Crypto
  */
 
 // https://github.com/amark/gun/wiki/Snippets

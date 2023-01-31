@@ -87,6 +87,6 @@ export const soul = Gun?.node?.soul;
  */
 
 // @ts-ignore: Incorrect Gun types
-export const genUUID: (num: number) => string = Gun?.text?.random;
+export const genUUID: () => string = Gun?.text?.random;
 
 

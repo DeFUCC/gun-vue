@@ -1,6 +1,6 @@
 /**
  * Manage user's password and credentials
- * @module usePass
+ * @module Pass
  */
 
 import { computed, reactive, watchEffect } from "vue";

@@ -1,6 +1,6 @@
 /**
  * Handle Markdown files
- * @module useMd
+ * @module Md
  * */
 
 import yaml from "yaml";

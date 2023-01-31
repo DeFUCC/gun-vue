@@ -8,17 +8,16 @@ const dirname = path.dirname(filename);
 export default defineConfig({
   plugins: [moduleExclude("text-encoding")],
   build: {
+    outDir: 'lib',
     lib: {
       entry: path.resolve(dirname, "./src/index.ts"),
-      name: "composables",
-      formats: ["es", "cjs"],
+      formats: ["es"],
     },
     sourcemap: true,
     rollupOptions: {
       // external: ["vue"],
       output: {
         minifyInternalExports: false,
-        chunkFileNames: "[name].[format].js",
       },
     },
   },

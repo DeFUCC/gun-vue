@@ -1,6 +1,6 @@
 /**
- * Basic user management
- * */
+ * @module User
+ */
 
 import { gun, useGun } from "..";
 import { useColor } from "../ui";
@@ -36,9 +36,7 @@ export const selectedUser = reactive({
  *  "pass": "SEA{\"ct\":\"8wNClMx/ebfou+gGWdf+bbx0TAgc9RU=\",\"iv\":\"NPgHkI+Ke+i/mw+3chlr\",\"s\":\"3VzGv06Y4fQ+\"}" 
  *  } 
  * }
-
  */
-
 export interface User {
 	initiated: boolean
 	auth: boolean
@@ -63,23 +61,6 @@ export interface User {
 	pair(): ISEAPair;
 }
 
-/**
- * Get access to current logged in user
- * @returns {useUser}
- * @example
- * import { useUser } from '@gun-vue/composables'
- *
- * const { user, auth, leave } = useUser()
- */
-
-export interface UseUser {
-	user: User
-	auth: (pair: ISEAPair, cb?: (pair: ISEAPair) => void) => Promise<void>
-	leave: () => void
-}
-
-
-
 export const user: User = reactive({
 	initiated: false,
 	auth: false,
@@ -103,8 +84,22 @@ export const user: User = reactive({
 	},
 });
 
-export function useUser(): UseUser {
 
+export interface UseUser {
+	user: User
+	auth: (pair: ISEAPair, cb?: (pair: ISEAPair) => void) => Promise<void>
+	leave: () => void
+}
+
+/**
+ * Get access to current logged in user
+ * @example
+ * import { useUser } from '@gun-vue/composables'
+ *
+ * const { user, auth, leave } = useUser()
+ */
+
+export function useUser(): UseUser {
 	if (!user.initiated) {
 		const gun = useGun();
 		user.db = gun.user();
@@ -208,7 +203,6 @@ export function isMine(soul: string) {
 
 /**
  * Add a field to the User profile
- * @param {String} title
  * @example import { addProfileField } from '@gun-vue/composables'
 
 addProfileField( 'city' )
@@ -219,8 +213,6 @@ export function addProfileField(title: string) {
 
 /**
  * Update a profile field
- * @param {String} field
- * @param {Any} data
  * @example
  * import { updateProfile } from '@gun-vue/composables'
  *
@@ -235,8 +227,6 @@ export function updateProfile(field: string, data: string) {
 
 /**
  * Check if the object is a proper SEA pair
- * @param {Object} pair - an object to check
- * @returns {Boolean}
  */
 
 export function isPair(pair: ISEAPair): boolean {
