@@ -1,6 +1,6 @@
 [package]
 name = "gun_vue"
-version = "0.12.4"
+version = "0.12.6"
 description = "Gun-Vue makes reactive p2p graphs a thing"
 authors = ["davay42"]
 license = "MIT"
