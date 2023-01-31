@@ -7,15 +7,12 @@
 		"declaration": true,
 		"emitDeclarationOnly": true,
 		"declarationMap": true,
-		"declarationDir": "composables/public/types",
+		"declarationDir": "public/types",
 		"skipLibCheck": true,
 		"module": "ESNext",
 		"allowSyntheticDefaultImports": true
 	},
-	"vueCompilerOptions": {
-		"plugins": ["@volar/vue-language-plugin-pug"]
-	},
-	"include": ["composables", "components"],
+	"include": ["src"],
 	"exclude": [
 		"node_modules",
 		"_dist/**",
@@ -24,12 +21,12 @@
 		"**/public/**"
 	],
 	"typedocOptions": {
-		"entryPoints": ["composables/src/index.ts"],
-		"out": "composables/docs/",
+		"entryPoints": ["src/index.ts"],
+		"out": "docs/",
 		"githubPages": false,
 		"entryPointStrategy": "expand",
 		"allReflectionsHaveOwnDocument": true,
-		"readme": "composables/index.md",
+		"readme": "index.md",
 		"name": "Gun-Vue composables"
 	}
 }

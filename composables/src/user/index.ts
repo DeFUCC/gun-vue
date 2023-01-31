@@ -1,4 +1,6 @@
-/**@module User */
+/**
+ * @module User 
+ * */
 
 export * from './useMates'
 export * from './useUser'

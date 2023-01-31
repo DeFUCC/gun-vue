@@ -21,7 +21,7 @@
 		"sky": "node deploy-to-skynet.js",
 		"tauri": "cd app && pnpm tauri build",
 		"version": "pnpm changeset version",
-		"types": "cd composables && tsc && cd .. && typedoc"
+		"types": "cd composables && typedoc"
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.26.0",
@@ -36,7 +36,7 @@
 		"eslint-plugin-vue-pug": "^0.5.5",
 		"typedoc": "0.23.24",
 		"typedoc-plugin-markdown": "^3.14.0",
-		"typescript": "^4.9.4",
+		"typescript": "^4.9.5",
 		"vite": "^4.0.4",
 		"vue-eslint-parser": "^9.1.0"
 	}

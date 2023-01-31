@@ -1,6 +1,5 @@
 /**
  * Basic user management
- * @module useUser
  * */
 
 import { gun, useGun } from "..";
@@ -16,41 +15,6 @@ export const selectedUser = reactive({
 });
 
 /**
- * @typedef {Object} Account - the user account interface
- * @property {ref} pub - The pub key used to build the account
- * @property {computed} color - The user account color derived from the pub key
- * @property {Object} profile - An object with all the `gun.user().get('profile')` data
- * @property {Number} pulse - latest timestamp from the user. It's emitted every second. Offline timeout is set to 10 seconds.
- * @property {Boolean} blink - A boolean that toggles on every timestamp received
- * @property {Sting} lastSeen - Shows 'online' if recent pulse is less then 10s ago or a human readable time string
- * @property {gun} db - `gun.user(pub)` ref to query any additional user data
- * @example
- * {
- * "pub": "XnpLVDYZWdl1NNgo6BlD6e3-n3Fzi-ZzVrzbIgYCYHo.9-hHUHaWNaAE6tMp800MMzNtDLtjicS53915IrBu4uc",
- * "color": "#f55c3d",
- * "profile": {
- *    "name": "Accord",
- *    "Message": "Use your imagination!",
- *    "Money": "$ 20000000000"
- * },
- * "pulse": 1642077216809,
- * "lastSeen": "online",
- * "blink": true
- * }
- */
-
-/**
- * @interface User - An interface to the current gun user
- * @property {boolean} initiated - `true` if useUser has been run at least once
- * @property {Object} is - Reactive `gun.user().is`
- * @property {String} pub - Current user public key
- * @property {String} color - a HEX color for the given pub
- * @property {Number} pulse - Last received pulse timestamp
- * @property {Number} pulser - An id for pulse `setInterval`
- * @property {Boolean} blink - Toggles with every pulse received
- * @property {Object} db - `gun.user()` reference
- * @property {Object} safe - safe account indicators
- * @property {Function} pair - use `user.pair()` to get curent user key pair
  * @example
  * { 
  *  "initiated": true, 
@@ -74,10 +38,15 @@ export const selectedUser = reactive({
  * }
 
  */
+
 export interface User {
 	initiated: boolean
 	auth: boolean
-	is: any
+	is: {
+		pub?: string,
+		epub?: string,
+		alias?: ISEAPair | string
+	}
 	name: string
 	pub: string
 	color: string
@@ -85,32 +54,14 @@ export interface User {
 	pulser: any
 	blink: boolean
 	safe: {
-		[key: string]: string | undefined
+		saved: boolean
+		password: string
+		enc: string
+		pass: string
 	};
 	db?: IGunUserInstance
 	pair(): ISEAPair;
 }
-
-export const user: User = reactive({
-	initiated: false,
-	auth: false,
-	is: null,
-	name: "",
-	pub: computed(() => user?.is?.pub) as unknown as string,
-	color: computed(() => (user.pub ? colorDeep.hex(user.pub) : "gray")) as unknown as string,
-	pulse: 0,
-	pulser: null,
-	blink: false,
-	safe: {
-		saved: '',
-		password: '',
-	},
-	db: undefined,
-	pair(): ISEAPair {
-		//@ts-ignore
-		return gun?.user?.()?._?.sea;
-	},
-});
 
 /**
  * Get access to current logged in user
@@ -126,6 +77,31 @@ export interface UseUser {
 	auth: (pair: ISEAPair, cb?: (pair: ISEAPair) => void) => Promise<void>
 	leave: () => void
 }
+
+
+
+export const user: User = reactive({
+	initiated: false,
+	auth: false,
+	is: null,
+	name: "",
+	pub: computed(() => user?.is?.pub) as unknown as string,
+	color: computed(() => (user.pub ? colorDeep.hex(user.pub) : "gray")) as unknown as string,
+	pulse: 0,
+	pulser: null,
+	blink: false,
+	safe: {
+		saved: false,
+		password: '',
+		enc: '',
+		pass: ''
+	},
+	db: undefined,
+	pair(): ISEAPair {
+		//@ts-ignore
+		return gun?.user?.()?._?.sea;
+	},
+});
 
 export function useUser(): UseUser {
 
@@ -183,7 +159,6 @@ function init() {
 
 /**
  * Authenticate with a SEA key pair
- * @param {Object} pair
  * @example
  * import { auth, SEA } from '@gun-vue/composables'
  *
@@ -195,7 +170,6 @@ function init() {
 
 export async function auth(pair: ISEAPair, cb = (pair: ISEAPair) => { }) {
 	if (!isPair(pair)) {
-		// pair = await SEA.pair();
 		console.log("incorrect pair", pair);
 		return;
 	}

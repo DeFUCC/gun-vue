@@ -12,7 +12,6 @@
 		"moduleResolution": "Node",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"noEmit": true,
 		"declaration": true,
 		"declarationMap": true,
 		"baseUrl": "./",
@@ -20,6 +19,9 @@
 			"@/*": ["./*"],
 			"#composables": ["../composables/src/"]
 		}
+	},
+	"vueCompilerOptions": {
+		"plugins": ["@volar/vue-language-plugin-pug"]
 	},
 	"include": ["./src"]
 }

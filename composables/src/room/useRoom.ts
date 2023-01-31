@@ -13,8 +13,28 @@ import {
 } from "..";
 import { rootRoom } from "./rootRoom";
 import { reactive, computed, ref, watchEffect } from "vue";
+import { ISEAPair } from "gun";
 
-export const currentRoom = reactive({
+export interface CurrentRoom {
+  pub: string
+  isRoot: boolean
+  hosts?: {
+    [key: string]: {
+      enc?: string
+      features?: string
+      profile?: string
+      hosts?: string
+    }
+  }
+  features?: {
+    [key: string]: string
+  }
+  profile?: {
+    [key: string]: string
+  }
+}
+
+export const currentRoom: CurrentRoom = reactive({
   pub: rootRoom.pub,
   isRoot: computed(() => currentRoom.pub == rootRoom.pub),
   hosts: {},
@@ -53,12 +73,11 @@ watchEffect(() => {
 
 /**
  * Reactive room controls
- * @returns {useRoom}
  */
 
 export function useRoom(pub = currentRoom.pub) {
 
-  const room = reactive({
+  const room: CurrentRoom = reactive({
     pub,
     isRoot: pub != rootRoom.pub,
     hosts: {},
@@ -176,7 +195,7 @@ export function updateRoomProfile(field, content) {
  * Create a new room inside the current room
  */
 
-export async function createRoom({ pair, name } = {}) {
+export async function createRoom({ pair, name }: { pair: ISEAPair, name?: string }) {
   const { user } = useUser();
   // if (!pair) pair = await SEA.pair();
   if (!pair) return;
@@ -246,14 +265,14 @@ export async function createRoom({ pair, name } = {}) {
   // enterRoom(pair.pub);
 }
 
-export async function recreateRoom(enc) {
-  const dec = await SEA.decrypt(enc, user.pair());
+export async function recreateRoom(enc: string) {
+  const dec: ISEAPair = await SEA.decrypt(enc, user.pair());
   createRoom({
     pair: dec,
   });
 }
 
-export async function submitRoom(pub) {
+export async function submitRoom(pub: string) {
   const gun = useGun();
   const already = await gun
     .user(currentRoom.pub)
@@ -284,7 +303,7 @@ export function joinRoom() {
  * @param {String} pub
  */
 
-export function enterRoom(pub) {
+export function enterRoom(pub: string): void {
   currentRoom.pub = pub;
 }
 
@@ -302,7 +321,13 @@ export async function addPersonal({
   text,
   pub = currentRoom.pub,
   cert,
-} = {}) {
+}: {
+  tag: string
+  key: string
+  text: string
+  pub: string
+  cert: string
+}) {
   if (!cert) cert = await gun.user(pub).get("features").get(tag).then();
   if (!cert) {
     cert = currentRoom.features?.[`${tag}`];

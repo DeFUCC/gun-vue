@@ -89,7 +89,6 @@ const selectedUser = reactive({
 <!-- eslint-disable vue/no-v-html -->
 <template lang="pug">
 .flex.flex-col.items-center
-  p {{ links }}
   .text-2xl.p-8.top-15vh.cursor-pointer.absolute.rounded-3xl.shadow-xl.border-4(
     v-if="!space.joined && user.is" 
     :style="{ borderColor: user.color }"

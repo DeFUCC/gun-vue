@@ -25,6 +25,7 @@ import { useGun, useUser, SEA } from "../index.js";
 import { useColor } from "../ui/index.js";
 import { computed, ComputedRef, reactive, Ref, ref } from "vue";
 import ms from "ms";
+import { MaybeRef } from "@vueuse/core"
 
 
 const colorDeep = useColor("deep");
@@ -43,8 +44,6 @@ const colorDeep = useColor("deep");
 
 /**
  * Load and handle user's account by a public key
- * @param {Ref | string} pub - The public key of a user as a string or a ref
- * @returns {account}
  * @example
  * import { ref } from 'vue'
  * import { useAccount, SEA } from '@gun-vue/composables'
@@ -62,9 +61,9 @@ const colorDeep = useColor("deep");
 
 
 
-export function useAccount(pub = ref(), { TIMEOUT = 10000 } = {}) {
+export function useAccount(pubKey: MaybeRef<string> = ref(), { TIMEOUT = 10000 } = {}) {
   const gun = useGun();
-  pub = ref(pub);
+  const pub = ref(pubKey);
   const { user } = useUser()
   const account = computed(() => {
 

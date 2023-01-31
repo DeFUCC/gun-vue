@@ -150,10 +150,6 @@ This should prevent any Gun-Vue related code from running during build stage.
         <td><a href="#projects">Projects</a></td>
         <td></td>
       </tr>
-<tr>
-        <td><a href="#useroom">useRoom</a></td>
-        <td></td>
-      </tr>
 </tbody>
   </table>
 
@@ -485,45 +481,6 @@ Get and handle a particular post by it's tag and hash
 
 ## Projects
   <hr />
-
-  <a name="module_useRoom"></a>
-
-## useRoom
-  
-* [useRoom](#module_useRoom)
-    * [.useRoom()](#module_useRoom.useRoom) ⇒ <code>useRoom</code>
-    * [.updateRoomProfile(field, content)](#module_useRoom.updateRoomProfile)
-    * [.createRoom()](#module_useRoom.createRoom)
-    * [.enterRoom(pub)](#module_useRoom.enterRoom)
-    * [.leaveRoom()](#module_useRoom.leaveRoom)
-
-### useRoom() ⇒ <code>useRoom</code>
-  Reactive room controls
-
-### updateRoomProfile(field, content)
-  Update a profile field of a room
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| field | <code>String</code> | parameter to write to |
-| content | <code>String</code> |  |
-
-### createRoom()
-  Create a new room inside the current room
-
-### enterRoom(pub)
-  The right way to come inside a room
-
-
-| Param | Type |
-| --- | --- |
-| pub | <code>String</code> | 
-
-### leaveRoom()
-  Leave the room
-
-<hr />
 
 </docs>
 
