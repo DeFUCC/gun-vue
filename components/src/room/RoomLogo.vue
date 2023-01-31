@@ -21,7 +21,7 @@ const { logo, uploadLogo, removeLogo } = useRoomLogo(props.pub)
 
 <template lang="pug">
 .flex.flex-col.relative.items-center.justify-center
-  img(:src="logo || '/gun-vue-logo.svg'")
+  img(:src="logo || '/media/gun-vue-logo.svg'")
 
   form-picture.absolute(
     v-if="room.hosts[user.pub]"
