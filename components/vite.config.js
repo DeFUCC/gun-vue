@@ -49,7 +49,7 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: path.resolve(dirname, "/src/index.js"),
+      entry: path.resolve(dirname, "/src/index.ts"),
       name: "components",
       formats: ["es"],
     },

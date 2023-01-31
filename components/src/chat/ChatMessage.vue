@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref, onMounted } from 'vue'
-import { selectedUser, useUser, getFirstEmoji } from '..';
+import { selectedUser, useUser, getFirstEmoji } from '#composables';
 
 const props = defineProps({
   index: { type: Number, default: 0 },
