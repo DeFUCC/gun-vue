@@ -5,6 +5,8 @@
 ### Patch Changes
 
 - ee997997: Room fixes and posts refined.
+- Typedoc is working good
+  - https://www.youtube.com/watch?v=La56RcRrPIo
 
 ## 0.12.6
 
