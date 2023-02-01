@@ -25,7 +25,6 @@
 	],
 	"scripts": {
 		"lib-build": "vite build --config vite.config.lib.js",
-		"doc": "cd jsdoc2md && sh docs.sh",
 		"docs": "typedoc && vitepress dev",
 		"td": "typedoc --watch",
 		"docs-build": "typedoc && vitepress build",
@@ -53,11 +52,11 @@
 		"slugify": "^1.6.5",
 		"url-regex": "^5.0.0",
 		"vue": "^3.2.45",
-		"yaml": "^2.2.1"
+		"yaml": "^2.2.1",
+		"webtorrent": "2.0.8"
 	},
 	"devDependencies": {
 		"@types/color-hash": "^1.0.2",
-		"jsdoc-to-markdown": "^8.0.0",
 		"pug": "^3.0.2",
 		"vite": "^4.0.4",
 		"vite-plugin-checker": "^0.5.5",

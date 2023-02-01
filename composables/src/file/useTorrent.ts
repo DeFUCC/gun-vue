@@ -11,7 +11,7 @@ const torrentId = 'magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&
 
 export function downloadTorrent(id = torrentId) {
   const file = ref()
-  import('webtorrent/webtorrent.min').then((lib) => {
+  import('webtorrent/dist/webtorrent.min').then((lib) => {
     const WebTorrent = lib.default
     const client = new WebTorrent()
 
@@ -28,7 +28,7 @@ export function downloadTorrent(id = torrentId) {
 export function uploadTorrent(files) {
 
   const file = ref()
-  import('webtorrent/webtorrent.min').then((WebTorrent) => {
+  import('webtorrent/dist/webtorrent.min').then((WebTorrent) => {
     const client = new WebTorrent()
 
     client.seed(files, function (torrent) {
