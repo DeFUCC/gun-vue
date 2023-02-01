@@ -5,6 +5,7 @@
 ### Patch Changes
 
 - ee997997: Room fixes and posts refined.
+- Typedoc fully configured https://typedoc.org
 - Updated dependencies [ee997997]
   - @gun-vue/composables@0.12.7
 
