@@ -2,6 +2,7 @@
 	"compilerOptions": {
 		"target": "es2020",
 		"moduleResolution": "node",
+		"resolveJsonModule": true,
 		"allowJs": true,
 		"isolatedModules": true,
 		"declaration": true,

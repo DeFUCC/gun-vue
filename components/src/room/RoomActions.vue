@@ -1,5 +1,5 @@
 <script setup>
-import { useRoom, currentRoom, rootRoom, recreateRoom, useColor, useUser, useBackground } from '#composables';
+import { useRoom, currentRoom, rootRoom, recreateRoom, useColor, useUser, useBackground, downloadFile, SEA } from '#composables';
 import { ref, computed, reactive } from 'vue'
 
 const props = defineProps({
@@ -19,6 +19,11 @@ const roomPub = computed(() => {
   }
 })
 
+async function download(enc) {
+  const dec = await SEA.decrypt(enc, user.pair());
+  downloadFile(JSON.stringify(dec), 'application/json', `room-${room.profile?.name}.json`)
+}
+
 </script>
 
 <template lang="pug">
@@ -29,6 +34,12 @@ const roomPub = computed(() => {
     )
     .i-la-tools
     .ml-2 Renew
+  button.button(
+    v-if="room.hosts?.[user.pub]" 
+    @click="download(room.hosts?.[user.pub]?.enc)"
+    )
+    .i-la-download
+    .ml-2 Keys
   .flex.flex-wrap.py-4(v-if="roomPub != rootRoom.pub")
     button.button(
       v-if="currentRoom.pub !== roomPub" 

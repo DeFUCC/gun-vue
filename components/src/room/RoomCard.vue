@@ -1,10 +1,10 @@
 <script setup>
 import {
-  useRoom,
   useBackground,
   currentRoom,
   useRoomLogo
 } from '#composables'
+import { useRoom } from '#composables'
 import {
   computed
 } from 'vue';
@@ -20,18 +20,14 @@ const props = defineProps({
 
 })
 
-const {
-  room
-} = useRoom(props.pub)
+const { room } = useRoom(props.pub)
 
 const bg = computed(() => useBackground({
   pub: props.pub,
   size: 400
 }))
 
-const {
-  logo
-} = useRoomLogo(props.pub)
+const { logo } = useRoomLogo(props.pub)
 </script>
 
 <template lang="pug">
@@ -43,7 +39,7 @@ const {
       v-if="logo" 
       :src="logo"
       )
-    .text-lg {{ room.profile.name }}
+    .text-lg {{ room.profile?.name }}
     .flex-1
     account-avatar.m-2(
       v-for="(enc, host) in room.hosts"

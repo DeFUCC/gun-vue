@@ -24,7 +24,7 @@ function reset() {
 }
 
 function createIt() {
-  createRoom({ pair: { ...create.pair }, name: create.name });
+  createRoom(create);
   reset()
 }
 
