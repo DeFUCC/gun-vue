@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 const props = defineProps({
-  url: { type: String, default: '' },
+  url: { type: [String, Object], default: '' },
   icon: { type: [Boolean, String], default: true }
 })
 

@@ -9,22 +9,14 @@ import JSZip from "jszip";
 import { downloadFile, base64Extension, base64FileType } from "./useFile";
 import { genUUID } from "../gun";
 import { createMd } from "./useMd";
+import type { MdContent } from "./useMd";
 import { loadFromHash } from "../posts";
-import { toRaw } from "vue";
 
-/**
- * @typedef useZip
- * @property {JSZip} zip - a JSZip instance
- * @property {Function} zipPost - treats a post with md contents and cover and icon images and adds them to the zip
- * @property {Function} addMd - add a MD file to the zip
- * @property {Function} addFile - add a binary file to the zip
- * @property {Function} downloadZip - initiate the download of the zip file
- */
 
 /**
  * Zip file creation toolbox
  * @example
- * import {useZip} from '@gun-vue/composables'
+ * import { useZip } from '@gun-vue/composables'
  * const { zip, zipPost, addMd, addFile, downloadZip } = useZip()
  */
 
@@ -34,7 +26,6 @@ export function useZip() {
   /**
    * Add a binary file to the zip
    * @async
-   * @param {Object} options
    * @example
    *  if (post.cover) { // a base64 encoded picture
    *   const fileName = await addFile({
@@ -45,7 +36,6 @@ export function useZip() {
    *   post.cover = fileName;
    * }
    */
-
   async function addFile({ title, file, folder = "." }: {
     title: string
     file: string
@@ -60,10 +50,7 @@ export function useZip() {
   }
 
   function addMd({ md, title }: {
-    md: {
-      frontmatter: object
-      text: string
-    }
+    md: MdContent
     title: string
   }) {
     zip.file(`${title}/index.md`, createMd(md));
@@ -109,7 +96,7 @@ export function useZip() {
       title,
       md: {
         frontmatter: post,
-        text: text || content,
+        content: text || content,
       },
     });
   }

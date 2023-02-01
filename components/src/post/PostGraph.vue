@@ -23,7 +23,13 @@ gun
     let to = key.slice(45, 89);
 
     for (let hash of [from, to]) {
-      let node = JSON.parse(await gun.get('#posts').get(hash).then())
+      let data = await gun.get('#posts').get(hash).then()
+      try {
+        data = JSON.parse(data)
+      } catch (e) {
+
+      }
+      let node = data
       nodes[hash] = {
         hash,
         color: colorDeep.hex(hash),

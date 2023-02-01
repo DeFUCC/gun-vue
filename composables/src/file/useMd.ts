@@ -4,7 +4,7 @@
  * @group Files
  * */
 
-import yaml from "yamlify-object";
+import yamlify from "yamlify-object";
 import markdown from "markdown-it";
 import externalLinks from "markdown-it-external-links";
 import { parse } from 'ultramatter'
@@ -24,19 +24,17 @@ export interface MdContent {
  */
 export function createMd({
   frontmatter = null,
-  text = "",
-}: {
-  frontmatter?: object;
-  text?: string;
-}) {
+  content = "",
+}: MdContent) {
   let front = "";
   if (frontmatter && typeof frontmatter == "object" && Object.keys(frontmatter).length > 0) {
-    let yml = yaml(frontmatter);
-    front = `---
-${yml}---
- `;
+    front = yamlify(frontmatter, {
+      indent: '',
+      prefix: '---\n',
+      postfix: '\n---\n'
+    });
   }
-  return front + text;
+  return front + content;
 
 }
 
