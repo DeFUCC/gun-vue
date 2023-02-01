@@ -12,13 +12,13 @@
 		{
 			"type": "Composables",
 			"patterns": [
-				"composables/**/*.ts"
+				"composables/src/**/*.ts"
 			]
 		}
 	],
 	"output": [
 		{
-			"path": "app/public/arkit.svg",
+			"path": "composables/public/arkit.svg",
 			"groups": [
 				{
 					"first": true,

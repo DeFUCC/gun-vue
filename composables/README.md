@@ -90,3 +90,5 @@ Gun-Vue is client-side only and it may throw errors being executed during the SS
 This should prevent any Gun-Vue related code from running during build stage.
 
 - [ ] Refactor the code to be more useable and tree-shakeable in SSG environment. Help needed!
+
+![](https://gun-vue.js.org/composables/arkit.svg)
