@@ -30,7 +30,7 @@ const addColor = computed(() => {
 const titleInput = ref()
 
 onMounted(() => {
-  titleInput.value.focus()
+  titleInput.value?.focus()
 })
 
 const postData = ref({})
