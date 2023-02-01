@@ -60,7 +60,7 @@
 		"jsdoc-to-markdown": "^8.0.0",
 		"pug": "^3.0.2",
 		"vite": "^4.0.4",
-		"vitepress": "^1.0.0-alpha.44",
-		"vite-plugin-checker": "^0.5.5"
+		"vite-plugin-checker": "^0.5.5",
+		"vitepress": "^1.0.0-alpha.45"
 	}
 }
