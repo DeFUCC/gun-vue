@@ -4,9 +4,11 @@
  * @group Files
  * */
 
-import yaml from "yaml";
+import yaml from "yamlify-object";
 import markdown from "markdown-it";
 import externalLinks from "markdown-it-external-links";
+import { parse } from 'ultramatter'
+
 
 export interface MdContent {
   frontmatter?: {
@@ -18,7 +20,7 @@ export interface MdContent {
 }
 
 /**
- *  Join markdown with frontmatter object and render to a string
+ *  Merge markdown content with a frontmatter object and render to a string
  */
 export function createMd({
   frontmatter = null,
@@ -28,8 +30,8 @@ export function createMd({
   text?: string;
 }) {
   let front = "";
-  if (typeof frontmatter == "object") {
-    let yml = yaml.stringify(frontmatter);
+  if (frontmatter && typeof frontmatter == "object" && Object.keys(frontmatter).length > 0) {
+    let yml = yaml(frontmatter);
     front = `---
 ${yml}---
  `;
@@ -44,22 +46,7 @@ ${yml}---
  * @returns An object with md frontmatter and content
  */
 export function parseMd(file: string): MdContent {
-  const yamlBlockPattern = /^(?:---)(.*?)(?:---|\.\.\.)(?:\n*\s*)(.*)/s;
-
-  const md: MdContent = {
-    frontmatter: {},
-    content: "",
-  };
-  const yml = yamlBlockPattern.exec(file.trim());
-
-  if (yml) {
-    let frontmatter = yml[1];
-    md.content = yml?.[2];
-    try {
-      md.frontmatter = yaml.parse(frontmatter);
-    } catch { }
-  }
-  return md;
+  return parse(file)
 }
 
 
