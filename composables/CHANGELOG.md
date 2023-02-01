@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.12.7
+
+### Patch Changes
+
+- ee997997: Room fixes and posts refined.
+
 ## 0.12.6
 
 ### Patch Changes

@@ -3,8 +3,8 @@ title: Gun-Vue composables
 layout: home
 hero:
   name: Gun-Vue
-  text: Reactive bindings for Gun P2P DB
-  tagline: Cryptographic user avatar and room background generator
+  text: Reactive peer-to-peer database toolbox
+  tagline: Pluggable Vue components and composable functions for GunJS
   image:
     src: /composables.svg
     alt: Gun-Avatar
