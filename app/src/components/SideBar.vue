@@ -13,7 +13,7 @@ style="flex: 0 0 auto"
     .i-ph-house-simple(v-if="link == 'Home'")
     .i-ph-hands-clapping(v-if="link == 'Space'")
     .i-ph-newspaper(v-if="link == 'Posts'")
-    .i-ph-house(v-if="link == 'Hubs'")
+    .i-ph-house(v-if="link == 'Rooms'")
     .i-la-broadcast-tower(v-if="link == 'Topics'")
     .i-ph-users(v-if="link == 'Users'")
     .i-ph-books(v-if="link == 'Dictionary'")
