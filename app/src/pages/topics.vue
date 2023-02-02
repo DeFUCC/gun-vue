@@ -3,7 +3,7 @@
 </script>
 
 <template lang="pug">
-.flex.relative.items-stretch.bg-dark-50.bg-opacity-40.max-h-90vh
+.flex.relative.items-stretch.bg-dark-50.bg-opacity-40.max-h-90vh.min-h-90vh
   chat-topics(@topic="$router.push(`/topics/${$event}`)")
   router-view(v-slot="{ Component }")
     transition(

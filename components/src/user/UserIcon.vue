@@ -14,7 +14,7 @@ defineEmits(['room', 'user', 'post', 'chat'])
 
 <template lang="pug">
 div.z-1000
-  account-avatar.cursor-pointer(
+  account-badge.cursor-pointer(
     :size="size" 
     :border="2" 
     :pub="user.pub" 

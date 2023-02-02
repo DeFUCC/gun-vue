@@ -15,29 +15,34 @@ export interface Message {
   text: string
 }
 
+export type MessageMap = Record<string,Message>
+
 export function useChat() {
   const gun = useGun();
   const { user } = useUser();
 
   const currentChat = ref("general");
-  const chats: { [key: string]: { [key: string]: string } } = reactive({
-    general: {},
-  });
 
-  const chatDb = gun.user(currentRoom.pub).get("chat");
+  const chats: ComputedRef<{ [key: string]: { [key: string]: string } }> = computed(() => {
+    const chatList = reactive({
+      general: {},
+    });
+    gun.user(currentRoom.pub).get("chat").map().on((d: string, k: string) => {
+      const [title, author] = k.split("@");
+      chatList[title] = chatList[title] || {};
+      if (d) {
+        chatList[title][author] = d;
+      } else {
+        delete chatList?.[title]?.[author];
+      }
+    });
+    return chatList
+  })
 
-  chatDb.map().on((d: string, k: string) => {
-    const [title, author] = k.split("@");
-    chats[title] = chats[title] || {};
-    if (d) {
-      chats[title][author] = d;
-    } else {
-      delete chats?.[title]?.[author];
-    }
-  });
+
 
   function addChat(title: string) {
-    chatDb
+    gun.user(currentRoom.pub).get("chat")
       .get(`${slugify(title) || title}@${user.pub}`)
       .put(true, undefined, { opt: { cert: currentRoom.features.chat } });
   }
@@ -46,8 +51,8 @@ export function useChat() {
     gun.user(currentRoom.pub).get("chat/" + currentChat.value)
   );
 
-  const messages: ComputedRef<{ [key: string]: Message }> = computed(() => {
-    const msgs: { [k: string]: Message } = reactive({});
+  const messages: ComputedRef< MessageMap > = computed(() => {
+    const msgs: MessageMap = reactive({});
     topicDb.value.map().on((text, k) => {
       const timestamp = k.substring(0, 13);
       const author = k.substring(14);

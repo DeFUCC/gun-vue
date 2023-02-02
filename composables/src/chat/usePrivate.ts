@@ -10,8 +10,8 @@ import { refDebounced } from '@vueuse/core'
 import { IGunChain, IGunInstance, IGunSchema } from "gun";
 import type { Message } from './useChat'
 
-export function usePrivateChat(pub: string, { parse = true } = {}) {
-  parse
+export function usePrivateChat(pub: string) {
+  
   const gun = useGun();
   const { user } = useUser();
   const messages: { [key: string]: Message } = reactive({});

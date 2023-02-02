@@ -21,14 +21,14 @@ const color = useColor('light')
     data-tauri-drag-region="true"
     :style="{ ...bg }"
     )
-
-    .flex-auto
-    util-tools
     room-button(
       @room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)"
       @browse="$router.push(`/${$event}/`)" 
       :key="currentRoom.pub"
       )
+    .flex-auto
+    util-tools
+
 
     user-icon(
       :size="40"

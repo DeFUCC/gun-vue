@@ -2,6 +2,7 @@
 import { watch } from 'vue'
 
 import { useChat } from '#composables';
+import { useWebNotification, watchDebounced } from '@vueuse/core';
 
 const props = defineProps({
   title: { type: String, default: 'Topics' },
@@ -10,6 +11,8 @@ const props = defineProps({
 })
 
 let audio
+
+
 
 function click() {
   if (!audio) {
@@ -25,8 +28,30 @@ watch(() => props.topic, topic => {
   currentChat.value = topic
 }, { immediate: true })
 
-watch(sorted, () => {
-  click()
+watchDebounced(sorted, (next, prev) => {
+  if (next.length > prev.length) {
+    click()
+    const message = next.slice(-1)[0]
+    const {
+      isSupported,
+      notification,
+      show,
+      close,
+      onClick,
+      onShow,
+      onError,
+      onClose,
+    } = useWebNotification({
+      title: message?.text,
+      body: message?.timestamp,
+      lang: 'en',
+      renotify: true,
+      tag: 'chat',
+    })
+    if (isSupported.value) {
+      show()
+    }
+  }
 }, { deep: true });
 
 </script>
