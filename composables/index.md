@@ -1,12 +1,12 @@
 ---
-title: Gun-Vue composables
+title: Gun-Vue
 layout: home
 hero:
   name: Gun-Vue
-  text: Reactive peer-to-peer database toolbox
-  tagline: Pluggable Vue components and composable functions for GunJS
+  text: Reactive crypto graph webapp toolbox
+  tagline: Pluggable Vue composable APIs powered by GUN graph database and SEA cryptography
   image:
-    src: /composables.svg
+    src: /gun-vue-logo.svg
     alt: Gun-Avatar
   actions:
     - theme: brand
@@ -26,3 +26,9 @@ features:
     title: Use examples
     details: These composables are used to build Gun-Vue components that are combined in the Gun-Vue app for everyone to play with.
 ---
+
+<style >
+.VPImage {
+  transform: translate(-50%, -50%) scale(2)  !important;
+}
+  </style>

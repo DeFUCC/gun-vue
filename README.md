@@ -4,6 +4,8 @@
 
 [![Add to Homescreen](https://img.shields.io/badge/Skynet-Add%20To%20Homescreen-00c65e?logo=skynet&labelColor=0d0d0d)](https://homescreen.hns.siasky.net/#/skylink/AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A)
 
+### Vue + Gun p2p crypto graph db toolkit
+
 Gun-vue – is where the peer-to-peer javascript database Gun meets the reactivity system of [Vue 3](https://vuejs.org). Pluggable components for UX designers. Easily importable composables for UI developers. Relay peer for p2p network enthusiasts. Demos and docs for beginners. Open source for everyone! ✊
 
 ### [@gun-vue](https://www.npmjs.com/org/gun-vue)
