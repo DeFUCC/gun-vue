@@ -1,20 +1,20 @@
 {
-	"pub": "tOOp2635vVh5KXy6uZwedyN4XO7OgkSbO3YTMDyb9ec.Axl-EUo6ibzbFkRQjPLw8toCrgQbcTmX4wvVv7pmk7E",
+	"pub": "R88WX6FjjcgJb_H6LW_LAlxkHRUja8cv2gauTZXHtNE._u9HsafjVRGFrSLHd-6f3g3xzHfeWeM07wS_8Y1Kdd8",
 	"hosts": {
-		"liTMp7iaAlKyRNQVzLqeh234Y2gOIrkABq2dxi4imvc.BE-C3-6bVTJ1hPUm3wKhN8V_QF6TaC3Cii59jFg9if4": {
-			"enc": "SEA{\"ct\":\"RRK3szB1fE+oi7lFKFZElwzF/J3TOFKaN+K61TmgB3Knn2opf4Qc8lSSu4Bx6Xo2NgNT2Hi7XXkbBBbCxCns4mYqu5NT50ZC6HqBPno7Da6u2LhoT6MKOG2AmOmAf7WFLGOGfNaTa0Uz/s8wpgjWvUbLnM40AdZuqxhOS3fNaLKLk4brNmq2ZKezGW9Kq/LRV2IRflmRW+QkWjEs8ArMaUEhafW+2cYvm2xQcp+vQW2Ww/6THCCaZ61ANgNXweSN3Fx8G9ruDS8bHIEV19ugRr5cVtG0FBjDJcyd3VxE7d42H4k3BLGhMcg+cNN4hL6YbW9USElqXaP8yQAFfC5BSuoKmPx9k423NLRw9Y1kB93A+G690ymXGyXYFGlEJQFJL0OqM/pInveqJea1vEDcBLi4jGVTv1h7B0tFdVQ=\",\"iv\":\"zXrmDHdVWT1AH06T2EQj\",\"s\":\"32YouVwQq+yU\"}",
-			"profile": "SEA{\"m\":{\"c\":\"liTMp7iaAlKyRNQVzLqeh234Y2gOIrkABq2dxi4imvc.BE-C3-6bVTJ1hPUm3wKhN8V_QF6TaC3Cii59jFg9if4\",\"w\":{\"*\":\"profile\"}},\"s\":\"2Ayap5nQwg4oWCLpFaCbrhveWXBgECnUNyu+zDRmDbYSYdJ7QZkRK3KVT0UONj6ojI6yJmcoGX4bJ9fUPR5MCQ==\"}",
-			"features": "SEA{\"m\":{\"c\":\"liTMp7iaAlKyRNQVzLqeh234Y2gOIrkABq2dxi4imvc.BE-C3-6bVTJ1hPUm3wKhN8V_QF6TaC3Cii59jFg9if4\",\"w\":{\"*\":\"features\"}},\"s\":\"FrcesCS2DlLW3QpvjuIX95nwou48jtDUiqtRTeAwb2ezjtHPUoiVthDV3AGnJ/X/si+p7qiyoLllT7p8YqQ9Ug==\"}",
-			"hosts": "SEA{\"m\":{\"c\":\"liTMp7iaAlKyRNQVzLqeh234Y2gOIrkABq2dxi4imvc.BE-C3-6bVTJ1hPUm3wKhN8V_QF6TaC3Cii59jFg9if4\",\"w\":{\"*\":\"hosts\"}},\"s\":\"kr76nmwKvZwP8ocKCyHWhV9reiJQnVNWE0CbvX1QdFtSbGUtPq336NdhG1NnM/mU9tOm0WavF/qRcWyaMSpoTA==\"}"
+		"jFjrmOEaRy-GAJlOCdG4SGoaLm_4AGMPP1sfmzYPwwo.mp2H7IQuTWlFSahN6ZnXN9Za0pD3thiIYUyGCaMel-M": {
+			"enc": "SEA{\"ct\":\"PEC3eyNx0oJGGQzALfd6279MwUl8JnhhQPNGY2tnKKhphXYWlgKgIOBKpRi9FdP6FBkJA5mfr5tKE0DFEzdImfUcGuajvDBbb3rMSAcPiMmrqGO2bOEblps5dHxlqZr+dYzEIaBvjaZA269xm/kzi9lFcWeusvqmSnKg/HVQA6AWGM/DYt0Wc8mVjGeb2bKSC3qJjZ8AnHpIODZVQ7SyuVCnXx8K50difNdAwK4t7MqVtnUJZwVfhWdkDpRuSStXxwIhveDHbNfmZ0NxwXYjHZNF9mi/sSd2KKrYjsgguSCj/1vonnOVMAZB3+yQX+KWEPISVdJKxdjNDc0f5/9pfbRBIUmya7wykFFLlDViSZVzItMFNNkiBZkwXAA2xuV1gPIvm2ifB8gUlKsRnjPMnciD+exVHmrHlowwgFE=\",\"iv\":\"4b04WatcH+iGoaAEHKgw\",\"s\":\"q4KGpyIis8+z\"}",
+			"profile": "SEA{\"m\":{\"c\":\"jFjrmOEaRy-GAJlOCdG4SGoaLm_4AGMPP1sfmzYPwwo.mp2H7IQuTWlFSahN6ZnXN9Za0pD3thiIYUyGCaMel-M\",\"w\":{\"*\":\"profile\"}},\"s\":\"ySPE0ZjYBXEOJ0wSqGpBS7JM5rwfXrCIeGaJ2aMFglNY+bNsb1y1Jxi3VsM2ssu9wBjqWNV26WZdSp2dOMTtCA==\"}",
+			"features": "SEA{\"m\":{\"c\":\"jFjrmOEaRy-GAJlOCdG4SGoaLm_4AGMPP1sfmzYPwwo.mp2H7IQuTWlFSahN6ZnXN9Za0pD3thiIYUyGCaMel-M\",\"w\":{\"*\":\"features\"}},\"s\":\"Fi9G3vtoYjTtQruWCJOxkv9QAmbVUnwBu/tHE0cnKJbZgibauVrZUCjCNliSOu8Z9/G8tC2fsSYjVDrJxsRyFw==\"}",
+			"hosts": "SEA{\"m\":{\"c\":\"jFjrmOEaRy-GAJlOCdG4SGoaLm_4AGMPP1sfmzYPwwo.mp2H7IQuTWlFSahN6ZnXN9Za0pD3thiIYUyGCaMel-M\",\"w\":{\"*\":\"hosts\"}},\"s\":\"zkepJ2BKZ46zZH7eaaRT12VYXJGbMPYaXAsEtpNsZF2KIap9IxtlJHFGut0qNW+hT9C2/Sadk2x5DmzW0Y46CA==\"}"
 		}
 	},
 	"features": {
-		"rooms": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"rooms\",\"+\":\"*\"}},\"s\":\"bIDw/nRwasE9/MxYdS6zJOassaZh1+7MdkULucqnZGQQkm+wDWbFxQ+o45WF0GbYBry5DMAe6H3s0K5U4tWT6A==\"}",
-		"space": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"space\",\"+\":\"*\"}},\"s\":\"1CRhmWvzvMJgdIC9XVoWZE6sW3xCYcpsqE6eftKEJLAhw+o1tn2+lroYNZ5l3h/Dq50wf2LbHBi0Vl8D4nKMDA==\"}",
-		"posts": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"posts\",\"+\":\"*\"}},\"s\":\"q4m+6YX2Ta97/aofkHRceEkJynYlLRn9VV+oH+DYuyoxq3nA8KAwHy1hlC8+lhHsF2UMI4wEdF7cBfb+d/do+g==\"}",
-		"chat": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"chat\",\"+\":\"*\"}},\"s\":\"yPCWqCg1OCIeSF9gTMlbigOKMgJ2SMgMpN25IY6Of8gUPse1ubHElhoNj8JWsDx7kT9KS658/VSi7+yAItcG3A==\"}",
-		"dict": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"dict\",\"+\":\"*\"}},\"s\":\"jOZ66rhwBAytypqM84PpSE5H6EbiRytQ5uYj+WpWYhNrGX/S9R4rarUWHOXAQP+AxiOqczy81ZFKcxxRuVUq/g==\"}",
-		"projects": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"projects\",\"+\":\"*\"}},\"s\":\"EfO6k3HLjISpGUYf7juTnw1rMaSk9xayT38KIm3PoEC235kwYYn7jqkZhkA2H8fIxjUnKgRJcPLWeYmjDmBvTQ==\"}",
-		"gifts": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"gifts\",\"+\":\"*\"}},\"s\":\"Nmog3EaA8pWjerw+SlrecrTeRrXJk/PtXzXnRk60a6HXrgITB5nFgYBSpLjjbpwZWiwcEQlWyzIaXLPk082YTw==\"}"
+		"rooms": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"rooms\",\"+\":\"*\"}},\"s\":\"oBTuqF71vW4DgvwrFRSge8OwvH/aw8CWwWwC+5Z/UlrY60y+egDuxD8rH7ghQ2X8GB/hzzaLhFPq3mJmymxjZg==\"}",
+		"space": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"space\",\"+\":\"*\"}},\"s\":\"bMm8s2GAvZbmx5ylJiCAJ2tubp3WaKg6bh7GEgLNwaknwpsqRipnj1xPVFTBnZ/Bn/bRqY8heQ1BXu/ZoG3Yww==\"}",
+		"posts": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"posts\",\"+\":\"*\"}},\"s\":\"WPj6tn2unwRYmSTPPteQ4x5IV17zLm0bn/jJMX186WHxWQX7b2l/kh7bOEE7MeJzI5SR4bvQLuhpXfV/JR3bJQ==\"}",
+		"chat": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"chat\",\"+\":\"*\"}},\"s\":\"81Vqh+nj3s9TzzW8kIByG8b7rLk0yzgRvkzSChb17S7ntSWfC3VYWIxW8ReBJ08erxbH+G4h8mgLW/L7vFCgUA==\"}",
+		"dict": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"dict\",\"+\":\"*\"}},\"s\":\"Hko1STUL+6J3X5cTZ8cCUCyTQXW0oU5ips3Ng3fQ4BkQnqYCSEDs52gamFb7a4OB4UvKO6FVaLXkJmnxE86dYw==\"}",
+		"projects": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"projects\",\"+\":\"*\"}},\"s\":\"CbCU905HVvmCO7WYazXbZ7XxCQwyFRBMHWEkSQAbmNUOK5FrBz6zlhq7QXe6lnLXZfv52hcNwKC/XG5KxwgyFw==\"}",
+		"gifts": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"gifts\",\"+\":\"*\"}},\"s\":\"FUogJeOdg8aawMtVjBumB7nB3IM+w0FwWHX+eZfAjrUQu/UWfH9XMjg7yy8wpaCQtkc9R+kBxCjhlLAg8oudPA==\"}"
 	}
 }

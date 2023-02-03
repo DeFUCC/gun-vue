@@ -16,16 +16,13 @@ const { send, sorted } = usePrivateChat(props.pub)
 
 </script>
 
-<template lang="pug">
-.m-0.flex.flex-col
-  .flex-0.p-4.flex.flex-wrap.items-center
-    account-avatar(
-      :pub="pub" 
-      @click="$emit('user')"
-      )
-    .text-lg.font-bold.p-2 {{ account.profile?.name }}
-    .text-lg {{ account.lastSeen }}
-  chat-messages.bg-dark-50(:messages="sorted")
-  .flex-0.bg-light-900.p-4
-    chat-input(@submit="send($event)")
+<template>
+  <div class="m-0 flex flex-col">
+    <div class="flex-0 p-4 flex flex-wrap items-center">
+      <account-avatar :pub="pub" @click="$emit('user')"></account-avatar>
+      <div class="text-lg font-bold p-2">{{ account.profile?.name }}</div>
+      <div class="text-lg">{{ account.lastSeen }}</div>
+    </div><chat-messages class="bg-dark-50" :messages="sorted"></chat-messages>
+    <div class="flex-0 bg-light-900 p-4"><chat-input @submit="send($event)"></chat-input></div>
+  </div>
 </template>
