@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.12.9
+
+### Patch Changes
+
+- Proper style exports
+- Updated dependencies
+  - @gun-vue/composables@0.12.9
+
 ## 0.12.8
 
 ### Patch Changes

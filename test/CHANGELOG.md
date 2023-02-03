@@ -1,5 +1,12 @@
 # @gun-vue/test
 
+## 0.12.9
+
+### Patch Changes
+
+- Updated dependencies
+  - @gun-vue/components@0.12.9
+
 ## 0.12.8
 
 ### Patch Changes

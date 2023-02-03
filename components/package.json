@@ -1,6 +1,6 @@
 {
   "name": "@gun-vue/components",
-  "version": "0.12.8",
+  "version": "0.12.9",
   "homepage": "https://gun-vue.js.org",
   "bugs": {
     "url": "https://github.com/defucc/gun-vue/issues"
@@ -17,7 +17,10 @@
   "license": "MIT",
   "author": "davay42 <davay@defucc.me>",
   "type": "module",
-  "exports": "./dist/components.js",
+  "exports": {
+    ".": "./dist/components.js",
+    "./styles.css": "./dist/styles.css"
+  },
   "main": "./dist/components.js",
   "module": "./dist/components.js",
   "types": "./dist/types/components/src/all.d.ts",
