@@ -36,7 +36,7 @@ pnpm run dev
 
 ```vue
 <script setup>
-	import "@gun-vue/components/dist/style.css";
+	import "@gun-vue/components/style.css";
 	import { UserHome } from "@gun-vue/components";
 </script>
 
@@ -55,7 +55,7 @@ import App from "./App.vue";
 import router from "./router";
 
 import "./assets/main.css";
-import "@gun-vue/components/dist/style.css";
+import "@gun-vue/components/style.css";
 import { GunVuePlugin } from "@gun-vue/components";
 
 const app = createApp(App);
@@ -78,7 +78,7 @@ Most of the Gun-Vue components rely on realtime communication with the GUN datab
 
 ```vue Home.vue
 <script setup async>
-	import "@gun-vue/components/dist/style.css";
+	import "@gun-vue/components/style.css";
 	const { UserHome } = await import("@gun-vue/components");
 </script>
 

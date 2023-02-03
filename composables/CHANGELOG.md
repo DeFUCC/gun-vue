@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.12.10
+
+### Patch Changes
+
+- Correct style.css export for components.
+
 ## 0.12.9
 
 ### Patch Changes

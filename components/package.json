@@ -1,6 +1,6 @@
 {
   "name": "@gun-vue/components",
-  "version": "0.12.9",
+  "version": "0.12.10",
   "homepage": "https://gun-vue.js.org",
   "bugs": {
     "url": "https://github.com/defucc/gun-vue/issues"
@@ -19,7 +19,7 @@
   "type": "module",
   "exports": {
     ".": "./dist/components.js",
-    "./styles.css": "./dist/styles.css"
+    "./style.css": "./dist/style.css"
   },
   "main": "./dist/components.js",
   "module": "./dist/components.js",

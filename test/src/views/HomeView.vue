@@ -1,5 +1,5 @@
 <script setup>
-import "@gun-vue/components/dist/style.css";
+import "@gun-vue/components/style.css";
 </script>
 
 <template>

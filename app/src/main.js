@@ -3,7 +3,7 @@ import App from "./app.vue";
 
 import '@unocss/reset/tailwind.css'
 import 'uno.css'
-import "#components/styles/index.css"; // use '@gun-vue/components/styles/index.css' in your apps
+import "#components/styles/index.css"; // use '@gun-vue/components/style.css' in your apps
 
 import { createRouter, createWebHashHistory } from "vue-router";
 import routes from "~pages";

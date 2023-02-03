@@ -49,7 +49,7 @@ import App from "./App.vue";
 import router from "./router";
 
 import "./assets/main.css";
-import "@gun-vue/components/dist/style.css";
+import "@gun-vue/components/style.css";
 import { GunVuePlugin } from "@gun-vue/components";
 
 const app = createApp(App);
