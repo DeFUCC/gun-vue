@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"paths": {
+			"#composables/*": ["./composables/src/*"]
+		}
+	},
+	"vueCompilerOptions": {
+		"plugins": ["@volar/vue-language-plugin-pug"]
+	}
+}

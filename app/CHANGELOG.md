@@ -1,5 +1,14 @@
 # @gun-vue/app
 
+## 0.12.8
+
+### Patch Changes
+
+- new root
+- Updated dependencies
+  - @gun-vue/components@0.12.8
+  - @gun-vue/composables@0.12.8
+
 ## 0.12.7
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @gun-vue/repo
 
+## 0.12.8
+
+### Patch Changes
+
+- new root
+
 ## 0.12.7
 
 ### Patch Changes
