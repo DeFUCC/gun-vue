@@ -11,19 +11,19 @@
   },
   "dependencies": {
     "@gun-vue/components": "workspace:^",
-    "vue": "^3.2.45",
+    "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-prettier": "^7.0.0",
-    "@vue/test-utils": "^2.2.8",
+    "@vue/test-utils": "^2.2.10",
     "eslint": "^8.33.0",
     "eslint-plugin-vue": "^9.9.0",
     "jsdom": "^21.1.0",
     "prettier": "^2.8.3",
-    "vite": "^4.0.4",
-    "vitest": "^0.28.3"
+    "vite": "^4.1.1",
+    "vitest": "^0.28.4"
   }
 }
