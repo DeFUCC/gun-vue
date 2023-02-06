@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watchEffect } from 'vue'
+import { ref, watch, watchEffect } from 'vue'
 import { useGun, useColor, selectedUser, useUser, SEA } from '#composables'
 
 const props = defineProps({
@@ -29,6 +29,13 @@ watchEffect(() => {
   })
 });
 
+watch(() => user.is, is => {
+  if (!is) {
+    name.value = ''
+    petname.value = ''
+  }
+})
+
 function select() {
   if (props.selectable) {
     selectedUser.pub = props.pub
@@ -38,7 +45,7 @@ function select() {
 
 <template lang="pug">
 .frame.p-2px.flex.items-center.rounded-full.bg-light-900.cursor-pointer.shadow.transition.duration-400.ease-in(
-  :style="{ backgroundColor: colorDeep.hex(pub), flexDirection: vertical ? 'column' : 'row' }"
+  :style="{ backgroundColor: pub ? colorDeep.hex(pub) : 'transparent', flexDirection: vertical ? 'column' : 'row' }"
   :title="showName ? petname ? petname : pub : name"
   @click="select()"
   )

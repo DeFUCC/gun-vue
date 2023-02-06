@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { useGun, gunAvatar, useColor } from '#composables'
 import { ref, watch } from 'vue'
 
@@ -37,7 +37,7 @@ gun.user(props.pub).get('pulse').on(() => {
 </script>
 
 <template lang="pug">
-.flex.flex-col
+.flex.flex-col.items-center.justify-center
   img.border.rounded-full.overflow-hidden.transition.duration-500.ease-out(
     v-if="pub"
     :style="{ borderColor: blink ? colorDeep.hex(pub) : 'transparent', borderWidth: `${border}px` }",
@@ -45,7 +45,7 @@ gun.user(props.pub).get('pulse').on(() => {
     :height="size"
     :src="avatar"
   )
-  .p-2(
+  .pb-2.px-1(
     v-else
     :style="{ fontSize: size + 'px' }"
   )
