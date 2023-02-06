@@ -2,7 +2,8 @@
 import { useUser, selectedUser, safeHash } from '#composables';
 
 const props = defineProps({
-  size: { type: Number, default: 42 }
+  size: { type: Number, default: 42 },
+  showName: { type: Boolean, default: true }
 })
 
 const { user } = useUser()
@@ -15,7 +16,8 @@ defineEmits(['room', 'user', 'post', 'chat'])
 <template lang="pug">
 div.z-1000
   account-badge.cursor-pointer(
-    :size="size" 
+    :size="size"
+    :showName="showName"
     :border="2" 
     :pub="user.pub" 
     @click="user.auth = true"
