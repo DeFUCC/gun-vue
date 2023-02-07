@@ -1,5 +1,17 @@
 # @gun-vue/app
 
+## 0.13.0
+
+### Minor Changes
+
+- Vertical organisation means composables and components are in the same SRC folder, yet go into separate packages.
+
+### Patch Changes
+
+- Updated dependencies
+  - @gun-vue/composables@0.13.0
+  - @gun-vue/components@0.13.0
+
 ## 0.12.10
 
 ### Patch Changes

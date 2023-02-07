@@ -1,11 +1,6 @@
 {
 	"compilerOptions": {
-		"esModuleInterop": true,
-		"paths": {
-			"#composables/*": [
-				"./composables/src/*"
-			]
-		}
+		"esModuleInterop": true
 	},
 	"vueCompilerOptions": {
 		"plugins": [
