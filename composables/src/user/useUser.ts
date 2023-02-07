@@ -11,8 +11,8 @@ import type { IGunInstance, IGunUserInstance, ISEAPair } from 'gun'
 
 const colorDeep = useColor("deep");
 
-export const selectedUser = reactive({
-	pub: null,
+export const selectedUser: { pub: string } = reactive({
+	pub: '',
 });
 
 /**

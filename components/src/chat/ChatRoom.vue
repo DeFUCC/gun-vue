@@ -1,7 +1,7 @@
 <script setup>
 import { watch } from 'vue'
 
-import { useChat } from '#composables';
+import { useChat, selectedUser } from '#composables';
 import { useWebNotification, watchDebounced } from '@vueuse/core';
 
 const props = defineProps({
@@ -9,6 +9,8 @@ const props = defineProps({
   topic: { type: String, default: 'general' },
   clickSound: { type: String, default: 'audio/safe.mp3' }
 })
+
+const emit = defineEmits(['account'])
 
 let audio
 
@@ -52,14 +54,17 @@ watchDebounced(sorted, (next, prev) => {
       show()
     }
   }
-}, { deep: true });
+}, { deep: true })
 
 </script>
 
 <template lang="pug">
-
-
 .flex.flex-col.overflow-y-scroll(style="flex: 1000 1 auto")
+  ui-layer(
+    :open="!!selectedUser?.pub"
+    @close="selectedUser.pub = ''"
+    )
+    account-home(v-if="selectedUser?.pub" :pub="selectedUser.pub" )
   .px-4.py-6.flex.flex-wrap.items-center.text-center
     .flex-1.ml-2.font-bold {{ currentChat }}
   chat-messages(:messages="sorted")
