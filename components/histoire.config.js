@@ -2,6 +2,9 @@ import { defineConfig } from 'histoire'
 import { HstVue } from '@histoire/plugin-vue'
 
 export default defineConfig({
+  storyMatch: [
+    '../src/**/*.story.vue',
+  ],
   setupFile: 'histoire.setup.js',
   outDir: '../app/public/components/',
   plugins: [

@@ -1,10 +1,11 @@
 {
 	"compilerOptions": {
-		"paths": {
-			"#composables/*": ["./composables/src/*"]
-		}
+		"resolveJsonModule": true,
+		"esModuleInterop": true
 	},
 	"vueCompilerOptions": {
-		"plugins": ["@volar/vue-language-plugin-pug"]
+		"plugins": [
+			"@volar/vue-language-plugin-pug"
+		]
 	}
 }

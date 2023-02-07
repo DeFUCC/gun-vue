@@ -20,14 +20,13 @@ export default defineConfig({
   plugins: [
     vue(),
     Components({
-      dirs: ["src"],
+      dirs: ["../src"],
       extensions: ["vue"],
       directoryAsNamespace: false,
       globalNamespaces: ["global"],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-      exclude: [/node_modules/, /\.git/],
+      exclude: [/node_modules/, /\.git/, /\.story\.vue/],
     }),
-    // WindiCSS(),
     Unocss({
       presets: [
         presetIcons({
@@ -49,7 +48,7 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: path.resolve(dirname, "/src/index.ts"),
+      entry: path.resolve(dirname, "../src/components.ts"),
       name: "components",
       formats: ["es"],
     },
@@ -75,9 +74,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "#": path.resolve(dirname, "/"),
-      "#components": path.resolve(dirname, "src"),
-      "#composables": path.resolve(dirname, "../composables/src/"),
+      "#components": path.resolve(dirname, "../src/components.ts"),
+      "#composables": path.resolve(dirname, "../src/composables.ts"),
     },
   },
 });

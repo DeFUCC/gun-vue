@@ -1,5 +1,11 @@
 # @gun-vue/repo
 
+## 0.13.0
+
+### Minor Changes
+
+- Vertical organisation means composables and components are in the same SRC folder, yet go into separate packages.
+
 ## 0.12.10
 
 ### Patch Changes
