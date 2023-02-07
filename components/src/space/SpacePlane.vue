@@ -1,8 +1,7 @@
-<script setup>
+<script setup lang="ts">
 import { watch } from "vue";
-import { useSpace, useUser, useColor, useRoom } from "#composables";
 import { useDrag, usePinch } from "@vueuse/gesture";
-import { useDraw } from "#composables";
+import { useDraw, useSpace, useUser, useColor, useRoom, selectedUser } from "../../../composables/src/";
 import { ref, reactive, onMounted, onBeforeUnmount } from "vue";
 import { useDebounceFn, useThrottleFn } from "@vueuse/core";
 
@@ -82,9 +81,6 @@ onBeforeUnmount(() => {
   drauu.unmount();
 });
 
-const selectedUser = reactive({
-  pub: "",
-});
 </script>
 <!-- eslint-disable vue/no-v-html -->
 <template lang="pug">

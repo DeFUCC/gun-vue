@@ -1,7 +1,7 @@
 <script setup>
-import { watch } from 'vue'
+import { watch, computed } from 'vue'
 
-import { useChat, selectedUser } from '#composables';
+import { useChat, selectedUser, useBackground, currentRoom } from '#composables';
 import { useWebNotification, watchDebounced } from '@vueuse/core';
 
 const props = defineProps({
@@ -56,10 +56,15 @@ watchDebounced(sorted, (next, prev) => {
   }
 }, { deep: true })
 
+const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
+
 </script>
 
 <template lang="pug">
-.flex.flex-col.overflow-y-scroll(style="flex: 1000 1 auto")
+.flex.flex-col.overflow-y-scroll(
+  style="flex: 1000 1 auto"
+  :style="{ ...bg }"
+  )
   ui-layer(
     :open="!!selectedUser?.pub"
     @close="selectedUser.pub = ''"

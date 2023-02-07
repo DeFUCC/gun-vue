@@ -1,6 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import { ref, watchEffect } from 'vue'
-import { useColor } from '#composables'
+import { useColor } from '../../../composables/src/'
 import { useDraggable } from '@vueuse/core'
 
 const emit = defineEmits(['user'])

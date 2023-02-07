@@ -1,18 +1,16 @@
-<script setup>
-import { useDraw } from '#composables'
+<script setup lang="ts">
+import { useDraw } from '../../../composables/src/'
 
 const { brush, drauu, draw } = useDraw()
 
-
-function setDrawingMode(mode) {
+function setDrawingMode(mode: string) {
   draw.mode = mode
   draw.enabled = true
 }
-function setBrushColor(color) {
+function setBrushColor(color: string) {
   brush.color = color
   draw.enabled = true
 }
-
 
 </script>
 
