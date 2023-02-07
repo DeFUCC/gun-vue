@@ -41,7 +41,7 @@ export const draw = reactive({
   ing: false,
   initiated: false,
   content: '',
-  clear: undefined
+  clear: () => { }
 })
 
 export const brush = toReactive(useStorage('drawing-brush', {
@@ -64,10 +64,12 @@ export const drauu: Drauu = markRaw(createDrauu(drauuOptions))
 
 export function loadCanvas() {
   disableDump = true
-  if (draw.content != null)
+  if (draw.content != null) {
     drauu.load(draw.content)
-  else
+  }
+  else {
     drauu?.clear()
+  }
   disableDump = false
 }
 
@@ -115,7 +117,7 @@ export function useDraw() {
     drauu.on('end', () => draw.ing = false)
 
     draw.clear = () => {
-      drauu.clear()
+      drauu?.clear()
       draw.content = ''
       drawing.put('', undefined, { opt: { cert: currentRoom.features?.space } })
     }
