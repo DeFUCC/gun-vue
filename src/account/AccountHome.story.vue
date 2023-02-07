@@ -1,10 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import { defineAsyncComponent, onMounted, reactive } from 'vue'
 import { watchOnce } from '@vueuse/core'
 
+import { AccountHome, AccountSelect } from './components'
 
-const AccountHome = defineAsyncComponent(() => import('./AccountHome.vue'))
-const AccountSelect = defineAsyncComponent(() => import('./AccountSelect.vue'))
 
 const state = reactive({
   pub: "We2MxFrbFH37008fNmreSk9hdHLJNMVhrSMIIbOO5Ao.FbNrdt118-TCYzGYRo94Xa8EUWwwV-7DIopXSE9OZD8",
@@ -12,9 +11,9 @@ const state = reactive({
 
 function mySetup() {
   onMounted(async () => {
-    const { useGuests } = await import('#composables')
+    const { useGuests } = await import('../composables')
     const { guests } = useGuests()
-    watchOnce(guests, () => {
+    watchOnce(() => guests, () => {
       state.pub = Object.keys(guests)[0]
     })
   })
@@ -29,11 +28,11 @@ Story(
   :setup-app="mySetup"
   )
   Variant(title="Round")
-    Suspense
-      AccountHome(
-        :key="state.pub" 
-        :pub="state.pub"
-        )
+
+    AccountHome(
+      :key="state.pub" 
+      :pub="state.pub"
+      )
 
   template(#controls)
     .p-2.flex.flex-col.gap-4

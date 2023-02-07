@@ -4,9 +4,7 @@
  * @group Users
  * */
 
-/**
- * @group Account
- */
+
 export interface Profile {
   name?: string
   first_name?: string
@@ -15,17 +13,16 @@ export interface Profile {
   [key: string]: string | undefined
 }
 
-/**
- * @group Account
- */
+
 export interface Account {
-  pub: string | Ref
-  color: string
-  pulse: number
-  blink: boolean
-  profile: Profile
+  pub?: string
+  color?: string
+  pulse?: number
+  blink?: boolean
+  profile?: Profile
   petname?: string
   db?: object
+  lastSeen?: string | number
 }
 
 import { useGun, useUser, SEA } from "../composables.js";
@@ -40,7 +37,6 @@ const TIMEOUT = 10000
 
 /**
  * Load and handle user's account by a public key
- * @group Account
  * @example
  * import { ref } from 'vue'
  * import { useAccount, SEA } from '@gun-vue/composables'
@@ -108,9 +104,6 @@ export function useAccount(pubKey: MaybeRef<string>): {
   return { account, setPetname };
 }
 
-/**
- * @group Account
- */
 export async function setPetname(pub: string, name: string) {
   const { user } = useUser()
   if (!user.is) return

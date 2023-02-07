@@ -18,8 +18,6 @@ declare module '@vue/runtime-core' {
     AccountReactions: typeof import('./../src/account/AccountReactions.vue')['default']
     AccountSelect: typeof import('./../src/account/AccountSelect.vue')['default']
     'AccountSelect.story': typeof import('./../src/account/AccountSelect.story.vue')['default']
-    AccountStars: typeof import('./../src/account/AccountStars.vue')['default']
-    'AccountStars.story': typeof import('./../src/account/AccountStars.story.vue')['default']
     ChatInput: typeof import('./../src/chat/ChatInput.vue')['default']
     ChatMessage: typeof import('./../src/chat/ChatMessage.vue')['default']
     'ChatMessage.story': typeof import('./../src/chat/ChatMessage.story.vue')['default']

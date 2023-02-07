@@ -15,7 +15,7 @@
 		"allowSyntheticDefaultImports": true
 	},
 	"include": [
-		"../src/composables.ts"
+		"../src/**/composables.ts"
 	],
 	"exclude": [
 		"node_modules",

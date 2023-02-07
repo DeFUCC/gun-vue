@@ -1,9 +1,8 @@
-<script setup>
+<script setup lang="ts">
 import { watchOnce } from '@vueuse/core';
-import { defineAsyncComponent, reactive, onMounted } from 'vue'
+import { reactive, onMounted } from 'vue'
 
-const AccountBadge = defineAsyncComponent(() => import('./AccountBadge.vue'))
-const AccountSelect = defineAsyncComponent(() => import('./AccountSelect.vue'))
+import { AccountBadge, AccountSelect } from './components'
 
 const state = reactive({
   pub: "We2MxFrbFH37008fNmreSk9hdHLJNMVhrSMIIbOO5Ao.FbNrdt118-TCYzGYRo94Xa8EUWwwV-7DIopXSE9OZD8",
@@ -12,9 +11,9 @@ const state = reactive({
 
 function mySetup() {
   onMounted(async () => {
-    const { useGuests } = await import('#composables')
+    const { useGuests } = await import('../composables')
     const { guests } = useGuests()
-    watchOnce(guests, () => {
+    watchOnce(() => guests, () => {
       state.pub = Object.keys(guests)[0]
     })
   })

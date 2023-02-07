@@ -1,5 +1,5 @@
-<script setup>
-import { useUser, reactToPost, useUserPosts, } from '#composables';
+<script setup lang="ts">
+import { useUser, reactToPost, useUserPosts, } from '../composables';
 import { ref, computed } from 'vue'
 
 const props = defineProps({
@@ -42,7 +42,7 @@ const postList = computed(() => {
           )
             .absolute.top-2.left-2.button.p-2.z-100.text-2xl.opacity-30.hover-opacity-100.transition.cursor-pointer(
               v-if="isMe"
-              @click="reactToPost({ tag: from, hash: hash, reaction: postReaction })"
+              @click="reactToPost({ tag: from, hash: String(hash), reaction: postReaction, back: false })"
             ) 
               .i-la-trash
             post-card(

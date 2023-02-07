@@ -1,5 +1,5 @@
-<script setup>
-import { useUser, setPetname, SEA } from '#composables'
+<script setup lang="ts">
+import { useUser, setPetname, SEA } from '../composables'
 import { watch, ref } from 'vue'
 import { Dropdown } from 'floating-vue'
 

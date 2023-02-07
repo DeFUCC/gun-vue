@@ -1,6 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import { ref, watch, watchEffect } from 'vue'
-import { useGun, useColor, selectedUser, useUser, SEA } from '#composables'
+import { useGun, useColor, selectedUser, useUser, SEA } from '../composables'
 
 const props = defineProps({
   pub: { type: String, default: '' },

@@ -1,9 +1,7 @@
 <script setup>
 import { defineAsyncComponent, reactive } from 'vue'
 
-const AccountAvatar = defineAsyncComponent(() =>
-  import('./AccountAvatar.vue')
-)
+import { AccountAvatar } from './components'
 
 const state = reactive({
   pub: "We2MxFrbFH37008fNmreSk9hdHLJNMVhrSMIIbOO5Ao.FbNrdt118-TCYzGYRo94Xa8EUWwwV-7DIopXSE9OZD8",
@@ -12,7 +10,7 @@ const state = reactive({
 })
 
 async function generate() {
-  const { SEA } = await import('#composables')
+  const { SEA } = await import('../composables')
   const pair = await SEA.pair()
   state.pub = pair.pub
 }

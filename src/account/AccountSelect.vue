@@ -1,5 +1,5 @@
-<script setup>
-import { useGuests, } from '#composables'
+<script setup lang="ts">
+import { useGuests, } from '../composables'
 
 const { guests, count } = useGuests()
 
@@ -27,7 +27,7 @@ defineProps({
       transition-group(name="fade")
         account-badge(
           v-for="guest of guests" 
-          :key="guest" 
+          :key="guest.pub" 
           :pub="guest.pub" 
           @click="$emit('update:pub', guest.pub)")
 </template>

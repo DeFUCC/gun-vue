@@ -1,5 +1,5 @@
-<script setup>
-import { useAccount } from '#composables'
+<script setup lang="ts">
+import { useAccount } from '../composables'
 import urlRegex from 'url-regex'
 
 const props = defineProps({
@@ -8,7 +8,7 @@ const props = defineProps({
 
 const { account } = useAccount(props.pub)
 
-function isLink(text) {
+function isLink(text: string): boolean {
   return urlRegex({ exact: true }).test(text)
 }
 

@@ -1,14 +1,12 @@
-<script setup>
+<script setup lang="ts">
 import { defineAsyncComponent, reactive } from 'vue'
 
-const AccountStars = defineAsyncComponent(() => import('./AccountStars.vue'))
-const AccountSelect = defineAsyncComponent(() => import('./AccountSelect.vue'))
+import { AccountStars, AccountSelect } from './components'
+
 
 const state = reactive({
   pub: "",
 })
-
-
 
 </script>
 

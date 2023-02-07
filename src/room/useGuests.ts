@@ -3,15 +3,21 @@
  * @group Rooms
  */
 
+import { MaybeComputedRef } from "@vueuse/core";
 import { computed, reactive, watchEffect } from "vue";
-import { useGun, useAccount, currentRoom } from "../composables";
+import { useGun, useAccount, currentRoom, Account } from "../composables";
+
+export interface Guest extends Account {
+  order?: MaybeComputedRef<number>
+  online?: MaybeComputedRef<boolean>
+}
 
 let startTime = Date.now();
 
 export function useGuests({ TIMEOUT = 10000 } = {}) {
   const gun = useGun();
 
-  const guests = reactive({});
+  const guests: Record<string, Guest> = reactive({});
   const online = reactive({});
   const offline = reactive({});
 
@@ -27,7 +33,7 @@ export function useGuests({ TIMEOUT = 10000 } = {}) {
     .map()
     .once((pos, pub) => {
       const { account } = useAccount(pub);
-      guests[pub] = account;
+      guests[pub] = account as Guest;
       guests[pub].order = computed(() =>
         startTime - account.value.pulse < TIMEOUT
           ? 1

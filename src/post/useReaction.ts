@@ -14,7 +14,7 @@ const rootsTags = ['rooms']
 export interface ReactionVector {
   tag: string
   hash: string
-  back: string
+  back?: boolean
 }
 
 

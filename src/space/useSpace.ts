@@ -13,7 +13,7 @@ import { getArrow } from "curved-arrows";
 import { MaybeComputedRef, useElementBounding } from "@vueuse/core";
 import { useClamp } from '@vueuse/math'
 
-export interface Guest {
+export interface SpaceGuest {
   pub: string
   draw: string
   blink: boolean
@@ -91,11 +91,11 @@ export function useSpace({
   //   });
   // }
 
-  const allGuests: { [key: string]: Guest } = reactive({});
+  const allGuests: { [key: string]: SpaceGuest } = reactive({});
   const mates = reactive({});
   const links = reactive({});
 
-  const guests: MaybeComputedRef<Record<string, Guest>> = computed(() => {
+  const guests: MaybeComputedRef<Record<string, SpaceGuest>> = computed(() => {
     const obj = {};
     for (let g in allGuests) {
       if (Date.now() - allGuests[g]?.pulse < TIMEOUT) {
@@ -111,7 +111,7 @@ export function useSpace({
     if (pub == user.pub) {
       space.joined = true;
     }
-    const guest: Guest = {
+    const guest: SpaceGuest = {
       pub: pub,
       draw: '',
       blink: false,

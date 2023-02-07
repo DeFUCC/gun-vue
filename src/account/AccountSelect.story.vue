@@ -1,32 +1,21 @@
-<script setup>
-import { defineAsyncComponent, reactive } from 'vue'
+<script setup lang="ts">
+import { reactive } from 'vue'
+import { logEvent } from 'histoire/client'
 
-const AccountSelect = defineAsyncComponent(() =>
-  import('./AccountSelect.vue')
-)
+import { AccountSelect } from './components'
 
 const state = reactive({
   pub: "",
 })
 
-
-
 </script>
 
 <template lang="pug">
-Story(
-  title="Account/Select" 
-  icon="la:list"
-  )
+Story(title="Account/Select" icon="la:list")
   Variant(title="Round")
-    AccountSelect(
-      v-model:pub="state.pub" 
-      @update:pub="hstEvent('update:pub', $event)"
-      )
-
+    AccountSelect(v-model:pub="state.pub" @update:pub="logEvent('update:pub', $event)")
   template(#controls)
     .p-2.flex.flex-col.gap-4
-
 </template>
 
 <docs lang="md">
