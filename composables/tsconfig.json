@@ -36,7 +36,8 @@
 		"defaultCategory": "Composables",
 		"exclude": [
 			"**/index.ts",
-			"**/components.ts"
+			"**/components.ts",
+			"**/composables.ts"
 		]
 	}
 }

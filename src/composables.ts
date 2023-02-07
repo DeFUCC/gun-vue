@@ -1,8 +1,3 @@
-/**
- * Basic user management
- * @module Account
- * @group Users
- * */
 export * from "./account/composables"
 export * from "./cast/composables"
 export * from "./chat/composables"
