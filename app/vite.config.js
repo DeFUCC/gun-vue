@@ -122,8 +122,8 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
-			"#components": path.resolve(dirname, "../components/src"),
-			"#composables": path.resolve(dirname, "../composables/src"),
+			"#components": path.resolve(dirname, "../src/components"),
+			"#composables": path.resolve(dirname, "../src/composables"),
 		},
 	},
 });

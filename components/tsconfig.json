@@ -1,7 +1,12 @@
 {
+	"extends": "../tsconfig",
 	"compilerOptions": {
 		"target": "ESNext",
-		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"ESNext"
+		],
 		"allowJs": true,
 		"skipLibCheck": true,
 		"esModuleInterop": false,
@@ -17,12 +22,20 @@
 		"outDir": "dist/types",
 		"baseUrl": ".",
 		"paths": {
-			"#composables": ["../composables/src"]
+			"#composables": [
+				"../composables/src"
+			]
 		}
 	},
 	"vueCompilerOptions": {
-		"plugins": ["@volar/vue-language-plugin-pug"]
+		"plugins": [
+			"@volar/vue-language-plugin-pug"
+		]
 	},
-	"include": ["src/all.ts"],
-	"exclude": ["src/**/*.story.vue"]
+	"include": [
+		"../src/"
+	],
+	"exclude": [
+		"src/**/*.story.vue"
+	]
 }

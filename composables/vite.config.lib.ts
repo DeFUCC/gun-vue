@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import checker from 'vite-plugin-checker'
 
+//@ts-expect-error
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -17,7 +18,7 @@ export default defineConfig({
   build: {
     outDir: 'lib',
     lib: {
-      entry: path.resolve(dirname, "./src/index.ts"),
+      entry: path.resolve(dirname, "../src/composables.ts"),
       formats: ["es"],
     },
     sourcemap: true,

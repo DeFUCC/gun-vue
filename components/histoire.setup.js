@@ -1,6 +1,6 @@
 import "uno.css";
-import "/src/styles/index.css";
-import "/src/styles/transitions.css";
+import "../src/styles/index.css";
+import "../src/styles/transitions.css";
 
 import { defineSetupVue3 } from '@histoire/plugin-vue'
 
