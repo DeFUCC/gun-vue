@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.13.1
+
+### Patch Changes
+
+- Async components exports and more ts
+- Updated dependencies
+  - @gun-vue/composables@0.13.1
+
 ## 0.13.0
 
 ### Minor Changes
