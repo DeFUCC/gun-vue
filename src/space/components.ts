@@ -1,6 +1,8 @@
 //SPACE
 
-export { default as SpacePlane } from "./SpacePlane.vue";
-export { default as SpaceGuest } from "./SpaceGuest.vue";
-export { default as SpaceArrow } from "./SpaceArrow.vue";
-export { default as SpaceDraw } from './SpaceDraw.vue'
+import { defineAsyncComponent } from 'vue'
+
+export const SpacePlane = defineAsyncComponent(() => import('./SpacePlane.vue'))
+export const SpaceGuest = defineAsyncComponent(() => import('./SpaceGuest.vue'))
+export const SpaceArrow = defineAsyncComponent(() => import('./SpaceArrow.vue'))
+export const SpaceDraw = defineAsyncComponent(() => import('./SpaceDraw.vue'))

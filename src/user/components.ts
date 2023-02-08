@@ -1,16 +1,18 @@
 // USER
+import { defineAsyncComponent } from 'vue'
 
-export { default as UserAuth } from "./UserAuth.vue";
-export { default as UserAvatar } from "./UserAvatar.vue";
-export { default as UserCreate } from "./UserCreate.vue";
-export { default as UserCredentials } from "./UserCredentials.vue";
-export { default as UserGraph } from "./UserGraph.vue";
-export { default as UserHome } from "./UserHome.vue";
-export { default as UserIcon } from "./UserIcon.vue";
-export { default as UserList } from "./UserList.vue";
-export { default as UserLogin } from "./UserLogin.vue";
-export { default as UserPanel } from "./UserPanel.vue";
-export { default as UserPass } from "./UserPass.vue";
-export { default as UserProfile } from "./UserProfile.vue";
-export { default as UserProfileField } from "./UserProfileField.vue";
-export { default as UserRooms } from "./UserRooms.vue";
+
+export const UserAuth = defineAsyncComponent(() => import("./UserAuth.vue"));
+export const UserAvatar = defineAsyncComponent(() => import("./UserAvatar.vue"));
+export const UserCreate = defineAsyncComponent(() => import("./UserCreate.vue"));
+export const UserCredentials = defineAsyncComponent(() => import("./UserCredentials.vue"));
+export const UserGraph = defineAsyncComponent(() => import("./UserGraph.vue"));
+export const UserHome = defineAsyncComponent(() => import("./UserHome.vue"));
+export const UserIcon = defineAsyncComponent(() => import("./UserIcon.vue"));
+export const UserList = defineAsyncComponent(() => import("./UserList.vue"));
+export const UserLogin = defineAsyncComponent(() => import("./UserLogin.vue"));
+export const UserPanel = defineAsyncComponent(() => import("./UserPanel.vue"));
+export const UserPass = defineAsyncComponent(() => import("./UserPass.vue"));
+export const UserProfile = defineAsyncComponent(() => import("./UserProfile.vue"));
+export const UserProfileField = defineAsyncComponent(() => import("./UserProfileField.vue"));
+export const UserRooms = defineAsyncComponent(() => import("./UserRooms.vue"));

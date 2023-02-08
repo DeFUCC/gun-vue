@@ -1,4 +1,6 @@
-export { default as ProjectList } from './ProjectList.vue'
-export { default as ProjectCard } from './ProjectCard.vue'
-export { default as ProjectPage } from './ProjectPage.vue'
-export { default as ProjectFunding } from './ProjectFunding.vue'
+import { defineAsyncComponent } from 'vue'
+
+export const ProjectList = defineAsyncComponent(() => import("./ProjectList.vue"))
+export const ProjectCard = defineAsyncComponent(() => import("./ProjectCard.vue"))
+export const ProjectPage = defineAsyncComponent(() => import("./ProjectPage.vue"))
+export const ProjectFunding = defineAsyncComponent(() => import("./ProjectFunding.vue"))

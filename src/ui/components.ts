@@ -1,5 +1,7 @@
-export { default as UiButton } from "./UiModal.vue";
-export { default as UiLayer } from "./UiLayer.vue";
-export { default as UiLink } from "./UiLink.vue";
-export { default as UiModal } from "./UiModal.vue";
-export { default as UiPanel } from "./UiPanel.vue";
+import { defineAsyncComponent } from 'vue'
+
+export const UiButton = defineAsyncComponent(() => import('./UiButton.vue'))
+export const UiLayer = defineAsyncComponent(() => import('./UiLayer.vue'))
+export const UiLink = defineAsyncComponent(() => import('./UiLink.vue'))
+export const UiModal = defineAsyncComponent(() => import('./UiModal.vue'))
+export const UiPanel = defineAsyncComponent(() => import('./UiPanel.vue'))

@@ -1,2 +1,4 @@
-export { default as QrLoad } from "./QrLoad.vue";
-export { default as QrShow } from "./QrShow.vue";
+import { defineAsyncComponent } from 'vue'
+
+export const QrLoad = defineAsyncComponent(() => import("./QrLoad.vue"))
+export const QrShow = defineAsyncComponent(() => import("./QrShow.vue"))

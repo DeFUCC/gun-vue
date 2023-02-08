@@ -121,7 +121,7 @@ export function usePictureUpload({
     reset();
     if (!fileList.length) return;
     state.status = "loading";
-    [...fileList].map((file) => processFile(file));
+    Array.from(fileList).map((file) => processFile(file));
   }
 
   function processFile(file: File) {

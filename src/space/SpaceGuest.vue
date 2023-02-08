@@ -1,5 +1,5 @@
-<script setup>
-import { useColor, gunAvatar, useGun } from '#composables';
+<script setup lang="ts">
+import { useColor, gunAvatar, useGun } from '../composables';
 import { computed, ref, watch } from 'vue'
 const props = defineProps(
   {

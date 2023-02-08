@@ -1,6 +1,8 @@
-export { default as UtilGraph } from "./UtilGraph.vue";
-export { default as UtilPulse } from "./UtilPulse.vue";
-export { default as UtilRelay } from "./UtilRelay.vue";
-export { default as UtilRelayList } from "./UtilRelayList.vue";
-export { default as UtilShare } from "./UtilShare.vue";
-export { default as UtilTools } from "./UtilTools.vue";
+import { defineAsyncComponent } from 'vue'
+
+export const UtilGraph = defineAsyncComponent(() => import("./UtilGraph.vue"));
+export const UtilPulse = defineAsyncComponent(() => import("./UtilPulse.vue"));
+export const UtilRelay = defineAsyncComponent(() => import("./UtilRelay.vue"));
+export const UtilRelayList = defineAsyncComponent(() => import("./UtilRelayList.vue"));
+export const UtilShare = defineAsyncComponent(() => import("./UtilShare.vue"));
+export const UtilTools = defineAsyncComponent(() => import("./UtilTools.vue"));

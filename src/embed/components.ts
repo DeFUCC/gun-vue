@@ -1,1 +1,3 @@
-export { default as EmbedYoutube } from './EmbedYoutube.vue'
+import { defineAsyncComponent } from 'vue'
+
+export const EmbedYoutube = defineAsyncComponent(() => import('./EmbedYoutube.vue'))

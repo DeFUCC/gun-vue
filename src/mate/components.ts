@@ -1,3 +1,5 @@
-export { default as MateButton } from "./MateButton.vue";
-export { default as MateList } from "./MateList.vue";
-export { default as MateLink } from "./MateLink.vue";
+import { defineAsyncComponent } from 'vue'
+
+export const MateButton = defineAsyncComponent(() => import('./MateButton.vue'))
+export const MateList = defineAsyncComponent(() => import('./MateList.vue'))
+export const MateLink = defineAsyncComponent(() => import('./MateLink.vue'))

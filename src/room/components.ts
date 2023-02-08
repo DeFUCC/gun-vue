@@ -1,12 +1,14 @@
+import { defineAsyncComponent } from 'vue'
+
 // ROOM
 
-export { default as RoomCard } from './RoomCard.vue'
-export { default as RoomFeature } from './RoomFeature.vue'
-export { default as RoomFeatureIcon } from './RoomFeatureIcon.vue'
-export { default as RoomForm } from './RoomForm.vue'
-export { default as RoomLogo } from './RoomLogo.vue'
-export { default as RoomList } from './RoomList.vue'
-export { default as RoomPage } from './RoomPage.vue'
-export { default as RoomProfile } from "./RoomProfile.vue";
-export { default as RoomButton } from './RoomButton.vue'
-export { default as RoomActions } from './RoomActions.vue'
+export const RoomCard = defineAsyncComponent(() => import('./RoomCard.vue'))
+export const RoomFeature = defineAsyncComponent(() => import('./RoomFeature.vue'))
+export const RoomFeatureIcon = defineAsyncComponent(() => import('./RoomFeatureIcon.vue'))
+export const RoomForm = defineAsyncComponent(() => import('./RoomForm.vue'))
+export const RoomLogo = defineAsyncComponent(() => import('./RoomLogo.vue'))
+export const RoomList = defineAsyncComponent(() => import('./RoomList.vue'))
+export const RoomPage = defineAsyncComponent(() => import('./RoomPage.vue'))
+export const RoomProfile = defineAsyncComponent(() => import("./RoomProfile.vue"))
+export const RoomButton = defineAsyncComponent(() => import('./RoomButton.vue'))
+export const RoomActions = defineAsyncComponent(() => import('./RoomActions.vue'))
