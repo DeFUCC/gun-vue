@@ -1,7 +1,7 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import { useMediaQuery, onClickOutside } from '@vueuse/core'
-import { useChat } from '#composables';
+import { useChat } from './composables';
 
 defineProps({
   title: { type: String, default: 'Topics' },

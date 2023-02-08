@@ -126,7 +126,7 @@ onBeforeUnmount(() => {
           @click="selectedUser.pub = guest.pub"></space-guest></g>
     </svg><ui-layer class="z-4000" :open="!!selectedUser.pub" @close="selectedUser.pub = null"><account-home
         class="max-w-600px" :key="selectedUser.pub" :pub="selectedUser.pub" @user="$emit('user', $event)"
-        @post="$emit('post', String(safeHash($event)))" @chat="$emit('chat', selectedUser.pub)"
+        @post="$emit('post', safeHash($event))" @chat="$emit('chat', selectedUser.pub)"
         @close="selectedUser.pub = null"></account-home></ui-layer>
   </div>
 </template>

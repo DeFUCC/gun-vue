@@ -15,8 +15,6 @@ const isMe = computed(() => props.pub == user.pub)
 
 const emit = defineEmits(['post'])
 
-
-
 const postReaction = ref()
 const userPosts = useUserPosts(props.pub)
 const postList = computed(() => {

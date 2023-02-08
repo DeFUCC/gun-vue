@@ -112,7 +112,7 @@ export function usePrivateChatCount(pub: string) {
 export function usePrivateChatList() {
   const gun = useGun();
   const { user } = useUser();
-  const list: { [key: string]: Message } = reactive({})
+  const list: Record<string, Message> = reactive({})
   if (user.is) {
     gun.user().get('chat').map().on((d, k) => {
       list[k] = d

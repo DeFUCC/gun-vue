@@ -1,5 +1,3 @@
-import { defineAsyncComponent } from 'vue'
-
 // export { default as AccountAvatar } from "./AccountAvatar.vue";
 // export { default as AccountBadge } from "./AccountBadge.vue";
 // export { default as AccountProfile } from "./AccountProfile.vue";
@@ -9,7 +7,7 @@ import { defineAsyncComponent } from 'vue'
 // export { default as AccountHome } from "./AccountHome.vue";
 //export { default as AccountStars } from "./AccountStars.vue";
 
-
+import { defineAsyncComponent } from 'vue'
 export const AccountHome = defineAsyncComponent(() => import('./AccountHome.vue'))
 export const AccountPetname = defineAsyncComponent(() => import('./AccountPetname.vue'))
 // export const AccountStars = defineAsyncComponent(() => import('./AccountStars.vux'))

@@ -1,11 +1,13 @@
-export { default as ChatInput } from "./ChatInput.vue";
-export { default as ChatMessage } from "./ChatMessage.vue";
-export { default as ChatMessages } from "./ChatMessages.vue";
-export { default as ChatRoom } from "./ChatRoom.vue";
-export { default as ChatTopics } from "./ChatTopics.vue";
+import { defineAsyncComponent } from 'vue'
+
+export const ChatInput = defineAsyncComponent(() => import('./ChatInput.vue'))
+export const ChatMessage = defineAsyncComponent(() => import('./ChatMessage.vue'))
+export const ChatMessages = defineAsyncComponent(() => import('./ChatMessages.vue'))
+export const ChatTopics = defineAsyncComponent(() => import('./ChatTopics.vue'))
+export const ChatRoom = defineAsyncComponent(() => import('./ChatRoom.vue'))
 
 // Private
 
-export { default as ChatPrivate } from "./private/ChatPrivate.vue";
-export { default as ChatPrivateCount } from "./private/ChatPrivateCount.vue";
-export { default as ChatPrivateList } from "./private/ChatPrivateList.vue";
+export const ChatPrivate = defineAsyncComponent(() => import('./private/ChatPrivate.vue'))
+export const ChatPrivateCount = defineAsyncComponent(() => import('./private/ChatPrivateCount.vue'))
+export const ChatPrivateList = defineAsyncComponent(() => import('./private/ChatPrivateList.vue'))

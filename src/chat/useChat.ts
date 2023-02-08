@@ -23,7 +23,7 @@ export function useChat() {
 
   const currentChat = ref("general");
 
-  const chats: ComputedRef<{ [key: string]: { [key: string]: string } }> = computed(() => {
+  const chats: ComputedRef<Record<string, Record<string, string>>> = computed(() => {
     const chatList = reactive({
       general: {},
     });

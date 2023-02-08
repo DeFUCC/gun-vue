@@ -1,7 +1,7 @@
-<script setup>
+<script setup lang="ts">
 import { watch, computed } from 'vue'
 
-import { useChat, selectedUser, useBackground, currentRoom } from '#composables';
+import { useChat, selectedUser, useBackground, currentRoom } from '../composables';
 import { useWebNotification, watchDebounced } from '@vueuse/core';
 
 const props = defineProps({
@@ -45,9 +45,8 @@ watchDebounced(sorted, (next, prev) => {
       onClose,
     } = useWebNotification({
       title: message?.text,
-      body: message?.timestamp,
+      body: `${message?.timestamp} by ${message?.author}`,
       lang: 'en',
-      renotify: true,
       tag: 'chat',
     })
     if (isSupported.value) {

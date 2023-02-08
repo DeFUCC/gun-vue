@@ -1,4 +1,5 @@
-<script setup>
+<script setup lang="ts">
+import { watchDebounced } from '@vueuse/core';
 import { ref, watch, nextTick } from 'vue'
 import VirtualList from 'vue3-virtual-scroll-list';
 import ChatMessage from './ChatMessage.vue';
@@ -9,11 +10,11 @@ const props = defineProps({
 
 const list = ref();
 
-watch(() => props.messages, () => {
+watchDebounced(() => props.messages, () => {
   nextTick(() => {
     list.value.scrollToBottom()
   });
-}, { deep: true });
+}, { deep: true, debounce: 300 });
 
 </script>
 

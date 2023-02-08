@@ -1,4 +1,5 @@
-<script setup>import { usePrivateChatList } from '#composables';
+<script setup lang="ts">
+import { usePrivateChatList } from '../composables';
 
 defineProps({
   title: { type: String, default: 'Private chats' }
@@ -7,8 +8,6 @@ defineProps({
 const { list } = usePrivateChatList()
 
 defineEmits(['chat'])
-
-
 
 </script>
 

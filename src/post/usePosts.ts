@@ -16,11 +16,7 @@ import type { PostContent } from './usePost'
 /**
  * A list of posts
  */
-export interface PostList {
-  [key: string]: {
-    [key: string]: string
-  }
-}
+export type PostList = Record<string, Record<string, string>>
 
 /**
  * Use a list of immutable data from a #tag
@@ -140,7 +136,7 @@ export async function downloadFeed(tag: string, posts: PostList) {
  * <input type="file" @change="uploadFeed( 'myTag', $event.target.files )" />
  */
 export function uploadFeed(tag: string, files: FileList) {
-  [...files].forEach(async (file) => {
+  Array.from(files).forEach(async (file) => {
     const zip = await JSZip.loadAsync(file)
     //@ts-expect-error
     if (zip.comment) {

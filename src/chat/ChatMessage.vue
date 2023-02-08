@@ -1,6 +1,6 @@
-<script setup>
-import { computed, ref, onMounted } from 'vue'
-import { selectedUser, useUser, getFirstEmoji } from '#composables';
+<script setup lang="ts">
+import { computed, ref, onMounted, Ref } from 'vue'
+import { selectedUser, useUser, getFirstEmoji } from '../composables';
 
 const props = defineProps({
   index: { type: Number, default: 0 },
@@ -35,7 +35,6 @@ function formatDate(timestamp) {
   }
 }
 
-const message = ref()
 const fresh = ref(true)
 
 onMounted(() => {
@@ -51,7 +50,6 @@ onMounted(() => {
 
 <template lang="pug">
 .px-1.py-2px.flex.flex-col.w-full.gap-1(
-  ref="message" 
   :style="{ alignItems: isMe ? 'end' : 'start' }"
   )
   .flex.items-center.w-full.mt-2(
