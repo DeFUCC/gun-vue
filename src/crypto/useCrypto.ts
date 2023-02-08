@@ -112,7 +112,7 @@ function decodeChar(c: string): string {
   }
 }
 
-export function safeJSONParse(input: string | object, def: object): object {
+export function safeJSONParse(input: string | object, def?: object): object {
   // Convert null to empty object
   if (!input) {
     return def || {};

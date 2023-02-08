@@ -1,6 +1,7 @@
-<script setup>
-import { useUser, safeJSONParse, uploadText, SEA, parseLink } from '#composables'
+<script setup lang="ts">
+import { useUser, safeJSONParse, uploadText, SEA, parseLink, Entity } from '../composables'
 import { ref, watch } from 'vue'
+import { ISEAPair } from 'gun';
 
 const current = ref('pass')
 const pair = ref()
@@ -22,8 +23,8 @@ watch(pair, (p) => {
   if (typeof p == 'string' && p.includes('#/auth/')) {
     p = parseLink(p)
   }
-  let obj = safeJSONParse(p)
-  if (obj.pub && obj.priv) {
+  let obj = safeJSONParse(p) as ISEAPair
+  if (obj?.pub && obj?.priv) {
     auth(obj)
     pair.value = ''
   } else {
@@ -35,6 +36,14 @@ const { auth } = useUser()
 
 async function decode() {
   pair.value = await SEA.decrypt(pair.value, passphrase.value);
+}
+
+interface HTMLInputEvent extends Event {
+  target: HTMLInputElement & EventTarget;
+}
+
+function uploadFile(event: HTMLInputEvent) {
+  uploadText(event.target?.files, (file: ISEAPair) => pair.value = file)
 }
 
 </script>
@@ -72,7 +81,7 @@ async function decode() {
       tabindex="-1" 
       type="file" 
       accept="application/json" 
-      @change="uploadText($event.target?.files, file => pair = file)"
+      @change="uploadFile($event as HTMLInputEvent)"
       )
   .flex.flex-wrap
     transition(name="fade")
