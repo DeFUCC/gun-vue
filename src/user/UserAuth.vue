@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUser, safeJSONParse, uploadText, SEA, parseLink, Entity } from '../composables'
+import { useUser, safeJSONParse, uploadText, SEA, parseLink } from '../composables'
 import { ref, watch } from 'vue'
 import { ISEAPair } from 'gun';
 
@@ -38,11 +38,7 @@ async function decode() {
   pair.value = await SEA.decrypt(pair.value, passphrase.value);
 }
 
-interface HTMLInputEvent extends Event {
-  target: HTMLInputElement & EventTarget;
-}
-
-function uploadFile(event: HTMLInputEvent) {
+function uploadFile(event) {
   uploadText(event.target?.files, (file: ISEAPair) => pair.value = file)
 }
 
@@ -81,7 +77,7 @@ function uploadFile(event: HTMLInputEvent) {
       tabindex="-1" 
       type="file" 
       accept="application/json" 
-      @change="uploadFile($event as HTMLInputEvent)"
+      @change="uploadFile($event)"
       )
   .flex.flex-wrap
     transition(name="fade")
