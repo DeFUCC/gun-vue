@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, onMounted, Ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { selectedUser, useUser, getFirstEmoji } from '../composables';
 
 const props = defineProps({
@@ -22,7 +22,7 @@ const { user } = useUser()
 
 const isMe = computed(() => props.source.author == user.pub)
 
-function formatDate(timestamp) {
+function formatDate(timestamp: number) {
   if (!timestamp) return
   const theDate = new Date(timestamp)
   const date = theDate.toLocaleDateString('en-CA')

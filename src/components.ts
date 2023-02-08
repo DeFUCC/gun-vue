@@ -5,7 +5,7 @@ import "./styles/transitions.css";
 import 'floating-vue/dist/style.css'
 
 
-import * as components from './all-components.js'
+import * as components from './all-components'
 
 export const GunVuePlugin = {
   install(Vue) {
