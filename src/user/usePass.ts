@@ -62,14 +62,14 @@ export const pass: Pass = reactive({
 	},
 });
 
-function genLink(text = ""): string {
+function genLink(text = "", auth_url = "#/auth/"): string {
 	let base = base32.encode(text);
-	return window.location.origin + window.location.pathname + "#/auth/" + base;
+	return window.location.origin + window.location.pathname + auth_url + base;
 }
 
-export function parseLink(link: string): string {
-	let index = link.indexOf("#/auth/");
-	let base = link.substring(index + 7);
+export function parseLink(link: string, auth_url = "#/auth/"): string {
+	let index = link.indexOf(auth_url);
+	let base = link.substring(index + auth_url.length);
 	return base32.decode(base);
 }
 
