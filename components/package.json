@@ -51,10 +51,10 @@
     "vue3-virtual-scroll-list": "^0.2.1"
   },
   "devDependencies": {
-    "@histoire/plugin-vue": "0.13.0",
+    "@histoire/plugin-vue": "0.14.2",
     "@unocss/extractor-pug": "0.49.4",
     "@vitejs/plugin-vue": "4.0.0",
-    "histoire": "0.13.0",
+    "histoire": "0.14.2",
     "pug": "^3.0.2",
     "typescript": "4.9.5",
     "unocss": "^0.49.4",

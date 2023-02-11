@@ -4,8 +4,9 @@ const emit = defineEmits(["loaded"]);
 
 async function processFile(file) {
   const imageData = await imageDataFromFile(file);
-  const jsQR = await import('jsqr')
+  const jsQR = (await import('jsqr')).default
   const result = jsQR(imageData.data, imageData.width, imageData.height);
+  console.log(result.data)
   emit("loaded", result?.data);
 }
 
