@@ -6,12 +6,12 @@ import 'dotenv/config'
 deployToSkynet()
 
 export async function deployToSkynet({
-  APIKey = process.env.SKYNET_API_KEY,
+  APIKey: skynetApiKey = process.env.SKYNET_API_KEY,
   seed = process.env.SECRET_SEED,
   dataKey = 'Gun-Vue',
   dir = "./_dist"
 } = {}) {
-  const client = new SkynetClient('https://siasky.net', { APIKey })
+  const client = new SkynetClient('https://web3portal.com', { skynetApiKey })
   const { privateKey, publicKey } = genKeyPairFromSeed(seed);
   const skylink = await client.uploadDirectory(dir);
   console.log(`Upload successful, url: ${skylink}`);

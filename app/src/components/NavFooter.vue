@@ -42,13 +42,13 @@
         .title Support
         .subtitle Sponsor us
     a.btn(
-      href="https://homescreen.hns.siasky.net/#/skylink/AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A" 
+      href="https://web3portal.com/AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A/#/" 
       target="_blank"
       )
       .i-simple-icons-skynet
       .bar
-        .title Homescreen
-        .subtitle Install the skapp
+        .title Skynet
+        .subtitle Use the skApp
 </template>
 
 <style lang="postcss" scoped>
