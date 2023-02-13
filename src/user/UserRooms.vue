@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useUser, createRoom, SEA, enterRoom, recreateRoom } from '#composables';
 
@@ -7,7 +7,7 @@ const emit = defineEmits(['browse'])
 const { user } = useUser()
 
 const rooms = computed(() => {
-  let list = user.safe.rooms
+  let list = user.safe?.rooms
   if (list) {
     delete list['_']
     return list

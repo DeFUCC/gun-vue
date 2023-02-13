@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { defineAsyncComponent } from 'vue'
 
 const UserRooms = defineAsyncComponent(() => import('./UserRooms.vue'))

@@ -1,10 +1,10 @@
-<script setup>
+<script setup lang="ts">
 import { currentRoom, useBackground, useColor } from '#composables';
 import { computed } from 'vue'
 
 import { useRoute } from "vue-router"
 
-import routes from '../pages/routes'
+import routes from '../routes.json'
 
 const route = useRoute()
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))

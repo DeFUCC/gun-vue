@@ -13,6 +13,7 @@ export * from "./room/composables"
 export * from "./space/composables"
 export * from "./ui/composables"
 export * from "./user/composables"
+export * from "./mate/composables"
 
 
 export { gunAvatar } from "gun-avatar";

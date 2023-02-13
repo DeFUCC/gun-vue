@@ -1,26 +1,22 @@
 <script setup lang="ts">
 import { usePrivateChatList } from '../composables';
 
-defineProps({
-  title: { type: String, default: 'Private chats' }
-})
 
-const { list } = usePrivateChatList()
+const list = usePrivateChatList()
 
 defineEmits(['chat'])
 
 </script>
 
 <template lang="pug">
-.flex.flex-col.p-4.gap-2
-  .font-bold.text-xl {{ title }}
-  .flex.flex-wrap.gap-2
-    .p-2.rounded-xl.flex.items-center.bg-light-900.cursor-pointer(
-      v-for="( chat, pub ) in list" 
-      :key="pub" 
-      @click="$emit('chat', pub)"
-      ) 
-      account-badge(:pub="pub")
-      .flex-1
-      chat-private-count(:pub="pub")
+.flex.flex-col.p-4.gap-2.w-full
+  slot
+  .p-2.rounded-xl.flex.items-center.bg-light-900.cursor-pointer(
+    v-for="( chat, pub ) in list" 
+    :key="pub" 
+    @click="$emit('chat', pub)"
+    ) 
+    account-badge(:pub="pub")
+    .flex-1
+    chat-private-count(:pub="pub")
 </template>

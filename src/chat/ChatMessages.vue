@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import { watchDebounced } from '@vueuse/core';
+import { watchDebounced, } from '@vueuse/core';
+import type { MaybeComputedRef } from '@vueuse/core'
 import { ref, watch, nextTick } from 'vue'
 import VirtualList from 'vue3-virtual-scroll-list';
 import ChatMessage from './ChatMessage.vue';
+import type { Message } from './useChat';
 
-const props = defineProps({
-  messages: { type: Array, default: () => [] }
-})
+
+const props = defineProps<{
+  messages?: Message[]
+}>()
+
 
 const list = ref();
 

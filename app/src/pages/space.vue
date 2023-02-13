@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { currentRoom } from '#composables'
 
 const props = defineProps({
@@ -10,7 +10,7 @@ const props = defineProps({
 
 
 
-let audio
+let audio: HTMLAudioElement
 
 function enter() {
   if (!audio) {
@@ -20,7 +20,7 @@ function enter() {
   audio.play()
 }
 
-let leaveAudio
+let leaveAudio: HTMLAudioElement
 
 function leave() {
   if (!leaveAudio) {

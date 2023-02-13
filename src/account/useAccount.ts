@@ -6,11 +6,11 @@
 
 
 export interface Profile {
+  [index: string]: string
   name?: string
   first_name?: string
   last_name?: string
   birth_day?: string
-  [key: string]: string | undefined
 }
 
 

@@ -6,7 +6,7 @@
 
 import { reactive, computed, ref } from "vue"
 import { useUser, useGun, SEA, } from '../composables'
-import { refDebounced } from '@vueuse/core'
+import { refDebounced, watchDebounced } from '@vueuse/core'
 import { IGunChain, IGunInstance, IGunSchema } from "gun";
 import type { Message } from './useChat'
 
@@ -14,12 +14,35 @@ export function usePrivateChat(pub: string) {
 
   const gun = useGun();
   const { user } = useUser();
-  const messages: { [key: string]: Message } = reactive({});
-  const epub = ref()
+
+  const chat: {
+    epub: string
+    messages: Record<string, Message>
+    sorted?: Message[]
+    send: (message: string) => Promise<void>
+  } = reactive({
+    epub: '',
+    messages: {},
+    async send(message: string) {
+      if (!message) return;
+      const theDate = new Date()
+      const toSend: Message = {
+        timestamp: theDate.getTime(),
+        text: message
+      }
+      const today = theDate.toLocaleDateString('en-CA')
+      const secret = await SEA.secret(chat.epub, user.pair())
+      const work = await SEA.work(secret, undefined, undefined, { salt: today })
+      const enc = await SEA.encrypt(toSend, work)
+
+      // @ts-expect-error - Incorrect gun.set() typings
+      gun.user().get('chat').get(pub).get(today).set(enc)
+    }
+  })
 
   gun.user(pub)
     .get('epub')
-    .once(d => epub.value = d)
+    .once(d => chat.epub = d)
 
 
   gun.user(pub)
@@ -42,7 +65,7 @@ export function usePrivateChat(pub: string) {
     that.map().on(async (d: string | number, k: string) => {
       if (typeof d == 'number') return
       if (d && d.startsWith('SEA')) {
-        const secret = await SEA.secret(epub.value, user.pair())
+        const secret = await SEA.secret(chat.epub, user.pair())
         const work = await SEA.work(secret, undefined, undefined, { salt: today })
         const dec = await SEA.decrypt(d, work)
         if (!dec || typeof dec != 'object') return
@@ -51,43 +74,23 @@ export function usePrivateChat(pub: string) {
           author,
           text: dec.text
         }
-        messages[k] = message
+        chat.messages[k] = message
       }
     })
   }
 
-  async function send(message: string) {
-    if (!message) return;
-    const theDate = new Date()
-    const toSend: Message = {
-      timestamp: theDate.getTime(),
-      text: message
-    }
-    const today = theDate.toLocaleDateString('en-CA')
-    const secret = await SEA.secret(epub.value, user.pair())
-    const work = await SEA.work(secret, undefined, undefined, { salt: today })
-    const enc = await SEA.encrypt(toSend, work)
+  watchDebounced(() => chat.messages, msgs => {
+    chat.sorted = Object.values(chat.messages || {}).sort((a, b) => a.timestamp > b.timestamp ? 1 : -1)
+  }, { debounce: 200, immediate: true, deep: true })
 
-    //@ts-expect-error - Incorrect gun.set() typings
-    gun.user().get('chat').get(pub).get(today).set(enc)
-  }
-
-  const messageList = computed(() => Object.values(messages || {}))
-  const debList = refDebounced(messageList)
-  const sorted = computed(() => debList.value.sort((a, b) => a.timestamp > b.timestamp ? 1 : -1))
-
-  return {
-    send,
-    messages,
-    sorted
-  };
+  return chat
 }
 
 
 export function usePrivateChatCount(pub: string) {
   const gun = useGun();
   const { user } = useUser();
-  const messages: { [key: string]: Message } = reactive({});
+  const messages: Record<string, Message> = reactive({});
 
   const available = ref(false)
 
@@ -118,13 +121,13 @@ export function usePrivateChatList() {
       list[k] = d
     })
     gun.user().get("mates").map().on(async (d, k) => {
-      const mutual = await gun.user(k).get('mates').get(user.pub).then()
+      // const mutual = await gun.user(k).get('mates').get(user.pub).then()
       const epub = await gun.user(k).get('epub').then()
-      if (mutual && epub) {
+      if (epub) {
         list[k] = d
       }
     })
 
   }
-  return { list }
+  return list
 }

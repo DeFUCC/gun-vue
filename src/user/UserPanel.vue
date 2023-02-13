@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 
 import { useUser, useColor, useBackground } from '#composables'
@@ -12,7 +12,7 @@ const bg = computed(() => useBackground({ pub: user.pub, size: 600, light: 0.5, 
 </script>
 
 <template lang="pug">
-.p-4.flex.items-center(
+.p-4.flex.items-center.w-full(
   v-if="user.is"
   :style="{ ...bg }"
   )

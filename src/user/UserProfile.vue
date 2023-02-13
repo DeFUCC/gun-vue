@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useAccount, useUser, addProfileField } from '#composables'
 import { ref } from 'vue'
 
@@ -7,7 +7,6 @@ const { user } = useUser()
 const { account } = useAccount(user.pub)
 
 const newField = ref('')
-
 </script>
 
 <template lang="pug">

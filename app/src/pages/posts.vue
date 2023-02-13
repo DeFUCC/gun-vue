@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { safeHash, currentRoom } from '#composables'
 import { ref, computed } from 'vue'
 

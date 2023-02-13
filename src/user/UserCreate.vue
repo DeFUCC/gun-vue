@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useUser, SEA, useColor, updateProfile } from '#composables'
 import { useRefHistory } from '@vueuse/core'
 import { ref, nextTick } from 'vue'
@@ -6,7 +6,7 @@ import { ref, nextTick } from 'vue'
 const colorDeep = useColor('deep')
 const colorLight = useColor('light')
 
-const { user, auth, create } = useUser()
+const { user, auth } = useUser()
 
 const name = ref('')
 

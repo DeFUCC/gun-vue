@@ -23,7 +23,7 @@ export function useMates(pub: string) {
 	if (!pub) {
 		pub = user.pub;
 	}
-	const mates: { [key: string]: Mate } = reactive({});
+	const mates: Record<string, Mate> = reactive({});
 	const gun = useGun();
 	gun
 		.user(pub)

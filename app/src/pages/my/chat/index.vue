@@ -3,6 +3,5 @@
 </script>
 
 <template lang="pug">
-
-chat-private-list(@chat="$router.push(`/my/chat/${$event}`)")
+.text-xl Select a usre to start a chat
 </template>

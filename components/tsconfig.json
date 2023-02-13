@@ -23,7 +23,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"#composables": [
-				"../composables/src"
+				"../src/composables"
 			]
 		}
 	},

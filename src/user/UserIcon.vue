@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useUser, selectedUser, safeHash } from '#composables';
 
 const props = defineProps({

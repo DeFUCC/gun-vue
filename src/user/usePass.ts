@@ -33,8 +33,8 @@ export interface Pass {
 		[key: string]: string | undefined | ISEAPair
 	};
 	links: {
-		pass: ComputedRef<string> | string;
-		pair: ComputedRef<string> | string;
+		pass: string;
+		pair: string;
 	};
 	set(): void;
 }
@@ -46,14 +46,14 @@ export const pass: Pass = reactive({
 	minLength: 5,
 	safe: {},
 	dec: {},
-	links: {
+	links: reactive({
 		pass: computed(() => {
 			return genLink(pass.safe?.enc);
 		}),
 		pair: computed(() => {
 			return genLink(JSON.stringify(user.pair()));
 		}),
-	},
+	}),
 
 	set() {
 		setPass(pass.input);

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { defineAsyncComponent, reactive } from 'vue'
 
 const ChatMessage = defineAsyncComponent(() => import('./ChatMessage.vue'))

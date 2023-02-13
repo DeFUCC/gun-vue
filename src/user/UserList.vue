@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { onClickOutside, useMediaQuery } from '@vueuse/core';
 import { useGuests, joinRoom, useUser } from '#composables';
 import { reactive, ref, computed, toRef } from 'vue'

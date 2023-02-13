@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
 import { currentRoom, rootRoom, useBackground } from "#composables";
@@ -8,7 +8,7 @@ const router = useRouter()
 const route = useRoute();
 watchEffect(() => {
   if (route.query?.room) {
-    currentRoom.pub = route.query.room
+    currentRoom.pub = route.query.room as string
   }
 });
 
@@ -60,7 +60,7 @@ body {
   width: 100%;
   height: 100vh;
   grid-template-columns: fit-content(20%) auto auto;
-  grid-template-rows: 0.1fr auto auto;
+  grid-template-rows: 0.1fr 10fr auto;
   gap: 0px 0px;
   grid-template-areas:
     "Side Top Top"

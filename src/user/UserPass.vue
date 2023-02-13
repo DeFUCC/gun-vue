@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { usePass } from '#composables'
 const { pass } = usePass();
 

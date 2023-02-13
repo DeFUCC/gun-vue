@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useUser } from '#composables';
 
 const emit = defineEmits(['user', 'room', 'close', 'chat', 'browse'])
@@ -18,8 +18,10 @@ function isSafe() {
     close-button 
     @close="isSafe()"
     )
-    user-credentials(@close="isSafe()")
-
+    user-credentials(v-if="!user.safe?.saved")
+      button.button.mx-8.justify-center(@click="isSafe()")
+        .i-la-check
+        .ml-2 I've stored my key securely
   user-login(v-if="!user.is")
   .flex.flex-col(v-else)
     user-panel(
@@ -27,13 +29,6 @@ function isSafe() {
       )
     .p-4.flex.flex-col.items-start
       user-profile
-      chat-private-list(@chat="$emit('chat', $event)")
-      mate-list(
-        :pub="user.pub"  
-      @browse="$emit('user', $event)"
-      )
-      .text-xl.p-4 My wallets
-        gift-wallets(:pub="user.pub")
       UserRooms(@browse="$emit('room', $event)")
     button.p-4.m-4.rounded-xl.font-bold.text-lg.shadow-md(
       :style="{ backgroundColor: user.color }"

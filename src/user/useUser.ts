@@ -57,6 +57,7 @@ export interface User {
 		password: string
 		enc: string
 		pass: string
+		rooms: object
 	};
 	db?: IGunUserInstance
 	pair(): ISEAPair;
@@ -76,7 +77,8 @@ export const user: User = reactive({
 		saved: false,
 		password: '',
 		enc: '',
-		pass: ''
+		pass: '',
+		rooms: {}
 	},
 	db: undefined,
 	pair(): ISEAPair {

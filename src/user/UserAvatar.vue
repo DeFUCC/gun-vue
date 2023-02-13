@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useUser, useGun, hashText } from '#composables'
 import { ref } from 'vue'
 

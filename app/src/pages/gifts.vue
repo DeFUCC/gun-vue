@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useUser } from '#composables'
 const { user } = useUser()
 </script>

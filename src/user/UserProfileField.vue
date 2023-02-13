@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { updateProfile } from '#composables'
 import { ref } from 'vue'
 import urlRegex from 'url-regex'
@@ -22,9 +22,9 @@ function isLink(text) {
 </script>
 
 <template lang="pug">
-.p-2.flex.items-center.break-all
+.p-2.flex.items-center.break-all.flex-wrap
   .mr-2.font-bold {{ field }}
-  .flex.items-center
+  .flex.items-center.flex-wrap
     .text-md.flex.items-center(v-if="!edit") 
       .p-0(v-if="!isLink(content)") {{ content }}
       a.font-bold.underline(v-else :href="content" target="_blank") {{ content }} 

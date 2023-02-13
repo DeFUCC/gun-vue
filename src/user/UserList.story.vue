@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { defineAsyncComponent, reactive } from 'vue'
 
 const UserList = defineAsyncComponent(() => import('./UserList.vue'))

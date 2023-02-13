@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { safeHash } from '#composables';
 import { dictLang, languages, useDictLangs } from '#composables'
 

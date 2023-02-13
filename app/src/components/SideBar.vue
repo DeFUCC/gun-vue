@@ -1,5 +1,5 @@
-<script setup>
-import routes from '../pages/routes'
+<script setup  lang="ts">
+import routes from '../routes.json'
 </script>
 
 <template lang="pug">
@@ -19,6 +19,7 @@ style="flex: 0 0 auto"
     .i-ph-books(v-if="link == 'Dictionary'")
     .i-la-sun(v-if="link == 'Gifts'")
     .i-la-toolbox(v-if="link == 'Projects'")
+    .i-la-user(v-if="link == 'User'")
 
     .ml-2.hidden.transition.sm-block.text-sm {{ link }}
 </template>
