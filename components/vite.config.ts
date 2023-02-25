@@ -53,7 +53,7 @@ export default defineConfig({
       formats: ["es"],
     },
     emptyOutDir: true,
-    map: true,
+    sourcemap: true,
     rollupOptions: {
       external: ["vue"],
       output: {

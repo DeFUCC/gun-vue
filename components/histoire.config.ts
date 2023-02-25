@@ -13,7 +13,7 @@ export default defineConfig({
   vite: {
     server: {
       fs: {
-        allow: '..'
+        allow: ['..']
       }
     },
     build: { sourcemap: false },
