@@ -15,6 +15,8 @@ export * from "./ui/composables"
 export * from "./user/composables"
 export * from "./mate/composables"
 
+import config from "./gun.config.json";
+export const rootRoom = config.room
 
 export { gunAvatar } from "gun-avatar";
 export { default as slugify } from "slugify";

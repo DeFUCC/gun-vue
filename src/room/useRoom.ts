@@ -11,11 +11,14 @@ import {
   useUser,
   user,
   hashText,
-  downloadFile
+  downloadFile,
+  peer
 } from "../composables";
-import rootRoom from "./rootRoom.json";
+import config from "../gun.config.json";
 import { reactive, computed, ref, watchEffect } from "vue";
 import { ISEAPair } from "gun";
+
+const rootRoom = config.room
 
 export interface CurrentRoom {
   pub: string
@@ -228,15 +231,18 @@ export async function createRoom({ pair, name }: { pair: ISEAPair, name?: string
   const enc = await SEA.encrypt(pair, user.pair());
   const dec = await SEA.decrypt(enc, user.pair());
 
-  const forRoot = {
-    pub: dec.pub,
-    hosts: { [user.pub]: { enc, ...certs } },
-    features,
+  const gunConfig = {
+    relay: peer.value,
+    room: {
+      pub: dec.pub,
+      hosts: { [user.pub]: { enc, ...certs } },
+      features,
+    }
   }
 
   console.log(
     "COPY THIS ROOM INFO TO USE IT AS A ROOT",
-    forRoot,
+    gunConfig,
     "STORE THIS KEY PAIR IN A SAFE PLACE",
     dec
   );
@@ -268,15 +274,16 @@ export async function createRoom({ pair, name }: { pair: ISEAPair, name?: string
     .get(`${roomPub}@${user.pub}`)
     .put(true, null, { opt: { cert: currentRoom?.features?.rooms } }).then();
 
-  downloadFile(JSON.stringify(forRoot), 'application/json', 'rootRoom.json')
-  downloadFile(JSON.stringify(dec), 'application/json', name + '-room.json')
+  downloadFile(JSON.stringify(gunConfig), 'application/json', 'gun.config.json')
+  downloadFile(JSON.stringify(dec), 'application/json', `room_${name || roomPub}.json`)
   // enterRoom(pair.pub);
 }
 
-export async function recreateRoom(enc: string) {
+export async function recreateRoom(enc: string, name?: string) {
   const dec: ISEAPair = await SEA.decrypt(enc, user.pair());
   createRoom({
     pair: dec,
+    name
   });
 }
 

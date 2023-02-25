@@ -40,7 +40,7 @@ const { relays, loadRelays } = useRelays()
           .num.p-0 Pulse drift: {{ relay.lag }} ms
           .num.p-0 Active wires: {{ relay.activeWires }} / {{ relay.totalConnections }}
           .p-0 Data storage is {{ relay.store ? 'enabled' : 'disabled' }}
-      util-relay-list
+      gun-relay-list
 </template>
 
 <style lang="postcss" scoped>

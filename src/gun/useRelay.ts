@@ -10,7 +10,9 @@ import type { Ref } from 'vue'
 import { useStorage } from "@vueuse/core";
 import ms from 'ms'
 
-const defaultPeer = "https://peer.era.eco/gun";
+import config from '../gun.config.json'
+
+const defaultPeer = config.relay
 
 export const peer: Ref = useStorage("peer", defaultPeer);
 
