@@ -10,7 +10,7 @@ import type { Ref } from 'vue'
 import { useStorage } from "@vueuse/core";
 import ms from 'ms'
 
-const defaultPeer = "https://gun.defucc.me/gun";
+const defaultPeer = "https://peer.era.eco/gun";
 
 export const peer: Ref = useStorage("peer", defaultPeer);
 
@@ -18,7 +18,7 @@ export const peer: Ref = useStorage("peer", defaultPeer);
  * Peer server status reactive object
  * @example
  * {
- * "peer": "https://etogun.glitch.me/gun",
+ * "peer": "https://peer.era.eco/gun",
  * "host": "6db1edbb5aae",
  * "status": "running",
  * "started": 1642666725795,
