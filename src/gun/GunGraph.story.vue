@@ -1,16 +1,16 @@
 <script setup>
 import { defineAsyncComponent } from 'vue'
 
-const UtilGraph = defineAsyncComponent(() => import('./UtilGraph.vue'))
+const GunGraph = defineAsyncComponent(() => import('./GunGraph.vue'))
 
 </script>
 
 <template lang="pug">
 Story(
-  title="Util/Graph" 
+  title="Gun/Graph" 
   icon="mdi:graph-outline" 
   :layout="{ type: 'single', iframe: true }")
   Variant(title="Round")
-    UtilGraph
+    GunGraph
 
 </template>

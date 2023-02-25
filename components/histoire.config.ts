@@ -5,7 +5,7 @@ export default defineConfig({
   storyMatch: [
     '../src/**/*.story.vue',
   ],
-  setupFile: 'histoire.setup.js',
+  setupFile: 'histoire.setup.ts',
   outDir: '../app/public/components/',
   plugins: [
     HstVue(),

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useBrowserLocation, useClipboard, useShare } from '@vueuse/core'
 import { ref, computed } from 'vue'
 const location = useBrowserLocation()

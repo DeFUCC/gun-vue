@@ -16,7 +16,7 @@ const show = reactive({
   button.flex.items-center(@click="show.graph = !show.graph")
     .i-mdi-graph-outline
   button.flex.items-center
-    util-relay
+    gun-relay
 
 
   //- ui-layer(:open="show.log" @close="show.log = false")
@@ -24,6 +24,6 @@ const show = reactive({
   ui-layer(
     :open="show.graph" 
     @close="show.graph = false")
-    util-graph
+    gun-graph
 
 </template>
