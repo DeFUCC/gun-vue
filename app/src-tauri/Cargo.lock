@@ -990,7 +990,7 @@ dependencies = [
 
 [[package]]
 name = "gun_vue"
-version = "0.13.1"
+version = "0.13.2"
 dependencies = [
  "serde",
  "serde_json",
