@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.13.2
+
+### Patch Changes
+
+- ce189add: More ts and better user profile browsinf
+
 ## 0.13.1
 
 ### Patch Changes

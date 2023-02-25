@@ -1,5 +1,12 @@
 # @gun-vue/test
 
+## 0.12.13
+
+### Patch Changes
+
+- Updated dependencies [ce189add]
+  - @gun-vue/components@0.13.2
+
 ## 0.12.12
 
 ### Patch Changes
