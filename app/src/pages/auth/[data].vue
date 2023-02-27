@@ -16,7 +16,7 @@ onMounted(() => {
 })
 watch(user, user => {
   if (user.is) {
-    router.push('/auth/')
+    router.push('/my/')
   }
 })
 </script>

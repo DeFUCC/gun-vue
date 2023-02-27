@@ -1,17 +1,7 @@
 
 <script setup>
-import {
-  useUser,
-  useProject,
-  useMd,
-  useProjectGifts
-} from '#composables';
-import {
-  toRef,
-  ref,
-  computed,
-  watch
-} from 'vue'
+import { useUser, useProject, useMd, useProjectGifts } from '#composables';
+import { toRef, ref, computed, watch } from 'vue'
 
 const emit = defineEmits(['gift', 'user'])
 
@@ -43,6 +33,7 @@ const text = ref(project.text)
 watch(() => project.text, (t) => {
   text.value = t
 })
+
 </script>
 <!-- eslint-disable vue/no-v-html -->
 <template lang="pug">
@@ -87,7 +78,7 @@ watch(() => project.text, (t) => {
   project-funding(
     :path="path" 
     :enabled="project.funding" 
-    @enable="updateField('funding', true)"
+    @enable="updateField('funding', 'true')"
     @gift="$emit('gift', $event)"
     )
 </template>

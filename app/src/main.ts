@@ -11,7 +11,7 @@ import routes from "~pages";
 
 // import FloatingVue from 'floating-vue'
 
-import { currentRoom } from "../../src/composables";
+import { currentRoom, useUser } from "../../src/composables";
 import { GunVuePlugin } from "../../src/components"; // use '@gun-vue/components' in your apps
 
 const router = createRouter({
@@ -26,6 +26,7 @@ const router = createRouter({
   },
 });
 
+
 const app = createApp(App);
 // app.use(FloatingVue)
 app.use(GunVuePlugin)
@@ -34,7 +35,10 @@ app.use(router).mount("#app");
 
 
 router.beforeEach((to, from, next) => {
-  if (!currentRoom.isRoot && !to.query?.room) {
+  const { user } = useUser()
+  if (to.path.includes('/my/') && !user.pub) {
+    next({ path: '/auth/' })
+  } else if (!currentRoom.isRoot && !to.query?.room) {
     next({ ...to, query: { room: currentRoom.pub } });
   } else {
     next();

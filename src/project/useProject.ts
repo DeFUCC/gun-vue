@@ -12,14 +12,14 @@ import { SEA } from 'gun'
 import { hashText, isHash } from '../crypto/composables'
 
 
-export interface Item {
+export interface ProjectItem {
   id?: string
   [key: string]: string | undefined
 }
 
 export type ProjectType = 'event' | 'object'
 
-export interface Project extends Item {
+export interface Project extends ProjectItem {
   type?: ProjectType,
 }
 
