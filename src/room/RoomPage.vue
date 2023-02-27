@@ -3,21 +3,13 @@
 import { useRoom, rootRoom, currentRoom, useColor, useUser, useBackground, useMd } from '#composables';
 import { ref, computed, reactive } from 'vue'
 
+import config from '../gun.config.json'
+
 const props = defineProps({
   pub: { type: String, default: '' },
   titles: {
     type: Object,
-    default: () => ({
-      space: 'Space',
-      topics: 'Topics',
-      posts: 'Posts',
-      projects: 'Projects',
-      gifts: 'Gifts',
-      dict: 'Dictionary',
-      users: 'Users',
-      rooms: 'Rooms',
-
-    })
+    default: () => (config.features)
   }
 })
 
@@ -87,7 +79,7 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
         :type="c"
         :title="title"
         :pub="pub || currentRoom.pub"
-        :open="room.features[c] || (c == 'users' && room.features.space) || (c == 'topics' && room.features.chat)"
+        :open="room.features[c] || (c == 'users' && room.features.space) || (c == 'chat' && room.features.chat)"
         @click="$emit('browse', c)" 
         )
 

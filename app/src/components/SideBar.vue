@@ -14,7 +14,7 @@ style="flex: 0 0 auto"
     .i-ph-hands-clapping(v-if="link == 'Space'")
     .i-ph-newspaper(v-if="link == 'Posts'")
     .i-ph-house(v-if="link == 'Rooms'")
-    .i-la-broadcast-tower(v-if="link == 'Topics'")
+    .i-la-broadcast-tower(v-if="link == 'Chat'")
     .i-ph-users(v-if="link == 'Users'")
     .i-ph-books(v-if="link == 'Dictionary'")
     .i-la-sun(v-if="link == 'Gifts'")

@@ -217,15 +217,7 @@ export async function createRoom({ pair, name }: { pair: ISEAPair, name?: string
   });
   const features = await generateCerts({
     pair,
-    list: [
-      { tag: "rooms", personal: true },
-      { tag: "space", personal: true },
-      { tag: "posts", personal: true },
-      { tag: "chat", personal: true },
-      { tag: "dict", personal: true },
-      { tag: "projects", personal: true },
-      { tag: "gifts", personal: true },
-    ],
+    list: Object.keys(config?.features).map(f => ({ tag: f, personal: true })),
   });
 
   const enc = await SEA.encrypt(pair, user.pair());
@@ -233,6 +225,7 @@ export async function createRoom({ pair, name }: { pair: ISEAPair, name?: string
 
   const gunConfig = {
     relay: peer.value,
+    features: config.features,
     room: {
       pub: dec.pub,
       hosts: { [user.pub]: { enc, ...certs } },
