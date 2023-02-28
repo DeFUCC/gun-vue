@@ -32,7 +32,7 @@ defineProps({
 
 <template lang="pug">
 .card(
-  :style="{ background: `url(${project?.cover || project?.raw})`, backgroundColor: project.color }"
+  :style="{ backgroundImage: `url(${project?.cover || project?.raw || 'none'})`, backgroundColor: project.color }"
   )
   .absolute.top-2.right-2(
     v-if="path.includes(user.pub) || currentRoom.hosts[user.pub]" 
