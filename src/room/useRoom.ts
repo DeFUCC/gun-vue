@@ -14,7 +14,7 @@ import {
   downloadFile,
   peer
 } from "../composables";
-import config from "../gun.config.json";
+import config from "../../gun.config.json";
 import { reactive, computed, ref, watchEffect } from "vue";
 import { ISEAPair } from "gun";
 

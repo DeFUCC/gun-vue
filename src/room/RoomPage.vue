@@ -3,7 +3,7 @@
 import { useRoom, rootRoom, currentRoom, useColor, useUser, useBackground, useMd } from '#composables';
 import { ref, computed, reactive } from 'vue'
 
-import config from '../gun.config.json'
+import config from '../../gun.config.json'
 
 const props = defineProps({
   pub: { type: String, default: '' },

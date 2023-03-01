@@ -10,7 +10,7 @@ import type { Ref } from 'vue'
 import { useStorage } from "@vueuse/core";
 import ms from 'ms'
 
-import config from '../gun.config.json'
+import config from '../../gun.config.json'
 
 const defaultPeer = config.relay
 
