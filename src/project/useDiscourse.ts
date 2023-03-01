@@ -3,7 +3,7 @@
  * @group Projects
  */
 
-import { genUUID, user } from '#composables'
+import { genUUID, user } from '../composables'
 import { reactive, ref, computed } from 'vue'
 
 const thePath = 'discourse'

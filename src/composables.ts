@@ -18,6 +18,8 @@ export * from "./mate/composables"
 import config from "../gun.config.json";
 export const rootRoom = config.room
 
+export { default as config } from "../gun.config.json";
+
 export { gunAvatar } from "gun-avatar";
 export { default as slugify } from "slugify";
 

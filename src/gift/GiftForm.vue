@@ -1,7 +1,7 @@
 <script setup>
 import { useGuests, useNewGift, useUser, useProject, useProjects, currentRoom, useColor, useGun } from '#composables'
 import { toRef, watch, computed, reactive } from 'vue'
-import { number } from '@coders-tm/vue-number-format' // https://vue-number-format.netlify.app/guide/#globally
+import { component as NumberFormat } from '@coders-tm/vue-number-format' // https://vue-number-format.netlify.app/guide/#globally
 import vSelect from 'vue-select' // https://vue-select.org/
 import 'vue-select/dist/vue-select.css';
 import currencies from './currencies.json';
@@ -88,7 +88,7 @@ const userProjects = computed(() => {
       .font-bold USER SELECT OF {{ Object.keys(guestsWithWallets).length }}
       .flex.flex-wrap.gap-3
         account-badge(
-          v-for="guest of guestsWithWallets" 
+          v-for="guest of guests" 
           :key="guest" 
           :pub="guest.pub" 
           @click="newGift.to = guest.pub"
@@ -105,7 +105,7 @@ const userProjects = computed(() => {
         )
       template(v-if="newGift.wallet")
         .p-2.text-right Quantity
-        number(
+        number-format(
           v-model="newGift.qn" 
           v-bind="numOpts" 
           placeholder="Quantity")
