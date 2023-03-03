@@ -89,7 +89,6 @@ importers:
 
   components:
     specifiers:
-      '@anu-vue/preset-theme-default': ^0.12.0
       '@coders-tm/vue-number-format': ^3.14.0
       '@gun-vue/composables': workspace:^
       '@histoire/plugin-vue': 0.15.8
@@ -100,7 +99,6 @@ importers:
       '@vueuse/core': 9.13.0
       '@vueuse/gesture': ^2.0.0-beta.1
       '@vueuse/sound': ^2.0.1
-      anu-vue: ^0.12.0
       floating-vue: ^2.0.0-beta.20
       force-graph: ^1.43.0
       fuse.js: 6.6.2
@@ -117,7 +115,6 @@ importers:
       vue-tsc: ^1.2.0
       vue3-virtual-scroll-list: ^0.2.1
     dependencies:
-      '@anu-vue/preset-theme-default': 0.12.0
       '@coders-tm/vue-number-format': 3.14.0
       '@gun-vue/composables': link:../composables
       '@qrcode/svg': 1.0.0-beta.2
@@ -125,7 +122,6 @@ importers:
       '@vueuse/core': 9.13.0_vue@3.2.47
       '@vueuse/gesture': 2.0.0-beta.1_vue@3.2.47
       '@vueuse/sound': 2.0.1_vue@3.2.47
-      anu-vue: 0.12.0_wcbvvhwh55fyvp5njrxejr33ri
       floating-vue: 2.0.0-beta.20_vue@3.2.47
       force-graph: 1.43.0
       fuse.js: 6.6.2
@@ -225,9 +221,9 @@ importers:
       qrcode-terminal: 0.12.0
       self-adjusting-interval: 1.0.0
 
-  test:
+  starter:
     specifiers:
-      '@gun-vue/components': workspace:^
+      '@gun-vue/components': workspace:*
       '@rushstack/eslint-patch': ^1.2.0
       '@vitejs/plugin-vue': ^4.0.0
       '@vue/eslint-config-prettier': ^7.1.0
@@ -395,12 +391,6 @@ packages:
   /@antfu/utils/0.7.2:
     resolution: {integrity: sha512-vy9fM3pIxZmX07dL+VX1aZe7ynZ+YyB0jY+jE6r3hOK6GNY2t6W8rzpFC4tgpbXUYABkFQwgJq2XYXlxbXAI0g==}
     dev: true
-
-  /@anu-vue/preset-theme-default/0.12.0:
-    resolution: {integrity: sha512-a835rCYXo3heLW+Zfucdr+i/GqgbQQgiAfWoYyNL3CzJIUc3ZDu/EgiCBIquKhGJQqJEGG4sYmMrQh2vjKls0Q==}
-    dependencies:
-      defu: 6.1.2
-    dev: false
 
   /@apideck/better-ajv-errors/0.3.6_ajv@8.11.0:
     resolution: {integrity: sha512-P+ZygBLZtkp0qqOAJJVX4oX/sFo5JR3eBWwwuqHHhK0GIgQOKWrAfiAaWX0aArHkRWHMuggFEgAZNxVPwPZYaA==}
@@ -2138,20 +2128,10 @@ packages:
     resolution: {integrity: sha512-ensKY7Ub59u16qsVIFEo2hwTCqZ/r9oZZFh51ivcLGHfUwTn8l1Xzng8RJUe91H/UP8PeqeBronAGx0qmzwk2g==}
     dev: false
 
-  /@floating-ui/core/1.2.2:
-    resolution: {integrity: sha512-FaO9KVLFnxknZaGWGmNtjD2CVFuc0u4yeGEofoyXO2wgRA7fLtkngT6UB0vtWQWuhH3iMTZZ/Y89CMeyGfn8pA==}
-    dev: false
-
   /@floating-ui/dom/0.1.10:
     resolution: {integrity: sha512-4kAVoogvQm2N0XE0G6APQJuCNuErjOfPW8Ux7DFxh8+AfugWflwVJ5LDlHOwrwut7z/30NUvdtHzQ3zSip4EzQ==}
     dependencies:
       '@floating-ui/core': 0.3.1
-    dev: false
-
-  /@floating-ui/dom/1.2.3:
-    resolution: {integrity: sha512-lK9cZUrHSJLMVAdCvDqs6Ug8gr0wmqksYiaoj/bxj2gweRQkSuhg2/V6Jswz2KiQ0RAULbqw1oQDJIMpQ5GfGA==}
-    dependencies:
-      '@floating-ui/core': 1.2.2
     dev: false
 
   /@histoire/app/0.15.8_vite@4.1.4:
@@ -3673,16 +3653,16 @@ packages:
   /acorn-globals/7.0.1:
     resolution: {integrity: sha512-umOSDSDrfHbTNPuNpC2NSnnA3LUrqpevPb4T9jRx4MagXNS0rs+gwiTcAvqCRmsD6utzsrzNt+ebm00SNWiC3Q==}
     dependencies:
-      acorn: 8.8.1
+      acorn: 8.8.2
       acorn-walk: 8.2.0
     dev: true
 
-  /acorn-jsx/5.3.2_acorn@8.8.1:
+  /acorn-jsx/5.3.2_acorn@8.8.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
-      acorn: 8.8.1
+      acorn: 8.8.2
     dev: true
 
   /acorn-walk/8.2.0:
@@ -3808,20 +3788,6 @@ packages:
     resolution: {integrity: sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==}
     engines: {node: '>=12'}
     dev: true
-
-  /anu-vue/0.12.0_wcbvvhwh55fyvp5njrxejr33ri:
-    resolution: {integrity: sha512-pf3+DRMg90LaNVK9Frhfv5eVkFK3is7j2RmcmtnmW0MIRFgFxq3aPTH243r5H7KJitWqb+G9d5mNG+MAOaBSxQ==}
-    peerDependencies:
-      '@unocss/reset': ^0.41.1
-      '@vueuse/core': ^9.6.0
-      vue-router: '4'
-    dependencies:
-      '@floating-ui/dom': 1.2.3
-      '@unocss/reset': 0.50.1
-      '@vueuse/core': 9.13.0_vue@3.2.47
-      defu: 6.1.2
-      vue: 3.2.47
-    dev: false
 
   /anymatch/3.1.2:
     resolution: {integrity: sha512-P43ePfOAIupkguHUycrc4qJ9kz8ZiuOUijaETwX7THt0Y/GNK7v0aa8rY816xWjZ7rJdA5XdMcpVFTKMq+RvWg==}
@@ -5015,6 +4981,7 @@ packages:
 
   /defu/6.1.2:
     resolution: {integrity: sha512-+uO4+qr7msjNNWKYPHqN/3+Dx3NFkmIzayk2L1MyZQlvgZb/J1A0fo410dpKrN2SnqFjt8n4JL8fDJE0wIgjFQ==}
+    dev: true
 
   /delayed-stream/1.0.0:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
@@ -5468,8 +5435,8 @@ packages:
     resolution: {integrity: sha512-XwctdmTO6SIvCzd9810yyNzIrOrqNYV9Koizx4C/mRhf9uq0o4yHoCEU/670pOxOL/MSraektvSAji79kX90Vg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
-      acorn: 8.8.1
-      acorn-jsx: 5.3.2_acorn@8.8.1
+      acorn: 8.8.2
+      acorn-jsx: 5.3.2_acorn@8.8.2
       eslint-visitor-keys: 3.3.0
     dev: true
 
@@ -6860,7 +6827,7 @@ packages:
         optional: true
     dependencies:
       abab: 2.0.6
-      acorn: 8.8.1
+      acorn: 8.8.2
       acorn-globals: 7.0.1
       cssom: 0.5.0
       cssstyle: 2.3.0
@@ -9072,10 +9039,6 @@ packages:
     engines: {node: '>= 0.8'}
     dev: false
 
-  /std-env/3.3.1:
-    resolution: {integrity: sha512-3H20QlwQsSm2OvAxWIYhs+j01MzzqwMwGiiO1NQaJYZgJZFPuAbf95/DiKRBSTYIJ2FeGUc+B/6mPGcWP9dO3Q==}
-    dev: true
-
   /std-env/3.3.2:
     resolution: {integrity: sha512-uUZI65yrV2Qva5gqE0+A7uVAvO40iPo6jGhs7s8keRfHCmtg+uB2X6EiLGCI9IgL1J17xGhvoOqSz79lzICPTA==}
     dev: true
@@ -9284,7 +9247,7 @@ packages:
     hasBin: true
     dependencies:
       '@jridgewell/source-map': 0.3.2
-      acorn: 8.8.1
+      acorn: 8.8.2
       commander: 2.20.3
       source-map-support: 0.5.21
     dev: true
@@ -10167,7 +10130,7 @@ packages:
       '@vitest/runner': 0.29.1
       '@vitest/spy': 0.29.1
       '@vitest/utils': 0.29.1
-      acorn: 8.8.1
+      acorn: 8.8.2
       acorn-walk: 8.2.0
       cac: 6.7.14
       chai: 4.3.7
@@ -10177,7 +10140,7 @@ packages:
       pathe: 1.1.0
       picocolors: 1.0.0
       source-map: 0.6.1
-      std-env: 3.3.1
+      std-env: 3.3.2
       strip-literal: 1.0.0
       tinybench: 2.3.1
       tinypool: 0.3.1

@@ -1,4 +1,4 @@
-# @gun-vue/test
+# @gun-vue/create
 
 ## 0.12.13
 
