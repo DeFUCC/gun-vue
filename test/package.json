@@ -1,7 +1,7 @@
 {
-  "name": "@gun-vue/create-gun-vue",
+  "name": "@gun-vue/test",
   "version": "0.14.0",
-  "private": false,
+  "private": true,
   "bin": "./cli.js",
   "module": "true",
   "scripts": {
@@ -26,6 +26,6 @@
     "jsdom": "^21.1.0",
     "prettier": "^2.8.4",
     "vite": "^4.1.4",
-    "vitest": "^0.29.1"
+    "vitest": "^0.29.2"
   }
 }
