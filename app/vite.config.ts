@@ -7,7 +7,7 @@ import generateSitemap from 'vite-plugin-pages-sitemap'
 // import { VitePWA } from "vite-plugin-pwa";
 
 import Unocss from 'unocss/vite'
-import { presetUno, presetIcons, transformerDirectives, extractorSplit } from "unocss";
+import { presetUno, presetIcons, presetTypography, transformerDirectives, extractorSplit } from "unocss";
 import extractorPug from '@unocss/extractor-pug'
 
 import path from "path";
@@ -42,7 +42,8 @@ export default defineConfig({
 						'vertical-align': 'middle',
 					},
 				}),
-				presetUno()
+				presetUno(),
+				presetTypography()
 			],
 			transformers: [
 				transformerDirectives(),

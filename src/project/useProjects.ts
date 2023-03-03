@@ -4,7 +4,6 @@
  */
 
 import { computed, reactive, ref } from "vue"
-import { projectsPath } from "./composables"
 import { newProject } from './useProject'
 import { useGun } from "../gun/composables"
 import { currentRoom } from "../room/composables"
@@ -37,7 +36,7 @@ export function useProjects(pub = currentRoom.pub) {
 
   gun
     .user(pub)
-    .get(projectsPath)
+    .get('projects')
     .map()
     .on((d, k) => {
       if (d == null) { delete projects[k]; return }
@@ -58,7 +57,7 @@ export function countProjects(pub = currentRoom.pub) {
   const gun = useGun()
   gun
     .user(pub)
-    .get(projectsPath)
+    .get('projects')
     .map()
     .on((d, k) => {
       if (d == null) { delete list[k]; return }

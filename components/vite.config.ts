@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import Components from "unplugin-vue-components/vite";
 import Unocss from 'unocss/vite'
-import { presetUno, presetIcons, transformerDirectives, extractorSplit } from "unocss";
+import { presetUno, presetIcons, presetTypography, transformerDirectives, extractorSplit } from "unocss";
 import extractorPug from '@unocss/extractor-pug'
 
 import path from "path";
@@ -33,6 +33,7 @@ export default defineConfig({
           scale: 1.2,
         }),
         presetUno(),
+        presetTypography()
       ],
       transformers: [
         transformerDirectives(),

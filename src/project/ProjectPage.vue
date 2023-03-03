@@ -62,7 +62,7 @@ const { newItem, add } = useNewDiscourseItem()
       v-if="editable" 
       @click="editing = !editing"
       )
-    .p-2.markdown-body(
+    .p-2.markdown-body.text-base.prose.prose-truegray(
       v-if="!editing || !editable" 
       v-html="md.render(text || '')")
     textarea(
@@ -86,12 +86,5 @@ const { newItem, add } = useNewDiscourseItem()
         :value="t.type"
         ) {{ t.title }}
     pre {{ newItem }}
-    ABtn(@click="add()") Add
-    ACard(
-      title="Card title"
-      subtitle="Chocolate cake tiramisu donut"
-      text="Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar."
-      variant="fill"
-      color="primary")
     
 </template>

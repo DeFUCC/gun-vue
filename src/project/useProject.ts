@@ -7,7 +7,6 @@ import { reactive, ref, computed } from 'vue'
 import { gun, useGun2, useGun, genUUID } from '../gun/composables'
 import { currentRoom } from '../room/composables'
 import { useUser } from '../user/composables'
-import { projectsPath } from './composables'
 import { SEA } from 'gun'
 import { hashText, isHash } from '../crypto/composables'
 
@@ -37,12 +36,12 @@ export async function addProject() {
   const { user } = useUser()
   const id = genUUID(6)
   newProject.author = user.pub
-  const link = gun.user().get(projectsPath).get(id).put(newProject, () => {
+  const link = gun.user().get('projects').get(id).put(newProject, () => {
     if (!newProject.public) return
 
     gun
       .user(currentRoom.pub)
-      .get(projectsPath)
+      .get('projects')
       .get(id + '@' + user.pub)
       .put(
         link,
@@ -58,7 +57,7 @@ export async function addProject() {
 }
 
 export function updateProjectField(title: string, field: string, value: string) {
-  const proj = gun.user().get(projectsPath).get(title)
+  const proj = gun.user().get('projects').get(title)
   proj.get(field).put(value, () => {
     proj.get('updatedAt').put(Date.now())
   })
@@ -72,7 +71,7 @@ export function useProject(path: string) {
     type: 'event'
   })
 
-  gun.user(currentRoom.pub).get(projectsPath).get(path).map().on(async (d, k) => {
+  gun.user(currentRoom.pub).get('projects').get(path).map().on(async (d, k) => {
     if (k == 'cover' && isHash(d)) {
       project[k] = await gun.get('#cover').get(d).then()
     } else {
@@ -101,7 +100,7 @@ export function useComputedProject(path = ref()) {
 
   const project = computed(() => {
     const proj: Project = reactive({})
-    gun.user(currentRoom.pub).get(projectsPath).get(path.value).map().on(async (d, k) => {
+    gun.user(currentRoom.pub).get('projects').get(path.value).map().on(async (d, k) => {
       if (k == 'cover' && isHash(d)) {
         proj[k] = await gun.get('#cover').get(d).then()
       } else {
@@ -133,7 +132,7 @@ export async function removeProject(path: string) {
   const { user } = useUser()
 
   if (path.includes(user.pub)) {
-    gun.user(currentRoom.pub).get(projectsPath).get(path).put(null, undefined, {
+    gun.user(currentRoom.pub).get('projects').get(path).put(null, undefined, {
       opt:
         { cert: currentRoom.features?.projects }
     })
@@ -141,7 +140,7 @@ export async function removeProject(path: string) {
   } else if (currentRoom.hosts[user.pub]) {
     const pair = await SEA.decrypt(currentRoom.hosts[user.pub].enc, user.pair())
     gun2.user().auth(pair, () => {
-      gun2.user().get(projectsPath).get(path).put(null)
+      gun2.user().get('projects').get(path).put(null)
     })
 
   }
