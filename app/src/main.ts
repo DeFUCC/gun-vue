@@ -6,8 +6,10 @@ import 'uno.css'
 import "../../src/styles/index.css"; // use '@gun-vue/components/style.css' in your apps
 
 import { createRouter, createWebHashHistory } from "vue-router";
-//@ts-expect-error
-import routes from "~pages";
+// //@ts-expect-error
+//import routes from "~pages";
+
+import routes from '../../pages/routes'
 
 // import FloatingVue from 'floating-vue'
 
