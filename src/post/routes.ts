@@ -2,11 +2,11 @@
 export default [
   {
     path: "/posts/",
-    name: "posts",
     component: () => import("./posts.vue"),
     children: [
       {
         path: '',
+        name: "posts",
         component: () => import('./index.vue')
       },
       {

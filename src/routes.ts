@@ -1,14 +1,14 @@
 import auth from './auth/routes'
 import chat from './chat/routes'
 import dict from './dict/routes'
-import gifts from './gifts/routes'
+import gifts from './gift/routes'
 import gun from './gun/routes'
 import my from './my/routes'
-import posts from './posts/routes'
-import projects from './projects/routes'
-import rooms from './rooms/routes'
+import posts from './post/routes'
+import projects from './project/routes'
+import rooms from './room/routes'
 import space from './space/routes'
-import users from './users/routes'
+import user from './user/routes'
 
 export default [
   {
@@ -25,5 +25,5 @@ export default [
   ...projects,
   ...rooms,
   ...space,
-  ...users
+  ...user
 ]

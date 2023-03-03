@@ -35,6 +35,7 @@
 		"name": "Gun-Vue composables",
 		"defaultCategory": "Composables",
 		"exclude": [
+			"**/routes.ts",
 			"**/index.ts",
 			"**/components.ts",
 			"**/composables.ts"

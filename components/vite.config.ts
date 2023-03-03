@@ -2,8 +2,6 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import Components from "unplugin-vue-components/vite";
 import Unocss from 'unocss/vite'
-import { presetUno, presetIcons, presetTypography, transformerDirectives, extractorSplit } from "unocss";
-import extractorPug from '@unocss/extractor-pug'
 
 import path from "path";
 import { fileURLToPath } from "url";
@@ -19,30 +17,7 @@ export default defineConfig({
   },
   plugins: [
     vue(),
-    Components({
-      dirs: ["../src"],
-      extensions: ["vue"],
-      directoryAsNamespace: false,
-      globalNamespaces: ["global"],
-      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-      exclude: [/node_modules/, /\.git/, /\.story\.vue/],
-    }),
-    Unocss({
-      presets: [
-        presetIcons({
-          scale: 1.2,
-        }),
-        presetUno(),
-        presetTypography()
-      ],
-      transformers: [
-        transformerDirectives(),
-      ],
-      extractors: [
-        extractorPug(),
-        extractorSplit,
-      ],
-    }),
+    Unocss(),
   ],
   build: {
     lib: {

@@ -1,18 +1,18 @@
 
 export default [
   {
-    path: "/auth/",
-    name: "auth",
-    component: () => import("./auth.vue"),
+    path: "/rooms/",
+    component: () => import("./rooms.vue"),
     children: [
       {
         path: '',
+        name: "rooms",
         component: () => import('./index.vue')
       },
       {
-        path: ':data',
+        path: ':room',
         props: true,
-        component: () => import('./[data].vue')
+        component: () => import('./[room].vue')
       }
     ]
   }

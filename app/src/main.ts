@@ -9,7 +9,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 // //@ts-expect-error
 //import routes from "~pages";
 
-import routes from '../../pages/routes'
+import routes from '../../src/routes'
 
 // import FloatingVue from 'floating-vue'
 

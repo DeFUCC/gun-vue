@@ -1,11 +1,11 @@
 export default [
   {
     path: "/gifts/",
-    name: "gifts",
     component: () => import("./gifts.vue"),
     children: [
       {
         path: '',
+        name: "gifts",
         component: () => import('./index.vue')
       },
       {

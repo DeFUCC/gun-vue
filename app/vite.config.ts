@@ -34,25 +34,7 @@ export default defineConfig({
 			routeBlockLang: 'yaml',
 			onRoutesGenerated: routes => (generateSitemap({ routes, hostname: 'https://gun-vue.js.org' })),
 		}),
-		Unocss({
-			presets: [
-				presetIcons({
-					extraProperties: {
-						'display': 'inline-block',
-						'vertical-align': 'middle',
-					},
-				}),
-				presetUno(),
-				presetTypography()
-			],
-			transformers: [
-				transformerDirectives(),
-			],
-			extractors: [
-				extractorPug(),
-				extractorSplit,
-			],
-		}),
+		Unocss(),
 		Components({
 			dirs: ["src/components"],
 			extensions: ["vue"],

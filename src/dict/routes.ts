@@ -1,6 +1,6 @@
 import by from './by/routes'
-import defs from './defs/routes'
-import words from './words/routes'
+import defs from './def/routes'
+import words from './word/routes'
 
 export default [
   {

@@ -2,11 +2,11 @@
 export default [
   {
     path: "/chat/",
-    name: "chat",
     component: () => import("./chat.vue"),
     children: [
       {
         path: '',
+        name: "chat",
         component: () => import('./index.vue')
       },
       {
