@@ -1,7 +1,6 @@
 // USER
 import { defineAsyncComponent } from 'vue'
 
-
 export const UserAuth = defineAsyncComponent(() => import("./UserAuth.vue"));
 export const UserAvatar = defineAsyncComponent(() => import("./UserAvatar.vue"));
 export const UserCreate = defineAsyncComponent(() => import("./UserCreate.vue"));

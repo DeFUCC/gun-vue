@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { currentRoom } from '#composables';
-
-
 </script>
 
 <template lang="pug">

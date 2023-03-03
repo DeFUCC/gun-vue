@@ -22,6 +22,7 @@ style="flex: 0 0 auto"
     .i-la-user(v-if="link == 'User'")
 
     .ml-2.hidden.transition.sm-block.text-sm {{ link }}
+  slot
 </template>
 
 <style lang="postcss" scoped>
