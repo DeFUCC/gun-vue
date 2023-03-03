@@ -1,5 +1,16 @@
 # @gun-vue/components
 
+## 0.14.0
+
+### Minor Changes
+
+- e880a4dc: App pages are now exposed in the repo root to have them at hand while development.
+
+### Patch Changes
+
+- Updated dependencies [e880a4dc]
+  - @gun-vue/composables@0.14.0
+
 ## 0.13.2
 
 ### Patch Changes
