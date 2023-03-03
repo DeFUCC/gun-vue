@@ -1,5 +1,17 @@
 {
-  "relay": "https://gun.defucc.me/gun",
+  "relay": "https://peer.era.eco/gun",
+  "routes": {
+    "/": "Home",
+    "/my/": "User",
+    "/space/": "Space",
+    "/chat/": "Chat",
+    "/posts/": "Posts",
+    "/projects/": "Projects",
+    "/gifts/": "Gifts",
+    "/users/": "Users",
+    "/rooms/": "Rooms",
+    "/dict/": "Dictionary"
+  },
   "features": {
     "rooms": "Rooms",
     "space": "Space",

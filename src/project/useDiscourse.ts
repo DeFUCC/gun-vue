@@ -3,7 +3,7 @@
  * @group Projects
  */
 
-import { genUUID, user } from '../composables'
+import { genUUID, user, useGun } from '../composables'
 import { reactive, ref, computed } from 'vue'
 
 const thePath = 'discourse'
@@ -19,21 +19,21 @@ export const itemTypes: ItemType[] = [
   { type: 'project', title: 'Project', lists: ['object', 'event'] },
   { type: 'event', title: 'Event', lists: ['plan'] },
   { type: 'object', title: 'Object', lists: ['plan'] },
-  { type: 'plan', title: 'Plan', lists: ['tesk', 'purchase'] },
+  { type: 'plan', title: 'Plan', lists: ['task', 'purchase'] },
 ]
 
 export interface Item {
   id: string
   author: string
   type: string
-  title?: string
+  title: string
   description?: string
   created: number
   updated?: number
   begin?: number
   end?: number
   address?: string
-  lists?: Item[]
+  lists?: Record<string, Item[]>
 }
 
 export function useDiscourseItems(type: string) {
@@ -41,13 +41,16 @@ export function useDiscourseItems(type: string) {
 }
 
 export function useNewDiscourseItem(id: string) {
-
   const newItem: Item = reactive({
     id: genUUID(6),
     author: computed(() => user.pub),
     type: 'project',
-    created: Date.now()
+    created: Date.now(),
+    title: '',
+    description: '',
   })
+
+  const gun = useGun()
 
   function add() {
     console.log(newItem)

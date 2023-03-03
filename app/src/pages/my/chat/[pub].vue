@@ -20,3 +20,9 @@ chat-private.h-80vh(
   @user="$router.push(`/users/${pub}`)"
   )
 </template>
+
+<route lang="yaml">
+name: My chat
+meta:
+  requiresAuth: true
+</route>

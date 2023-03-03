@@ -14,3 +14,9 @@
     transition(name="fade"  mode="out-in")
       component(:is="Component" )
 </template>
+
+<route lang="yaml">
+name: My account page
+meta:
+  requiresAuth: true
+</route>

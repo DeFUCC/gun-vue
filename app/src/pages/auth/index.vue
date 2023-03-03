@@ -12,3 +12,7 @@ const { user } = useUser()
 .p-4(v-else)
   user-auth
 </template>
+
+<route lang="yaml">
+name: Auth page
+</route>

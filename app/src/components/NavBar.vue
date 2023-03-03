@@ -4,7 +4,7 @@ import { computed } from 'vue'
 
 import { useRoute } from "vue-router"
 
-import routes from '../routes.json'
+import { routes } from '../../../gun.config.json'
 
 const route = useRoute()
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))

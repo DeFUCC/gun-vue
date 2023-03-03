@@ -1,5 +1,5 @@
 <script setup  lang="ts">
-import routes from '../routes.json'
+import { routes } from '../../../gun.config.json'
 </script>
 
 <template lang="pug">
@@ -30,7 +30,7 @@ style="flex: 0 0 auto"
 }
 
 .link {
-  @apply p-2 text-xl rounded-xl cursor-pointer flex items-center transition;
+  @apply p-2 text-xl rounded cursor-pointer flex items-center transition;
 }
 
 .link:hover {

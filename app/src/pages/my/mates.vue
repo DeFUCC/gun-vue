@@ -10,3 +10,9 @@ mate-list(
   @browse="$router.push(`/my/chat/${$event}`)"
   )
 </template>
+
+<route lang="yaml">
+name: My mates
+meta:
+  requiresAuth: true
+</route>

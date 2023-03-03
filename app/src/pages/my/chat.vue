@@ -10,3 +10,9 @@
       keep-alive
         component(:is="Component" )
 </template>
+
+<route lang="yaml">
+name: My chat
+meta:
+  requiresAuth: true
+</route>

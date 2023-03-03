@@ -10,8 +10,8 @@ import Unocss from 'unocss/vite'
 import { presetUno, presetIcons, transformerDirectives, extractorSplit } from "unocss";
 import extractorPug from '@unocss/extractor-pug'
 
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -107,7 +107,6 @@ export default defineConfig({
 		target: "esnext",
 		minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
 		sourcemap: !!process.env.TAURI_DEBUG,
-		brotliSize: true,
 		assetsInlineLimit: 100000000,
 		chunkSizeWarningLimit: 100000000,
 		cssCodeSplit: false,

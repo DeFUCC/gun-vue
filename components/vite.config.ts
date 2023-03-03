@@ -4,9 +4,11 @@ import Components from "unplugin-vue-components/vite";
 import Unocss from 'unocss/vite'
 import { presetUno, presetIcons, transformerDirectives, extractorSplit } from "unocss";
 import extractorPug from '@unocss/extractor-pug'
+import { presetAnu, presetIconExtraProperties } from 'anu-vue'
+import { presetThemeDefault } from '@anu-vue/preset-theme-default'
 
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -30,12 +32,14 @@ export default defineConfig({
     Unocss({
       presets: [
         presetIcons({
-          extraProperties: {
-            'display': 'inline-block',
-            'vertical-align': 'middle',
-          },
+          scale: 1.2,
+          extraProperties: presetIconExtraProperties,
         }),
-        presetUno()
+        presetUno(),
+        // anu-vue preset
+        presetAnu(),
+        // default theme preset
+        presetThemeDefault(),
       ],
       transformers: [
         transformerDirectives(),
@@ -44,6 +48,7 @@ export default defineConfig({
         extractorPug(),
         extractorSplit,
       ],
+      include: [/.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md'],
     }),
   ],
   build: {

@@ -1,6 +1,6 @@
 
 <script setup>
-import { useUser, useProject, useMd, useProjectGifts } from '#composables';
+import { useUser, useProject, useMd, useProjectGifts, itemTypes, useNewDiscourseItem } from '#composables';
 import { toRef, ref, computed, watch } from 'vue'
 
 const emit = defineEmits(['gift', 'user'])
@@ -12,17 +12,11 @@ const props = defineProps({
   },
 })
 
-const {
-  user
-} = useUser()
+const { user } = useUser()
 
 const md = useMd()
 
-const {
-  project,
-  updateField,
-  updateCover
-} = useProject(props.path)
+const { project, updateField, updateCover } = useProject(props.path)
 
 const editable = computed(() => props.path.includes(user.pub))
 
@@ -33,6 +27,8 @@ const text = ref(project.text)
 watch(() => project.text, (t) => {
   text.value = t
 })
+
+const { newItem, add } = useNewDiscourseItem()
 
 </script>
 <!-- eslint-disable vue/no-v-html -->
@@ -74,11 +70,28 @@ watch(() => project.text, (t) => {
       v-model="text" 
       @update:model-value="updateField('text', $event)")
 
-
   project-funding(
     :path="path" 
     :enabled="project.funding" 
     @enable="updateField('funding', 'true')"
     @gift="$emit('gift', $event)"
     )
+
+  .p-2
+    input(type="text" v-model="newItem.title")
+    select(v-model="newItem.type")
+      option(
+        v-for="t in itemTypes" 
+        :key="t.type" 
+        :value="t.type"
+        ) {{ t.title }}
+    pre {{ newItem }}
+    ABtn(@click="add()") Add
+    ACard(
+      title="Card title"
+      subtitle="Chocolate cake tiramisu donut"
+      text="Ice cream sweet pie pie dessert sweet danish. Jelly jelly beans cupcake jelly-o chocolate bonbon chocolate bar."
+      variant="fill"
+      color="primary")
+    
 </template>

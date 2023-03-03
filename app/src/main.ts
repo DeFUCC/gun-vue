@@ -12,7 +12,8 @@ import routes from "~pages";
 // import FloatingVue from 'floating-vue'
 
 import { currentRoom, useUser } from "../../src/composables";
-import { GunVuePlugin } from "../../src/components"; // use '@gun-vue/components' in your apps
+import { GunVuePlugin, anuPlugin } from "../../src/components"; // use '@gun-vue/components' in your apps
+
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -30,17 +31,27 @@ const router = createRouter({
 const app = createApp(App);
 // app.use(FloatingVue)
 app.use(GunVuePlugin)
+app.use(anuPlugin)
 app.use(router).mount("#app");
 
 
 
 router.beforeEach((to, from, next) => {
   const { user } = useUser()
-  if (to.path.includes('/my/') && !user.pub) {
-    next({ path: '/auth/' })
+
+  if (to.meta.requiresAuth && !user.pub) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    next({
+      path: '/auth/',
+      // save the location we were at to come back later
+      query: { redirect: from.fullPath },
+    })
   } else if (!currentRoom.isRoot && !to.query?.room) {
     next({ ...to, query: { room: currentRoom.pub } });
   } else {
     next();
   }
 });
+
+
