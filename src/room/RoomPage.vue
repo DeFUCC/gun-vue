@@ -3,13 +3,13 @@
 import { useRoom, rootRoom, currentRoom, useColor, useUser, useBackground, useMd } from '#composables';
 import { ref, computed, reactive } from 'vue'
 
-import config from '../../gun.config.json'
+import { features } from '../../gun.config.json'
 
 const props = defineProps({
   pub: { type: String, default: '' },
   titles: {
     type: Object,
-    default: () => (config.features)
+    default: () => features
   }
 })
 
@@ -85,7 +85,7 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
 
     .max-w-200.relative
       .flex.items-center(v-if="edit.text === false" ) 
-        .p-8.markdown-body(v-html="md.render(room.profile?.text || '')")
+        .p-8.markdown-body.text-base.prose.prose-truegray(v-html="md.render(room.profile?.text || '')")
         button.button.absolute.top-4.right-4.z-200(
           v-if="room.hosts?.[user.pub]" 
           @click="edit.text = room.profile?.text || ''"
