@@ -30,7 +30,7 @@ export default defineConfig({
 	plugins: [
 		vue(),
 		Pages({
-			dirs: "src/pages",
+			dirs: "../pages",
 			routeBlockLang: 'yaml',
 			onRoutesGenerated: routes => (generateSitemap({ routes, hostname: 'https://gun-vue.js.org' })),
 		}),

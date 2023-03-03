@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUser } from '../../../src/composables';
+import { useUser } from '#composables';
 
 const { user } = useUser()
 </script>
