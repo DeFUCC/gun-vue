@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+//https://www.youtube.com/watch?v=UxdSoefSxrA
+
 import { execSync } from 'child_process'
 
 function runCommand(command) {
@@ -13,7 +15,7 @@ function runCommand(command) {
 }
 
 const folder = process.argv[2];
-const gitCheckout = `git clone --depth 1 --sparse https://github.com/defucc/gun-vue/create`
+const gitCheckout = `git clone --depth 1 --filter=blob:none --sparse https://github.com/defucc/gun-vue/ ${folder} && cd ${folder} && git sparse-checkout set create`
 const installDeps = `cd ${folder} && pnpm i`
 
 console.log(`Cloning the template from ${folder}`)
