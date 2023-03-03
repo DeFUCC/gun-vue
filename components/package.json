@@ -34,7 +34,6 @@
     "story:preview": "histoire preview"
   },
   "dependencies": {
-    "@anu-vue/preset-theme-default": "^0.12.0",
     "@coders-tm/vue-number-format": "^3.14.0",
     "@gun-vue/composables": "workspace:^",
     "@qrcode/svg": "^1.0.0-beta.2",
@@ -42,7 +41,6 @@
     "@vueuse/core": "9.13.0",
     "@vueuse/gesture": "^2.0.0-beta.1",
     "@vueuse/sound": "^2.0.1",
-    "anu-vue": "^0.12.0",
     "floating-vue": "^2.0.0-beta.20",
     "force-graph": "^1.43.0",
     "fuse.js": "6.6.2",

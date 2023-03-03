@@ -12,7 +12,7 @@ import routes from "~pages";
 // import FloatingVue from 'floating-vue'
 
 import { currentRoom, useUser } from "../../src/composables";
-import { GunVuePlugin, anuPlugin } from "../../src/components"; // use '@gun-vue/components' in your apps
+import { GunVuePlugin } from "../../src/components"; // use '@gun-vue/components' in your apps
 
 
 const router = createRouter({
@@ -31,7 +31,6 @@ const router = createRouter({
 const app = createApp(App);
 // app.use(FloatingVue)
 app.use(GunVuePlugin)
-app.use(anuPlugin)
 app.use(router).mount("#app");
 
 
