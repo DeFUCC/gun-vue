@@ -3,5 +3,5 @@
 </script>
 
 <template lang='pug'>
-gun-torrent
+torrent-upload
 </template>

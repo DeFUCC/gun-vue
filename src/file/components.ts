@@ -1,3 +1,6 @@
 import { defineAsyncComponent } from 'vue'
 
-export const GunTorrent = defineAsyncComponent(() => import("./GunTorrent.vue"));
+export const TorrentUpload = defineAsyncComponent(() => import("./TorrentUpload.vue"));
+export const TorrentDownload = defineAsyncComponent(() => import("./TorrentDownload.vue"));
+
+export const FileCard = defineAsyncComponent(() => import("./FileCard.vue"));
