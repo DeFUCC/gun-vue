@@ -51,10 +51,7 @@ const TIMEOUT = 10000
  * 
  * generatePair()
  */
-export function useAccount(pubKey: MaybeRef<string>): {
-  account: ComputedRef<Account>
-  setPetname: Function
-} {
+export function useAccount(pubKey: MaybeRef<string>) {
   const gun = useGun();
   const pub = ref(pubKey);
   const { user } = useUser()

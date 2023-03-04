@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'
 
-const UserLogin = defineAsyncComponent(() => import('./UserLogin.vue'))
+const AuthLogin = defineAsyncComponent(() => import('./AuthLogin.vue'))
 
 </script>
 
@@ -11,7 +11,7 @@ Story(
   icon="la:theater-masks"
   )
   Variant(title="Round")
-    UserLogin
+    AuthLogin
 
   template(#controls)
     .p-2.flex.flex-col.gap-4

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'
 
-const UserPass = defineAsyncComponent(() => import('./UserPass.vue'))
+const AuthPass = defineAsyncComponent(() => import('./AuthPass.vue'))
 
 </script>
 
@@ -11,7 +11,7 @@ Story(
   icon="la:passport"
   )
   Variant(title="Round")
-    UserPass
+    AuthPass
 
   template(#controls)
     .p-2.flex.flex-col.gap-4

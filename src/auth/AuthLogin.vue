@@ -10,6 +10,6 @@ const generate = ref(false)
     @click="generate = true"
     ) Create a new account
   .flex.justify-center.mt-4(v-if="!generate") or
-  user-auth(v-if="!generate")
-  user-create(v-else)
+  auth-form(v-if="!generate")
+  auth-create(v-else)
 </template>

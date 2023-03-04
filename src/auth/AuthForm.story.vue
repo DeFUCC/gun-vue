@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { defineAsyncComponent, reactive } from 'vue'
 
-const UserCreate = defineAsyncComponent(() =>
-  import('./UserCreate.vue')
+const AuthForm = defineAsyncComponent(() =>
+  import('./AuthForm.vue')
 )
 
 </script>
 
 <template lang="pug">
 Story(
-  title="User/Create" 
-  icon="la:magnet"
+  title="User/Auth" 
+  icon="la:key"
   )
   Variant(title="Round")
-    UserCreate
+    AuthForm
 
   template(#controls)
     .p-2.flex.flex-col.gap-4

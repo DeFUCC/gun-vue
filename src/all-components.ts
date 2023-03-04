@@ -1,4 +1,5 @@
 export * from './account/components'
+export * from './auth/components'
 export * from './chat/components'
 export * from './dict/components'
 export * from './embed/components'

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { usePrivateChatList } from '../composables';
+import { usePrivateChatList } from './composables';
 
 
 const list = usePrivateChatList()

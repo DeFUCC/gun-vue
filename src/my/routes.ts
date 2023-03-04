@@ -1,6 +1,7 @@
 export default [
   {
     path: "/my/",
+    meta: { requiresAuth: true },
     component: () => import("./my.vue"),
     children: [
       {

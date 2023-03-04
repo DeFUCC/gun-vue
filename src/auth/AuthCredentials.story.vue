@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { defineAsyncComponent, reactive } from 'vue'
 
-const UserCredentials = defineAsyncComponent(() =>
-  import('./UserCredentials.vue')
+const AuthCredentials = defineAsyncComponent(() =>
+  import('./AuthCredentials.vue')
 )
 
 </script>
@@ -13,7 +13,7 @@ Story(
   icon="la:suitcase"
   )
   Variant(title="Round")
-    UserCredentials
+    AuthCredentials
 
   template(#controls)
     .p-2.flex.flex-col.gap-4

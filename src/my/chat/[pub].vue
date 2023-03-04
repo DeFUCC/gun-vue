@@ -21,8 +21,3 @@ chat-private.h-80vh(
   )
 </template>
 
-<route lang="yaml">
-name: My chat
-meta:
-  requiresAuth: true
-</route>

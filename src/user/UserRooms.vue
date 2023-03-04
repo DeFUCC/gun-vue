@@ -8,18 +8,12 @@ const { user } = useUser()
 
 const rooms = computed(() => {
   let list = user.safe?.rooms
-  if (list) {
-    delete list['_']
-    return list
-  } else {
-    return {}
-  }
-
+  if (!list) return {}
+  delete list['_']
+  return list
 })
 
 const open = ref(false)
-
-
 </script>
 
 <template lang="pug">

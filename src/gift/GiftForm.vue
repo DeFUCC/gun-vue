@@ -75,7 +75,7 @@ const userProjects = computed(() => {
         v-if="user.pub" 
         :pub="user.pub"
         )
-      user-auth(v-else)
+      auth-form(v-else)
 
     .p-2.text-right TO 
     account-badge(

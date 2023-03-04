@@ -11,8 +11,3 @@ mate-list(
   )
 </template>
 
-<route lang="yaml">
-name: My mates
-meta:
-  requiresAuth: true
-</route>

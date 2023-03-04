@@ -10,9 +10,5 @@ const { user } = useUser()
     span.font-bold {{ user.name }}
   router-link(to="/my/") Go to your profile
 .p-4(v-else)
-  user-auth
+  auth-form
 </template>
-
-<route lang="yaml">
-name: Auth page
-</route>

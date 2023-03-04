@@ -1,14 +1,10 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import Components from "unplugin-vue-components/vite";
-import Pages from "vite-plugin-pages";
-import generateSitemap from 'vite-plugin-pages-sitemap'
 
 // import { VitePWA } from "vite-plugin-pwa";
 
 import Unocss from 'unocss/vite'
-import { presetUno, presetIcons, presetTypography, transformerDirectives, extractorSplit } from "unocss";
-import extractorPug from '@unocss/extractor-pug'
 
 import path from "path";
 import { fileURLToPath } from "url";
@@ -29,11 +25,6 @@ export default defineConfig({
 	publicDir: "public",
 	plugins: [
 		vue(),
-		Pages({
-			dirs: "../pages",
-			routeBlockLang: 'yaml',
-			onRoutesGenerated: routes => (generateSitemap({ routes, hostname: 'https://gun-vue.js.org' })),
-		}),
 		Unocss(),
 		Components({
 			dirs: ["src/components"],

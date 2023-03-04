@@ -6,8 +6,6 @@ import 'uno.css'
 import "../../src/styles/index.css"; // use '@gun-vue/components/style.css' in your apps
 
 import { createRouter, createWebHashHistory } from "vue-router";
-// //@ts-expect-error
-//import routes from "~pages";
 
 import routes from '../../src/routes'
 
@@ -46,7 +44,7 @@ router.beforeEach((to, from, next) => {
     next({
       path: '/auth/',
       // save the location we were at to come back later
-      query: { redirect: from.fullPath },
+      query: { redirect: to.fullPath },
     })
   } else if (!currentRoom.isRoot && !to.query?.room) {
     next({ ...to, query: { room: currentRoom.pub } });
