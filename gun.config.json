@@ -10,7 +10,8 @@
     "/gifts/": "Gifts",
     "/users/": "Users",
     "/rooms/": "Rooms",
-    "/dict/": "Dictionary"
+    "/dict/": "Dictionary",
+    "/file/": "Files"
   },
   "features": {
     "rooms": "Rooms",

@@ -3,6 +3,7 @@ import chat from './chat/routes'
 import dict from './dict/routes'
 import gifts from './gift/routes'
 import gun from './gun/routes'
+import file from './file/routes'
 import my from './my/routes'
 import posts from './post/routes'
 import projects from './project/routes'
@@ -25,5 +26,6 @@ export default [
   ...projects,
   ...rooms,
   ...space,
-  ...user
+  ...user,
+  ...file
 ]
