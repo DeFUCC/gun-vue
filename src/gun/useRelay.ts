@@ -14,7 +14,6 @@ import config from '../../gun.config.json'
 
 const defaultPeer = config.relay
 
-export const peer: Ref = useStorage("peer", defaultPeer);
 
 /**
  * Peer server status reactive object
@@ -47,8 +46,8 @@ export interface Relay {
 
 export const relay: Relay = reactive({
   list: [],
-  peer: peer.value,
-  host: new URL(peer.value).hostname,
+  peer: defaultPeer,
+  host: computed(() => new URL(relay.peer).hostname),
   status: 'offline',
   started: 0,
   pulse: 0,
@@ -68,13 +67,20 @@ watch(
 )
 
 function setPeer(url: string) {
-  peer.value = url
-  window.location.reload()
+  relay.peer = url
+  setTimeout(() => {
+    window.location.reload()
+      , 400
+  })
+
 }
 
 function resetPeer() {
-  peer.value = defaultPeer
-  window.location.reload()
+  relay.peer = defaultPeer
+  setTimeout(() => {
+    window.location.reload()
+      , 400
+  })
 }
 
 

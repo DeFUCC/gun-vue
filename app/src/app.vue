@@ -1,15 +1,27 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
-import { currentRoom, rootRoom, useBackground } from "#composables";
+import { currentRoom, relay, rootRoom, useBackground } from "#composables";
+import config from '../../gun.config.json'
 
 const router = useRouter()
 const route = useRoute();
 watchEffect(() => {
   if (route.query?.room) {
-    currentRoom.pub = route.query.room as string
+    currentRoom.pub = String(route.query.room)
+  }
+  if (route.query?.relay) {
+    relay.peer = String(route.query.relay)
   }
 });
+
+watch(() => relay.peer, peer => {
+  if (peer == config.relay) {
+    router.push({ path: route.path, query: {} })
+  } else {
+    router.push({ path: route.path, query: { relay: peer } })
+  }
+})
 
 watch(() => currentRoom.pub, (pub) => {
   if (pub == rootRoom.pub) {

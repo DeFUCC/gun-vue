@@ -11,8 +11,10 @@ import routes from '../../src/routes'
 
 // import FloatingVue from 'floating-vue'
 
-import { currentRoom, useUser } from "../../src/composables";
+import { currentRoom, relay, useUser } from "../../src/composables";
 import { GunVuePlugin } from "../../src/components"; // use '@gun-vue/components' in your apps
+
+import config from '../../gun.config.json'
 
 
 const router = createRouter({
@@ -35,22 +37,26 @@ app.use(router).mount("#app");
 
 
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, from) => {
   const { user } = useUser()
 
   if (to.meta.requiresAuth && !user.pub) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    next({
+    return {
       path: '/auth/',
       // save the location we were at to come back later
       query: { redirect: to.fullPath },
-    })
-  } else if (!currentRoom.isRoot && !to.query?.room) {
-    next({ ...to, query: { room: currentRoom.pub } });
-  } else {
-    next();
+    }
   }
+
+  if (!currentRoom.isRoot && !to.query?.room) {
+    return { ...to, query: { ...to.query, room: currentRoom.pub, } }
+  }
+
+  if (relay.peer != config.relay && !to.query?.relay) {
+    return { ...to, query: { ...to.query, relay: relay.peer } }
+  }
+
+  return true
 });
 
 

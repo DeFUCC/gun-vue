@@ -12,7 +12,7 @@ import {
   user,
   hashText,
   downloadFile,
-  peer
+  relay
 } from "../composables";
 import config from "../../gun.config.json";
 import { reactive, computed, ref, watchEffect } from "vue";
@@ -224,7 +224,7 @@ export async function createRoom({ pair, name }: { pair: ISEAPair, name?: string
   const dec = await SEA.decrypt(enc, user.pair());
 
   const gunConfig = {
-    relay: peer.value,
+    relay: relay.peer,
     features: config.features,
     room: {
       pub: dec.pub,

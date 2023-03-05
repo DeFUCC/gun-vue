@@ -20,7 +20,7 @@ import "gun/lib/webrtc";
 // window.setImmediate = setTimeout
 // window.global = {}
 
-import { peer } from './useRelay'
+import { relay } from './useRelay'
 import { shallowReactive } from 'vue';
 
 
@@ -44,7 +44,7 @@ export const gunInstances = shallowReactive([])
 
 export function useGun(options: GunOptions = { localStorage: false }): IGunInstance {
   if (!gun) {
-    const opts = { peers: [peer.value] }
+    const opts = { peers: [relay.peer] }
     if (typeof options === 'object') {
       Object.assign(opts, options)
     }
@@ -60,7 +60,7 @@ export function useGun(options: GunOptions = { localStorage: false }): IGunInsta
 
 export function useGun2(options: object = { localStorage: false }): IGunInstance {
   if (!gun2) {
-    gun2 = Gun({ peers: [peer.value], ...options });
+    gun2 = Gun({ peers: [relay.peer], ...options });
     gunInstances.push(gun2)
   }
   return gun2;

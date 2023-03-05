@@ -32,7 +32,6 @@
 		"td": "typedoc --watch"
 	},
 	"dependencies": {
-		"@types/recordrtc": "^5.6.10",
 		"@vueuse/core": "9.13.0",
 		"@vueuse/integrations": "^9.13.0",
 		"@vueuse/math": "^9.13.0",
@@ -59,6 +58,8 @@
 		"yamlify-object": "^1.0.0"
 	},
 	"devDependencies": {
+		"@types/recordrtc": "^5.6.10",
+		"@types/webtorrent": "^0.109.3",
 		"@types/color-hash": "^1.0.2",
 		"pug": "^3.0.2",
 		"vite": "^4.1.4",

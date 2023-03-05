@@ -14,8 +14,6 @@ function uploadEvent(event) {
   })
 }
 
-
-
 const downloadUrl = computed(() => {
   if (!upload.value?.infoHash) return ''
   let url = new URL(window?.location?.href)
@@ -39,6 +37,7 @@ const { share, isSupported: shareSupported } = useShare()
       )
   .flex.flex-wrap.gap-2
     .flex.flex-col.gap-2(v-if="upload")
+      .text-xl Share the torrent
       .font-mono.text-sm {{ upload?.infoHash }} 
       a.gap-2.button.underline.font-bold.break-all(:href="downloadUrl" target="_blank") 
         .i-la-link

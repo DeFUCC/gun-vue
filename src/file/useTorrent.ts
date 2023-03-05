@@ -8,15 +8,15 @@ import { ref } from 'vue'
 
 export function downloadTorrent(id: string) {
   const files = ref()
+  const stream = ref()
   import('webtorrent/dist/webtorrent.min.js').then((lib) => {
     const WebTorrent = lib.default
     const client = new WebTorrent()
-
-    client.add(id, function (torrent) {
+    stream.value = client.add(id, (torrent) => {
       files.value = torrent.files
     })
   })
-  return { files }
+  return { files, stream }
 }
 
 export function uploadTorrent(files) {
