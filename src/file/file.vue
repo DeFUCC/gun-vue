@@ -4,6 +4,7 @@
 
 <template lang="pug">
 .flex.flex-col
+  torrent-upload
   router-view(v-slot="{ Component }")
     transition(
       name="fade" 

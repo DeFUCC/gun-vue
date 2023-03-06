@@ -22,12 +22,12 @@ const petnameRules = {
   'The key must be resistant enough to forgery to survive in the context of the application threat model': true,
   'There can be at most one petname per key per user per application': true,
   'There can be at most one key per petname (per user per application)': true,
-  'In the application user interface, all references to the key are represented by the petname': true,
+  'In the application user interface, all references to the key are represented by the petname': false,
   'The user must be able to assign a private petname to any key': true,
   'The petname must be assigned to the key only by explicit user action': true,
   'The user must be able to repeatedly edit the petname of any key': true,
   'The user interface shall assist the user in assuring that two petnames are not similar enough to enable mimicry': false,
-  'Nicknames and alleged names must be unambiguously visually distinct from petnames': true,
+  'Nicknames and alleged names must be unambiguously visually distinct from petnames': false,
 }
 
 

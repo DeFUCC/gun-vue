@@ -15,7 +15,7 @@ const newField = ref('')
     user-profile-field(
       v-for="(d, k) in account.profile" 
       :key="d"
-      :field="`k`" 
+      :field="`${k}`" 
       :content="d")
     .flex.items-center.flex-wrap
       input.p-2.rounded-lg.shadow-md(
