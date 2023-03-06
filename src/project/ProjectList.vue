@@ -1,5 +1,5 @@
 <script setup>
-import { useProjects, addProject, newProject, currentRoom } from '#composables';
+import { useProjects, addProject, newProject, currentRoom } from '../composables';
 
 const props = defineProps({
   pub: { type: String, default: currentRoom?.pub }
