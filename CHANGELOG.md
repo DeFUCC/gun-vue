@@ -1,5 +1,11 @@
 # @gun-vue/repo
 
+## 0.14.1
+
+### Patch Changes
+
+- Bug fixes after transition to the new architecture
+
 ## 0.14.0
 
 ### Minor Changes

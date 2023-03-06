@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.14.1
+
+### Patch Changes
+
+- Bug fixes after transition to the new architecture
+- Updated dependencies
+  - @gun-vue/composables@0.14.1
+
 ## 0.14.0
 
 ### Minor Changes
