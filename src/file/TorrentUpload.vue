@@ -3,6 +3,8 @@ import { asyncComputed, useClipboard, useObjectUrl, useShare } from '@vueuse/cor
 import { ref, watch, computed } from 'vue';
 import { uploadTorrent, downloadTorrent } from './useTorrent';
 
+const emit = defineEmits(['uploaded'])
+
 const upload = ref()
 const uploaded = ref()
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
-import { currentRoom, relay, rootRoom, useBackground, setPeer } from "#composables";
+import { currentRoom, useUser, rootRoom, useBackground, setPeer, relay } from "#composables";
 import config from '../../gun.config.json'
 
 const router = useRouter()
@@ -37,6 +37,31 @@ watch(() => currentRoom.pub, (pub) => {
     router.push({ path: route.path, query: { room: pub } })
   }
 })
+
+router.beforeEach((to, from) => {
+  const { user } = useUser()
+
+  if (to.meta.requiresAuth && !user.pub) {
+    return {
+      path: '/auth/',
+      // save the location we were at to come back later
+      query: { redirect: to.fullPath },
+    }
+  }
+
+  if (!currentRoom.isRoot && !to.query?.room) {
+    return { ...to, query: { ...to.query, room: currentRoom.pub, } }
+  }
+
+  if (relay.peer != config.relay && !to.query?.relay) {
+    return { ...to, query: { ...to.query, relay: relay.peer } }
+  }
+
+  return true
+});
+
+
+
 
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, light: 0.8, overlay: 0.5 }))
 
