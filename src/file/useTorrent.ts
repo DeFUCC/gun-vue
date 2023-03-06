@@ -4,6 +4,9 @@
  * @group Files
  * */
 
+// https://github.com/webtorrent/webtorrent/blob/master/docs/api.md#torrentonwire-function-wire-
+// https://github.com/webtorrent/parse-torrent
+
 import { ref } from 'vue'
 
 export function downloadTorrent(id: string) {
