@@ -66,20 +66,20 @@ watch(
   },
 )
 
-function setPeer(url: string) {
+export function setPeer(url: string) {
   relay.peer = url
   setTimeout(() => {
     window.location.reload()
-      , 400
+      , 700
   })
 
 }
 
-function resetPeer() {
+export function resetPeer() {
   relay.peer = defaultPeer
   setTimeout(() => {
     window.location.reload()
-      , 400
+      , 700
   })
 }
 
