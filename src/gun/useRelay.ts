@@ -46,7 +46,7 @@ export interface Relay {
 
 export const relay: Relay = reactive({
   list: [],
-  peer: defaultPeer,
+  peer: useStorage("peer", defaultPeer),
   host: computed(() => new URL(relay.peer).hostname),
   status: 'offline',
   started: 0,
