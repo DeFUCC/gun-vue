@@ -4,6 +4,9 @@
  */
 
 import { gunAvatar } from "../composables";
+import { useDark } from "@vueuse/core"
+
+const isDark = useDark()
 
 export function useBackground({
   pub,
@@ -12,7 +15,6 @@ export function useBackground({
   overlay = 0.5,
   draw = "squares",
   attachment = "fixed",
-  dark = false
 }: {
   pub: string
   size?: number
@@ -20,7 +22,6 @@ export function useBackground({
   overlay?: number
   draw?: "squares" | "circles"
   attachment?: string
-  dark?: boolean
 }) {
 
   if (!pub) return;
@@ -32,7 +33,7 @@ export function useBackground({
         draw,
         reflect: false,
         size: size,
-        dark
+        dark: isDark.value
       })})`,
     backgroundSize: "cover, cover",
     backgroundAttachment: `${attachment},${attachment}`,
