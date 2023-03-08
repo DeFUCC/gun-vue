@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.14.2
+
+### Patch Changes
+
+- Full dark mode support
+
 ## 0.14.1
 
 ### Patch Changes

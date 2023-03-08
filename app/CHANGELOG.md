@@ -1,5 +1,14 @@
 # @gun-vue/app
 
+## 0.14.2
+
+### Patch Changes
+
+- Full dark mode support
+- Updated dependencies
+  - @gun-vue/components@0.14.2
+  - @gun-vue/composables@0.14.2
+
 ## 0.14.1
 
 ### Patch Changes
