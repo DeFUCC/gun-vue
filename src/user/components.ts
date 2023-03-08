@@ -1,6 +1,7 @@
 // USER
 import { defineAsyncComponent } from 'vue'
 
+export const UserAvatar = defineAsyncComponent(() => import("./UserAvatar.vue"));
 export const UserGraph = defineAsyncComponent(() => import("./UserGraph.vue"));
 export const UserHome = defineAsyncComponent(() => import("./UserHome.vue"));
 export const UserIcon = defineAsyncComponent(() => import("./UserIcon.vue"));

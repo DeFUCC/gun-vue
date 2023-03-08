@@ -33,7 +33,7 @@ const selected = ref()
     )
 
   transition-group(name="fade")
-    .p-2px.flex.items-center.rounded-3xl.bg-light-500.gap-1(
+    .p-2px.flex.items-center.rounded-3xl.bg-light-500.dark-bg-dark-600.gap-1(
       v-for="(list, emoji) in reactions" 
       :key="emoji" 
       @click.stop.prevent="react(emoji)"

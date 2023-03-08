@@ -11,7 +11,7 @@ defineEmits(['chat'])
 <template lang="pug">
 .flex.flex-col.p-4.gap-2.w-full
   slot
-  .p-2.rounded-xl.flex.items-center.bg-light-900.cursor-pointer(
+  .p-2.rounded-xl.flex.items-center.bg-light-900.dark-bg-dark-400.cursor-pointer(
     v-for="( chat, pub ) in list" 
     :key="pub" 
     @click="$emit('chat', pub)"

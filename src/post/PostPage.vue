@@ -26,7 +26,7 @@ const { posts, backlinks } = usePosts(props.hash)
 <!-- eslint-disable vue/no-v-html -->
 
 <template lang="pug">
-.rounded-lg.max-w-65ch.flex.flex-col.mx-auto.items-stretch.justify-center.w-full.overscroll-contain.bg-light-200
+.rounded-lg.max-w-65ch.flex.flex-col.mx-auto.items-stretch.justify-center.w-full.overscroll-contain.bg-light-200.dark-bg-dark-500
   .flex.flex-wrap 
     post-line(
       v-for="(authors, ahash) in backlinks"
@@ -63,7 +63,6 @@ const { posts, backlinks } = usePosts(props.hash)
         :video="post?.youtube"
         )
     .flex.flex-wrap.items-start.w-full.justify-start(
-      :style="{ backgroundColor: colorLight + '99' }" 
       )
       .w-full.flex.flex-col.items-stretch
         .p-2
@@ -83,8 +82,8 @@ const { posts, backlinks } = usePosts(props.hash)
             )
           .m-2(v-if="post?.statement") {{ post?.statement }} 
         .flex-auto
-        .flex.flex-wrap.p-4.bg-dark-50.bg-opacity-25.w-full.items-center.gap-1.text-sm
-          util-share
+        .flex.flex-wrap.p-4.bg-dark-50.bg-opacity-25.dark-bg-dark-400.w-full.items-center.gap-1.text-sm
+          qr-share
           post-action-update(:hash="hash" )
           button.button.flex.items-center(@click="download()")
             .i-la-file-download(v-if="!downloading")

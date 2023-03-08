@@ -5,7 +5,7 @@ const generate = ref(false)
 
 <template lang="pug">
 .flex.flex-col.p-4
-  button.text-xl.flex.justify-center.bg-light-900.hover-bg-light-50.p-4.rounded-2xl.shadow-lg.hover-shadow-xl.transition.duration-200.ease-out.font-bold(
+  button.text-xl.flex.justify-center.bg-light-900.dark-bg-dark-200.hover-bg-light-50.hover-dark-bg-dark-600.p-4.rounded-2xl.shadow-lg.hover-shadow-xl.transition.duration-200.ease-out.font-bold(
     v-if="!generate" 
     @click="generate = true"
     ) Create a new account

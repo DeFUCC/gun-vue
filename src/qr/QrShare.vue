@@ -14,14 +14,14 @@ const address = computed(() => {
 
 <template lang="pug">
 .flex
-  button.button.p-4.transition.bg-light-800.shadow-lg.flex.items-center.justify-center(@click="open = !open")
+  button.button.p-4.transition.shadow-lg.flex.items-center.justify-center(@click="open = !open")
     .i-ion-share-outline
     slot
   ui-layer.text-center(
     :open="open" 
     @close="open = false")
     qr-show.max-w-full(:data="address")
-    .flex.flex-col.items-center.mb-4.-mt-8
+    .flex.flex-col.items-center.mb-4
       .text-md.mx-4.my-2.break-all.max-w-420px {{ address }}
       .flex.text-lg.mt-2
         button.button.text-lg.font-normal.items-center(v-if="canCopy")

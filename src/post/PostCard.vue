@@ -27,7 +27,7 @@ const { post } = usePost({ hash: props.hash })
     style="flex: 12 1 120px" 
     :style="{ paddingTop: post?.cover || post?.raw ? '18em' : '0' }"
     )
-  .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-lg.rounded-2xl.bg-light-100.backdrop-blur-sm.backdrop-filter.shadow-md(
+  .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-lg.rounded-2xl.bg-light-100.dark-bg-dark-400.backdrop-blur-sm.backdrop-filter.shadow-md(
     style="flex: 14 1 620px"
   )
     .p-0(

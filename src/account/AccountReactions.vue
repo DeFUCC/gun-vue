@@ -32,7 +32,7 @@ const postList = computed(() => {
       :reactions="userPosts"
       )
     transition(name="fade")
-      .flex.flex-col.bg-light-800.rounded-2xl.gap-4(v-if="postReaction")
+      .flex.flex-col.bg-light-800.dark-bg-dark-200.rounded-2xl.gap-4(v-if="postReaction")
         transition-group(name="fade")
           .p-0.relative(
             v-for="(from, hash) in postList" 
@@ -45,7 +45,7 @@ const postList = computed(() => {
               .i-la-trash
             post-card(
               style="flex: 1 1 100px"
-              :hash="hash"
+              :hash="String(hash)"
               :actions="false"
               @click="emit('post', hash)"
               )

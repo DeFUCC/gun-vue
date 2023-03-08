@@ -25,7 +25,7 @@ const { input, found, linked, addWord } = useWords()
       :hash="dictRecord.def"
       )
   .flex.gap-2
-    input.p-2.rounded-lg.flex-1(
+    input.p-2.rounded-lg.flex-1.dark-bg-dark-400(
       v-model="input" 
       placeholder="Enter a word"
       )
@@ -53,6 +53,4 @@ const { input, found, linked, addWord } = useWords()
         
 </template>
 
-<style lang="postcss" scoped>
-
-</style>
+<style lang="postcss" scoped></style>

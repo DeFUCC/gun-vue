@@ -23,7 +23,7 @@ const chat = computed(() => usePrivateChat(props.pub))
     account-avatar(:pub="pub" @click="$emit('user')")
     .text-lg.font-bold.p-2 {{ account.profile?.name }}
     .text-lg {{ account.lastSeen }}
-  chat-messages.bg-dark-50(:messages="chat.sorted")
-  .flex-0.bg-light-900.p-4
+  chat-messages.bg-dark-50.dark-bg-dark-400(:messages="chat.sorted")
+  .flex-0.bg-light-900.dark-bg-dark-600.p-4
     chat-input(@submit="chat.send($event)")
 </template>

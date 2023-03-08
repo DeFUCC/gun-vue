@@ -26,9 +26,7 @@ const links = useDictRecordsFor(props.hash)
 </script>
 
 <template lang="pug">
-.flex.flex-col.rounded-xl.text-xl.p-2(
-  :style="{ backgroundColor: color.hex(hash) }"
-  ) 
+.flex.flex-col.rounded-xl.text-xl.p-2.bg-light-800.dark-bg-dark-400
   .text-lg.flex.items-center.flex-wrap(
     style="text-decoration-line: underline"
     :style="{ textDecorationStyle: langParts[def?.part]?.underline, textDecorationColor: color.hex(hash) }"
@@ -53,7 +51,7 @@ const links = useDictRecordsFor(props.hash)
 
 <style lang="postcss" scoped>
 .link {
-  @apply cursor-pointer transition ml-2 p-1 bg-light-100 rounded-xl text-xl;
+  @apply cursor-pointer transition ml-2 p-1 bg-light-100 dark-bg-dark-600 rounded-xl text-xl;
 }
 
 .link.active {

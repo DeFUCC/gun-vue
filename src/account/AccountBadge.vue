@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch, watchEffect } from 'vue'
-import { useGun, useColor, selectedUser, useUser, SEA } from '../composables'
+import { useGun, useColor, selectedUser, useUser, SEA, theme } from '../composables'
 
 const props = defineProps({
   pub: { type: String, default: '' },
@@ -14,6 +14,7 @@ const name = ref('')
 const petname = ref('')
 
 const colorDeep = useColor('deep')
+const colorLight = useColor('light')
 
 const gun = useGun()
 const { user } = useUser()
@@ -44,8 +45,8 @@ function select() {
 </script>
 
 <template lang="pug">
-.frame.p-2px.flex.items-center.rounded-full.bg-light-900.cursor-pointer.shadow.transition.duration-400.ease-in(
-  :style="{ backgroundColor: pub ? colorDeep.hex(pub) : 'transparent', flexDirection: vertical ? 'column' : 'row' }"
+.frame.p-2px.flex.items-center.rounded-full.bg-light-900.dark-bg-dark-200.cursor-pointer.shadow.transition.duration-400.ease-in(
+  :style="{ backgroundColor: pub ? theme.dark?  colorDeep.hex(pub) : colorLight.hex(pub) : 'transparent', flexDirection: vertical ? 'column' : 'row' }"
   :title="showName ? petname ? petname : pub : name"
   @click="select()"
   )

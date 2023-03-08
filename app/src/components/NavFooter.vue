@@ -53,7 +53,7 @@
 
 <style lang="postcss" scoped>
 .btn {
-  @apply flex gap-2 items-center transition bg-light-100/70 py-1 px-2 rounded-lg hover-bg-light-100;
+  @apply flex gap-2 items-center transition bg-light-100/70 dark-bg-dark-700 py-1 px-2 rounded-lg hover-bg-light-100;
 }
 
 .title {

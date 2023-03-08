@@ -52,7 +52,7 @@ function importPostFile(event) {
 <template lang="pug">
 .flex.flex-col
   .flex.flex-col.text-left
-    textarea#myMD(
+    textarea#myMD.dark-bg-dark-200.p-2(
       ref="md"  
       v-model="text"
       placeholder="Main text content (with **markdown** support)"
@@ -64,7 +64,7 @@ function importPostFile(event) {
     label.m-1.button.cursor-pointer.flex.items-center(for="import-post")
       .i-la-markdown
       .ml-2 Load
-    input#import-post.hidden(
+    input#import-post.hidden.dark-bg-dark-200(
       ref="file"
       tabindex="-1",
       type="file",

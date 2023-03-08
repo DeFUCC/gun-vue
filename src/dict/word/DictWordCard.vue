@@ -17,7 +17,7 @@ const links = useDictRecordsFor(props.hash)
 </script>
 
 <template lang="pug">
-.flex.items-center.px-2.py-1.rounded-lg.bg-light-700.cursor-pointer.capitalize(:style="{ backgroundColor: color.hex(hash) }" )
+.flex.items-center.px-2.py-1.rounded-lg.bg-light-700.dark-bg-dark-400.cursor-pointer.capitalize
   .text-xl {{ letterFilter(word) }}
   slot
   dict-link-list(
@@ -33,7 +33,7 @@ const links = useDictRecordsFor(props.hash)
 
 <style lang="postcss" scoped>
 .link {
-  @apply transition ml-2 p-1 bg-light-100 rounded-xl text-xl cursor-pointer;
+  @apply transition ml-2 p-1 bg-light-100 dark-bg-dark-200 rounded-xl text-xl cursor-pointer;
 }
 
 .link.active {

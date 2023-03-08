@@ -43,7 +43,7 @@ defineProps({
     style="flex: 12 1 120px" 
     :style="{ paddingTop: project?.cover || project?.raw ? '18em' : '0' }"
     )
-  .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-lg.rounded-2xl.bg-light-100.backdrop-blur-sm.backdrop-filter.shadow-md
+  .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-lg.rounded-2xl.bg-light-100.dark-bg-dark-400.backdrop-blur-sm.backdrop-filter.shadow-md
     .p-0(
       v-if="project?.icon" 
       style="flex: 1 1 40px" 
@@ -85,7 +85,7 @@ defineProps({
 
 <style lang="postcss" scoped>
 .card {
-  @apply transition duration-300ms ease-out min-w-280px p-2px pl-2 rounded-2xl cursor-pointer flex flex-wrap items-end bg-cover bg-center;
+  @apply transition duration-300ms ease-out min-w-280px p-2px pl-2 rounded-2xl cursor-pointer flex flex-wrap items-end bg-cover bg-center dark-bg-dark-700;
   filter: grayscale(10%) brightness(95%);
 }
 

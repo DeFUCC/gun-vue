@@ -14,7 +14,7 @@ const { emoji, isMate, toggleMate } = useMate(props.pub)
 
 <template lang="pug">
 .flex.items-center(v-if="user.is && user.pub != pub")
-  button.flex.items-center.rounded-2xl.shadow-xl.px-2.text-3xl.bg-light-500(
+  button.flex.items-center.rounded-2xl.shadow-xl.px-2.text-3xl.bg-light-500.dark-bg-dark-700(
     :style="{ backgroundColor: isMate ? colorDeep.hex(pub) : '' }" 
     @click="toggleMate()"
     )

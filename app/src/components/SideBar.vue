@@ -3,7 +3,7 @@ import { routes } from '../../../gun.config.json'
 </script>
 
 <template lang="pug">
-.flex.flex-col.gap-1.px-1.pt-18.shadow-lg.z-30.overflow-x-scroll.overflow-y-visible.transition.bg-light-900.min-w-12(
+.flex.flex-col.gap-1.px-1.pt-18.shadow-lg.z-30.overflow-x-scroll.overflow-y-visible.transition.bg-light-900.dark-bg-dark-200.min-w-12(
 style="flex: 0 0 auto"
   )
   router-link.flex.items-center.px-3.py-3.link(
@@ -28,7 +28,7 @@ style="flex: 0 0 auto"
 
 <style lang="postcss" scoped>
 .router-link-active {
-  @apply bg-light-300;
+  @apply bg-light-300 dark-bg-dark-700;
 }
 
 .link {
@@ -36,6 +36,6 @@ style="flex: 0 0 auto"
 }
 
 .link:hover {
-  @apply bg-light-600;
+  @apply bg-light-600 dark-bg-dark-900;
 }
 </style>

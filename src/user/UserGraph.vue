@@ -117,6 +117,6 @@ useResizeObserver(graph, (entries) => {
 </script>
 
 <template lang="pug">
-.bg-light-700.overflow-none.w-full.max-w-90vw.max-h-90vh.h-full(ref="graph")
+.bg-light-700.dark-bg-dark-500.overflow-none.w-full.max-w-90vw.max-h-90vh.h-full(ref="graph")
   #graph
 </template>

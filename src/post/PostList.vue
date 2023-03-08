@@ -62,11 +62,11 @@ const filteredPosts = computed(() => {
     .flex-1
     .p-2.font-bold.mx-2 {{ countPosts }}
   .flex.flex-col.items-center.bg-dark-50.bg-opacity-20.backdrop-filter.backdrop-blur-md.flex-1.p-2.w-full.gap-8
-    .p-2.flex.flex-wrap.z-300.text-sm.bg-light-300.bg-opacity-40.rounded-2xl.m-2.flex-1(
+    .p-2.flex.flex-wrap.z-300.text-sm.bg-light-300.bg-opacity-40.dark-bg-dark-500.rounded-2xl.m-2.flex-1(
       v-if="user.pub"
       style="order:-2147483647; flex: 1000 100%"
       )
-      util-share(v-if="header")
+      qr-share(v-if="header")
       .flex.flex-wrap.gap-2(
         v-if="user.pub"
         )

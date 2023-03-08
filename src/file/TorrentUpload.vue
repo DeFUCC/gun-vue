@@ -29,7 +29,7 @@ const { share, isSupported: shareSupported } = useShare()
 
 <template lang='pug'>
 .flex.flex-col.gap-4.p-4
-  label.p-2.flex.flex-wrap.gap-2.bg-light-100.rounded.cursor-pointer
+  label.p-2.flex.flex-wrap.gap-2.bg-light-100.dark-bg-dark-400.rounded.cursor-pointer
     .font-bold Upload a file
     .flex-1
     input(

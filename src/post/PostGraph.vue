@@ -90,6 +90,6 @@ onMounted(() => {
 
 <template lang="pug">
 .flex
-  #graph.bg-light-100.bg-opacity-70.backdrop-blur-md.backdrop-filter.overflow-hidden.max-h-60vh.min-h-400
+  #graph.bg-light-100.bg-opacity-70.dark-bg-dark-200.backdrop-blur-md.backdrop-filter.overflow-hidden.max-h-60vh.min-h-400
   slot
 </template>

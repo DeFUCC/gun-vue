@@ -19,7 +19,7 @@ const countMy = computed(() => countProjects(user.pub))
         v-if="user?.is"
         to="/projects/my/"
         ) My projects 
-          .px-6px.py-2px.text-xs.font-bold.bg-light-100.rounded-xl {{ countMy }}
+          .px-8px.py-4px.text-xs.font-bold.bg-light-100.dark-bg-dark-500.rounded-xl {{ countMy }}
   router-view(v-slot="{ Component }")
     keep-alive
       transition(
@@ -30,10 +30,10 @@ const countMy = computed(() => countProjects(user.pub))
 
 <style scoped lang="postcss">
 .link {
-  @apply flex-1 bg-light-200 rounded-lg shadow px-4 py-1 text-center flex justify-between items-center;
+  @apply flex-1 bg-light-200 dark-bg-dark-200 rounded-lg shadow px-4 py-1 text-center flex justify-between items-center;
 }
 
 .link.router-link-exact-active {
-  @apply bg-light-800;
+  @apply bg-light-800 dark-bg-dark-800;
 }
 </style>

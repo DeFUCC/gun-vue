@@ -47,7 +47,7 @@ const { logo } = useRoomLogo(props.pub)
       :pub="host" 
       :size="40"
       )
-  .bg-light-200.bg-opacity-40.backdrop-filter.backdrop-blur-md.flex.flex-wrap.relative.flex.gap-2.items-center(
+  .bg-light-200.bg-opacity-40.dark-bg-dark-700.dark-bg-opacity-40.backdrop-filter.backdrop-blur-md.flex.flex-wrap.relative.flex.gap-2.items-center(
     style="flex: 1 1 140px"
   )
     slot

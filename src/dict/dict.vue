@@ -20,12 +20,12 @@ import { dictLang, languages, useDictLangs } from '#composables'
         component.sticky.top-0.shadow-lg.z-20(:is="Component" )
   .flex.flex-wrap.gap-4.p-4(:key="dictLang")
 
-    .p-4.flex.flex-col.bg-light-800.shadow.rounded-xl(style="flex: 1 1 100px") 
+    .p-4.flex.flex-col.bg-light-800.dark-bg-dark-300.shadow.rounded-xl(style="flex: 1 1 100px") 
       dict-word-list(
         @word="$router.push(`/dict/words/${safeHash($event)}`)" 
         @def="$router.push(`/dict/defs/${safeHash($event)}`)"
         )
-    .p-4.flex.flex-col.bg-light-800.shadow.rounded-xl(style="flex: 1 1 100px") 
+    .p-4.flex.flex-col.bg-light-800.dark-bg-dark-300.shadow.rounded-xl(style="flex: 1 1 100px") 
       dict-def-list(
         @root="$router.push(`/dict/${$event}`)"
         @def="$router.push(`/dict/defs/${safeHash($event)}`)" 

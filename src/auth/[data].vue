@@ -22,7 +22,7 @@ watch(user, user => {
 </script>
 
 <template lang="pug">
-.p-8.bg-light-200.rounded-3xl.shadow-xl.m-4
+.p-8.bg-light-200.dark-bg-dark-200.rounded-3xl.shadow-xl.m-4
   .my-2(v-if="status == 'success'") You successfully logged in with a link
   .my-2(v-if="status == 'encrypted'")
     h1.text-3xl.font-bold.my-2 Hello! 

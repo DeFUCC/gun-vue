@@ -1,5 +1,5 @@
 <script setup>
-import { useRoom, currentRoom, rootRoom, recreateRoom, useColor, useUser, useBackground, downloadFile, SEA } from '#composables';
+import { useRoom, currentRoom, rootRoom, recreateRoom, useUser, downloadFile, SEA } from '#composables';
 import { ref, computed, reactive } from 'vue'
 
 const props = defineProps({

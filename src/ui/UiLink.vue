@@ -27,7 +27,7 @@ const domain = computed(() => {
 </script>
 
 <template lang="pug">
-a.underline.flex.items-center.bg-light-300.rounded-xl.p-1.shadow-sm.hover-shadow-lg.transition.duration-200ms.hover-bg-light-5(
+a.underline.flex.items-center.bg-light-300.dark-bg-dark-300.rounded-xl.p-1.shadow-sm.hover-shadow-lg.transition.duration-200ms.hover-bg-light-5(
   v-if="domain" 
   :href="valid" 
     target="_blank"

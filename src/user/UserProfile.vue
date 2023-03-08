@@ -18,11 +18,11 @@ const newField = ref('')
       :field="`${k}`" 
       :content="d")
     .flex.items-center.flex-wrap
-      input.p-2.rounded-lg.shadow-md(
+      input.p-2.rounded-lg.shadow-md.dark-bg-dark-400(
         v-model="newField" 
         placeholder="New profile field" 
         @keydown.enter="addProfileField(newField)")
-      button.m-2.button.items-center(@click="addProfileField(newField)")
+      button.m-2.button.items-center.dark-bg-dark-400(@click="addProfileField(newField)")
         .i-la-plus
         .p-1.text-sm Add
 </template>

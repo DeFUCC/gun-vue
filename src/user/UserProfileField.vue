@@ -31,7 +31,7 @@ function isLink(text) {
       button.p-1(@click="edit = true")
         .i-la-pen
     .p-1.flex.items-center.flex-1(v-else)
-      input.p-2.rounded-xl.pr-16(
+      input.p-2.rounded-xl.pr-16.dark-bg-dark-400(
         v-model="text", 
         type="text" 
         @keydown.enter="update()")

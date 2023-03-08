@@ -6,7 +6,7 @@ import { computedAsync } from '@vueuse/core'
 const props = defineProps({
   data: { type: String, default: '' },
   size: { type: Number, default: 400 },
-  margin: { type: Number, default: 4 }
+  margin: { type: Number, default: 1 }
 });
 
 

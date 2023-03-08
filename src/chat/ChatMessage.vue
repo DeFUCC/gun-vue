@@ -67,6 +67,6 @@ onMounted(() => {
     .ml-2.text-sm.opacity-20.hover-opacity-80.transition.cursor-default.text-light-200  {{ dateTime?.time }}
     .flex-1
     .ml-2.text-sm.opacity-20.hover-opacity-80.transition.cursor-default.text-dark-200 {{ dateTime?.date }} 
-  .px-2.py-1.bg-light-300.bg-opacity-80.rounded-b-xl.max-w-max.break-all.overflow-hidden(:style="{ borderTopLeftRadius: isMe ? '12px' : '0px', borderTopRightRadius: isMe ? '0px' : '12px', fontSize: source.text == getFirstEmoji(source.text) ? '6em' : '1em' }")
+  .px-2.py-1.bg-light-300.dark-bg-dark-200.dark-bg-opacity-80.bg-opacity-80.rounded-b-xl.max-w-max.break-all.overflow-hidden(:style="{ borderTopLeftRadius: isMe ? '12px' : '0px', borderTopRightRadius: isMe ? '0px' : '12px', fontSize: source.text == getFirstEmoji(source.text) ? '6em' : '1em' }")
     slot {{ source.text }}
 </template>

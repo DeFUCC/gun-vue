@@ -4,9 +4,9 @@
  */
 
 import { gunAvatar } from "../composables";
-import { useDark } from "@vueuse/core"
+import { theme } from './useTheme'
 
-const isDark = useDark()
+
 
 export function useBackground({
   pub,
@@ -33,7 +33,7 @@ export function useBackground({
         draw,
         reflect: false,
         size: size,
-        dark: isDark.value
+        dark: theme.dark
       })})`,
     backgroundSize: "cover, cover",
     backgroundAttachment: `${attachment},${attachment}`,

@@ -9,13 +9,12 @@ const show = reactive({
 
 <template lang="pug">
 .flex.justify-end.relative.gap-3.items-center
-  util-share
   //- button.button.m-2(@click="show.log = !show.log")
   //-   .i-la-info-circle
   //-   .ml-2 Log
-  button.flex.items-center(@click="show.graph = !show.graph")
+  button.button.flex.items-center(@click="show.graph = !show.graph")
     .i-mdi-graph-outline
-  button.flex.items-center
+  button.button.flex.items-center
     gun-relay
 
 

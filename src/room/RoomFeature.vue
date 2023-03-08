@@ -24,7 +24,7 @@ const count = computed(() => {
 </script>
 
 <template lang="pug">
-.cursor-pointer.flex-1.flex.flex-col.items-center.p-4.relative.bg-light-700.rounded-lg.shadow-sm.transition.hover-shadow-lg(:title="cert")
+.cursor-pointer.flex-1.flex.flex-col.items-center.p-4.relative.bg-light-700.dark-bg-dark-200.rounded-lg.shadow-sm.transition.hover-shadow-lg(:title="cert")
   .text-4xl 
     room-feature-icon(:icon="type")
   .px-1.font-bold() {{ title }}

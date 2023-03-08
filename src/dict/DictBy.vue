@@ -16,7 +16,7 @@ const records = computed(() => useDictRecordsBy(pub.value))
 </script>
 
 <template lang="pug">
-.p-8.bg-light-200(v-if="user.is") 
+.p-8.bg-light-200.dark-bg-dark-400(v-if="user.is") 
   .text-xl.mb-4 Records by {{ pub == user.pub ? 'me' : pub }}
   p {{ records }}
 </template>

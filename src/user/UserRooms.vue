@@ -18,7 +18,7 @@ const open = ref(false)
 
 <template lang="pug">
 .flex.flex-col(v-if="Object.keys(rooms).length > 0")
-  .flex.p-4.bg-light-900.rounded-xl.mb-2.items-center.cursor-pointer.shadow-sm.hover-shadow-md.transition(@click="open = !open")
+  .flex.p-4.bg-light-900.dark-bg-dark-700.rounded-xl.mb-2.items-center.cursor-pointer.shadow-sm.hover-shadow-md.transition(@click="open = !open")
     .text-lg.font-bold My rooms
     .flex-1 
     .text-md.font-bold.mr-2 {{ Object.keys(rooms).length }}

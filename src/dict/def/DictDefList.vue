@@ -31,7 +31,7 @@ const { def, addDef, found, linked } = useDefs()
         @click="def.part = p"
       ) {{ p }}
     .flex.gap-2.flex-1
-      textarea.p-2.rounded-lg.flex-auto(
+      textarea.p-2.rounded-lg.flex-auto.dark-bg-dark-400(
         v-model="def.text" 
         placeholder="Enter a definition"
         )
@@ -56,6 +56,4 @@ const { def, addDef, found, linked } = useDefs()
 
 </template>
 
-<style lang="postcss" scoped>
-
-</style>
+<style lang="postcss" scoped></style>

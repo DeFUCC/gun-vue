@@ -7,7 +7,7 @@ defineEmits(['home', 'my', 'authors'])
 </script>
 
 <template lang="pug">
-.flex.flex-wrap.w-full.items-center.bg-light-900.gap-1
+.flex.flex-wrap.w-full.items-center.bg-light-900.dark-bg-dark-600.gap-1
   .p-2.cursor-pointer.font-bold(@click="$emit('home')") Dictionary
   slot
   .flex-1
@@ -21,7 +21,7 @@ defineEmits(['home', 'my', 'authors'])
       ) 
         .font-bold {{ lang }} 
         .ml-1 {{ num }}
-  select.m-2.p-2.w-30.rounded-lg(v-model="dictLang")
+  select.m-2.p-2.w-30.rounded-lg.dark-bg-dark-200(v-model="dictLang")
     option(
       v-for="lang in languages" 
       :key="lang"

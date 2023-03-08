@@ -15,7 +15,7 @@ const { user } = useUser();
 </script>
 
 <template lang="pug">
-button.rounded-2xl.text-lg.bg-light-200.flex.items-center.pl-1.pr-1.mr-1(
+button.rounded-2xl.text-lg.bg-light-200.dark-bg-dark-700.flex.items-center.pl-1.pr-1.mr-1(
   v-if="user.pub"
   :style="{ backgroundColor: isMy ? colorDeep.hex(user.pub) : '' }"
   ) 

@@ -1,10 +1,11 @@
 <script setup >
-import { useGun, useColor } from '#composables';
+import { useGun, useColor, theme } from '#composables';
 import { ref, onBeforeUnmount } from 'vue'
 
 const graph = ref({});
 
 const colorLight = useColor('light')
+const colorDeep = useColor('deep')
 
 const gun = useGun()
 
@@ -24,7 +25,7 @@ article.overflow-hidden.m-4.rounded-xl.break-all
   .p-2px.text-sm(
     v-for="(g, i) in graph",
     :key="i",
-    :style="{ backgroundColor: colorLight.hex(i) }"
+    :style="{ backgroundColor: theme.dark? colorDeep.hex(i) : colorLight.hex(i) }"
   )
     .flex.cursor-pointer(@click="g.show = !g.show")
 

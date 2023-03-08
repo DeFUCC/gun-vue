@@ -20,7 +20,7 @@ onMounted(() => {
     button.button.m-1(@click="loadRelays()")
       .i-la-redo-alt
   ul.flex.flex-col.font-normal.items-start
-    li.flex.w-full.text-left.p-1.hover-bg-light-500.cursor-pointer(
+    li.flex.w-full.text-left.p-1.hover-bg-light-500.cursor-pointer.hover-dark-bg-dark-600(
       v-for="link in relays" 
       :key="link.host" 
       :class="{ active: link.url == relay.peer }"
@@ -33,6 +33,6 @@ onMounted(() => {
 
 <style lang="postcss" scoped>
 .active {
-  @apply text-lg bg-light-900 font-bold;
+  @apply text-lg bg-light-900 font-bold dark-bg-dark-700;
 }
 </style>

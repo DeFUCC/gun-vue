@@ -34,8 +34,7 @@ const href = computed(() => safePair.value ? pass.links.pass : pass.links.pair)
 </script>
 
 <template lang="pug">
-.flex.flex-col.items-stretch.pb-4.border-1.border-dark-100.border-opacity-10.max-w-120.mx-auto(v-if="user.is")
-
+.flex.flex-col.items-stretch.pb-4.border-1.border-dark-100.border-opacity-10.max-w-120.mx-auto.dark-bg-dark-200(v-if="user.is")
   .mt-4.mx-6 Please make sure to safely store your cryptographic keypair to be able to use it again later
   auth-pass
   .flex.p-4.items-center.bg-dark-100.bg-opacity-20.mt-2.shadow-inset(v-if="encPair")

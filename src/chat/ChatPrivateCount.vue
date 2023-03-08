@@ -15,7 +15,7 @@ const { count, available } = usePrivateChatCount(props.pub)
 </script>
 
 <template lang="pug">
-.pl-2.flex.items-center.bg-light-200.rounded-xl.cursor-pointer(
+.pl-2.flex.items-center.bg-light-200.dark-bg-dark-600.rounded-xl.cursor-pointer(
   :style="{ opacity: available ? 1 : 0.1 }"
   @click="$emit('chat')"
   )

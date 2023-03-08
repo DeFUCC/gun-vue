@@ -33,7 +33,7 @@ const bg = computed(() => useBackground({ pub: create.pair?.pub, size: 620 }))
 </script>
 
 <template lang="pug">
-.flex.flex-col.bg-cover.rounded-2xl.p-8.max-w-620px.bg-light-800.justify-center(
+.flex.flex-col.bg-cover.rounded-2xl.p-8.max-w-620px.bg-light-800.dark-bg-dark-500.justify-center(
   v-if="user.pub" 
   :style="{ ...bg }"
   )
@@ -43,7 +43,7 @@ const bg = computed(() => useBackground({ pub: create.pair?.pub, size: 620 }))
       v-if="create.pair" 
       @click="reset()" 
       ) Reset
-  input.p-2.m-2.rounded-xl(
+  input.p-2.m-2.rounded-xl.dark-bg-dark-200(
     v-if="create.pair" 
     v-model="create.name" 
     type="text" 

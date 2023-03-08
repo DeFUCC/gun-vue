@@ -14,7 +14,7 @@ defineEmits(['open'])
 <template lang="pug">
 .flex.flex-col 
   .p-2.flex.flex-col.gap-2
-    input.p-2.rounded-xl.shadow(
+    input.p-2.rounded-xl.shadow.dark-bg-dark-400(
       v-model="newProject.title" 
       placeholder="Start typing a project title"
       )

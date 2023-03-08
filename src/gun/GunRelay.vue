@@ -30,7 +30,7 @@ const { relays, loadRelays } = useRelays()
         )
       .flex.flex-col.items-start
         .p-0.flex.items-center.flex-wrap.w-full  Host: 
-          input.mx-1.p-2.rounded-lg.flex-auto(v-model="relay.peer")
+          input.mx-1.p-2.rounded-lg.flex-auto.dark-bg-dark-800(v-model="relay.peer")
           button.button.m-1(@click="setPeer(relay.peer)") Set
           button.button.m-1(@click="resetPeer()") Reset
 

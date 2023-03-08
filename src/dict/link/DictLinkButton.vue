@@ -26,10 +26,10 @@ const { user } = useUser()
 
 <style lang="postcss" scoped>
 .link {
-  @apply cursor-pointer transition ml-2 p-1 bg-light-100 rounded-xl text-xl;
+  @apply cursor-pointer transition ml-2 p-1 bg-light-100 dark-bg-light-800 rounded-xl text-xl;
 }
 
 .link.active {
-  @apply bg-dark-50 text-light-200;
+  @apply bg-dark-50 text-light-200 dark-bg-light-100;
 }
 </style>

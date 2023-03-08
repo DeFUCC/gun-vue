@@ -66,7 +66,7 @@ const links = useDictRecordsFor(props.hash)
 
 <style lang="postcss" scoped>
 .link {
-  @apply cursor-pointer transition ml-2 p-1 bg-light-100 rounded-xl text-xl;
+  @apply cursor-pointer transition ml-2 p-1 bg-light-100 dark-bg-dark-400 rounded-xl text-xl;
 }
 
 link.active {
