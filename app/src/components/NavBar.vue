@@ -27,6 +27,7 @@ const color = useColor('light')
       :key="currentRoom.pub"
       )
     .flex-auto
+    ui-dark
     qr-share
     gun-tools
 
