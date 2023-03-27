@@ -10,3 +10,5 @@ import { currentRoom, rootRoom } from '#composables';
     )
 
 </template>
+
+//TODO - ECOCOIN

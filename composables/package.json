@@ -50,20 +50,20 @@
 		"ms": "^2.1.3",
 		"pretty-bytes": "^6.1.0",
 		"recordrtc": "5.6.2",
-		"slugify": "^1.6.5",
+		"slugify": "^1.6.6",
 		"ultramatter": "^0.0.4",
 		"url-regex": "^5.0.0",
 		"vue": "^3.2.47",
-		"webtorrent": "2.0.14",
+		"webtorrent": "2.0.15",
 		"yamlify-object": "^1.0.0"
 	},
 	"devDependencies": {
+		"@types/color-hash": "^1.0.2",
 		"@types/recordrtc": "^5.6.10",
 		"@types/webtorrent": "^0.109.3",
-		"@types/color-hash": "^1.0.2",
 		"pug": "^3.0.2",
-		"vite": "^4.1.4",
+		"vite": "^4.2.1",
 		"vite-plugin-checker": "^0.5.6",
-		"vitepress": "^1.0.0-alpha.49"
+		"vitepress": "^1.0.0-alpha.63"
 	}
 }

@@ -24,20 +24,20 @@
 		"publish": "pnpm run build && pnpm changeset publish"
 	},
 	"devDependencies": {
-		"@changesets/cli": "^2.26.0",
+		"@changesets/cli": "^2.26.1",
 		"@skynetlabs/skynet-nodejs": "^2.9.0",
-		"@typescript-eslint/eslint-plugin": "^5.54.0",
-		"@typescript-eslint/parser": "^5.54.0",
+		"@typescript-eslint/eslint-plugin": "^5.56.0",
+		"@typescript-eslint/parser": "^5.56.0",
 		"@volar/vue-language-plugin-pug": "1.2.0",
 		"cli-progress": "3.12.0",
 		"dotenv": "^16.0.3",
-		"eslint": "^8.35.0",
-		"eslint-plugin-vue": "^9.9.0",
+		"eslint": "^8.36.0",
+		"eslint-plugin-vue": "^9.10.0",
 		"eslint-plugin-vue-pug": "^0.6.0",
-		"typedoc": "0.23.26",
+		"typedoc": "0.23.28",
 		"typedoc-plugin-markdown": "^3.14.0",
-		"typescript": "^4.9.5",
-		"vite": "^4.1.4",
+		"typescript": "^5.0.2",
+		"vite": "^4.2.1",
 		"vue-eslint-parser": "^9.1.0"
 	}
 }

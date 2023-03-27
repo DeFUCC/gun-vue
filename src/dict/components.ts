@@ -20,7 +20,7 @@ export const DictWordList = defineAsyncComponent(() => import('./word/DictWordLi
 export const DictWordPage = defineAsyncComponent(() => import('./word/DictWordPage.vue'))
 
 
-// LINK
+// -LINK-
 
 export const DictLinkList = defineAsyncComponent(() => import('./link/DictLinkList.vue'))
 export const DictLinkButton = defineAsyncComponent(() => import('./link/DictLinkButton.vue'))
