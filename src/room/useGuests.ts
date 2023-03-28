@@ -17,7 +17,7 @@ let startTime = Date.now();
 export function useGuests({ TIMEOUT = 10000 } = {}) {
   const gun = useGun();
 
-  const guests: Record<string, Guest> = reactive({});
+  const guests: { [key: string]: Guest } = reactive({});
   const online = reactive({});
   const offline = reactive({});
 

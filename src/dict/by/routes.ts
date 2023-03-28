@@ -1,10 +1,10 @@
 export default [
   {
-    path: "by",
+    path: "/by/",
     component: () => import("./index.vue"),
     children: [
       {
-        path: 'me',
+        path: '/me/',
         component: () => import('./me.vue')
       },
       {

@@ -1,6 +1,6 @@
 export default [
   {
-    path: "defs",
+    path: "/dict/defs",
     component: () => import("./index.vue"),
     children: [
       {

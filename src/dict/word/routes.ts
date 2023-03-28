@@ -1,6 +1,6 @@
 export default [
   {
-    path: "words",
+    path: "/dict/words",
     component: () => import("./index.vue"),
     children: [
       {
