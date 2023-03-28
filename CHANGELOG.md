@@ -1,5 +1,11 @@
 # @gun-vue/repo
 
+## 0.14.3
+
+### Patch Changes
+
+- private messaging in a separate module
+
 ## 0.14.2
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @gun-vue/app
 
+## 0.14.3
+
+### Patch Changes
+
+- private messaging in a separate module
+- Updated dependencies
+  - @gun-vue/composables@0.14.3
+  - @gun-vue/components@0.14.3
+
 ## 0.14.2
 
 ### Patch Changes
