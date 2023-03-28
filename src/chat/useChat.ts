@@ -1,5 +1,5 @@
 /**
- * Basic public chat
+ * [[include:chat/README.md]]
  * @module Chat
  * @group Chat
  */

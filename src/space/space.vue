@@ -37,7 +37,7 @@ function leave() {
     :key="currentRoom.pub"
     :coord="coord" 
     @user="$router.push('/users/' + $event)" 
-    @chat="$router.push('/my/chat/' + $event)" 
+    @chat="$router.push('/private/' + $event)" 
     @enter="enter()"
     @leave="leave()"
     )

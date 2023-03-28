@@ -14,21 +14,6 @@ export default [
         component: () => import('./my.vue')
       },
       {
-        path: 'chat',
-        component: () => import('./chat.vue'),
-        children: [
-          {
-            path: '',
-            component: () => import('./chat/index.vue')
-          },
-          {
-            path: ':pub',
-            props: true,
-            component: () => import('./chat/[pub].vue')
-          },
-        ]
-      },
-      {
         path: 'mates',
         component: () => import('./mates.vue')
       },

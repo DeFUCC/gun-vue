@@ -19,5 +19,6 @@ chat-private.h-80vh(
   :pub="pub" 
   @user="$router.push(`/users/${pub}`)"
   )
+  
 </template>
 

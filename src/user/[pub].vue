@@ -27,7 +27,7 @@ onMounted(() => {
     :pub="pub" 
     @browse="$router.push(`/users/${$event}`)"
     @post="$router.push(`/posts/${safeHash($event)}`)"
-    @chat="$router.push(`/my/chat/${pub}`)" 
+    @chat="$router.push(`/private/${pub}`)" 
     @project="$router.push(`/projects/${$event}`)"
     )
   router-view(v-slot="{ Component }")

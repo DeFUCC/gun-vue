@@ -7,6 +7,7 @@ export * from "./file/composables"
 export * from "./gift/composables"
 export * from "./gun/composables"
 export * from "./log/composables"
+export * from './private/composables'
 export * from "./post/composables"
 export * from "./project/composables"
 export * from "./room/composables"

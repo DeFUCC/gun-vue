@@ -6,6 +6,7 @@ import gun from './gun/routes'
 import file from './file/routes'
 import my from './my/routes'
 import posts from './post/routes'
+import priv from './private/routes'
 import projects from './project/routes'
 import rooms from './room/routes'
 import space from './space/routes'
@@ -27,5 +28,6 @@ export default [
   ...rooms,
   ...space,
   ...user,
-  ...file
+  ...file,
+  ...priv
 ]

@@ -28,6 +28,7 @@
 		"entryPoints": [
 			"../src/"
 		],
+		"includes": "../src/",
 		"out": "docs/",
 		"githubPages": false,
 		"entryPointStrategy": "expand",

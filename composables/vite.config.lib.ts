@@ -3,7 +3,6 @@ import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import checker from 'vite-plugin-checker'
 
-//@ts-expect-error
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 

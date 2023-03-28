@@ -21,6 +21,7 @@ style="flex: 0 0 auto"
     .i-la-toolbox(v-if="link == 'Projects'")
     .i-la-user(v-if="link == 'User'")
     .i-la-file(v-if="link=='Files'")
+    .i-ph-chats-light(v-if="link=='Messages'")
 
     .ml-2.hidden.transition.sm-block.text-sm {{ link }}
   slot

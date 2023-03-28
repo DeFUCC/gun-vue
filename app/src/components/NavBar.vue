@@ -36,7 +36,7 @@ const color = useColor('light')
       :size="40"
       @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
       @post="$router.push(`/posts/${$event}`)"
-      @chat="$router.push(`/my/chat/${$event}`)"
+      @chat="$router.push(`/private/${$event}`)"
       )
 </template>
 

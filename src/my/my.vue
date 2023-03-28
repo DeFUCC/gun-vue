@@ -9,7 +9,6 @@ const { user } = useUser()
   .flex.flex-wrap.bg-light-800.w-full.dark-bg-dark-500
     router-link.link(to="/my/") Home
     router-link.link(to="/my/profile/") Profile
-    router-link.link(to="/my/chat/") Chat
     router-link.link(to="/my/mates/") Mates
     router-link.link(to="/my/wallets/") Wallets
   router-view(v-slot="{ Component }")

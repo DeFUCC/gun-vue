@@ -7,7 +7,7 @@
   user-home(
     @room="$router.push(`/rooms/${$event}`)" 
     @user="$router.push(`/users/${$event}`)" 
-    @chat="$router.push(`/my/chat/${$event}`)"
+    @chat="$router.push(`/private/${$event}`)"
     @post="$router.push(`/users/${$event}`)"
   )
   router-view(v-slot="{ Component }")

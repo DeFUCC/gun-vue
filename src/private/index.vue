@@ -4,7 +4,7 @@
 
 <template lang='pug'>
 .flex
-  chat-private-list(@chat="$router.push(`/my/chat/${$event}`)")
+  chat-private-list(@chat="$router.push(`/private/${$event}`)")
   router-view(v-slot="{ Component }")
     transition(name="fade")
       keep-alive

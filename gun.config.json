@@ -10,6 +10,7 @@
     "/gifts/": "Gifts",
     "/users/": "Users",
     "/rooms/": "Rooms",
+    "/private/": "Messages",
     "/dict/": "Dictionary",
     "/file/": "Files"
   },

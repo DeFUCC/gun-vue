@@ -1,5 +1,5 @@
 /**
- * Basic private chat
+ * [[include:/private/README.md]]
  * @module PrivateChat
  * @group Chat
  */
@@ -8,21 +8,24 @@ import { reactive, computed, ref } from "vue"
 import { useUser, useGun, SEA, } from '../composables'
 import { refDebounced, watchDebounced } from '@vueuse/core'
 import { IGunChain, IGunInstance, IGunSchema } from "gun";
-import type { Message } from './useChat'
+import type { Message } from '../chat/useChat'
 
-export function usePrivateChat(pub: string) {
+export interface Chat {
+  epub: string
+  messages: Record<string, Message>
+  sorted?: Message[]
+  send: (message: string) => Promise<void>
+}
+
+export function usePrivateChat(pub: string): Chat {
 
   const gun = useGun();
   const { user } = useUser();
 
-  const chat: {
-    epub: string
-    messages: Record<string, Message>
-    sorted?: Message[]
-    send: (message: string) => Promise<void>
-  } = reactive({
+  const chat: Chat = reactive({
     epub: '',
     messages: {},
+    sorted: [],
     async send(message: string) {
       if (!message) return;
       const theDate = new Date()

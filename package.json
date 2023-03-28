@@ -39,5 +39,8 @@
 		"typescript": "^5.0.2",
 		"vite": "^4.2.1",
 		"vue-eslint-parser": "^9.1.0"
+	},
+	"dependencies": {
+		"@droppedcode/typedoc-plugin-relative-includes": "^1.0.4"
 	}
 }

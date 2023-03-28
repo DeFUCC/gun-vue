@@ -25,7 +25,7 @@
 		"lib"
 	],
 	"scripts": {
-		"docs": "typedoc && vitepress dev",
+		"docs": "typedoc --watch & vitepress dev",
 		"docs-build": "typedoc && vitepress build",
 		"lib-build": "vite build --config vite.config.lib.ts",
 		"serve": "vite preview",
