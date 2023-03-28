@@ -1,5 +1,5 @@
 /**
- * [[include:/private/README.md]]
+ * [[include:./README.md]]
  * @module PrivateChat
  * @group Chat
  */
