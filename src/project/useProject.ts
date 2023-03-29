@@ -1,4 +1,5 @@
 /**
+ * [[include:./README.md]]
  * @module Project
  * @group Projects
  */

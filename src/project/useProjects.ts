@@ -1,4 +1,5 @@
 /**
+ * Project list and it's manipulations
  * @module Projects
  * @group Projects
  */

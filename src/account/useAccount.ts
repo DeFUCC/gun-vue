@@ -1,5 +1,5 @@
 /**
- * Basic user management
+ * [[include:./README.md]]
  * @module Account
  * @group Users
  * */
