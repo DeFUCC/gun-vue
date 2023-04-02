@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue'
-import { selectedUser, useUser, getFirstEmoji } from '../composables';
+import { selectedUser, useUser, getFirstEmoji, useMd } from '../composables';
 
 const props = defineProps({
   index: { type: Number, default: 0 },
@@ -13,6 +13,8 @@ const props = defineProps({
     })
   }
 })
+
+const md = useMd()
 
 const dateTime = computed(() => {
   return formatDate(Number(props.source.timestamp))
@@ -68,5 +70,10 @@ onMounted(() => {
     .flex-1
     .ml-2.text-sm.opacity-20.hover-opacity-80.transition.cursor-default.text-dark-200 {{ dateTime?.date }} 
   .px-2.py-1.bg-light-300.dark-bg-dark-200.dark-bg-opacity-80.bg-opacity-80.rounded-b-xl.max-w-max.break-all.overflow-hidden(:style="{ borderTopLeftRadius: isMe ? '12px' : '0px', borderTopRightRadius: isMe ? '0px' : '12px', fontSize: source.text == getFirstEmoji(source.text) ? '6em' : '1em' }")
-    slot {{ source.text }}
+    .p-0.markdown-body(
+      v-if="source?.text" 
+      v-html="md.render(source?.text)"
+      )
 </template>
+
+<style scoped lang="postcss"></style>
