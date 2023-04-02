@@ -42,7 +42,7 @@ watchEffect(() => {
           .i-la-check(@click="add = false")
         button.button.text-xl
           .i-la-trash-alt(@click="url = null; add = false")
-      input.text-sm.p-4.my-4(
+      input.text-sm.p-4.my-4.dark-bg-dark-200(
         ref="input" 
         v-model="url" 
         type="url" 

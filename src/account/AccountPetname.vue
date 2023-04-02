@@ -41,7 +41,7 @@ const petnameRules = {
     )
   .text-lg.flex.items-center.gap-2(v-if="petname && !editPetname") {{ petname }}
     .i-la-pen(@click="editPetname = !editPetname")
-  input.m-1.p-2.rounded-lg(
+  input.m-1.p-2.rounded-lg.dark-bg-dark-100(
     v-else 
     v-model="newName" 
     placeholder="Set private petname"
