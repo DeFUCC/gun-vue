@@ -12,7 +12,7 @@ export default [
       {
         path: ':pub',
         props: true,
-        component: () => import('./chat.vue')
+        component: () => import('./[pub].vue')
       },
     ]
   }
