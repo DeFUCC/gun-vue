@@ -12,6 +12,5 @@ import { currentRoom } from '#composables';
     @user="$router.push(`/users/${$event}`)")
   router-view(v-slot="{ Component }")
     transition(name="fade")
-      keep-alive
-        component(:is="Component")
+      component(:is="Component")
 </template> 
