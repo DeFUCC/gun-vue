@@ -39,7 +39,7 @@ All the code get build locally to the `_dist` folder and it's then deployed to t
 
 ---
 
-## [@gun-vue/components](https://github.com/DeFUCC/gun-vue/tree/master/components)
+# @gun-vue/components
 
 Ready to use Vue 3 components as building blocks to implement Gun powered interactivity in seconds.
 
@@ -50,7 +50,7 @@ Ready to use Vue 3 components as building blocks to implement Gun powered intera
 
 The interactive components documentation is available at [gun-vue.js.org/components/](https://gun-vue.js.org/components/) built with the [Histoire](https://histoire.dev) stories.
 
-[Source code](https://github.com/DeFUCC/gun-vue/tree/master/components)
+### [Source code](https://github.com/DeFUCC/gun-vue/tree/master/components)
 
 ---
 
@@ -68,11 +68,13 @@ Composable functions for use with Vue 3 Composition API
 
 ## [@gun-vue/relay](https://github.com/DeFUCC/gun-vue/tree/master/relay)
 
+A simple no-store Gun server to throw at any free tier Node.js environment.
+
 <a href="https://www.npmjs.com/package/@gun-vue/relay" target="__blank"><img src="https://img.shields.io/npm/v/@gun-vue/relay?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
 
 ### [Demo](https://gun.defucc.me)
 
-A simple no-store Gun server to throw at any free tier Node.js environment.
+
 
 ---
 
