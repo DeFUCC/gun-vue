@@ -1,26 +1,36 @@
 ![@gun-vue logo](https://gun-vue.js.org/media/gun-vue-logo.svg)
 
-## [gun-vue.js.org](https://gun-vue.js.org)
+# [gun-vue.js.org](https://gun-vue.js.org)
 
-[![Add to Homescreen](https://img.shields.io/badge/Skynet-Add%20To%20Homescreen-00c65e?logo=skynet&labelColor=0d0d0d)](https://homescreen.hns.siasky.net/#/skylink/AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A)
+## Vue + Gun p2p crypto graph db toolkit
 
-### Vue + Gun p2p crypto graph db toolkit
+Gun-vue – is where the peer-to-peer javascript database **Gun** meets the reactivity system of **Vue**. Pluggable components for UX designers. Easily importable composables for UI developers. Relay peer for p2p network enthusiasts. Demos and docs for beginners. Open source for everyone! ✊
 
-Gun-vue – is where the peer-to-peer javascript database Gun meets the reactivity system of [Vue 3](https://vuejs.org). Pluggable components for UX designers. Easily importable composables for UI developers. Relay peer for p2p network enthusiasts. Demos and docs for beginners. Open source for everyone! ✊
+## What is @gun-vue?
 
-### [@gun-vue](https://www.npmjs.com/org/gun-vue)
+@gun-vue is a open collection of interconnected building blocks for making a whole range of decentralized apps for online and offline collaboration. It's a place where we can feel the nature of distributed networking and have fun together!
 
-@gun-vue is a collection of essential building blocks to create a variety of decentralized apps for online and offline collaboration. It's a moment when we can feel the nature of distributed networking and have fun together!
-
-[Gun](https://gun.eco) is a CRDT based distributed graph database, Vue is a reactive JS UI framework, SEA is web-browser cryptography adapter and together they evolve into an ecosystem of multiple app levels.
+[Gun](https://gun.eco) is a CRDT based distributed graph database, [Vue](https://vuejs.org) is a reactive JS UI framework, SEA is web-browser cryptography adapter and together they evolve into an ecosystem of multiple app levels.
 
 The project is committed to give all the basic tools for everyone to participate in exploring this new universe. You can find your own way in it for yourself.
 
-There code is organised into distinct 3 packages in the [@gun-vue npmjs.com organisation](https://www.npmjs.com/org/gun-vue) for you to install and use:
+There code is organised into distinct layers in the [@gun-vue npmjs.com organisation](https://www.npmjs.com/org/gun-vue) for you to install and use in your P2P apps. And it's also cut into vertical slices as small interconnectable apps in the common [source folder](https://github.com/DeFUCC/gun-vue/tree/master/src).
+
+# @gun-vue/app
+
+The main [gun-vue.js.org](https://gun-vue.js.org) site is an example Vite PWA. It's also easily built into a desktop app with [Tauri](https://tauri.app).
+
+- [Try it now](htts://gun-vue.js.org)
+
+- [Source code](https://github.com/DeFUCC/gun-vue/tree/master/app)
+
+---
 
 ## [@gun-vue/components](https://github.com/DeFUCC/gun-vue/tree/master/components)
 
 <a href="https://www.npmjs.com/package/@gun-vue/components" target="_blank"><img src="https://img.shields.io/npm/v/@gun-vue/components?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
+
+### [Playground](https://gun-vue.js.org/components)
 
 Ready to use Vue 3 components as building blocks to implement Gun powered interactivity in seconds.
 
@@ -32,6 +42,8 @@ The interactive components documentation is available at [gun-vue.js.org/compone
 
 <a href="https://www.npmjs.com/package/@gun-vue/composables" target="_blank"><img src="https://img.shields.io/npm/v/@gun-vue/composables?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
 
+### [Documentation](https://gun-vue.js.org/composables)
+
 Composable functions for use with Vue 3 Composition API
 
 ---
@@ -40,13 +52,9 @@ Composable functions for use with Vue 3 Composition API
 
 <a href="https://www.npmjs.com/package/@gun-vue/relay" target="__blank"><img src="https://img.shields.io/npm/v/@gun-vue/relay?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
 
+### [Demo](https://gun.defucc.me)
+
 A simple no-store Gun server to throw at any free tier Node.js environment.
-
----
-
-## [@gun-vue/app](https://github.com/DeFUCC/gun-vue/tree/master/app)
-
-The main [gun-vue.js.org](https://gun-vue.js.org) site is an example Vite SPA. It's also easily built into a desktop app with [Tauri](https://tauri.app).
 
 ---
 
