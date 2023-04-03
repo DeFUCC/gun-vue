@@ -34,7 +34,7 @@
     "story:preview": "histoire preview"
   },
   "dependencies": {
-    "@coders-tm/vue-number-format": "^3.19.0",
+    "@coders-tm/vue-number-format": "^3.21.0",
     "@gun-vue/composables": "workspace:^",
     "@qrcode/svg": "^1.0.0-beta.2",
     "@unocss/reset": "0.50.6",
@@ -56,7 +56,7 @@
     "@vitejs/plugin-vue": "4.1.0",
     "histoire": "0.15.9",
     "pug": "^3.0.2",
-    "typescript": "5.0.2",
+    "typescript": "5.0.3",
     "unocss": "^0.50.6",
     "unplugin-vue-components": "^0.24.1",
     "vite": "4.2.1",

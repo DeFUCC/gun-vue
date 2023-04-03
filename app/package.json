@@ -15,9 +15,9 @@
 		"preview": "vite preview --host"
 	},
 	"dependencies": {
-		"@capacitor/android": "^4.7.1",
-		"@capacitor/core": "^4.7.1",
-		"@capacitor/ios": "^4.7.1",
+		"@capacitor/android": "^4.7.3",
+		"@capacitor/core": "^4.7.3",
+		"@capacitor/ios": "^4.7.3",
 		"@gun-vue/components": "workspace:^",
 		"@gun-vue/composables": "workspace:^",
 		"@gun-vue/relay": "workspace:^",
@@ -28,8 +28,8 @@
 		"vue-router": "^4.1.6"
 	},
 	"devDependencies": {
-		"@capacitor/cli": "^4.7.1",
-		"@iconify/json": "^2.2.40",
+		"@capacitor/cli": "^4.7.3",
+		"@iconify/json": "^2.2.44",
 		"@tauri-apps/cli": "^1.2.3",
 		"@unocss/extractor-pug": "0.50.6",
 		"@vitejs/plugin-vue": "^4.1.0",
@@ -39,6 +39,6 @@
 		"vite": "^4.2.1",
 		"vite-plugin-pages": "^0.29.0",
 		"vite-plugin-pages-sitemap": "^1.4.5",
-		"vite-plugin-pwa": "^0.14.6"
+		"vite-plugin-pwa": "^0.14.7"
 	}
 }
