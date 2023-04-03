@@ -20,7 +20,7 @@ There code is organised into distinct layers in the [@gun-vue npmjs.com organisa
 
 The main [gun-vue.js.org](https://gun-vue.js.org) site is an example Vite PWA. It's also easily built into a desktop app with [Tauri](https://tauri.app).
 
-- [Try it now](htts://gun-vue.js.org)
+- [Try it now](https://gun-vue.js.org)
 
 - [Source code](https://github.com/DeFUCC/gun-vue/tree/master/app)
 
