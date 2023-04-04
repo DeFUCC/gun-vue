@@ -1,5 +1,13 @@
 # @gun-vue/composables
 
+## 0.14.4
+
+### Patch Changes
+
+- lighter should be better. More attention to focus of actual code and docs.
+- Updated dependencies
+  - @gun-vue/components@0.14.4
+
 ## 0.14.3
 
 ### Patch Changes

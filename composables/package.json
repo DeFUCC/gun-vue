@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/composables",
-	"version": "0.14.3",
+	"version": "0.14.4",
 	"homepage": "https://gun-vue.js.org",
 	"bugs": {
 		"url": "https://github.com/defucc/gun-vue/issues"
@@ -35,7 +35,7 @@
 		"@vueuse/core": "9.13.0",
 		"@vueuse/integrations": "^9.13.0",
 		"@vueuse/math": "^9.13.0",
-		"@gun-vue/components": "^0.14.3",
+		"@gun-vue/components": "^0.14.4",
 		"base32": "^0.0.7",
 		"buffer": "^6.0.3",
 		"color-hash": "^2.0.2",

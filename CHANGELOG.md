@@ -1,5 +1,11 @@
 # @gun-vue/repo
 
+## 0.14.4
+
+### Patch Changes
+
+- lighter should be better. More attention to focus of actual code and docs.
+
 ## 0.14.3
 
 ### Patch Changes
