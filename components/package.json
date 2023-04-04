@@ -28,10 +28,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "vite build && vue-tsc",
-    "story:build": "histoire build",
-    "story:dev": "histoire dev",
-    "story:preview": "histoire preview"
+    "build": "vite build && vue-tsc"
   },
   "dependencies": {
     "@coders-tm/vue-number-format": "^3.21.0",
@@ -51,10 +48,8 @@
     "vue3-virtual-scroll-list": "^0.2.1"
   },
   "devDependencies": {
-    "@histoire/plugin-vue": "0.15.8",
     "@unocss/extractor-pug": "0.50.6",
     "@vitejs/plugin-vue": "4.1.0",
-    "histoire": "0.15.9",
     "pug": "^3.0.2",
     "typescript": "5.0.3",
     "unocss": "^0.50.6",
