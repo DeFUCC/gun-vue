@@ -16,7 +16,7 @@ The project is committed to give all the basic tools for everyone to participate
 
 There code is organised into distinct layers in the [@gun-vue npmjs.com organisation](https://www.npmjs.com/org/gun-vue) for you to install and use in your P2P apps. 
 
-# @gun-vue/app
+## @gun-vue/app
 
 The main [gun-vue.js.org](https://gun-vue.js.org) web-site is a demo Gun-Vue Vite SPA. It's also automagically gets built into a set of desktop apps.
 
@@ -39,7 +39,7 @@ All the code get build locally to the `_dist` folder and it's then deployed to t
 
 ---
 
-# @gun-vue/components
+## @gun-vue/components
 
 Ready to use Vue 3 components as building blocks to implement Gun powered interactivity in seconds.
 
@@ -53,7 +53,7 @@ Native web-components may be implemented in future.
 
 ---
 
-# @gun-vue/composables
+## @gun-vue/composables
 
 <a href="https://www.npmjs.com/package/@gun-vue/composables" target="_blank"><img src="https://img.shields.io/npm/v/@gun-vue/composables?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
 
