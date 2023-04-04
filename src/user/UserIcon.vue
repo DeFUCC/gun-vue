@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useUser, selectedUser, safeHash } from '#composables';
+import { useUser, selectedUser, safeHash } from '../composables';
+import { AccountBadge } from '../components';
 
 const props = defineProps({
   size: { type: Number, default: 42 },

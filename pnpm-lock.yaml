@@ -147,6 +147,7 @@ importers:
 
   composables:
     specifiers:
+      '@gun-vue/components': ^0.14.3
       '@types/color-hash': ^1.0.2
       '@types/recordrtc': ^5.6.11
       '@types/webtorrent': ^0.109.3
@@ -179,6 +180,7 @@ importers:
       webtorrent: 2.0.16
       yamlify-object: ^1.0.0
     dependencies:
+      '@gun-vue/components': link:../components
       '@vueuse/core': 9.13.0_vue@3.2.47
       '@vueuse/integrations': 9.13.0_ma2nzyvn436jd4n3otzwoqx744
       '@vueuse/math': 9.13.0_vue@3.2.47

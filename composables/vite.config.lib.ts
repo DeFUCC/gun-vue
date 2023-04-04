@@ -1,6 +1,4 @@
-//@ts-expect-error
 import path from "node:path";
-//@ts-expect-error
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import checker from 'vite-plugin-checker'
