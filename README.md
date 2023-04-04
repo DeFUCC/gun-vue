@@ -47,7 +47,7 @@ Ready to use Vue 3 components as building blocks to implement Gun powered intera
 
 ### [Playground](https://stackblitz.com/edit/gun-vue) at Stackblitz.com
 
-### [Source code](https://github.com/DeFUCC/gun-vue/tree/master/src) to build Vue components
+### [Learn more](https://github.com/DeFUCC/gun-vue/tree/master/components)
 
 Native web-components may be implemented in future.
 
@@ -61,7 +61,7 @@ Composable functions for use with Vue 3 Composition API
 
 ### [Documentation](https://gun-vue.js.org/composables) with Typedoc and Vitepress
 
-### [Source code](https://github.com/DeFUCC/gun-vue/tree/master/composables) for all the useXxx
+### [Learn more](https://github.com/DeFUCC/gun-vue/tree/master/composables)
 
 ---
 
@@ -74,12 +74,11 @@ A simple no-store Gun server to throw at any free tier Node.js environment.
 ### [Demo relay](https://gun.defucc.me) by DeFUCC
 
 
-
 ---
 
-## Watch the development video blog at [youtube](https://www.youtube.com/watch?v=gwZUQcCp01U&list=PLncuCCb2zjt6wmlSNLiK1lZl150qX-rAw)
+## Development video blog. Watch at [DeFUCC youtube channel](https://www.youtube.com/watch?v=gwZUQcCp01U&list=PLncuCCb2zjt6wmlSNLiK1lZl150qX-rAw)
 
-You can find shorter new features announcements along with longer live coding sessions there.
+You can find shorter feature announcements there along with longer live coding sessions.
 
 ## How to build the workspace repo yourself?
 
@@ -91,5 +90,5 @@ npm i -G pnpm
 pnpm i
 ```
 
-3. Use `dev`, `docs` and `histoire` scripts in the root `package.json` to run corresponding dev servers.
-4. Use `npm run build` to build the whole project to the `_dist` folder.
+1. Use `dev` and `docs` scripts in the root `package.json` to run corresponding dev servers.
+2. Use `npm run build` to build the whole project to the `_dist` folder.
