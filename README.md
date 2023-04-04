@@ -45,12 +45,7 @@ Ready to use Vue 3 components as building blocks to implement Gun powered intera
 
 <a href="https://www.npmjs.com/package/@gun-vue/components" target="_blank"><img src="https://img.shields.io/npm/v/@gun-vue/components?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
 
-
-### [Playground](https://gun-vue.js.org/components)
-
-The interactive components documentation is available at [gun-vue.js.org/components/](https://gun-vue.js.org/components/) built with the [Histoire](https://histoire.dev) stories.
-
-### [Source code](https://github.com/DeFUCC/gun-vue/tree/master/components)
+### [Source code](https://github.com/DeFUCC/gun-vue/tree/master/src)
 
 ---
 
