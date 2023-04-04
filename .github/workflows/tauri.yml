@@ -31,9 +31,6 @@ jobs:
           version: 7.21.0
           run_install: true
 
-      - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
-
       - name: Install dependencies (ubuntu only)
         if: matrix.platform == 'ubuntu-latest'
         run: |
