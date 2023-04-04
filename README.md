@@ -20,7 +20,7 @@ There code is organised into distinct layers in the [@gun-vue npmjs.com organisa
 
 The main [gun-vue.js.org](https://gun-vue.js.org) web-site is a demo Gun-Vue Vite SPA. It's also automagically gets built into a set of desktop apps.
 
-### [Web app](https://gun-vue.js.org) hosted at GitHub pages and JS.org
+### [Web app](https://gun-vue.js.org) hosted at GitHub pages and JS.org domain
 
 The app is reachable via the free [js.org](https://js.org) subdomain since [Jan 2022](https://github.com/js-org/js.org/commit/56a145bb39e53c6d63edf63b26d331cf30c35061). Yet it's build with the relative base path and can be served from any domain and path.
 
@@ -47,7 +47,9 @@ Ready to use Vue 3 components as building blocks to implement Gun powered intera
 
 ### [Playground](https://stackblitz.com/edit/gun-vue) at Stackblitz.com
 
-### [Source code](https://github.com/DeFUCC/gun-vue/tree/master/src)
+### [Source code](https://github.com/DeFUCC/gun-vue/tree/master/src) to build Vue components
+
+Native web-components may be implemented in future.
 
 ---
 
@@ -59,7 +61,7 @@ Composable functions for use with Vue 3 Composition API
 
 ### [Documentation](https://gun-vue.js.org/composables) with Typedoc and Vitepress
 
-### [Source code](https://github.com/DeFUCC/gun-vue/tree/master/composables)
+### [Source code](https://github.com/DeFUCC/gun-vue/tree/master/composables) for all the useXxx
 
 ---
 
