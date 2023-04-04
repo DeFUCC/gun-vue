@@ -20,16 +20,16 @@ There code is organised into distinct layers in the [@gun-vue npmjs.com organisa
 
 The main [gun-vue.js.org](https://gun-vue.js.org) web-site is a demo Gun-Vue Vite SPA. It's also automagically gets built into a set of desktop apps.
 
-### [Homepage](https://gun-vue.js.org)
+### [Web app](https://gun-vue.js.org) hosted at GitHub pages and JS.org
 
 The app is reachable via the free [js.org](https://js.org) subdomain since [Jan 2022](https://github.com/js-org/js.org/commit/56a145bb39e53c6d63edf63b26d331cf30c35061). Yet it's build with the relative base path and can be served from any domain and path.
 
-### [Desktop app releases](https://github.com/DeFUCC/gun-vue/releases)
+### [Desktop app releases](https://github.com/DeFUCC/gun-vue/releases) via GitHub Actions and Tauri
 
 Every time a new version of Gun-Vue is published, an automated action creates a new release draft with a full kit of lightweight native desktop apps for Windows, Mac OS and Linux with [Tauri](https://tauri.app) by a [GitHub Action](https://github.com/DeFUCC/gun-vue/actions/workflows/tauri.yml). Mobile apps are coming.
 
 
-### [Open source code](https://github.com/DeFUCC/gun-vue/tree/master/src) at GitHub
+### [Open source code](https://github.com/DeFUCC/gun-vue/tree/master/src) at GitHub [pnpm](https://pnpm.io) monorepo
 
 The code is cut into vertical slices as small interconnectable apps in the common [source folder](https://github.com/DeFUCC/gun-vue/tree/master/src).
 
@@ -45,6 +45,8 @@ Ready to use Vue 3 components as building blocks to implement Gun powered intera
 
 <a href="https://www.npmjs.com/package/@gun-vue/components" target="_blank"><img src="https://img.shields.io/npm/v/@gun-vue/components?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
 
+### [Playground](https://stackblitz.com/edit/gun-vue) at Stackblitz.com
+
 ### [Source code](https://github.com/DeFUCC/gun-vue/tree/master/src)
 
 ---
@@ -55,7 +57,7 @@ Ready to use Vue 3 components as building blocks to implement Gun powered intera
 
 Composable functions for use with Vue 3 Composition API
 
-### [Documentation](https://gun-vue.js.org/composables)
+### [Documentation](https://gun-vue.js.org/composables) with Typedoc and Vitepress
 
 ### [Source code](https://github.com/DeFUCC/gun-vue/tree/master/composables)
 
@@ -67,7 +69,7 @@ A simple no-store Gun server to throw at any free tier Node.js environment.
 
 <a href="https://www.npmjs.com/package/@gun-vue/relay" target="__blank"><img src="https://img.shields.io/npm/v/@gun-vue/relay?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
 
-### [Demo](https://gun.defucc.me)
+### [Demo relay](https://gun.defucc.me) by DeFUCC
 
 
 
