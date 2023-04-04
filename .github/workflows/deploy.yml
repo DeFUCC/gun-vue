@@ -17,8 +17,13 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
-          cache: "pnpm"
+          node-version: 16
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7.27
+          run_install: |
+            - recursive: true
 
       - name: Build project
         run: pnpm run build
