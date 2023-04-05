@@ -1,6 +1,6 @@
 {
-  "name": "@gun-vue/test",
-  "version": "0.14.4",
+  "name": "@gun-vue/tests",
+  "version": "0.14.5",
   "private": true,
   "bin": "./cli.js",
   "module": "true",

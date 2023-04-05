@@ -4,9 +4,10 @@
   "commit": false,
   "linked": [
     [
+      "@gun-vue/app",
       "@gun-vue/components",
       "@gun-vue/composables",
-      "@gun-vue/app",
+      "@gun-vue/docs",
       "@gun-vue/repo"
     ]
   ],

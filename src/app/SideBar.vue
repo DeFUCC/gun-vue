@@ -1,5 +1,5 @@
 <script setup  lang="ts">
-import { routes } from '../../../gun.config.json'
+import { routes } from '../../gun.config.json'
 </script>
 
 <template lang="pug">

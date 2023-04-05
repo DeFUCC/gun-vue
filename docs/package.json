@@ -1,0 +1,35 @@
+{
+	"name": "@gun-vue/docs",
+	"version": "0.15.0",
+	"private": "true",
+	"homepage": "https://gun-vue.js.org",
+	"bugs": {
+		"url": "https://github.com/defucc/gun-vue/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/defucc/gun-vue.git",
+		"directory": "docs"
+	},
+	"funding": {
+		"type": "github",
+		"url": "https://github.com/sponsors/davay42"
+	},
+	"license": "MIT",
+	"author": "davay42 <davay@defucc.me>",
+	"type": "module",
+	"files": [
+		"lib"
+	],
+	"scripts": {
+		"dev": "typedoc --watch & vitepress dev",
+		"build": "typedoc && vitepress build",
+		"serve": "vite preview",
+		"td": "typedoc --watch"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"pug": "^3.0.2",
+		"vitepress": "^1.0.0-alpha.64"
+	}
+}

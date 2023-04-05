@@ -9,7 +9,7 @@
 		"declaration": true,
 		"emitDeclarationOnly": true,
 		"declarationMap": true,
-		"declarationDir": "types",
+		"declarationDir": "public/types",
 		"skipLibCheck": true,
 		"module": "ESNext",
 		"allowSyntheticDefaultImports": true,
@@ -23,7 +23,8 @@
 		}
 	},
 	"include": [
-		"../src/**/composables.ts"
+		"../src/**/composables.ts",
+		"../components/dist/types/src/**.ts"
 	],
 	"exclude": [
 		"node_modules",
@@ -37,11 +38,11 @@
 			"../src/"
 		],
 		"includes": "../src/",
-		"out": "docs/",
+		"out": "typedoc",
 		"githubPages": false,
 		"entryPointStrategy": "expand",
 		"allReflectionsHaveOwnDocument": true,
-		"name": "Gun-Vue composables",
+		"name": "Gun-Vue docs",
 		"defaultCategory": "Composables",
 		"exclude": [
 			"**/routes.ts",

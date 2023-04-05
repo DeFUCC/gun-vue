@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/repo",
-	"version": "0.14.4",
+	"version": "0.15.0",
 	"private": true,
 	"homepage": "https://gun-vue.js.org",
 	"funding": {
@@ -9,17 +9,15 @@
 	},
 	"type": "module",
 	"scripts": {
+		"app": "cd app && pnpm tauri dev",
 		"dev": "cd app && pnpm run dev",
-		"build": "cd composables && pnpm run lib-build && pnpm run docs-build && cd .. && cd components && pnpm run build && cd .. && cd app && pnpm run build ",
-		"change": "pnpm changeset",
-		"deploy": "sh deploy.sh",
-		"histoire": "cd components && pnpm run story:dev",
-		"docs": "cd composables && pnpm run docs",
+		"docs": "cd docs && pnpm run dev",
+		"build": "cd composables && pnpm run lib-build && cd .. && cd docs && pnpm run build && cd .. && cd components && pnpm run build && cd .. && cd app && pnpm run build ",
 		"preview": "cd app && pnpm run preview",
 		"relay": "cd relay && pnpm run start",
-		"sky": "node deploy-to-skynet.js",
-		"app": "cd app && pnpm tauri dev",
 		"tauri": "cd app && pnpm tauri build",
+		"deploy": "sh deploy.sh",
+		"change": "pnpm changeset",
 		"version": "pnpm changeset version",
 		"publish": "pnpm run build && pnpm changeset publish"
 	},

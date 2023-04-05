@@ -9,10 +9,11 @@ app/public/docs
 app/public/components
 app/public/composables
 app/public/sitemap.xml
-composables/public/types
+composables/types
 composables/docs/
 composables/lib/
 .env
 **/.vitepress/cache
 **/.vitepress/dist
 **/.vitepress/.temp
+docs/typedoc

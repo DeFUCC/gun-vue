@@ -8,8 +8,8 @@ const dirname = path.dirname(filename);
 
 export default defineConfig({
 	title: "Gun-Vue",
-	base: "/composables/",
-	outDir: "../app/public/composables",
+	base: "/docs/",
+	outDir: "../app/public/docs",
 	vite: {
 		resolve: {
 			alias: {

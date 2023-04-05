@@ -3,15 +3,15 @@ import App from "./app.vue";
 
 import '@unocss/reset/tailwind.css'
 import 'uno.css'
-import "../../src/styles/index.css"; // use '@gun-vue/components/style.css' in your apps
+import "./styles/index.css"; // use '@gun-vue/components/style.css' in your apps
 
 import { createRouter, createWebHashHistory } from "vue-router";
 
-import routes from '../../src/routes'
+import routes from './routes'
 
 // import FloatingVue from 'floating-vue'
 
-import { GunVuePlugin } from "../../src/components"; // use '@gun-vue/components' in your apps
+import { GunVuePlugin } from "./components"; // use '@gun-vue/components' in your apps
 
 
 const router = createRouter({

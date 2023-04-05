@@ -1,5 +1,12 @@
 # @gun-vue/create
 
+## 0.14.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @gun-vue/components@0.15.0
+
 ## 0.14.4
 
 ### Patch Changes

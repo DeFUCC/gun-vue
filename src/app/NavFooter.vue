@@ -6,12 +6,12 @@
 .flex.flex-col.bg-dark-50.bg-opacity-70
   .flex.flex-wrap.justify-center.z-200.text-2xl.w-full.gap-4.py-4
     a.btn(
-      href="/composables/" 
+      href="/docs/" 
       target="_blank")
       .i-la-book
       .bar
-        .title Composables
-        .subtitle Reactive interfaces docs
+        .title Docs
+        .subtitle Read and explore
     a.btn(
       href="https://www.npmjs.com/org/gun-vue" 
       target="_blank")

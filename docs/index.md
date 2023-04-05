@@ -6,15 +6,15 @@ hero:
   text: Reactive crypto graph webapp toolbox
   tagline: Pluggable Vue composable APIs powered by GUN graph database and SEA cryptography
   image:
-    src: /gun-vue-logo.svg
+    src: gun-vue-logo.svg
     alt: Gun-Avatar
   actions:
     - theme: brand
       text: Get Started
-      link: /docs/README
+      link: /typedoc/README
     - theme: alt
       text: Documentation
-      link: /docs/modules
+      link: /typedoc/modules
 features:
   - icon: 🛠️
     title: Fully typed
@@ -32,3 +32,13 @@ features:
   transform: translate(-50%, -50%) scale(2)  !important;
 }
   </style>
+
+
+<script setup>
+
+import { defineClientComponent } from 'vitepress'
+
+// const ClientComp = defineClientComponent(() => {
+//   return import('component-that-access-window-on-import')
+// })
+</script>

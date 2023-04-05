@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import Components from "unplugin-vue-components/vite";
 
 // import { VitePWA } from "vite-plugin-pwa";
 
@@ -27,14 +26,6 @@ export default defineConfig({
 	plugins: [
 		vue(),
 		Unocss(),
-		Components({
-			dirs: ["src/components"],
-			extensions: ["vue"],
-			directoryAsNamespace: false,
-			globalNamespaces: ["global"],
-			include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-			exclude: [/node_modules/, /\.git/],
-		}),
 		// VitePWA({
 		// 	registerType: "autoUpdate",
 		// 	workbox: {

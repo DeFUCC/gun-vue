@@ -2,7 +2,10 @@
 import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
 import { currentRoom, useUser, rootRoom, useBackground, setPeer, relay } from "#composables";
-import config from '../../gun.config.json'
+import NavBar from './app/NavBar.vue'
+import SideBar from './app/SideBar.vue'
+import NavFooter from './app/NavFooter.vue'
+import config from '../gun.config.json'
 
 const router = useRouter()
 const route = useRoute();
