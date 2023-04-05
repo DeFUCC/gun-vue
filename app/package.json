@@ -35,7 +35,6 @@
 		"@vitejs/plugin-vue": "^4.1.0",
 		"pug": "3.0.2",
 		"unocss": "^0.50.6",
-		"unplugin-vue-components": "^0.24.1",
 		"vite": "^4.2.1",
 		"vite-plugin-pages": "^0.29.0",
 		"vite-plugin-pages-sitemap": "^1.4.5",

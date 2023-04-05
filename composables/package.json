@@ -20,16 +20,13 @@
 	"exports": "./lib/composables.js",
 	"main": "./lib/composables.js",
 	"module": "./lib/composables.js",
-	"types": "./lib/types/index.d.ts",
+	"types": "./types/index.d.ts",
 	"files": [
 		"lib"
 	],
 	"scripts": {
-		"docs": "typedoc --watch & vitepress dev",
-		"docs-build": "typedoc && vitepress build",
-		"lib-build": "vite build --config vite.config.lib.ts",
-		"serve": "vite preview",
-		"td": "typedoc --watch"
+		"lib-build": "vite build",
+		"serve": "vite preview"
 	},
 	"dependencies": {
 		"@vueuse/core": "9.13.0",

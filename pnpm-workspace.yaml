@@ -3,4 +3,5 @@ packages:
   - "relay"
   - "composables"
   - "components"
+  - "docs"
   - "test"
