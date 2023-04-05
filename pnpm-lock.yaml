@@ -44,9 +44,6 @@ importers:
       '@capacitor/cli': ^4.7.3
       '@capacitor/core': ^4.7.3
       '@capacitor/ios': ^4.7.3
-      '@gun-vue/components': workspace:^
-      '@gun-vue/composables': workspace:^
-      '@gun-vue/relay': workspace:^
       '@iconify/json': ^2.2.44
       '@tauri-apps/cli': ^1.2.3
       '@unocss/extractor-pug': 0.50.6
@@ -56,7 +53,6 @@ importers:
       ola: ^1.2.1
       pug: 3.0.2
       unocss: ^0.50.6
-      unplugin-vue-components: ^0.24.1
       vite: ^4.2.1
       vite-plugin-pages: ^0.29.0
       vite-plugin-pages-sitemap: ^1.4.5
@@ -67,9 +63,6 @@ importers:
       '@capacitor/android': 4.7.3_@capacitor+core@4.7.3
       '@capacitor/core': 4.7.3
       '@capacitor/ios': 4.7.3_@capacitor+core@4.7.3
-      '@gun-vue/components': link:../components
-      '@gun-vue/composables': link:../composables
-      '@gun-vue/relay': link:../relay
       '@unocss/reset': 0.50.6
       '@vueuse/core': 9.13.0_vue@3.2.47
       ola: 1.2.1
@@ -83,7 +76,6 @@ importers:
       '@vitejs/plugin-vue': 4.1.0_vite@4.2.1+vue@3.2.47
       pug: 3.0.2
       unocss: 0.50.6_vite@4.2.1
-      unplugin-vue-components: 0.24.1_vue@3.2.47
       vite: 4.2.1
       vite-plugin-pages: 0.29.0_vite@4.2.1
       vite-plugin-pages-sitemap: 1.4.5
@@ -169,7 +161,6 @@ importers:
       url-regex: ^5.0.0
       vite: ^4.2.1
       vite-plugin-checker: ^0.5.6
-      vitepress: ^1.0.0-alpha.64
       vue: ^3.2.47
       webtorrent: 2.0.16
       yamlify-object: ^1.0.0
@@ -205,6 +196,13 @@ importers:
       pug: 3.0.2
       vite: 4.2.1
       vite-plugin-checker: 0.5.6_vite@4.2.1
+
+  docs:
+    specifiers:
+      pug: ^3.0.2
+      vitepress: ^1.0.0-alpha.64
+    devDependencies:
+      pug: 3.0.2
       vitepress: 1.0.0-alpha.64
 
   relay:
@@ -223,7 +221,7 @@ importers:
       qrcode-terminal: 0.12.0
       self-adjusting-interval: 1.0.0
 
-  test:
+  tests:
     specifiers:
       '@gun-vue/components': workspace:*
       '@rushstack/eslint-patch': ^1.2.0
@@ -7649,11 +7647,6 @@ packages:
       once: 1.4.0
     dev: false
 
-  /punycode/2.1.1:
-    resolution: {integrity: sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==}
-    engines: {node: '>=6'}
-    dev: true
-
   /punycode/2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
     engines: {node: '>=6'}
@@ -8685,7 +8678,7 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       psl: 1.9.0
-      punycode: 2.1.1
+      punycode: 2.3.0
       universalify: 0.2.0
       url-parse: 1.5.10
     dev: true
