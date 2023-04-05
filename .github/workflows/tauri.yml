@@ -28,8 +28,9 @@ jobs:
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 7.21.0
-          run_install: true
+          version: 7.27
+          run_install: |
+            - recursive: true
 
       - name: Install dependencies (ubuntu only)
         if: matrix.platform == 'ubuntu-latest'
