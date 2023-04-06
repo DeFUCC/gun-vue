@@ -3,6 +3,8 @@ on:
   push:
     tags:
       - "@gun-vue/components*"
+    branches:
+      - release
   workflow_dispatch:
 
 jobs:
