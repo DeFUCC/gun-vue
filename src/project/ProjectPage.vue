@@ -2,6 +2,7 @@
 <script setup>
 import { useUser, useProject, useMd, useProjectGifts, itemTypes, useNewDiscourseItem } from '#composables';
 import { toRef, ref, computed, watch } from 'vue'
+import { FormPicture, FormTitle, ProjectFunding, } from '../components'
 
 const emit = defineEmits(['gift', 'user'])
 
@@ -29,6 +30,8 @@ watch(() => project.text, (t) => {
 })
 
 const { newItem, add } = useNewDiscourseItem()
+
+
 
 </script>
 <!-- eslint-disable vue/no-v-html -->

@@ -1,6 +1,7 @@
 <script setup>
 import { useReaction, useUser, useColor, useReactions, countRating } from '#composables';
 import { computed, ref } from 'vue'
+import { PostReactionButton, AccountBadge } from '../../components'
 
 const props = defineProps({
   authors: { type: Object, default: () => ({}) },
@@ -21,6 +22,8 @@ const reactions = computed(() => useReactions(props.authors))
 const rating = computed(() => countRating(props.authors))
 
 const selected = ref()
+
+
 </script>
 
 <template lang="pug">

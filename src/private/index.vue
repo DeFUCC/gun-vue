@@ -1,10 +1,14 @@
 <script setup>
+import { ChatPrivateList } from '../components'
+
 const props = defineProps({
   pub: {
     default: '',
     type: String
   }
 })
+
+
 </script>
 
 <template lang='pug'>

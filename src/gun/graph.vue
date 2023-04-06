@@ -1,5 +1,5 @@
 <script setup>
-
+import { GunGraph } from '../components'
 </script>
 
 <template lang="pug">

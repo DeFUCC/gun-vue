@@ -2,12 +2,11 @@
 import {
   useBackground,
   currentRoom,
-  useRoomLogo
+  useRoomLogo, useRoom
 } from '#composables'
-import { useRoom } from '#composables'
-import {
-  computed
-} from 'vue';
+import { AccountAvatar } from '../components'
+import { computed } from 'vue';
+
 const props = defineProps({
   pub: {
     type: String,
@@ -28,6 +27,8 @@ const bg = computed(() => useBackground({
 }))
 
 const { logo } = useRoomLogo(props.pub)
+
+
 </script>
 
 <template lang="pug">

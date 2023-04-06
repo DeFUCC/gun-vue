@@ -1,12 +1,14 @@
 <script setup>
 import { useDefs, langParts, useUser, dictRecord } from '#composables';
-
+import { DictWordCard, DictDefCard, } from '../components'
 
 const { user } = useUser()
 
 defineEmits(['def', 'root'])
 
 const { def, addDef, found, linked } = useDefs()
+
+
 </script>
 
 <template lang="pug">

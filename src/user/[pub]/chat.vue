@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, toRef } from 'vue'
+import { ChatPrivate, UiLayer } from '../../components'
 
 const props = defineProps({
   pub: { type: String, default: '' }

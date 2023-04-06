@@ -1,10 +1,10 @@
 <script setup lang="ts">
 
-import { asyncComputed, useObjectUrl, useRafFn } from '@vueuse/core';
+import { useObjectUrl, useRafFn } from '@vueuse/core';
 import { ref, watch, shallowReactive, computed, reactive, shallowRef } from 'vue';
 import { prettyBytes } from '../composables';
 import { uploadTorrent } from './useTorrent';
-
+import { FileCard } from '../components'
 
 const props = defineProps({
   id: {
@@ -40,6 +40,7 @@ function downloadTorrent(id: string) {
 }
 
 const tor = downloadTorrent(`magnet:?xt=urn:btih:${props.id}&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com`)
+
 
 </script>
 

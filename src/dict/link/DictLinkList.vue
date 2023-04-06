@@ -1,5 +1,6 @@
 <script setup>
 import { dictRecord, useColor, selectedUser } from '#composables';
+import { AccountAvatar } from '../../components'
 
 const color = useColor('light')
 const colorDeep = useColor('deep')
@@ -11,6 +12,7 @@ defineProps({
 })
 
 defineEmits(['def', 'word'])
+
 
 </script>
 

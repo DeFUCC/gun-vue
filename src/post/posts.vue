@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { safeHash, currentRoom } from '#composables'
+import { safeHash, currentRoom } from '../composables'
+import { PostList, PostGraph } from '../components'
 import { ref, computed } from 'vue'
 
 const showGraph = ref()
+
+
 </script>
 
 <template lang="pug">

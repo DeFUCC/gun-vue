@@ -1,5 +1,6 @@
 <script setup>
 import { useGuests, useNewGift, useUser, useProject, useProjects, currentRoom, useColor, useGun } from '#composables'
+import { AccountBadge, AuthForm, ProjectCard, RoomButton } from '../components'
 import { toRef, watch, computed, reactive } from 'vue'
 import { component as NumberFormat } from '@coders-tm/vue-number-format' // https://vue-number-format.netlify.app/guide/#globally
 import vSelect from 'vue-select' // https://vue-select.org/
@@ -61,6 +62,9 @@ const userProjects = computed(() => {
   })
   return projs
 })
+
+
+
 
 
 </script>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useUser, createRoom, SEA, enterRoom, recreateRoom } from '#composables';
+import { RoomCard } from '../components'
 
 const emit = defineEmits(['browse'])
 
@@ -14,6 +15,8 @@ const rooms = computed(() => {
 })
 
 const open = ref(false)
+
+
 </script>
 
 <template lang="pug">

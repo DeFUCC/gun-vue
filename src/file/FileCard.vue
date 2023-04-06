@@ -1,5 +1,5 @@
 <script setup>
-import { asyncComputed, useObjectUrl } from '@vueuse/core';
+import { useObjectUrl } from '@vueuse/core';
 import { ref, onMounted } from 'vue';
 import { prettyBytes } from '../composables';
 

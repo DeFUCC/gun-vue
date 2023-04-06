@@ -1,5 +1,7 @@
 <script setup>
 import { currentRoom } from '#composables';
+
+import { ProjectList } from '../components'
 </script>
 
 <template lang="pug">

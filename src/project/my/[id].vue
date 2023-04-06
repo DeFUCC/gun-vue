@@ -1,5 +1,6 @@
 <script setup>
 import { useUser } from '#composables';
+import { ProjectPage } from '../components'
 
 const { user } = useUser()
 const props = defineProps({

@@ -1,8 +1,11 @@
 <script setup>
+import { ProjectPage } from '../components'
 
 const props = defineProps({
   path: { type: String, default: '' }
 })
+
+
 
 </script>
 

@@ -1,12 +1,13 @@
 <script setup>
 import { useWords, useUser, dictRecord } from '#composables';
-
+import { DictDefCard, DictWordCard, } from '../components'
 
 const { user } = useUser()
 
 defineEmits(['word', 'root', 'def'])
 
 const { input, found, linked, addWord } = useWords()
+
 
 </script>
 

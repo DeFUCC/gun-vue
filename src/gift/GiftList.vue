@@ -1,9 +1,12 @@
 <script setup>
 import { useGifts } from '#composables'
+import { GiftCard } from '../components'
 
 const { gifts } = useGifts()
 
 const emit = defineEmits(['open', 'project'])
+
+
 
 </script>
 

@@ -1,6 +1,7 @@
 <script setup>
 import { useRoom, useColor, currentRoom, useBackground, useRoomLogo } from '#composables';
 import { ref, computed } from 'vue'
+import { UiPanel, RoomPage } from '../components'
 
 defineEmits(['room', 'rooms', 'browse'])
 
@@ -18,6 +19,7 @@ const bg = computed(() => useBackground({
 }))
 
 const { logo } = useRoomLogo(currentRoom.pub)
+
 
 </script>
 

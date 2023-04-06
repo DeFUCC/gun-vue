@@ -2,6 +2,7 @@
 <script setup>
 import { ref, watchEffect, computed } from 'vue'
 import { useColor, usePosts, useGun, useUser, usePost, useMd } from '#composables';
+import { PostLine, EmbedYoutube, UiLink, QrShare, PostActionUpdate, PostList } from '../components'
 
 const { user } = useUser()
 const gun = useGun()
@@ -21,6 +22,8 @@ const colorDeep = computed(() => useColor('deep').hex(props.hash))
 const { post, download, downloading, } = usePost({ hash: props.hash })
 
 const { posts, backlinks } = usePosts(props.hash)
+
+
 
 </script>
 <!-- eslint-disable vue/no-v-html -->

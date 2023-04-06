@@ -1,5 +1,6 @@
 <script setup>
 import { safeHash } from '#composables';
+import { DictDefList } from '../components'
 </script>
 
 <template lang="pug">

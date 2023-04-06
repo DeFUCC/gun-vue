@@ -1,5 +1,6 @@
 <script setup>
 import { unsafeHash, safeHash, dictRecord } from '#composables';
+import { DictDefPage } from '../components'
 import { watch } from 'vue';
 
 const props = defineProps({
@@ -11,6 +12,8 @@ watch(() => props.hash, hash => {
   dictRecord.word = null
   dictRecord.def = rec
 }, { immediate: true })
+
+
 </script>
 
 <template lang="pug">

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { currentRoom } from '#composables'
+import { SpacePlane } from '../components'
 
 const props = defineProps({
   coord: {
@@ -29,6 +30,8 @@ function leave() {
   }
   leaveAudio.play()
 }
+
+
 </script>
 
 <template lang="pug">

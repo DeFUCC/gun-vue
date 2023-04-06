@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { AuthForm, AuthCreate } from '../components'
 import { ref } from 'vue'
 const generate = ref(false)
+
+
 </script>
 
 <template lang="pug">

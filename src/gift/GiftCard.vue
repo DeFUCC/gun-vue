@@ -1,7 +1,7 @@
 <script setup>
 import { giftState, useColor, useUser, useGift, useGun, currentRoom, useProject } from '#composables'
+import { AccountBadge, GiftStatus } from '../components'
 import { computed, ref } from 'vue'
-import { useTimeAgo } from '@vueuse/core'
 
 const props = defineProps({
   hash: { type: String, default: '' },
@@ -27,6 +27,8 @@ const roomTitle = computed(() => {
 
 
 const { project } = useProject(computed(() => gift.project))
+
+
 
 </script>
 

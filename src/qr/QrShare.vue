@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useBrowserLocation, useClipboard, useShare } from '@vueuse/core'
 import { ref, computed } from 'vue'
+import { UiLayer, QrShow } from '../components'
+
 const location = useBrowserLocation()
 
 const open = ref(false)
@@ -10,6 +12,8 @@ const { share, isSupported: canShare } = useShare()
 const address = computed(() => {
   return location.value.href + location.value.search
 })
+
+
 </script>
 
 <template lang="pug">

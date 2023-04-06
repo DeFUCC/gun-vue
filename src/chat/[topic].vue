@@ -1,9 +1,12 @@
 <script setup>
 import { currentRoom } from '#composables';
+import { ChatRoom } from '../components'
 
 const props = defineProps({
   topic: { type: String, default: '' }
 })
+
+
 
 </script>
 

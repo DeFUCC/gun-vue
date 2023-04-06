@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import { UiLayer, GiftForm } from '../components'
 
 defineEmits(['sent'])
 
@@ -17,6 +18,7 @@ defineProps({
 })
 
 const open = ref()
+
 
 
 </script>

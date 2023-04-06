@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useUser, safeJSONParse, uploadText, SEA, parseLink } from '../composables'
+import { QrLoad } from '../components'
 import { ref, watch } from 'vue'
 import { ISEAPair } from 'gun';
 
@@ -41,6 +42,8 @@ async function decode() {
 function uploadFile(event) {
   uploadText(event.target?.files, (file: ISEAPair) => pair.value = file)
 }
+
+
 
 </script>
 

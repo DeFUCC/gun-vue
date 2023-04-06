@@ -1,5 +1,5 @@
 <script setup>
-
+import { PostPage, UiLayer } from '../components'
 import { unsafeHash, safeHash, isHash } from '#composables';
 import { computed } from 'vue'
 
@@ -19,6 +19,8 @@ const path = computed(() => {
     return props.hash
   }
 })
+
+
 
 </script>
 

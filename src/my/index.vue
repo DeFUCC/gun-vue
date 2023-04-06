@@ -1,5 +1,5 @@
 <script setup>
-
+import { UserHome } from '../components'
 </script>
 
 <template lang="pug">

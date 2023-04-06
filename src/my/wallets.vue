@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useUser } from '#composables';
-
+import { GiftWallets } from '../components'
 const { user } = useUser()
+
 </script>
 
 <template lang='pug'>

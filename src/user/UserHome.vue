@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useUser } from '#composables';
+import { UiLayer, AuthCredentials, AuthLogin, UserPanel, UserProfile, UserRooms, } from '../components'
 
 const emit = defineEmits(['user', 'room', 'close', 'chat', 'browse'])
 
@@ -8,6 +9,7 @@ const { user } = useUser()
 function isSafe() {
   user.db.get('safe').get('saved').put(true)
 }
+
 
 </script>
 

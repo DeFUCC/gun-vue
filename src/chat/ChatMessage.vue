@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue'
 import { selectedUser, useUser, getFirstEmoji, useMd } from '../composables';
+import { AccountBadge } from '../components'
 
 const props = defineProps({
   index: { type: Number, default: 0 },
@@ -47,6 +48,8 @@ onMounted(() => {
     }
   }
 })
+
+
 
 </script>
 

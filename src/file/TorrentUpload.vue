@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { asyncComputed, useClipboard, useObjectUrl, useShare } from '@vueuse/core';
+import { useClipboard, useObjectUrl, useShare } from '@vueuse/core';
 import { ref, watch, computed } from 'vue';
 import { uploadTorrent, downloadTorrent } from './useTorrent';
+import { QrShow, FileCard } from '../components'
 
 const emit = defineEmits(['uploaded'])
 
@@ -25,6 +26,8 @@ const downloadUrl = computed(() => {
 const clip = useClipboard({ source: downloadUrl })
 
 const { share, isSupported: shareSupported } = useShare()
+
+
 </script>
 
 <template lang='pug'>

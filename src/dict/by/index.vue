@@ -1,5 +1,5 @@
 <script setup>
-
+import { DictAuthors } from '../components'
 </script>
 
 <template lang="pug">

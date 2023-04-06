@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { watch, computed } from 'vue'
-
+import { UiLayer, AccountHome, ChatMessages, ChatInput } from '../components'
 import { useChat, selectedUser, useBackground, currentRoom } from '../composables';
 import { useWebNotification, watchDebounced } from '@vueuse/core';
 
@@ -56,6 +56,8 @@ watchDebounced(sorted, (next, prev) => {
 }, { deep: true })
 
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
+
+
 
 </script>
 

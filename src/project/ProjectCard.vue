@@ -1,5 +1,6 @@
 <script setup>
 import { useColor, useUser, removeProject, currentRoom } from '#composables'
+import { UiLink } from '../components'
 
 const { user } = useUser()
 

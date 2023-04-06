@@ -1,6 +1,7 @@
 <script setup>
 import { safeHash } from '#composables';
 
+import { GiftForm } from '../components'
 </script>
 
 <template lang="pug">

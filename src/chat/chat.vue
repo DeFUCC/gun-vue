@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+import { ChatTopics } from '../components'
 </script>
 
 <template lang="pug">

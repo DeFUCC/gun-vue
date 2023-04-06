@@ -1,6 +1,8 @@
 <script setup>
 import { currentRoom, useGun } from '#composables';
 import { ref, reactive, computed } from 'vue'
+import { RoomFeatureIcon } from '../components'
+
 const props = defineProps({
   cert: { type: String, default: '' },
   open: { type: [Boolean, String], default: false },
@@ -20,6 +22,8 @@ const count = computed(() => {
   })
   return obj
 })
+
+
 
 </script>
 

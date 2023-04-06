@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useMediaQuery, onClickOutside } from '@vueuse/core'
 import { useChat } from './composables';
+import { AccountAvatar } from '../components'
 
 defineProps({
   title: { type: String, default: 'Topics' },
@@ -19,6 +20,8 @@ const panelOpen = ref(true)
 const isLarge = useMediaQuery('(min-width: 640px)')
 
 onClickOutside(chatsPanel, () => !isLarge.value ? panelOpen.value = false : null)
+
+
 </script>
 
 <template lang="pug">

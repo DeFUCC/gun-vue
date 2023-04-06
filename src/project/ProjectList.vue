@@ -1,5 +1,6 @@
 <script setup>
 import { useProjects, addProject, newProject, currentRoom } from '../composables';
+import { ProjectCard } from '../components'
 
 const props = defineProps({
   pub: { type: String, default: currentRoom?.pub }
@@ -8,6 +9,7 @@ const props = defineProps({
 const { candidates } = useProjects(props.pub)
 
 defineEmits(['open'])
+
 
 </script>
 

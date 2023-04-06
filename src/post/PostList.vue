@@ -1,13 +1,7 @@
 <script setup>
-import {
-  usePosts,
-  useUser,
-  countRating
-} from '#composables'
-import {
-  ref,
-  computed
-} from 'vue'
+import { usePosts, useUser, countRating } from '#composables'
+import { QrShare, PostForm, PostCard } from '../components'
+import { ref, computed } from 'vue'
 
 const {
   user
@@ -50,6 +44,8 @@ const filteredPosts = computed(() => {
   }
   return list
 })
+
+
 </script>
 
 <template lang="pug">

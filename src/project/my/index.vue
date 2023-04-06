@@ -1,7 +1,10 @@
 <script setup>
 import { useUser } from '#composables';
+import { ProjectList } from '../components'
 
 const { user } = useUser()
+
+
 </script>
 
 <template lang="pug">

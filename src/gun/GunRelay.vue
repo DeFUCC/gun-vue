@@ -1,5 +1,6 @@
 <script setup>
 import { useRelay, useRelays } from '#composables'
+import { UiLayer, GunRelayList } from '../components'
 import { ref } from 'vue'
 
 const props = defineProps({
@@ -10,6 +11,8 @@ const { relay, setPeer, resetPeer } = useRelay()
 const open = ref(false)
 
 const { relays, loadRelays } = useRelays()
+
+
 
 </script>
 

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onClickOutside, useMediaQuery } from '@vueuse/core';
 import { useGuests, joinRoom, useUser } from '#composables';
+import { AccountBadge } from '../components'
 import { reactive, ref, computed, toRef } from 'vue'
 
 const isLarge = useMediaQuery('(min-width: 640px)')
@@ -21,6 +22,7 @@ onClickOutside(panel, () => {
 })
 
 const isInRoom = computed(() => guests.guests[user.pub])
+
 
 </script>
 

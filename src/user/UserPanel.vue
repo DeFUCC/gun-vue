@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-
+import { MateButton, UserAvatar } from '../components'
 import { useUser, useColor, useBackground } from '#composables'
 const { user, leave } = useUser()
 
@@ -8,6 +8,7 @@ const colorDeep = useColor('deep')
 const emit = defineEmits(['browse'])
 
 const bg = computed(() => useBackground({ pub: user.pub, size: 600, light: 0.5, draw: 'circles' }))
+
 
 </script>
 

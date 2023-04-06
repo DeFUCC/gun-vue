@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { currentRoom } from '#composables';
+import { UserList, UserGraph } from '../components'
 </script>
 
 <template lang="pug">

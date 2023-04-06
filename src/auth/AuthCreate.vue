@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useUser, SEA, useColor, updateProfile } from '#composables'
+import { AccountAvatar } from '../components'
 import { useRefHistory } from '@vueuse/core'
 import { ref, nextTick } from 'vue'
 
@@ -24,6 +25,8 @@ function createUser() {
     updateProfile('name', name.value)
   }))
 }
+
+
 
 </script>
 

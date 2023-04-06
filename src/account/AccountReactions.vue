@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useUser, reactToPost, useUserPosts, } from '../composables';
+import { PostCard, PostReactionTabs } from '../components'
 import { ref, computed } from 'vue'
 
 const props = defineProps({
@@ -20,6 +21,8 @@ const userPosts = useUserPosts(props.pub)
 const postList = computed(() => {
   return userPosts[postReaction.value] || []
 })
+
+
 
 </script>
 

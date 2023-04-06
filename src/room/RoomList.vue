@@ -1,6 +1,7 @@
 <script setup>
 import { useRooms } from '#composables';
 import { reactive, ref, computed } from 'vue'
+import { RoomForm, RoomCard, PostActionReact } from '../components'
 
 defineEmits(['browse'])
 

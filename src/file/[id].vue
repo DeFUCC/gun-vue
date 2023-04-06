@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { TorrentDownload } from '../components'
+
 const props = defineProps({
   id: {
     type: String,

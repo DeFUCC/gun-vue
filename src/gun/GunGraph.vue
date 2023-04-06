@@ -1,6 +1,7 @@
 <script setup >
 import { useGun, useColor, theme } from '#composables';
 import { ref, onBeforeUnmount } from 'vue'
+import { AccountAvatar } from '../components'
 
 const graph = ref({});
 
@@ -16,6 +17,7 @@ const timer = setInterval(() => {
 onBeforeUnmount(() => {
   clearInterval(timer);
 });
+
 
 
 </script>

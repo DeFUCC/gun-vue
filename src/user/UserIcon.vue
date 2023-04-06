@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useUser, selectedUser, safeHash } from '../composables';
-import { AccountBadge } from '../components';
+import { AccountBadge, UiPanel, UserHome } from '../components'
 
 const props = defineProps({
   size: { type: Number, default: 42 },
@@ -11,6 +11,8 @@ const { user } = useUser()
 
 
 defineEmits(['room', 'user', 'post', 'chat'])
+
+
 
 </script>
 

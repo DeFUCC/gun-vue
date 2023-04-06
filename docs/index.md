@@ -38,7 +38,9 @@ features:
 
 import { defineClientComponent } from 'vitepress'
 
-// const ClientComp = defineClientComponent(() => {
-//   return import('component-that-access-window-on-import')
-// })
+const UserIcon = defineClientComponent(() => {
+  return import('../src/user/UserIcon.vue')
+})
 </script>
+
+<UserIcon />

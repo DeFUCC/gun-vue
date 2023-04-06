@@ -1,8 +1,11 @@
 <script setup>
+import { AccountBadge } from '../components'
 import { useDictAuthors } from '#composables'
 const authors = useDictAuthors()
 
 defineEmits(['author'])
+
+
 </script>
 
 <template lang="pug">

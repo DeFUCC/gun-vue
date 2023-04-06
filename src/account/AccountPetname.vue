@@ -2,6 +2,8 @@
 import { useUser, setPetname, SEA } from '../composables'
 import { watch, ref } from 'vue'
 import { Dropdown } from 'floating-vue'
+import { AccountAvatar } from '../components'
+
 
 const props = defineProps({
   pub: { type: String, default: '' }
@@ -29,6 +31,7 @@ const petnameRules = {
   'The user interface shall assist the user in assuring that two petnames are not similar enough to enable mimicry': false,
   'Nicknames and alleged names must be unambiguously visually distinct from petnames': false,
 }
+
 
 
 </script>

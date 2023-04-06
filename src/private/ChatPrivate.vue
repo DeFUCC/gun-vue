@@ -2,6 +2,8 @@
 import { toRef, computed } from "vue"
 import { useAccount } from '../composables'
 import { usePrivateChat } from './usePrivate'
+import { AccountAvatar, ChatMessage, ChatInput } from '../components'
+
 const props = defineProps({
   pub: {
     default: 'OKrDaDeD8VeA27d673RqlodSnebnaDq6Ci23Ys_ABWE.q8fI2lkxO46R8TMjeUeAf7I0yBS5mdH_Cb9_285Wkqk',
@@ -14,6 +16,7 @@ defineEmits(['user'])
 const { account } = useAccount(toRef(props, 'pub'));
 
 const chat = computed(() => usePrivateChat(props.pub))
+
 
 </script>
 

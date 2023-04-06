@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RoomButton, UiDark, QrShare, GunTools, UserIcon } from '../components'
 import { currentRoom, useBackground, useColor } from '#composables';
 import { computed } from 'vue'
 
@@ -10,6 +11,8 @@ const route = useRoute()
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 
 const color = useColor('light')
+
+
 
 </script>
 

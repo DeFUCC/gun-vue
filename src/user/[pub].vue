@@ -1,7 +1,7 @@
 <script setup>
 
 import { safeHash } from '#composables'
-
+import { UiLayer, AccountHome } from '../components'
 
 import { ref, onMounted } from 'vue'
 const props = defineProps({
@@ -13,6 +13,7 @@ const open = ref(false)
 onMounted(() => {
   open.value = true
 })
+
 
 </script>
 

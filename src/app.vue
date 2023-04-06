@@ -2,10 +2,12 @@
 import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
 import { currentRoom, useUser, rootRoom, useBackground, setPeer, relay } from "#composables";
+
+import config from '../gun.config.json'
+
 import NavBar from './app/NavBar.vue'
 import SideBar from './app/SideBar.vue'
 import NavFooter from './app/NavFooter.vue'
-import config from '../gun.config.json'
 
 const router = useRouter()
 const route = useRoute();
@@ -68,23 +70,20 @@ router.beforeEach((to, from) => {
 
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, light: 0.8, overlay: 0.5 }))
 
+
+
 </script>
 
-<template>
-  <div class="app-container">
-    <side-bar class="Side"></side-bar>
-    <nav-bar class="Top"></nav-bar>
-    <div class="grid Main overflow-y-scroll max-h-full">
-      <router-view v-slot="{ Component }">
-        <transition name="fade" mode="out-in">
-          <keep-alive>
-            <component :is="Component"></component>
-          </keep-alive>
-        </transition>
-      </router-view>
-    </div>
-    <nav-footer class="Footer" v-if="$route.path == '/'"></nav-footer>
-  </div>
+<template lang="pug">
+.app-container
+  side-bar.Side
+  nav-bar.Top
+  .grid.Main.overflow-y-scroll.max-h-full
+    router-view(v-slot="{ Component }")
+      transition(name="fade", mode="out-in")
+        keep-alive
+          component(:is="Component")
+  nav-footer.Footer(v-if="$route.path == '/'")
 </template>
 <style lang="postcss">
 html {

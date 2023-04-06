@@ -1,7 +1,11 @@
 <script setup>
+import { UiLayer, RoomPage } from '../components'
+
 const props = defineProps({
   room: { type: String, default: '' }
 })
+
+
 </script>
 
 <template lang="pug">

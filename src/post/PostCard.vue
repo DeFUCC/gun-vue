@@ -1,6 +1,7 @@
 <script setup>
 import { useColor, usePost } from '#composables'
 import { computed, ref, watchEffect } from 'vue'
+import { UiLink, PostActionReact } from '../components'
 
 const colorLight = useColor('light')
 const colorDeep = useColor('deep')
@@ -16,6 +17,8 @@ const props = defineProps({
 })
 
 const { post } = usePost({ hash: props.hash })
+
+
 
 </script>
 

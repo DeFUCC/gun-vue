@@ -27,9 +27,13 @@
 		"serve": "vite preview",
 		"td": "typedoc --watch"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"@unocss/reset": "0.50.6"
+	},
 	"devDependencies": {
 		"pug": "^3.0.2",
+		"unocss": "^0.50.6",
+		"@unocss/extractor-pug": "0.50.6",
 		"vitepress": "^1.0.0-alpha.64"
 	}
 }

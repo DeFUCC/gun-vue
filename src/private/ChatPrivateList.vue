@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { usePrivateChatList } from './usePrivate';
+import { AccountBadge, ChatPrivateCount } from '../components'
 
 const props = defineProps({
   current: {
@@ -11,6 +12,7 @@ const props = defineProps({
 const list = usePrivateChatList()
 
 defineEmits(['chat'])
+
 
 </script>
 

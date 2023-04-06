@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+import { RoomList } from '../components'
 </script>
 
 <template lang="pug">

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useUser, downloadFile, usePass } from '#composables'
+import { AuthPass, QrShow } from '../components'
 import { ref, computed } from 'vue'
 import { useClipboard, useShare } from '@vueuse/core'
 
@@ -30,6 +31,8 @@ const encPair = computed(() => {
 });
 
 const href = computed(() => safePair.value ? pass.links.pass : pass.links.pair)
+
+
 
 </script>
 

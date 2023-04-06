@@ -1,4 +1,5 @@
 <script setup>
+import { UiLayer, EmbedYoutube } from '../components'
 import { ref, watch } from 'vue'
 const link = ref()
 
@@ -28,6 +29,8 @@ function youtubeLinkParser(url) {
     return null;
   }
 }
+
+
 </script>
 
 <template lang="pug">

@@ -1,16 +1,8 @@
 <script setup>
-import {
-  reactive,
-  ref,
-  onMounted,
-  watch,
-  computed
-} from 'vue'
+import { reactive, ref, onMounted, watch, computed } from 'vue'
 
-import {
-  addPost,
-  useColor
-} from '#composables'
+import { addPost, useColor } from '#composables'
+import { FormPicture, FormLink, FormYoutube, UiLayer, FormText } from '../components'
 
 const props = defineProps({
   tag: {
@@ -59,6 +51,8 @@ function reset() {
   postData.value = {}
   emit('close')
 }
+
+
 </script>
 
 <template lang="pug">

@@ -1,5 +1,6 @@
 <script setup>
 import { useUser, useProject, useMd, useProjectGifts } from '#composables';
+import { GiftButton, AccountBadge, GiftCard, } from '../components'
 
 const props = defineProps({
   path: { type: String, default: '' },
@@ -11,6 +12,8 @@ const emit = defineEmits(['enable', 'gift', 'open'])
 const { gifts, collections } = useProjectGifts(props.path)
 
 const { user } = useUser()
+
+
 </script>
 
 <template lang="pug">

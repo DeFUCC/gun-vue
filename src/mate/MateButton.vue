@@ -1,5 +1,6 @@
 <script setup>
 import { useUser, useMate, useColor } from '#composables';
+import { AccountBadge } from '../components'
 
 const props = defineProps({
   pub: { type: String, default: '' }
@@ -9,6 +10,8 @@ const { user } = useUser()
 const colorDeep = useColor('deep')
 
 const { emoji, isMate, toggleMate } = useMate(props.pub)
+
+
 
 </script>
 

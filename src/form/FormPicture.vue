@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch, computed } from 'vue'
-
+import { UiLayer } from '../components'
 import { usePictureUpload } from '#composables'
 
 const props = defineProps({

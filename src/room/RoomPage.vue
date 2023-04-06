@@ -2,7 +2,7 @@
 <script setup>
 import { useRoom, rootRoom, currentRoom, useColor, useUser, useBackground, useMd } from '#composables';
 import { ref, computed, reactive } from 'vue'
-
+import { RoomLogo, FormTitle, AccountBadge, RoomActions, RoomFeature, FormText } from '../components'
 import { features } from '../../gun.config.json'
 
 const props = defineProps({

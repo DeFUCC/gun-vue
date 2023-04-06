@@ -1,8 +1,10 @@
 <script setup>
 import { genUUID, useGun, useUser } from '#composables';
+import { GiftWallet, UiLayer } from '../components'
 import { computed, reactive, ref } from 'vue'
 import vSelect from 'vue-select' // https://vue-select.org/
 import 'vue-select/dist/vue-select.css';
+
 import currencies from './currencies.json';
 
 const emit = defineEmits(['wallet', 'clear'])
@@ -53,6 +55,7 @@ function removeWallet(key) {
   console.log(key)
   gun.user().get('wallets').get(key).put(null)
 }
+
 
 
 

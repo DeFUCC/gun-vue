@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useGun, useUser, useColor, useDictRecordsFor, dictRecord, langParts } from '#composables';
+import { DictLinkList, DictLinkButton } from '../components'
 
 const props = defineProps({
   hash: {
@@ -23,6 +24,9 @@ gun.get('dict').get('#def').get(props.hash).once((d) => {
 })
 
 const links = useDictRecordsFor(props.hash)
+
+
+
 </script>
 
 <template lang="pug">

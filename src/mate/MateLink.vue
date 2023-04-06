@@ -1,5 +1,6 @@
 <script setup>
 import { isEmoji, useColor } from '#composables';
+import { AccountBadge } from '../components'
 import { computed } from 'vue';
 
 const colorDeep = useColor('deep')
@@ -10,6 +11,7 @@ const props = defineProps({
   to: { type: String, default: '' },
   back: { type: String, default: '' },
 })
+
 
 </script>
 

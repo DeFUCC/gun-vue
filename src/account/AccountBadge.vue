@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, watchEffect } from 'vue'
 import { useGun, useColor, selectedUser, useUser, SEA, theme } from '../composables'
+import { AccountAvatar } from '../components'
 
 const props = defineProps({
   pub: { type: String, default: '' },
@@ -42,6 +43,8 @@ function select() {
     selectedUser.pub = props.pub
   }
 }
+
+
 </script>
 
 <template lang="pug">

@@ -1,8 +1,11 @@
 <script setup>
 import { useMyGifts } from '#composables';
+import { GiftCard, } from '../components'
 
 
 const { gifts, to, from, newGifts } = useMyGifts()
+
+
 </script>
 
 <template lang="pug">

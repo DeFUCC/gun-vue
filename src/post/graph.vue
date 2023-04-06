@@ -1,6 +1,7 @@
 <script setup>
 import { safeHash, currentRoom } from '#composables'
 
+import { PostGraph } from '../components'
 </script>
 
 <template lang="pug">

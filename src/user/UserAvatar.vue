@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useUser, useGun, hashText } from '#composables'
+import { AccountAvatar, FormPicture } from '../components'
 import { ref } from 'vue'
 
 const { user } = useUser()
@@ -37,6 +38,7 @@ async function uploadAvatar(file) {
 function removeAvatar() {
   user.db.get('avatar').put(null)
 }
+
 
 </script>
 

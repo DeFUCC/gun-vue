@@ -1,5 +1,5 @@
 <script setup>
-
+import { TorrentUpload } from '../components'
 </script>
 
 <template lang="pug">

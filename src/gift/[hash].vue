@@ -1,4 +1,5 @@
 <script setup>
+import { GiftCard } from '../components'
 import { unsafeHash } from '#composables';
 import { computed } from 'vue'
 
@@ -7,6 +8,7 @@ const props = defineProps({
 });
 
 const un = computed(() => unsafeHash(props.hash))
+
 
 </script>
 
