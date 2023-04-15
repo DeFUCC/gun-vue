@@ -22,8 +22,8 @@
 		"lib"
 	],
 	"scripts": {
-		"dev": "typedoc --watch & vitepress dev",
-		"build": "typedoc && vitepress build",
+		"dev": "typedoc --plugin typedoc-plugin-markdown  --watch & vitepress dev",
+		"build": "typedoc --plugin typedoc-plugin-markdown && vitepress build",
 		"serve": "vite preview",
 		"td": "typedoc --watch"
 	},

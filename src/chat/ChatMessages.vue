@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { watchDebounced, } from '@vueuse/core';
-import type { MaybeComputedRef } from '@vueuse/core'
 import { ref, watch, nextTick } from 'vue'
 import VirtualList from 'vue3-virtual-scroll-list';
 import ChatMessage from './ChatMessage.vue';

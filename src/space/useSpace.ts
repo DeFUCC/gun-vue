@@ -7,10 +7,10 @@
 import { useGun } from "../composables";
 import { useSvgMouse } from "../ui/composables";
 import { useUser } from "../user/composables";
-import { computed, ref, reactive, watchEffect } from "vue";
+import { computed, ref, reactive, watchEffect, ComputedRef } from "vue";
 import { getFirstEmoji, currentRoom } from "../composables";
 import { getArrow } from "curved-arrows";
-import { MaybeComputedRef, useElementBounding } from "@vueuse/core";
+import { useElementBounding } from "@vueuse/core";
 import { useClamp } from '@vueuse/math'
 
 export interface SpaceGuest {
@@ -95,7 +95,7 @@ export function useSpace({
   const mates = reactive({});
   const links = reactive({});
 
-  const guests: MaybeComputedRef<Record<string, SpaceGuest>> = computed(() => {
+  const guests: ComputedRef<Record<string, SpaceGuest>> = computed(() => {
     const obj = {};
     for (let g in allGuests) {
       if (Date.now() - allGuests[g]?.pulse < TIMEOUT) {

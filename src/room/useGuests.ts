@@ -3,13 +3,13 @@
  * @group Rooms
  */
 
-import { MaybeComputedRef } from "@vueuse/core";
-import { computed, reactive, watchEffect } from "vue";
+
+import { computed, reactive, watchEffect, ComputedRef } from "vue";
 import { useGun, useAccount, currentRoom, Account } from "../composables";
 
 export interface Guest extends Account {
-  order?: MaybeComputedRef<number>
-  online?: MaybeComputedRef<boolean>
+  order?: ComputedRef<number>
+  online?: ComputedRef<boolean>
 }
 
 let startTime = Date.now();
