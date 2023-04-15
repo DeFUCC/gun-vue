@@ -31,7 +31,7 @@ features:
 .VPImage {
   transform: translate(-50%, -50%) scale(2)  !important;
 }
-  </style>
+</style>
 
 
 <script setup>

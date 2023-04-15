@@ -29,9 +29,9 @@
 		"serve": "vite preview"
 	},
 	"dependencies": {
-		"@vueuse/core": "9.13.0",
-		"@vueuse/integrations": "^9.13.0",
-		"@vueuse/math": "^9.13.0",
+		"@vueuse/core": "10.0.2",
+		"@vueuse/integrations": "^10.0.2",
+		"@vueuse/math": "^10.0.2",
 		"base32": "^0.0.7",
 		"buffer": "^6.0.3",
 		"color-hash": "^2.0.2",

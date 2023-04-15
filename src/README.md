@@ -11,4 +11,3 @@ They all are optional, so we can consider the `styles` folder with just the `css
 But there may be more!
 
 - **README.md** - the markdown rich text file with a description of the module and it's functionalities. If it's present, it need to be to put it into the composable module definition as `[[include:./README.md]]`.
-- **Histoire *.story.vue** - the complementary components stories to showcase their flexibility and composability
