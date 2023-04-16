@@ -20,6 +20,9 @@ export default defineConfig({
 	server: {
 		port: 3142,
 		strictPort: true,
+		fs: {
+			allow: ['../']
+		}
 	},
 	envPrefix: ['VITE_', 'TAURI_'],
 	publicDir: "public",
