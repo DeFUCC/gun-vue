@@ -20,8 +20,9 @@ style="flex: 0 0 auto"
     .i-la-sun(v-if="link == 'Gifts'")
     .i-la-toolbox(v-if="link == 'Projects'")
     .i-la-user(v-if="link == 'User'")
-    .i-la-file(v-if="link=='Files'")
-    .i-ph-chats-light(v-if="link=='Messages'")
+    .i-la-file(v-if="link == 'Files'")
+    .i-ph-chats-light(v-if="link == 'Messages'")
+    .i-ic-outline-qrcode(v-if="link == 'QR Lab'")
 
     .ml-2.hidden.transition.sm-block.text-sm {{ link }}
   slot

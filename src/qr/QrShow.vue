@@ -9,8 +9,6 @@ const props = defineProps({
   margin: { type: Number, default: 1 }
 });
 
-
-
 const src = computedAsync(async () => {
   if (!props.data) return;
 

@@ -12,7 +12,8 @@
     "/rooms/": "Rooms",
     "/private/": "Messages",
     "/dict/": "Dictionary",
-    "/file/": "Files"
+    "/file/": "Files",
+    "/qr/": "QR Lab"
   },
   "features": {
     "rooms": "Rooms",

@@ -14,6 +14,7 @@ export * from "./space/composables"
 export * from "./ui/composables"
 export * from "./user/composables"
 export * from "./mate/composables"
+export * from "./qr/composables"
 
 import config from "../gun.config.json"
 
