@@ -9,7 +9,9 @@ const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 export default defineConfig({
-	title: "Gun-Vue",
+	lang: "en-US",
+	title: " ",
+	description: 'Reactive p2p crypto graph app toolkit',
 	base: "/docs/",
 	outDir: "../app/public/docs",
 	vite: {
@@ -22,5 +24,8 @@ export default defineConfig({
 				"#composables": path.resolve(dirname, "../../src/composables"),
 			},
 		},
+	},
+	themeConfig: {
+		logo: 'gun-vue-logo.svg'
 	}
 });

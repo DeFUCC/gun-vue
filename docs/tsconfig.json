@@ -37,6 +37,7 @@
 		"entryPoints": [
 			"../src/"
 		],
+		"includeVersion": true,
 		"includes": "../src/",
 		"out": "typedoc",
 		"githubPages": false,

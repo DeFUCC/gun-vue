@@ -19,9 +19,9 @@ posts:
     date: 2022-01-22
     youtube: oTZ7HVrxjLs
     text: |
-      <p>We begin with final build stages and publish the v.0.6.0 of @gun-vue project live. Then there's an overview of some new and updated features of the app and all it's layers. We got `Stability +10` and great UI design improvements since v.0.5.0. I've added full zip-file support meaning you can upload and download zip-files with you posts and the app will easily handle them client-side. 
+      <p>We begin with final build stages and publish the v.0.6.0 of @gun-vue project live. Then there's an overview of some new and updated features of the app and all it's layers. We got `Stability +10` and great UI design improvements since v.0.5.0. I've added full zip-file support meaning you can upload and download zip-files with you posts and the app will easily handle them client-side. </p>
 
-      <p>You'll see the more reliable version of the Space, fast and beautiful Feeds and some Users browsing experience. I try to make everything  as modular as I can, so you can imagine how you could combine all these blocks to create some fun p2p web-apps yourself. This power is just one import away!
+      <p>You'll see the more reliable version of the Space, fast and beautiful Feeds and some Users browsing experience. I try to make everything  as modular as I can, so you can imagine how you could combine all these blocks to create some fun p2p web-apps yourself. This power is just one import away!</p>
   - title: GunVue v.0.7.1. app rooms, certificates, immutable posts and bi-directional links between them
     date: 2022-02-09
     youtube: _SXVSMiIbvg

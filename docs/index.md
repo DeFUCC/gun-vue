@@ -10,12 +10,17 @@ hero:
     alt: Gun-Avatar
   actions:
     - theme: brand
-      text: Get Started
+      text: Getting Started
       link: /typedoc/README
     - theme: alt
       text: Documentation
       link: /typedoc/modules
 features:
+  - icon: <span class="i-carbon:ibm-toolchain"></span>
+    title: Reactive composables
+    details: The short link between GUN and Vue reactivity
+    link: typedoc/modules.html
+    linkText: Browse docs
   - icon: 🛠️
     title: Fully typed
     details: All modules are well typed and reliable
@@ -27,20 +32,9 @@ features:
     details: These composables are used to build Gun-Vue components that are combined in the Gun-Vue app for everyone to play with.
 ---
 
+
 <style >
 .VPImage {
   transform: translate(-50%, -50%) scale(2)  !important;
 }
 </style>
-
-
-<script setup>
-
-import { defineClientComponent } from 'vitepress'
-
-const UserIcon = defineClientComponent(() => {
-  return import('../src/user/UserIcon.vue')
-})
-</script>
-
-<UserIcon />

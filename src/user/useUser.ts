@@ -1,4 +1,8 @@
 /**
+ * [[include:./user/README.md]] 
+ * 
+ * ## &lt;UserIcon /&gt;
+ * <UserIcon />
  * @module User
  * @group Users
  */
