@@ -1,5 +1,6 @@
 /**
- * ## QR Laboratory
+ * [[include:./qr/README.md]]
+ * <QrShow :data="'Hello world!'" />
  * @module QR
  * @group UI
  */
@@ -9,7 +10,6 @@ export function useQR() {
     processFile
   }
 }
-
 
 async function processFile(file, callback) {
   const imageData = await imageDataFromFile(file)
