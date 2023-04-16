@@ -4,4 +4,3 @@ packages:
   - "composables"
   - "components"
   - "docs"
-  - "tests"
