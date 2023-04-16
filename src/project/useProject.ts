@@ -1,5 +1,5 @@
 /**
- * [[include:./README.md]]
+ * [[include:./project/README.md]]
  * @module Project
  * @group Projects
  */

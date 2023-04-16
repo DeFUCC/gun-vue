@@ -1,5 +1,5 @@
 /**
- * [[include:./README.md]]
+ * [[include:./dict/README.md]]
  * @module Dict
  * @group Dictionary
  */

@@ -41,7 +41,6 @@
 		"out": "typedoc",
 		"githubPages": false,
 		"entryPointStrategy": "expand",
-		// "allReflectionsHaveOwnDocument": true,
 		"name": "Gun-Vue docs",
 		"defaultCategory": "Composables",
 		"exclude": [

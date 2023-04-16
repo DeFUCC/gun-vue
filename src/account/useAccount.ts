@@ -1,5 +1,5 @@
 /**
- * [[include:./README.md]]
+ * [[include:./account/README.md]]
  * @module Account
  * @group Users
  * */

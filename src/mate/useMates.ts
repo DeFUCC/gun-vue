@@ -1,5 +1,5 @@
 /**
- * Connections between accounts
+ * Connections between accounts!
  * @module Mates
  * @group Users
  */

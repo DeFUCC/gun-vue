@@ -23,9 +23,9 @@
 	],
 	"scripts": {
 		"dev": "typedoc --plugin typedoc-plugin-markdown  --watch & vitepress dev",
-		"build": "typedoc --plugin typedoc-plugin-markdown && vitepress build",
+		"build": "typedoc --plugin typedoc-plugin-markdown  && vitepress build",
 		"serve": "vite preview",
-		"td": "typedoc --watch"
+		"td": "typedoc --watch --plugin typedoc-plugin-markdown"
 	},
 	"dependencies": {
 		"@unocss/reset": "0.51.4"
