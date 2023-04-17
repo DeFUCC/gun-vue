@@ -11,15 +11,15 @@ hero:
   actions:
     - theme: brand
       text: Getting Started
-      link: /typedoc/README
+      link: /reference/README
     - theme: alt
       text: Documentation
-      link: /typedoc/modules
+      link: /reference/modules
 features:
   - icon: <span class="i-carbon:ibm-toolchain"></span>
     title: Reactive composables
-    details: The short link between GUN and Vue reactivity
-    link: typedoc/modules.html
+    details: The missing link between GUN and Vue reactivity systems. P2P data subscriptions become reactive variables that can be watched from anywhere. 
+    link: reference/modules
     linkText: Browse docs
   - icon: 🛠️
     title: Fully typed

@@ -39,7 +39,7 @@
 		],
 		"includeVersion": true,
 		"includes": "../src/",
-		"out": "typedoc",
+		"out": "reference",
 		"githubPages": false,
 		"entryPointStrategy": "expand",
 		"name": "Gun-Vue docs",

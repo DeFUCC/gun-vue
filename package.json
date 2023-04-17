@@ -32,7 +32,7 @@
 		"eslint": "^8.38.0",
 		"eslint-plugin-vue": "^9.11.0",
 		"eslint-plugin-vue-pug": "^0.6.0",
-		"typedoc": "0.24.2",
+		"typedoc": "0.24.4",
 		"typedoc-plugin-markdown": "^3.15.1",
 		"typescript": "^5.0.4",
 		"vite": "^4.2.1",

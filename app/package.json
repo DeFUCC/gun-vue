@@ -26,7 +26,7 @@
 	},
 	"devDependencies": {
 		"@capacitor/cli": "^4.7.3",
-		"@iconify/json": "^2.2.50",
+		"@iconify/json": "^2.2.51",
 		"@tauri-apps/cli": "^1.2.3",
 		"@unocss/extractor-pug": "0.51.4",
 		"@vitejs/plugin-vue": "^4.1.0",

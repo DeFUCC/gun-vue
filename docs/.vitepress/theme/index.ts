@@ -7,6 +7,7 @@ import 'uno.css'
 export default {
   extends: DefaultTheme,
   async enhanceApp({ app }) {
+    //@ts-expect-error
     if (!import.meta.env.SSR) {
       const { GunVuePlugin } = await import('../../../src/components')
       app.use(GunVuePlugin)

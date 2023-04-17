@@ -1,12 +1,17 @@
-import { defineConfig } from "vitepress";
+import { defineConfig, DefaultTheme } from "vitepress";
 
 import path from "path";
 import { fileURLToPath } from "url";
 
 import Unocss from 'unocss/vite'
 
+import { sidebar } from './navigation'
+
+//@ts-expect-error
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
+
+
 
 export default defineConfig({
 	lang: "en-US",
@@ -26,6 +31,10 @@ export default defineConfig({
 		},
 	},
 	themeConfig: {
-		logo: 'gun-vue-logo.svg'
+		logo: 'gun-vue-logo.svg',
+		search: {
+			provider: 'local'
+		},
+		sidebar
 	}
 });
