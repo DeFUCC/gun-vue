@@ -1,5 +1,5 @@
 /**
- * @module DictLangs
+ * @module Languages
  * @group Dictionary
  */
 

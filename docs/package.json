@@ -34,6 +34,7 @@
 		"@unocss/extractor-pug": "0.51.4",
 		"pug": "^3.0.2",
 		"unocss": "^0.51.4",
-		"vitepress": "1.0.0-alpha.71"
+		"vitepress": "1.0.0-alpha.71",
+		"@modyfi/vite-plugin-yaml": "^1.0.4"
 	}
 }

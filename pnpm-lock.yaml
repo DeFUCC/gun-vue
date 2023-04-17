@@ -281,6 +281,9 @@ importers:
         specifier: 0.51.4
         version: 0.51.4
     devDependencies:
+      '@modyfi/vite-plugin-yaml':
+        specifier: ^1.0.4
+        version: 1.0.4(vite@4.2.1)
       '@unocss/extractor-pug':
         specifier: 0.51.4
         version: 0.51.4(pug@3.0.2)
@@ -2346,6 +2349,19 @@ packages:
       fs-extra: 8.1.0
       globby: 11.1.0
       read-yaml-file: 1.1.0
+    dev: true
+
+  /@modyfi/vite-plugin-yaml@1.0.4(vite@4.2.1):
+    resolution: {integrity: sha512-qkT0KiR3AQQRfUvDzLv4+1rYAzXj+QmGhAbyUd0Ordf9xynK76i758lk5GiEfxuQxbvdqDaJ9oXkH/KacbSjQQ==}
+    peerDependencies:
+      vite: ^2.6.0 || ^3.0.0 || ^4.0.0
+    dependencies:
+      '@rollup/pluginutils': 5.0.2(rollup@3.19.1)
+      js-yaml: 4.1.0
+      tosource: 2.0.0-alpha.3
+      vite: 4.2.1
+    transitivePeerDependencies:
+      - rollup
     dev: true
 
   /@nodelib/fs.scandir@2.1.5:
@@ -8178,6 +8194,11 @@ packages:
   /torrent-piece@2.0.1:
     resolution: {integrity: sha512-JLSOyvQVLI6JTWqioY4vFL0JkEUKQcaHQsU3loxkCvPTSttw8ePs2tFwsP4XIjw99Fz8EdOzt/4faykcbnPbCQ==}
     dev: false
+
+  /tosource@2.0.0-alpha.3:
+    resolution: {integrity: sha512-KAB2lrSS48y91MzFPFuDg4hLbvDiyTjOVgaK7Erw+5AmZXNq4sFRVn8r6yxSLuNs15PaokrDRpS61ERY9uZOug==}
+    engines: {node: '>=10'}
+    dev: true
 
   /totalist@3.0.0:
     resolution: {integrity: sha512-eM+pCBxXO/njtF7vdFsHuqb+ElbxqtI4r5EAvk6grfAFyJ6IvWlSkfZ5T9ozC6xWw3Fj1fGoSmrl0gUs46JVIw==}

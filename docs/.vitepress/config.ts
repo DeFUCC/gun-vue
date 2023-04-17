@@ -1,17 +1,6 @@
 import { defineConfig, DefaultTheme } from "vitepress";
 
-import path from "path";
-import { fileURLToPath } from "url";
-
-import Unocss from 'unocss/vite'
-
 import { sidebar } from './navigation'
-
-//@ts-expect-error
-const filename = fileURLToPath(import.meta.url);
-const dirname = path.dirname(filename);
-
-
 
 export default defineConfig({
 	lang: "en-US",
@@ -19,17 +8,6 @@ export default defineConfig({
 	description: 'Reactive p2p crypto graph app toolkit',
 	base: "/docs/",
 	outDir: "../app/public/docs",
-	vite: {
-		plugins: [
-			Unocss(),
-		],
-		resolve: {
-			alias: {
-				"#components": path.resolve(dirname, "../../src/components"),
-				"#composables": path.resolve(dirname, "../../src/composables"),
-			},
-		},
-	},
 	themeConfig: {
 		logo: 'gun-vue-logo.svg',
 		search: {
