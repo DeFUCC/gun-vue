@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.15.1
+
+### Patch Changes
+
+- Better docs with video blog and more!
+- Updated dependencies
+  - @gun-vue/composables@0.15.1
+
 ## 0.15.0
 
 ### Minor Changes
