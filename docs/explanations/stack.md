@@ -14,6 +14,12 @@ The name of the app states the two main libs that we use. But there's so much mo
 
 - [Vite](https://vitejs.dev) - Next Generation Frontend Tooling
 
+## Docs
+
+- [Vitepress](https://vitepress.dev/) - Vite & Vue Powered Static Site Generator. Simple, powerful, and fast. Meet the modern SSG framework you've always wanted.
+  - [Local search](https://github.com/vuejs/vitepress/blob/1769d329cc1f517136d9a543385edce335e5dd24/src/node/plugins/localSearchPlugin.ts) - need to fix the indexing (https://github.com/lucaong/minisearch/)
+  - [Config](https://vitepress.dev/reference/site-config)
+
 ## Relay
 
 - [Express](http://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
