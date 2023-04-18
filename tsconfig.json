@@ -4,6 +4,7 @@
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
 		"module": "esnext",
+		"target": "esnext",
 		"moduleResolution": "Node",
 		"paths": {
 			"#composables": [

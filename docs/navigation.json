@@ -7,6 +7,19 @@
         "link": "/basics/what-is"
       },
       {
+        "text": "Video blog",
+        "link": "/basics/video"
+      },
+      {
+        "text": "Tech stack",
+        "link": "/basics/stack"
+      }
+    ]
+  },
+  {
+    "text": "Tutorials",
+    "items": [
+      {
         "text": "Getting started",
         "link": "/reference/README"
       }
@@ -22,11 +35,11 @@
     ]
   },
   {
-    "text": "Tutorials",
+    "text": "Explanations",
     "items": [
       {
-        "text": "Getting started",
-        "link": "/tutorials/getting-started"
+        "text": "CRDTs: How it works and why",
+        "link": "/explanations/crdt"
       }
     ]
   },
@@ -34,7 +47,7 @@
     "text": "Reference",
     "items": [
       {
-        "text": "Reference",
+        "text": "Composable modules",
         "link": "/reference/modules"
       }
     ]

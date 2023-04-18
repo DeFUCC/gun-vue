@@ -12,7 +12,9 @@
 		"build": "vite build --base=./ --emptyOutDir",
 		"deploy": "sh deploy.sh",
 		"dev": "vite --host",
-		"preview": "vite preview --host"
+		"preview": "vite preview --host",
+		"td": "tauri dev",
+		"tb": "tauri build"
 	},
 	"dependencies": {
 		"@capacitor/android": "^4.7.3",

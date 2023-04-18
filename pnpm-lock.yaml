@@ -280,6 +280,9 @@ importers:
       '@unocss/reset':
         specifier: 0.51.4
         version: 0.51.4
+      vue3-youtube:
+        specifier: ^0.1.9
+        version: 0.1.9
     devDependencies:
       '@modyfi/vite-plugin-yaml':
         specifier: ^1.0.4
@@ -290,6 +293,9 @@ importers:
       pug:
         specifier: ^3.0.2
         version: 3.0.2
+      sitemap-ts:
+        specifier: ^1.2.2
+        version: 1.2.2
       unocss:
         specifier: ^0.51.4
         version: 0.51.4(postcss@8.4.21)(rollup@2.79.1)(vite@4.2.1)
@@ -2732,6 +2738,10 @@ packages:
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
     dev: true
 
+  /@types/node@17.0.45:
+    resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
+    dev: true
+
   /@types/node@18.0.6:
     resolution: {integrity: sha512-/xUq6H2aQm261exT6iZTMifUySEt4GR5KX8eYyY+C4MSNPqSh9oNIP7tz2GLKTlFaiBbgZNxffoR3CVRG+cljw==}
     dev: true
@@ -2760,6 +2770,12 @@ packages:
 
   /@types/resolve@1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
+    dependencies:
+      '@types/node': 18.0.6
+    dev: true
+
+  /@types/sax@1.2.4:
+    resolution: {integrity: sha512-pSAff4IAxJjfAXUG6tFkO7dsSbTmf8CtUpfhhZ5VhkRpC4628tJhh3+V6H1E+/Gs9piSzYKT5yzHO5M4GG9jkw==}
     dependencies:
       '@types/node': 18.0.6
     dev: true
@@ -2797,6 +2813,10 @@ packages:
       '@types/parse-torrent': 5.8.4
       '@types/simple-peer': 9.11.5
     dev: true
+
+  /@types/youtube@0.0.39:
+    resolution: {integrity: sha512-naVjyTZT/CoNwEQW3+mf9E/x6sgB7QIPbRDtVlPUpHlmuQTk+j6gQBy0T5CRkV8oC0GYQjMgfr3VdueTSVLTjw==}
+    dev: false
 
   /@typescript-eslint/eslint-plugin@5.58.0(@typescript-eslint/parser@5.58.0)(eslint@8.38.0)(typescript@5.0.4):
     resolution: {integrity: sha512-vxHvLhH0qgBd3/tW6/VccptSfc8FxPQIkmNTVLWcCOVqSBvqpnKkBTYrhcGlXfSnd78azwe+PsjYFj0X34/njA==}
@@ -3602,6 +3622,10 @@ packages:
       normalize-path: 3.0.0
       picomatch: 2.3.1
 
+  /arg@5.0.2:
+    resolution: {integrity: sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg==}
+    dev: true
+
   /argparse@1.0.10:
     resolution: {integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==}
     dependencies:
@@ -4298,6 +4322,11 @@ packages:
   /core-js@2.6.12:
     resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
     deprecated: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+    requiresBuild: true
+    dev: false
+
+  /core-js@3.30.1:
+    resolution: {integrity: sha512-ZNS5nbiSwDTq4hFosEDqm65izl2CWmLz0hARJMyNQBgkUZMIF51cQiMvIQKA6hvuaeWxQDP3hEedM1JZIgTldQ==}
     requiresBuild: true
     dev: false
 
@@ -5474,6 +5503,10 @@ packages:
       call-bind: 1.0.2
       get-intrinsic: 1.2.0
     dev: true
+
+  /get-youtube-id@1.0.1:
+    resolution: {integrity: sha512-5yidLzoLXbtw82a/Wb7LrajkGn29BM6JuLWeHyNfzOGp1weGyW4+7eMz6cP23+etqj27VlOFtq8fFFDMLq/FXQ==}
+    dev: false
 
   /glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -7769,6 +7802,26 @@ packages:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
     dev: true
 
+  /sitemap-ts@1.2.2:
+    resolution: {integrity: sha512-1ITMV/Ck3oinMb8eeGZh6ff/b4foDsTlMx9bnOBs5ZME1F0MqcRqMj4rRFmIdnZYeJtptJimNcAN1XTEKdHGrw==}
+    dependencies:
+      '@antfu/utils': 0.7.2
+      fast-glob: 3.2.12
+      sitemap: 7.1.1
+      xml-formatter: 3.2.0
+    dev: true
+
+  /sitemap@7.1.1:
+    resolution: {integrity: sha512-mK3aFtjz4VdJN0igpIJrinf3EO8U8mxOPsTBzSsy06UtjZQJ3YY3o3Xa7zSc5nMqcMrRwlChHZ18Kxg0caiPBg==}
+    engines: {node: '>=12.0.0', npm: '>=5.6.0'}
+    hasBin: true
+    dependencies:
+      '@types/node': 17.0.45
+      '@types/sax': 1.2.4
+      arg: 5.0.2
+      sax: 1.2.4
+    dev: true
+
   /sjcl@1.0.8:
     resolution: {integrity: sha512-LzIjEQ0S0DpIgnxMEayM1rq9aGwGRG4OnZhCdjx7glTaJtf4zRfpg87ImfjSJjoW9vKpagd82McDOwbRT5kQKQ==}
     dev: true
@@ -8952,6 +9005,15 @@ packages:
       vue: 3.2.47
     dev: false
 
+  /vue3-youtube@0.1.9:
+    resolution: {integrity: sha512-DhEbLsXDRHF7Cf5eB8vuoAbK+WiFuOHa65vlHU3XE5xky058ZK5/jAtHGr+JGhW0Xy2bSl8Eezz6/cR8GmNzgw==}
+    dependencies:
+      '@types/youtube': 0.0.39
+      core-js: 3.30.1
+      get-youtube-id: 1.0.1
+      vue: 3.2.47
+    dev: false
+
   /vue@3.2.47:
     resolution: {integrity: sha512-60188y/9Dc9WVrAZeUVSDxRQOZ+z+y5nO2ts9jWXSTkMvayiWxCWOWtBQoYjLeccfXkiiPZWAHcV+WTPhkqJHQ==}
     dependencies:
@@ -9321,9 +9383,21 @@ packages:
       utf-8-validate: 5.0.10
     dev: false
 
+  /xml-formatter@3.2.0:
+    resolution: {integrity: sha512-PYROODIUDHz1SDFePg2VThajPOuSmvo/PrYRKARcSc9xxKKs62EN9uar60IIxxknzmOSNDAxlylpw34bQp0g/Q==}
+    engines: {node: '>= 14'}
+    dependencies:
+      xml-parser-xo: 4.0.5
+    dev: true
+
   /xml-name-validator@4.0.0:
     resolution: {integrity: sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==}
     engines: {node: '>=12'}
+    dev: true
+
+  /xml-parser-xo@4.0.5:
+    resolution: {integrity: sha512-UWXOHMQ4ySxpUiU3S/9KzPOhninlL8SN1xFfWgX9WjgoZWoLKtEeJIEz4jhKtdFsoZBCYjg9rDEP3qfnpiHagQ==}
+    engines: {node: '>= 14'}
     dev: true
 
   /xml2js@0.4.23:

@@ -4,10 +4,10 @@ layout: home
 hero:
   name: Gun-Vue
   text: Reactive crypto graph webapp toolbox
-  tagline: Pluggable Vue composable APIs powered by GUN graph database and SEA cryptography
+  tagline: Pluggable Vue UI powered by GUN graph database and SEA cryptography
   image:
     src: gun-vue-logo.svg
-    alt: Gun-Avatar
+    alt: Gun-Vue logo
   actions:
     - theme: brand
       text: Getting Started
@@ -38,3 +38,7 @@ features:
   transform: translate(-50%, -50%) scale(2)  !important;
 }
 </style>
+
+<script setup>
+
+</script>

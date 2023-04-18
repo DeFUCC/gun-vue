@@ -25,7 +25,7 @@
 		"lib"
 	],
 	"scripts": {
-		"lib-build": "vite build",
+		"build": "vite build",
 		"serve": "vite preview"
 	},
 	"dependencies": {

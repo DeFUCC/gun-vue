@@ -11,7 +11,7 @@
 		"declarationMap": true,
 		"declarationDir": "public/types",
 		"skipLibCheck": true,
-		"module": "ESNext",
+		"module": "es2022",
 		"allowSyntheticDefaultImports": true,
 		"paths": {
 			"#composables": [
