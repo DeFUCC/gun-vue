@@ -9,10 +9,6 @@
       {
         "text": "Video blog",
         "link": "/basics/video"
-      },
-      {
-        "text": "Tech stack",
-        "link": "/basics/stack"
       }
     ]
   },
@@ -40,6 +36,10 @@
       {
         "text": "CRDTs: How it works and why",
         "link": "/explanations/crdt"
+      },
+      {
+        "text": "Tech stack",
+        "link": "/explanations/stack"
       }
     ]
   },
