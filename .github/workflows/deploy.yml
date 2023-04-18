@@ -26,7 +26,7 @@ jobs:
             - recursive: true
 
       - name: Build project
-        run: pnpm run build
+        run: pnpm run builds
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
