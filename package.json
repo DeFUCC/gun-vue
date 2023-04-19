@@ -13,7 +13,6 @@
 		"dev": "pnpm --filter app run dev",
 		"docs": "pnpm --filter docs run dev",
 		"builds": "pnpm -filter=!app -r --parallel run build && pnpm -filter app run build",
-		"build-line": "pnpm -r run build",
 		"preview": "pnpm --filter app run preview",
 		"relay": "pnpm --filter relay run start",
 		"tauri": "pnpm --filter app run tb",
