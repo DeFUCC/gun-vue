@@ -53,7 +53,7 @@
     "pug": "^3.0.2",
     "typescript": "5.0.4",
     "unocss": "^0.51.4",
-    "vite": "4.2.1",
+    "vite": "4.2.2",
     "vue-tsc": "^1.2.0"
   },
   "peerDependencies": {
