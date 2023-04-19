@@ -18,6 +18,10 @@
       {
         "text": "Getting started",
         "link": "/tutorials/getting-started"
+      },
+      {
+        "text": "Create your first app",
+        "link": "/tutorials/first-app"
       }
     ]
   },
