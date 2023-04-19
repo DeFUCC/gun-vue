@@ -11,10 +11,10 @@ hero:
   actions:
     - theme: brand
       text: Getting Started
-      link: /reference/README
+      link: /reference/typedoc/README
     - theme: alt
       text: Documentation
-      link: /reference/modules
+      link: /reference/typedoc/modules
 features:
   - icon: <span class="i-carbon:ibm-toolchain"></span>
     title: Reactive composables

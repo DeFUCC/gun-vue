@@ -1,5 +1,5 @@
 {
-  "relay": "https://peer.era.eco/gun",
+  "relay": "https://peer.wallie.io/gun",
   "routes": {
     "/": "Home",
     "/my/": "User",

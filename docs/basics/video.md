@@ -1,10 +1,10 @@
 ---
-title: Video blog
+title: Video updates
 ---
 
 # Gun-Vue video blog
 
-[Watch on YouTube](https://www.youtube.com/@defucc)
+### [Watch on YouTube](https://www.youtube.com/@defucc)
 
 <script setup>
 import VideoBlog from './VideoBlog.vue'
