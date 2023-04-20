@@ -7,7 +7,7 @@
         "link": "/basics/what-is"
       },
       {
-        "text": "Video blog",
+        "text": "Video updates",
         "link": "/basics/video"
       }
     ]
@@ -17,7 +17,11 @@
     "items": [
       {
         "text": "Getting started",
-        "link": "/reference/README"
+        "link": "/tutorials/getting-started"
+      },
+      {
+        "text": "Create your first app",
+        "link": "/tutorials/first-app"
       }
     ]
   },
@@ -40,15 +44,20 @@
       {
         "text": "Tech stack",
         "link": "/explanations/stack"
+      },
+      {
+        "text": "Questions and Answers",
+        "link": "/explanations/qna"
       }
     ]
   },
   {
     "text": "Reference",
+    "link": "/reference/",
     "items": [
       {
-        "text": "Composable modules",
-        "link": "/reference/modules"
+        "text": "Composables TypeDoc",
+        "link": "/reference/typedoc/modules"
       }
     ]
   }

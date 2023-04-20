@@ -16,4 +16,4 @@ composables/lib/
 **/.vitepress/cache
 **/.vitepress/dist
 **/.vitepress/.temp
-docs/reference
+docs/reference/typedoc

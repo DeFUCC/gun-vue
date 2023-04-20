@@ -37,9 +37,10 @@
 		"entryPoints": [
 			"../src/"
 		],
+		"readme": "reference/index.md",
 		"includeVersion": true,
 		"includes": "../src/",
-		"out": "reference",
+		"out": "reference/typedoc/",
 		"githubPages": false,
 		"entryPointStrategy": "expand",
 		"name": "Gun-Vue docs",

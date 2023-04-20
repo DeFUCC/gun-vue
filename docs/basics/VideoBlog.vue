@@ -1,5 +1,8 @@
 <script setup>
+import { useData } from 'vitepress'
 import { data } from './video.data'
+
+const { site } = useData()
 </script>
 
 <template lang='pug'>
@@ -11,5 +14,5 @@ import { data } from './video.data'
       .font-bold(v-if="post?.frontmatter?.version") v.{{ post?.frontmatter?.version }}
     YouTube(:src="post?.frontmatter?.youtube")
     .p-0 {{ post?.frontmatter?.description }}
-    a.font-bold.rounded-lg(:href="post.url") Read more
+    a.font-bold.rounded-lg(:href="site.base.slice(0,-1) + post.url") Read more
 </template>

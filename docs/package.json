@@ -22,8 +22,7 @@
 		"lib"
 	],
 	"scripts": {
-		"dev": "vitepress dev",
-		"dev-doc": "typedoc --plugin typedoc-plugin-markdown  --watch & vitepress dev",
+		"dev": "typedoc --plugin typedoc-plugin-markdown  --watch & vitepress dev",
 		"build": "typedoc --plugin typedoc-plugin-markdown  && vitepress build",
 		"serve": "vite preview",
 		"td": "typedoc --watch --plugin typedoc-plugin-markdown"
@@ -33,11 +32,11 @@
 		"vue3-youtube": "^0.1.9"
 	},
 	"devDependencies": {
+		"@modyfi/vite-plugin-yaml": "^1.0.4",
 		"@unocss/extractor-pug": "0.51.4",
 		"pug": "^3.0.2",
 		"sitemap-ts": "^1.2.2",
 		"unocss": "^0.51.4",
-		"vitepress": "1.0.0-alpha.71",
-		"@modyfi/vite-plugin-yaml": "^1.0.4"
+		"vitepress": "1.0.0-alpha.72"
 	}
 }
