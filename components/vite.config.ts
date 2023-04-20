@@ -18,6 +18,9 @@ export default defineConfig({
     vue(),
     Unocss(),
   ],
+  define: {
+    'process.env': {}
+  },
   build: {
     lib: {
       entry: path.resolve(dirname, "../src/components.ts"),
@@ -27,7 +30,7 @@ export default defineConfig({
     emptyOutDir: true,
     sourcemap: true,
     rollupOptions: {
-      external: ["vue"],
+      // external: ["vue"],
       output: {
         minifyInternalExports: false,
         manualChunks(id) {
@@ -38,14 +41,15 @@ export default defineConfig({
         // chunkFileNames: "[name].[format].js",
         // Provide global variables to use in the UMD build
         // for externalized deps
-        globals: {
-          vue: "Vue",
-        },
+        // globals: {
+        //   vue: "Vue",
+        // },
       },
     },
   },
   resolve: {
     alias: {
+      'vue': 'vue/dist/vue.esm-bundler.js',
       "#components": path.resolve(dirname, "../src/components.ts"),
       "#composables": path.resolve(dirname, "../src/composables.ts"),
     },

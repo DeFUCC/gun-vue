@@ -9,24 +9,17 @@
   <script type="importmap">
   {
     "imports": {
-      "vue": "https://unpkg.com/vue/dist/vue.esm-browser.js",
-      "@gun-vue/components": "https://unpkg.com/@gun-vue/components"
+      "@gun-vue/components": "./components/dist/components.js"
     }
   }
 </script>
 
   <script type="module">
 
-    import {GunVuePlugin} from '@gun-vue/components'
-    import {createApp} from 'vue'
+    import {createGunVueApp} from '@gun-vue/components'
 
-    createApp({
-      data() {
-        return {
-          message: 'Hello Vue!'
-        }
-      }
-    }).use(GunVuePlugin).mount('#app')
+    createGunVueApp('#app')
+
   </script>
 
   <link rel="stylesheet" href="https://unpkg.com/@gun-vue/components/dist/style.css">
@@ -36,11 +29,10 @@
 <body>
   <div id="app">
     <h1>TEST APP!</h1>
-    <p>{{message}}</p>
-    <user-icon></user-icon>
     <gun-relay-list></gun-relay-list>
-    <!-- <room-page></room-page> -->
-    <chat-room topic="P2P chat"></chat-room>
+    <p> {{message}}</p>
+    <user-icon></user-icon>
+    <chat-room topic="Example chat"></chat-room>
   </div>
 
 </body>
