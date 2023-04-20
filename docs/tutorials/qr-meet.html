@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GVAPP</title>
+  <script type="importmap">
+  {
+    "imports": {
+      "vue": "https://unpkg.com/vue/dist/vue.esm-browser.js",
+      "@gun-vue/components": "https://unpkg.com/@gun-vue/components"
+    }
+  }
+</script>
+
+  <script type="module">
+
+    import {GunVuePlugin} from '@gun-vue/components'
+    import {createApp} from 'vue'
+
+    createApp({
+      data() {
+        return {
+          message: 'Hello Vue!'
+        }
+      }
+    }).use(GunVuePlugin).mount('#app')
+  </script>
+
+  <link rel="stylesheet" href="https://unpkg.com/@gun-vue/components/dist/style.css">
+
+</head>
+
+<body>
+  <div id="app">
+    <h1>TEST APP!</h1>
+    <p>{{message}}</p>
+    <user-icon></user-icon>
+    <gun-relay-list></gun-relay-list>
+    <!-- <room-page></room-page> -->
+    <chat-room topic="P2P chat"></chat-room>
+  </div>
+
+</body>
+
+</html>
