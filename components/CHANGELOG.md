@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.15.2
+
+### Patch Changes
+
+- Feather light and lightning fast local-first apps
+- Updated dependencies
+  - @gun-vue/composables@0.15.2
+
 ## 0.15.1
 
 ### Patch Changes

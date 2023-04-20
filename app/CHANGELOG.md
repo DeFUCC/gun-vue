@@ -1,5 +1,11 @@
 # @gun-vue/app
 
+## 0.15.2
+
+### Patch Changes
+
+- Feather light and lightning fast local-first apps
+
 ## 0.15.1
 
 ### Patch Changes
