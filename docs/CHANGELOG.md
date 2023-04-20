@@ -1,5 +1,17 @@
 # @gun-vue/docs
 
+## 0.16.0
+
+### Minor Changes
+
+- Single file offline-first builds and playgrounds - p2p miracle!
+
+## 0.15.2
+
+### Patch Changes
+
+- Feather light and lightning fast local-first apps
+
 ## 0.15.1
 
 ### Patch Changes

@@ -1,5 +1,24 @@
 # @gun-vue/components
 
+## 0.16.0
+
+### Minor Changes
+
+- Single file offline-first builds and playgrounds - p2p miracle!
+
+### Patch Changes
+
+- Updated dependencies
+  - @gun-vue/composables@0.16.0
+
+## 0.15.2
+
+### Patch Changes
+
+- Feather light and lightning fast local-first apps
+- Updated dependencies
+  - @gun-vue/composables@0.15.2
+
 ## 0.15.1
 
 ### Patch Changes
