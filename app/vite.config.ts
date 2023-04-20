@@ -3,12 +3,14 @@ import vue from "@vitejs/plugin-vue";
 
 // import { VitePWA } from "vite-plugin-pwa";
 
+import { viteSingleFile } from "vite-plugin-singlefile"
+
 import Unocss from 'unocss/vite'
 
 import path from "path";
 import { fileURLToPath } from "url";
 
-// // @ts-expect-error
+// @ts-expect-error
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -29,6 +31,7 @@ export default defineConfig({
 	plugins: [
 		vue(),
 		Unocss(),
+		viteSingleFile(),
 		// VitePWA({
 		// 	registerType: "autoUpdate",
 		// 	workbox: {
