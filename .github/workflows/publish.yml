@@ -22,9 +22,10 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
-      - uses: pnpm/action-setup@v2
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
         with:
           version: 7.27
           run_install: |
@@ -33,8 +34,10 @@ jobs:
       - name: Build project
         run: pnpm run builds
 
-      - name: NPM Publish
+      - name: NPM CI
       - run: npm ci
+
+      - name: NPM publish
       - run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
