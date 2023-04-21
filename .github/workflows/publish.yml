@@ -34,7 +34,17 @@ jobs:
       - name: Build project
         run: pnpm run builds
 
-      - name: NPM publish
-        run: pnpm publish -r --provenance --access public
+      - name: Publish composables
+        run: cd composables && npm publish -r --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish components
+        run: cd components && npm publish -r --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish components
+        run: cd components && npm publish -r --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

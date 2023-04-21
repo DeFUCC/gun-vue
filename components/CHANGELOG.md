@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.16.2
+
+### Patch Changes
+
+- c93360ab: Testing automated NPM publishing
+- Updated dependencies [c93360ab]
+  - @gun-vue/composables@0.16.2
+
 ## 0.16.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @gun-vue/app
 
+## 0.16.2
+
+### Patch Changes
+
+- c93360ab: Testing automated NPM publishing
+
 ## 0.16.0
 
 ### Minor Changes
