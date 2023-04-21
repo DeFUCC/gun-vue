@@ -39,15 +39,18 @@ jobs:
 
       - name: Publish composables
         run: cd composables && npm publish --provenance --access public
+        continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish components
         run: cd components && npm publish --provenance --access public
+        continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish relay
         run: cd relay && npm publish --provenance --access public
+        continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
