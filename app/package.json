@@ -8,6 +8,11 @@
 		"url": "https://github.com/sponsors/davay42"
 	},
 	"author": "davay42 <davay@defucc.me>",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/defucc/gun-vue",
+		"directory": "app"
+	},
 	"scripts": {
 		"build": "vite build --base=./ --emptyOutDir",
 		"deploy": "sh deploy.sh",
