@@ -12,7 +12,7 @@
 		{
 			"type": "Composables",
 			"patterns": [
-				"composables/src/**/*.ts"
+				"/src/**/*.ts"
 			]
 		}
 	],
