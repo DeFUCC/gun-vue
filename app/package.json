@@ -18,8 +18,8 @@
 		".": "./dist/app.js",
 		"./style.css": "./dist/style.css"
 	},
-	"main": "./dist/components.js",
-	"module": "./dist/components.js",
+	"main": "./dist/app.js",
+	"module": "./dist/app.js",
 	"files": [
 		"dist/*"
 	],
