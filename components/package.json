@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/defucc/gun-vue",
+    "url": "https://github.com/defucc/gun-vue.git",
     "directory": "components"
   },
   "funding": {
