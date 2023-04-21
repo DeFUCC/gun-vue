@@ -35,9 +35,9 @@ jobs:
         run: pnpm run builds
 
       - name: NPM CI
-      - run: npm ci
+        run: npm ci
 
       - name: NPM publish
-      - run: npm publish --provenance --access public
+        run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
