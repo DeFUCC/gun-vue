@@ -1,5 +1,11 @@
 # @gun-vue/app
 
+## 0.16.3
+
+### Patch Changes
+
+- App package for the highest level of abstraction - low-code builder in a package.
+
 ## 0.16.2
 
 ### Patch Changes
