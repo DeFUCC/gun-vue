@@ -1,5 +1,11 @@
 # @gun-vue/relay
 
+## 0.4.2
+
+### Patch Changes
+
+- automatic verified builds
+
 ## 0.4.1
 
 ### Patch Changes
