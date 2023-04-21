@@ -33,27 +33,27 @@
 		"tb": "tauri build"
 	},
 	"dependencies": {
-		"@capacitor/android": "^4.7.3",
-		"@capacitor/core": "^4.7.3",
-		"@capacitor/ios": "^4.7.3",
+		"@capacitor/android": "4.7.3",
+		"@capacitor/core": "4.7.3",
+		"@capacitor/ios": "4.7.3",
 		"@unocss/reset": "0.51.5",
 		"@vueuse/core": "10.0.2",
-		"ola": "^1.2.1",
-		"vue": "^3.2.47",
-		"vue-router": "^4.1.6"
+		"ola": "1.2.1",
+		"vue": "3.2.47",
+		"vue-router": "4.1.6"
 	},
 	"devDependencies": {
-		"@capacitor/cli": "^4.7.3",
-		"@iconify/json": "^2.2.52",
-		"@tauri-apps/cli": "^1.2.3",
+		"@capacitor/cli": "4.7.3",
+		"@iconify/json": "2.2.52",
+		"@tauri-apps/cli": "1.2.3",
 		"@unocss/extractor-pug": "0.51.5",
-		"@vitejs/plugin-vue": "^4.1.0",
+		"@vitejs/plugin-vue": "4.1.0",
 		"pug": "3.0.2",
-		"unocss": "^0.51.5",
-		"vite": "^4.3.1",
-		"vite-plugin-pages": "^0.29.0",
-		"vite-plugin-pages-sitemap": "^1.4.5",
-		"vite-plugin-pwa": "^0.14.7",
-		"vite-plugin-singlefile": "^0.13.5"
+		"unocss": "0.51.5",
+		"vite": "4.3.1",
+		"vite-plugin-pages": "0.29.0",
+		"vite-plugin-pages-sitemap": "1.4.5",
+		"vite-plugin-pwa": "0.14.7",
+		"vite-plugin-singlefile": "0.13.5"
 	}
 }

@@ -7,8 +7,6 @@
 import { computed, reactive, watchEffect } from "vue";
 import type { ComputedRef, } from 'vue'
 import { gun, useGun, SEA, auth, isPair, user } from "../composables";
-//@ts-ignore no types
-import base32 from "base32";
 import { ISEAPair } from "gun";
 
 /**
@@ -63,14 +61,14 @@ export const pass: Pass = reactive({
 });
 
 function genLink(text = "", auth_url = "#/auth/"): string {
-	let base = base32.encode(text);
+	let base = encodeURIComponent(text);
 	return window.location.origin + window.location.pathname + auth_url + base;
 }
 
 export function parseLink(link: string, auth_url = "#/auth/"): string {
 	let index = link.indexOf(auth_url);
 	let base = link.substring(index + auth_url.length);
-	return base32.decode(base);
+	return decodeURIComponent(base)
 }
 
 let initiated = false;
@@ -136,7 +134,8 @@ async function setPass(text: string) {
 
 export function usePassLink(data: string, passPhrase: string) {
 	if (!data) return;
-	const decoded = base32.decode(data);
+	const decoded = decodeURIComponent(data)
+	console.log('dec', decoded)
 	if (decoded.substring(0, 3) == "SEA") {
 		if (passPhrase) {
 			logEncPass(decoded, passPhrase);
