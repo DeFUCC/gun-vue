@@ -1,5 +1,12 @@
 # @gun-vue/components
 
+## 0.16.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @gun-vue/composables@0.16.1
+
 ## 0.16.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.16.1
+
+### Patch Changes
+
+- Include all files ok!
+
 ## 0.16.0
 
 ### Minor Changes
