@@ -1,4 +1,4 @@
-cd _dist
+cd ../_dist
 
 git init
 git remote add origin git@github.com:DeFUCC/gun-vue.git

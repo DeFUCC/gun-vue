@@ -9,7 +9,7 @@ export async function deployToSkynet({
   APIKey: skynetApiKey = process.env.SKYNET_API_KEY,
   seed = process.env.SECRET_SEED,
   dataKey = 'Gun-Vue',
-  dir = "./_dist"
+  dir = "../_dist"
 } = {}) {
   const client = new SkynetClient('https://web3portal.com', { skynetApiKey })
   const { privateKey, publicKey } = genKeyPairFromSeed(seed);
