@@ -1,10 +1,6 @@
-![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/_public/media/svg/demo.svg)
+![@gun-vue logo](https://gun-vue.js.org/media/gun-vue-logo.svg)
 
 # Single page @gun-vue application build with Vite
-
-[![Add to Homescreen](https://img.shields.io/badge/Skynet-Add%20To%20Homescreen-00c65e?logo=skynet&labelColor=0d0d0d)](https://homescreen.hns.siasky.net/#/skylink/AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A)
-
-[Watch the video overview at Youtube](https://www.youtube.com/watch?v=4hpVRgVQvsY)
 
 A starter GUN client built with Vite plus some very useful plugins. With local express server to run Gun db at your dev machine.
 

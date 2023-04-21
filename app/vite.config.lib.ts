@@ -1,11 +1,7 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-
-// import { VitePWA } from "vite-plugin-pwa";
-
-import { viteSingleFile } from "vite-plugin-singlefile"
-
 import Unocss from 'unocss/vite'
+
 
 import path from "path";
 import { fileURLToPath } from "url";
@@ -27,15 +23,23 @@ export default defineConfig({
 		}
 	},
 	envPrefix: ['VITE_', 'TAURI_'],
-	publicDir: "public",
+	publicDir: "none",
 	plugins: [
-		vue(),
-		Unocss(),
-		viteSingleFile(),
+		vue(), Unocss()
 	],
+	define: {
+		'process.env': {}
+	},
 	base: './',
 	build: {
-		outDir: "../_dist/",
+		lib: {
+			entry: path.resolve(dirname, 'app.ts'),
+			name: 'Gun-Vue app',
+			// the proper extensions will be added
+			fileName: 'app',
+			formats: ["es"],
+		},
+		outDir: "dist",
 		target: "esnext",
 		minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
 		sourcemap: !!process.env.TAURI_DEBUG,
@@ -49,10 +53,11 @@ export default defineConfig({
 		}
 	},
 	optimizeDeps: {
-		include: ["vue", "vue-router", "@vueuse/core"],
+		include: ["vue", "@vueuse/core"],
 	},
 	resolve: {
 		alias: {
+			'vue': 'vue/dist/vue.esm-bundler.js',
 			"#components": path.resolve(dirname, "../src/components"),
 			"#composables": path.resolve(dirname, "../src/composables"),
 		},

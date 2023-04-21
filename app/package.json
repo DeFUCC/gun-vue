@@ -2,19 +2,31 @@
 	"name": "@gun-vue/app",
 	"version": "0.16.2",
 	"private": true,
+	"type": "module",
 	"homepage": "https://gun-vue.js.org",
 	"funding": {
 		"type": "github",
 		"url": "https://github.com/sponsors/davay42"
 	},
 	"author": "davay42 <davay@defucc.me>",
+	"license": "MIT",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/DeFUCC/gun-vue",
 		"directory": "app"
 	},
+	"exports": {
+		".": "./dist/app.js",
+		"./style.css": "./dist/style.css"
+	},
+	"main": "./dist/components.js",
+	"module": "./dist/components.js",
+	"files": [
+		"dist/*"
+	],
 	"scripts": {
-		"build": "vite build --base=./ --emptyOutDir",
+		"build-app": "vite build --emptyOutDir",
+		"build": "vite build --config vite.config.lib.ts",
 		"deploy": "sh deploy.sh",
 		"dev": "vite --host",
 		"preview": "vite preview --host",
