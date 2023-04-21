@@ -6,11 +6,9 @@ import Unocss from 'unocss/vite'
 import path from "path";
 import { fileURLToPath } from "url";
 
-// // @ts-expect-error
+// @ts-ignore
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
-
-/* globals process */
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -34,10 +32,10 @@ export default defineConfig({
 	build: {
 		lib: {
 			entry: path.resolve(dirname, 'app.ts'),
-			name: 'Gun-Vue app',
+			name: 'GunVue',
 			// the proper extensions will be added
 			fileName: 'app',
-			formats: ["es"],
+			formats: ["es", "iife"],
 		},
 		outDir: "dist",
 		target: "esnext",
