@@ -19,7 +19,7 @@
 		"declaration": true,
 		"emitDeclarationOnly": true,
 		"declarationMap": true,
-		"outDir": "dist/types",
+		"outDir": "types",
 		"baseUrl": ".",
 		"paths": {
 			"#composables": [

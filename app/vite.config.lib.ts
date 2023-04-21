@@ -23,7 +23,7 @@ export default defineConfig({
 		}
 	},
 	envPrefix: ['VITE_', 'TAURI_'],
-	publicDir: "none",
+	publicDir: "public-lib",
 	plugins: [
 		vue(), Unocss()
 	],
@@ -41,8 +41,7 @@ export default defineConfig({
 		},
 		outDir: "dist",
 		target: "esnext",
-		minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
-		sourcemap: !!process.env.TAURI_DEBUG,
+		sourcemap: false,
 		assetsInlineLimit: 100000000,
 		chunkSizeWarningLimit: 100000000,
 		cssCodeSplit: false,

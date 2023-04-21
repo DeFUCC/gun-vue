@@ -15,7 +15,7 @@ export default defineConfig({
       }
     }),],
   build: {
-    outDir: 'lib',
+    outDir: 'dist',
     lib: {
       entry: path.resolve(dirname, "../src/composables.ts"),
       formats: ["es"],

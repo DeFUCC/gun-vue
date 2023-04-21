@@ -1,6 +1,6 @@
 packages:
-  - "app"
-  - "relay"
   - "composables"
   - "components"
   - "docs"
+  - "app"
+  - "relay"
