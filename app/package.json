@@ -10,7 +10,7 @@
 	"author": "davay42 <davay@defucc.me>",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/defucc/gun-vue.git",
+		"url": "https://github.com/DeFUCC/gun-vue",
 		"directory": "app"
 	},
 	"scripts": {
