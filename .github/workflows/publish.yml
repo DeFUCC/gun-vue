@@ -23,6 +23,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          registry-url: https://registry.npmjs.org/
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
@@ -35,16 +36,16 @@ jobs:
         run: pnpm run builds
 
       - name: Publish composables
-        run: cd composables && npm publish -r --provenance --access public
+        run: cd composables && npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish components
-        run: cd components && npm publish -r --provenance --access public
+        run: cd components && npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish components
-        run: cd components && npm publish -r --provenance --access public
+      - name: Publish relay
+        run: cd relay && npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
