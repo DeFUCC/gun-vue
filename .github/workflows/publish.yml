@@ -4,14 +4,17 @@ on:
   push:
     tags:
       - "v.*"
-    branches:
-      - release
   workflow_dispatch:
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-
+    permissions:
+      id-token: write
+      contents: write
+      packages: write
+      pull-requests: write
+      issues: read
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -30,8 +33,8 @@ jobs:
       - name: Build project
         run: pnpm run builds
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_dist
+      - name: NPM Publish
+      - run: npm ci
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

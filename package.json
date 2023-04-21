@@ -1,8 +1,11 @@
 {
 	"name": "@gun-vue/repo",
-	"version": "0.16.0",
+	"version": "0.16.1",
 	"private": true,
 	"homepage": "https://gun-vue.js.org",
+	"repository": {
+		"url": "git+https://github.com/DeFUCC/gun-vue/"
+	},
 	"funding": {
 		"type": "github",
 		"url": "https://github.com/sponsors/davay42"
@@ -19,7 +22,7 @@
 		"deploy": "sh deploy.sh",
 		"change": "pnpm changeset",
 		"version": "pnpm changeset version",
-		"publish": "pnpm run builds && pnpm changeset publish"
+		"publish": "pnpm run builds && pnpm publish -r"
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.26.1",
