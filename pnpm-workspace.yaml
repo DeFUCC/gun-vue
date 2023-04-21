@@ -4,4 +4,4 @@ packages:
   - "docs"
   - "app"
   - "relay"
-  - "repo"
+  - "."

@@ -1,5 +1,5 @@
 {
-  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
+  "$schema": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/tooling/cli/schema.json",
   "build": {
     "beforeBuildCommand": "pnpm -w run builds",
     "beforeDevCommand": "pnpm run dev",
@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "Gun-Vue",
-    "version": "0.16.3"
+    "version": "0.16.4"
   },
   "tauri": {
     "allowlist": {

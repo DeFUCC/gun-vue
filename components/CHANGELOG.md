@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.16.4
+
+### Patch Changes
+
+- The publish pipeline is finished! Can go furthur
+- Updated dependencies
+  - @gun-vue/composables@0.16.4
+
 ## 0.16.3
 
 ### Patch Changes
