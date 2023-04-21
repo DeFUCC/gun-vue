@@ -28,15 +28,15 @@
 		"td": "typedoc --watch --plugin typedoc-plugin-markdown"
 	},
 	"dependencies": {
-		"@unocss/reset": "0.51.4",
+		"@unocss/reset": "0.51.5",
 		"vue3-youtube": "^0.1.9"
 	},
 	"devDependencies": {
 		"@modyfi/vite-plugin-yaml": "^1.0.4",
-		"@unocss/extractor-pug": "0.51.4",
+		"@unocss/extractor-pug": "0.51.5",
 		"pug": "^3.0.2",
 		"sitemap-ts": "^1.2.2",
-		"unocss": "^0.51.4",
-		"vitepress": "1.0.0-alpha.72"
+		"unocss": "^0.51.5",
+		"vitepress": "1.0.0-alpha.73"
 	}
 }
