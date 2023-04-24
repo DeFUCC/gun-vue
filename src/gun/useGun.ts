@@ -17,7 +17,6 @@ import "gun/lib/webrtc";
 
 
 import { relay } from './useRelay'
-import { shallowReactive } from 'vue';
 
 
 // https://github.com/amark/gun/wiki/volunteer.dht
@@ -25,11 +24,6 @@ import { shallowReactive } from 'vue';
 
 /** The main Gun instance for database operations */
 export let gun: IGunInstance;
-
-/** Secondary Gun instance for key management */
-let gun2: IGunInstance;
-
-export const gunInstances = shallowReactive([])
 
 /**
  * Instantiate a Gun instance for DB manipulations
@@ -46,7 +40,6 @@ export function useGun(options: GunOptions = { localStorage: false }): IGunInsta
     }
     console.log(opts.peers)
     gun = Gun(opts);
-    gunInstances.push(gun)
   }
   return gun;
 }
@@ -56,10 +49,9 @@ export function useGun(options: GunOptions = { localStorage: false }): IGunInsta
  */
 
 export function useGun2(options: object = { localStorage: false }): IGunInstance {
-  if (!gun2) {
-    gun2 = Gun({ peers: [relay.peer], ...options });
-    gunInstances.push(gun2)
-  }
+
+  const gun2 = Gun({ peers: [relay.peer], ...options });
+
   return gun2;
 }
 

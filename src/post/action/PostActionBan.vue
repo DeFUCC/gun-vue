@@ -1,12 +1,14 @@
 <script setup>
 import { ref } from 'vue'
-import { gun } from '#composables'
+import { useGun } from '#composables'
 
 const props = defineProps({
   tag: { type: String, default: '' },
   hash: { type: String, default: '' },
   host: { type: String, default: '' },
 })
+
+const gun = useGun()
 
 const banned = ref(false)
 

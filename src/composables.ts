@@ -1,4 +1,5 @@
 export * from "./account/composables"
+export * from "./auth/composables"
 export * from "./cast/composables"
 export * from "./chat/composables"
 export * from "./crypto/composables"

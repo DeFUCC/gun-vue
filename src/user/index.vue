@@ -1,5 +1,5 @@
 <script setup>
-import { gun } from '#composables';
+
 import { reactive, computed } from 'vue'
 
 

@@ -1,6 +1,6 @@
 /**
  * Manage user's password and credentials
- * @module Pass
+ * @module Auth
  * @group Users
  */
 
