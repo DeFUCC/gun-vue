@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 
 import * as Vue from 'vue'
-import { gun } from '../src/composables'
+import { useGun } from '../src/composables'
 
 import * as components from '../src/all-components'
 import { GunVuePlugin } from '../src/components'
@@ -18,11 +18,10 @@ export function createGunVueApp(
     }
   },
   init = app => console.log('GunVue app initiated')) {
-
+  const gun = useGun();
   const App = createApp(component)
   App.use(GunVuePlugin)
   init(App)
   App.mount(tag)
 
-  return { Gun: gun, Vue, App }
 }

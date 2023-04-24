@@ -16,7 +16,7 @@ const editPetname = ref(false)
 
 watch(() => props.pub, pub => {
   user.db.get('petnames').get(pub).on(async d => {
-    petname.value = await SEA.decrypt(d, user.pair())
+    petname.value = await user.decrypt(d)
   })
 }, { immediate: true })
 

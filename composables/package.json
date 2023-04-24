@@ -26,6 +26,7 @@
 		"serve": "vite preview"
 	},
 	"dependencies": {
+		"ses": "^0.18.4",
 		"@vueuse/core": "10.0.2",
 		"@vueuse/integrations": "10.0.2",
 		"@vueuse/math": "10.0.2",

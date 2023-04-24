@@ -3,6 +3,8 @@
  * @module Gun
  * @group Database
  */
+
+
 import type { GunOptions, IGunInstance } from 'gun'
 
 import Gun from "gun/gun";
@@ -13,12 +15,6 @@ import "gun/lib/store";
 import "gun/lib/rindexed";
 import "gun/lib/webrtc";
 
-
-// // // polyfiils for Gun 0.2020.1236
-// import { Buffer } from 'buffer'
-// window.Buffer = Buffer
-// window.setImmediate = setTimeout
-// window.global = {}
 
 import { relay } from './useRelay'
 import { shallowReactive } from 'vue';
@@ -31,7 +27,7 @@ import { shallowReactive } from 'vue';
 export let gun: IGunInstance;
 
 /** Secondary Gun instance for key management */
-export let gun2: IGunInstance;
+let gun2: IGunInstance;
 
 export const gunInstances = shallowReactive([])
 

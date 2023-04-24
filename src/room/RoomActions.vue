@@ -20,7 +20,7 @@ const roomPub = computed(() => {
 })
 
 async function download(enc) {
-  const dec = await SEA.decrypt(enc, user.pair());
+  const dec = await user.decrypt(enc)
   downloadFile(JSON.stringify(dec), 'application/json', `room-${room.profile?.name}.json`)
 }
 

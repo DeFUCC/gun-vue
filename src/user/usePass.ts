@@ -6,7 +6,7 @@
 
 import { computed, reactive, watchEffect } from "vue";
 import type { ComputedRef, } from 'vue'
-import { gun, useGun, SEA, auth, isPair, user } from "../composables";
+import { useGun, SEA, auth, isPair, user } from "../composables";
 import { ISEAPair } from "gun";
 
 /**
@@ -101,7 +101,7 @@ export function usePass(): UsePass {
 				return;
 			}
 			if (pass?.safe?.pass) {
-				pass.dec.pass = await SEA.decrypt(pass.safe.pass, user.pair());
+				pass.dec.pass = await user.decrypt(pass.safe.pass);
 				pass.input = pass.dec.pass || '';
 			}
 			if (pass?.safe?.enc) {
@@ -116,18 +116,21 @@ export function usePass(): UsePass {
 }
 
 export async function hasPass(pub: string) {
+	const gun = useGun();
 	return await gun.get(`~${pub}`).get("safe").get("enc").then();
 }
 
 async function logWithPass(pub: string, passphrase: string) {
+	const gun = useGun();
 	let encPair = await gun.get(`~${pub}`).get("safe").get("enc").then();
 	let pair = await SEA.decrypt(encPair, passphrase);
 	auth(pair);
 }
 
 async function setPass(text: string) {
+	const gun = useGun();
 	let encPair = await SEA.encrypt(user.pair(), text);
-	let encPass = await SEA.encrypt(text, user.pair());
+	let encPass = await user.encrypt(text);
 	gun.user().get("safe").get("enc").put(encPair);
 	gun.user().get("safe").get("pass").put(encPass);
 }

@@ -34,7 +34,7 @@ export function usePrivateChat(pub: string): Chat {
         text: message
       }
       const today = theDate.toLocaleDateString('en-CA')
-      const secret = await SEA.secret(chat.epub, user.pair())
+      const secret = await user.secret(chat.epub)
       const work = await SEA.work(secret, undefined, undefined, { salt: today })
       const enc = await SEA.encrypt(toSend, work)
 
@@ -68,7 +68,7 @@ export function usePrivateChat(pub: string): Chat {
     that.map().on(async (d: string | number, k: string) => {
       if (typeof d == 'number') return
       if (d && d.startsWith('SEA')) {
-        const secret = await SEA.secret(chat.epub, user.pair())
+        const secret = await user.secret(chat.epub)
         const work = await SEA.work(secret, undefined, undefined, { salt: today })
         const dec = await SEA.decrypt(d, work)
         if (!dec || typeof dec != 'object') return

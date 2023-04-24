@@ -78,7 +78,7 @@ export function useAccount(pubKey: MaybeRef<string>) {
 
     if (user.is) {
       gun.user().get('petnames').get(pub.value).on(async (d: string) => {
-        acc.petname = await SEA.decrypt(d, user.pair())
+        acc.petname = await user.decrypt(d)
       })
     }
 
@@ -105,6 +105,6 @@ export async function setPetname(pub: string, name: string) {
   const { user } = useUser()
   if (!user.is) return
   const gun = useGun();
-  const enc = await SEA.encrypt(name, user.pair())
+  const enc = await user.encrypt(name)
   gun.user().get('petnames').get(pub).put(enc)
 }

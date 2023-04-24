@@ -36,8 +36,6 @@ export function createGunVueApp(
   App.use(GunVuePlugin)
   init(App)
   App.mount(tag)
-
-  return { Gun: gun, Vue, App }
 }
 
 

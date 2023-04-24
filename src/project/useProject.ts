@@ -5,7 +5,7 @@
  */
 
 import { reactive, ref, computed } from 'vue'
-import { gun, useGun2, useGun, genUUID } from '../gun/composables'
+import { useGun2, useGun, genUUID } from '../gun/composables'
 import { currentRoom } from '../room/composables'
 import { useUser } from '../user/composables'
 import { SEA } from 'gun'
@@ -58,6 +58,7 @@ export async function addProject() {
 }
 
 export function updateProjectField(title: string, field: string, value: string) {
+  const gun = useGun();
   const proj = gun.user().get('projects').get(title)
   proj.get(field).put(value, () => {
     proj.get('updatedAt').put(Date.now())
@@ -139,7 +140,9 @@ export async function removeProject(path: string) {
     })
 
   } else if (currentRoom.hosts[user.pub]) {
-    const pair = await SEA.decrypt(currentRoom.hosts[user.pub].enc, user.pair())
+    const pair = await user.decrypt(currentRoom.hosts[user.pub].enc)
+
+    //@ts-ignore
     gun2.user().auth(pair, () => {
       gun2.user().get('projects').get(path).put(null)
     })

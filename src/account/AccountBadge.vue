@@ -27,7 +27,7 @@ watchEffect(() => {
     name.value = d
   })
   gun.user().get('petnames').get(props.pub).on(async d => {
-    petname.value = await SEA.decrypt(d, user.pair())
+    petname.value = await user.decrypt(d)
   })
 });
 

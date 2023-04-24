@@ -4,8 +4,6 @@
  */
 
 import {
-  SEA,
-  gun,
   useGun,
   generateCerts,
   useUser,
@@ -127,7 +125,7 @@ export function useRoom(pub = currentRoom.pub) {
 export function useRoomLogo(pub = currentRoom.pub) {
 
   const logo = ref()
-
+  const gun = useGun();
   gun.user(pub).get('profile').get('logo').on(hash => {
     if (!hash) {
       logo.value = null
@@ -220,14 +218,15 @@ export async function createRoom({ pair, name }: { pair: ISEAPair, name?: string
     list: Object.keys(config?.features).map(f => ({ tag: f, personal: true })),
   });
 
-  const enc = await SEA.encrypt(pair, user.pair());
-  const dec = await SEA.decrypt(enc, user.pair());
+  const enc = await user.encrypt(`${pair}`);
+  const dec = await user.decrypt(enc);
 
   const gunConfig = {
     relay: relay.peer,
     features: config.features,
     room: {
-      pub: dec.pub,
+      //@ts-ignore
+      pub: dec?.pub,
       hosts: { [user.pub]: { enc, ...certs } },
       features,
     }
@@ -273,7 +272,8 @@ export async function createRoom({ pair, name }: { pair: ISEAPair, name?: string
 }
 
 export async function recreateRoom(enc: string, name?: string) {
-  const dec: ISEAPair = await SEA.decrypt(enc, user.pair());
+  //@ts-ignore
+  const dec: ISEAPair = await user.decrypt(enc);
   createRoom({
     pair: dec,
     name
@@ -336,6 +336,7 @@ export async function addPersonal({
   pub: string
   cert: string
 }) {
+  const gun = useGun();
   if (!cert) cert = await gun.user(pub).get("features").get(tag).then();
   if (!cert) {
     cert = currentRoom.features?.[`${tag}`];
@@ -344,6 +345,7 @@ export async function addPersonal({
     console.log("No certificate found");
     return;
   }
+
   gun
     .user(pub)
     .get(`${tag}`)

@@ -7,7 +7,7 @@
 import { computed, reactive, ref } from "vue";
 import ms from "ms";
 
-import { useGun, gun, currentRoom, useUser, removeEmptyKeys } from "../composables";
+import { useGun, currentRoom, useUser, removeEmptyKeys } from "../composables";
 import { useZip } from "../file/composables";
 import { hashObj, hashText, safeHash } from "../crypto/composables";
 
@@ -116,6 +116,7 @@ export function usePost({ hash = "", loadMedia = true }: {
  */
 
 export async function addPost(to, post) {
+  const gun = useGun();
   const { user } = useUser();
   const { icon, cover, content } = post;
   post.icon = await saveToHash("icon", icon);
@@ -165,6 +166,7 @@ export async function downloadPost(post: PostContent) {
 }
 
 export async function loadFromHash(category: string, hash: string): Promise<string> {
+
   if (
     category &&
     hash &&
@@ -172,6 +174,7 @@ export async function loadFromHash(category: string, hash: string): Promise<stri
     hash.length == 44 &&
     hash.slice(0, 5) != "data:"
   ) {
+    const gun = useGun();
     return await gun.get('posts').get(`#${category}`).get(hash).then();
   }
   return hash;
@@ -179,11 +182,12 @@ export async function loadFromHash(category: string, hash: string): Promise<stri
 
 async function saveToHash(category: string, text: string) {
   if (category && text) {
-    const hash = await hashText(text);
-    gun.get('posts').get(`#${category}`).get(`${hash}`).put(text);
-    return hash;
+    const hash = await hashText(text)
+    const gun = useGun()
+    gun.get('posts').get(`#${category}`).get(`${hash}`).put(text)
+    return hash
   } else {
-    return text;
+    return text
   }
 }
 
@@ -209,7 +213,7 @@ export async function parsePost(data: string): Promise<string> {
 export function usePostTimestamp({ hash }: {
   hash: string
 }) {
-
+  const gun = useGun()
   const timestamp = ref(0)
 
   const msTime = computed(() => ms(Date.now() - timestamp.value || 1000))
