@@ -12,6 +12,7 @@ function setBrushColor(color: string) {
   draw.enabled = true
 }
 
+
 </script>
 
 <template lang="pug">

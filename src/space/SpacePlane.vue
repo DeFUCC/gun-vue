@@ -98,7 +98,7 @@ onBeforeUnmount(() => {
     font-family="Commissioner , sans-serif", 
     text-anchor="middle", 
     dominant-baseline="middle", 
-    :viewbox="`${-pad + pos[0] - width / 2} ${-pad + pos[1] - height / 2} ${width * zoom + 2 * pad} ${height * zoom + 2 * pad}`", 
+    :viewBox="`${-pad + pos[0] - width / 2} ${-pad + pos[1] - height / 2} ${width * zoom + 2 * pad} ${height * zoom + 2 * pad}`", 
     @click="!user.is ? user.auth = true : null; "
     )
 
@@ -108,52 +108,58 @@ onBeforeUnmount(() => {
       clipPath#mask(clipPathUnits="objectBoundingBox")
         circle(r=".5", cx=".5", cy=".5")
 
-    text.text-xs(
-      text-anchor="end", 
-      :transform="`translate(${pos[0] + width / 2 - 10} ${pos[1] - height / 2 + 20})`"
-      ) {{ pos }}
-
     g.opacity-90(
       v-for="guest in guests", :key="guest.draw", 
       v-html="guest.draw")
 
-    svg.opacity-70(
-      ref="paper", 
-      :x="pos[0] - width / 2 - pad", 
-      :y="pos[1] - height / 2 - pad", 
-      :viewbox="`${-pad + pos[0] - width / 2} ${-pad + pos[1] - height / 2} ${width + 2 * pad} ${height + 2 * pad}`", 
-      :class="{ 'pointer-events-none': !draw.enabled, 'touch-none': draw.enabled }")
+    g.frame(
+      :transform="`translate(${pos[0] - width / 2 -pad} ${pos[1] - height / 2 -pad})`"
+      )
+      text.text-xs(
+        text-anchor="end", 
+          :x="width-10"
+          :y="20"
+        ) {{ pos }}
 
-    rect(
-      ref="area", 
-      :x="pos[0] - width / 2", 
-      :y="pos[1] - height / 2", 
-      rx="12", :width="width", :height="height", 
-      fill="none", stroke="#3333", stroke-width="1")
+      rect(
+        ref="area", :x="pad" :y="pad"
+        rx="12", :width="width", :height="height", 
+        fill="none", stroke="#3333", stroke-width="1")
 
-    g.link
-      line(
-        :x1="pos[0]", 
-        :x2="space.my.mouse.x", 
-        :y1="pos[1]", 
-        :y2="space.my.mouse.y", 
-        :stroke="user.color", 
-        stroke-dasharray="6")
+      svg.opacity-70(
+        ref="paper", 
+        :x="0", 
+        :y="0", 
+        :width="width"
+        :height="height"
+        :viewBox="`${ pos[0] - width / 2} ${ pos[1] - height / 2} ${width + 2 * pad} ${height + 2 * pad}`", 
+        :class="{ 'pointer-events-none': !draw.enabled, 'touch-none': draw.enabled }")
 
-    g.pointer(:transform="`translate(${pos[0]} ${pos[1]})`")
-      g.mouse
-        circle(style="filter:url(#shadowButton)", :fill="user.color", r="8")
+    g.user
+      g.link
+        line(
+          :x1="pos[0]", 
+          :x2="space.my.mouse.x", 
+          :y1="pos[1]", 
+          :y2="space.my.mouse.y", 
+          :stroke="user.color", 
+          stroke-dasharray="6")
 
-    g.arrows
-      space-arrow(v-for="(link, key) in links", :key="key", :link="link", @user="selectedUser.pub = $event")
+      g.pointer(:transform="`translate(${pos[0]} ${pos[1]})`")
+        g.mouse
+          circle(style="filter:url(#shadowButton)", :fill="user.color", r="8")
 
-    g.guests
-      SpaceGuest.cursor-pointer.transition-all.ease-out.duration-600(
-        v-for="guest in guests", 
-        :key="guest.pub", 
-        v-bind="guest", 
-        :style="{ transform: `translate(${guest?.pos?.x}px, ${guest?.pos?.y}px)` }", 
-        @click="selectedUser.pub = guest.pub")
+    g.users
+      g.arrows
+        space-arrow(v-for="(link, key) in links", :key="key", :link="link", @user="selectedUser.pub = $event")
+
+      g.guests
+        SpaceGuest.cursor-pointer.transition-all.ease-out.duration-600(
+          v-for="guest in guests", 
+          :key="guest.pub", 
+          v-bind="guest", 
+          :style="{ transform: `translate(${guest?.pos?.x}px, ${guest?.pos?.y}px)` }", 
+          @click="selectedUser.pub = guest.pub")
 
   ui-layer.z-4000(
     :open="!!selectedUser.pub", 
