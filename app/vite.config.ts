@@ -10,7 +10,7 @@ import Unocss from 'unocss/vite'
 import path from "path";
 import { fileURLToPath } from "url";
 
-// // @ts-expect-error
+// @ts-ignore
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 

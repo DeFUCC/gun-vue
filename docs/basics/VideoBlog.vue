@@ -12,7 +12,16 @@ const { site } = useData()
     .text-sm.-mt-2.flex.gap-2
       .opacity-60 {{ post?.frontmatter?.date?.slice(0,10) }} 
       .font-bold(v-if="post?.frontmatter?.version") v.{{ post?.frontmatter?.version }}
-    YouTube(:src="post?.frontmatter?.youtube")
+    iframe.shadow-2xl.rounded-lg(
+      v-if="post?.frontmatter?.youtube" 
+      loading="lazy"
+      style="aspect-ratio: 16 / 9.5;"
+      :src="`https://www.youtube.com/embed/${post?.frontmatter?.youtube}`", 
+      title="YouTube video player", 
+      frameborder="0", 
+      allowfullscreen
+      )
+
     .p-0 {{ post?.frontmatter?.description }}
     a.font-bold.rounded-lg(:href="site.base.slice(0,-1) + post.url") Read more
 </template>

@@ -280,9 +280,6 @@ importers:
       '@unocss/reset':
         specifier: 0.51.5
         version: 0.51.5
-      vue3-youtube:
-        specifier: 0.1.9
-        version: 0.1.9
     devDependencies:
       '@modyfi/vite-plugin-yaml':
         specifier: 1.0.4
@@ -2799,10 +2796,6 @@ packages:
       '@types/simple-peer': 9.11.5
     dev: true
 
-  /@types/youtube@0.0.39:
-    resolution: {integrity: sha512-naVjyTZT/CoNwEQW3+mf9E/x6sgB7QIPbRDtVlPUpHlmuQTk+j6gQBy0T5CRkV8oC0GYQjMgfr3VdueTSVLTjw==}
-    dev: false
-
   /@typescript-eslint/eslint-plugin@5.59.0(@typescript-eslint/parser@5.59.0)(eslint@8.38.0)(typescript@5.0.4):
     resolution: {integrity: sha512-p0QgrEyrxAWBecR56gyn3wkG15TJdI//eetInP3zYRewDh0XS+DhB3VUAd3QqvziFsfaQIoIuZMxZRB7vXYaYw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -4286,11 +4279,6 @@ packages:
     requiresBuild: true
     dev: false
 
-  /core-js@3.30.1:
-    resolution: {integrity: sha512-ZNS5nbiSwDTq4hFosEDqm65izl2CWmLz0hARJMyNQBgkUZMIF51cQiMvIQKA6hvuaeWxQDP3hEedM1JZIgTldQ==}
-    requiresBuild: true
-    dev: false
-
   /core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
     dev: false
@@ -5456,10 +5444,6 @@ packages:
       call-bind: 1.0.2
       get-intrinsic: 1.2.0
     dev: true
-
-  /get-youtube-id@1.0.1:
-    resolution: {integrity: sha512-5yidLzoLXbtw82a/Wb7LrajkGn29BM6JuLWeHyNfzOGp1weGyW4+7eMz6cP23+etqj27VlOFtq8fFFDMLq/FXQ==}
-    dev: false
 
   /glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -8959,15 +8943,6 @@ packages:
     peerDependencies:
       vue: '>=3.0.0'
     dependencies:
-      vue: 3.2.47
-    dev: false
-
-  /vue3-youtube@0.1.9:
-    resolution: {integrity: sha512-DhEbLsXDRHF7Cf5eB8vuoAbK+WiFuOHa65vlHU3XE5xky058ZK5/jAtHGr+JGhW0Xy2bSl8Eezz6/cR8GmNzgw==}
-    dependencies:
-      '@types/youtube': 0.0.39
-      core-js: 3.30.1
-      get-youtube-id: 1.0.1
       vue: 3.2.47
     dev: false
 

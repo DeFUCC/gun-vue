@@ -1,5 +1,5 @@
 import DefaultTheme from 'vitepress/theme'
-import YouTube from 'vue3-youtube'
+
 
 import '@unocss/reset/tailwind.css'
 import 'uno.css'
@@ -15,6 +15,5 @@ export default {
       const { GunVuePlugin } = await import('../../../src/components')
       app.use(GunVuePlugin)
     }
-    app.component('YouTube', YouTube)
   }
 }

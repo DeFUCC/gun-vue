@@ -9,8 +9,13 @@ const { page } = useData()
 <template lang="pug">
 layout
   template(#doc-before)
-    YouTube.mb-12(
+    iframe.shadow-2xl.rounded-lg.w-full(
       v-if="page?.frontmatter?.youtube" 
-      :src="page?.frontmatter?.youtube"
+      loading="lazy"
+      style="aspect-ratio: 16 / 9.3;"
+      :src="`https://www.youtube.com/embed/${page?.frontmatter?.youtube}`", 
+      title="YouTube video player", 
+      frameborder="0", 
+      allowfullscreen
       )
 </template>
