@@ -1,0 +1,17 @@
+{
+  "name": "gun-es",
+  "private": true,
+  "version": "0.1.1239",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^4.3.2"
+  },
+  "dependencies": {
+    "gun": "^0.2020.1239"
+  }
+}

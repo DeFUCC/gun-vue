@@ -28,14 +28,14 @@
 		"td": "typedoc --watch --plugin typedoc-plugin-markdown"
 	},
 	"dependencies": {
-		"@unocss/reset": "0.51.5"
+		"@unocss/reset": "0.51.8"
 	},
 	"devDependencies": {
 		"@modyfi/vite-plugin-yaml": "1.0.4",
-		"@unocss/extractor-pug": "0.51.5",
+		"@unocss/extractor-pug": "0.51.8",
 		"pug": "3.0.2",
 		"sitemap-ts": "1.2.2",
-		"unocss": "0.51.5",
-		"vitepress": "1.0.0-alpha.73"
+		"unocss": "0.51.8",
+		"vitepress": "1.0.0-alpha.74"
 	}
 }

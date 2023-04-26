@@ -28,18 +28,18 @@
 	"devDependencies": {
 		"@changesets/cli": "2.26.1",
 		"@skynetlabs/skynet-nodejs": "2.9.0",
-		"@typescript-eslint/eslint-plugin": "5.59.0",
-		"@typescript-eslint/parser": "5.59.0",
-		"@volar/vue-language-plugin-pug": "1.4.2",
+		"@typescript-eslint/eslint-plugin": "5.59.1",
+		"@typescript-eslint/parser": "5.59.1",
+		"@volar/vue-language-plugin-pug": "1.4.4",
 		"cli-progress": "3.12.0",
 		"dotenv": "16.0.3",
-		"eslint": "8.38.0",
+		"eslint": "8.39.0",
 		"eslint-plugin-vue": "9.11.0",
 		"eslint-plugin-vue-pug": "0.6.0",
-		"typedoc": "0.24.4",
+		"typedoc": "0.24.6",
 		"typedoc-plugin-markdown": "3.15.2",
 		"typescript": "5.0.4",
-		"vite": "4.3.1",
+		"vite": "4.3.3",
 		"vue-eslint-parser": "9.1.1"
 	}
 }
