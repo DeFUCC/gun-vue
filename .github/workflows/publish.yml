@@ -34,6 +34,9 @@ jobs:
           run_install: |
             - recursive: true
 
+      - name: Build gun-es
+        run: cd gun-es && npm i && npm run build
+
       - name: Build project
         run: pnpm run builds
 
