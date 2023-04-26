@@ -1,6 +1,5 @@
 {
-  "name": "gun-es",
-  "private": true,
+  "name": "@gun-vue/gun-es",
   "version": "0.1.1239",
   "type": "module",
   "scripts": {
@@ -9,9 +8,9 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^4.3.2"
+    "vite": "4.3.2"
   },
   "dependencies": {
-    "gun": "^0.2020.1239"
+    "gun": "0.2020.1239"
   }
 }

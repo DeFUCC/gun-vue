@@ -31,11 +31,6 @@ export default defineConfig({
   define: {
     'process.env': {},
   },
-  resolve: {
-    alias: {
-      vue: 'vue/dist/vue.esm-bundler.js',
-    },
-  },
   optimizeDeps: {
     include: [
       'gun',

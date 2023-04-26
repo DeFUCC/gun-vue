@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>GUN-ES test</title>
+  <script type="module" async>
+    import {Gun, SEA} from './dist/gun-es.js';
+    const pair = await SEA.pair();
+    const gun = Gun();
+    gun.user().auth(pair, (p) => console.log(gun.user().is));
+  </script>
+</head>
+
+<body>
+  <h1>Gun Test</h1>
+</body>
+
+</html>
