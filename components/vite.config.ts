@@ -5,6 +5,7 @@ import Unocss from 'unocss/vite'
 import path from "path";
 import { fileURLToPath } from "url";
 
+//@ts-ignore
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -27,6 +28,8 @@ export default defineConfig({
       name: "components",
       formats: ["es"],
     },
+    assetsInlineLimit: 100000000,
+    chunkSizeWarningLimit: 100000000,
     emptyOutDir: true,
     sourcemap: true,
     rollupOptions: {

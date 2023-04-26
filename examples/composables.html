@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@gun-vue/composables test</title>
+  <script type="importmap">
+    {
+      "imports": {
+        "@gun-vue/composables":"https://unpkg.com/@gun-vue/composables"
+      }
+    }
+  </script>
+  <script type="module">
+    import {useUser, SEA, useRoom, useRelay} from "@gun-vue/composables"
+    const {user, auth} = useUser()
+    const {room} = useRoom()
+    const {relay} = useRelay()
+
+    setTimeout(async () => {
+      await login()
+      document.getElementById('pubKey').innerText = user.pub
+      document.getElementById('roomName').innerText = room.profile?.name
+      document.getElementById('roomKey').innerText = room.pub
+      document.getElementById('relay').innerText = relay.peer
+    }, 100)
+
+    async function login() {
+      if (user.is) return console.log('reused user')
+      const pair = await SEA.pair()
+      await auth(pair)
+      console.log('New user created!')
+    }
+
+  </script>
+</head>
+
+<body>
+  <h1>Hello!</h1>
+  <h2>Your pub key is:</h2>
+  <pre id="pubKey"></pre>
+  <h2>You are in the room <span id="roomName"></span></h2>
+  <pre id="roomKey"></pre>
+  <h2>Connected to relay:</h2>
+  <pre id="relay"></pre>
+</body>
+
+</html>

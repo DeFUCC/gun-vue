@@ -13,6 +13,10 @@ export default defineConfig({
   plugins: [
     Unocss(), ViteYaml(),
   ],
+  build: {
+    assetsInlineLimit: 100000000,
+    chunkSizeWarningLimit: 100000000,
+  },
   resolve: {
     alias: {
       "#components": path.resolve(dirname, "../src/components"),
