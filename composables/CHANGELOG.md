@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.16.6
+
+### Patch Changes
+
+- Now we have examples folder with plain HTML files utilizing the power of different levels of Gun-Vue. And one of the newly acessible layers is Vue itself! We're using almost all the functions in the code already, so it's only 3 kB more to share the whole reactivity system with the client. Makes building apps so easy!
+
 ## 0.16.5
 
 ### Patch Changes
