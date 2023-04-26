@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.16.7
+
+### Patch Changes
+
+- Build gun-es first.
+- Updated dependencies
+  - @gun-vue/composables@0.16.7
+
 ## 0.16.6
 
 ### Patch Changes

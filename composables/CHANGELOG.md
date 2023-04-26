@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.16.7
+
+### Patch Changes
+
+- Build gun-es first.
+
 ## 0.16.6
 
 ### Patch Changes
