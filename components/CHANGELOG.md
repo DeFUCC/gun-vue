@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.16.5
+
+### Patch Changes
+
+- Fix the composables build and add the example.html to have it testedindepentenly. Also a very inspiring minimalistic code!
+- Updated dependencies
+  - @gun-vue/composables@0.16.5
+
 ## 0.16.4
 
 ### Patch Changes
