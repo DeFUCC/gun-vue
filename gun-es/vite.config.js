@@ -36,13 +36,7 @@ export default defineConfig({
       'gun',
       'gun/gun',
       'gun/sea',
-      'gun/sea.js',
-      'gun/lib/then',
-      'gun/lib/webrtc',
-      'gun/lib/radix',
-      'gun/lib/radisk',
-      'gun/lib/store',
-      'gun/lib/rindexed',
+      'gun/sea.js'
     ],
   },
 });
