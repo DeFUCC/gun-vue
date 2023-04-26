@@ -8,7 +8,7 @@ const dirname = path.dirname(filename);
 
 export default defineConfig({
   plugins: [
-    moduleExclude("text-encoding"),
+    // moduleExclude("text-encoding"),
     checker({
       typescript: {
         buildMode: true
@@ -26,6 +26,9 @@ export default defineConfig({
         minifyInternalExports: false,
       },
     },
+    commonjsOptions: {
+      ignoreDynamicRequires: true
+    }
   },
   optimizeDeps: {
     include: [

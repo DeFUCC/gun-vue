@@ -21,7 +21,7 @@ export default defineConfig({
 	clearScreen: false,
 	server: {
 		port: 3142,
-		strictPort: true,
+		strictPort: false,
 		fs: {
 			allow: ['../']
 		}

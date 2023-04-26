@@ -15,6 +15,10 @@ import "gun/lib/store";
 import "gun/lib/rindexed";
 import "gun/lib/webrtc";
 
+import GunWorker from './useGunWorker'
+
+GunWorker.post('Welcome to Gun-Vue')
+
 
 import { relay } from './useRelay'
 
@@ -33,6 +37,7 @@ export let gun: IGunInstance;
  */
 
 export function useGun(options: GunOptions = { localStorage: false }): IGunInstance {
+
   if (!gun) {
     const opts = { peers: [relay.peer] }
     if (typeof options === 'object') {
