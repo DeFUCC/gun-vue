@@ -8,7 +8,7 @@
 		"isolatedModules": true,
 		"declaration": true,
 		"emitDeclarationOnly": true,
-		"declarationMap": true,
+		"declarationMap": false,
 		"declarationDir": "types",
 		"skipLibCheck": true,
 		"module": "ESNext",
