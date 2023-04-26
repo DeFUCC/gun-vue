@@ -34,14 +34,6 @@
       .bar
         .title Support
         .subtitle Sponsor us
-    a.btn(
-      href="https://web3portal.com/AQC7upIKykiM-nYJA6Ac-Q4PHRtYsHDVS1Ne-M2ELcZU2A/#/" 
-      target="_blank"
-      )
-      .i-simple-icons-skynet
-      .bar
-        .title Skynet
-        .subtitle Use the skApp
 </template>
 
 <style lang="postcss" scoped>
