@@ -1,13 +1,16 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
+import commonjs from 'vite-plugin-commonjs'
 
 //@ts-ignore
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 export default defineConfig({
-  plugins: [],
+  plugins: [
+    commonjs(/* options */),
+  ],
   build: {
     outDir: 'dist',
     target: 'es2020',
