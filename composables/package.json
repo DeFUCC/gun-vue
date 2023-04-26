@@ -17,9 +17,9 @@
 	"license": "MIT",
 	"author": "davay42 <davay@defucc.me>",
 	"type": "module",
-	"exports": "./lib/composables.js",
-	"main": "./lib/composables.js",
-	"module": "./lib/composables.js",
+	"exports": "./dist/composables.js",
+	"main": "./dist/composables.js",
+	"module": "./dist/composables.js",
 	"types": "./types/index.d.ts",
 	"scripts": {
 		"build": "vite build",

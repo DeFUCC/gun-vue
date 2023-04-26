@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import checker from 'vite-plugin-checker'
 
+//@ts-ignore
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -27,7 +28,14 @@ export default defineConfig({
       },
     },
     commonjsOptions: {
-      ignoreDynamicRequires: true
+    }
+  },
+  define: {
+    'process.env': {}
+  },
+  resolve: {
+    alias: {
+      'vue': 'vue/dist/vue.esm-bundler.js',
     }
   },
   optimizeDeps: {
