@@ -1,4 +1,3 @@
-
 import Gun from 'gun';
 import "gun/lib/then";
 import "gun/lib/radix";
