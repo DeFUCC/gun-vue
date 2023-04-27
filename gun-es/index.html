@@ -9,6 +9,8 @@
     const gun = Gun();
     gun.user().auth(pair, (p) => {
       document.getElementById('pubKey').innerText = gun.user().is.pub
+      gun.user().get('profile').get('name').put('Guest ' + Math.floor(Math.random() * 1000))
+      gun.user().get('profile').get('name').on(name => document.getElementById('name').innerText = name)
     });
   </script>
 </head>
@@ -16,6 +18,8 @@
 <body>
   <h1>Gun Test</h1>
   <pre id="pubKey"></pre>
+  <h5>Name:</h5>
+  <pre id="name"></pre>
 </body>
 
 </html>
