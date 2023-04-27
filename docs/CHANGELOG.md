@@ -1,5 +1,11 @@
 # @gun-vue/docs
 
+## 0.16.8
+
+### Patch Changes
+
+- Gun-es based build
+
 ## 0.16.7
 
 ### Patch Changes
