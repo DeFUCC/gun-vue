@@ -14,18 +14,19 @@
     }
   </script>
   <script type="module">
-    import {useUser, SEA, useRoom, useRelay} from "@gun-vue/composables"
+    import {useUser, SEA, useRoom, useRelay, vue} from "@gun-vue/composables"
     const {user, auth} = useUser()
     const {room} = useRoom()
     const {relay} = useRelay()
 
-    setTimeout(async () => {
-      await login()
+    vue.watchEffect(() => {
       document.getElementById('pubKey').innerText = user.pub
       document.getElementById('roomName').innerText = room.profile?.name
       document.getElementById('roomKey').innerText = room.pub
       document.getElementById('relay').innerText = relay.peer
-    }, 100)
+    })
+
+    await login()
 
     async function login() {
       if (user.is) return console.log('reused user')
