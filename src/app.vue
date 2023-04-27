@@ -78,7 +78,7 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 .app-container
   side-bar.Side
   nav-bar.Top
-  .grid.Main.overflow-y-scroll.max-h-full
+  .grid.Main.max-h-full
     router-view(v-slot="{ Component }")
       transition(name="fade", mode="out-in")
         keep-alive
