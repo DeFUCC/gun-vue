@@ -3,7 +3,7 @@
 	"version": "0.16.7",
 	"homepage": "https://gun-vue.js.org",
 	"bugs": {
-		"url": "https://github.com/defucc/gun-vue/issues"
+		"url": "https://github.com/DeFUCC/gun-vue/issues"
 	},
 	"repository": {
 		"type": "git",
@@ -17,6 +17,7 @@
 	"license": "MIT",
 	"author": "davay42 <davay@defucc.me>",
 	"type": "module",
+	"packageManager": "pnpm@8.3.1",
 	"exports": "./dist/composables.js",
 	"main": "./dist/composables.js",
 	"module": "./dist/composables.js",

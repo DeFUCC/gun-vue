@@ -1,7 +1,26 @@
 {
   "name": "@gun-vue/gun-es",
   "version": "0.1.1239",
+  "homepage": "https://gun-vue.js.org",
+  "author": "davay42 <davay@defucc.me>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DeFUCC/gun-vue",
+    "directory": "gun-es"
+  },
+  "bugs": {
+    "url": "https://github.com/DeFUCC/gun-vue/issues"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/davay42"
+  },
   "type": "module",
+  "exports": "./dist/gun-es.js",
+  "main": "./dist/gun-es.js",
+  "module": "./dist/gun-es.js",
+  "packageManager": "npm@9.6.5",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

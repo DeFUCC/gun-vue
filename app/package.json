@@ -21,6 +21,7 @@
 	},
 	"main": "./dist/app.js",
 	"module": "./dist/app.js",
+	"packageManager": "pnpm@8.3.1",
 	"scripts": {
 		"build-app": "vite build --emptyOutDir",
 		"build": "vite build --config vite.config.lib.ts",
