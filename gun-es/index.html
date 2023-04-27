@@ -7,12 +7,15 @@
     import {Gun, SEA} from './dist/gun-es.js';
     const pair = await SEA.pair();
     const gun = Gun();
-    gun.user().auth(pair, (p) => console.log(gun.user().is));
+    gun.user().auth(pair, (p) => {
+      document.getElementById('pubKey').innerText = gun.user().is.pub
+    });
   </script>
 </head>
 
 <body>
   <h1>Gun Test</h1>
+  <pre id="pubKey"></pre>
 </body>
 
 </html>

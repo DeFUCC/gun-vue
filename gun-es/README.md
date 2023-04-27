@@ -1,5 +1,7 @@
 # gun-es
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/vitejs-vite-63kvno)
+## Gun database ESM build
 
-https://github.com/rollup/plugins/tree/master/packages/commonjs
+For use of [GUN](https://gun.eco) in `<script type="module"></script>` environments in browser or in ESM first bundlers like Vite. 
+
+

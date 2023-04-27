@@ -1,13 +1,16 @@
+
 import Gun from 'gun';
+import "gun/lib/then";
+import "gun/lib/radix";
+import "gun/lib/radisk";
+import "gun/lib/rindexed";
+import "gun/lib/webrtc";
 
-const window = {
-  crypto: self.crypto,
-  TextEncoder: self.TextEncoder,
-  TextDecoder: self.TextDecoder,
-  WebSocket: self.WebSocket,
-  Gun,
-}
+const window = window || { Gun }
+self.Gun = globalThis.Gun = Gun
+import { default as SEA } from 'gun/sea.js';
 
-export { Gun };
-export { default as SEA } from 'gun/sea.js';
+
+export { Gun, SEA };
+
 

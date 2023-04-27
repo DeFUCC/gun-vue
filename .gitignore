@@ -2,6 +2,7 @@ node_modules
 .DS_Store
 dist
 _dist
+!gun-es/dist
 dist-ssr
 *.local
 radata

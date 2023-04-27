@@ -32,7 +32,7 @@ export async function loadRelays({
   const urls = data.match(urlRegex())
   urls.push(relay.peer)
   const urlList = Array.from(urls)
-  urlList.forEach((u) => {
+  urlList.forEach((u: string) => {
     let testUrl = new URL(u)
     if (testUrl.pathname === '/gun' && testUrl.pathname.indexOf('~~') === -1) {
       let startMoment = performance.now()
