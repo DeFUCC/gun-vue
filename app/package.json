@@ -32,9 +32,9 @@
 		"tb": "tauri build"
 	},
 	"dependencies": {
-		"@capacitor/android": "4.7.3",
-		"@capacitor/core": "4.7.3",
-		"@capacitor/ios": "4.7.3",
+		"@capacitor/android": "4.8.0",
+		"@capacitor/core": "4.8.0",
+		"@capacitor/ios": "4.8.0",
 		"@unocss/reset": "0.51.8",
 		"@vueuse/core": "10.1.0",
 		"ola": "1.2.1",
@@ -42,7 +42,7 @@
 		"vue-router": "4.1.6"
 	},
 	"devDependencies": {
-		"@capacitor/cli": "4.7.3",
+		"@capacitor/cli": "4.8.0",
 		"@iconify/json": "2.2.56",
 		"@tauri-apps/cli": "1.2.3",
 		"@unocss/extractor-pug": "0.51.8",
