@@ -8,7 +8,8 @@
       "@gun-vue/components",
       "@gun-vue/composables",
       "@gun-vue/docs",
-      "@gun-vue/repo"
+      "@gun-vue/repo",
+      "@gun-vue/examples"
     ]
   ],
   "access": "public",

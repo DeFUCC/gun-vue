@@ -4,4 +4,5 @@ packages:
   - "docs"
   - "app"
   - "relay"
+  - "examples"
   - "."

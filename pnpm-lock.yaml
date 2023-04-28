@@ -303,6 +303,8 @@ importers:
         specifier: 1.0.0-alpha.74
         version: 1.0.0-alpha.74(@algolia/client-search@4.14.3)
 
+  examples: {}
+
   relay:
     dependencies:
       dotenv:
