@@ -10,8 +10,7 @@
 import { SEA, useGun } from "../composables";
 import { useColor } from "../ui/composables";
 import { computed, reactive } from "vue";
-import type { ComputedRef } from 'vue'
-import type { IGunInstance, IGunUserInstance, ISEAPair } from 'gun'
+import type { IGunUserInstance, ISEAPair } from 'gun'
 
 const colorDeep = useColor("deep");
 
@@ -108,6 +107,7 @@ let pairReads = 0
 
 function pair(): ISEAPair {
 	console.log('User pair read', ++pairReads)
+	const gun = useGun();
 	//@ts-ignore
 	return gun.user()?._?.sea;
 }

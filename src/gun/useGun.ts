@@ -27,7 +27,7 @@ import { relay } from './useRelay'
 // https://github.com/draeder/gun-relays
 
 /** The main Gun instance for database operations */
-export let gun: IGunInstance;
+let gun: IGunInstance;
 
 /**
  * Instantiate a Gun instance for DB manipulations
