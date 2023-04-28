@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.16.9
+
+### Patch Changes
+
+- more consistent use of gun - always useGun()! This makes us more aware of context when it comes to debugging and checking out code
+- Updated dependencies
+  - @gun-vue/composables@0.16.9
+
 ## 0.16.8
 
 ### Patch Changes
