@@ -31,7 +31,7 @@ export default defineConfig({
 	plugins: [
 		vue(),
 		Unocss(),
-		viteSingleFile(),
+		viteSingleFile()
 	],
 	base: './',
 	build: {

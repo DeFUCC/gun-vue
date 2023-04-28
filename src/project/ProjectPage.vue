@@ -80,14 +80,5 @@ const { newItem, add } = useNewDiscourseItem()
     @gift="$emit('gift', $event)"
     )
 
-  .p-2.flex.flex-col.gap2
-    input.dark-bg-dark-400(type="text" v-model="newItem.title")
-    select.dark-bg-dark-400(v-model="newItem.type")
-      option(
-        v-for="t in itemTypes" 
-        :key="t.type" 
-        :value="t.type"
-        ) {{ t.title }}
-    pre.p-2.break-all.max-w-80vw.overflow-scroll {{ newItem }}
     
 </template>

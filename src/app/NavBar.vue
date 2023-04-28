@@ -3,11 +3,6 @@ import { RoomButton, UiDark, QrShare, GunTools, UserIcon } from '../components'
 import { currentRoom, useBackground, useColor } from '#composables';
 import { computed } from 'vue'
 
-import { useRoute } from "vue-router"
-
-import { routes } from '../../gun.config.json'
-
-const route = useRoute()
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 
 const color = useColor('light')
@@ -17,9 +12,11 @@ const color = useColor('light')
 </script>
 
 <template lang="pug">
-.flex.flex-col.z-400#titlebar
-  a.fixed.top-0.left-0.z-1000(href="/#")
-    img.w-24.transition-all.duration-500.ease-in-out(src="/media/gun-vue-logo.svg")
+.flex.flex-col.z-400#titlebars
+  router-link.fixed.top-0.left-0.z-1000(
+    style="background:none !important"
+    to="/")
+    img.w-24.transition-all.duration-500.ease-in-out(src="https://gun-vue.js.org/media/gun-vue-logo.svg")
   .flex.items-center.z-40.gap-2.p-2.bg-light-100.dark-bg-dark-200.shadow-xl.w-full.bg-cover( 
     data-tauri-drag-region="true"
     :style="{ ...bg }"

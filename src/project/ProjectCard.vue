@@ -1,6 +1,6 @@
 <script setup>
 import { useColor, useUser, removeProject, currentRoom } from '#composables'
-import { UiLink } from '../components'
+import { AccountAvatar, UiLink } from '../components'
 
 const { user } = useUser()
 
@@ -57,7 +57,6 @@ defineProps({
       .px-2
         .flex.items-center
           .text-xl.font-bold.my-2(v-if="project?.title") {{ project.title }}
-
           .flex.items-center.flex-wrap.items-center.mt-2.gap-2
             .i-la-youtube.mx-1(v-if="project?.youtube")
             .i-mdi-text-long.mx-1(v-if="project?.text")
@@ -67,20 +66,12 @@ defineProps({
               )
             .flex-1
             .text-xs.break-all.p-2
-              slot
+              slot 
+
           .flex-1
-          //- account-badge(:pub="path.slice(-87)")
+          account-badge(:pub="path.slice(-87)")
         .statement(v-if="project?.statement") {{ project.statement }}
 
-    //- .flex.gap-1.rounded-xl.p-1.bg-dark-50.bg-opacity-20.flex-wrap.items-center(style="flex: 1 1 130px" v-if="actions")
-    //- post-action-react(:authors="authors" @user="$emit('user', $event)" :hash="hash" :tag="tag" :back="back")
-
-
-
-    //- post-action-update(:hash="hash" )
-    //- post-action-ban(:hash="hash" :tag="tag")
-
-    //- post-action-star(:hash="hash" )
 </template>
 
 

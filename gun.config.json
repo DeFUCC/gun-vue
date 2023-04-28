@@ -1,20 +1,5 @@
 {
   "relay": "https://peer.wallie.io/gun",
-  "routes": {
-    "/": "Home",
-    "/my/": "User",
-    "/space/": "Space",
-    "/chat/": "Chat",
-    "/posts/": "Posts",
-    "/projects/": "Projects",
-    "/gifts/": "Gifts",
-    "/users/": "Users",
-    "/rooms/": "Rooms",
-    "/private/": "Messages",
-    "/dict/": "Dictionary",
-    "/file/": "Files",
-    "/qr/": "QR Lab"
-  },
   "features": {
     "rooms": "Rooms",
     "space": "Space",
@@ -25,23 +10,23 @@
     "gifts": "Gifts"
   },
   "room": {
-    "pub": "R88WX6FjjcgJb_H6LW_LAlxkHRUja8cv2gauTZXHtNE._u9HsafjVRGFrSLHd-6f3g3xzHfeWeM07wS_8Y1Kdd8",
+    "pub": "Xrs3nFGkTEzYMcNv2HKGmVkt7zKKtkWuyPf9dQNtxxw.2gE-Mi4H1saL8aEmPCdZSxsMtVc1gQXr6NoKulndT94",
     "hosts": {
-      "jFjrmOEaRy-GAJlOCdG4SGoaLm_4AGMPP1sfmzYPwwo.mp2H7IQuTWlFSahN6ZnXN9Za0pD3thiIYUyGCaMel-M": {
-        "enc": "SEA{\"ct\":\"PEC3eyNx0oJGGQzALfd6279MwUl8JnhhQPNGY2tnKKhphXYWlgKgIOBKpRi9FdP6FBkJA5mfr5tKE0DFEzdImfUcGuajvDBbb3rMSAcPiMmrqGO2bOEblps5dHxlqZr+dYzEIaBvjaZA269xm/kzi9lFcWeusvqmSnKg/HVQA6AWGM/DYt0Wc8mVjGeb2bKSC3qJjZ8AnHpIODZVQ7SyuVCnXx8K50difNdAwK4t7MqVtnUJZwVfhWdkDpRuSStXxwIhveDHbNfmZ0NxwXYjHZNF9mi/sSd2KKrYjsgguSCj/1vonnOVMAZB3+yQX+KWEPISVdJKxdjNDc0f5/9pfbRBIUmya7wykFFLlDViSZVzItMFNNkiBZkwXAA2xuV1gPIvm2ifB8gUlKsRnjPMnciD+exVHmrHlowwgFE=\",\"iv\":\"4b04WatcH+iGoaAEHKgw\",\"s\":\"q4KGpyIis8+z\"}",
-        "profile": "SEA{\"m\":{\"c\":\"jFjrmOEaRy-GAJlOCdG4SGoaLm_4AGMPP1sfmzYPwwo.mp2H7IQuTWlFSahN6ZnXN9Za0pD3thiIYUyGCaMel-M\",\"w\":{\"*\":\"profile\"}},\"s\":\"ySPE0ZjYBXEOJ0wSqGpBS7JM5rwfXrCIeGaJ2aMFglNY+bNsb1y1Jxi3VsM2ssu9wBjqWNV26WZdSp2dOMTtCA==\"}",
-        "features": "SEA{\"m\":{\"c\":\"jFjrmOEaRy-GAJlOCdG4SGoaLm_4AGMPP1sfmzYPwwo.mp2H7IQuTWlFSahN6ZnXN9Za0pD3thiIYUyGCaMel-M\",\"w\":{\"*\":\"features\"}},\"s\":\"Fi9G3vtoYjTtQruWCJOxkv9QAmbVUnwBu/tHE0cnKJbZgibauVrZUCjCNliSOu8Z9/G8tC2fsSYjVDrJxsRyFw==\"}",
-        "hosts": "SEA{\"m\":{\"c\":\"jFjrmOEaRy-GAJlOCdG4SGoaLm_4AGMPP1sfmzYPwwo.mp2H7IQuTWlFSahN6ZnXN9Za0pD3thiIYUyGCaMel-M\",\"w\":{\"*\":\"hosts\"}},\"s\":\"zkepJ2BKZ46zZH7eaaRT12VYXJGbMPYaXAsEtpNsZF2KIap9IxtlJHFGut0qNW+hT9C2/Sadk2x5DmzW0Y46CA==\"}"
+      "Ykula9-Ul9DvuebtArrzIucEKFHQ9FEktznihfLXPd0._miQbdm7EodUhmb-hlhKOCjDwNNprTOwZkEI98v_lpQ": {
+        "enc": "SEA{\"ct\":\"CxJdJikBv3FRKORTCy55ZbKoX669x01Ka4PKCQZpjA==\",\"iv\":\"iFgcaeKGgMKV5UBwANVo\",\"s\":\"IJIcbfqbALSd\"}",
+        "profile": "SEA{\"m\":{\"c\":\"Ykula9-Ul9DvuebtArrzIucEKFHQ9FEktznihfLXPd0._miQbdm7EodUhmb-hlhKOCjDwNNprTOwZkEI98v_lpQ\",\"w\":{\"*\":\"profile\"}},\"s\":\"vD4ChZuAMS8RG9bPHe6t4+mLqQR2mqin5aogpJ1m+mzM8243tpx/IoUXhHkMY+wYwU7+JfcVXv2s9aEwgUkofw==\"}",
+        "features": "SEA{\"m\":{\"c\":\"Ykula9-Ul9DvuebtArrzIucEKFHQ9FEktznihfLXPd0._miQbdm7EodUhmb-hlhKOCjDwNNprTOwZkEI98v_lpQ\",\"w\":{\"*\":\"features\"}},\"s\":\"lAOJJESvhiwIwvamKtVtYBoJd3PtGKpPnmXigSruf3N+Q75X3X+oOomTEORJajup2EKK8vUnK+WsX6mM4p7oDQ==\"}",
+        "hosts": "SEA{\"m\":{\"c\":\"Ykula9-Ul9DvuebtArrzIucEKFHQ9FEktznihfLXPd0._miQbdm7EodUhmb-hlhKOCjDwNNprTOwZkEI98v_lpQ\",\"w\":{\"*\":\"hosts\"}},\"s\":\"Weshrg3KHe8/u8lTXIdq39mgqXQqmzrKPYq6TgxukbKE05p59OW/RucE2uY09CgyTTSUuZ7Pa/Yxv4AUiwms2Q==\"}"
       }
     },
     "features": {
-      "rooms": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"rooms\",\"+\":\"*\"}},\"s\":\"oBTuqF71vW4DgvwrFRSge8OwvH/aw8CWwWwC+5Z/UlrY60y+egDuxD8rH7ghQ2X8GB/hzzaLhFPq3mJmymxjZg==\"}",
-      "space": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"space\",\"+\":\"*\"}},\"s\":\"bMm8s2GAvZbmx5ylJiCAJ2tubp3WaKg6bh7GEgLNwaknwpsqRipnj1xPVFTBnZ/Bn/bRqY8heQ1BXu/ZoG3Yww==\"}",
-      "posts": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"posts\",\"+\":\"*\"}},\"s\":\"WPj6tn2unwRYmSTPPteQ4x5IV17zLm0bn/jJMX186WHxWQX7b2l/kh7bOEE7MeJzI5SR4bvQLuhpXfV/JR3bJQ==\"}",
-      "chat": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"chat\",\"+\":\"*\"}},\"s\":\"81Vqh+nj3s9TzzW8kIByG8b7rLk0yzgRvkzSChb17S7ntSWfC3VYWIxW8ReBJ08erxbH+G4h8mgLW/L7vFCgUA==\"}",
-      "dict": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"dict\",\"+\":\"*\"}},\"s\":\"Hko1STUL+6J3X5cTZ8cCUCyTQXW0oU5ips3Ng3fQ4BkQnqYCSEDs52gamFb7a4OB4UvKO6FVaLXkJmnxE86dYw==\"}",
-      "projects": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"projects\",\"+\":\"*\"}},\"s\":\"CbCU905HVvmCO7WYazXbZ7XxCQwyFRBMHWEkSQAbmNUOK5FrBz6zlhq7QXe6lnLXZfv52hcNwKC/XG5KxwgyFw==\"}",
-      "gifts": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"gifts\",\"+\":\"*\"}},\"s\":\"FUogJeOdg8aawMtVjBumB7nB3IM+w0FwWHX+eZfAjrUQu/UWfH9XMjg7yy8wpaCQtkc9R+kBxCjhlLAg8oudPA==\"}"
+      "rooms": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"rooms\",\"+\":\"*\"}},\"s\":\"XAnZd6NHMPju9U8L1jMHHUReWWHV3RmSzhegfK1kNhhzDCogbZq8d09o1L4zMxffzrih6KB0mUuiq6m00LeaMQ==\"}",
+      "space": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"space\",\"+\":\"*\"}},\"s\":\"C8WnusuVH2GJ+z0Tu6D5u70nx3mL7xAD+0Etv5+N5iusdup4ylga7PhomXyymUw0jWpWoz/FO+Z/zUrDwQvifg==\"}",
+      "posts": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"posts\",\"+\":\"*\"}},\"s\":\"iiIc+lGAy6urmOdoecEZKjp6ii0Qq+65rObNK3Gvdch08TcA2lb4Yd25HRz9Ba1G7pni32Za673izPznWOxvGA==\"}",
+      "chat": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"chat\",\"+\":\"*\"}},\"s\":\"yFS1UN6RU6Sk1TgsjLehNw4G7hMo1e+OfLYP+rXHLjWBNpdk8As4B67omK554lfO8V6094kVtpC6FT28f8GAfA==\"}",
+      "dict": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"dict\",\"+\":\"*\"}},\"s\":\"7sSun6axi7iCm/slR4kTx+u5JkxxTjYztu6prLCeu3uFwuLrJ6N7w1ssFXbHPvWR/7iJvY6btxqmUn2LO9nEdA==\"}",
+      "projects": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"projects\",\"+\":\"*\"}},\"s\":\"UFe1v/ie+xVQRBOg6cMgBsVB6v1guIQHPuqQUbYUNZvm/rGZD+L8mMrd5e0PD5bRPXS+zfUA7d25/LwY1EHLog==\"}",
+      "gifts": "SEA{\"m\":{\"c\":\"*\",\"w\":{\"*\":\"gifts\",\"+\":\"*\"}},\"s\":\"afmhx8C4/NDvxra8Gw+RaW6shhbSRfc7KN7R7pYv+mJ/5oEbL8D2NwCFFPNTwepqZjDYqgqQTAnK/LUNCZfzhQ==\"}"
     }
   }
 }

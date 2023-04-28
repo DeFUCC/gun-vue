@@ -8,24 +8,16 @@ import { reactive, ref, computed } from 'vue'
 import { useGun2, useGun, genUUID } from '../gun/composables'
 import { currentRoom } from '../room/composables'
 import { useUser } from '../user/composables'
-import { SEA } from 'gun'
+
 import { hashText, isHash } from '../crypto/composables'
 
-
-export interface ProjectItem {
-  id?: string
-  [key: string]: string | undefined
-}
-
-export type ProjectType = 'event' | 'object'
-
-export interface Project extends ProjectItem {
-  type?: ProjectType,
-}
+import { ProjectItem, ProjectType } from './useProject.d'
 
 
-export const newProject = reactive({
+export const newProject: ProjectItem = reactive({
+  id: '',
   title: '',
+  type: 'project',
   public: true,
   funding: false,
   room: currentRoom.pub,
@@ -35,8 +27,10 @@ export const newProject = reactive({
 export async function addProject() {
   const gun = useGun()
   const { user } = useUser()
+
   const id = genUUID(6)
   newProject.author = user.pub
+
   const link = gun.user().get('projects').get(id).put(newProject, () => {
     if (!newProject.public) return
 
@@ -53,6 +47,7 @@ export async function addProject() {
         }
       )
     newProject.title = ''
+    newProject.id = ''
   })
 
 }
@@ -61,14 +56,14 @@ export function updateProjectField(title: string, field: string, value: string) 
   const gun = useGun();
   const proj = gun.user().get('projects').get(title)
   proj.get(field).put(value, () => {
-    proj.get('updatedAt').put(Date.now())
+    proj.get('updated').put(Date.now())
   })
 }
 
 export function useProject(path: string) {
   const gun = useGun()
 
-  const project: Project = reactive({
+  const project: ProjectItem = reactive({
     id: '0',
     type: 'event'
   })
@@ -87,7 +82,6 @@ export function useProject(path: string) {
   }
 
   async function updateCover(image: string) {
-    console.log(image)
     const hash = await hashText(image)
     if (!hash) return
     gun.get('#cover').get(hash).put(image)
@@ -101,7 +95,9 @@ export function useComputedProject(path = ref()) {
   const gun = useGun()
 
   const project = computed(() => {
-    const proj: Project = reactive({})
+    const proj: ProjectItem = reactive({
+      id: ''
+    })
     gun.user(currentRoom.pub).get('projects').get(path.value).map().on(async (d, k) => {
       if (k == 'cover' && isHash(d)) {
         proj[k] = await gun.get('#cover').get(d).then()

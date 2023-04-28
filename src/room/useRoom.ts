@@ -219,14 +219,12 @@ export async function createRoom({ pair, name }: { pair: ISEAPair, name?: string
   });
 
   const enc = await user.encrypt(`${pair}`);
-  const dec = await user.decrypt(enc);
 
   const gunConfig = {
+    ...config,
     relay: relay.peer,
-    features: config.features,
     room: {
-      //@ts-ignore
-      pub: dec?.pub,
+      pub: pair.pub,
       hosts: { [user.pub]: { enc, ...certs } },
       features,
     }
@@ -236,7 +234,7 @@ export async function createRoom({ pair, name }: { pair: ISEAPair, name?: string
     "COPY THIS ROOM INFO TO USE IT AS A ROOT",
     gunConfig,
     "STORE THIS KEY PAIR IN A SAFE PLACE",
-    dec
+    pair
   );
 
   const gun = useGun();
@@ -267,7 +265,7 @@ export async function createRoom({ pair, name }: { pair: ISEAPair, name?: string
     .put(true, null, { opt: { cert: currentRoom?.features?.rooms } }).then();
 
   downloadFile(JSON.stringify(gunConfig), 'application/json', 'gun.config.json')
-  downloadFile(JSON.stringify(dec), 'application/json', `room_${name || roomPub}.json`)
+  downloadFile(JSON.stringify(pair), 'application/json', `room_${name || roomPub}.json`)
   // enterRoom(pair.pub);
 }
 

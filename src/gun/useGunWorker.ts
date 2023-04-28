@@ -12,7 +12,7 @@ import { watch } from 'vue'
 
 const GunWorker = useWebWorker(worker)
 
-GunWorker.post('Worker post check up')
+GunWorker.post({ message: 'Worker post check up' })
 
 watch(GunWorker.data, d => console.log('Recieved:', d), { immediate: true })
 

@@ -10,7 +10,7 @@ import { useUser } from "../user/composables";
 import { computed, ref, reactive, watchEffect, ComputedRef } from "vue";
 import { getFirstEmoji, currentRoom } from "../composables";
 import { getArrow } from "curved-arrows";
-import { useElementBounding } from "@vueuse/core";
+import { useElementBounding, useTimestamp } from "@vueuse/core";
 import { useClamp } from '@vueuse/math'
 
 export interface SpaceGuest {

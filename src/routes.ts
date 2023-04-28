@@ -11,3 +11,19 @@ export default [
   },
   ...routes
 ]
+
+export const rootRoutes = {
+  "/": "Home",
+  "/my/": "User",
+  "/space/": "Space",
+  "/chat/": "Chat",
+  "/posts/": "Posts",
+  "/projects/": "Projects",
+  "/gifts/": "Gifts",
+  "/users/": "Users",
+  "/rooms/": "Rooms",
+  "/private/": "Messages",
+  "/dict/": "Dictionary",
+  "/file/": "Files",
+  "/qr/": "QR Lab"
+}

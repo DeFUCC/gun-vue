@@ -1,5 +1,5 @@
 <script setup  lang="ts">
-import { routes } from '../../gun.config.json'
+import { rootRoutes } from '../routes'
 </script>
 
 <template lang="pug">
@@ -7,7 +7,7 @@ import { routes } from '../../gun.config.json'
 style="flex: 0 0 auto"
   )
   router-link.flex.items-center.px-3.py-3.link(
-    v-for="(link, l) in routes" 
+    v-for="(link, l) in rootRoutes" 
     :key="link" 
     :to="l" ) 
     .i-ph-house-simple(v-if="link == 'Home'")
