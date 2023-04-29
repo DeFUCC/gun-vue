@@ -1,12 +1,13 @@
 <script setup>
-import { useProjects, addProject, newProject, currentRoom } from '../composables';
-import { ProjectCard } from '../components'
+import { useProjects, currentRoom } from '#composables';
+import { ProjectCard } from '#components'
+import ProjectForm from './ProjectForm.vue';
 
 const props = defineProps({
   pub: { type: String, default: currentRoom?.pub }
 })
 
-const { candidates } = useProjects(props.pub)
+const { candidates, search } = useProjects(props.pub)
 
 defineEmits(['open'])
 
@@ -17,7 +18,7 @@ defineEmits(['open'])
 .flex.flex-col 
   .p-2.flex.flex-col.gap-2
     input.p-2.rounded-xl.shadow.dark-bg-dark-400(
-      v-model="newProject.title" 
+      v-model="search" 
       placeholder="Start typing a project title"
       )
   .flex.flex-col.gap-4.p-2
@@ -31,9 +32,5 @@ defineEmits(['open'])
         @click="$emit('open', proj.item.path)"
         )
   .p-2.flex.flex-col.gap-2
-    button.button(
-      v-if="newProject.title" 
-      key="button" 
-      @click="addProject()"
-      ) Add Project {{ newProject.title }}
+    project-form(:title="search" v-if="search")
 </template>

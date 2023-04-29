@@ -5,7 +5,6 @@
  */
 
 import { computed, reactive, ref } from "vue"
-import { newProject } from './useProject'
 import { useGun } from "../gun/composables"
 import { currentRoom } from "../room/composables"
 import Fuse from "fuse.js";
@@ -26,8 +25,8 @@ export function useProjects(pub = currentRoom.pub) {
   })
 
   const candidates = computed(() => {
-    if (newProject.title) {
-      return fuse.value.search(newProject.title)
+    if (search.value) {
+      return fuse.value.search(search.value)
     } else {
       return Object.entries(projects).map(arr => ({ item: { ...arr[1] as object, path: arr[0] } }))
     }

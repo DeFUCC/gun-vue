@@ -7,50 +7,56 @@
 import { reactive, ref, computed } from 'vue'
 import { useGun2, useGun, genUUID } from '../gun/composables'
 import { currentRoom } from '../room/composables'
-import { useUser } from '../user/composables'
+import { useUser, user } from '../user/composables'
 
 import { hashText, isHash } from '../crypto/composables'
 
 import { ProjectItem, ProjectType } from './useProject.d'
 
+export function useNewProject(title?: string) {
 
-export const newProject: ProjectItem = reactive({
-  id: '',
-  title: '',
-  type: 'project',
-  public: true,
-  funding: false,
-  room: currentRoom.pub,
-  author: ''
-})
-
-export async function addProject() {
-  const gun = useGun()
   const { user } = useUser()
 
-  const id = genUUID(6)
-  newProject.author = user.pub
-
-  const link = gun.user().get('projects').get(id).put(newProject, () => {
-    if (!newProject.public) return
-
-    gun
-      .user(currentRoom.pub)
-      .get('projects')
-      .get(id + '@' + user.pub)
-      .put(
-        link,
-        undefined,
-        {
-          opt:
-            { cert: currentRoom.features?.projects }
-        }
-      )
-    newProject.title = ''
-    newProject.id = ''
+  const newProject: ProjectItem = reactive({
+    id: genUUID(6),
+    title,
+    type: 'project',
+    public: true,
+    funding: false,
+    room: computed(() => currentRoom.pub),
+    author: computed(() => user.pub),
   })
 
+  async function addProject() {
+    const gun = useGun()
+    const { user } = useUser()
+
+    const id = genUUID(6)
+    newProject.author = user.pub
+
+    const link = gun.user().get('projects').get(id).put(newProject, () => {
+      if (!newProject.public) return
+
+      gun
+        .user(currentRoom.pub)
+        .get('projects')
+        .get(id + '@' + user.pub)
+        .put(
+          link,
+          undefined,
+          {
+            opt:
+              { cert: currentRoom.features?.projects }
+          }
+        )
+      newProject.title = ''
+      newProject.id = ''
+    })
+
+  }
+  return { newProject, addProject }
 }
+
 
 export function updateProjectField(title: string, field: string, value: string) {
   const gun = useGun();
