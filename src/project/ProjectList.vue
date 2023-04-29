@@ -10,8 +10,6 @@ const props = defineProps({
 const { candidates, search } = useProjects(props.pub)
 
 defineEmits(['open'])
-
-
 </script>
 
 <template lang="pug">
@@ -32,5 +30,5 @@ defineEmits(['open'])
         @click="$emit('open', proj.item.path)"
         )
   .p-2.flex.flex-col.gap-2
-    project-form(:title="search" v-if="search")
+    project-form(:title="search" v-if="search" @added="search=''")
 </template>

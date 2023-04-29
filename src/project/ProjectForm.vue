@@ -6,6 +6,8 @@ const props = defineProps({
   title: { type: String, default: 'Project0' }
 })
 
+const emit = defineEmits(['added'])
+
 const { newProject, addProject } = useNewProject()
 
 watchEffect(() => {
@@ -23,5 +25,6 @@ watchEffect(() => {
     h3 Title:
     input(type="text" v-model="newProject.title")
 
+  button.button(@click="addProject(()=>$emit('added'))") ADD PROJECT
   pre.text-xs {{ newProject }}
 </template>

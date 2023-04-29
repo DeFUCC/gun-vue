@@ -16,10 +16,9 @@ import config from "../../gun.config.json";
 import { reactive, computed, ref, watchEffect } from "vue";
 import { ISEAPair } from "gun";
 import { useStorage } from '@vueuse/core'
+import { CurrentRoom } from "./useRoom.d";
 
 const rootRoom = config.room
-
-import { CurrentRoom } from "./useRoom.d";
 
 export const currentRoom: CurrentRoom = reactive({
   pub: useStorage('current-room', rootRoom.pub),

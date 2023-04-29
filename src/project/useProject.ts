@@ -27,23 +27,22 @@ export function useNewProject(title?: string) {
     author: computed(() => user.pub),
   })
 
-  async function addProject() {
+  async function addProject(cb?: Function) {
     const gun = useGun()
-    const { user } = useUser()
 
-    const id = genUUID(6)
-    newProject.author = user.pub
-
-    const link = gun.user().get('projects').get(id).put(newProject, () => {
+    const link = gun.user().get('projects').get(newProject.id).put(newProject, () => {
       if (!newProject.public) return
 
       gun
         .user(currentRoom.pub)
         .get('projects')
-        .get(id + '@' + user.pub)
+        .get(newProject.id + '@' + user.pub)
         .put(
           link,
-          undefined,
+          () => {
+            console.log('added project')
+            if (cb) { cb?.() }
+          },
           {
             opt:
               { cert: currentRoom.features?.projects }
