@@ -1,19 +1,51 @@
-export type ProjectType = 'design' | 'project' | 'event' | 'object' | 'task' | 'purchase'
+/**
+ * 
+ * @module Project
+ * @group Projects
+ */
+
+
+export type ProjectType = 'design' | 'project' | 'event' | 'object' | 'opportunity' | 'task' | 'purchase'
 
 export interface ProjectItem {
+  //main
   id: string
+  type?: ProjectType
+
+  //info
   title?: string
   description?: string
-  type?: ProjectType
-  author?: string
-  color?: string
-  room?: string
+  tags?: string[]
   content?: string
-  updated?: string
-  created?: string
+
+  //pub keys
+  author?: string
+  room?: string
+  makers?: string[]
+
+  //hierarchy
+  source?: string
+  targets?: string[]
+
+  //time
+  updatedAt?: string
+  createdAt?: string
+  startAt?: string
+  finishAt?: string
+
+  //place
+  location?: [number, number]
+  address?: string
+
+  //flags
   public?: boolean
-  parent?: string
-  children?: string[]
-  [key: string]: string | boolean | string[] | undefined
+  funding?: boolean
+
+  //appearance
+  color?: string
+
+  //media
+  media?: { [key: string]: string }
+
 }
 

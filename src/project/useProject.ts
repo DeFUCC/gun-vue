@@ -1,6 +1,6 @@
 /**
  * [[include:./project/README.md]]
- * @module Project
+ * @module useProject
  * @group Projects
  */
 

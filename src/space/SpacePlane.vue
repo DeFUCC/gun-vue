@@ -10,7 +10,7 @@ import {
   selectedUser,
   safeHash,
 } from "../composables";
-import { ref, reactive, onMounted, onBeforeUnmount } from "vue";
+import { ref, reactive, onMounted, onBeforeUnmount, onActivated, onDeactivated } from "vue";
 import { useDebounceFn, useThrottleFn } from "@vueuse/core";
 
 const props = defineProps({
@@ -85,6 +85,14 @@ onMounted(() => {
   loadCanvas();
 });
 
+onActivated(() => {
+  console.log('activated')
+})
+
+onDeactivated(() => {
+  console.log('deactivated')
+})
+
 onBeforeUnmount(() => {
   drauu.unmount();
 });
@@ -113,11 +121,13 @@ onBeforeUnmount(() => {
     defs
       filter#shadowButton(x='-50%', height='200%', width='300%')
         feDropShadow(dx='0', dy='3', stdDeviation='3', flood-color='#2225')
-      clipPath#mask(clipPathUnits='objectBoundingBox')
+      clipPath#mask(
+        clipPathUnits='objectBoundingBox')
         circle(r='.5', cx='.5', cy='.5')
 
     text.text-xs(
       text-anchor='end', 
+      fill="currentColor"
       :transform=' `translate(${pos[0] + width / 2 - 10} ${pos[1] - height / 2 + 20})` '
       ) {{ pos }}
 
@@ -155,8 +165,23 @@ onBeforeUnmount(() => {
       space-arrow(v-for='(  link, key  ) in   links  ', :key=' key ', :link=' link ', @user=' selectedUser.pub = $event ')
 
     g.guests
-      space-guest.cursor-pointer.transition-all.ease-out.duration-600(v-for='  guest   in   guests  ', :key=' guest ', v-bind=' guest ', :style=' { transform: `translate(${guest?.pos?.x}px, ${guest?.pos?.y}px)` } ', @click=' selectedUser.pub = guest.pub ')
+      space-guest.cursor-pointer.transition-all.ease-out.duration-600(
+        v-for='guest in guests', 
+        :key=' guest ', 
+        v-bind=' guest ', 
+        :style=' { transform: `translate(${guest?.pos?.x}px, ${guest?.pos?.y}px)` } ', 
+        @click=' selectedUser.pub = guest.pub '
+        )
 
   ui-layer.z-4000(:open=' !!selectedUser.pub ', @close=' selectedUser.pub = null ')
-    account-home.max-w-600px(:key=' selectedUser.pub ', :pub=' selectedUser.pub ', @user=" $emit('user', $event) ", @post=" $emit('post', String(safeHash($event))) ", @chat=" $emit('chat', selectedUser.pub) ", @close=' selectedUser.pub = null ')
+
+    account-home.max-w-600px(
+      :key=' selectedUser.pub ', 
+      :pub=' selectedUser.pub ', 
+      @user=" $emit('user', $event) ", 
+      @post=" $emit('post', String(safeHash($event))) ", 
+      @chat=" $emit('chat', selectedUser.pub) ", 
+      @close=' selectedUser.pub = null '
+      )
+
 </template>

@@ -3,11 +3,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://unpkg.com/@gun-vue/components/dist/style.css">
   <title>Chat example</title>
-  <script src="https://unpkg.com/@gun-vue/app@0.16.5/dist/app.iife.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@gun-vue/components/dist/style.css">
+  <script src="https://unpkg.com/@gun-vue/app/dist/app.iife.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       GunVue.createGunVueApp('#app')
@@ -19,10 +18,11 @@
 <body>
 
   <div id="app">
-    <h1>Chat example app!</h1>
+    <h1 class="text-xl p-4">Chat example app!</h1>
     <gun-relay-list></gun-relay-list>
-    <p> {{message}} </p>
-    <user-icon></user-icon>
+    <div style="display:flex; gap:0.5em; padding:0.5em">
+      <user-icon></user-icon><room-button></room-button>
+    </div>
     <chat-room topic="Example chat"></chat-room>
   </div>
 

@@ -107,7 +107,7 @@ export function useSpace({
 
   const guestCount = computed(() => Object.keys(guests.value).length);
 
-  gun.user(currentRoom.pub).get("space").map().once(async (pos, pub) => {
+  space.db.map().once(async (pos, pub) => {
     if (pub == user.pub) {
       space.joined = true;
     }
@@ -126,12 +126,12 @@ export function useSpace({
 
 
 
-    gun.user(currentRoom.pub).get("space").get(pub).get('pos').on((d: string) => {
+    space.db.get(pub).get('pos').on((d: string) => {
       allGuests[pub].hasPos = true;
       allGuests[pub].pos = typeof d == "string" ? JSON.parse(d) : d;
     });
 
-    gun.user(currentRoom.pub).get("space").get(pub).get('draw').on((d: string) => {
+    space.db.get(pub).get('draw').on((d: string) => {
       allGuests[pub].draw = d
     })
 

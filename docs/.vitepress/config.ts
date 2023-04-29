@@ -2,7 +2,7 @@ import { defineConfig, DefaultTheme } from "vitepress";
 
 import { sidebar } from './navigation'
 import path from 'path'
-
+import pack from '../package.json'
 
 export default defineConfig({
 	lang: "en-US",
@@ -17,6 +17,14 @@ export default defineConfig({
 			provider: 'local'
 		},
 		sidebar,
+		socialLinks: [
+			{ icon: 'github', link: 'https://github.com/DeFUCC/gun-vue' },
+			{ icon: 'youtube', link: 'https://www.youtube.com/@defucc' },
+		],
+		footer: {
+			message: 'MIT',
+			copyright: `v.${pack.version}`,
+		},
 	},
 	async transformPageData(pageData, { siteConfig }) {
 		const pages = siteConfig?.pages.map(p => {

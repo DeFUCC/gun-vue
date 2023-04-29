@@ -3,7 +3,7 @@
  * @group Space
  */
 
-import { computed, markRaw, nextTick, reactive, ref, onMounted } from 'vue'
+import { computed, markRaw, nextTick, reactive, ref, onActivated, onDeactivated, watch } from 'vue'
 import { createDrauu, Drauu, Options } from 'drauu'
 import { toReactive, useStorage, useCycleList, useDebounceFn } from '@vueuse/core'
 
@@ -99,18 +99,22 @@ export function useDraw() {
       if (!disableDump) {
         let content = drauu.dump()
         draw.content = content
-
-        gun.user(currentRoom.pub).get('space').get(user.pub).get('draw').put(content, undefined, { opt: { cert: currentRoom.features?.space } })
+        drawing.put(content, undefined, { opt: { cert: currentRoom.features?.space } })
       }
     }, 200)
 
     drauu.on('changed', debouncedDraw)
 
-    onMounted(() => {
+    onActivated(() => {
       nextTick(() => {
         loadCanvas()
       })
+    })
 
+    watch(() => currentRoom.pub, p => {
+      drauu?.clear()
+      draw.content = ''
+      loadCanvas()
     })
 
     drauu.on('start', () => draw.ing = true)

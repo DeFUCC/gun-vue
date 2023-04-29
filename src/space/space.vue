@@ -9,8 +9,6 @@ const props = defineProps({
   }
 })
 
-
-
 let audio: HTMLAudioElement
 
 function enter() {

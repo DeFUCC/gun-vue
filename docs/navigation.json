@@ -22,6 +22,10 @@
       {
         "text": "Create your first app",
         "link": "/tutorials/first-app"
+      },
+      {
+        "text": "Build a Vue app",
+        "link": "/tutorials/vue-app"
       }
     ]
   },
