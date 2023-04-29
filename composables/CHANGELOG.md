@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.16.10
+
+### Patch Changes
+
+- many small fixes add to reliability much
+
 ## 0.16.9
 
 ### Patch Changes
