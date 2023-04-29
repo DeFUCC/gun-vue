@@ -15,30 +15,14 @@ import {
 import config from "../../gun.config.json";
 import { reactive, computed, ref, watchEffect } from "vue";
 import { ISEAPair } from "gun";
+import { useStorage } from '@vueuse/core'
 
 const rootRoom = config.room
 
-export interface CurrentRoom {
-  pub: string
-  isRoot: boolean
-  hosts?: {
-    [key: string]: {
-      enc?: string
-      features?: string
-      profile?: string
-      hosts?: string
-    }
-  }
-  features?: {
-    [key: string]: string
-  }
-  profile?: {
-    [key: string]: string
-  }
-}
+import { CurrentRoom } from "./useRoom.d";
 
 export const currentRoom: CurrentRoom = reactive({
-  pub: rootRoom.pub,
+  pub: useStorage('current-room', rootRoom.pub),
   isRoot: computed(() => currentRoom.pub == rootRoom.pub),
   hosts: {},
   features: {},
