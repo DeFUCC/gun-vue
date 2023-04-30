@@ -3,7 +3,8 @@ import { watchEffect } from 'vue';
 import { useNewProject } from './useProject';
 
 const props = defineProps({
-  title: { type: String, default: 'Project0' }
+  title: { type: String, default: 'Project0' },
+  source: { type: String, default: '' },
 })
 
 const emit = defineEmits(['added'])
@@ -12,6 +13,7 @@ const { newProject, addProject } = useNewProject()
 
 watchEffect(() => {
   newProject.title = props.title
+  newProject.source = props.source
 })
 </script>
 

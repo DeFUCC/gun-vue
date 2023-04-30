@@ -23,8 +23,6 @@ const { post, download, downloading, } = usePost({ hash: props.hash })
 
 const { posts, backlinks } = usePosts(props.hash)
 
-
-
 </script>
 <!-- eslint-disable vue/no-v-html -->
 
@@ -92,7 +90,7 @@ const { posts, backlinks } = usePosts(props.hash)
             .i-la-file-download(v-if="!downloading")
             .i-la-redo-alt.animate-spin(v-else)
 
-    .text-md.markdown-body.bg-light-200.rounded-2xl.m-1.px-4.py-4.leading-relaxed.max-w-55ch.z-10.overflow-scroll.max-h-50vh(
+    .text-md.markdown-body.bg-light-200.m-1.px-4.py-4.leading-relaxed.max-w-55ch.z-10.overflow-scroll.max-h-50vh(
       v-if="post?.text" 
       v-html="md.render(post?.text)"
       )

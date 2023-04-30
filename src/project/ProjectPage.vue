@@ -2,7 +2,7 @@
 <script setup>
 import { useUser, useProject, useMd, useProjectGifts, itemTypes, useNewDiscourseItem } from '#composables';
 import { toRef, ref, computed, watch } from 'vue'
-import { FormPicture, FormTitle, ProjectFunding, } from '../components'
+import { FormPicture, FormTitle, ProjectFunding, ProjectForm } from '../components'
 
 const emit = defineEmits(['gift', 'user'])
 
@@ -65,7 +65,7 @@ const { newItem, add } = useNewDiscourseItem()
       v-if="editable" 
       @click="editing = !editing"
       )
-    .p-2.markdown-body.text-base.prose.prose-truegray.dark-bg-dark-400(
+    .p-2.text-base.prose.prose-truegray.dark-prose-light.dark-bg-dark-400(
       v-if="!editing || !editable" 
       v-html="md.render(text || '')")
     textarea.dark-bg-dark-400(
@@ -73,9 +73,13 @@ const { newItem, add } = useNewDiscourseItem()
       v-model="text" 
       @update:model-value="updateField('text', $event)")
 
+
+  project-form(:source="path")
+
+
   project-funding(
     :path="path" 
-    :enabled="project.funding" 
+    :enabled="!!project.funding" 
     @enable="updateField('funding', 'true')"
     @gift="$emit('gift', $event)"
     )

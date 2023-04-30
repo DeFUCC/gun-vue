@@ -1,11 +1,16 @@
 <script setup  lang="ts">
 import { rootRoutes } from '../routes'
+import pack from '../../app/package.json'
 </script>
 
 <template lang="pug">
-.flex.flex-col.gap-1.px-1.pt-18.shadow-lg.z-30.overflow-x-scroll.overflow-y-visible.transition.bg-light-900.dark-bg-dark-200.min-w-12(
+.flex.flex-col.gap-1.px-1.pt-8.shadow-lg.z-30.overflow-x-scroll.overflow-y-visible.transition.bg-light-900.dark-bg-dark-200.min-w-12(
 style="flex: 0 0 auto"
   )
+  a.p-3.text-xs.text-right.opacity-50(
+    href="https://github.com/DeFUCC/gun-vue/releases"
+    target="_blank"
+    ) v.{{ pack.version }}
   router-link.flex.items-center.px-3.py-3.link(
     v-for="(link, l) in rootRoutes" 
     :key="link" 

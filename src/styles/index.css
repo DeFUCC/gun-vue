@@ -17,8 +17,8 @@ body {
   @apply min-h-100vh max-h-100vh flex;
 }
 
-input[type="text"] {
-  @apply dark-bg-dark-500 p-2 rounded-lg
+input, select, textarea {
+  @apply dark-bg-dark-100 p-2 rounded-lg
 }
 
 .button {

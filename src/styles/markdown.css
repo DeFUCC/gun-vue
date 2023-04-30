@@ -2,13 +2,12 @@
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   margin: 0;
-  color: #24292f;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   font-size: 16px;
   line-height: 1.5;
   word-wrap: break-word;
-  @apply text-dark-800 dark-text-light-400;
+  @apply text-dark-800 dark-text-light-400 dark-bg-dark-500;
 }
 
 .markdown-body .octicon {
@@ -283,7 +282,6 @@
 .markdown-body h6 {
   font-weight: 600;
   font-size: 0.85em;
-  color: #57606a;
 }
 
 .markdown-body p {
@@ -294,7 +292,6 @@
 .markdown-body blockquote {
   margin: 0;
   padding: 0 1em;
-  color: #57606a;
   border-left: 0.25em solid #d0d7de;
 }
 
@@ -567,7 +564,6 @@
 .markdown-body h4 .octicon-link,
 .markdown-body h5 .octicon-link,
 .markdown-body h6 .octicon-link {
-  color: #24292f;
   vertical-align: middle;
   visibility: hidden;
 }

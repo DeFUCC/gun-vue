@@ -18,7 +18,7 @@ const props = defineProps({
 
 const { post } = usePost({ hash: props.hash })
 
-
+const hasText = computed(() => post.icon || post.title || post.statement || post.link)
 
 </script>
 
@@ -41,7 +41,7 @@ const { post } = usePost({ hash: props.hash })
         :src="post.icon" 
         width="40px"
         )
-    .flex.flex-col.p-2.overflow-hidden(style="flex: 10 1 280px")
+    .flex.flex-col.p-2.overflow-hidden(style="flex: 10 1 280px" v-if="hasText")
       .px-2
         .flex.items-center
           .text-xl.font-bold.my-2(v-if="post?.title") {{ post.title }}

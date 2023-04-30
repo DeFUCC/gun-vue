@@ -3,8 +3,6 @@ import { useGuests, useNewGift, useUser, useProject, useProjects, currentRoom, u
 import { AccountBadge, AuthForm, ProjectCard, RoomButton } from '../components'
 import { toRef, watch, computed, reactive } from 'vue'
 import { component as NumberFormat } from '@coders-tm/vue-number-format' // https://vue-number-format.netlify.app/guide/#globally
-import vSelect from 'vue-select' // https://vue-select.org/
-import 'vue-select/dist/vue-select.css';
 import currencies from './currencies.json';
 
 const numOpts = {
@@ -115,15 +113,11 @@ const userProjects = computed(() => {
           placeholder="Quantity")
 
         .p-2.text-right Quality
-        //- input(v-model="newGift.ql" placeholder="Quality")
-        vSelect.rounded-xl(
-          v-model="newGift.ql"
-          :options="currencies"
-          :append-to-body="true"
-          placeholder="Currency abbreviation or short object description"
-          :taggable="true"
-          :push-tags="true"
+        select.rounded-xl.dark-bg-dark-100.p-2(
+        v-model="newGift.ql"
+        placeholder="Your account currency"
           )
+          option(v-for="cur in currencies" :key="cur" :value="cur") {{ cur }}
 
         .p-2.text-right.self-start Wish 
         textarea.p-2(
