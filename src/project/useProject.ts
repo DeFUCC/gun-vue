@@ -21,6 +21,7 @@ export function useNewProject(title?: string) {
     id: genUUID(6),
     title,
     type: 'project',
+    status: 'new',
     public: true,
     funding: false,
     room: computed(() => currentRoom.pub),
@@ -55,7 +56,6 @@ export function useNewProject(title?: string) {
   }
   return { newProject, addProject }
 }
-
 
 export function updateProjectField(title: string, field: string, value: string) {
   const gun = useGun();

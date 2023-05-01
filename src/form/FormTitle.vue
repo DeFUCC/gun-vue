@@ -19,7 +19,7 @@ function update(ev) {
 </script>
 
 <template lang="pug">
-.flex.mt-12.mb-2.items-center.gap-4
+.flex.mb-2.items-center.gap-4
   h1.text-3xl.font-bold(
     ref="content"
     :contenteditable="editable" 

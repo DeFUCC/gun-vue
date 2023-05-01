@@ -27,10 +27,9 @@ const hasText = computed(() => post.icon || post.title || post.statement || post
   :style="{ backgroundImage: `url(${post?.cover || post?.raw})`, backgroundColor: colorDeep.hex(hash) }"
   )
   .p-0(
-    style="flex: 12 1 120px" 
     :style="{ paddingTop: post?.cover || post?.raw ? '18em' : '0' }"
     )
-  .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-lg.rounded-2xl.bg-light-100.dark-bg-dark-400.backdrop-blur-sm.backdrop-filter.shadow-md(
+  .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-lg.rounded-2xl.bg-light-100.bg-opacity-80.dark-bg-dark-400.dark-bg-opacity-80.backdrop-blur-sm.backdrop-filter.shadow-md(
     style="flex: 14 1 620px"
   )
     .p-0(
@@ -44,10 +43,12 @@ const hasText = computed(() => post.icon || post.title || post.statement || post
     .flex.flex-col.p-2.overflow-hidden(style="flex: 10 1 280px" v-if="hasText")
       .px-2
         .flex.items-center
-          .text-xl.font-bold.my-2(v-if="post?.title") {{ post.title }}
+          .flex.flex-col
+            .text-xl.font-bold.my-2(v-if="post?.title") {{ post.title }}
+            .statement(v-if="post?.statement") {{ post.statement }}
           .flex-1
           post-link(:hash="hash")
-        .statement(v-if="post?.statement") {{ post.statement }}
+
       .flex.items-center.flex-wrap.items-center.mt-2.gap-2
         .i-la-youtube.mx-1(v-if="post?.youtube")
         .i-mdi-text-long.mx-1(v-if="post?.text")

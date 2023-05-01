@@ -2,7 +2,7 @@
 <script setup>
 import { useRoom, rootRoom, currentRoom, useColor, useUser, useBackground, useMd } from '#composables';
 import { ref, computed, reactive } from 'vue'
-import { RoomLogo, FormTitle, AccountBadge, RoomActions, RoomFeature, FormText } from '../components'
+import { RoomLogo, FormTitle, AccountBadge, RoomActions, RoomFeature, FormText, UserList } from '../components'
 import { features } from '../../gun.config.json'
 
 const props = defineProps({
@@ -70,7 +70,7 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
 
   slot
   .flex.flex-col.items-center.bg-light-300.dark-bg-dark-400
-
+    user-list
     .flex.flex-wrap.items-center.gap-2.p-4
       room-feature(
         v-for="(title, c) in titles" 
@@ -96,4 +96,5 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
         v-model:text="edit.text" 
         @close="updateRoomProfile('text', edit.text); edit.text = false"
         )
+    
 </template>

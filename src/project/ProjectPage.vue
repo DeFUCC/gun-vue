@@ -1,8 +1,10 @@
 
 <script setup>
-import { useUser, useProject, useMd, useProjectGifts, itemTypes, useNewDiscourseItem } from '#composables';
+import { useUser, useProject, useMd } from '#composables';
 import { toRef, ref, computed, watch } from 'vue'
 import { FormPicture, FormTitle, ProjectFunding, ProjectForm } from '../components'
+import { useDebounceFn } from '@vueuse/core'
+
 
 const emit = defineEmits(['gift', 'user'])
 
@@ -23,59 +25,55 @@ const editable = computed(() => props.path.includes(user.pub))
 
 const editing = ref(false)
 
-const text = ref(project.text)
+const content = ref(project.content)
 
-watch(() => project.text, (t) => {
-  text.value = t
+watch(() => project.content, (t) => {
+  content.value = t
 })
 
-const { newItem, add } = useNewDiscourseItem()
-
-
+const debouncedUpdate = useDebounceFn(updateField, 1000)
 
 </script>
 <!-- eslint-disable vue/no-v-html -->
 <template lang="pug">
-.flex.flex-col
-  .p-2.relative(:style="{ background: `url(${project.cover}) center`, backgroundColor: project.color, paddingTop: project.cover || project.color ? '120px' : '' }")
-
-    input.absolute.top-4.right-4(
-      v-if="editable" 
-      type="color" 
-      :value="project.color" 
-      @input="updateField('color', $event.target.value)"
-      )
-
-    form-picture(
+.flex.flex-col.max-w-65ch
+  .p-2.relative(:style="{ background: `url(${project.cover}) center`, backgroundColor: project?.color, paddingTop: project?.cover || project?.color ? '220px' : '60px' }")
+    form-picture.absolute.top-2(
       v-if="editable" 
       @update="updateCover($event)"
       )
+    input.absolute.top-4.right-4(
+      v-if="editable" 
+      type="color" 
+      :value="project?.color" 
+      @input="updateField('color', $event.target.value)"
+      )
+    .rounded.p-2.bg-light-100.bg-opacity-80.dark-bg-dark-300.dark-bg-opacity-60.flex.items-center
+      .flex.flex-col
+        .font-mono.text-xs.capitalize {{ project?.type }} {{ project?.id }}
 
-    form-title(
-      :text="project.title" 
-      :editable="editable" 
-      @update="updateField('title', $event)")
+        form-title(
+          :text="project?.title" 
+          :editable="editable" 
+          @update="updateField('title', $event)")
+      .flex-1
+      account-badge(
+        :pub="path.slice(-87)" 
+        @click="$emit('user', path.slice(-87))")
 
-    //- account-badge.absolute.bottom-4.right-4(
-      :pub="path.slice(-87)" 
-      @click="$emit('user', path.slice(-87))")
-
-  .flex.flex-col.gap-2.m-2.bg-light-200.dark-bg-dark-400.p-2.rounded-xl.shadow.relative
+  .flex.flex-col.gap-2.px-4.bg-light-200.dark-bg-dark-400.relative
     .i-la-pen.cursor-pointer.text-2xl.absolute.top-2.right-2.z-2(
       v-if="editable" 
       @click="editing = !editing"
       )
     .p-2.text-base.prose.prose-truegray.dark-prose-light.dark-bg-dark-400(
       v-if="!editing || !editable" 
-      v-html="md.render(text || '')")
+      v-html="md.render(content || '')")
     textarea.dark-bg-dark-400(
       v-else 
-      v-model="text" 
-      @update:model-value="updateField('text', $event)")
-
-
-  project-form(:source="path")
-
+      v-model="content" 
+      @update:model-value="debouncedUpdate('content', $event)")
+    pre.text-xs.max-w-full.overflow-scroll {{ Object.keys(project) }}
 
   project-funding(
     :path="path" 
@@ -83,6 +81,6 @@ const { newItem, add } = useNewDiscourseItem()
     @enable="updateField('funding', 'true')"
     @gift="$emit('gift', $event)"
     )
-
+  project-form(:source="path")
     
 </template>

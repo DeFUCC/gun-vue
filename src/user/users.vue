@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { currentRoom } from '#composables';
-import { UserList, UserGraph } from '../components'
+import { UserListOverlay, UserGraph } from '../components'
 </script>
 
 <template lang="pug">
 .flex.items-center.relative
-  user-list(
+  user-list-overlay(
     :key="currentRoom.pub" 
     @user="$router.push(`/users/${$event}`)")
   user-graph(
