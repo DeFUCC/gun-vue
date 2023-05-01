@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/app",
-	"version": "0.16.10",
+	"version": "0.17.0",
 	"type": "module",
 	"homepage": "https://gun-vue.js.org",
 	"funding": {

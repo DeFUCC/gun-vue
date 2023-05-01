@@ -1,5 +1,16 @@
 # @gun-vue/components
 
+## 0.17.0
+
+### Minor Changes
+
+- Finally we hae feature updates, not just the tooling and docs!
+
+### Patch Changes
+
+- Updated dependencies
+  - @gun-vue/composables@0.17.0
+
 ## 0.16.10
 
 ### Patch Changes
