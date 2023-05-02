@@ -35,9 +35,12 @@
       <user-icon></user-icon>
       <room-button></room-button>
     </div>
-    <keep-alive>
-      <guest-list v-if="!other" @user="other=$event"></guest-list>
-      <guest-list v-if="!other" @user="other=$event" state="offline"></guest-list>
+    <keep-alive max="5">
+      <template v-if="!other">
+        <guest-list @user="other=$event"></guest-list>
+        <guest-list @user="other=$event" state="offline"></guest-list>
+      </template>
+
       <chat-private v-else :pub="other">
         <button class="button" @click="other=''">Close</button>
         </chat-room>

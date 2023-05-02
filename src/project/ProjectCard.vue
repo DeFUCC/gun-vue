@@ -56,7 +56,9 @@ defineProps({
     .flex.flex-col.p-2.overflow-hidden(style="flex: 10 1 280px")
       .px-2
         .flex.items-center
-          .text-xl.font-bold.my-2(v-if="project?.title") {{ project.title }}
+          .flex.flex-col.my-2
+            .text-xl.font-bold(v-if="project?.title") {{ project.title }}
+            .text-md(v-if="project?.description") {{ project.description }}
           .flex.items-center.flex-wrap.items-center.mt-2.gap-2
             .i-la-youtube.mx-1(v-if="project?.youtube")
             .i-mdi-text-long.mx-1(v-if="project?.text")
@@ -70,7 +72,6 @@ defineProps({
 
           .flex-1
           account-badge(:pub="path.slice(-87)")
-        .statement(v-if="project?.statement") {{ project.statement }}
 
 </template>
 

@@ -19,15 +19,15 @@ function update(ev) {
 </script>
 
 <template lang="pug">
-.flex.mb-2.items-center.gap-4
-  h1.text-3xl.font-bold(
+.flex.mb-2.items-center.gap-4(v-if="text || editable")
+  .p-0(
     ref="content"
     :contenteditable="editable" 
     @focus="edit = true"
     @blur="update($event)" 
     @keydown.enter.prevent.stop="update($event)"
     ) {{ text || '' }}
-  .i-la-pen.text-2xl(
+  .i-la-pen(
     v-if="editable && !edit" 
     @click="content.focus()"
     )

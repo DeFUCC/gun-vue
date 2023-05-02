@@ -50,12 +50,18 @@ const debouncedUpdate = useDebounceFn(updateField, 1000)
       )
     .rounded.p-2.bg-light-100.bg-opacity-80.dark-bg-dark-300.dark-bg-opacity-60.flex.items-center
       .flex.flex-col
-        .font-mono.text-xs.capitalize {{ project?.type }} {{ project?.id }}
-
-        form-title(
+        .flex.items-center.gap-2
+          .capitalize.font-mono.text-xs {{ project?.type }} 
+          .px-2.px-1.bg-light-300.dark-bg-dark-300.rounded-lg.font-mono.text-xs {{ project?.id }} 
+          .px-2.px-1.bg-light-700.dark-bg-dark-700.rounded-lg.font-mono.text-xs.mr-auto {{ project?.status }}
+        form-title.text-2xl.font-bold(
           :text="project?.title" 
           :editable="editable" 
           @update="updateField('title', $event)")
+        form-title.text-md(
+          :text="project?.description" 
+          :editable="editable" 
+          @update="updateField('description', $event)")
       .flex-1
       account-badge(
         :pub="path.slice(-87)" 

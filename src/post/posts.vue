@@ -1,38 +1,26 @@
 <script setup lang="ts">
-import { safeHash, currentRoom } from '../composables'
-import { PostList, PostGraph } from '../components'
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
+import { countProjects, useUser } from '#composables';
 
-const showGraph = ref()
+const { user } = useUser()
 
-
+const count = countProjects()
+const countMy = computed(() => countProjects(user.pub))
 </script>
 
 <template lang="pug">
 .flex.flex-col.flex-auto.relative
-  post-list.w-full(
-    :key="currentRoom.pub"
-    tag="PvRPp6Qs4F5fkSx9CnWfUsN2QkpmsIkaVxvpGf6iK18="
-    :header="false" 
-    @close="$router.push('/posts/')"
-    @browse="$router.push(`/posts/${safeHash($event)}`)"
-    @user="$router.push(`/users/${$event}`)"
-    )
-    button.button(
-      :class="{ active: showGraph }" 
-      @click="showGraph = !showGraph")
-      .i-la-eye
-      .ml-2 Graph
-  transition(name="fade")
-    post-graph.absolute.top-2.right-2.left-2.z-10(
-      v-if="showGraph" 
-      @post="$router.push(`/posts/${safeHash($event)}`)")
-      button.button.fixed.top-40.right-8(
-        v-if="showGraph"
-        @click="showGraph = false")
-        .i-la-times.text-2xl
+  router-link.py-2.px-4.flex.bg-dark-100.bg-opacity-10.gap-2(to="/posts/")
+    .font-bold.text-xl POSTS
+    .flex-auto
+    //- .flex.flex-auto.items-center.gap-2
+    //-   router-link.link(
+    //-     v-if="user?.is"
+    //-     to="/posts/my/"
+    //-     ) My posts
+    //-       .px-8px.py-4px.text-xs.font-bold.bg-light-100.dark-bg-dark-500.rounded-xl {{ countMy }}
   router-view(v-slot="{ Component }")
     transition(name="fade")
-      keep-alive
+      keep-alive(max="12")
         component(:is="Component" )
 </template>
