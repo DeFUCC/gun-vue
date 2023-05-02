@@ -1,6 +1,6 @@
 console.log('Worker initiated')
 
-import { Gun, SEA } from "../../gun-es/dist/gun-es.js";
+import { Gun, SEA } from "@gun-vue/gun-es";
 
 onmessage = async m => {
   console.log('Worker question:', m.data)
