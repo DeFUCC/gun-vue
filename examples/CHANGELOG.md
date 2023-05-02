@@ -1,5 +1,11 @@
 # @gun-vue/examples
 
+## 0.17.1
+
+### Patch Changes
+
+- Guests lists are working fine for messaging example
+
 ## 0.17.0
 
 ### Minor Changes

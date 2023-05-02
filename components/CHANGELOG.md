@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.17.1
+
+### Patch Changes
+
+- Guests lists are working fine for messaging example
+- Updated dependencies
+  - @gun-vue/composables@0.17.1
+
 ## 0.17.0
 
 ### Minor Changes
