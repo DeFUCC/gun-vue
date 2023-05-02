@@ -113,7 +113,7 @@ const filteredPosts = computed(() => {
       )
         button.button(@click="user.auth = true") Authorize to post here
         slot
-  .flex.flex-wrap.gap-4
+  .flex.flex-wrap.gap-4.p-2
     transition-group(name="list")
       post-card.max-w-xl.flex-1.shadow-xl(
         v-for="(authors, hash) in filteredPosts"

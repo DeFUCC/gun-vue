@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onClickOutside, useMediaQuery } from '@vueuse/core';
 import { useGuests, joinRoom, useUser } from '#composables';
-import { AccountBadge } from '../components'
+import { AccountBadge, GuestList } from '../components'
 import { reactive, ref, computed, toRef } from 'vue'
 
 const isLarge = useMediaQuery('(min-width: 640px)')
@@ -54,5 +54,5 @@ transition(name="fade")
       .flex.items-center
         .text-xl.mr-2.capitalize {{ state }}
         .px-2.py-1.rounded-xl.font-bold {{ guests.count[state] }}
-      UserList(:state="state")
+      guest-list(:state="state" @user="$emit('user',$event)")
 </template> 

@@ -14,7 +14,6 @@ onMounted(() => {
   open.value = true
 })
 
-
 </script>
 
 <template lang="pug">

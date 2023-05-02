@@ -12,3 +12,4 @@ export const RoomPage = defineAsyncComponent(() => import('./RoomPage.vue'))
 export const RoomProfile = defineAsyncComponent(() => import("./RoomProfile.vue"))
 export const RoomButton = defineAsyncComponent(() => import('./RoomButton.vue'))
 export const RoomActions = defineAsyncComponent(() => import('./RoomActions.vue'))
+export const GuestList = defineAsyncComponent(() => import("./GuestList.vue"));

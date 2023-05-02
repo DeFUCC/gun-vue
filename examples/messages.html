@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
-  <title>Chat example</title>
+  <title>Private chat example</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/@gun-vue/components/dist/style.css">
   <script type="importmap">
   {
     "imports": {
-      "app": "../app/dist/app.js"
+      "app": "https://unpkg.com/@gun-vue/app"
     }
   }
   </script>
@@ -28,15 +28,16 @@
 
 <body>
 
-  <div id="app" class="flex-col">
-    <h1>Chat example app!</h1>
+  <div id="app" class="flex-col gap-2">
+    <h1 class="text-2xl p-2">Private chat example Gun-Vue app</h1>
     <div class="flex flex-wrap items-center gap-2 p-4">
       <gun-relay></gun-relay>
       <user-icon></user-icon>
       <room-button></room-button>
     </div>
     <keep-alive>
-      <user-list v-if="!other" @user="other=$event"></user-list>
+      <guest-list v-if="!other" @user="other=$event"></guest-list>
+      <guest-list v-if="!other" @user="other=$event" state="offline"></guest-list>
       <chat-private v-else :pub="other">
         <button class="button" @click="other=''">Close</button>
         </chat-room>

@@ -60,7 +60,7 @@ const hasText = computed(() => post.icon || post.title || post.statement || post
         slot
     .flex.gap-1.rounded-xl.p-1.bg-dark-50.bg-opacity-20.flex-wrap.items-center(
       v-if="actions" 
-      style="flex: 1 1 130px"
+      style="flex: 1 1 230px"
       )
       post-action-react(
         :authors="authors" 

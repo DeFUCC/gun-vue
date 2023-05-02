@@ -17,5 +17,6 @@ ui-layer(
     style="flex: 1 1 200px"
     :pub="room"
     @browse="$router.push(`/${$event}/`)"
+    @user="$router.push(`/users/${$event}/`)"
     ) 
 </template>

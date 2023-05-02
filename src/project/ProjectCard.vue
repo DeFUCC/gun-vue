@@ -77,7 +77,8 @@ defineProps({
 
 <style lang="postcss" scoped>
 .card {
-  @apply transition duration-300ms ease-out min-w-280px p-2px pl-2 rounded-2xl cursor-pointer flex flex-wrap items-end bg-cover bg-center dark-bg-dark-700;
+  @apply transition duration-300ms ease-out min-w-280px p-2px pl-2 rounded-2xl cursor-pointer flex flex-wrap items-end bg-cover bg-center dark-bg-dark-700 max-w-360px;
+  flex: 1 1 200px;
   filter: grayscale(10%) brightness(95%);
 }
 
