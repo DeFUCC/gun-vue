@@ -1,9 +1,12 @@
 <script setup>
-import { TorrentUpload } from '../components'
+
+import FileHash from './FileHash.vue';
+import TorrentUpload from './TorrentUpload.vue';
 </script>
 
 <template lang="pug">
 .flex.flex-col
+  file-hash
   torrent-upload
   router-view(v-slot="{ Component }")
     transition(

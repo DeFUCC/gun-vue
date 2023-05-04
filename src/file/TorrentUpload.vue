@@ -27,13 +27,12 @@ const clip = useClipboard({ source: downloadUrl })
 
 const { share, isSupported: shareSupported } = useShare()
 
-
 </script>
 
 <template lang='pug'>
 .flex.flex-col.gap-4.p-4
   label.p-2.flex.flex-wrap.gap-2.bg-light-100.dark-bg-dark-400.rounded.cursor-pointer
-    .font-bold Upload a file
+    .font-bold Share a file via torrent
     .flex-1
     input(
       type="file"
