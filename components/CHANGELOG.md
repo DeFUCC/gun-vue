@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.17.2
+
+### Patch Changes
+
+- file hashing and components list
+- Updated dependencies
+  - @gun-vue/composables@0.17.2
+
 ## 0.17.1
 
 ### Patch Changes

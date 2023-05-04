@@ -1,5 +1,11 @@
 # @gun-vue/composables
 
+## 0.17.2
+
+### Patch Changes
+
+- file hashing and components list
+
 ## 0.17.1
 
 ### Patch Changes
