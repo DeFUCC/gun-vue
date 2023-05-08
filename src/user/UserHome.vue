@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useUser } from '#composables';
+import { ref, watch } from 'vue';
 import { UiLayer, AuthCredentials, AuthLogin, UserPanel, UserProfile, UserRooms, } from '../components'
 
 const emit = defineEmits(['user', 'room', 'close', 'chat', 'browse'])
@@ -10,17 +11,23 @@ function isSafe() {
   user.db.get('safe').get('saved').put(true)
 }
 
+const safe = ref(false)
+
+watch(() => user.is, () => {
+  user.db.get('safe').get('saved').on(s => safe.value = s)
+}, { immediate: true })
+
 
 </script>
 
 <template lang="pug">
 .flex.flex-col.items-center.w-full
   ui-layer(
-    :open="user.is && !user.safe?.saved" 
+    :open="user.is && !safe" 
     close-button 
     @close="isSafe()"
     )
-    auth-credentials(v-if="!user.safe?.saved")
+    auth-credentials(v-if="!safe")
       button.button.mx-8.justify-center(@click="isSafe()")
         .i-la-check
         .ml-2 I've stored my key securely

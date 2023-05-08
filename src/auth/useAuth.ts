@@ -10,21 +10,21 @@ import { useGun, SEA, auth, isPair, user } from "../composables";
 import { ISEAPair } from "gun";
 
 /**
- * @typedef {reactive} Pass
- * @property {Object} safe
- * @property {Object} dec
+ * @typedef {reactive} Auth
  */
 
-export interface Pass {
+export interface Auth {
 	input: string
 	show: boolean
 	safePair: boolean
 	minLength: number
 	safe: {
-		enc?: string
-		pass?: string
-		[key: string]: string | undefined
-	};
+		saved: boolean
+		password: string
+		enc: string
+		pass: string
+		rooms: object
+	}
 	dec: {
 		pass?: string
 		pair?: ISEAPair
@@ -37,12 +37,18 @@ export interface Pass {
 	set(): void;
 }
 
-export const pass: Pass = reactive({
+export const pass: Auth = reactive({
 	input: "",
 	show: false,
 	safePair: false,
 	minLength: 5,
-	safe: {},
+	safe: {
+		saved: false,
+		password: '',
+		enc: '',
+		pass: '',
+		rooms: {}
+	},
 	dec: {},
 	links: reactive({
 		pass: computed(() => {
@@ -75,18 +81,19 @@ let initiated = false;
 
 /**
  * Manage password of a user
- * @returns {usePass}
+ * @returns {useAuth}
  */
 
-export interface UsePass {
-	pass: Pass
+export interface useAuth {
+	pass: Auth
 	setPass: (text: string) => Promise<void>
-	logWithPass: (pub: string, passphrase: string) => Promise<void>
+	authWithPass: (pub: string, passphrase: string) => Promise<void>
 }
 
-export function usePass(): UsePass {
+export function useAuth(): useAuth {
 	if (!initiated) {
 		const gun = useGun();
+
 		gun
 			.user()
 			.get("safe")
@@ -112,7 +119,7 @@ export function usePass(): UsePass {
 	}
 	initiated = true;
 
-	return { pass, setPass, logWithPass };
+	return { pass, setPass, authWithPass };
 }
 
 export async function hasPass(pub: string) {
@@ -120,7 +127,7 @@ export async function hasPass(pub: string) {
 	return await gun.get(`~${pub}`).get("safe").get("enc").then();
 }
 
-async function logWithPass(pub: string, passphrase: string) {
+async function authWithPass(pub: string, passphrase: string) {
 	const gun = useGun();
 	let encPair = await gun.get(`~${pub}`).get("safe").get("enc").then();
 	let pair = await SEA.decrypt(encPair, passphrase);
@@ -135,13 +142,13 @@ async function setPass(text: string) {
 	gun.user().get("safe").get("pass").put(encPass);
 }
 
-export function usePassLink(data: string, passPhrase: string) {
+export function useAuthLink(data: string, passPhrase: string) {
 	if (!data) return;
 	const decoded = decodeURIComponent(data)
 	console.log('dec', decoded)
 	if (decoded.substring(0, 3) == "SEA") {
 		if (passPhrase) {
-			logEncPass(decoded, passPhrase);
+			authEncPass(decoded, passPhrase);
 		}
 		return "encrypted";
 	} else {
@@ -157,7 +164,7 @@ export function usePassLink(data: string, passPhrase: string) {
 	}
 }
 
-async function logEncPass(encPair: string, passphrase: string) {
+async function authEncPass(encPair: string, passphrase: string) {
 	let pair = await SEA.decrypt(encPair, passphrase);
 	auth(pair);
 }

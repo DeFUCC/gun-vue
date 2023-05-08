@@ -1,5 +1,5 @@
 <script setup>
-import { usePassLink, user } from '#composables'
+import { useAuthLink, user } from '#composables'
 import { useRouter } from 'vue-router'
 import { ref, onMounted, watch } from 'vue'
 const router = useRouter()
@@ -12,7 +12,7 @@ const passPhrase = ref('')
 const status = ref('')
 const input = ref()
 onMounted(() => {
-  status.value = usePassLink(props.data)
+  status.value = useAuthLink(props.data)
 })
 watch(user, user => {
   if (user.is) {
@@ -29,6 +29,6 @@ watch(user, user => {
     h2.my-2.text-xl Seems like you have an encrypted key. 
     h3 You need to enter the correct passphrase to authorize with it.
     .flex.mt-4.items-stretch
-      input.border-1.border-dark-100.p-4.rounded-xl(type="password" ref="input" v-model="passPhrase" autofocus @keydown.enter="usePassLink(data, passPhrase)")
-      button.button.items-center(type="submit" @click="usePassLink(data, passPhrase)") Enter
+      input.border-1.border-dark-100.p-4.rounded-xl(type="password" ref="input" v-model="passPhrase" autofocus @keydown.enter="useAuthLink(data, passPhrase)")
+      button.button.items-center(type="submit" @click="useAuthLink(data, passPhrase)") Enter
 </template>

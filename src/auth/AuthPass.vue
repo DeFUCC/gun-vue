@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { usePass } from '#composables'
-const { pass } = usePass();
+import { useAuth } from '#composables'
+const { pass } = useAuth();
 
 </script>
 

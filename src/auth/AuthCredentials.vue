@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUser, downloadFile, usePass } from '#composables'
+import { useUser, downloadFile, useAuth } from '#composables'
 import { AuthPass, QrShow } from '../components'
 import { ref, computed } from 'vue'
 import { useClipboard, useShare } from '@vueuse/core'
@@ -18,7 +18,7 @@ function show(option) {
   }
 }
 
-const { pass } = usePass()
+const { pass } = useAuth()
 
 
 const { text, copy, copied, isSupported: canCopy } = useClipboard()

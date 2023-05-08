@@ -17,11 +17,11 @@ export interface Message {
 
 export type MessageMap = Record<string, Message>
 
-export function useChat() {
+export function useChat(current = "general") {
   const gun = useGun();
   const { user } = useUser();
 
-  const currentChat = ref("general");
+  const currentChat = ref(current);
 
   const chats: ComputedRef<Record<string, Record<string, string>>> = computed(() => {
     const chatList = reactive({
