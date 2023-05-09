@@ -1,15 +1,20 @@
 <script setup lang="ts">
-import { useColor, gunAvatar, useGun } from '../composables';
+import { useColor, gunAvatar, useGun, selectedUser, useUser } from '../composables';
 import { computed, ref, watch } from 'vue'
+import { SpaceStatus } from './components';
 const props = defineProps(
   {
     pub: { type: String, default: '' },
+    status: { type: String, default: '' },
     pos: { type: Object, default: () => ({ x: 0, y: 0 }) },
     mouse: { type: Object, default: () => ({ x: 0, y: 0 }) },
     pulse: { type: Number, default: 0 },
     blink: { type: Boolean, default: false },
     size: { type: Number, default: 100 }
   })
+
+const { user } = useUser()
+const emit = defineEmits(['updateStatus'])
 
 const TIMEOUT = 10000
 
@@ -80,22 +85,28 @@ gun.user(props.pub).get('avatar').on(hash => {
 g.guest(
   :opacity="isOffline ? 0.1 : 1"
 )
-
-  circle.transition.duration-1000.ease-out(
-    :style="{ filter: `url(#shadowButton)` }"
-    :r="26"
-    :fill="color"
-    stroke-width="8"
-    stroke-opacity="0.5"
-    :stroke="blink ? color : 'transparent'"
-  )
-
-  image(
-    :xlink:href="avatar" 
-    x="-25" 
-    y="-25" 
-    height="50" 
-    width="50" 
-    clip-path="url(#mask)"
+  SpaceStatus(
+    :content="status"
+    @click="user.pub && user.pub == pub && $emit('updateStatus', 'new ' + Date.now())"
     )
+  g.avatar(
+    @click='selectedUser.pub = pub'
+    )
+    circle.transition.duration-1000.ease-out(
+      :style="{ filter: `url(#shadowButton)` }"
+      :r="26"
+      :fill="color"
+      stroke-width="8"
+      stroke-opacity="0.5"
+      :stroke="blink ? color : 'transparent'"
+    )
+
+    image(
+      :xlink:href="avatar" 
+      x="-25" 
+      y="-25" 
+      height="50" 
+      width="50" 
+      clip-path="url(#mask)"
+      )
 </template>

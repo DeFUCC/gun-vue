@@ -7,15 +7,17 @@
 import { useGun } from "../composables";
 import { useSvgMouse } from "../ui/composables";
 import { useUser } from "../user/composables";
-import { computed, ref, reactive, watchEffect, ComputedRef } from "vue";
+import { computed, ref, reactive, watchEffect, ComputedRef, watch } from "vue";
 import { getFirstEmoji, currentRoom } from "../composables";
 import { getArrow } from "curved-arrows";
 import { useElementBounding, useTimestamp } from "@vueuse/core";
 import { useClamp } from '@vueuse/math'
 
+
 export interface SpaceGuest {
   pub: string
   draw: string
+  status: string
   blink: boolean
   pulse: number
   hasPos: boolean
@@ -78,6 +80,16 @@ export function useSpace({
     });
   }
 
+  function setStatus(status: string = '') {
+    if (!user.pub) return;
+    if (!space.joined) join();
+    space.db.get(user.pub).get('status').put(status, null, {
+      opt: { cert: currentRoom.features?.space },
+    });
+  }
+
+
+
   // function placePoint() {
   //   const pointPos = [pos[0] + space.my.mouse.x, pos[1] + space.my.mouse.y].map(Math.round)
   //   console.log(pointPos)
@@ -107,6 +119,11 @@ export function useSpace({
 
   const guestCount = computed(() => Object.keys(guests.value).length);
 
+  // watch([user], () => {
+  //   pos[0] = allGuests[user?.pub]?.pos?.[0] 
+  //   pos[1] = allGuests[user?.pub]?.pos?.[1] 
+  // })
+
   space.db.map().once(async (pos, pub) => {
     if (pub == user.pub) {
       space.joined = true;
@@ -114,6 +131,7 @@ export function useSpace({
     const guest: SpaceGuest = {
       pub: pub,
       draw: '',
+      status: '',
       blink: false,
       pulse: 0,
       hasPos: false,
@@ -124,8 +142,6 @@ export function useSpace({
     };
     allGuests[pub] = guest
 
-
-
     space.db.get(pub).get('pos').on((d: string) => {
       allGuests[pub].hasPos = true;
       allGuests[pub].pos = typeof d == "string" ? JSON.parse(d) : d;
@@ -133,6 +149,10 @@ export function useSpace({
 
     space.db.get(pub).get('draw').on((d: string) => {
       allGuests[pub].draw = d
+    })
+
+    space.db.get(pub).get('status').on((d: string) => {
+      allGuests[pub].status = d
     })
 
     gun
@@ -149,7 +169,6 @@ export function useSpace({
         mates[pub] = mates[pub] || {};
         mates[pub][k] = d;
       });
-
 
   });
 
@@ -201,7 +220,8 @@ export function useSpace({
     zoom,
     area,
     join,
-    place
+    place,
+    setStatus
   };
 }
 

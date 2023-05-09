@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { useDrag, usePinch } from "@vueuse/gesture";
+import { useDrag, usePinch, useWheel } from "@vueuse/gesture";
 import {
   useDraw,
   useSpace,
@@ -10,18 +10,20 @@ import {
   selectedUser,
   safeHash,
 } from "../composables";
-import { ref, reactive, onMounted, onBeforeUnmount, onActivated, onDeactivated } from "vue";
+import {
+  ref,
+  reactive,
+  onMounted,
+  onBeforeUnmount,
+  onActivated,
+  onDeactivated,
+} from "vue";
 import { useDebounceFn, useThrottleFn } from "@vueuse/core";
+import { SpaceGuest, UiLayer, AccountHome, SpaceArrow } from "../components";
 
 const props = defineProps({
-  pad: {
-    type: Number,
-    default: 50,
-  },
-  coord: {
-    type: String,
-    default: "",
-  },
+  pad: { type: Number, default: 50 },
+  coord: { type: String, default: "" },
 });
 const emit = defineEmits(["user", "enter", "leave", "chat", "update:coord"]);
 
@@ -42,6 +44,7 @@ const {
   area,
   join,
   place,
+  setStatus,
 } = useSpace({
   TIMEOUT: 10000,
 });
@@ -76,6 +79,10 @@ useDrag(
   }
 );
 
+// useWheel(e => {
+//   console.log(zoom.value += e.direction[1] / 100)
+// }, { domTarget: plane })
+
 const paper = ref();
 
 const { drauu, draw, loadCanvas } = useDraw();
@@ -86,12 +93,12 @@ onMounted(() => {
 });
 
 onActivated(() => {
-  console.log('activated')
-})
+  console.log("activated");
+});
 
 onDeactivated(() => {
-  console.log('deactivated')
-})
+  console.log("deactivated");
+});
 
 onBeforeUnmount(() => {
   drauu.unmount();
@@ -108,15 +115,15 @@ onBeforeUnmount(() => {
 
   space-draw.z-500
 
-  svg.h-full.w-full.z-200.bg-dark-100.bg-opacity-5.cursor-pointer.touch-none(ref='plane', 
+  svg.h-full.w-full.z-200.bg-dark-100.bg-opacity-5.touch-none.cursor-grab.active-cursor-grabbing(ref='plane', 
   xmlns='http://www.w3.org/2000/svg', 
   version='1.1', 
   baseProfile='full', 
   font-family='Commissioner , sans-serif', 
   text-anchor='middle', 
   dominant-baseline='middle', 
-  :viewBox=' `${-pad + pos[0] - width / 2} ${-pad + pos[1] - height / 2} ${width * zoom + 2 * pad} ${height * zoom + 2 * pad}` ',
-  @click=' !user.is ? user.auth = true : null; ')
+  :viewBox=" `${-pad + pos[0] - width / 2} ${-pad + pos[1] - height / 2} ${width * zoom + 2 * pad} ${height * zoom + 2 * pad}`",
+  @click=" !user.is ? user.auth = true : null;")
 
     defs
       filter#shadowButton(x='-50%', height='200%', width='300%')
@@ -128,60 +135,61 @@ onBeforeUnmount(() => {
     text.text-xs(
       text-anchor='end', 
       fill="currentColor"
-      :transform=' `translate(${pos[0] + width / 2 - 10} ${pos[1] - height / 2 + 20})` '
+      :transform=" `translate(${pos[0] + width / 2 - 10} ${pos[1] - height / 2 + 20})`"
       ) {{ pos }}
 
     g.opacity-90(
-      v-for='  guest   in   guests  ', :key=' guest.draw ', v-html=' guest.draw ')
+      v-for="  guest   in   guests ", :key=" guest.draw", v-html=" guest.draw")
 
     svg.opacity-70(
-      ref='paper', 
-      :x=' pos[0] - width / 2 - pad ', 
-      :y=' pos[1] - height / 2 - pad ', 
-      :viewBox=' `${-pad + pos[0] - width / 2} ${-pad + pos[1] - height / 2} ${width + 2 * pad} ${height + 2 * pad}` ', 
-      :class=" { 'pointer-events-none': !draw.enabled, 'touch-none': draw.enabled } ")
+      ref="paper", 
+      :x=" pos[0] - width / 2 - pad", 
+      :y=" pos[1] - height / 2 - pad", 
+      :viewBox=" `${-pad + pos[0] - width / 2} ${-pad + pos[1] - height / 2} ${width + 2 * pad} ${height + 2 * pad}`", 
+      :class=" {'pointer-events-none': !draw.enabled,'touch-none': draw.enabled } ")
 
     rect(ref='area', 
-    :x=' pos[0] - width / 2 ', 
-    :y=' pos[1] - height / 2 ', 
+    :x=" pos[0] - width / 2", 
+    :y=" pos[1] - height / 2", 
     rx='12', 
-    :width=' width ', 
-    :height=' height ', 
+    :width=" width", 
+    :height=" height", 
     fill='none', stroke='#3333', stroke-width='1')
 
     g.link
       line(
-      :x1=' pos[0] '
-      :x2=' space.my.mouse.x ',
-      :y1=' pos[1] ',
-      :y2=' space.my.mouse.y ', 
-      :stroke=' user.color ', stroke-dasharray='6')
+      :x1=" pos[0]"
+      :x2=" space.my.mouse.x",
+      :y1=" pos[1]",
+      :y2=" space.my.mouse.y", 
+      :stroke="user.color", 
+      stroke-dasharray="6")
 
-    g.pointer(:transform=' `translate(${pos[0]} ${pos[1]})` ')
+    g.pointer(:transform=" `translate(${pos[0]} ${pos[1]})`")
       g.mouse
-        circle(style='filter:url(#shadowButton)', :fill=' user.color ', r='8')
+        circle(style='filter:url(#shadowButton)', :fill=" user.color", r='8')
 
     g.arrows
-      space-arrow(v-for='(  link, key  ) in   links  ', :key=' key ', :link=' link ', @user=' selectedUser.pub = $event ')
+      space-arrow(v-for="(  link, key  ) in   links ", :key="key", :link=" link", @user="selectedUser.pub = $event")
 
     g.guests
       space-guest.cursor-pointer.transition-all.ease-out.duration-600(
         v-for='guest in guests', 
-        :key=' guest ', 
-        v-bind=' guest ', 
-        :style=' { transform: `translate(${guest?.pos?.x}px, ${guest?.pos?.y}px)` } ', 
-        @click=' selectedUser.pub = guest.pub '
+        :key=" guest?.pub", 
+        v-bind=" guest", 
+        :style=" { transform: `translate(${guest?.pos?.x}px, ${guest?.pos?.y}px)` }", 
+        @updateStatus="setStatus($event)"
         )
 
-  ui-layer.z-4000(:open=' !!selectedUser.pub ', @close=' selectedUser.pub = null ')
+  ui-layer.z-4000(:open="!!selectedUser.pub", @close="selectedUser.pub = null")
 
     account-home.max-w-600px(
-      :key=' selectedUser.pub ', 
-      :pub=' selectedUser.pub ', 
+      :key=" selectedUser.pub", 
+      :pub=" selectedUser.pub", 
       @user=" $emit('user', $event) ", 
       @post=" $emit('post', String(safeHash($event))) ", 
       @chat=" $emit('chat', selectedUser.pub) ", 
-      @close=' selectedUser.pub = null '
+      @close=" selectedUser.pub = null"
       )
 
 </template>

@@ -1,7 +1,7 @@
 export default [
   {
     path: "/private/",
-    meta: { requiresAuth: true },
+    // meta: { requiresAuth: true },
     props: true,
     component: () => import("./index.vue"),
     children: [

@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 defineProps({
   text: { type: String, default: '' },
-  editable: Boolean,
+  editable: { type: Boolean, default: false }
 })
 
 const emit = defineEmits(['update'])

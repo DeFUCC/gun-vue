@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAccount, useUser, useBackground, useProjects } from '../composables';
-import { AccountAvatar, MateButton, ChatPrivateCount, AccountPetname, AccountProfile, GiftWallets, MateList, ProjectCard, AccountReactions } from '../components'
+import { AccountAvatar, MateButton, ChatPrivateCount, AccountPetname, AccountProfile, MateList, ProjectCard, AccountReactions } from '../components'
 import { computed, toRef } from 'vue'
 
 const props = defineProps({
@@ -48,8 +48,6 @@ const { projects } = useProjects(props.pub)
 
   account-profile.p-4(:pub="pub")
   .p-4.flex.flex-col
-
-    gift-wallets(:pub="pub")
     mate-list(
       :pub="pub" 
       @browse="$emit('browse', $event)"
@@ -65,8 +63,9 @@ const { projects } = useProjects(props.pub)
           :path="path + '@' + pub"
           @click="$emit('project', path + '@' + pub)"
           )
-      account-reactions.m-2(
-        :pub="pub" 
-        @post="$emit('post', $event)"
-        )
+    account-reactions.m-2(
+      :pub="pub" 
+      @post="$emit('post', $event)"
+      )
+    gift-wallets(:pub="pub")
 </template>
