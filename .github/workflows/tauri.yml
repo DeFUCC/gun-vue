@@ -50,3 +50,4 @@ jobs:
           releaseDraft: true
           prerelease: false
           projectPath: ./app
+          tauriScript: pnpm
