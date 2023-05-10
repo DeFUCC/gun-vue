@@ -1,14 +1,8 @@
 
 <script setup>
 import { defineProps, computed } from 'vue';
-import { useUser } from '../user/useUser';
-
-const { user } = useUser()
 
 const props = defineProps({
-  pub: {
-    type: String,
-  },
   content: {
     type: String,
     required: true
@@ -20,6 +14,10 @@ const props = defineProps({
   lineHeight: {
     type: Number,
     default: 26
+  },
+  editable: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -43,30 +41,37 @@ const rows = computed(() => {
 const width = computed(() => {
   if (rows.value.length < 1) return 100
   const longestRow = Math.max(...rows.value.map(row => row.length));
-  return (longestRow + 1) * props.lineHeight * 0.42;
+  return (longestRow + 2) * props.lineHeight * 0.42;
 });
 
 const height = computed(() => props.lineHeight + rows.value.length * props.lineHeight);
+
+function handleInput(ev) {
+  emit('update', ev.target.value)
+}
 </script>
 
 <template lang="pug">
-g.opacity-20.hover-opacity-90.transition(
-  :transform="`translateY(${20})`"
-  @click="user.pub && user.pub == pub && $emit('updateStatus', 'new ' + Date.now())"
-  )
-  rect(
-    :width="width", 
-    :x="-width/2" 
-    :height="height", 
-    rx="5"
-    )
-  text(:font-size="lineHeight*0.7" fill="currentColor")
-    tspan(
-      v-for="(row, index) in rows"
-      :key="index"
-      :dy="lineHeight"
-      :x="0"
-    ) {{ row }}
+g()
+  //- rect(
+  //-   :width="width", 
+  //-   :x="0" 
+  //-   :height="height", 
+  //-   rx="5"
+  //-   )
+  //- text(:font-size="lineHeight*0.7" fill="currentColor" text-anchor="start")
+  //-   tspan(
+  //-     v-for="(row, index) in rows"
+  //-     :key="index"
+  //-     :dy="lineHeight"
+  //-     :x="lineHeight/2"
+  //-   ) {{ row }}
+  foreignObject(x="-30" y="20" :width="width" :height="height*2" )
+    textarea(
+      :cols="maxRowLength" :rows="rows.length" 
+      :disabled="!editable"
+      @input="handleInput"
+      :value="content")
 </template>
 
 <style scoped></style>

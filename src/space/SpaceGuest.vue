@@ -85,9 +85,12 @@ gun.user(props.pub).get('avatar').on(hash => {
 g.guest(
   :opacity="isOffline ? 0.1 : 1"
 )
-  SpaceStatus(
-    :pub="pub"
-    content="hello world!!!!!!!!!!!"
+  SpaceStatus.opacity-20.hover-opacity-90.transition.font-mono(
+    :content="status"
+    @update="$emit('updateStatus',$event)"
+    :editable="user.pub == pub"
+    :max-row-length="30"
+    :line-height="22"
     )
   g.avatar(
     @click='selectedUser.pub = pub'
