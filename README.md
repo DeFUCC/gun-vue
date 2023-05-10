@@ -2,7 +2,7 @@
 
 # [gun-vue.js.org](https://gun-vue.js.org)
 
-## Vue + Gun p2p crypto graph db toolkit
+## Gun Vue P2P Crypto Graph Web App Toolkit
 
 Gun-vue is a versatile toolkit that combines the power of the peer-to-peer JavaScript database Gun with the reactivity system of Vue into small, but precise to the purpose apps for everyone to make, share, use and discard whenever we want. It offers pluggable components for UX designers to compose, easily importable composables for UI developers to use, and a 2 LOC starter Relay peer for new p2p network enthusiasts to run on almost any hardware. With growing collection of demos and documentation, Gun-Vue is open-source and accessible to everyone! ✊
 
@@ -10,7 +10,7 @@ Gun-vue is a versatile toolkit that combines the power of the peer-to-peer JavaS
 
 @gun-vue is an open collection of interconnected building blocks designed for creating a wide range of decentralized apps for online and offline collaboration. It combines the strengths of Gun (a CRDT-based distributed graph database), Vue (a reactive JavaScript UI framework), and SEA (a web-browser cryptography adapter) to create an ecosystem of multiple app levels. The project aims to provide basic tools for everyone to participate in exploring this new graph universe and find their own way within it.
 
-There code is organised into distinct layers in the [@gun-vue npmjs.com organisation](https://www.npmjs.com/org/gun-vue) for you to install and use in your P2P apps. 
+The code is organised into distinct layers under the [@gun-vue npmjs.com organisation](https://www.npmjs.com/org/gun-vue) for you to install and use in your P2P apps. 
 
 ## @gun-vue/app
 
