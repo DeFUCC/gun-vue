@@ -7,10 +7,10 @@
 import { useGun } from "../composables";
 import { useSvgMouse } from "../ui/composables";
 import { useUser } from "../user/composables";
-import { computed, ref, reactive, watchEffect, ComputedRef, watch } from "vue";
+import { computed, ref, reactive, watchEffect, ComputedRef } from "vue";
 import { getFirstEmoji, currentRoom } from "../composables";
 import { getArrow } from "curved-arrows";
-import { useElementBounding, useTimestamp } from "@vueuse/core";
+import { useElementBounding, onKeyDown, useKeyModifier } from "@vueuse/core";
 import { useClamp } from '@vueuse/math'
 
 
@@ -79,6 +79,17 @@ export function useSpace({
       opt: { cert: currentRoom.features?.space },
     });
   }
+
+
+
+  const shift = useKeyModifier('Shift')
+
+  const step = computed(() => shift.value ? 100 : 10)
+
+  onKeyDown('ArrowUp', () => { place({ x: pos[0], y: pos[1] - step.value }) })
+  onKeyDown('ArrowDown', () => { place({ x: pos[0], y: pos[1] + step.value }) })
+  onKeyDown('ArrowLeft', () => { place({ x: pos[0] - step.value, y: pos[1] }) })
+  onKeyDown('ArrowRight', () => { place({ x: pos[0] + step.value, y: pos[1] }) })
 
   function setStatus(status: string = '') {
     if (!user.pub) return;
