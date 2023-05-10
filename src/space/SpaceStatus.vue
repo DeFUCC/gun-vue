@@ -1,8 +1,13 @@
 
 <script setup>
 import { defineProps, computed } from 'vue';
+import { useUser } from '../user/useUser';
+const { user } = useUser()
 
 const props = defineProps({
+  pub: {
+    type: String,
+  },
   content: {
     type: String,
     required: true

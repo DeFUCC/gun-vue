@@ -14,6 +14,8 @@ export default [
 
 export const rootRoutes = {
   "/": "Home",
+  "/my/": "User",
+  "/private/": "Messages",
   "/space/": "Space",
   "/chat/": "Chat",
   "/posts/": "Posts",
@@ -23,7 +25,5 @@ export const rootRoutes = {
   "/rooms/": "Rooms",
   "/dict/": "Dictionary",
   "/file/": "Files",
-  "/my/": "User",
-  "/private/": "Messages",
   "/qr/": "QR Lab",
 }
