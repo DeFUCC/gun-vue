@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/repo",
-	"version": "0.17.3",
+	"version": "0.18.0",
 	"private": true,
 	"homepage": "https://gun-vue.js.org",
 	"repository": {
@@ -12,7 +12,7 @@
 		"url": "https://github.com/sponsors/davay42"
 	},
 	"type": "module",
-	"packageManager": "pnpm@8.4.0",
+	"packageManager": "pnpm@8.5.0",
 	"scripts": {
 		"app": "pnpm --filter app run td",
 		"dev": "pnpm --filter app run dev",

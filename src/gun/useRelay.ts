@@ -20,7 +20,7 @@ const defaultPeer = config.relay
  * @example
  * {
  * "peer": "https://peer.era.eco/gun",
- * "host": "6db1edbb5aae",
+ * "hostname": "6db1edbb5aae",
  * "status": "running",
  * "started": 1642666725795,
  * "pulse": 1642677007483,
@@ -34,7 +34,7 @@ const defaultPeer = config.relay
 
 export interface Relay {
   peer: string
-  host: string
+  hostname: string
   status: string
   pulse: number
   lag: number
@@ -47,7 +47,7 @@ export interface Relay {
 export const relay: Relay = reactive({
   list: [],
   peer: useStorage("peer", defaultPeer),
-  host: computed(() => new URL(relay.peer).hostname),
+  hostname: computed(() => new URL(relay.peer)?.hostname || ''),
   status: 'offline',
   started: 0,
   pulse: 0,
@@ -95,14 +95,19 @@ export function resetPeer() {
  */
 export function useRelay(): { relay: Relay, setPeer: (url: string) => void, resetPeer: () => void } {
   const gun = useGun()
-  if (relay.pulse == 0) {
+  if (relay.pulse == 0 && relay?.hostname) {
     gun
-      .get(relay.host)
+      .get(relay?.hostname)
       .map()
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //@ts-ignore
       .on((d: string, k: string) => {
-        relay[k] = d
+        try {
+          relay[k] = d
+        } catch (e) {
+          console.log(e)
+        }
+
       })
   }
 

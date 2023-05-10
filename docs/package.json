@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/docs",
-	"version": "0.17.3",
+	"version": "0.18.0",
 	"private": "true",
 	"homepage": "https://gun-vue.js.org",
 	"bugs": {
@@ -18,7 +18,7 @@
 	"license": "MIT",
 	"author": "davay42 <davay@defucc.me>",
 	"type": "module",
-	"packageManager": "pnpm@8.4.0",
+	"packageManager": "pnpm@8.5.0",
 	"files": [
 		"lib"
 	],

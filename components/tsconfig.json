@@ -33,9 +33,6 @@
 		]
 	},
 	"include": [
-		"../src/"
-	],
-	"exclude": [
-		"../src/**/*.story.vue"
+		"../src/components.ts"
 	]
 }

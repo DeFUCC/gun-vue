@@ -1,5 +1,11 @@
 # @gun-vue/relay
 
+## 0.5.0
+
+### Minor Changes
+
+- Cleaned up packages and very organized repository for everyone to enjoy.
+
 ## 0.4.2
 
 ### Patch Changes

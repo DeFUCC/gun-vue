@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/composables",
-	"version": "0.17.3",
+	"version": "0.18.0",
 	"homepage": "https://gun-vue.js.org",
 	"bugs": {
 		"url": "https://github.com/DeFUCC/gun-vue/issues"
@@ -17,11 +17,16 @@
 	"license": "MIT",
 	"author": "davay42 <davay@defucc.me>",
 	"type": "module",
-	"packageManager": "pnpm@8.4.0",
+	"packageManager": "pnpm@8.5.0",
 	"exports": "./dist/composables.js",
 	"main": "./dist/composables.js",
 	"module": "./dist/composables.js",
-	"types": "./types/index.d.ts",
+	"types": "./types/src/composables.d.ts",
+	"files": [
+		"/dist",
+		"/types",
+		"example.html"
+	],
 	"scripts": {
 		"build": "vite build",
 		"serve": "vite preview"

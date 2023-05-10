@@ -1,6 +1,6 @@
 {
   "name": "@gun-vue/relay",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "homepage": "https://gun-vue.js.org",
   "bugs": {
     "url": "https://github.com/defucc/gun-vue/issues"
@@ -15,8 +15,12 @@
     "url": "https://github.com/sponsors/davay42"
   },
   "type": "module",
-  "packageManager": "pnpm@8.4.0",
+  "packageManager": "pnpm@8.5.0",
   "main": "server.js",
+  "files": [
+    "server.js",
+    "start.js"
+  ],
   "scripts": {
     "start": "node start.js"
   },

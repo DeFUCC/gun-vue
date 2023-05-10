@@ -12,7 +12,8 @@ export default defineConfig({
     // moduleExclude("text-encoding"),
     checker({
       typescript: {
-        buildMode: true
+        buildMode: true,
+        root: path.resolve(dirname, "../src/"),
       }
     }),],
   build: {

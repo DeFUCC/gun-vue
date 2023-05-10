@@ -86,8 +86,8 @@ g.guest(
   :opacity="isOffline ? 0.1 : 1"
 )
   SpaceStatus(
-    :content="status"
-    @click="user.pub && user.pub == pub && $emit('updateStatus', 'new ' + Date.now())"
+    :pub="pub"
+    content="hello world!!!!!!!!!!!"
     )
   g.avatar(
     @click='selectedUser.pub = pub'

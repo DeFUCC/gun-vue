@@ -1,5 +1,16 @@
 # @gun-vue/components
 
+## 0.18.0
+
+### Minor Changes
+
+- Cleaned up packages and very organized repository for everyone to enjoy.
+
+### Patch Changes
+
+- Updated dependencies
+  - @gun-vue/composables@0.18.0
+
 ## 0.17.3
 
 ### Patch Changes

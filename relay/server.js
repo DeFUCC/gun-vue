@@ -61,7 +61,7 @@ export default {
     db.get("status").put("running");
     db.get("started").put(Date.now());
 
-    console.log("Server started at " + link);
+    console.log("Server started at " + link + "/#/?relay=" + link + "/gun");
     console.log("Gun peer link is " + link + "/gun");
     console.log("Data storage is " + (store ? "enabled" : "disabled"));
 

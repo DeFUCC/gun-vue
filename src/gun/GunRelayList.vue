@@ -27,7 +27,7 @@ onMounted(() => {
       :style="{ order: link.ping }"
       @click="setPeer(link.url)"
       ) 
-      .flex-1.underline {{ link.host }}
+      .flex-1.underline {{ link?.host }}
       .font-bold {{ link.ping }} ms
 </template>
 

@@ -2,6 +2,7 @@
 <script setup>
 import { defineProps, computed } from 'vue';
 import { useUser } from '../user/useUser';
+
 const { user } = useUser()
 
 const props = defineProps({
@@ -19,10 +20,6 @@ const props = defineProps({
   lineHeight: {
     type: Number,
     default: 26
-  },
-  position: {
-    type: Object,
-    default: () => ({ x: 0, y: 0 })
   }
 });
 
@@ -53,7 +50,10 @@ const height = computed(() => props.lineHeight + rows.value.length * props.lineH
 </script>
 
 <template lang="pug">
-g.opacity-20.hover-opacity-90.transition(:transform="`translate(${position.x}, ${position.y +20})`")
+g.opacity-20.hover-opacity-90.transition(
+  :transform="`translateY(${20})`"
+  @click="user.pub && user.pub == pub && $emit('updateStatus', 'new ' + Date.now())"
+  )
   rect(
     :width="width", 
     :x="-width/2" 

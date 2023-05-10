@@ -53,14 +53,14 @@ importers:
   app:
     dependencies:
       '@capacitor/android':
-        specifier: 5.0.1
-        version: 5.0.1(@capacitor/core@5.0.1)
+        specifier: 5.0.2
+        version: 5.0.2(@capacitor/core@5.0.2)
       '@capacitor/core':
-        specifier: 5.0.1
-        version: 5.0.1
+        specifier: 5.0.2
+        version: 5.0.2
       '@capacitor/ios':
-        specifier: 5.0.1
-        version: 5.0.1(@capacitor/core@5.0.1)
+        specifier: 5.0.2
+        version: 5.0.2(@capacitor/core@5.0.2)
       '@unocss/reset':
         specifier: 0.51.12
         version: 0.51.12
@@ -78,11 +78,11 @@ importers:
         version: 4.1.6(vue@3.2.47)
     devDependencies:
       '@capacitor/cli':
-        specifier: 5.0.1
-        version: 5.0.1
+        specifier: 5.0.2
+        version: 5.0.2
       '@iconify/json':
-        specifier: 2.2.62
-        version: 2.2.62
+        specifier: 2.2.63
+        version: 2.2.63
       '@tauri-apps/cli':
         specifier: 1.3.1
         version: 1.3.1
@@ -1644,16 +1644,16 @@ packages:
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
 
-  /@capacitor/android@5.0.1(@capacitor/core@5.0.1):
-    resolution: {integrity: sha512-zv0Hy22vkA6aPvLRwpYl8u5NMnZBcj+Gx1gz72mXmpy3JPRqM6UHB6Ncdcie3SK+uJW9TTftZz2uOHYSZiaPEA==}
+  /@capacitor/android@5.0.2(@capacitor/core@5.0.2):
+    resolution: {integrity: sha512-IYqr+qO4LvvqjJGkH+tIFm1iclGu8m1QTCFz4+8qxJ2QwUiz3P/iS5HYw+GCx+rqJIDcywtAm4kp9Lh4jS3amA==}
     peerDependencies:
       '@capacitor/core': ^5.0.0
     dependencies:
-      '@capacitor/core': 5.0.1
+      '@capacitor/core': 5.0.2
     dev: false
 
-  /@capacitor/cli@5.0.1:
-    resolution: {integrity: sha512-icE4QKTwixzk7SYvgdRSkzbknlnEhLOEtEFYCO//I35+VN3SUkgGu4iYB3Evq0do49ng33TJ2SFgCtPV5pvcVQ==}
+  /@capacitor/cli@5.0.2:
+    resolution: {integrity: sha512-FiNr7s3NbaQqsqmd0YBNRWzgzbczuha/B7qjXcyrxU2abJ5WQCiJdIAIaSjX2AwTXlADQOIErr/t76LnAa9VqA==}
     engines: {node: '>=16.0.0'}
     hasBin: true
     dependencies:
@@ -1670,7 +1670,7 @@ packages:
       plist: 3.0.6
       prompts: 2.4.2
       rimraf: 4.4.1
-      semver: 7.3.8
+      semver: 7.5.0
       tar: 6.1.13
       tslib: 2.4.0
       xml2js: 0.5.0
@@ -1678,18 +1678,18 @@ packages:
       - supports-color
     dev: true
 
-  /@capacitor/core@5.0.1:
-    resolution: {integrity: sha512-5rxU+/VnHwS2Qpmjzq7OvciW+ahWJV6FcqFxIyyMT4uPc4sstpsw0qgofei+AZ4m63aOh9CXUqXSwFFkT5/l4g==}
+  /@capacitor/core@5.0.2:
+    resolution: {integrity: sha512-gqRHQQcxIvIYI102HCu2EievnkJ7IksBIFNK17f7PdPi/HmOxZLeJkJBMxnEE31S8MJqGCT63a6JwQ2jr/J9AA==}
     dependencies:
       tslib: 2.4.0
     dev: false
 
-  /@capacitor/ios@5.0.1(@capacitor/core@5.0.1):
-    resolution: {integrity: sha512-rl9NFKWVLrSGuZIr9VdTDd/yR7XRKyMq20J+RrPZTCWzRljt+Mo2Zy6q85UZu+rL3/L5vwFNLHnqkxsIwMpKtw==}
+  /@capacitor/ios@5.0.2(@capacitor/core@5.0.2):
+    resolution: {integrity: sha512-ORBKMBYkauyALuiPNxdXlFD6LeJLHUIfi9mfpdrj5kzPBkQOv/Ndkc+i/NFCPEJO4jwWbS+7rraycWbmB9M9Fw==}
     peerDependencies:
       '@capacitor/core': ^5.0.0
     dependencies:
-      '@capacitor/core': 5.0.1
+      '@capacitor/core': 5.0.2
     dev: false
 
   /@changesets/apply-release-plan@6.1.3:
@@ -2198,8 +2198,8 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@iconify/json@2.2.62:
-    resolution: {integrity: sha512-61Ix9UTlnguZiAZtjM+91dNnu7G47W85PIB7d0QAfV1i+O0Fm1WH6ZyJfckGtnyHuKXxR8Xtn5oOexzVYCci5A==}
+  /@iconify/json@2.2.63:
+    resolution: {integrity: sha512-IWbwz8LLl2YMKIFKOWzBxzRHwf6PciaGwM4c5J8T2PKBSHUToThBBrfxwX0gHu0O3EZ5z+o9QQp77qCwbCzgYw==}
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.0
@@ -6731,13 +6731,6 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /minipass@4.0.0:
-    resolution: {integrity: sha512-g2Uuh2jEKoht+zvO6vJqXmYpflPqzRBT+Th2h01DKh5z7wbY/AZ2gCQ78cP70YoHPyFdY30YBV5WxgLOEwOykw==}
-    engines: {node: '>=8'}
-    dependencies:
-      yallist: 4.0.0
-    dev: true
-
   /minipass@4.2.8:
     resolution: {integrity: sha512-fNzuVyifolSLFL4NzpF+wEF4qrgqaaKX0haXPQEdQ7NKAN+WecoKMHV09YcuL/DHxrUsYQOK3MiuDf7Ip2OXfQ==}
     engines: {node: '>=8'}
@@ -7757,14 +7750,6 @@ packages:
     hasBin: true
     dev: true
 
-  /semver@7.3.8:
-    resolution: {integrity: sha512-NB1ctGL5rlHrPJtFDVIVzTyQylMLu9N9VICA6HSFJo8MCGVTMW6gfpicwKmmK/dAjTOrqu5l63JJOpDSrAis3A==}
-    engines: {node: '>=10'}
-    hasBin: true
-    dependencies:
-      lru-cache: 6.0.0
-    dev: true
-
   /semver@7.5.0:
     resolution: {integrity: sha512-+XC0AD/R7Q2mPSRuy2Id0+CGTZ98+8f+KvwirxOKIEyid+XSx6HbC63p+O4IndTHuX5Z+JxQ0TghCkO5Cg/2HA==}
     engines: {node: '>=10'}
@@ -8246,7 +8231,7 @@ packages:
     dependencies:
       chownr: 2.0.0
       fs-minipass: 2.1.0
-      minipass: 4.0.0
+      minipass: 4.2.8
       minizlib: 2.1.2
       mkdirp: 1.0.4
       yallist: 4.0.0
