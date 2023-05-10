@@ -50,4 +50,4 @@ jobs:
           releaseDraft: true
           prerelease: false
           projectPath: ./app
-          tauriScript: pnpm
+          tauriScript: pnpm run tb
