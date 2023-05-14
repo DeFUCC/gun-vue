@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">GunVue</string>
+    <string name="title_activity_main">GunVue</string>
+    <string name="package_name">gun.vue.js</string>
+    <string name="custom_url_scheme">gun.vue.js</string>
+</resources>

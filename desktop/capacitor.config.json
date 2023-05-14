@@ -1,0 +1,6 @@
+{
+  "appId": "gun.vue.js",
+  "appName": "GunVue",
+  "webDir": "../_dist",
+  "bundledWebRuntime": false
+}
