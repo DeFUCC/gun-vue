@@ -35,7 +35,7 @@ export default defineConfig({
 			name: 'GunVue',
 			// the proper extensions will be added
 			fileName: 'app',
-			formats: ["es", "iife"],
+			formats: ["es"],
 		},
 		outDir: "dist",
 		target: "esnext",

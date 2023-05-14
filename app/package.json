@@ -16,8 +16,7 @@
 	},
 	"exports": {
 		".": "./dist/app.js",
-		"./style.css": "./dist/style.css",
-		"./app.iife.js": "./dist/app.iife.js"
+		"./style.css": "./dist/style.css"
 	},
 	"main": "./dist/app.js",
 	"module": "./dist/app.js",

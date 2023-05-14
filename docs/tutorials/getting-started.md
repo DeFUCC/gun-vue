@@ -7,7 +7,3 @@
 
 3. Change in the `#app` section and modify the chat topic if you want.
 4. Save the file and open it with any browser. Welcome to your first p2p chat app!
-
-This simple app will work fine in most modern browsers. But if you need to build a more old, but solid IIFE version of the package.
-
-<<< ../examples/app.iife.html{8-13,19-27}
