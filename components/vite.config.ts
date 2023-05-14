@@ -52,7 +52,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      'vue': 'vue/dist/vue.esm-bundler.js',
+      'vue': 'vue/dist/vue.esm-browser.js',
       "#components": path.resolve(dirname, "../src/components.ts"),
       "#composables": path.resolve(dirname, "../src/composables.ts"),
     },

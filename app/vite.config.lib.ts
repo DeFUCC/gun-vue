@@ -49,12 +49,13 @@ export default defineConfig({
 			},
 		}
 	},
+
 	optimizeDeps: {
 		include: ["vue", "@vueuse/core"],
 	},
 	resolve: {
 		alias: {
-			'vue': 'vue/dist/vue.esm-bundler.js',
+			'vue': 'vue/dist/vue.esm-browser.js',
 			"#components": path.resolve(dirname, "../src/components"),
 			"#composables": path.resolve(dirname, "../src/composables"),
 		},
