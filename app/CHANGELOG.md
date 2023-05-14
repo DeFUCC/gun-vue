@@ -1,5 +1,11 @@
 # @gun-vue/app
 
+## 0.18.1
+
+### Patch Changes
+
+- tauri desktop app is now in a separate package for more clear code
+
 ## 0.18.0
 
 ### Minor Changes

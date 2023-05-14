@@ -30,6 +30,16 @@
     ]
   },
   {
+    "text": "Packages",
+    "link": "/packages/index",
+    "items": [
+      {
+        "text": "Composables",
+        "link": "/packages/composables"
+      }
+    ]
+  },
+  {
     "text": "How to",
     "items": [
       {
