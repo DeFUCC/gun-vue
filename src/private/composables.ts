@@ -1,1 +1,1 @@
-export * from "./usePrivate";
+export * from "./usePrivateChat";

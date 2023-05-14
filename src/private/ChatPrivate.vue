@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { toRef, computed } from "vue"
 import { useAccount, selectedUser } from '../composables'
-import { usePrivateChat } from './usePrivate'
+import { usePrivateChat } from './usePrivateChat'
 import { AccountAvatar, ChatInput, UiPanel } from '../components'
 
 const props = defineProps({

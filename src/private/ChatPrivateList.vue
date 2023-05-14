@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { usePrivateChatList } from './usePrivate';
+import { usePrivateChatList } from './usePrivateChat';
 import { AccountBadge, ChatPrivateCount } from '../components'
 
 const props = defineProps({

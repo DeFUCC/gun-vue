@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { usePrivateChatCount } from './usePrivate'
+import { usePrivateChatCount } from './usePrivateChat'
 
 const props = defineProps({
   pub: {

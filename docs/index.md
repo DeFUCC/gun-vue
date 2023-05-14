@@ -16,14 +16,20 @@ hero:
       text: Documentation
       link: /reference/typedoc/modules
 features:
+  - icon: ✨
+    title: Build trustful reactive p2p apps for casual use with family, friends and wider communities.
+    details: Gun-Vue enables very robust low code P2P UI design, that's making us build huge crypto graph 
+    linkText: Get started
+    link: /
+
   - icon: <span class="i-carbon:ibm-toolchain"></span>
     title: Reactive composables
-    details: The missing link between GUN and Vue reactivity systems. P2P data subscriptions become reactive variables that can be watched from anywhere. 
+    details: Gun-Vue provides a set of reactive composables that make it easy to integrate Gun with Vue.js applications, allowing you to build powerful p2p apps with minimal boilerplate code.
     link: reference/modules
     linkText: Browse docs
-  - icon: 🛠️
-    title: Fully typed
-    details: All modules are well typed and reliable
+  - icon: 💡
+    title: Pluggable components
+    details: The building blocks for trustful P2P digital interactions. From one-off single purpose apps to complex flows of reactive data
   - icon: ⚡️
     title: Reactive database
     details: Every object exported is reactive to changes in Gun p2p database
