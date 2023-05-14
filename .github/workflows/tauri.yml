@@ -50,4 +50,3 @@ jobs:
           releaseDraft: true
           prerelease: false
           projectPath: ./desktop
-          tauriScript: tauri
