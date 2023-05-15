@@ -15,6 +15,9 @@ hero:
     - theme: alt
       text: Documentation
       link: /reference/typedoc/modules
+    - theme: alt
+      text: Go to app
+      link: https://gun-vue.js.org/
 features:
   - icon: ✨
     title: Low-code trustful web-apps

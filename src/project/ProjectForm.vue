@@ -1,8 +1,7 @@
 <script setup>
-import { watchEffect } from 'vue';
-import { useNewProject } from './useProject';
-import { ref, computed } from 'vue';
-import { genUUID } from '../gun/useGun';
+import { useNewProject } from './useProject'
+import { ref, computed, watchEffect } from 'vue'
+import { genUUID } from '#composables'
 
 const props = defineProps({
   title: { type: String, default: '' },

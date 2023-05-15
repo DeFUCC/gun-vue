@@ -5,7 +5,7 @@
  */
 
 import { reactive, ref, computed } from 'vue'
-import { useGun2, useGun, genUUID } from '../gun/composables'
+import { useGunSecondary, useGun, genUUID } from '../gun/composables'
 import { currentRoom } from '../room/composables'
 import { useUser, user } from '../user/composables'
 
@@ -131,7 +131,7 @@ export function useComputedProject(path = ref()) {
 
 export async function removeProject(path: string) {
   const gun = useGun()
-  const gun2 = useGun2()
+  const gun2 = useGunSecondary()
   const { user } = useUser()
 
   if (path.includes(user.pub)) {

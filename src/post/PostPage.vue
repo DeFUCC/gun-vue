@@ -1,11 +1,9 @@
 
 <script setup>
-import { ref, watchEffect, computed } from 'vue'
-import { useColor, usePosts, useGun, useUser, usePost, useMd } from '#composables';
+import { computed } from 'vue'
+import { useColor, usePosts, usePost, useMd } from '#composables';
 import { PostLine, EmbedYoutube, UiLink, QrShare, PostActionUpdate, PostList } from '../components'
 
-const { user } = useUser()
-const gun = useGun()
 
 const md = useMd()
 

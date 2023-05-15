@@ -44,8 +44,8 @@ const newWallet = reactive({
 })
 
 function addWallet() {
-  const uuid = genUUID()
-  gun.user().get('wallets').get(uuid).put(newWallet)
+  const key = genUUID()
+  gun.user().get('wallets').get(key).put(newWallet)
   open.value = false
 }
 

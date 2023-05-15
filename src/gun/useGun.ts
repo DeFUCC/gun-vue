@@ -49,11 +49,20 @@ export function useGun(options: GunOptions = { localStorage: false }): IGunInsta
   return gun;
 }
 
+export function useGunPath(...args: string[]) {
+  const gun = useGun()
+  let g
+  for (let arg of args) {
+    g = gun.get(arg)
+  }
+  return g || gun
+}
+
 /**
  * get a secondary Gun instance for certificate management
  */
 
-export function useGun2(options: object = { localStorage: false }): IGunInstance {
+export function useGunSecondary(options: object = { localStorage: false }): IGunInstance {
 
   const gun2 = Gun({ peers: [relay.peer], ...options });
 
