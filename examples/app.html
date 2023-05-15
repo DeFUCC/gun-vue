@@ -3,25 +3,19 @@
 
 <head>
   <title>Chat example</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://unpkg.com/@gun-vue/components/dist/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/@gun-vue/components/dist/style.css" />
   <script type="importmap">
-  {
-    "imports": {
-      "app": "https://unpkg.com/@gun-vue/app"
-    }
-  }
-  </script>
+			{ "imports": { "app": "https://unpkg.com/@gun-vue/app" } }
+		</script>
   <script type="module">
-    import {createGunVueApp} from 'app'
-    createGunVueApp('#app')
+    import {createGunVueApp} from "app";
+    createGunVueApp("#app");
   </script>
-
 </head>
 
 <body>
-
   <div id="app" class="flex flex-col">
     <h1>Chat example app!</h1>
     <div class="flex items-center gap-4 p-4">
@@ -29,10 +23,8 @@
       <user-icon></user-icon>
       <room-button></room-button>
     </div>
-    <chat-room topic="CSS"></chat-room>
-
+    <chat-room topic="Chat example"></chat-room>
   </div>
-
 </body>
 
 </html>

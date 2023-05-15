@@ -1,9 +1,10 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+## 0.18.1
 
-### [0.18.2](https://github.com/DeFUCC/gun-vue/compare/v0.16.4...v0.18.2) (2023-05-15)
+### Patch Changes
 
+- tauri desktop app is now in a separate package for more clear code
 
 ### Features
 
@@ -58,9 +59,3 @@ All notable changes to this project will be documented in this file. See [standa
 * usePass becomes useAuth. First stage - move ([772ee7f](https://github.com/DeFUCC/gun-vue/commit/772ee7f68ad4f144b7b33e137d4795cf0e4ee4a9))
 * vue 3.3.2 ([a68c4f0](https://github.com/DeFUCC/gun-vue/commit/a68c4f01eb0cb0d2a7977637252e4b47d3f03e9f))
 * vue exports ([6ef0ba1](https://github.com/DeFUCC/gun-vue/commit/6ef0ba1f030c0389c3e74c8a96d91bb0d132fe2b))
-
-## 0.18.1
-
-### Patch Changes
-
-- tauri desktop app is now in a separate package for more clear code

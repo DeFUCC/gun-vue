@@ -40,6 +40,27 @@ jobs:
       - name: Build project
         run: pnpm run builds
 
+      # - name: Create Release Draft
+      #   id: create_release
+      #   uses: actions/create-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: ${{ github.ref }}
+      #     release_name: Release ${{ github.ref }}
+      #     draft: true
+      #     prerelease: false
+
+      # - name: Upload _dist/index.html
+      #   uses: actions/upload-release-asset@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #     asset_path: ./_dist/index.html
+      #     asset_name: index.html
+      #     asset_content_type: text/html
+
       - name: Publish composables
         run: cd composables && npm publish --provenance --access public
         continue-on-error: true

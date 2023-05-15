@@ -42,5 +42,13 @@
 		"typescript": "5.0.4",
 		"vite": "4.3.5",
 		"vue-eslint-parser": "9.3.0"
+	},
+	"standard-version": {
+		"skip": {
+			"changelog": false,
+			"bump": true,
+			"commit": true,
+			"tag": true
+		}
 	}
 }
