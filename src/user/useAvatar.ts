@@ -1,4 +1,4 @@
-import { useUser, useGun, hashText, useGunPath, gunAvatar } from "#composables";
+import { useUser, useGun, hashText, useGunPath, gunAvatar } from "../composables";
 import { ref, watch, toRef } from "vue";
 import { MaybeRefOrGetter } from '@vueuse/core'
 
