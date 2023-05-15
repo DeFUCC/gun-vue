@@ -24,6 +24,6 @@ export const rootRoutes = {
   "/projects/": "Projects",
   "/gifts/": "Gifts",
   "/dict/": "Dictionary",
-  "/file/": "Files",
+  "/files/": "Files",
   "/qr/": "QR Lab",
 }

@@ -1,10 +1,8 @@
 <script setup>
-import { useRoom, useUser, useGun, useRoomLogo, currentRoom } from '#composables'
-import { ref, computed } from 'vue'
+import { useRoom, useUser, useRoomLogo, currentRoom } from '#composables'
 import { FormPicture } from '../components'
 
 const { room, updateRoomProfile } = useRoom()
-const gun = useGun()
 const { user } = useUser()
 
 

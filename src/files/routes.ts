@@ -1,12 +1,11 @@
 export default [
   {
-    path: "/file/",
-    name: "file",
-    component: () => import("./file.vue"),
+    path: "/files/",
+    component: () => import("./files.vue"),
     children: [
       {
         path: '',
-        name: 'file',
+        name: 'files',
         component: () => import('./index.vue')
       },
       {

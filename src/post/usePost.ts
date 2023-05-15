@@ -7,8 +7,7 @@
 import { computed, reactive, ref } from "vue";
 import ms from "ms";
 
-import { useGun, currentRoom, useUser, removeEmptyKeys } from "../composables";
-import { useZip } from "../file/composables";
+import { useGun, currentRoom, useUser, removeEmptyKeys, useZip } from "../composables";
 import { hashObj, hashText, safeHash } from "../crypto/composables";
 
 export interface PostContent {

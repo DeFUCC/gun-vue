@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useColor, gunAvatar, useGun, selectedUser, useUser } from '../composables';
-import { computed, ref, watch } from 'vue'
+import { useColor, selectedUser, useUser, useAvatar } from '../composables';
+import { computed } from 'vue'
 import { SpaceStatus } from './components';
 const props = defineProps(
   {
@@ -9,12 +9,11 @@ const props = defineProps(
     pos: { type: Object, default: () => ({ x: 0, y: 0 }) },
     mouse: { type: Object, default: () => ({ x: 0, y: 0 }) },
     pulse: { type: Number, default: 0 },
-    blink: { type: Boolean, default: false },
     size: { type: Number, default: 100 }
   })
 
 const { user } = useUser()
-const emit = defineEmits(['updateStatus'])
+defineEmits(['updateStatus'])
 
 const TIMEOUT = 10000
 
@@ -25,19 +24,7 @@ const isOffline = computed(() => age.value > TIMEOUT)
 const colorDeep = useColor()
 const color = computed(() => colorDeep.hex(props.pub))
 
-const avatar = ref(gunAvatar({ pub: props.pub, size: props.size * 4 }))
-
-const gun = useGun()
-
-gun.user(props.pub).get('avatar').on(hash => {
-  if (hash) {
-    gun.get('#avatars').get(hash).once(d => {
-      avatar.value = d
-    })
-  } else {
-    avatar.value = gunAvatar({ pub: props.pub, size: props.size * 4 })
-  }
-})
+const { avatar, blink } = useAvatar(() => props.pub, () => props.size)
 
 // const shadow = computed(() => calculateShadow(props.pos, props.mouse))
 

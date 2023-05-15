@@ -61,10 +61,6 @@ const userProjects = computed(() => {
   return projs
 })
 
-
-
-
-
 </script>
 
 <template lang="pug">

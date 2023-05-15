@@ -4,7 +4,7 @@ export * from "./cast/composables"
 export * from "./chat/composables"
 export * from "./crypto/composables"
 export * from "./dict/composables"
-export * from "./file/composables"
+export * from "./files/composables"
 export * from "./gift/composables"
 export * from "./gun/composables"
 export * from './private/composables'

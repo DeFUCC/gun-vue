@@ -1,9 +1,37 @@
-import { useUser, useGun, hashText, useGunPath } from "#composables";
-import { ref } from "vue";
+import { useUser, useGun, hashText, useGunPath, gunAvatar } from "#composables";
+import { ref, watch, toRef } from "vue";
+import { MaybeRefOrGetter } from '@vueuse/core'
 
+export function useAvatar(pubKey: MaybeRefOrGetter<string>, picSize: MaybeRefOrGetter<number> = 42) {
+  const pub = toRef(pubKey)
+  const size = toRef(picSize)
 
+  const avatar = ref()
+  const blink = ref()
 
-export function useAvatar() {
+  const gun = useGun()
+
+  watch(pub, (p) => {
+    avatar.value = gunAvatar({ pub: p, size: size.value * 4 })
+  }, { immediate: true })
+
+  gun.user(pub.value).get('avatar').on(hash => {
+    if (hash) {
+      gun.get('#avatars').get(hash).once(d => {
+        avatar.value = d
+      })
+    }
+  })
+
+  gun.user(pub.value).get('pulse').on(() => {
+    blink.value = !blink.value
+  })
+  return {
+    avatar, blink
+  }
+}
+
+export function useUserAvatar() {
   const { user } = useUser();
   const gun = useGun();
 
@@ -11,7 +39,7 @@ export function useAvatar() {
 
   user.db.get("avatar").on((hash) => {
     if (hash) {
-      useGunPath("#avatars", hash).once((d) => {
+      gun.get('#avatars').get(hash).once((d) => {
         avatar.value = d;
       });
     } else {

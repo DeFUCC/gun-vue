@@ -58,6 +58,10 @@ export function useGunPath(...args: string[]) {
   return g || gun
 }
 
+export function useGunMap(...args: string[]) {
+
+}
+
 /**
  * get a secondary Gun instance for certificate management
  */

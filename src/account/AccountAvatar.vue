@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { useGun, gunAvatar, useColor } from '../composables'
-import { ref, watch } from 'vue'
+import { useAvatar, useColor } from '../composables'
 
 const props = defineProps({
   pub: { type: String, default: '' },
@@ -10,29 +9,8 @@ const props = defineProps({
 
 const colorDeep = useColor('deep')
 
-const gun = useGun()
+const { avatar, blink } = useAvatar(() => props.pub, () => props.size)
 
-const avatar = ref()
-
-watch(() => props.pub, (p) => {
-  avatar.value = gunAvatar({ pub: props.pub, size: props.size * 4 })
-}, { immediate: true })
-
-gun.user(props.pub).get('avatar').on(hash => {
-  if (hash) {
-    gun.get('#avatars').get(hash).once(d => {
-      avatar.value = d
-    })
-  } else {
-    avatar.value = gunAvatar({ pub: props.pub, size: props.size * 4 })
-  }
-})
-
-const blink = ref()
-
-gun.user(props.pub).get('pulse').on(() => {
-  blink.value = !blink.value
-})
 
 </script>
 

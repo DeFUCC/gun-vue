@@ -3,6 +3,7 @@ import { useClipboard, useObjectUrl, useShare } from '@vueuse/core';
 import { ref, watch, computed } from 'vue';
 import { uploadTorrent, downloadTorrent } from './useTorrent';
 import { QrShow, FileCard } from '../components'
+import { prettyBytes, currentRoom, useGun, useUser } from '../composables';
 
 const emit = defineEmits(['uploaded'])
 
@@ -11,16 +12,27 @@ const uploaded = ref()
 
 function uploadEvent(event) {
   const { torrent } = uploadTorrent(event?.target?.files)
+
+  const gun = useGun()
+  const { user } = useUser()
   watch(torrent, async t => {
     upload.value = t
-    console.log(t)
+    const data = {
+      infoHash: t.infoHash,
+      length: t.length,
+      name: t.name,
+      author: user.pub
+    }
+    gun.user(currentRoom.pub).get('files').get(`${data.infoHash}@${user.pub}`).put(data, null, {
+      opt: { cert: currentRoom.features?.files }
+    })
   })
 }
 
 const downloadUrl = computed(() => {
   if (!upload.value?.infoHash) return ''
   let url = new URL(window?.location?.href)
-  return `${url.protocol}//${url.hostname}${url.port ? `:${url.port}` : ''}/#/file/${upload.value?.infoHash}`
+  return `${url.protocol}//${url.hostname}${url.port ? `:${url.port}` : ''}/#/files/${upload.value?.infoHash}`
 })
 
 const clip = useClipboard({ source: downloadUrl })

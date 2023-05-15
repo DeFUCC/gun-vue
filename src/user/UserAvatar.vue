@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUser, useAvatar } from "#composables";
+import { useUser, useUserAvatar } from "#composables";
 import { AccountAvatar, FormPicture } from "../components";
 
 
@@ -10,7 +10,7 @@ const props = defineProps({
   pic: { type: Number, default: 200 },
 })
 
-const { remove, upload, avatar } = useAvatar()
+const { remove, upload, avatar } = useUserAvatar()
 </script>
 
 <template lang="pug">

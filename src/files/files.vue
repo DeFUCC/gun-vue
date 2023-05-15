@@ -6,14 +6,14 @@ import TorrentUpload from './TorrentUpload.vue';
 
 <template lang="pug">
 .flex.flex-col
-  file-hash
-  torrent-upload
+
   router-view(v-slot="{ Component }")
     transition(
       name="fade" 
       mode="out-in")
       keep-alive
         component.flex-auto(:is="Component")
-  
-  
+
+  torrent-upload
+  file-hash
 </template>
