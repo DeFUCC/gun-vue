@@ -23,8 +23,7 @@
 		}
 	},
 	"include": [
-		"../src/**/composables.ts",
-		"../components/dist/types/src/**.ts"
+		"../src/**/composables.ts"
 	],
 	"exclude": [
 		"node_modules",
@@ -49,7 +48,10 @@
 			"**/routes.ts",
 			"**/index.ts",
 			"**/components.ts",
-			"**/composables.ts"
+			"**/composables.ts",
+			"**/app.ts",
+			"**/all-components.ts",
+			"**/worker.js"
 		]
 	}
 }

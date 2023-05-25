@@ -29,7 +29,7 @@
     "/types",
     "example.html"
   ],
-  "packageManager": "pnpm@8.5.0",
+  "packageManager": "pnpm@8.5.1",
   "scripts": {
     "build": "vite build && vue-tsc"
   },
@@ -37,7 +37,7 @@
     "@coders-tm/vue-number-format": "^3.27.0",
     "@gun-vue/composables": "workspace:^",
     "@qrcode/svg": "^1.0.0-beta.2",
-    "@unocss/reset": "0.51.12",
+    "@unocss/reset": "0.52.3",
     "@vueuse/core": "10.1.2",
     "@vueuse/gesture": "^2.0.0-beta.1",
     "@vueuse/sound": "^2.0.1",
@@ -46,17 +46,17 @@
     "fuse.js": "6.6.2",
     "jsqr": "^1.4.0",
     "url-regex": "^5.0.0",
-    "vue": "^3.3.2",
+    "vue": "^3.3.4",
     "vue-select": "4.0.0-beta.6",
     "vue3-virtual-scroll-list": "^0.2.1"
   },
   "devDependencies": {
-    "@unocss/extractor-pug": "0.51.12",
+    "@unocss/extractor-pug": "0.52.3",
     "@vitejs/plugin-vue": "4.2.3",
     "pug": "^3.0.2",
     "typescript": "5.0.4",
-    "unocss": "^0.51.12",
-    "vite": "4.3.5",
+    "unocss": "^0.52.3",
+    "vite": "4.3.8",
     "vue-tsc": "^1.6.5"
   },
   "peerDependencies": {
