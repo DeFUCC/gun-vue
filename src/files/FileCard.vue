@@ -20,10 +20,10 @@ const img = useObjectUrl(blob)
 </script>
 
 <template lang='pug'>
-.p-2.border-1.gap-4.flex.flex-col
-  .flex.flex-wrap.gap-4
+.border-1.flex.flex-col.rounded
+  img.w-full(:src="img")
+  .flex.flex-wrap.gap-4.p-2
     .font-bold {{ file.name }} 
     .text-sm {{ file.type }} 
     .font-mono {{ prettyBytes(file.length) }}
-  img.w-full(:src="img")
 </template>

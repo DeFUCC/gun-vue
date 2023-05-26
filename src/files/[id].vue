@@ -12,5 +12,5 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-torrent-download(:id="id")
+torrent-download(:id="id" :key="id")
 </template>
