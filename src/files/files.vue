@@ -7,10 +7,11 @@ import FileHash from './FileHash.vue';
 import TorrentUpload from './TorrentUpload.vue';
 
 function addFile(data) {
-  console.log(data)
 
   const gun = useGun()
   const { user } = useUser()
+  if (!user.pub) return
+
   gun.user(currentRoom.pub).get('files').get(`${data.infoHash}@${user.pub}`).put(data, null, {
     opt: { cert: currentRoom.features?.files }
   })
