@@ -90,3 +90,8 @@ pnpm i
 pnpm run builds
 open ./_dist/index.html
 ```
+
+
+## Support us today!
+
+MONERO wallet: 852xu44krejYiBrP8xqWQeXT1VgiBq5M1g1JW8RpRdMX3a1wpqZ1u5VGR5HPFyvvDY5MUJ4iZTaEwNm5ujZFxn6FSiHpYhL

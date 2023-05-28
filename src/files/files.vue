@@ -27,7 +27,7 @@ function addFile(data) {
       name="fade" 
       mode="out-in")
       keep-alive
-        component.flex-auto(:is="Component")
+        component.flex-auto(:is="Component" :key="currentRoom?.pub")
 
   torrent-upload(@uploaded="addFile($event)")
   file-hash
