@@ -8,6 +8,8 @@ const current = ref('pass')
 const pair = ref()
 const passphrase = ref(null)
 
+const { auth } = useUser()
+
 function show(option) {
   if (current.value != option) {
     current.value = option;
@@ -16,27 +18,32 @@ function show(option) {
   }
 }
 
-watch(pair, (p) => {
-  console.log(p)
-  if (p && typeof p == 'string' && p.substring(0, 3) == 'SEA') {
-    passphrase.value = ''
-  }
+watch(pair, async (p) => {
+  if (!p) return
+
   if (typeof p == 'string' && p.includes('#/auth/')) {
     p = parseLink(p)
   }
+  if (p && typeof p == 'string' && p.substring(0, 3) == 'SEA') {
+    passphrase.value = ''
+  }
+
   let obj = safeJSONParse(p) as ISEAPair
   if (obj?.pub && obj?.priv) {
     auth(obj)
-    pair.value = ''
+    pair.value = null
   } else {
     console.log('No valid pair')
   }
 })
 
-const { auth } = useUser()
 
-async function decode() {
-  pair.value = await SEA.decrypt(pair.value, passphrase.value);
+
+async function decode(p = pair.value) {
+  if (typeof p == 'string' && p.includes('#/auth/')) {
+    p = parseLink(p)
+  }
+  pair.value = await SEA.decrypt(p, passphrase.value);
 }
 
 function uploadFile(event) {

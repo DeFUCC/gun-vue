@@ -55,10 +55,10 @@ const { share, isSupported: shareSupported } = useShare()
       accept="image/*"
       @change="uploadEvent($event)"
       )
-  .p-2.flex.flex-wrap.gap-2.bg-light-100.dark-bg-dark-400.rounded.cursor-pointer.items-center(v-else @click="open = !open")
+  .p-2.flex.flex-wrap.gap-2.bg-light-100.dark-bg-dark-400.rounded.cursor-pointer.items-center.break-all(v-else @click="open = !open")
     .font-bold Sharing a file:
-    .text-md {{ upload?.name }}
-    .flex-1.font-mono.text-xs {{ upload?.infoHash }}
+    .text-md.max-w-55ch {{ upload?.name }}
+    .flex-1.font-mono.text-xs.min-w-10 {{ upload?.infoHash }}
     .p-0 {{ prettyBytes(upload?.length) }}
     .i-la-times(@click.prevent.stop="upload = null")
   ui-layer(:open="open" @close="open = false")

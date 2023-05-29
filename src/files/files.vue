@@ -20,14 +20,14 @@ function addFile(data) {
 </script>
 
 <template lang="pug">
-.flex.flex-col
+.flex.flex-col(:key="currentRoom?.pub")
   router-link.p-2.font-bold.bg-light-800.dark-bg-dark-400(to="/files/") FILES
   router-view(v-slot="{ Component }")
     transition(
       name="fade" 
       mode="out-in")
       keep-alive
-        component.flex-auto(:is="Component" :key="currentRoom?.pub")
+        component.flex-auto(:is="Component")
 
   torrent-upload(@uploaded="addFile($event)")
   file-hash
