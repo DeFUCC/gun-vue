@@ -36,6 +36,14 @@
       {
         "text": "Composables",
         "link": "/packages/composables"
+      },
+      {
+        "text": "Components",
+        "link": "/packages/components"
+      },
+      {
+        "text": "Relay",
+        "link": "/packages/relay"
       }
     ]
   },

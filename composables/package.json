@@ -17,7 +17,7 @@
 	"license": "MIT",
 	"author": "davay42 <davay@defucc.me>",
 	"type": "module",
-	"packageManager": "pnpm@8.5.1",
+	"packageManager": "pnpm@8.6.2",
 	"exports": "./dist/composables.js",
 	"main": "./dist/composables.js",
 	"module": "./dist/composables.js",
@@ -33,9 +33,9 @@
 	},
 	"dependencies": {
 		"@gun-vue/gun-es": "0.2.1239",
-		"@vueuse/core": "10.1.2",
-		"@vueuse/integrations": "10.1.2",
-		"@vueuse/math": "10.1.2",
+		"@vueuse/core": "10.2.0",
+		"@vueuse/integrations": "10.2.0",
+		"@vueuse/math": "10.2.0",
 		"buffer": "6.0.3",
 		"color-hash": "2.0.2",
 		"curved-arrows": "0.1.0",
@@ -54,7 +54,7 @@
 		"ultramatter": "0.0.4",
 		"url-regex": "5.0.0",
 		"vue": "3.3.4",
-		"webtorrent": "2.0.18",
+		"webtorrent": "2.1.11",
 		"yamlify-object": "1.0.0"
 	},
 	"devDependencies": {
@@ -62,7 +62,7 @@
 		"@types/recordrtc": "5.6.11",
 		"@types/webtorrent": "0.109.3",
 		"pug": "3.0.2",
-		"vite": "4.3.8",
+		"vite": "4.3.9",
 		"vite-plugin-checker": "0.6.0"
 	}
 }

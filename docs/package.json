@@ -18,26 +18,25 @@
 	"license": "MIT",
 	"author": "davay42 <davay@defucc.me>",
 	"type": "module",
-	"packageManager": "pnpm@8.5.1",
+	"packageManager": "pnpm@8.6.2",
 	"files": [
 		"lib"
 	],
 	"scripts": {
 		"dev": "typedoc --plugin typedoc-plugin-markdown --watch & vitepress dev",
 		"build": "typedoc --plugin typedoc-plugin-markdown && vitepress build",
-		"serve": "vite preview",
+		"serve": "vitepress serve",
 		"td": "typedoc --watch --plugin typedoc-plugin-markdown"
 	},
 	"dependencies": {
-		"@unocss/reset": "0.52.3"
+		"@unocss/reset": "0.53.1"
 	},
 	"devDependencies": {
-		"@modyfi/vite-plugin-yaml": "1.0.4",
-		"@unocss/extractor-pug": "0.52.3",
+		"@unocss/extractor-pug": "0.53.1",
 		"pug": "3.0.2",
 		"sitemap-ts": "1.4.0",
-		"unocss": "0.52.3",
-		"vue": "^3.3.4",
-		"vitepress": "1.0.0-beta.1"
+		"unocss": "0.53.1",
+		"vitepress": "1.0.0-beta.2",
+		"vue": "^3.3.4"
 	}
 }

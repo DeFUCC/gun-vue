@@ -1,5 +1,4 @@
 import { defineConfig } from "vite"
-import ViteYaml from '@modyfi/vite-plugin-yaml';
 import Unocss from 'unocss/vite'
 
 import path from "path";
@@ -11,7 +10,7 @@ const dirname = path.dirname(filename);
 
 export default defineConfig({
   plugins: [
-    Unocss(), ViteYaml(),
+    Unocss(),
   ],
   build: {
     assetsInlineLimit: 100000000,
