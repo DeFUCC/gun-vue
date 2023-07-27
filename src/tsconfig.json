@@ -1,0 +1,54 @@
+{
+	"extends": "../tsconfig",
+	"compilerOptions": {
+		"outDir": "../composables/types/",
+		"target": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"allowJs": true,
+		"isolatedModules": true,
+		"declaration": true,
+		"emitDeclarationOnly": true,
+		"declarationMap": false,
+		"declarationDir": "types",
+		"skipLibCheck": true,
+		"module": "ESNext",
+		"allowSyntheticDefaultImports": true,
+		"paths": {
+			"#composables": [
+				"../src/composables"
+			],
+			"#components": [
+				"../src/components"
+			]
+		}
+	},
+	"include": [
+		"../src/**/composables.ts"
+	],
+	"exclude": [
+		"node_modules",
+		"_dist/**",
+		"**/node_modules/**",
+		"**/dist",
+		"**/public/**"
+	],
+	"typedocOptions": {
+		"entryPoints": [
+			"../src/"
+		],
+		"includes": "../src/",
+		"out": "docs/",
+		"githubPages": false,
+		"entryPointStrategy": "expand",
+		"allReflectionsHaveOwnDocument": true,
+		"name": "Gun-Vue composables",
+		"defaultCategory": "Composables",
+		"exclude": [
+			"**/routes.ts",
+			"**/index.ts",
+			"**/components.ts",
+			"**/composables.ts"
+		]
+	}
+}

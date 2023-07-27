@@ -19,3 +19,4 @@ composables/lib/
 docs/reference/typedoc
 app/dist
 components/types
+src/types

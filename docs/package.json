@@ -18,7 +18,7 @@
 	"license": "MIT",
 	"author": "davay42 <davay@defucc.me>",
 	"type": "module",
-	"packageManager": "pnpm@8.6.2",
+	"packageManager": "pnpm@8.6.10",
 	"files": [
 		"lib"
 	],
@@ -29,14 +29,14 @@
 		"td": "typedoc --watch --plugin typedoc-plugin-markdown"
 	},
 	"dependencies": {
-		"@unocss/reset": "0.53.1"
+		"@unocss/reset": "0.53.6"
 	},
 	"devDependencies": {
-		"@unocss/extractor-pug": "0.53.1",
+		"@unocss/extractor-pug": "0.53.6",
 		"pug": "3.0.2",
 		"sitemap-ts": "1.4.0",
-		"unocss": "0.53.1",
-		"vitepress": "1.0.0-beta.2",
+		"unocss": "0.53.6",
+		"vitepress": "1.0.0-beta.6",
 		"vue": "^3.3.4"
 	}
 }

@@ -20,14 +20,14 @@
   "exports": "./dist/gun-es.js",
   "main": "./dist/gun-es.js",
   "module": "./dist/gun-es.js",
-  "packageManager": "npm@9.7.1",
+  "packageManager": "npm@9.8.1",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "4.3.9"
+    "vite": "4.4.7"
   },
   "dependencies": {
     "gun": "0.2020.1239"

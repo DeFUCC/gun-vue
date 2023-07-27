@@ -15,7 +15,7 @@
     "url": "https://github.com/sponsors/davay42"
   },
   "type": "module",
-  "packageManager": "pnpm@8.6.2",
+  "packageManager": "pnpm@8.6.10",
   "main": "server.js",
   "files": [
     "server.js",
