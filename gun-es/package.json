@@ -27,7 +27,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "4.4.7"
+    "vite": "4.4.9"
   },
   "dependencies": {
     "gun": "0.2020.1239"
