@@ -1,5 +1,11 @@
 # @gun-vue/examples
 
+## 0.18.2
+
+### Patch Changes
+
+- All up to date and works as intended!
+
 ## 0.18.0
 
 ### Minor Changes

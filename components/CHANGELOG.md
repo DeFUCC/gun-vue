@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.18.2
+
+### Patch Changes
+
+- All up to date and works as intended!
+- Updated dependencies
+  - @gun-vue/composables@0.18.2
+
 ## 0.18.1
 
 ### Patch Changes
