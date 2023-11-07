@@ -1,7 +1,5 @@
 
 <script setup>
-import QRCode from '@qrcode/svg'
-import { computedAsync } from '@vueuse/core'
 
 const props = defineProps({
   data: { type: String, default: '' },
@@ -9,16 +7,17 @@ const props = defineProps({
   margin: { type: Number, default: 1 }
 });
 
-const src = computedAsync(async () => {
-  if (!props.data) return;
+import { useQRCode } from '@vueuse/integrations/useQRCode'
 
-  return QRCode(props.data, {
-    size: props.size,
-    margin: props.margin,
-  });
-});
+const qrcode = useQRCode(() => props.data, {
+  errorCorrectionLevel: 'Q',
+  scale: 8,
+  margin: 4
+})
 </script>
 <!-- eslint-disable vue/no-v-html -->
 <template lang="pug">
-.min-w-16.flex.flex-col.items-center(v-html="src")
+.min-w-16.flex.flex-col.items-center
+  img(:src="qrcode" alt="QR Code")
 </template>
+

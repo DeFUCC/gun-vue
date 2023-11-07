@@ -1,4 +1,7 @@
 {
+	"include": [
+		"**/*.*"
+	],
 	"compilerOptions": {
 		"outDir": "composables/types",
 		"allowJs": true,
@@ -18,7 +21,7 @@
 	},
 	"vueCompilerOptions": {
 		"plugins": [
-			"@volar/vue-language-plugin-pug"
+			"@vue/language-plugin-pug"
 		]
 	}
 }

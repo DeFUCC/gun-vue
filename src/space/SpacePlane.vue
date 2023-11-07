@@ -25,7 +25,7 @@ const props = defineProps({
   pad: { type: Number, default: 50 },
   coord: { type: String, default: "" },
 });
-const emit = defineEmits(["user", "enter", "leave", "chat", "update:coord"]);
+const emit = defineEmits(["user", "enter", "leave", "chat", "post", "update:coord"]);
 
 const { user } = useUser();
 
@@ -122,7 +122,7 @@ onBeforeUnmount(() => {
   font-family='Commissioner , sans-serif', 
   text-anchor='middle', 
   dominant-baseline='middle', 
-  :viewBox=" `${-pad + pos[0] - width / 2} ${-pad + pos[1] - height / 2} ${width * zoom + 2 * pad} ${height * zoom + 2 * pad}`",
+  :viewBox=" `${-pad + pos[0] - Number(width) / 2} ${-pad + pos[1] - Number(height) / 2} ${Number(width) * Number(zoom) + 2 * pad} ${Number(height) * Number(zoom) + 2 * pad}`",
   @click=" !user.is ? user.auth = true : null;")
 
     defs
@@ -135,7 +135,7 @@ onBeforeUnmount(() => {
     text.text-xs(
       text-anchor='end', 
       fill="currentColor"
-      :transform=" `translate(${pos[0] + width / 2 - 10} ${pos[1] - height / 2 + 20})`"
+      :transform=" `translate(${pos[0] + Number(width) / 2 - 10} ${pos[1] - Number(height) / 2 + 20})`"
       ) {{ pos }}
 
     g.opacity-90(
@@ -143,17 +143,17 @@ onBeforeUnmount(() => {
 
     svg.opacity-70(
       ref="paper", 
-      :x=" pos[0] - width / 2 - pad", 
-      :y=" pos[1] - height / 2 - pad", 
-      :viewBox=" `${-pad + pos[0] - width / 2} ${-pad + pos[1] - height / 2} ${width + 2 * pad} ${height + 2 * pad}`", 
+      :x=" pos[0] - Number(width) / 2 - pad", 
+      :y=" pos[1] - Number(height) / 2 - pad", 
+      :viewBox=" `${-pad + pos[0] - Number(width) / 2} ${-pad + pos[1] - Number(height) / 2} ${Number(width) + 2 * pad} ${Number(height) + 2 * pad}`", 
       :class=" {'pointer-events-none': !draw.enabled,'touch-none': draw.enabled } ")
 
     rect(ref='area', 
-    :x=" pos[0] - width / 2", 
-    :y=" pos[1] - height / 2", 
+    :x=" pos[0] - Number(width) / 2", 
+    :y=" pos[1] - Number(height) / 2", 
     rx='12', 
-    :width=" width", 
-    :height=" height", 
+    :width=" Number(width)", 
+    :height=" Number(height)", 
     fill='none', stroke='#3333', stroke-width='1')
 
     g.link

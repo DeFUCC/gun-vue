@@ -20,7 +20,7 @@
   "exports": "./dist/gun-es.js",
   "main": "./dist/gun-es.js",
   "module": "./dist/gun-es.js",
-  "packageManager": "npm@9.8.1",
+  "packageManager": "npm@10.2.3",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
