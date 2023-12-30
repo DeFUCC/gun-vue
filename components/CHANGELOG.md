@@ -1,5 +1,13 @@
 # @gun-vue/components
 
+## 0.18.3
+
+### Patch Changes
+
+- Bump all deps
+- Updated dependencies
+  - @gun-vue/composables@0.18.3
+
 ## 0.18.2
 
 ### Patch Changes

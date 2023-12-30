@@ -1,5 +1,11 @@
 # @gun-vue/docs
 
+## 0.18.3
+
+### Patch Changes
+
+- Bump all deps
+
 ## 0.18.2
 
 ### Patch Changes
