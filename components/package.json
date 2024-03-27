@@ -29,34 +29,34 @@
 		"/types",
 		"example.html"
 	],
-	"packageManager": "pnpm@8.13.1",
+	"packageManager": "pnpm@8.15.5",
 	"scripts": {
 		"build": "vite build && vue-tsc"
 	},
 	"dependencies": {
-		"@coders-tm/vue-number-format": "^3.34.0",
+		"@coders-tm/vue-number-format": "^3.34.1",
 		"@gun-vue/composables": "workspace:^",
 		"@unocss/reset": "0.55.3",
 		"@vueuse/core": "10.4.1",
-		"@vueuse/gesture": "^2.0.0-beta.1",
+		"@vueuse/gesture": "^2.0.0",
 		"@vueuse/sound": "^2.0.1",
-		"floating-vue": "^2.0.0-beta.24",
-		"force-graph": "^1.43.4",
+		"floating-vue": "^5.2.2",
+		"force-graph": "^1.43.5",
 		"fuse.js": "7.0.0",
 		"jsqr": "^1.4.0",
 		"url-regex": "^5.0.0",
-		"vue": "^3.4.1",
+		"vue": "^3.4.21",
 		"vue-select": "4.0.0-beta.6",
 		"vue3-virtual-scroll-list": "^0.2.1"
 	},
 	"devDependencies": {
-		"@unocss/extractor-pug": "^0.58.2",
-		"@vitejs/plugin-vue": "^5.0.1",
+		"@unocss/extractor-pug": "^0.58.7",
+		"@vitejs/plugin-vue": "^5.0.4",
 		"pug": "^3.0.2",
-		"typescript": "^5.3.3",
-		"unocss": "^0.58.2",
-		"vite": "^5.0.10",
-		"vue-tsc": "^1.8.27"
+		"typescript": "^5.4.3",
+		"unocss": "^0.58.7",
+		"vite": "^5.0.13",
+		"vue-tsc": "^2.0.7"
 	},
 	"peerDependencies": {
 		"vue": "^3.3.8"

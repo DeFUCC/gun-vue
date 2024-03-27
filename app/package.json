@@ -23,7 +23,7 @@
 	"files": [
 		"/dist"
 	],
-	"packageManager": "pnpm@8.13.1",
+	"packageManager": "pnpm@8.15.5",
 	"scripts": {
 		"build-app": "vite build --emptyOutDir",
 		"build": "vite build --config vite.config.lib.ts",
@@ -39,15 +39,15 @@
 		"vue-router": "4.2.4"
 	},
 	"devDependencies": {
-		"@iconify/json": "^2.2.163",
-		"@unocss/extractor-pug": "^0.58.2",
-		"@vitejs/plugin-vue": "^5.0.1",
+		"@iconify/json": "^2.2.196",
+		"@unocss/extractor-pug": "^0.58.7",
+		"@vitejs/plugin-vue": "^5.0.4",
 		"pug": "^3.0.2",
-		"unocss": "^0.58.2",
-		"vite": "^5.0.10",
-		"vite-plugin-pages": "^0.32.0",
+		"unocss": "^0.58.7",
+		"vite": "^5.0.13",
+		"vite-plugin-pages": "^0.32.1",
 		"vite-plugin-pages-sitemap": "^1.6.1",
-		"vite-plugin-pwa": "^0.17.4",
-		"vite-plugin-singlefile": "^0.13.5"
+		"vite-plugin-pwa": "^0.19.7",
+		"vite-plugin-singlefile": "^2.0.1"
 	}
 }
