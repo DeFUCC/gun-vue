@@ -15,7 +15,7 @@
 		"url": "https://github.com/DeFUCC/gun-vue",
 		"directory": "desktop"
 	},
-	"packageManager": "pnpm@8.15.5",
+	"packageManager": "pnpm@8.15.6",
 	"scripts": {
 		"td": "tauri dev",
 		"tb": "tauri build"

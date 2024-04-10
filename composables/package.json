@@ -17,7 +17,7 @@
 	"license": "MIT",
 	"author": "davay42 <davay@defucc.me>",
 	"type": "module",
-	"packageManager": "pnpm@8.15.5",
+	"packageManager": "pnpm@8.15.6",
 	"exports": "./dist/composables.js",
 	"main": "./dist/composables.js",
 	"module": "./dist/composables.js",
@@ -42,7 +42,7 @@
 		"drauu": "^0.4.0",
 		"fuse.js": "^7.0.0",
 		"grapheme-breaker-mjs": "^1.0.4",
-		"gun": "^0.2020.1239",
+		"gun": "^0.2020.1240",
 		"gun-avatar": "^1.9.4",
 		"jszip": "^3.10.1",
 		"markdown-it": "^14.1.0",
@@ -63,7 +63,7 @@
 		"@types/recordrtc": "^5.6.14",
 		"@types/webtorrent": "^0.109.8",
 		"pug": "^3.0.2",
-		"vite": "^5.0.13",
+		"vite": "^5.2.8",
 		"vite-plugin-checker": "^0.6.4"
 	}
 }

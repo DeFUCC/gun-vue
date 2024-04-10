@@ -29,7 +29,7 @@
 		"/types",
 		"example.html"
 	],
-	"packageManager": "pnpm@8.15.5",
+	"packageManager": "pnpm@8.15.6",
 	"scripts": {
 		"build": "vite build && vue-tsc"
 	},
@@ -50,13 +50,13 @@
 		"vue3-virtual-scroll-list": "^0.2.1"
 	},
 	"devDependencies": {
-		"@unocss/extractor-pug": "^0.58.7",
+		"@unocss/extractor-pug": "^0.59.0",
 		"@vitejs/plugin-vue": "^5.0.4",
 		"pug": "^3.0.2",
-		"typescript": "^5.4.3",
-		"unocss": "^0.58.7",
-		"vite": "^5.0.13",
-		"vue-tsc": "^2.0.7"
+		"typescript": "^5.4.4",
+		"unocss": "^0.59.0",
+		"vite": "^5.2.8",
+		"vue-tsc": "^2.0.11"
 	},
 	"peerDependencies": {
 		"vue": "^3.3.8"
