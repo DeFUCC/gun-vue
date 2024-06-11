@@ -15,18 +15,18 @@
 		"url": "https://github.com/DeFUCC/gun-vue",
 		"directory": "desktop"
 	},
-	"packageManager": "pnpm@8.15.6",
+	"packageManager": "pnpm@9.3.0",
 	"scripts": {
 		"td": "tauri dev",
 		"tb": "tauri build"
 	},
 	"dependencies": {
-		"@capacitor/android": "^5.7.4",
-		"@capacitor/core": "^5.7.4",
-		"@capacitor/ios": "^5.7.4"
+		"@capacitor/android": "^5.7.5",
+		"@capacitor/core": "^5.7.5",
+		"@capacitor/ios": "^5.7.5"
 	},
 	"devDependencies": {
-		"@capacitor/cli": "^5.7.4",
-		"@tauri-apps/cli": "^1.5.11"
+		"@capacitor/cli": "^5.7.5",
+		"@tauri-apps/cli": "^1.5.14"
 	}
 }
