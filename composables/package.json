@@ -62,6 +62,8 @@
 		"@types/color-hash": "^2.0.0",
 		"@types/recordrtc": "^5.6.14",
 		"@types/webtorrent": "^0.109.8",
+		"@types/bittorrent-protocol": "^3.5.4",
+		"@types/parse-torrent": "^11.0.0",
 		"pug": "^3.0.3",
 		"vite": "^5.3.3",
 		"vite-plugin-checker": "^0.7.1"

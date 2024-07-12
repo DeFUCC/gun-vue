@@ -38,7 +38,7 @@
 		"eslint-plugin-vue-pug": "^0.6.2",
 		"typedoc": "^0.25.13",
 		"typedoc-plugin-markdown": "^4.0.3",
-		"typescript": "^5.4.5",
+		"typescript": "5.4",
 		"vite": "^5.3.3",
 		"vue-eslint-parser": "^9.4.3"
 	},
