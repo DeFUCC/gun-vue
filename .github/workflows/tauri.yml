@@ -28,9 +28,10 @@ jobs:
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 7.27
-          run_install: |
-            - recursive: true
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Install dependencies (ubuntu only)
         if: matrix.platform == 'ubuntu-latest'
