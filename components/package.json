@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/components",
-	"version": "0.18.3",
+	"version": "0.18.4",
 	"homepage": "https://gun-vue.js.org",
 	"bugs": {
 		"url": "https://github.com/defucc/gun-vue/issues"
@@ -35,7 +35,7 @@
 	},
 	"dependencies": {
 		"@coders-tm/vue-number-format": "^3.34.1",
-		"@gun-vue/composables": "^0.18.3",
+		"@gun-vue/composables": "^0.18.4",
 		"@unocss/reset": "0.55.3",
 		"@vueuse/core": "10.4.1",
 		"@vueuse/gesture": "^2.0.0",

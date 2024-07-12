@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.18.4
+
+### Patch Changes
+
+- Fix spellings and bump some deps
+
 ## 0.18.3
 
 ### Patch Changes
