@@ -32,9 +32,6 @@
 		"**/dist",
 		"**/public/**"
 	],
-	"files": [
-		"./types/src/composables.d.ts"
-	],
 	"typedocOptions": {
 		"entryPoints": [
 			"../src/"
