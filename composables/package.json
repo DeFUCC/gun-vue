@@ -55,15 +55,13 @@
 		"ultramatter": "^0.0.4",
 		"url-regex": "^5.0.0",
 		"vue": "^3.4.31",
-		"webtorrent": "^2.4.11",
+		"webtorrent": "^2.4.0",
 		"yamlify-object": "^2.0.0"
 	},
 	"devDependencies": {
 		"@types/color-hash": "^2.0.0",
 		"@types/recordrtc": "^5.6.14",
 		"@types/webtorrent": "^0.109.8",
-		"@types/bittorrent-protocol": "^3.5.4",
-		"@types/parse-torrent": "^11.0.0",
 		"pug": "^3.0.3",
 		"vite": "^5.3.3",
 		"vite-plugin-checker": "^0.7.1"
