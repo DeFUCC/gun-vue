@@ -55,7 +55,7 @@
 		"ultramatter": "^0.0.4",
 		"url-regex": "^5.0.0",
 		"vue": "^3.4.31",
-		"webtorrent": "^2.4.0",
+		"webtorrent": "2.4.0",
 		"yamlify-object": "^2.0.0"
 	},
 	"devDependencies": {
