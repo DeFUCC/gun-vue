@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/gun-es",
-	"version": "0.2.1239",
+	"version": "0.2.1240",
 	"homepage": "https://gun-vue.js.org",
 	"author": "davay42 <davay@defucc.me>",
 	"license": "MIT",
@@ -27,9 +27,9 @@
 		"preview": "vite preview"
 	},
 	"devDependencies": {
-		"vite": "^5.2.13"
+		"vite": "5.3.3"
 	},
 	"dependencies": {
-		"gun": "^0.2020.1240"
+		"gun": "0.2020.1240"
 	}
 }

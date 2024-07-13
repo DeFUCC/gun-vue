@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/components",
-	"version": "0.18.4",
+	"version": "0.18.3",
 	"homepage": "https://gun-vue.js.org",
 	"bugs": {
 		"url": "https://github.com/defucc/gun-vue/issues"
@@ -29,34 +29,33 @@
 		"/types",
 		"example.html"
 	],
-	"packageManager": "pnpm@9.3.0",
+	"packageManager": "pnpm@8.15.6",
 	"scripts": {
 		"build": "vite build && vue-tsc"
 	},
 	"dependencies": {
-		"@coders-tm/vue-number-format": "^3.34.1",
-		"@gun-vue/composables": "^0.18.3",
-		"@unocss/reset": "0.55.3",
-		"@vueuse/core": "10.4.1",
-		"@vueuse/gesture": "^2.0.0",
-		"@vueuse/sound": "^2.0.1",
-		"floating-vue": "^5.2.2",
-		"force-graph": "^1.43.5",
+		"@coders-tm/vue-number-format": "3.34.1",
+		"@gun-vue/composables": "0.18.3",
+		"@unocss/reset": "0.61.3",
+		"@vueuse/core": "10.11.0",
+		"@vueuse/gesture": "2.0.0",
+		"@vueuse/sound": "2.0.1",
+		"floating-vue": "5.2.2",
+		"force-graph": "1.43.5",
 		"fuse.js": "7.0.0",
-		"jsqr": "^1.4.0",
-		"url-regex": "^5.0.0",
-		"vue": "^3.4.27",
-		"vue-select": "4.0.0-beta.6",
-		"vue3-virtual-scroll-list": "^0.2.1"
+		"jsqr": "1.4.0",
+		"url-regex": "5.0.0",
+		"vue": "^3.4.21",
+		"vue3-virtual-scroll-list": "0.2.1"
 	},
 	"devDependencies": {
-		"@unocss/extractor-pug": "^0.60.4",
-		"@vitejs/plugin-vue": "^5.0.5",
-		"pug": "^3.0.3",
-		"typescript": "5.4",
-		"unocss": "^0.60.4",
-		"vite": "^5.2.13",
-		"vue-tsc": "^2.0.21"
+		"@unocss/extractor-pug": "0.61.3",
+		"@vitejs/plugin-vue": "5.0.5",
+		"pug": "3.0.3",
+		"typescript": "5.4.4",
+		"unocss": "0.61.3",
+		"vite": "5.3.3",
+		"vue-tsc": "2.0.26"
 	},
 	"peerDependencies": {
 		"vue": "^3.3.8"

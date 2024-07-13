@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/app",
-	"version": "0.18.4",
+	"version": "0.18.3",
 	"type": "module",
 	"homepage": "https://gun-vue.js.org",
 	"funding": {
@@ -23,7 +23,7 @@
 	"files": [
 		"/dist"
 	],
-	"packageManager": "pnpm@9.3.0",
+	"packageManager": "pnpm@8.15.6",
 	"scripts": {
 		"build-app": "vite build --emptyOutDir",
 		"build": "vite build --config vite.config.lib.ts",
@@ -32,22 +32,22 @@
 		"preview": "vite preview --host"
 	},
 	"dependencies": {
-		"@unocss/reset": "0.55.3",
-		"@vueuse/core": "10.4.1",
+		"@unocss/reset": "0.61.3",
+		"@vueuse/core": "10.11.0",
 		"ola": "1.2.1",
-		"vue": "3.3.4",
-		"vue-router": "4.2.4"
+		"vue": "3.4.31",
+		"vue-router": "4.4.0"
 	},
 	"devDependencies": {
-		"@iconify/json": "^2.2.218",
-		"@unocss/extractor-pug": "^0.60.4",
-		"@vitejs/plugin-vue": "^5.0.5",
-		"pug": "^3.0.3",
-		"unocss": "^0.60.4",
-		"vite": "^5.2.13",
-		"vite-plugin-pages": "^0.32.2",
-		"vite-plugin-pages-sitemap": "^1.7.1",
-		"vite-plugin-pwa": "^0.20.0",
-		"vite-plugin-singlefile": "^2.0.1"
+		"@iconify/json": "2.2.227",
+		"@unocss/extractor-pug": "0.61.3",
+		"@vitejs/plugin-vue": "5.0.5",
+		"pug": "3.0.3",
+		"unocss": "0.61.3",
+		"vite": "5.3.3",
+		"vite-plugin-pages": "0.32.3",
+		"vite-plugin-pages-sitemap": "1.7.1",
+		"vite-plugin-pwa": "0.20.0",
+		"vite-plugin-singlefile": "2.0.2"
 	}
 }
