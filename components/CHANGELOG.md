@@ -1,5 +1,16 @@
 # @gun-vue/components
 
+## 0.20.0
+
+### Minor Changes
+
+- 696d108: Fixed the bug by fixing versions of packages, no more bracket and automatic updates.
+
+### Patch Changes
+
+- Updated dependencies [696d108]
+  - @gun-vue/composables@0.20.0
+
 ## 0.18.4
 
 ### Patch Changes
