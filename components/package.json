@@ -35,7 +35,7 @@
 	},
 	"dependencies": {
 		"@coders-tm/vue-number-format": "3.34.1",
-		"@gun-vue/composables": "0.20.0",
+		"@gun-vue/composables": "0.18.3",
 		"@unocss/reset": "0.61.3",
 		"@vueuse/core": "10.11.0",
 		"@vueuse/gesture": "2.0.0",
