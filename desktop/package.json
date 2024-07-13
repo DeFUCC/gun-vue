@@ -27,6 +27,6 @@
 	},
 	"devDependencies": {
 		"@capacitor/cli": "6.1.0",
-		"@tauri-apps/cli": "1.6.0"
+		"@tauri-apps/cli": "1.5.14"
 	}
 }
