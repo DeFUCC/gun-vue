@@ -45,7 +45,7 @@
 		"fuse.js": "7.0.0",
 		"jsqr": "1.4.0",
 		"url-regex": "5.0.0",
-		"vue": "^3.4.21",
+		"vue": "3.4.31",
 		"vue3-virtual-scroll-list": "0.2.1"
 	},
 	"devDependencies": {
@@ -58,6 +58,6 @@
 		"vue-tsc": "2.0.26"
 	},
 	"peerDependencies": {
-		"vue": "^3.3.8"
+		"vue": "3.4.31"
 	}
 }
