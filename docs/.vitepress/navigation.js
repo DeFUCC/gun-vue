@@ -1,4 +1,4 @@
-[
+export const sidebar = [
   {
     "text": "Basics",
     "items": [
@@ -84,3 +84,4 @@
     ]
   }
 ]
+

@@ -28,6 +28,6 @@
 		}
 	},
 	"include": [
-		"../src/components.ts"
+		"../src/components.js"
 	]
 }

@@ -1,7 +1,6 @@
-import { defineConfig, DefaultTheme } from "vitepress";
+import { defineConfig } from "vitepress";
 
 import { sidebar } from "./navigation";
-import path from "path";
 import pack from "../package.json";
 
 export default defineConfig({

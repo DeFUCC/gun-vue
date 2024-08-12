@@ -23,7 +23,7 @@
 		}
 	},
 	"include": [
-		"../src/**/composables.ts"
+		"../src/**/composables.js"
 	],
 	"exclude": [
 		"node_modules",
@@ -45,12 +45,12 @@
 		"name": "Gun-Vue docs",
 		"defaultCategory": "Composables",
 		"exclude": [
-			"**/routes.ts",
+			"**/routes.js",
 			"**/index.ts",
-			"**/components.ts",
-			"**/composables.ts",
-			"**/app.ts",
-			"**/all-components.ts",
+			"**/components.js",
+			"**/composables.js",
+			"**/app.js",
+			"**/all-components.js",
 			"**/worker.js"
 		]
 	}

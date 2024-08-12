@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { currentRoom, rootRoom } from './composables';
 
 import { RoomPage } from './components'

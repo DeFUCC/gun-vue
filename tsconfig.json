@@ -2,6 +2,9 @@
 	"include": [
 		"**/*.*"
 	],
+	"exclude": [
+		"**/node_modules/*.*"
+	],
 	"compilerOptions": {
 		"outDir": "composables/types",
 		"allowJs": true,

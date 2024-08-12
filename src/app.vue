@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed } from "vue";
 import { currentRoom, useUser, rootRoom, useBackground, setPeer, relay } from "#composables";
