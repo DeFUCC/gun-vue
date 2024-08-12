@@ -65,7 +65,7 @@ function imageDataFromCanvas(canvasImageSource, width, height) {
   return canvasCtx.getImageData(0, 0, widthScaled, heightScaled)
 }
 
-function asyncListenEvent(eventTarget, successEvent, errorEvent?: null) {
+function asyncListenEvent(eventTarget, successEvent, errorEvent) {
   let _resolve, _reject;
   const promise = new Promise((resolve, reject) => {
     _resolve = resolve;

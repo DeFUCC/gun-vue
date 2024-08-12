@@ -21,12 +21,12 @@
 		"tb": "tauri build"
 	},
 	"dependencies": {
-		"@capacitor/android": "6.1.0",
-		"@capacitor/core": "6.1.0",
-		"@capacitor/ios": "6.1.0"
+		"@capacitor/android": "6.1.2",
+		"@capacitor/core": "6.1.2",
+		"@capacitor/ios": "6.1.2"
 	},
 	"devDependencies": {
-		"@capacitor/cli": "6.1.0",
-		"@tauri-apps/cli": "1.5.14"
+		"@capacitor/cli": "6.1.2",
+		"@tauri-apps/cli": "1.6.0"
 	}
 }

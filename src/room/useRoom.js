@@ -5,7 +5,6 @@
  */
 
 /**
-
  * @module useProject
  * @group Projects
  */
@@ -20,13 +19,21 @@ import {
 } from "../composables";
 import config from "../../gun.config.json";
 import { reactive, computed, ref, watchEffect } from "vue";
-import { ISEAPair } from "gun";
 import { useStorage } from "@vueuse/core";
-import { CurrentRoom } from "./useRoom.d";
 
 const rootRoom = config.room;
 
-export const currentRoom: CurrentRoom = reactive({
+/**
+ * @typedef {Object} CurrentRoom
+ * @property {string} pub
+ * @property {boolean} isRoot
+ * @property {Object.<string, Object>} [hosts]
+ * @property {Object.<string, string>} [features]
+ * @property {Object.<string, string>} [profile]
+ */
+
+/** @type {CurrentRoom} */
+export const currentRoom = reactive({
 	pub: useStorage("current-room", rootRoom.pub),
 	isRoot: computed(() => currentRoom.pub == rootRoom.pub),
 	hosts: {},
@@ -62,10 +69,12 @@ watchEffect(() => {
 
 /**
  * Reactive room controls
+ * @param {string} [pub=currentRoom.pub]
+ * @returns {Object}
  */
-
 export function useRoom(pub = currentRoom.pub) {
-	const room: CurrentRoom = reactive({
+	/** @type {CurrentRoom} */
+	const room = reactive({
 		pub: pub,
 		isRoot: computed(() => pub == rootRoom.pub),
 		hosts: {},
@@ -107,6 +116,10 @@ export function useRoom(pub = currentRoom.pub) {
 	};
 }
 
+/**
+ * @param {string} [pub=currentRoom.pub]
+ * @returns {Object}
+ */
 export function useRoomLogo(pub = currentRoom.pub) {
 	const logo = ref();
 	const gun = useGun();
@@ -127,7 +140,11 @@ export function useRoomLogo(pub = currentRoom.pub) {
 				});
 		});
 
-	async function uploadLogo(file: string) {
+	/**
+	 * @param {string} file
+	 * @returns {Promise<void>}
+	 */
+	async function uploadLogo(file) {
 		if (file) {
 			const hash = await hashText(file);
 			gun.get("#logos").get(hash).put(file);
@@ -148,6 +165,9 @@ export function useRoomLogo(pub = currentRoom.pub) {
 	};
 }
 
+/**
+ * @returns {Object}
+ */
 export function useRooms() {
 	const rooms = computed(() => {
 		return listPersonal("rooms", currentRoom.pub);
@@ -155,7 +175,12 @@ export function useRooms() {
 	return { rooms, createRoom };
 }
 
-export function listPersonal(tag: string, pub = currentRoom.pub) {
+/**
+ * @param {string} tag
+ * @param {string} [pub=currentRoom.pub]
+ * @returns {Object}
+ */
+export function listPersonal(tag, pub = currentRoom.pub) {
 	const gun = useGun();
 	const records = reactive({});
 	gun
@@ -172,11 +197,10 @@ export function listPersonal(tag: string, pub = currentRoom.pub) {
 
 /**
  * Update a profile field of a room
- * @param {String} field parameter to write to
- * @param {String} content
+ * @param {string} field - parameter to write to
+ * @param {any} content
  */
-
-export function updateRoomProfile(field: string, content: any) {
+export function updateRoomProfile(field, content) {
 	const gun = useGun();
 	const { user } = useUser();
 	let certificate = currentRoom.hosts?.[user.pub]?.profile;
@@ -189,17 +213,13 @@ export function updateRoomProfile(field: string, content: any) {
 
 /**
  * Create a new room inside the current room
+ * @param {Object} options
+ * @param {Object} options.pair
+ * @param {string} [options.name]
+ * @returns {Promise<void>}
  */
-
-export async function createRoom({
-	pair,
-	name,
-}: {
-	pair: ISEAPair;
-	name?: string;
-}) {
+export async function createRoom({ pair, name }) {
 	const { user } = useUser();
-	// if (!pair) pair = await SEA.pair();
 	if (!pair) return;
 	const roomPub = pair.pub;
 
@@ -286,19 +306,26 @@ export async function createRoom({
 		"application/json",
 		`room_${name || roomPub}.json`
 	);
-	// enterRoom(pair.pub);
 }
 
-export async function recreateRoom(enc: string, name?: string) {
-	//@ts-ignore
-	const dec: ISEAPair = await user.decrypt(enc);
+/**
+ * @param {string} enc
+ * @param {string} [name]
+ * @returns {Promise<void>}
+ */
+export async function recreateRoom(enc, name) {
+	const dec = await user.decrypt(enc);
 	createRoom({
 		pair: dec,
 		name,
 	});
 }
 
-export async function submitRoom(pub: string) {
+/**
+ * @param {string} pub
+ * @returns {Promise<void>}
+ */
+export async function submitRoom(pub) {
 	const gun = useGun();
 	const already = await gun
 		.user(currentRoom.pub)
@@ -326,33 +353,34 @@ export function joinRoom() {
 
 /**
  * The right way to come inside a room
- * @param {String} pub
+ * @param {string} pub
  */
-
-export function enterRoom(pub: string): void {
+export function enterRoom(pub) {
 	currentRoom.pub = pub;
 }
 
 /**
  * Leave the room
  */
-
 export function leaveRoom() {
 	currentRoom.pub = rootRoom.pub;
 }
 
+/**
+ * @param {Object} options
+ * @param {string} options.tag
+ * @param {string} options.key
+ * @param {string} options.text
+ * @param {string} [options.pub=currentRoom.pub]
+ * @param {string} [options.cert]
+ * @returns {Promise<void>}
+ */
 export async function addPersonal({
 	tag,
 	key,
 	text,
 	pub = currentRoom.pub,
 	cert,
-}: {
-	tag: string;
-	key: string;
-	text: string;
-	pub: string;
-	cert: string;
 }) {
 	const gun = useGun();
 	if (!cert) cert = await gun.user(pub).get("features").get(tag).then();

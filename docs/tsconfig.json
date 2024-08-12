@@ -38,7 +38,6 @@
 		],
 		"readme": "reference/index.md",
 		"includeVersion": true,
-		"includes": "../src/",
 		"out": "reference/typedoc/",
 		"githubPages": false,
 		"entryPointStrategy": "expand",

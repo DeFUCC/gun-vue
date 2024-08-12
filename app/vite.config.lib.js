@@ -6,7 +6,6 @@ import Unocss from 'unocss/vite'
 import path from "path";
 import { fileURLToPath } from "url";
 
-// @ts-ignore
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -31,7 +30,7 @@ export default defineConfig({
 	base: './',
 	build: {
 		lib: {
-			entry: path.resolve(dirname, 'app.ts'),
+			entry: path.resolve(dirname, 'app.js'),
 			name: 'GunVue',
 			// the proper extensions will be added
 			fileName: 'app',

@@ -36,8 +36,8 @@
 	"dependencies": {
 		"@coders-tm/vue-number-format": "3.34.1",
 		"@gun-vue/composables": "0.20.0",
-		"@unocss/reset": "0.61.3",
-		"@vueuse/core": "10.11.0",
+		"@unocss/reset": "0.62.1",
+		"@vueuse/core": "10.11.1",
 		"@vueuse/gesture": "2.0.0",
 		"@vueuse/sound": "2.0.1",
 		"floating-vue": "5.2.2",
@@ -45,19 +45,19 @@
 		"fuse.js": "7.0.0",
 		"jsqr": "1.4.0",
 		"url-regex": "5.0.0",
-		"vue": "3.4.31",
+		"vue": "3.4.37",
 		"vue3-virtual-scroll-list": "0.2.1"
 	},
 	"devDependencies": {
-		"@unocss/extractor-pug": "0.61.3",
-		"@vitejs/plugin-vue": "5.0.5",
+		"@unocss/extractor-pug": "0.62.0",
+		"@vitejs/plugin-vue": "5.1.2",
 		"pug": "3.0.3",
-		"typescript": "5.4.4",
-		"unocss": "0.61.3",
-		"vite": "5.3.3",
-		"vue-tsc": "2.0.26"
+		"typescript": "5.5.4",
+		"unocss": "0.62.1",
+		"vite": "5.4.0",
+		"vue-tsc": "2.0.29"
 	},
 	"peerDependencies": {
-		"vue": "3.4.31"
+		"vue": "3.4.37"
 	}
 }
