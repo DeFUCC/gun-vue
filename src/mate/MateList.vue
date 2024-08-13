@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { computed, ref } from 'vue'
 import { useColor, useMates, isEmoji, user } from '../composables';
 import { MateLink } from '../components'

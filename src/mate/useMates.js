@@ -4,38 +4,40 @@
  * @group Users
  */
 
-import { reactive, Ref, ref } from "vue";
+import { reactive, ref } from "vue";
 import { useGun, user } from "../composables";
 //@ts-ignore - no types found
 import GB from "grapheme-breaker-mjs";
 
-export interface Mate {
-	emoji: string
-	text: string
-	back?: string
-}
+/**
+ * @typedef {Object} Mate
+ * @property {string} emoji
+ * @property {string} text
+ * @property {string} [back]
+ */
 
 /**
  * Get a reactive list of the user's mates
+ * @param {string} pub
+ * @returns {Object.<string, Mate>}
  */
-
-export function useMates(pub: string) {
+export function useMates(pub) {
 	if (!pub) {
 		pub = user.pub;
 	}
-	const mates: Record<string, Mate> = reactive({});
+	const mates = reactive({});
 	const gun = useGun();
 	gun
 		.user(pub)
 		.get("mates")
 		.map()
-		.once((text: string, matePub: string) => {
+		.once((text, matePub) => {
 			if (text) {
-				const mate: Mate = {
+				const mate = {
 					emoji: getFirstEmoji(text),
 					text,
-				}
-				mates[matePub] = mate
+				};
+				mates[matePub] = mate;
 				gun
 					.user(matePub)
 					.get("mates")
@@ -56,9 +58,11 @@ export function useMates(pub: string) {
 
 /**
  * Break the string into graphemes and return the first one if it's an emoji
+ * @param {string} text
+ * @param {string} [def='👋']
+ * @returns {string}
  */
-
-export function getFirstEmoji(text: string, def = "👋"): string {
+export function getFirstEmoji(text, def = "👋") {
 	if (!text || typeof text != "string") return '';
 	let em = GB.break(text)[0];
 	if (isEmoji(em)) {
@@ -70,26 +74,28 @@ export function getFirstEmoji(text: string, def = "👋"): string {
 
 /**
  * Check if the text has emojis
+ * @param {string} text
+ * @returns {boolean}
  */
-
-export function isEmoji(text: string): boolean {
+export function isEmoji(text) {
 	return /\p{Extended_Pictographic}/u.test(text);
 }
 
 /**
- * @typedef {Object} useMate
- * @property {ref} emoji - change it in an input
- * @property {ref} isMate - reactive state of connection
+ * @typedef {Object} useMateReturn
+ * @property {import('vue').Ref<string>} emoji - change it in an input
+ * @property {import('vue').Ref<string|boolean>} isMate - reactive state of connection
  * @property {Function} toggleMate - toggle the link with current `emoji` ref
  */
 
 /**
  * Make mates with some account by current user
+ * @param {string} pub
+ * @returns {useMateReturn}
  */
-
-export function useMate(pub: string) {
+export function useMate(pub) {
 	const emoji = ref("👋");
-	const isMate: Ref<string | boolean> = ref(false);
+	const isMate = ref(false);
 
 	const dbMate = user?.db?.get("mates").get(pub);
 
