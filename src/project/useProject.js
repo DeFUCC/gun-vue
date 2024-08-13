@@ -8,63 +8,45 @@ import { reactive, ref, computed } from "vue";
 import { useGunSecondary, useGun, genUUID } from "../gun/composables";
 import { currentRoom } from "../room/composables";
 import { useUser, user } from "../user/composables";
-
 import { hashText, isHash } from "../crypto/composables";
 
-export type ProjectType =
-	| "design"
-	| "project"
-	| "event"
-	| "object"
-	| "opportunity"
-	| "task"
-	| "purchase";
+/**
+ * @typedef {'design' | 'project' | 'event' | 'object' | 'opportunity' | 'task' | 'purchase'} ProjectType
+ */
 
-export interface ProjectItem {
-	//main
-	id: string;
-	type?: ProjectType;
+/**
+ * @typedef {Object} ProjectItem
+ * @property {string} id
+ * @property {ProjectType} [type]
+ * @property {string} [title]
+ * @property {string} [description]
+ * @property {string[]} [tags]
+ * @property {string} [content]
+ * @property {string} [author]
+ * @property {string} [room]
+ * @property {string[]} [makers]
+ * @property {string} [source]
+ * @property {string[]} [targets]
+ * @property {string} [updatedAt]
+ * @property {string} [createdAt]
+ * @property {string} [startAt]
+ * @property {string} [finishAt]
+ * @property {[number, number]} [location]
+ * @property {string} [address]
+ * @property {boolean} [public]
+ * @property {boolean} [funding]
+ * @property {string} [color]
+ * @property {Object.<string, string>} [media]
+ */
 
-	//info
-	title?: string;
-	description?: string;
-	tags?: string[];
-	content?: string;
-
-	//pub keys
-	author?: string;
-	room?: string;
-	makers?: string[];
-
-	//hierarchy
-	source?: string;
-	targets?: string[];
-
-	//time
-	updatedAt?: string;
-	createdAt?: string;
-	startAt?: string;
-	finishAt?: string;
-
-	//place
-	location?: [number, number];
-	address?: string;
-
-	//flags
-	public?: boolean;
-	funding?: boolean;
-
-	//appearance
-	color?: string;
-
-	//media
-	media?: { [key: string]: string };
-}
-
-export function useNewProject(title?: string) {
+/**
+ * @param {string} [title]
+ * @returns {{newProject: ProjectItem, addProject: (cb?: Function) => Promise<void>}}
+ */
+export function useNewProject(title) {
 	const { user } = useUser();
 
-	const newProject: ProjectItem = reactive({
+	const newProject = reactive({
 		id: genUUID(6),
 		title,
 		type: "project",
@@ -75,7 +57,10 @@ export function useNewProject(title?: string) {
 		author: computed(() => user.pub),
 	});
 
-	async function addProject(cb?: Function) {
+	/**
+	 * @param {Function} [cb]
+	 */
+	async function addProject(cb) {
 		const gun = useGun();
 
 		const link = gun
@@ -94,7 +79,7 @@ export function useNewProject(title?: string) {
 						() => {
 							console.log("added project");
 							if (cb) {
-								cb?.();
+								cb();
 							}
 						},
 						{
@@ -108,11 +93,12 @@ export function useNewProject(title?: string) {
 	return { newProject, addProject };
 }
 
-export function updateProjectField(
-	title: string,
-	field: string,
-	value: string
-) {
+/**
+ * @param {string} title
+ * @param {string} field
+ * @param {string} value
+ */
+export function updateProjectField(title, field, value) {
 	const gun = useGun();
 	const proj = gun.user().get("projects").get(title);
 	proj.get(field).put(value, () => {
@@ -120,10 +106,14 @@ export function updateProjectField(
 	});
 }
 
-export function useProject(path: string) {
+/**
+ * @param {string} path
+ * @returns {{project: ProjectItem, updateField: (field: string, value: string) => void, updateCover: (image: string) => Promise<void>}}
+ */
+export function useProject(path) {
 	const gun = useGun();
 
-	const project: ProjectItem = reactive({
+	const project = reactive({
 		id: "0",
 		type: "event",
 	});
@@ -141,11 +131,18 @@ export function useProject(path: string) {
 			}
 		});
 
-	function updateField(field: string, value: string) {
+	/**
+	 * @param {string} field
+	 * @param {string} value
+	 */
+	function updateField(field, value) {
 		updateProjectField(path.slice(0, -88), field, value);
 	}
 
-	async function updateCover(image: string) {
+	/**
+	 * @param {string} image
+	 */
+	async function updateCover(image) {
 		const hash = await hashText(image);
 		if (!hash) return;
 		gun.get("#cover").get(hash).put(image);
@@ -155,11 +152,15 @@ export function useProject(path: string) {
 	return { project, updateField, updateCover };
 }
 
+/**
+ * @param {import('vue').Ref<string>} [path]
+ * @returns {{project: import('vue').ComputedRef<ProjectItem>, updateField: (field: string, value: string) => void, updateCover: (image: string) => Promise<void>}}
+ */
 export function useComputedProject(path = ref()) {
 	const gun = useGun();
 
 	const project = computed(() => {
-		const proj: ProjectItem = reactive({
+		const proj = reactive({
 			id: "",
 		});
 		gun
@@ -177,11 +178,18 @@ export function useComputedProject(path = ref()) {
 		return proj;
 	});
 
-	function updateField(field: string, value: string) {
+	/**
+	 * @param {string} field
+	 * @param {string} value
+	 */
+	function updateField(field, value) {
 		updateProjectField(path.value.slice(0, -88), field, value);
 	}
 
-	async function updateCover(image: string) {
+	/**
+	 * @param {string} image
+	 */
+	async function updateCover(image) {
 		const hash = await hashText(image);
 		if (!hash) return;
 		gun.get("#cover").get(hash).put(image);
@@ -191,7 +199,11 @@ export function useComputedProject(path = ref()) {
 	return { project, updateField, updateCover };
 }
 
-export async function removeProject(path: string) {
+/**
+ * @param {string} path
+ * @returns {Promise<void>}
+ */
+export async function removeProject(path) {
 	const gun = useGun();
 	const gun2 = useGunSecondary();
 	const { user } = useUser();
@@ -207,7 +219,6 @@ export async function removeProject(path: string) {
 	} else if (currentRoom.hosts[user.pub]) {
 		const pair = await user.decrypt(currentRoom.hosts[user.pub].enc);
 
-		//@ts-ignore
 		gun2.user().auth(pair, () => {
 			gun2.user().get("projects").get(path).put(null);
 		});
