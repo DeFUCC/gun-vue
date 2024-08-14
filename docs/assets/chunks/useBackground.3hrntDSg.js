@@ -1,1 +1,0 @@
-import{k as s,t}from"./components.BVdgfkYk.js";function d({pub:r,size:u=200,light:a=.5,overlay:e=.5,draw:o="squares",attachment:n="fixed"}){if(r)return{background:`linear-gradient(hsla(255,0%,${a*100}%,${e}), hsla(255,0%,${a*100}%,${e})), url(${s({pub:r,draw:o,reflect:!1,size:u,dark:t.dark})})`,backgroundSize:"cover, cover",backgroundAttachment:`${n},${n}`}}export{d as u};
