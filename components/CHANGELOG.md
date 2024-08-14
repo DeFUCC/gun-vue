@@ -1,5 +1,16 @@
 # @gun-vue/components
 
+## 0.21.0
+
+### Minor Changes
+
+- Removed TS. Using JSDoc instead. Hope to make contributions to the code much easier
+
+### Patch Changes
+
+- Updated dependencies
+  - @gun-vue/composables@0.21.0
+
 ## 0.20.0
 
 ### Minor Changes

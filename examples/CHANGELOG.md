@@ -1,5 +1,11 @@
 # @gun-vue/examples
 
+## 0.21.0
+
+### Minor Changes
+
+- Removed TS. Using JSDoc instead. Hope to make contributions to the code much easier
+
 ## 0.18.2
 
 ### Patch Changes
