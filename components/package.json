@@ -52,7 +52,6 @@
 		"@unocss/extractor-pug": "0.62.0",
 		"@vitejs/plugin-vue": "5.1.2",
 		"pug": "3.0.3",
-		"typescript": "5.5.4",
 		"unocss": "0.62.1",
 		"vite": "5.4.0",
 		"vue-tsc": "2.0.29"

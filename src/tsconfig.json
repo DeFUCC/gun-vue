@@ -45,7 +45,7 @@
 		"defaultCategory": "Composables",
 		"exclude": [
 			"**/routes.js",
-			"**/index.ts",
+			"**/index.js",
 			"**/components.js",
 		]
 	}

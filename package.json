@@ -27,20 +27,12 @@
 		"gun-es": "cd gun-es && npm run build"
 	},
 	"devDependencies": {
-		"@changesets/cli": "^2.27.7",
-		"@typescript-eslint/eslint-plugin": "^8.0.1",
-		"@typescript-eslint/parser": "^8.0.1",
-		"@vue/language-plugin-pug": "^2.0.29",
-		"cli-progress": "^3.12.0",
-		"dotenv": "^16.4.5",
-		"eslint": "^9.9.0",
-		"eslint-plugin-vue": "^9.27.0",
-		"eslint-plugin-vue-pug": "^0.6.2",
-		"typedoc": "^0.26.5",
-		"typedoc-plugin-markdown": "^4.2.3",
+		"@changesets/cli": "2.27.7",
+		"@vue/language-plugin-pug": "2.0.29",
+		"typedoc": "0.26.5",
+		"typedoc-plugin-markdown": "4.2.4",
 		"typescript": "5.5.4",
-		"vite": "^5.4.0",
-		"vue-eslint-parser": "^9.4.3"
+		"vite": "5.4.0"
 	},
 	"standard-version": {
 		"skip": {

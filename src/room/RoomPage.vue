@@ -1,4 +1,3 @@
-
 <script setup>
 import { useRoom, rootRoom, currentRoom, useColor, useUser, useBackground, useMd } from '#composables';
 import { ref, computed, reactive } from 'vue'
@@ -41,7 +40,7 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
 
 
 </script>
-<!-- eslint-disable vue/no-v-html -->
+
 <template lang="pug">
 .flex.flex-col.items-stretch
   .pt-32.px-2.md-px-8.bg-cover.relative.flex.flex-col.items-center(:style="{ ...bg }") 
