@@ -20,9 +20,6 @@ importers:
       typedoc-plugin-markdown:
         specifier: 4.2.4
         version: 4.2.4(typedoc@0.26.5(typescript@5.5.4))
-      typescript:
-        specifier: 5.5.4
-        version: 5.5.4
       vite:
         specifier: 5.4.0
         version: 5.4.0(@types/node@18.0.6)(terser@5.14.2)
@@ -220,7 +217,7 @@ importers:
         version: 5.4.0(@types/node@18.0.6)(terser@5.14.2)
       vite-plugin-checker:
         specifier: 0.7.2
-        version: 0.7.2(eslint@9.9.0)(optionator@0.9.3)(typescript@5.5.4)(vite@5.4.0(@types/node@18.0.6)(terser@5.14.2))(vue-tsc@2.0.29(typescript@5.5.4))
+        version: 0.7.2(eslint@9.9.0(jiti@1.21.0))(optionator@0.9.3)(typescript@5.5.4)(vite@5.4.0(@types/node@18.0.6)(terser@5.14.2))(vue-tsc@2.0.29(typescript@5.5.4))
 
   desktop:
     dependencies:
@@ -6322,9 +6319,9 @@ snapshots:
   '@esbuild/win32-x64@0.23.0':
     optional: true
 
-  '@eslint-community/eslint-utils@4.4.0(eslint@9.9.0)':
+  '@eslint-community/eslint-utils@4.4.0(eslint@9.9.0(jiti@1.21.0))':
     dependencies:
-      eslint: 9.9.0
+      eslint: 9.9.0(jiti@1.21.0)
       eslint-visitor-keys: 3.4.3
     optional: true
 
@@ -8017,9 +8014,9 @@ snapshots:
   eslint-visitor-keys@4.0.0:
     optional: true
 
-  eslint@9.9.0:
+  eslint@9.9.0(jiti@1.21.0):
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@9.9.0)
+      '@eslint-community/eslint-utils': 4.4.0(eslint@9.9.0(jiti@1.21.0))
       '@eslint-community/regexpp': 4.11.0
       '@eslint/config-array': 0.17.1
       '@eslint/eslintrc': 3.1.0
@@ -8053,6 +8050,8 @@ snapshots:
       optionator: 0.9.3
       strip-ansi: 6.0.1
       text-table: 0.2.0
+    optionalDependencies:
+      jiti: 1.21.0
     transitivePeerDependencies:
       - supports-color
     optional: true
@@ -10129,7 +10128,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite-plugin-checker@0.7.2(eslint@9.9.0)(optionator@0.9.3)(typescript@5.5.4)(vite@5.4.0(@types/node@18.0.6)(terser@5.14.2))(vue-tsc@2.0.29(typescript@5.5.4)):
+  vite-plugin-checker@0.7.2(eslint@9.9.0(jiti@1.21.0))(optionator@0.9.3)(typescript@5.5.4)(vite@5.4.0(@types/node@18.0.6)(terser@5.14.2))(vue-tsc@2.0.29(typescript@5.5.4)):
     dependencies:
       '@babel/code-frame': 7.24.7
       ansi-escapes: 4.3.2
@@ -10147,7 +10146,7 @@ snapshots:
       vscode-languageserver-textdocument: 1.0.11
       vscode-uri: 3.0.8
     optionalDependencies:
-      eslint: 9.9.0
+      eslint: 9.9.0(jiti@1.21.0)
       optionator: 0.9.3
       typescript: 5.5.4
       vue-tsc: 2.0.29(typescript@5.5.4)

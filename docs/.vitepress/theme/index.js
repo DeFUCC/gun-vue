@@ -1,6 +1,4 @@
 import DefaultTheme from 'vitepress/theme'
-
-
 import '@unocss/reset/tailwind.css'
 import 'uno.css'
 
@@ -10,7 +8,6 @@ export default {
   extends: DefaultTheme,
   Layout: Layout,
   async enhanceApp({ app }) {
-    //@ts-expect-error
     if (!import.meta.env.SSR) {
       const { GunVuePlugin } = await import('../../../src/components')
       app.use(GunVuePlugin)
