@@ -1,1 +1,0 @@
-import{o as s,c as o,r as t,j as n,_ as c}from"./framework.TCUxwrzd.js";const a={class:"button flex items-center m-1"},r=n("div",{class:"i-la-plus"},null,-1);function l(e,d){return s(),o("button",a,[t(e.$slots,"icon",{},()=>[r]),t(e.$slots,"default")])}const i={},_=c(i,[["render",l]]);export{_ as default};
