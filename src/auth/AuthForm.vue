@@ -72,6 +72,7 @@ function uploadFile(event) {
     input.py-1.px-4.m-1.rounded-xl(
       v-model="passphrase" 
       autofocus 
+      autocomplete="current-password" 
       type="text" 
       placeholder="Enter the password"
       )

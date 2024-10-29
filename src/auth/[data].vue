@@ -29,6 +29,6 @@ watch(user, user => {
     h2.my-2.text-xl Seems like you have an encrypted key. 
     h3 You need to enter the correct passphrase to authorize with it.
     .flex.mt-4.items-stretch
-      input.border-1.border-dark-100.p-4.rounded-xl(type="password" ref="input" v-model="passPhrase" autofocus @keydown.enter="useAuthLink(data, passPhrase)")
+      input.border-1.border-dark-100.p-4.rounded-xl(type="password" ref="input" autocomplete="current-password" v-model="passPhrase" autofocus @keydown.enter="useAuthLink(data, passPhrase)")
       button.button.items-center(type="submit" @click="useAuthLink(data, passPhrase)") Enter
 </template>

@@ -33,13 +33,13 @@
 	},
 	"dependencies": {
 		"@gun-vue/gun-es": "0.2.1240",
-		"@vueuse/core": "10.11.1",
-		"@vueuse/integrations": "10.11.1",
-		"@vueuse/math": "10.11.1",
+		"@vueuse/core": "11.1.0",
+		"@vueuse/integrations": "11.1.0",
+		"@vueuse/math": "11.1.0",
 		"buffer": "6.0.3",
 		"color-hash": "2.0.2",
 		"curved-arrows": "0.3.0",
-		"drauu": "0.4.0",
+		"drauu": "0.4.1",
 		"fuse.js": "7.0.0",
 		"grapheme-breaker-mjs": "1.0.4",
 		"gun": "0.2020.1240",
@@ -54,14 +54,14 @@
 		"slugify": "1.6.6",
 		"ultramatter": "0.0.4",
 		"url-regex": "5.0.0",
-		"vue": "3.4.37",
-		"webtorrent": "2.5.0",
+		"vue": "3.5.12",
+		"webtorrent": "2.5.1",
 		"yamlify-object": "2.0.0"
 	},
 	"devDependencies": {
 		"@types/color-hash": "2.0.0",
 		"@types/recordrtc": "5.6.14",
-		"vite": "5.4.0",
-		"vite-plugin-checker": "0.7.2"
+		"vite": "5.4.10",
+		"vite-plugin-checker": "0.8.0"
 	}
 }

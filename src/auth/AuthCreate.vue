@@ -56,10 +56,11 @@ function createUser() {
     input.p-4.rounded-2xl.my-2.dark-bg-dark-200(
       v-model="name" 
       placeholder="Enter your name or nickname"
+      autocomplete="username" 
       )
     button.button.w-full.flex.justify-center.items-center(
       v-if="newPair && !user.is && name" 
       @click="createUser()"
       )
       | Authenticate
-</template> 
+</template>

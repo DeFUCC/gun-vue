@@ -15,6 +15,7 @@ const { pass } = useAuth();
       .i-la-check.text-green-600.m-1(v-if="pass.safe?.enc")
     input.p-2.mx-4.rounded-xl.w-full.dark-bg-dark-200(
       v-model="pass.input",
+      autocomplete="current-password" 
       :type="pass.show ? 'text' : 'password'"
       :placeholder="`Your passphrase of ${pass.minLength} or more letters`"
     )
