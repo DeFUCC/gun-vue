@@ -33,9 +33,9 @@
 	},
 	"dependencies": {
 		"@gun-vue/gun-es": "0.2.1240",
-		"@vueuse/core": "11.1.0",
-		"@vueuse/integrations": "11.1.0",
-		"@vueuse/math": "11.1.0",
+		"@vueuse/core": "11.2.0",
+		"@vueuse/integrations": "11.2.0",
+		"@vueuse/math": "11.2.0",
 		"buffer": "6.0.3",
 		"color-hash": "2.0.2",
 		"curved-arrows": "0.3.0",
@@ -55,7 +55,7 @@
 		"ultramatter": "0.0.4",
 		"url-regex": "5.0.0",
 		"vue": "3.5.12",
-		"webtorrent": "2.5.1",
+		"webtorrent": "2.5.5",
 		"yamlify-object": "2.0.0"
 	},
 	"devDependencies": {

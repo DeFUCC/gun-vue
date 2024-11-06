@@ -35,24 +35,24 @@
 	},
 	"dependencies": {
 		"@coders-tm/vue-number-format": "3.34.1",
-		"@unocss/reset": "0.62.1",
-		"@vueuse/core": "10.11.1",
+		"@unocss/reset": "0.64.0",
+		"@vueuse/core": "11.2.0",
 		"@vueuse/gesture": "2.0.0",
 		"@vueuse/sound": "2.0.1",
 		"floating-vue": "5.2.2",
-		"force-graph": "1.43.5",
+		"force-graph": "1.46.0",
 		"fuse.js": "7.0.0",
 		"jsqr": "1.4.0",
 		"url-regex": "5.0.0",
-		"vue": "3.4.37",
+		"vue": "3.5.12",
 		"vue3-virtual-scroll-list": "0.2.1"
 	},
 	"devDependencies": {
-		"@unocss/extractor-pug": "0.62.0",
-		"@vitejs/plugin-vue": "5.1.2",
+		"@unocss/extractor-pug": "0.64.0",
+		"@vitejs/plugin-vue": "5.1.4",
 		"pug": "3.0.3",
-		"unocss": "0.62.1",
-		"vite": "5.4.0",
+		"unocss": "0.64.0",
+		"vite": "5.4.10",
 		"vue-tsc": "2.0.29"
 	},
 	"peerDependencies": {
