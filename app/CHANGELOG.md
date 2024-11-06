@@ -1,5 +1,11 @@
 # @gun-vue/app
 
+## 0.21.2
+
+### Patch Changes
+
+- Updated almost all dependencies, everything seems to work fine. And added manifest.json for the app to be installable. It will still be single file webapp as it may just work without loading the manifest file.
+
 ## 0.21.0
 
 ### Minor Changes
