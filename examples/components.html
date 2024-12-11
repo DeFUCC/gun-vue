@@ -2,22 +2,26 @@
 <html lang="en">
 
 <head>
-  <title>Chat example</title>
+  <title>Components Showcase</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://unpkg.com/@gun-vue/components/dist/style.css" />
   <script type="importmap">
-			{ "imports": { "app": "https://unpkg.com/@gun-vue/app" } }
+			{ "imports": { "@gun-vue/components": "https://unpkg.com/@gun-vue/components", "vue": "https://esm.sh/vue" } }
 		</script>
   <script type="module">
-    import { createGunVueApp } from "app";
-    createGunVueApp("#app");
+    import { GunVuePlugin } from "@gun-vue/components";
+    import { createApp } from "vue";
+
+    const app = createApp(App);
+    // app.use(FloatingVue)
+    app.use(GunVuePlugin).mount("#app");
   </script>
 </head>
 
 <body>
   <div id="app" class="flex flex-col">
-    <h1>Chat example app!</h1>
+    <h1>Hello to Components showcase. Not working yet...</h1>
     <div class="flex items-center gap-4 p-4">
       <gun-relay></gun-relay>
       <user-icon></user-icon>

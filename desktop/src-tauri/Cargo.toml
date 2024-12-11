@@ -1,12 +1,12 @@
 [package]
 name = "gun_vue"
-version = "0.21.2"
+version = "0.21.3"
 description = "Gun-Vue - reactive p2p crypto graph toolbox"
 authors = ["davay42"]
 license = "MIT"
 repository = "https://github.com/defucc/gun-vue"
 default-run = "gun_vue"
-edition = "2021"
+edition = "2024"
 rust-version = "1.57"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

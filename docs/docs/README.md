@@ -1,3 +1,7 @@
+**@gun-vue/docs** • [**Docs**](globals.md)
+
+***
+
 ![@gun-vue logo](https://gun-vue.js.org/media/gun-vue-logo.svg)
 
 # [gun-vue.js.org](https://gun-vue.js.org)

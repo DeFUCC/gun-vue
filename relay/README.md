@@ -1,6 +1,6 @@
 ### A simple Gun DB relay peer
 
-A one liner gun js server easy to run on any free tier nodejs cloud like **[Glitch.com](https://glitch.com/~etogun)**, www.heroku.com or others, on a private VPS server or any other device like RaspberryPi or simply an Android phone.
+A one liner gun js server easy to run on any free tier Node.js cloud like https://www.glitch.com, https://www.heroku.com or others, on a private VPS server or any other device like RaspberryPi or mostly any Android phone at hand.
 
 ![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/relay.svg)
 
@@ -51,7 +51,8 @@ npm i @gun-vue/relay
 ```
 
 3. Create a `start.js` script and edit it as follows:
-4. Import the `relay` and initiate it.
+
+4. Start by pasting this minimal code that imports the `relay` and initiates it.
 
 ```js
 import relay from "@gun-vue/relay";
@@ -82,10 +83,10 @@ You can use customize your server with an options object:
 
 ```js
 relay.init({
-  host: "localhost", // A host name used by the server to publish it's state to the graph. Set your peer URL without a protocol, like  'relay.some-site.com'
-  port: 4200, // Gun server port. You may use a more standard 8080.
-  store: false, // Put true if you want to have Gun store data on disk.
-  path: "public", // A public directory to expose your app with the build in express server. Insert a path like '../app/dist'
+	host: "localhost", // A host name used by the server to publish it's state to the graph. Set your peer URL without a protocol, like  'relay.some-site.com'
+	port: 4200, // Gun server port. You may use a more standard 8080.
+	store: false, // Put true if you want to have Gun store data on disk.
+	path: "public", // A public directory to expose your app with the build in express server. Insert a path like '../app/dist'
 });
 ```
 
