@@ -1,5 +1,11 @@
 # @gun-vue/relay
 
+## 0.5.1
+
+### Patch Changes
+
+- 0b6d3ab: Maintaining: dependencies updates, typo fixes, structure optimizations.
+
 ## 0.5.0
 
 ### Minor Changes

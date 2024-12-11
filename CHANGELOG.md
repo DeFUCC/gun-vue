@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.21.3
+
+### Patch Changes
+
+- 0b6d3ab: Maintaining: dependencies updates, typo fixes, structure optimizations.
+
 ## 0.21.2
 
 ### Patch Changes
