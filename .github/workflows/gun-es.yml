@@ -1,0 +1,37 @@
+name: Publish to GUN-ES to NPM
+
+on:
+  push:
+    tags:
+      - "v.*"
+  workflow_dispatch:
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+      packages: write
+      pull-requests: write
+      issues: read
+    env:
+      NPM_CONFIG_PROVENANCE: true
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install Common JS with NPM
+        run: cd gun-es && npm i && npm run build
+
+      - name: Publish gun-es
+        run: cd gun-es && npm publish --provenance --access public
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

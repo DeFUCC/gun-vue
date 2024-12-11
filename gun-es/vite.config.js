@@ -2,6 +2,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 
+
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -22,7 +23,7 @@ export default defineConfig({
     },
     commonjsOptions: {
       dynamicRequireTargets: [
-        path.resolve(dirname, './node_modules/gun/gun.js'),
+        'node_modules/gun/*.js',
       ],
       dynamicRequireRoot: path.resolve(dirname, './node_modules/gun/'),
     },
