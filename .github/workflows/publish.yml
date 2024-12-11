@@ -33,8 +33,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Install Common JS with NPM
+        run: cd gun-es && npm i
+
       - name: Build gun-es
-        run: cd gun-es && npm i && npm run build
+        run: cd gun-es && npm run build
 
       - name: Build project
         run: pnpm run builds
