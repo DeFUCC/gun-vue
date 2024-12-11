@@ -1,5 +1,11 @@
 # @gun-vue/app
 
+## 0.21.4
+
+### Patch Changes
+
+- Accidentally published the package from console, not from the Github Action with all the certificates needed for the check mark on NPM. Now need to update all packages again.
+
 ## 0.21.3
 
 ### Patch Changes
