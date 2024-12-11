@@ -12,7 +12,7 @@
 		"url": "https://github.com/sponsors/davay42"
 	},
 	"type": "module",
-	"packageManager": "pnpm@9.3.0",
+	"packageManager": "pnpm@9.15.0",
 	"scripts": {
 		"app": "pnpm --filter desktop run td",
 		"dev": "pnpm --filter app run dev",

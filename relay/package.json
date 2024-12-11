@@ -15,7 +15,7 @@
 		"url": "https://github.com/sponsors/davay42"
 	},
 	"type": "module",
-	"packageManager": "pnpm@9.3.0",
+	"packageManager": "pnpm@9.15.0",
 	"main": "server.js",
 	"files": [
 		"server.js",
@@ -25,8 +25,8 @@
 		"start": "node start.js"
 	},
 	"dependencies": {
-		"dotenv": "16.4.5",
-		"express": "4.21.1",
+		"dotenv": "16.4.7",
+		"express": "4.21.2",
 		"gun": "0.2020.1240",
 		"ip": "2.0.1",
 		"qrcode-terminal": "0.12.0",
