@@ -27,8 +27,11 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org/
 
-      - name: Install Common JS with NPM
-        run: cd gun-es && npm i && npm run build
+      - name: Install packages with NPM
+        run: cd gun-es && npm i
+
+      - name: Build the library
+        run: cd gun-es && npm run build
 
       - name: Publish gun-es
         run: cd gun-es && npm publish --provenance --access public
