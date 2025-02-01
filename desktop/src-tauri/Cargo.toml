@@ -1,6 +1,6 @@
 [package]
 name = "gun_vue"
-version = "0.21.4"
+version = "0.21.5"
 description = "Gun-Vue - reactive p2p crypto graph toolbox"
 authors = ["davay42"]
 license = "MIT"
