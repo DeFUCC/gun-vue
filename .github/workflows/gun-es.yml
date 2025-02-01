@@ -28,7 +28,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: Install packages with NPM
-        run: cd gun-es && npm i
+        run: cd gun-es && npm i --force
 
       - name: Build the library
         run: cd gun-es && npm run build
