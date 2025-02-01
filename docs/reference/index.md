@@ -18,7 +18,7 @@ Gun-vue – is where the peer-to-peer javascript database **Gun** meets the reac
 
 The project is committed to give all the basic tools for everyone to participate in exploring this new graph universe. You can find your own way in it for yourself.
 
-There code is organised into distinct layers in the [@gun-vue npmjs.com organisation](https://www.npmjs.com/org/gun-vue) for you to install and use in your P2P apps. 
+There code is organised into distinct layers in the [@gun-vue npmjs.com organisation](https://www.npmjs.com/org/gun-vue) for you to install and use in your P2P apps.
 
 ## @gun-vue/app
 
@@ -31,7 +31,6 @@ The app is reachable via the free [js.org](https://js.org) subdomain since [Jan 
 ### [Desktop app releases](https://github.com/DeFUCC/gun-vue/releases) via GitHub Actions and Tauri
 
 Every time a new version of Gun-Vue is published, an automated action creates a new release draft with a full kit of lightweight native desktop apps for Windows, Mac OS and Linux with [Tauri](https://tauri.app) by a [GitHub Action](https://github.com/DeFUCC/gun-vue/actions/workflows/tauri.yml). Mobile apps are coming.
-
 
 ### [Open source code](https://github.com/DeFUCC/gun-vue/tree/master/src) at GitHub [pnpm](https://pnpm.io) monorepo
 
@@ -74,9 +73,6 @@ Composable functions for use with Vue 3 Composition API
 A simple no-store Gun server to throw at any free tier Node.js environment.
 
 <a href="https://www.npmjs.com/package/@gun-vue/relay" target="__blank"><img src="https://img.shields.io/npm/v/@gun-vue/relay?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
-
-### [Demo relay](https://gun.defucc.me) by DeFUCC
-
 
 ---
 

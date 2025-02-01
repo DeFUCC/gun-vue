@@ -1,6 +1,6 @@
 **@gun-vue/docs** • [**Docs**](globals.md)
 
-***
+---
 
 ![@gun-vue logo](https://gun-vue.js.org/media/gun-vue-logo.svg)
 
@@ -69,8 +69,6 @@ Composable functions for use with Vue 3 Composition API. They hold the core reac
 A simple no-store Gun server to throw at any Node.js environment. From old laptops, Raspbery Pi's and free-tier hostings to high-load VPS and dedicated company servers.
 
 <a href="https://www.npmjs.com/package/@gun-vue/relay" target="__blank"><img src="https://img.shields.io/npm/v/@gun-vue/relay?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
-
-### [Demo relay](https://gun.defucc.me) by DeFUCC
 
 ---
 

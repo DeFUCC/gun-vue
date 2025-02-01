@@ -66,8 +66,6 @@ A simple no-store Gun server to throw at any Node.js environment. From old lapto
 
 <a href="https://www.npmjs.com/package/@gun-vue/relay" target="__blank"><img src="https://img.shields.io/npm/v/@gun-vue/relay?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
 
-### [Demo relay](https://gun.defucc.me) by DeFUCC
-
 ---
 
 ## Development video blog. Watch at [DeFUCC youtube channel](https://www.youtube.com/watch?v=gwZUQcCp01U&list=PLncuCCb2zjt6wmlSNLiK1lZl150qX-rAw)
