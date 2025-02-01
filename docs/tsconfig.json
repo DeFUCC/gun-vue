@@ -50,7 +50,8 @@
 			"**/composables.js",
 			"**/app.js",
 			"**/all-components.js",
-			"**/worker.js"
+			"**/worker.js",
+			"**/*.d.ts"
 		]
 	}
 }

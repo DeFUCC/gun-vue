@@ -83,14 +83,12 @@ export { default as SEA } from "gun/sea.js";
 /**
  * Get a soul for any given node
  * A wrapper for `Gun.node.soul`
- * @function soul
  */
 export const soul = Gun?.node?.soul;
 
 /**
  * Generate a random UUID
  * A wrapper for `Gun.text.random`
- * @function genUUID
  * @param {number} [num]
  * @returns {string}
  */
