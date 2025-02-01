@@ -26,7 +26,7 @@ export default defineConfig({
 			allow: ['../']
 		}
 	},
-	envPrefix: ['VITE_', 'TAURI_'],
+	envPrefix: ['VITE_'],
 	publicDir: "public",
 	plugins: [
 		vue(),
@@ -37,8 +37,8 @@ export default defineConfig({
 	build: {
 		outDir: "../_dist/",
 		target: "esnext",
-		minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
-		sourcemap: !!process.env.TAURI_DEBUG,
+		minify: 'esbuild',
+		sourcemap: false,
 		assetsInlineLimit: 100000000,
 		chunkSizeWarningLimit: 100000000,
 		cssCodeSplit: false,

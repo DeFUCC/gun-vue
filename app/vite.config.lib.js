@@ -19,7 +19,7 @@ export default defineConfig({
 			allow: ['../']
 		}
 	},
-	envPrefix: ['VITE_', 'TAURI_'],
+	envPrefix: ['VITE_'],
 	publicDir: "public-lib",
 	plugins: [
 		vue(), Unocss()
