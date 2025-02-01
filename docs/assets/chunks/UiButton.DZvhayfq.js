@@ -1,0 +1,1 @@
+import{o,c as n,r as s,j as r,_ as l}from"./framework.BtfQKcS5.js";const a={class:"button flex items-center m-1"};function c(e,t){return o(),n("button",a,[s(e.$slots,"icon",{},()=>[t[0]||(t[0]=r("div",{class:"i-la-plus"},null,-1))]),s(e.$slots,"default")])}const i={},d=l(i,[["render",c]]);export{d as default};
