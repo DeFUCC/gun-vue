@@ -27,8 +27,12 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org/
 
-      - name: Install packages with NPM
-        run: cd gun-es && npm i --force
+      - name: Install dependencies
+        run: |
+          cd gun-es
+          rm -f package-lock.json
+          rm -rf node_modules
+          npm install
 
       - name: Build the library
         run: cd gun-es && npm run build
