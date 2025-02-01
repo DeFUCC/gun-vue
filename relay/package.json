@@ -1,6 +1,7 @@
 {
 	"name": "@gun-vue/relay",
 	"version": "0.5.2",
+	"description": "A simple GUN peer relay for self- hosting",
 	"homepage": "https://gun-vue.js.org",
 	"bugs": {
 		"url": "https://github.com/defucc/gun-vue/issues"
@@ -15,7 +16,7 @@
 		"url": "https://github.com/sponsors/davay42"
 	},
 	"type": "module",
-	"packageManager": "pnpm@9.15.0",
+	"packageManager": "pnpm@9.15.4",
 	"main": "server.js",
 	"files": [
 		"server.js",
@@ -31,6 +32,5 @@
 		"ip": "2.0.1",
 		"qrcode-terminal": "0.12.0",
 		"self-adjusting-interval": "1.0.0"
-	},
-	"desciprion": "A simple gun peer relay for free tier hosting"
+	}
 }
