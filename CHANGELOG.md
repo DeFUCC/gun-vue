@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.21.5
+
+### Patch Changes
+
+- Bump versions of all dependencies
+
 ## 0.21.4
 
 ### Patch Changes
