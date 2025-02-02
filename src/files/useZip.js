@@ -29,7 +29,6 @@ export function useZip() {
 
 	/**
 	 * Add a binary file to the zip
-	 * @async
 	 * @param {Object} options
 	 * @param {string} options.title
 	 * @param {string} options.file
@@ -70,7 +69,6 @@ export function useZip() {
 	 * @param {string} [post.title]
 	 * @param {string} [post.statement]
 	 * @param {string} [post.content]
-	 * @async
 	 */
 	async function zipPost(post) {
 		let { text, title, statement, content } = post;

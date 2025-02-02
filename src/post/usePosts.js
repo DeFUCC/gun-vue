@@ -109,7 +109,6 @@ export function usePosts(tag) {
 
 /**
  * Export a list of posts as a zip file
- * @async
  * @param {string} tag
  * @param {PostList} posts
  * @returns {Promise<boolean>}
@@ -139,7 +138,7 @@ export async function downloadFeed(tag, posts) {
  * @param {FileList} files
  * @example
  * import { uploadFeed } from '@gun-vue/composables'
- * @example @lang html
+ * @example
  * <input type="file" @change="uploadFeed( 'myTag', $event.target.files )" />
  */
 export function uploadFeed(tag, files) {
