@@ -10,11 +10,8 @@ import Unocss from 'unocss/vite'
 import path from "path";
 import { fileURLToPath } from "url";
 
-// @ts-ignore
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
-
-/* globals process */
 
 // https://vitejs.dev/config/
 export default defineConfig({

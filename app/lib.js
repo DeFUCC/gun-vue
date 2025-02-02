@@ -21,5 +21,5 @@ export function createGunVueApp(
   App.use(GunVuePlugin)
   init(App)
   App.mount(tag)
-
+  return { App, gun }
 }

@@ -30,7 +30,7 @@ export default defineConfig({
 	base: './',
 	build: {
 		lib: {
-			entry: path.resolve(dirname, 'app.js'),
+			entry: path.resolve(dirname, 'lib.js'),
 			name: 'GunVue',
 			// the proper extensions will be added
 			fileName: 'app',
@@ -43,6 +43,7 @@ export default defineConfig({
 		chunkSizeWarningLimit: 100000000,
 		cssCodeSplit: false,
 		rollupOptions: {
+			external: ['vue'],
 			output: {
 				inlineDynamicImports: true,
 			},

@@ -31,11 +31,13 @@
 		"dev": "vite --host",
 		"preview": "vite preview --host"
 	},
+	"peerDependencies": {
+		"vue": "3.5.13"
+	},
 	"dependencies": {
 		"@unocss/reset": "65.4.3",
 		"@vueuse/core": "12.5.0",
 		"ola": "1.2.1",
-		"vue": "3.5.13",
 		"vue-router": "4.5.0"
 	},
 	"devDependencies": {
