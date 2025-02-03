@@ -1,19 +1,18 @@
 {
-  "$schema": "https://unpkg.com/@changesets/config@1.6.3/schema.json",
-  "changelog": "@changesets/cli/changelog",
-  "commit": false,
-  "linked": [
-    [
-      "@gun-vue/app",
-      "@gun-vue/components",
-      "@gun-vue/composables",
-      "@gun-vue/docs",
-      "@gun-vue/repo",
-      "@gun-vue/examples"
-    ]
-  ],
-  "access": "public",
-  "baseBranch": "master",
-  "updateInternalDependencies": "patch",
-  "ignore": []
+	"$schema": "https://unpkg.com/@changesets/config@1.6.3/schema.json",
+	"changelog": "@changesets/cli/changelog",
+	"commit": false,
+	"linked": [
+		[
+			"@gun-vue/app",
+			"@gun-vue/components",
+			"@gun-vue/composables",
+			"@gun-vue/docs",
+			"@gun-vue/repo"
+		]
+	],
+	"access": "public",
+	"baseBranch": "master",
+	"updateInternalDependencies": "patch",
+	"ignore": []
 }

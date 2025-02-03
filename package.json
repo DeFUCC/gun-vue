@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/repo",
-	"version": "0.21.5",
+	"version": "0.22.0",
 	"private": true,
 	"homepage": "https://gun-vue.js.org",
 	"repository": {
@@ -21,8 +21,7 @@
 		"relay": "pnpm --filter relay run start",
 		"deploy": "cd app && sh deploy.sh",
 		"change": "pnpm changeset",
-		"version": "pnpm changeset version",
-		"gun-es": "cd gun-es && npm run build"
+		"version": "pnpm changeset version"
 	},
 	"devDependencies": {
 		"@changesets/cli": "2.27.12",

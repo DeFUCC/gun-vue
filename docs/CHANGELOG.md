@@ -1,5 +1,11 @@
 # @gun-vue/docs
 
+## 0.22.0
+
+### Minor Changes
+
+- New root room for full Files functionality as it's expanded to allow sharing any filetype
+
 ## 0.21.5
 
 ### Patch Changes
