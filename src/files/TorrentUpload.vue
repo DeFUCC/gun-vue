@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useClipboard, useObjectUrl, useShare } from '@vueuse/core';
 import { ref, watch, computed } from 'vue';
-import { uploadTorrent, downloadTorrent } from './useTorrent';
+import { uploadTorrent } from './useTorrent';
 import { QrShow, FileCard, UiLayer } from '../components'
 import { prettyBytes, currentRoom, useGun, useUser } from '../composables';
 
@@ -47,12 +47,12 @@ const { share, isSupported: shareSupported } = useShare()
 </script>
 
 <template lang='pug'>
-.flex.flex-col.gap-4.p-4.break-all
+.flex.flex-col.gap-4.break-all
   label.p-2.flex.flex-wrap.gap-2.bg-light-100.dark-bg-dark-400.rounded.cursor-pointer.items-center(v-if="!upload")
     .font-bold Share a file
     input.max-w-30(
       type="file"
-      accept="image/*"
+      accept="*"
       @change="uploadEvent($event)"
       )
   .p-2.flex.flex-wrap.gap-2.bg-light-100.dark-bg-dark-400.rounded.cursor-pointer.items-center.break-all(v-else @click="open = !open")

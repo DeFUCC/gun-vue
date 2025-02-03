@@ -19,9 +19,9 @@ export function downloadFile(text, fileType, fileName, isBlob = true) {
 
 	if (isBlob) {
 		a.href = URL.createObjectURL(new Blob([text], { type: fileType }));
-		setTimeout(function () {
-			URL.revokeObjectURL(a.href);
-		}, 1500);
+		// setTimeout(function () {
+		// 	URL.revokeObjectURL(a.href);
+		// }, 1500);
 	} else {
 		a.href = `data:${fileType};,${text}`;
 	}
