@@ -48,6 +48,11 @@ export default defineConfig({
 	optimizeDeps: {
 		include: ["vue", "vue-router", "@vueuse/core"],
 	},
+	rollupOptions: {
+		input: {
+			index: path.resolve(dirname, "./index.html")
+		}
+	},
 	resolve: {
 		alias: {
 			"#components": path.resolve(dirname, "../src/components"),
