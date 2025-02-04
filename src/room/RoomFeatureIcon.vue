@@ -17,4 +17,5 @@ const props = defineProps({
 .i-ph-books(v-if="icon.includes('dict')")
 .i-la-toolbox(v-if="icon.includes('projects')")
 .i-la-sun(v-if="icon.includes('gifts')")
+.i-la-file(v-if="icon.includes('files')")
 </template>

@@ -84,7 +84,7 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
 
     .relative
       .flex.items-center(v-if="edit.text === false" ) 
-        .p-8.markdown-body.prose(v-html="md.render(room.profile?.text || '')")
+        .p-8.prose.max-w-75vw.w-65ch.break-all(v-html="md.render(room.profile?.text || '')")
         button.button.absolute.top-4.right-4.z-200(
           v-if="room.hosts?.[user.pub]" 
           @click="edit.text = room.profile?.text || ''"
