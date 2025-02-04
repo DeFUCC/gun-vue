@@ -15,7 +15,7 @@ export const GunVuePlugin = {
 }
 
 export * from './all-components'
-export * as components from './all-components'
+export { components }
 export * as composables from "./composables";
 
 

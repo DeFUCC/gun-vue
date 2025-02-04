@@ -16,7 +16,7 @@
 	"scripts": {
 		"dev": "pnpm --filter app run dev",
 		"docs": "pnpm --filter docs run dev",
-		"builds": "pnpm -r run build && pnpm -filter app run build-app",
+		"builds": "pnpm -filter composables run build && pnpm -filter components run build && pnpm -filter app run build && pnpm -filter docs run build && pnpm -filter app run build-app",
 		"preview": "pnpm --filter app run preview",
 		"relay": "pnpm --filter relay run start",
 		"deploy": "cd app && sh deploy.sh",
@@ -29,6 +29,8 @@
 		"typedoc": "0.27.6",
 		"typedoc-plugin-markdown": "4.4.1",
 		"vite": "6.0.11",
+		"pug": "3.0.3",
+		"unocss": "65.4.3",
 		"@iconify-json/la": "^1.2.1",
 		"@iconify-json/ph": "^1.2.2",
 		"@iconify-json/carbon": "^1.2.6",

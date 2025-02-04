@@ -24,6 +24,7 @@ export default defineConfig({
 			entry: path.resolve(dirname, "../src/components.js"),
 			name: "components",
 			formats: ["es"],
+			cssFileName: 'styles'
 		},
 		assetsInlineLimit: 100000000,
 		chunkSizeWarningLimit: 100000000,
@@ -49,7 +50,7 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
-			vue: "vue/dist/vue.esm-browser.js",
+			// vue: "vue/dist/vue.esm-browser.js",
 			"#components": path.resolve(dirname, "../src/components.js"),
 			"#composables": path.resolve(dirname, "../src/composables.js"),
 		},

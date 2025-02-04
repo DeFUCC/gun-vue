@@ -3,8 +3,6 @@ import { useGun } from '../src/composables'
 import * as components from '../src/all-components'
 import { GunVuePlugin } from '../src/components'
 
-export * as vue from 'vue'
-
 export function createGunVueApp(
   tag = "#app",
   component = {

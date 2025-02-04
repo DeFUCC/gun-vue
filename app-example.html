@@ -5,14 +5,14 @@
   <title>Chat example</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://unpkg.com/@gun-vue/components/dist/style.css" />
+  <link rel="stylesheet" href="./app/dist/app.css" />
   <script type="importmap">
-			{ "imports": { "app": "https://unpkg.com/@gun-vue/app@0.21.5",
+			{ "imports": { "@gun-vue/app": "https://esm.sh/@gun-vue/app@0.21.5",
       "vue": "https://esm.sh/vue"
     } }
 		</script>
   <script type="module">
-    import { createGunVueApp } from "app";
+    import { createGunVueApp } from "@gun-vue/app";
     createGunVueApp("#app");
   </script>
 </head>

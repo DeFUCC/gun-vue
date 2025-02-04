@@ -19,7 +19,7 @@
 	"type": "module",
 	"exports": {
 		".": "./dist/components.js",
-		"./style.css": "./dist/style.css"
+		"./styles.css": "./dist/styles.css"
 	},
 	"main": "./dist/components.js",
 	"module": "./dist/components.js",
@@ -51,8 +51,7 @@
 		"@unocss/extractor-pug": "65.4.3",
 		"@vitejs/plugin-vue": "5.2.1",
 		"pug": "3.0.3",
-		"unocss": "65.4.3",
-		"vite": "6.0.11"
+		"unocss": "65.4.3"
 	},
 	"peerDependencies": {
 		"vue": "3.5.13"
