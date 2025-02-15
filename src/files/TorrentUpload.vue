@@ -37,7 +37,8 @@ function uploadEvent(event) {
 const downloadUrl = computed(() => {
   if (!upload.value?.infoHash) return ''
   let url = new URL(window?.location?.href)
-  return `${url.protocol}//${url.hostname}${url.port ? `:${url.port}` : ''}/#/files/${upload.value?.infoHash}`
+  url.hash = ''
+  return `${url.href}#/files/${upload.value?.infoHash}`
 })
 
 const clip = useClipboard({ source: downloadUrl })

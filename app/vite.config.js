@@ -13,7 +13,6 @@ import { fileURLToPath } from "url";
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
-// https://vitejs.dev/config/
 export default defineConfig({
 	clearScreen: false,
 	server: {
@@ -32,7 +31,7 @@ export default defineConfig({
 	],
 	base: './',
 	build: {
-		outDir: "../_dist/",
+		outDir: "../docs/public/app/",
 		target: "esnext",
 		minify: 'esbuild',
 		sourcemap: false,

@@ -33,14 +33,14 @@
 	},
 	"dependencies": {
 		"@gun-vue/gun-es": "0.2.1240",
-		"@vueuse/core": "12.5.0",
-		"@vueuse/integrations": "12.5.0",
-		"@vueuse/math": "12.5.0",
+		"@vueuse/core": "12.7.0",
+		"@vueuse/integrations": "12.7.0",
+		"@vueuse/math": "12.7.0",
 		"buffer": "6.0.3",
 		"color-hash": "2.0.2",
 		"curved-arrows": "0.3.0",
 		"drauu": "0.4.2",
-		"fuse.js": "7.0.0",
+		"fuse.js": "7.1.0",
 		"grapheme-breaker-mjs": "1.0.4",
 		"gun": "0.2020.1240",
 		"gun-avatar": "1.9.4",
@@ -55,7 +55,7 @@
 		"ultramatter": "0.0.4",
 		"url-regex": "5.0.0",
 		"vue": "3.5.13",
-		"webtorrent": "2.5.17",
+		"webtorrent": "2.5.19",
 		"yamlify-object": "2.0.0"
 	},
 	"devDependencies": {

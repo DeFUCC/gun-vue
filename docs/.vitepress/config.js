@@ -9,8 +9,8 @@ export default defineConfig({
 	title: "Gun-Vue",
 	titleTemplate: "Gun-Vue docs",
 	description: "Reactive p2p crypto graph app toolkit",
-	base: "/docs/",
-	outDir: "../app/public/docs",
+	base: "/",
+	outDir: "../_dist",
 	themeConfig: {
 		logo: "gun-vue-logo.svg",
 		search: {
@@ -26,16 +26,9 @@ export default defineConfig({
 			copyright: `v.${pack.version}`,
 		},
 	},
-	async transformPageData(pageData, { siteConfig }) {
-		const pages = siteConfig?.pages.map((p) => {
-			// let id = path.join(siteConfig.site.base, p)
-			let id = p;
-			id = id.replace(/\/index\.md$/, "/");
-			id = id.replace(/\.md$/, "");
-			return id;
-		});
-		return {
-			pages,
-		};
-	},
+	transformHead({ pageData }) {
+		return [
+			process.env.NODE_ENV === "production" && ["script", { async: true, defer: true, "data-website-id": "63481594-170a-40b4-b3b3-7b62799d0dd2", src: "https://stat.defucc.me/script.js" }],
+		]
+	}
 });

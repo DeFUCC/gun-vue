@@ -10,14 +10,12 @@ hero:
     alt: Gun-Vue logo
   actions:
     - theme: brand
-      text: Getting Started
-      link: /reference/typedoc/README
+      text: Try demo app
+      link: /app/
+      target: _self
     - theme: alt
-      text: Documentation
-      link: /reference/typedoc/modules
-    - theme: alt
-      text: Go to app
-      link: https://gun-vue.js.org/
+      text: Getting started
+      link: /tutorials/getting-started
 features:
   - icon: ✨
     title: Low-code trustful web-apps
@@ -34,7 +32,7 @@ features:
   - icon: ⚡️
     title: Reactive P2P database
     details: Every object exported is reactive to changes in Gun p2p database
-  
+
   - icon: ✨
     title: Local-first single HTML apps
     details: Gun-Vue enables the creation of local-first applications, meaning data is stored locally and synced with the global network only when necessary. All the components and logic required for your Gun-Vue application can be packed into a single HTML file, simplifying deployment and making it easy to share your app with others.
@@ -52,15 +50,11 @@ features:
     link: https://gun.eco/docs/
     linkText: Read Gun docs
 
-
-
   - title: Open Source
     details: Gun-Vue is an open-source project, meaning you can contribute to its development, report issues, and collaborate with the community to help improve the toolkit and build better apps.
     link: https://github.com/DeFUCC/gun-vue
     linkText: View on GitHub
-
 ---
-
 
 <style >
 .VPImage {

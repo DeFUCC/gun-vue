@@ -9,6 +9,7 @@ app/public/docs
 app/public/components
 app/public/composables
 app/public/sitemap.xml
+docs/public/app
 composables/types
 composables/docs/
 composables/lib/

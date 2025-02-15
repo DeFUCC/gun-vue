@@ -10,7 +10,6 @@ import {
 	reactive,
 	ref,
 	onActivated,
-	onDeactivated,
 	watch,
 } from "vue";
 import { createDrauu } from "drauu";
