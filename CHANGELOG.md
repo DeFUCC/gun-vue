@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.1
+
+### Patch Changes
+
+- bottom menu bar
+
 ## 0.22.0
 
 ### Minor Changes
