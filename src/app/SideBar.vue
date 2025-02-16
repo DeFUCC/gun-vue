@@ -4,22 +4,25 @@ import { rootRoutes } from '../routes'
 </script>
 
 <template lang="pug">
-.flex.w-full.items-center.justify-stretch.px-1.pt-0.shadow-lg.z-3000.overflow-x-scroll.overflow-y-visible.transition.bg-light-900.dark-bg-dark-200.w-full.h-20.sticky.bottom-0.text-4xl(
+.flex.w-full.items-stretch.justify-stretch.px-1.pt-0.shadow-lg.z-3000.overflow-x-scroll.overflow-y-visible.transition.bg-light-900.dark-bg-dark-200.w-full.h-16.sticky.bottom-0.text-2xl(
 style="flex: 0 0 auto"
   )
-  router-link.flex-1.i-ph-house(to="/")
-  router-link.flex-1.i-ph-users(to="/users/")
-  router-link.flex-1.i-ph-chats-light(to="/private")
+  router-link(to="/")
+    .i-ph-house
+  router-link(to="/users/")
+    .i-ph-users
+  router-link(to="/private")
+    .i-ph-chats-light
   slot
 </template>
 
 <style lang="postcss" scoped>
 .router-link-active {
-  @apply bg-dark-900 dark-bg-light-100;
+  @apply bg-light-100 dark-bg-dark-900;
 }
 
 a {
-  @apply op-80 hover-op-100
+  @apply op-80 hover-op-100 flex-1 flex items-center justify-center transition bg-light-900 dark-bg-dark-200
 }
 
 .link {

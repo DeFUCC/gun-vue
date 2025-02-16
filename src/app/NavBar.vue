@@ -24,7 +24,7 @@ const color = useColor('light')
     href="https://github.com/DeFUCC/gun-vue/releases"
     target="_blank"
     ) v.{{ pack.version }}
-  .flex.items-center.z-40.gap-2.p-2.bg-light-100.dark-bg-dark-200.shadow-xl.w-full.bg-cover( 
+  .flex.items-center.z-40.gap-1.p-2.bg-light-100.dark-bg-dark-200.shadow-xl.w-full.bg-cover( 
     data-tauri-drag-region="true"
     :style="{ ...bg }"
     )

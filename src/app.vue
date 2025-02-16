@@ -91,6 +91,7 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
   display: grid;
   width: 100%;
   height: 100vh;
+  overflow-x: hidden;
   grid-template-columns: fit-content(20%) auto auto;
   grid-template-rows: 0.1fr 10fr auto;
   gap: 0px 0px;
