@@ -1,41 +1,25 @@
-<script setup  lang="ts">
+<script setup lang="ts">
 import { rootRoutes } from '../routes'
-import pack from '../../app/package.json'
+
 </script>
 
 <template lang="pug">
-.flex.flex-col.gap-1.px-1.pt-8.shadow-lg.z-30.overflow-x-scroll.overflow-y-visible.transition.bg-light-900.dark-bg-dark-200.min-w-12(
+.flex.w-full.items-center.justify-stretch.px-1.pt-0.shadow-lg.z-3000.overflow-x-scroll.overflow-y-visible.transition.bg-light-900.dark-bg-dark-200.w-full.h-20.sticky.bottom-0.text-4xl(
 style="flex: 0 0 auto"
   )
-  a.p-3.text-xs.text-right.opacity-50(
-    href="https://github.com/DeFUCC/gun-vue/releases"
-    target="_blank"
-    ) v.{{ pack.version }}
-  router-link.flex.items-center.px-3.py-3.link(
-    v-for="(link, l) in rootRoutes" 
-    :key="link" 
-    :to="l" ) 
-    .i-ph-house-simple(v-if="link == 'Home'")
-    .i-ph-hands-clapping(v-if="link == 'Space'")
-    .i-ph-newspaper(v-if="link == 'Posts'")
-    .i-ph-house(v-if="link == 'Rooms'")
-    .i-la-broadcast-tower(v-if="link == 'Chat'")
-    .i-ph-users(v-if="link == 'Users'")
-    .i-ph-books(v-if="link == 'Dictionary'")
-    .i-la-sun(v-if="link == 'Gifts'")
-    .i-la-toolbox(v-if="link == 'Projects'")
-    .i-la-user(v-if="link == 'User'")
-    .i-la-file(v-if="link == 'Files'")
-    .i-ph-chats-light(v-if="link == 'Messages'")
-    .i-ic-outline-qrcode(v-if="link == 'QR Lab'")
-
-    .ml-2.hidden.transition.sm-block.text-sm {{ link }}
+  router-link.flex-1.i-ph-house(to="/")
+  router-link.flex-1.i-ph-users(to="/users/")
+  router-link.flex-1.i-ph-chats-light(to="/private")
   slot
 </template>
 
 <style lang="postcss" scoped>
 .router-link-active {
-  @apply bg-light-300 dark-bg-dark-700;
+  @apply bg-dark-900 dark-bg-light-100;
+}
+
+a {
+  @apply op-80 hover-op-100
 }
 
 .link {

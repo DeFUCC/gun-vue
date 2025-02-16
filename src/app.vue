@@ -83,7 +83,6 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
       transition(name="fade", mode="out-in")
         keep-alive(:exclude="['space']" :max="10")
           component(:is="Component")
-  nav-footer.Footer(v-if="$route.path == '/'")
 </template>
 
 
@@ -96,9 +95,9 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
   grid-template-rows: 0.1fr 10fr auto;
   gap: 0px 0px;
   grid-template-areas:
-    "Side Top Top"
-    "Side Main Main"
-    "Side Footer Footer";
+    "Top Top Top"
+    "Main Main Main"
+    "Side Side Side";
 }
 
 .Main {

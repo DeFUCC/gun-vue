@@ -39,8 +39,6 @@
 
 		import routes from '../src/routes'
 
-		// import FloatingVue from 'floating-vue'
-
 		import { GunVuePlugin } from "../src/components"; // use '@gun-vue/components' in your apps
 
 
@@ -58,7 +56,6 @@
 
 
 		const app = createApp(App);
-		// app.use(FloatingVue)
 		app.use(GunVuePlugin)
 		app.use(router).mount("#app");
 
