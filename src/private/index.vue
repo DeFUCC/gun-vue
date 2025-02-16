@@ -12,12 +12,8 @@ const props = defineProps({
 </script>
 
 <template lang='pug'>
-.flex
-  chat-private-list(
-    style="flex: 1 0 200px"
-    @chat="$router.push(`/private/${$event}`)"
-    :current="pub"
-    )
+.flex.flex-col.h-full
+  router-link.p-4.sticky.top-16.bg-light-800.dark-bg-dark-700.z-4000.backdrop-blur.dark-bg-op-50(to="/private") Private messages
   router-view(v-slot="{ Component }")
     transition(name="fade")
       keep-alive

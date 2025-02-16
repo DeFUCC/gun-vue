@@ -3,5 +3,8 @@
 </script>
 
 <template lang="pug">
-.text-xl Select a user to start a private e2e encrypted chat
+chat-private-list(
+  style="flex: 1 0 200px"
+  @chat="$router.push(`/private/${$event}`)"
+  )
 </template>

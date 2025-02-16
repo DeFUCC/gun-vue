@@ -29,7 +29,7 @@ const chat = computed(() => usePrivateChat(props.pub))
     .flex-1
     slot
   chat-messages.bg-dark-50.dark-bg-dark-400(:messages="chat.sorted")
-  .flex-0.bg-light-900.dark-bg-dark-600.p-4
+  .sticky.bottom-16.flex-0.bg-light-900.dark-bg-dark-600.p-4
     chat-input(@submit="chat.send($event)")
   UiPanel(@close="selectedUser.pub = ''" :open="!!selectedUser.pub")
     AccountHome(:pub="selectedUser.pub")
