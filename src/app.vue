@@ -90,7 +90,7 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 .app-container {
   display: grid;
   width: 100%;
-  height: 100vh;
+  height: 100svh;
   overflow-x: hidden;
   overscroll-behavior-y: none;
   grid-template-columns: fit-content(20%) auto auto;

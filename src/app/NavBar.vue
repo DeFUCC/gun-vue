@@ -20,11 +20,11 @@ const color = useColor('light')
     style="background:none !important"
     to="/")
     img.w-24.transition-all.duration-500.ease-in-out(src="https://gun-vue.js.org/media/gun-vue-logo.svg")
-  a.p-0.text-xs.opacity-50.z-2000.ml-8.fixed.hover-op-100.top-8(
+  a.p-0.text-xs.opacity-50.z-2000.left-6.fixed.hover-op-100.top-14(
     href="https://github.com/DeFUCC/gun-vue/releases"
     target="_blank"
     ) v.{{ pack.version }}
-  .flex.items-center.z-40.gap-1.p-2.bg-light-100.dark-bg-dark-200.shadow-xl.w-full.bg-cover( 
+  .flex.flex-wrap.items-center.z-40.gap-1.p-2.bg-light-100.dark-bg-dark-200.shadow-xl.w-full.bg-cover( 
     data-tauri-drag-region="true"
     :style="{ ...bg }"
     )
