@@ -1,9 +1,9 @@
 {
-	"id": "gun-vue-v.0.21.0",
+	"id": "gun-vue",
 	"name": "Gun-Vue App",
 	"short_name": "Gun-Vue",
 	"description": "Reactive P2P crypto graph toolbox",
-	"start_url": "/",
+	"start_url": "/app/",
 	"background_color": "gray",
 	"theme_color": "#256448",
 	"display": "standalone",
