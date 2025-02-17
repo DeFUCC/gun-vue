@@ -11,7 +11,7 @@ const props = defineProps({
   }
 })
 
-defineEmits(['user'])
+defineEmits(['user', 'back'])
 
 const { account } = useAccount(toRef(props, 'pub'));
 
@@ -22,7 +22,9 @@ const chat = computed(() => usePrivateChat(props.pub))
 
 <template lang="pug">
 .m-0.flex.flex-col
-  .flex-0.p-4.flex.flex-wrap.items-center
+  .flex-0.p-2.flex.flex-wrap.items-center.gap-2.sticky.top-16.bg-light-800.bg-op-30.backdrop-blur.dark-bg-dark-800.dark-bg-op-30.z-100
+    button.p-2.bg-light-300.dark-bg-dark-400.rounded-xl(@click="$emit('back')")
+      .i-la-angle-left
     account-avatar.cursor-pointer(:pub="pub" @click="$emit('user', pub)")
     .text-lg.font-bold.p-2 {{ account.profile?.name }}
     .text-lg {{ account.lastSeen }}

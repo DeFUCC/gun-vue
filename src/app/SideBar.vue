@@ -4,7 +4,7 @@ import { rootRoutes } from '../routes'
 </script>
 
 <template lang="pug">
-.flex.w-full.items-stretch.justify-stretch.px-1.pt-0.shadow-lg.z-3000.overflow-x-scroll.overflow-y-visible.transition.bg-light-900.dark-bg-dark-200.w-full.h-16.sticky.bottom-0.text-2xl(
+.flex.w-full.items-stretch.justify-stretch.px-1.pt-0.shadow-lg.z-3000.overflow-x-scroll.overflow-y-visible.transition.bg-light-900.dark-bg-dark-200.w-full.h-16.sticky.bottom-0.text-2xl.bg-op-80.dark-bg-op-80.backdrop-blur(
 style="flex: 0 0 auto"
   )
   router-link(to="/")
