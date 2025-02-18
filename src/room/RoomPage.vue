@@ -84,7 +84,7 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
 
     .relative
       .flex.items-center(v-if="edit.text === false" ) 
-        .p-8.prose.max-w-75vw.w-65ch.break-all(v-html="md.render(room.profile?.text || '')")
+        .p-8.prose.max-w-65ch.break-all(v-html="md.render(room.profile?.text || '')")
         button.button.absolute.top-4.right-4.z-200(
           v-if="room.hosts?.[user.pub]" 
           @click="edit.text = room.profile?.text || ''"
@@ -96,6 +96,6 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
         @close="updateRoomProfile('text', edit.text); edit.text = false"
         )
     .p-2.flex.flex-col.gap-2
-      guest-list(@user="$emit('user',$event)")
-      guest-list(state="offline" @user="$emit('user',$event)")
+      guest-list(@user="$emit('user', $event)")
+      guest-list(state="offline" @user="$emit('user', $event)")
 </template>
