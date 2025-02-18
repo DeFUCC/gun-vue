@@ -45,10 +45,10 @@ const tor = downloadTorrent(`magnet:?xt=urn:btih:${props.id}&tr=udp%3A%2F%2Ftrac
 </script>
 
 <template lang='pug'>
-.flex.flex-col.gap-2 
-  .p-2.text-sm.flex.flex-wrap.gap-2
+.flex.flex-col.gap-2.max-w-55ch
+  .p-2.text-sm.flex.flex-wrap.gap-2(v-if="!tor?.status?.done")
     .p-1 Torrent: 
-    .p-1 {{ tor?.status?.done ? tor?.status?.progress : 'done' }}
+    .p-1 {{ !tor?.status?.done ? tor?.status?.progress : 'done' }}
     .p-1 Total {{ prettyBytes(tor?.status?.downloaded) }} at {{ prettyBytes(tor?.status?.downloadSpeed) }}/s
   file-card(v-for="file in tor?.files" :key="file?.name" :file="file")
 </template>

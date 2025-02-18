@@ -2,7 +2,8 @@
 import { toRef, computed } from "vue"
 import { useAccount, selectedUser } from '../composables'
 import { usePrivateChat } from './usePrivateChat'
-import { AccountAvatar, ChatInput, UiPanel } from '../components'
+import { AccountAvatar, ChatInput, ChatMessages, TorrentUpload, UiPanel } from '../components'
+import AccountHome from "../account/AccountHome.vue"
 
 const props = defineProps({
   pub: {
@@ -30,9 +31,11 @@ const chat = computed(() => usePrivateChat(props.pub))
     .text-lg {{ account.lastSeen }}
     .flex-1
     slot
-  chat-messages.max-w-65ch.mx-auto(:messages="chat.sorted")
-  .sticky.bottom-0.flex-0.bg-light-900.dark-bg-dark-600.p-4
-    chat-input(@submit="chat.send($event)")
+  ChatMessages.max-w-65ch.mx-auto(:messages="chat.sorted")
+  .sticky.bottom-0.flex-0.bg-light-900.dark-bg-dark-600.p-4.flex.gap-2
+    TorrentUpload(@url="chat.send($event)") {{ }}
+    chat-input.flex-1(@submit="chat.send($event)")
+
   UiPanel(@close="selectedUser.pub = ''" :open="!!selectedUser.pub")
-    AccountHome(:pub="selectedUser.pub")
+    AccountHome(:pub="selectedUser.pub" @chat="emit('user', $event)")
 </template>

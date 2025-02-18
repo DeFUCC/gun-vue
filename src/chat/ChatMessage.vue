@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue'
 import { selectedUser, useUser, getFirstEmoji, useMd } from '../composables';
-import { AccountBadge } from '../components'
+import { AccountBadge, TorrentDownload } from '../components'
 
 const props = defineProps({
   index: { type: Number, default: 0 },
@@ -72,10 +72,12 @@ onMounted(() => {
     .ml-2.text-sm.opacity-20.hover-opacity-80.transition.cursor-default.text-light-200  {{ dateTime?.time }}
     .flex-1
     .ml-2.text-sm.opacity-20.hover-opacity-80.transition.cursor-default.text-dark-200 {{ dateTime?.date }} 
-  .px-2.py-1.bg-light-300.dark-bg-dark-200.dark-bg-opacity-80.bg-opacity-80.rounded-b-xl.max-w-max.break-all.overflow-hidden(:style="{ borderTopLeftRadius: isMe ? '12px' : '0px', borderTopRightRadius: isMe ? '0px' : '12px', fontSize: source.text == getFirstEmoji(source.text) ? '6em' : '1em' }")
+  .px-2.py-1.bg-light-300.dark-bg-dark-200.dark-bg-opacity-80.bg-opacity-80.rounded-b-xl.max-w-max.break-all.overflow-hidden(:style="{ borderTopLeftRadius: isMe ? '12px' : '0px', borderTopRightRadius: isMe ? '0px' : '12px', fontSize: `${source?.text}` == getFirstEmoji(`${source?.text}`) ? '6em' : '1em' }")
+    .text-8xl(v-if="source?.text == getFirstEmoji(`${source?.text}`)") {{ source?.text }}
+    TorrentDownload(v-else-if="source?.text?.split?.('#/files/')[1]" :id="source?.text?.split?.('#/files/')[1].slice(0, 40)") 
     .markdown-body(
-      v-if="source?.text" 
-      v-html="md.render(source?.text)"
+      v-else-if="source?.text" 
+      v-html="md.render(`${source?.text}`)"
       )
 </template>
 

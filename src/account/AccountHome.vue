@@ -38,7 +38,7 @@ const { projects } = useProjects(props.pub)
     chat-private-count(
       v-if="user.is" 
       :pub="pub" 
-      @chat="$emit('chat')"
+      @chat="$emit('chat', pub)"
       )
   account-petname(
     v-if="pub != user.pub" 

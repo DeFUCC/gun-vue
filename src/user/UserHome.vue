@@ -47,7 +47,7 @@ const showChats = useStorage('showChats', true)
         )  My public profile
       hr.w-full
       UserRooms(@browse="$emit('room', $event)")
-      .flex.flex-col.items-stretch.bg-light-900.p-2.rounded-xl
+      .flex.flex-col.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl
         button.items-center.w-full.flex.px-2.pb-2(@click="showChats = !showChats") 
           .font-bold.text-lg My chats
           .flex-1
