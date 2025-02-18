@@ -1,10 +1,6 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-
-// import { VitePWA } from "vite-plugin-pwa";
-
 import { viteSingleFile } from "vite-plugin-singlefile"
-
 import Unocss from 'unocss/vite'
 
 import path from "path";

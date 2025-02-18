@@ -24,7 +24,7 @@ const color = useColor('light')
     href="https://github.com/DeFUCC/gun-vue/releases"
     target="_blank"
     ) v.{{ pack.version }}
-  .flex.flex-wrap.items-center.z-40.gap-1.p-2.bg-light-100.dark-bg-dark-200.shadow-xl.w-full.bg-cover( 
+  .flex.flex-wrap.items-center.z-40.p-1.gap-1.bg-light-100.dark-bg-dark-200.shadow-xl.w-full.bg-cover( 
     data-tauri-drag-region="true"
     :style="{ ...bg }"
     )
@@ -34,11 +34,7 @@ const color = useColor('light')
       :key="currentRoom.pub"
       )
     .flex-auto
-    ui-dark
-    qr-share
-    gun-tools
-
-
+    slot
     user-icon(
       :size="40"
       @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"

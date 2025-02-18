@@ -11,12 +11,10 @@ const show = reactive({
 </script>
 
 <template lang="pug">
-.flex.justify-end.relative.gap-3.items-center
+.flex.relative.items-center
 
   button.button.flex.items-center(@click="show.graph = !show.graph")
     .i-mdi-graph-outline
-  button.button.flex.items-center
-    gun-relay
 
   ui-layer(
     :open="show.graph" 

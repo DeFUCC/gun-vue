@@ -78,6 +78,12 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 .app-container
   side-bar.Side
   nav-bar.Top
+    gun-tools
+    button.button
+      gun-relay
+  .flex.flex-col.fixed.top-16.right-1.z-1000.gap-2.items-center
+    qr-share
+    ui-dark
   .grid.Main.max-h-full
     router-view(v-slot="{ Component }")
       transition(name="fade", mode="out-in")
