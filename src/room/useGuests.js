@@ -57,7 +57,7 @@ export function useGuests({ TIMEOUT = 10000 } = {}) {
 
 	watchEffect(() => {
 		for (let pub in guests) {
-			if (guests[pub].online.value) {
+			if (guests?.[pub]?.online?.value) {
 				online[pub] = guests[pub];
 				delete offline[pub];
 			} else {

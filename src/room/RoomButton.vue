@@ -46,8 +46,6 @@ const { logo } = useRoomLogo(currentRoom.pub)
       @rooms="$emit('rooms')"
       @browse="$emit('browse', $event); open = false" 
       )
-      button.button.m-4(@click="$emit('rooms'); open = false") Browse rooms
       
 
 </template>
-

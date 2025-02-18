@@ -55,3 +55,33 @@ export default defineConfig({
 		},
 	},
 });
+
+
+
+function viteBuildScript() {
+	return {
+		name: 'vite-build-script',
+		transformIndexHtml(html) {
+			if (process.env.NODE_ENV === 'production') {
+				return html.replace(/<\/head>/, `<script async defer src="https://stat.defucc.me/script.js" data-website-id="9e6f4375-b00a-4348-9aed-4101363b2f5c"></script>
+          
+          <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((registration) => {
+            console.log('Service Worker registered with scope: ', registration.scope);
+          })
+          .catch((error) => {
+            console.error('Service Worker registration failed: ', error);
+          });
+      });
+    }
+  </script>
+	
+	</head>`);
+			}
+			return html;
+		},
+	};
+}

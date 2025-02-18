@@ -31,7 +31,7 @@ const count = computed(() => {
 .cursor-pointer.flex-1.flex.flex-col.items-center.p-4.relative.bg-light-700.dark-bg-dark-200.rounded-lg.shadow-sm.transition.hover-shadow-lg(:title="cert")
   .text-4xl 
     room-feature-icon(:icon="type")
-  .px-1.font-bold() {{ title }}
+  .px-1.font-bold.whitespace-nowrap() {{ title }}
   .i-la-lock-open.text-xs.absolute.top-1.right-1.opacity-30(v-if="open")
   .absolute.bottom-1.right-1.text-xs.opacity-30 {{ Object.keys(count).length }}
 </template>
