@@ -5,7 +5,6 @@ const ASSETS_TO_CACHE = [
   '/media/gun-vue-logo.svg',
 ];
 
-// Install Service Worker
 self.addEventListener('install', (event) => {
   self.skipWaiting()
   event.waitUntil(
