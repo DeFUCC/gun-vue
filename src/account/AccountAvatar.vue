@@ -23,10 +23,10 @@ const { avatar, blink } = useAvatar(() => props.pub, () => props.size)
     :height="size"
     :src="avatar"
   )
-  .pb-2.px-1(
+  .p-0(
     v-else
-    :style="{ fontSize: size + 'px' }"
-  )
+    :style="{ fontSize: size - 10 + 'px' }"
+    )
     .i-la-user
   slot
 </template>

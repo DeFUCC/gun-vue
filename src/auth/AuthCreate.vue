@@ -44,14 +44,17 @@ function createUser() {
     :style="{ borderColor: colorDeep.hex(newPair.pub) }" 
     @click="generatePair()"
     )
-  .flex.flex-col
+  form.flex.flex-col(@submit.prevent="createUser()")
     .flex.justify-center.my-4
       button.m-2.button.items-center(
+        type="button"
         v-if="history.length > 2" 
-        @click="undo()"
+        @click.stop="undo()"
         )
         .i-la-undo.text-2xl
-      button.m-2.button.items-center(@click="generatePair()")
+      button.m-2.button.items-center(
+        type="button"
+        @click.stop="generatePair()")
         .i-fad-random-1dice.text-3xl
     input.p-4.rounded-2xl.my-2.dark-bg-dark-200(
       v-model="name" 
@@ -60,7 +63,6 @@ function createUser() {
       )
     button.button.w-full.flex.justify-center.items-center(
       v-if="newPair && !user.is && name" 
-      @click="createUser()"
-      )
-      | Authenticate
+      type="submit"
+      ) Authenticate
 </template>

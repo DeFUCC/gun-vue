@@ -1,4 +1,4 @@
-import relay from "./server.js";
+import server from "./server.js";
 
-relay.init();
+server.init();
 
