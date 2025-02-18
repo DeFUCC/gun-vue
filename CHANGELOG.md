@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.2
+
+### Patch Changes
+
+- send private torrents, better rooms, less navigation clutter
+
 ## 0.22.1
 
 ### Patch Changes
