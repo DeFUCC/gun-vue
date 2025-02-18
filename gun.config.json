@@ -1,14 +1,15 @@
 {
 	"relay": "https://peer.wallie.io/gun",
 	"features": {
-		"rooms": "Rooms",
 		"space": "Space",
-		"posts": "Posts",
 		"chat": "Chat",
-		"dict": "Dictionary",
+		"posts": "Posts",
+		"rooms": "Rooms",
+		"files": "Files",
 		"projects": "Projects",
+		"dict": "Dictionary",
 		"gifts": "Gifts",
-		"files": "Files"
+		"qr": "QR Lab"
 	},
 	"room": {
 		"pub": "3_1WKUE43mJ7WNrvV5k1VxhsBKgUrex2Syvk6oBADGs.gAMYMkAPtWmWW2eUtYNyRuTjmBL6yLMLGNN_C_fZMPA",

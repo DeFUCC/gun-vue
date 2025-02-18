@@ -18,4 +18,5 @@ const props = defineProps({
 .i-la-toolbox(v-if="icon.includes('projects')")
 .i-la-sun(v-if="icon.includes('gifts')")
 .i-la-file(v-if="icon.includes('files')")
+.i-la-qrcode(v-if="icon.includes('qr')")
 </template>
