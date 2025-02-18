@@ -85,7 +85,7 @@ const filteredPosts = computed(() => {
           .i-la-eye-slash(v-else)
           .ml-2 Show hidden
         button.button(
-          v-if="0<countPosts" 
+          v-if="0 < countPosts" 
           title="Download feed" 
           @click="downloadPosts()"
           )

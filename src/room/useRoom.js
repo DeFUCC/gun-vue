@@ -218,7 +218,7 @@ export function updateRoomProfile(field, content) {
  * @param {string} [options.name]
  * @returns {Promise<void>}
  */
-export async function createRoom({ pair, name }) {
+export async function createRoom({ pair, name, featureList = Object.keys(config?.features), publish = true } = {}) {
 	const { user } = useUser();
 	if (!pair) return;
 	const roomPub = pair.pub;
@@ -233,7 +233,7 @@ export async function createRoom({ pair, name }) {
 	});
 	const features = await generateCerts({
 		pair,
-		list: Object.keys(config?.features).map((f) => ({
+		list: featureList.map((f) => ({
 			tag: f,
 			personal: true,
 		})),
@@ -259,7 +259,7 @@ export async function createRoom({ pair, name }) {
 	);
 
 	const gun = useGun();
-	await gun.user().get("safe").get("rooms").get(roomPub).put(enc).then();
+	await gun.user().get("rooms").get(roomPub).put(enc).then();
 
 	await gun
 		.user(roomPub)
@@ -289,12 +289,14 @@ export async function createRoom({ pair, name }) {
 			.then();
 	}
 
-	await gun
-		.user(currentRoom.pub)
-		.get("rooms")
-		.get(`${roomPub}@${user.pub}`)
-		.put(true, null, { opt: { cert: currentRoom?.features?.rooms } })
-		.then();
+	if (publish) {
+		await gun
+			.user(currentRoom.pub)
+			.get("rooms")
+			.get(`${roomPub}@${user.pub}`)
+			.put(true, null, { opt: { cert: currentRoom?.features?.rooms } })
+			.then();
+	}
 
 	downloadFile(
 		JSON.stringify(gunConfig),
@@ -365,6 +367,7 @@ export function enterRoom(pub) {
 export function leaveRoom() {
 	currentRoom.pub = rootRoom.pub;
 }
+
 
 /**
  * @param {Object} options

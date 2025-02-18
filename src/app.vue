@@ -76,13 +76,13 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 
 <template lang="pug">
 .app-container
-  side-bar.Side
+  //- side-bar.Side
   nav-bar.Top
     gun-tools
     button.button
       gun-relay
-  .flex.flex-col.fixed.top-16.right-1.z-1000.gap-2.items-center
-    qr-share
+  .flex.flex-col.fixed.bottom-24.right-1.z-1000.gap-2.items-center
+    qr-share(:key="route.path")
     ui-dark
   .grid.Main.max-h-full
     router-view(v-slot="{ Component }")

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useUser } from '#composables';
 import { ref, watch } from 'vue';
-import { UiLayer, AuthCredentials, AuthLogin, UserPanel, UserProfile, UserRooms, } from '../components'
+import { UiLayer, AuthCredentials, AuthLogin, UserPanel, UserProfile, UserRooms, ChatPrivateList, } from '../components'
+import { useStorage } from '@vueuse/core'
 
 const emit = defineEmits(['user', 'room', 'close', 'chat', 'browse'])
 
@@ -16,6 +17,8 @@ const safe = ref(false)
 watch(() => user.is, () => {
   user.db.get('safe').get('saved').on(s => safe.value = s)
 }, { immediate: true })
+
+const showChats = useStorage('showChats', true)
 
 
 </script>
@@ -36,12 +39,23 @@ watch(() => user.is, () => {
     user-panel(
       @browse="$emit('browse', $event); $emit('close')"
       )
-    .p-4.flex.flex-col.items-start
+    .p-4.flex.flex-col.items-stretch.gap-4
       user-profile
+      button.p-2.rounded-xl.font-bold.text-lg.shadow-md(
+        :style="{ backgroundColor: user.color }"
+        @click="$emit('user', user.pub); $emit('close')"
+        )  My public profile
+      hr.w-full
       UserRooms(@browse="$emit('room', $event)")
-    button.p-4.m-4.rounded-xl.font-bold.text-lg.shadow-md(
-      :style="{ backgroundColor: user.color }"
-      @click="$emit('user', user.pub); $emit('close')"
-      )
-      slot  My public profile
+      .flex.flex-col.items-stretch.bg-light-900.p-2.rounded-xl
+        button.items-center.w-full.flex.px-2.pb-2(@click="showChats = !showChats") 
+          .font-bold.text-lg My chats
+          .flex-1
+          .i-la-angle-down(v-if="showChats")
+          .i-la-angle-up(v-else)
+        transition(
+          name="fade" 
+          mode="out-in")
+          ChatPrivateList(@chat="$emit('chat', $event)" v-if="showChats")
+
 </template>

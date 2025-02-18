@@ -8,7 +8,8 @@ const { user } = useUser()
 
 const create = reactive({
   pair: null,
-  name: ''
+  name: '',
+  publish: true,
 })
 
 async function genPair() {
@@ -17,14 +18,14 @@ async function genPair() {
 }
 
 function reset() {
-  // emit('room', create.pair.pub)
-  // enterRoom(create.pair.pub)
   create.pair = null
   create.name = ''
+  create.publish = true
 }
 
 function createIt() {
   createRoom(create);
+  emit('room', create?.pair?.pub)
   reset()
 }
 
@@ -33,26 +34,28 @@ const bg = computed(() => useBackground({ pub: create.pair?.pub, size: 620 }))
 </script>
 
 <template lang="pug">
-.flex.flex-col.bg-cover.rounded-2xl.p-8.max-w-620px.bg-light-800.dark-bg-dark-500.justify-center(
+.flex.flex-col.gap-4.bg-cover.rounded-2xl.p-8.max-w-620px.bg-light-800.dark-bg-dark-500.justify-center(
   v-if="user.pub" 
   :style="{ ...bg }"
   )
-  .flex
-    button.button.m-2.flex-1(@click="genPair()" ) Generate a new room
-    button.button.m-2(
+  .flex.gap-2
+    button.button.flex-1(@click="genPair()" ) Generate a new room
+    button.button(
       v-if="create.pair" 
       @click="reset()" 
       ) Reset
-  input.p-2.m-2.rounded-xl.dark-bg-dark-200(
+
+  input.p-2.rounded-xl.dark-bg-dark-200(
     v-if="create.pair" 
     v-model="create.name" 
     type="text" 
     placeholder="New room name"
     )
   transition(name="fade")
-    button.button.m-2.flex-1(
-      v-if="create.pair && create.name" 
-      @click="createIt()" 
-      ) Add room
-
-</template> 
+    .flex.gap-2(v-if="create.pair && create.name" )
+      button.button.flex-1(
+        @click="createIt()" 
+        ) Add room
+      label.button.flex.items-center.gap-2(for="publish") Publish
+        input#publish(type="checkbox" switch v-model="create.publish" )
+</template>

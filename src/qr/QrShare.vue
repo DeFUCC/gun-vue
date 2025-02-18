@@ -9,6 +9,7 @@ const open = ref(false)
 const { text, copy, copied, isSupported: canCopy } = useClipboard()
 const { share, isSupported: canShare } = useShare()
 
+
 const address = computed(() => {
   return location.value.href + location.value.search
 })
@@ -28,8 +29,8 @@ const address = computed(() => {
     .flex.flex-col.items-center.mb-4
       .text-md.mx-4.my-2.break-all.max-w-420px {{ address }}
       .flex.text-lg.mt-2
-        button.button.text-lg.font-normal.items-center(v-if="canCopy")
-          .i-la-copy(@click="copy(address)")
+        button.button.text-lg.font-normal.items-center(v-if="canCopy" @click="copy(address)")
+          .i-la-copy
           .ml-2(v-if="copied") Copied!
           .ml-2(v-else) Copy
         button.button.text-lg.font-normal.items-center(v-if="canShare")

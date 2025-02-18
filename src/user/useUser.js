@@ -63,8 +63,8 @@ export const user = reactive({
 		password: "",
 		enc: "",
 		pass: "",
-		rooms: {},
 	},
+	rooms: {},
 	db: undefined,
 	pair() {
 		console.warn("User pair read externally");
@@ -144,6 +144,14 @@ function init() {
 		.map()
 		.on((d, k) => {
 			user.safe[k] = d;
+		});
+
+	gun
+		.user()
+		.get("rooms")
+		.map()
+		.on((d, k) => {
+			user.rooms[k] = d;
 		});
 
 	gun

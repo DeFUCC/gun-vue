@@ -21,8 +21,8 @@ const chat = computed(() => usePrivateChat(props.pub))
 </script>
 
 <template lang="pug">
-.m-0.flex.flex-col
-  .flex-0.p-2.flex.flex-wrap.items-center.gap-2.sticky.top-16.bg-light-800.bg-op-30.backdrop-blur.dark-bg-dark-800.dark-bg-op-30.z-100
+.m-0.flex.flex-col.bg-stone-400.dark-bg-dark-400
+  .flex-0.p-2.flex.flex-wrap.items-center.gap-2.sticky.top-18.bg-light-800.bg-op-30.backdrop-blur.dark-bg-dark-800.dark-bg-op-30.z-100.shadow
     button.p-2.bg-light-300.dark-bg-dark-400.rounded-xl(@click="$emit('back')")
       .i-la-angle-left
     account-avatar.cursor-pointer(:pub="pub" @click="$emit('user', pub)")
@@ -30,8 +30,8 @@ const chat = computed(() => usePrivateChat(props.pub))
     .text-lg {{ account.lastSeen }}
     .flex-1
     slot
-  chat-messages.bg-dark-50.dark-bg-dark-400(:messages="chat.sorted")
-  .sticky.bottom-16.flex-0.bg-light-900.dark-bg-dark-600.p-4
+  chat-messages.max-w-65ch.mx-auto(:messages="chat.sorted")
+  .sticky.bottom-0.flex-0.bg-light-900.dark-bg-dark-600.p-4
     chat-input(@submit="chat.send($event)")
   UiPanel(@close="selectedUser.pub = ''" :open="!!selectedUser.pub")
     AccountHome(:pub="selectedUser.pub")

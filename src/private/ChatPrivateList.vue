@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { usePrivateChatList } from './usePrivateChat';
 import { AccountBadge, ChatPrivateCount } from '../components'
+import { ref } from 'vue';
 
 const props = defineProps({
   current: {
@@ -13,16 +14,17 @@ const list = usePrivateChatList()
 
 defineEmits(['chat'])
 
+const open = ref(false)
 
 </script>
 
 <template lang="pug">
-.flex.flex-col.p-4.gap-2.w-full
+.flex.flex-col.gap-2.w-full
   slot
   .p-2.rounded-xl.flex.items-center.bg-light-500.dark-bg-dark-400.cursor-pointer(
-    v-for="( chat, pub ) in list" 
+    v-for="(chat, pub) in list" 
     :key="pub" 
-    :class="{current:pub==current}"
+    :class="{ current: pub == current }"
     @click="$emit('chat', pub)"
     )
     account-badge(:pub="pub")
