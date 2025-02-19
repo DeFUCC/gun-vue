@@ -84,6 +84,7 @@ export function useRoom(pub = currentRoom.pub) {
 	});
 
 	const gun = useGun();
+	const { user } = useUser();
 
 	gun
 		.user(pub)
@@ -107,7 +108,7 @@ export function useRoom(pub = currentRoom.pub) {
 			room.features[k] = d;
 		});
 
-	gun.user().get('favorite_rooms').get(pub).on((d) => {
+	gun.user().get('rooms').get(`${pub}@${user?.pub}`).on((d) => {
 		room.isFavourite = d;
 	});
 
@@ -173,9 +174,9 @@ export function useRoomLogo(pub = currentRoom.pub) {
 /**
  * @returns {Object}
  */
-export function useRooms() {
+export function useRooms(pub = currentRoom.pub) {
 	const rooms = computed(() => {
-		return listPersonal("rooms", currentRoom.pub);
+		return listPersonal("rooms", pub);
 	});
 	return { rooms, createRoom };
 }
@@ -264,7 +265,7 @@ export async function createRoom({ pair, name, featureList = Object.keys(config?
 	);
 
 	const gun = useGun();
-	await gun.user().get("rooms").get(roomPub).put(enc).then();
+	await gun.user().get("rooms").get(`${roomPub}@${user.pub}`).put(enc).then();
 
 	await gun
 		.user(roomPub)
@@ -358,13 +359,20 @@ export function joinRoom(pub = currentRoom.pub) {
 		});
 }
 
-export function favRoom(pub = currentRoom.pub, value = true) {
+export async function favRoom(pub = currentRoom.pub) {
 	const gun = useGun();
+	const { user } = useUser();
+	const already = await gun
+		.user()
+		.get("rooms")
+		.get(`${pub}@${user.pub}`)
+		.then();
+
 	gun
 		.user()
-		.get('favorite_rooms')
-		.get(pub)
-		.put(value)
+		.get("rooms")
+		.get(`${pub}@${user.pub}`)
+		.put(!already);
 }
 
 /**

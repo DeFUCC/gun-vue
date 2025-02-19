@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useUser } from '#composables';
-import { ref, watch } from 'vue';
+import { useRooms, useUser } from '#composables';
+import { computed, ref, watch } from 'vue';
 import { UiLayer, AuthCredentials, AuthLogin, UserPanel, UserProfile, UserRooms, ChatPrivateList, } from '../components'
 import { useStorage } from '@vueuse/core'
 import RoomCard from '../room/RoomCard.vue';
@@ -23,9 +23,7 @@ watch(() => user.is, () => {
 const showChats = useStorage('showChats', true)
 const showRooms = useStorage('showRooms', true)
 
-const favRooms = ref({})
-
-user.db?.get('favorite_rooms').map().on((v, k) => favRooms.value[k] = v)
+const list = computed(() => useRooms(user.pub))
 
 </script>
 
@@ -63,16 +61,14 @@ user.db?.get('favorite_rooms').map().on((v, k) => favRooms.value[k] = v)
         transition(
           name="fade" 
           mode="out-in")
-          .flex.flex-col.gap-4( v-if="showRooms")
+          .flex.flex-col.gap-4( v-if="showRooms" :key="user.pub")
             RoomButton(
-              v-for="room in Object.entries(favRooms).filter(([k, v]) => v).map(([k, v]) => k)"
-              :key="room"
-              :pub="room"
-              @browse="$emit('room', room)"
+              v-for="(_, r) in list?.rooms?.value"
+              :key="r"
+              :pub="r"
+              @browse="$emit('room', r)"
               :panel="false"
               )
-              button.text-2xl(@click.stop.prevent)
-                .i-la-star
 
 
       .flex.flex-col.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl

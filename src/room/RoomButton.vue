@@ -36,7 +36,7 @@ const { logo } = useRoomLogo(props.pub)
       :src="logo"
       )
     .font-bold.ml-1(v-if="current?.room?.profile?.name") {{ current?.room.profile.name.substring(0, 15) }}
-  button.button(@click="favRoom(pub, !current?.room?.isFavourite)")
+  button.button(@click="favRoom(pub)")
     .i-la-star(v-if="!current?.room?.isFavourite")
     .i-la-star-solid(v-else)
   ui-panel.break-all(
