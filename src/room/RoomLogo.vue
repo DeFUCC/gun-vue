@@ -5,8 +5,6 @@ import { FormPicture } from '../components'
 const { room, updateRoomProfile } = useRoom()
 const { user } = useUser()
 
-
-
 const props = defineProps({
   pub: { type: String, default: currentRoom.pub },
   size: { type: Number, default: 120 },

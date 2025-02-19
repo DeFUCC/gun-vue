@@ -45,8 +45,8 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
 .flex.flex-col.items-stretch
   .pt-32.px-2.md-px-8.bg-cover.relative.flex.flex-col.items-center(:style="{ ...bg }") 
     .max-w-full.flex.flex-col.items-stretche.bg-light-100.bg-opacity-20.dark-bg-dark-800.dark-bg-opacity-40.p-4.md-p-12.shadow-xl.backdrop-blur-md.backdrop-filter.rounded-t-xl
-      .flex.flex-wrap.items-center.gap-8
-        room-logo.flex-1.rounded-2xl.overflow-hidden.min-w-20(:pub="pub")
+      .flex.flex-wrap.items-center.gap-8 
+        room-logo.flex-1.rounded-2xl.overflow-hidden.min-w-20(:pub="roomPub" :key="roomPub")
         .flex.flex-col.flex-auto(style="flex: 100")
           form-title.font-bold.text-2xl(
             :text="room.profile.name || roomPub.substring(0, 12)"
