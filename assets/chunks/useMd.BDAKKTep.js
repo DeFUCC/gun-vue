@@ -1,8 +1,0 @@
-import{I as b,J as y,K as k}from"./components.CgcQs253.js";function x(e){let r=0,t="default",i=[];for(let n=0;n<e.length;n++){if(e[n]==="-")if(r===0)if(t==="default"&&n==0||t==="open"&&e[n-1]===`
-`)r=1;else continue;else r++;else r=0;r===3&&(t=t==="default"?"open":"closed",i.push(n+1))}switch(t){case"default":return["",e];case"open":return["",e];case"closed":return[e.slice(i[0],i[1]-3).trim(),e.slice(i[1]).trimStart()]}}var p=e=>e.slice(0,e.length-e.trimStart().length),o=e=>{let r=p(e);return e.split(`
-`).map(t=>t.slice(r.length)).join(`
-`)},S=e=>{if(e[0]==='"'||e[0]==="'"){let r=e[0];if(e[e.length-1]===r)return e.slice(1,-1)}return e},m=e=>e==="true"||e==="false"?e==="true":Number.isNaN(Number(e))?S(e):Number(e),c=e=>{let r=/(^[^\:\s]+):(?!\/)\n?([\s\S]*?(?=^\S)|[\s\S]*$)/gm,t=/[\:\-\[\]\|\#]/gm,i=/#.*$/gm,n=p(e);if(!t.test(e))return n.length>1?o(e):m(e.trim());n.length<=1&&(e=e.trimStart());let g,a={};for(;g=r.exec(e);){let[s,h,f]=g;if(p(f).length>1){let d=o(f);a[h]=c(d)}else a[h]=c(f)}if(Object.keys(a).length>0)return a;let l=e.trim().replace(i,"").trim();return l.startsWith("-")?l.split(/^\-/gm).filter(s=>s).map(s=>c(s.trimEnd())):l.startsWith("[")?(l=l.slice(1,-1),l.split(",").map(s=>m(s.trim()))):l.startsWith("|")?o(l.replace("|","").replace(`
-`,"")):m(l.trim())};function N(e){let[r,t]=x(e);return r?{frontmatter:c(r),content:t}:{content:t}}function M({frontmatter:e=null,content:r=""}){let t="";return e&&typeof e=="object"&&Object.keys(e).length>0&&(t=k(e,{indent:"",prefix:`---
-`,postfix:`
----
-`})),t+r}function w(e){return N(e)}let u;function W(){return u||(u=new b({linkify:!0,typographer:!0}),u.use(y,{externalTarget:"_blank"})),u}export{M as c,w as p,W as u};
