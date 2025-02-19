@@ -13,11 +13,12 @@ const color = useColor('light')
 <template lang="pug">
 .flex.flex-col.z-400.sticky.top-0#titlebars
 
-  router-link.fixed.top-1.left-0.z-1000(
+  a.fixed.top-1.left-0.z-1000(
     style="background:none !important"
-    to="/")
-    img.w-24.transition-all.duration-500.ease-in-out(src="https://gun-vue.js.org/media/gun-vue-logo.svg")
-  a.p-0.text-xs.opacity-50.z-2000.left-6.fixed.hover-op-100.top-14(
+    href="/" target="_self"
+    )
+    img.w-20.transition-all.duration-500.ease-in-out(src="https://gun-vue.js.org/media/gun-vue-logo.svg")
+  a.p-0.text-xs.opacity-50.z-2000.left-6.fixed.hover-op-100.top-10(
     href="https://github.com/DeFUCC/gun-vue/releases"
     target="_blank"
     ) v.{{ pack.version }}
