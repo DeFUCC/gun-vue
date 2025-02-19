@@ -14,7 +14,7 @@ const open = ref(false)
 </script>
 
 <template lang="pug">
-.flex.flex-col(v-if="Object.keys(user.rooms).length > 0")
+.flex.flex-col(v-if="Object.keys(user.rooms).length > 0" :key="user?.pub")
   .flex.p-4.bg-light-900.dark-bg-dark-700.rounded-xl.mb-2.items-center.cursor-pointer.shadow-sm.hover-shadow-md.transition(@click="open = !open")
     .text-lg.font-bold My rooms
     .flex-1

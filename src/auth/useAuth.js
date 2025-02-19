@@ -45,7 +45,6 @@ export const pass = reactive({
 		password: "",
 		enc: "",
 		pass: "",
-		rooms: {},
 	},
 	dec: {},
 	links: reactive({

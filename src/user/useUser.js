@@ -39,7 +39,6 @@ export const selectedUser = reactive({
  * @property {string} safe.password
  * @property {string} safe.enc
  * @property {string} safe.pass
- * @property {Object} safe.rooms
  * @property {Object} [db]
  * @property {function(): Object} pair
  * @property {function(string): Promise<string>} encrypt
@@ -109,8 +108,44 @@ export function useUser() {
 		});
 
 		gun.on("auth", () => {
-			init();
-			console.log("user authenticated");
+			const gun = useGun();
+			user.is = gun.user().is;
+			if (user.pulser) {
+				clearInterval(user.pulser);
+			}
+			user.pulser = setInterval(() => {
+				gun.user().get("pulse").put(Date.now());
+			}, 1000);
+
+			gun.user().get("epub").put(user.is.epub);
+
+			gun
+				.user()
+				.get("pulse")
+				.on((d) => {
+					user.blink = !user.blink;
+					user.pulse = d;
+				});
+
+			gun
+				.user()
+				.get("safe")
+				.map()
+				.on((d, k) => {
+					user.safe[k] = d;
+				});
+
+			gun
+				.user()
+				.get("profile")
+				.get("name")
+				.on((d) => (user.name = d));
+
+			gun.user().get("my_rooms").map().on(async (d, k) => {
+				let decPub = await SEA.decrypt(k, user.pair());
+				user.rooms[decPub] = d;
+			});
+
 		});
 		user.initiated = true;
 	}
@@ -118,50 +153,7 @@ export function useUser() {
 	return { user, auth, leave };
 }
 
-function init() {
-	const gun = useGun();
-	user.is = gun.user().is;
-	if (user.pulser) {
-		clearInterval(user.pulser);
-	}
-	user.pulser = setInterval(() => {
-		gun.user().get("pulse").put(Date.now());
-	}, 1000);
 
-	gun.user().get("epub").put(user.is.epub);
-
-	gun
-		.user()
-		.get("pulse")
-		.on((d) => {
-			user.blink = !user.blink;
-			user.pulse = d;
-		});
-
-	gun
-		.user()
-		.get("safe")
-		.map()
-		.on((d, k) => {
-			user.safe[k] = d;
-		});
-
-	gun
-		.user()
-		.get("rooms")
-		.map()
-		.on((d, k) => {
-			user.rooms[k] = d;
-		});
-
-	gun
-		.user()
-		.get("profile")
-		.get("name")
-		.on((d) => (user.name = d));
-
-	user.initiated = true;
-}
 
 /**
  * Authenticate with a SEA key pair

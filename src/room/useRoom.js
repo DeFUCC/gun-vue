@@ -224,7 +224,12 @@ export function updateRoomProfile(field, content) {
  * @param {string} [options.name]
  * @returns {Promise<void>}
  */
-export async function createRoom({ pair, name, featureList = Object.keys(config?.features), publish = true } = {}) {
+export async function createRoom({
+	pair,
+	name,
+	featureList = Object.keys(config?.features),
+	publish = true } = {}) {
+
 	const { user } = useUser();
 	if (!pair) return;
 	const roomPub = pair.pub;
@@ -246,6 +251,7 @@ export async function createRoom({ pair, name, featureList = Object.keys(config?
 	});
 
 	const enc = await user.encrypt(`${pair}`);
+	const encPub = await user.encrypt(`${roomPub}`);
 
 	const gunConfig = {
 		...config,
@@ -265,7 +271,9 @@ export async function createRoom({ pair, name, featureList = Object.keys(config?
 	);
 
 	const gun = useGun();
-	await gun.user().get("rooms").get(`${roomPub}@${user.pub}`).put(enc).then();
+	await gun.user().get("rooms").get(`${roomPub}@${user.pub}`).put(true).then();
+
+	await gun.user().get("my_rooms").get(encPub).put(enc).then();
 
 	await gun
 		.user(roomPub)
