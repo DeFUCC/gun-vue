@@ -1,5 +1,12 @@
 # @gun-vue/composables
 
+## 0.22.3
+
+### Patch Changes
+
+- Better room logo
+- Much better rooms creation and management.
+
 ## 0.22.2
 
 ### Patch Changes
