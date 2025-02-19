@@ -8,9 +8,6 @@ import pack from '../../app/package.json'
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 
 const color = useColor('light')
-
-
-
 </script>
 
 <template lang="pug">
@@ -24,23 +21,13 @@ const color = useColor('light')
     href="https://github.com/DeFUCC/gun-vue/releases"
     target="_blank"
     ) v.{{ pack.version }}
-  .flex.flex-wrap.items-center.z-40.p-1.gap-1.bg-light-100.dark-bg-dark-200.shadow-xl.w-full.bg-cover( 
+  .flex.flex-wrap.items-center.z-40.p-1.pl-22.gap-2.bg-light-100.dark-bg-dark-200.shadow-xl.w-full.bg-cover( 
     data-tauri-drag-region="true"
     :style="{ ...bg }"
     )
-    room-button.ml-16(
-      @room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)"
-      @browse="$router.push(`/${$event}/`)" 
-      :key="currentRoom.pub"
-      )
-    .flex-auto
     slot
-    user-icon(
-      :size="40"
-      @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
-      @post="$router.push(`/posts/${$event}`)"
-      @chat="$router.push(`/private/${$event}`)"
-      )
+
+   
 </template>
 
 <style lang="postcss" scoped>

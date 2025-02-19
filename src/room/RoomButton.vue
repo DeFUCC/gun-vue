@@ -1,47 +1,52 @@
 <script setup>
-import { useRoom, useColor, currentRoom, useBackground, useRoomLogo } from '#composables';
+import { useRoom, useColor, currentRoom, useBackground, useRoomLogo, favRoom } from '#composables';
 import { ref, computed } from 'vue'
 import { UiPanel, RoomPage } from '../components'
 
 defineEmits(['room', 'rooms', 'browse'])
 
+const props = defineProps({
+  pub: { type: String, default: () => currentRoom.pub },
+  panel: { type: Boolean, default: true }
+})
+
 const open = ref(false)
 
-const current = computed(() => useRoom(currentRoom.pub))
-
+const current = computed(() => useRoom(props.pub))
 
 const colorDeep = useColor('deep')
 
 const bg = computed(() => useBackground({
-  pub: currentRoom.pub,
+  pub: props.pub,
   size: 200,
   attachment: 'local'
 }))
 
-const { logo } = useRoomLogo(currentRoom.pub)
-
+const { logo } = useRoomLogo(props.pub)
 
 </script>
 
 <template lang="pug">
-.mx-2
-  button.button(
-    :style="{ ...bg }" 
-    @click="open = true"
+.px-0.flex.gap-2(:style="{ ...bg }" )
+  button.rounded-xl.flex.items-center.gap-2.hover-contrast-120.flex-auto.bg-dark-400.bg-op-30.backdrop-blur(
+    @click="open = true; $emit('browse', '')"
     )
-    img.h-12.rounded-xl.mr-2(
+    img.h-12.rounded-xl(
       v-if="logo" 
       :src="logo"
       )
-    .text-2xl.font-normal @
-    .ml-1.text-sm(v-if="current?.room?.profile?.name") {{ current?.room.profile.name.substring(0, 15) }}
+    .font-bold.ml-1(v-if="current?.room?.profile?.name") {{ current?.room.profile.name.substring(0, 15) }}
+  button.button(@click="favRoom(pub, !current?.room?.isFavourite)")
+    .i-la-star(v-if="!current?.room?.isFavourite")
+    .i-la-star-solid(v-else)
   ui-panel.break-all(
+    v-if="panel"
     :open="open" 
     :close-button="false" 
     @close="open = false"
     )
     room-page(
-      :key="currentRoom.pub" 
+      :key="pub" 
       @room="$emit('room', $event)" 
       @rooms="$emit('rooms')"
       @browse="$emit('browse', $event); open = false" 

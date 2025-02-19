@@ -82,6 +82,9 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
         @click="$emit('browse', c)" 
         )
 
+    .px-4
+      guest-list(@user="$emit('user', $event)")
+      guest-list(state="offline" @user="$emit('user', $event)")
     .relative
       .flex.items-center(v-if="edit.text === false" ) 
         .p-8.prose.max-w-65ch.break-all(v-html="md.render(room.profile?.text || '')")
@@ -95,7 +98,5 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
         v-model:text="edit.text" 
         @close="updateRoomProfile('text', edit.text); edit.text = false"
         )
-    .p-2.flex.flex-col.gap-2
-      guest-list(@user="$emit('user', $event)")
-      guest-list(state="offline" @user="$emit('user', $event)")
+
 </template>

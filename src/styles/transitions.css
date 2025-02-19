@@ -1,101 +1,99 @@
 /* FADE */
 
 .fade {
-  transition: all 0.5s ease;
+	transition: all 0.5s ease;
 }
 
 .fade-enter-active {
-  transition: all 0.2s ease;
+	transition: all 0.2s ease;
 }
 .fade-leave-active {
-  opacity: 0;
-  transition: all 0.1s ease;
+	opacity: 0;
+	transition: all 0.1s ease;
 }
 
 .fade-leave-to {
-  opacity: 0;
+	opacity: 0;
 }
 
 .fade-enter-from {
-  opacity: 0;
+	opacity: 0;
 }
 
 .fade-enter-to {
-  opacity: 1;
-
+	opacity: 1;
 }
-
 
 /* LIST */
 
 .list-enter-active {
-  transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
 }
 .list-enter-from {
-  opacity: 0;
-  z-index: 20;
-  transform: translateY(-100%);
+	opacity: 0;
+	z-index: 20;
+	transform: translateY(-100%);
 }
 
 .list-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
+	opacity: 0;
+	transform: translateY(30px);
 }
 
 .list-leave-active {
-  transition: all 0.4s ease-in;
+	transition: all 0.4s ease-in;
 }
 .list-move {
-  transition: transform 0.8s ease-in-out;
+	transition: transform 0.8s ease-in-out;
 }
 .list-item {
-  z-index: 1;
+	z-index: 1;
 }
 
 /* PANEL */
 
 .panel-enter-active {
-  transition: all 0.1s ease-out;
+	transition: all 0.1s ease-out;
 }
 .panel-enter-from {
-  z-index: -20;
-  transform: translateX(100%);
+	z-index: -20;
+	transform: translateX(100%);
 }
 
 .panel-leave-to {
-  opacity: 0;
-  transform: translateX(400%);
+	opacity: 0;
+	transform: translateX(400%);
 }
 
 .panel-leave-active {
-  transition: all 0.4s ease-in;
+	transition: all 0.4s ease-in;
 }
 .panel-move {
-  transition: transform 0.8s ease-in-out;
+	transition: transform 0.8s ease-in-out;
 }
 .panel-item {
-  z-index: -20;
+	z-index: -20;
 }
 
 /* SLIDE */
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 200ms ease-in;
+	transition: all 200ms ease-in;
 }
 
 .slide-enter-to {
-  transform: translateX(0);
+	transform: translateX(0);
 }
 
 .slide-enter-from {
-  transform: translateX(100%);
+	transform: translateX(100%);
 }
 
 .slide-leave-to {
-  transform: translateX(200%);
+	transform: translateX(200%);
 }
 
 .slide-leave-from {
-  transform: translateX(0%);
+	transform: translateX(0%);
 }

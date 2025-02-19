@@ -78,10 +78,23 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 .app-container
   //- side-bar.Side
   nav-bar.Top
+    room-button.flex-auto(
+      @room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)"
+      @browse="$router.push(`/${$event}/`)" 
+      :key="currentRoom.pub"
+      :panel="false"
+      )
+    user-icon(
+      :size="40"
+      @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
+      @post="$router.push(`/posts/${$event}`)"
+      @chat="$router.push(`/private/${$event}`)"
+      )
+
+  .flex.flex-col.fixed.bottom-24.right-1.z-1000.gap-2.items-center.op-50.hover-op-100.transition
     gun-tools
     button.button
       gun-relay
-  .flex.flex-col.fixed.bottom-24.right-1.z-1000.gap-2.items-center
     qr-share(:key="route.path")
     ui-dark
   .grid.Main.max-h-full

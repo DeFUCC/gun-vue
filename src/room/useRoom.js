@@ -76,6 +76,7 @@ export function useRoom(pub = currentRoom.pub) {
 	/** @type {CurrentRoom} */
 	const room = reactive({
 		pub: pub,
+		isFavourite: false,
 		isRoot: computed(() => pub == rootRoom.pub),
 		hosts: {},
 		features: {},
@@ -105,6 +106,10 @@ export function useRoom(pub = currentRoom.pub) {
 		.once((d, k) => {
 			room.features[k] = d;
 		});
+
+	gun.user().get('favorite_rooms').get(pub).on((d) => {
+		room.isFavourite = d;
+	});
 
 	return {
 		room,
@@ -342,15 +347,24 @@ export async function submitRoom(pub) {
 		.put(!already, null, { opt: { cert: currentRoom.features?.rooms } });
 }
 
-export function joinRoom() {
+export function joinRoom(pub = currentRoom.pub) {
 	const gun = useGun();
 	gun
-		.user(currentRoom.pub)
+		.user(pub)
 		.get("space")
 		.get(user.pub)
 		.put(JSON.stringify({ x: Math.random(), y: Math.random() }), null, {
 			opt: { cert: currentRoom.features?.space },
 		});
+}
+
+export function favRoom(pub = currentRoom.pub, value = true) {
+	const gun = useGun();
+	gun
+		.user()
+		.get('favorite_rooms')
+		.get(pub)
+		.put(value)
 }
 
 /**

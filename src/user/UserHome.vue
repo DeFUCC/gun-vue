@@ -3,6 +3,8 @@ import { useUser } from '#composables';
 import { ref, watch } from 'vue';
 import { UiLayer, AuthCredentials, AuthLogin, UserPanel, UserProfile, UserRooms, ChatPrivateList, } from '../components'
 import { useStorage } from '@vueuse/core'
+import RoomCard from '../room/RoomCard.vue';
+import RoomButton from '../room/RoomButton.vue';
 
 const emit = defineEmits(['user', 'room', 'close', 'chat', 'browse'])
 
@@ -19,7 +21,11 @@ watch(() => user.is, () => {
 }, { immediate: true })
 
 const showChats = useStorage('showChats', true)
+const showRooms = useStorage('showRooms', true)
 
+const favRooms = ref({})
+
+user.db?.get('favorite_rooms').map().on((v, k) => favRooms.value[k] = v)
 
 </script>
 
@@ -47,6 +53,28 @@ const showChats = useStorage('showChats', true)
         )  My public profile
       hr.w-full
       UserRooms(@browse="$emit('room', $event)")
+
+      .flex.flex-col.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl
+        button.items-center.w-full.flex.px-2.pb-2(@click="showRooms = !showRooms") 
+          .font-bold.text-lg My favourite rooms
+          .flex-1
+          .i-la-angle-down(v-if="showRooms")
+          .i-la-angle-up(v-else)
+        transition(
+          name="fade" 
+          mode="out-in")
+          .flex.flex-col.gap-4( v-if="showRooms")
+            RoomButton(
+              v-for="room in Object.entries(favRooms).filter(([k, v]) => v).map(([k, v]) => k)"
+              :key="room"
+              :pub="room"
+              @browse="$emit('room', room)"
+              :panel="false"
+              )
+              button.text-2xl(@click.stop.prevent)
+                .i-la-star
+
+
       .flex.flex-col.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl
         button.items-center.w-full.flex.px-2.pb-2(@click="showChats = !showChats") 
           .font-bold.text-lg My chats
