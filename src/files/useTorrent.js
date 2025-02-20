@@ -21,6 +21,21 @@ export function useTorrent() {
 	let opfsRoot = null
 	let webTorrentClient = null
 
+	const defaultTrackers = [
+		'udp://tracker.leechers-paradise.org:6969',
+		'udp://tracker.coppersurfer.tk:6969',
+		'udp://tracker.opentrackr.org:1337',
+		'udp://explodie.org:6969',
+		'udp://tracker.empire-js.us:1337',
+		'wss://tracker.btorrent.xyz',
+		'wss://tracker.openwebtorrent.com'
+	]
+
+	function buildMagnetUri(infoHash, trackers = defaultTrackers) {
+		const encodedTrackers = trackers.map(t => `&tr=${encodeURIComponent(t)}`).join('')
+		return `magnet:?xt=urn:btih:${infoHash}${encodedTrackers}`
+	}
+
 	function sanitizeFileName(name) {
 		return name.replace(/[^a-zA-Z0-9.-]/g, '_')
 	}
@@ -69,7 +84,6 @@ export function useTorrent() {
 					type: metadata.type
 				})
 				await shareFile(newFile, name)
-				console.log('Loaded file:', metadata.originalName)
 			}
 		}
 	}
@@ -119,13 +133,13 @@ export function useTorrent() {
 	async function saveToOPFS(file) {
 		if (!opfsRoot) return null
 		try {
-			const safeFileName = sanitizeFileName(Date.now() + '_' + file.name)
+			const safeFileName = sanitizeFileName(file.name)
 			const fileHandle = await opfsRoot.getFileHandle(safeFileName, { create: true })
 			const writable = await fileHandle.createWritable()
 			await writable.write(file)
 			await writable.close()
 
-			// Save metadata separately
+
 			await saveMetadata(safeFileName, {
 				originalName: file.name,
 				type: file.type,
@@ -153,12 +167,7 @@ export function useTorrent() {
 	async function download(id) {
 		if (!initialized.value) await init()
 
-		const magnetUri = `magnet:?xt=urn:btih:${id}&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com`
-
-
-
 		return new Promise(async (resolve) => {
-
 			function handler(torrent) {
 				const torrentFiles = torrent.files
 				webTorrentClient.on('download', (torrent) => {
@@ -172,11 +181,12 @@ export function useTorrent() {
 				resolve(torrentFiles)
 			}
 			let old = await webTorrentClient.get(id)
-			if (old) { handler(old) } else {
+			if (old) {
+				handler(old)
+			} else {
+				const magnetUri = buildMagnetUri(id)
 				webTorrentClient.add(magnetUri, handler)
 			}
-
-
 		})
 	}
 
@@ -187,6 +197,7 @@ export function useTorrent() {
 		init,
 		upload,
 		download,
-		deleteFile
+		deleteFile,
+		defaultTrackers
 	}
 }

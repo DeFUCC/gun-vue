@@ -10,6 +10,8 @@
 		"allowJs": true,
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
+		"declaration": true,
+		"emitDeclarationOnly": true,
 		"module": "esnext",
 		"target": "esnext",
 		"moduleResolution": "Node",
