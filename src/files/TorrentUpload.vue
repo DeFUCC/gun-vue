@@ -10,6 +10,8 @@ const showFiles = ref(false)
 const activeFile = ref(null)
 const dragover = ref(false)
 
+const emit = defineEmits(['uploaded', 'url'])
+
 onMounted(init)
 
 async function handleFiles(e) {
@@ -18,7 +20,9 @@ async function handleFiles(e) {
   const results = await upload(inputFiles)
   if (results.length) {
     activeFile.value = results[0]
-    showFiles.value = true
+    emit('uploaded', results[0])
+    // showFiles.value = true
+    emit('url', downloadUrl.value)
   }
 }
 

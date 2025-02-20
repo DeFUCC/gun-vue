@@ -43,7 +43,7 @@ function removeFile(infoHash) {
 
 <template lang='pug'>
 .p-4.flex.flex-col.gap-2
-  torrent-upload(@uploaded="addFile($event)")
+  TorrentUpload(@uploaded="addFile($event)")
   .flex.flex-col.gap-2
     router-link.p-2.flex.flex-wrap.items-center.gap-2.break-all.bg-light-300.dark-bg-dark-400.rounded(
       v-for="(file, f) in files" :key="f"
