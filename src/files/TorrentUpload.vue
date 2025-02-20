@@ -1,6 +1,6 @@
-<script setup lang="ts">
+<script setup>
 import { useClipboard, useObjectUrl, useShare } from '@vueuse/core';
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, onMounted } from 'vue';
 import { uploadTorrent } from './useTorrent';
 import { QrShow, FileCard, UiLayer } from '../components'
 import { prettyBytes, currentRoom, useGun, useUser } from '../composables';
@@ -14,39 +14,101 @@ const showQr = ref(false)
 const showFile = ref(false)
 const dragover = ref(false)
 
-function handleFileUpload(e: Event) {
-  const files = (e.target as HTMLInputElement)?.files || (e as DragEvent)?.dataTransfer?.files;
-  if (!files || files.length === 0) return;
-  const { torrent } = uploadTorrent(files)
+const storageInitialized = ref(false)
+let opfsRoot = null
 
-  const gun = useGun()
-  const { user } = useUser()
-
-  watch(torrent, async t => {
-    upload.value = t
-    open.value = true
-    const data = {
-      infoHash: t.infoHash,
-      length: t.length,
-      name: t.name,
-      author: user.pub
-    }
-    emit('uploaded', data)
-    emit('url', downloadUrl.value)
-  })
+async function initStorage() {
+  try {
+    opfsRoot = await navigator.storage.getDirectory()
+    storageInitialized.value = true
+  } catch (e) {
+    console.error('OPFS not available:', e)
+  }
 }
 
-function handleDragOver(e: DragEvent) {
+async function saveToOPFS(file) {
+  if (!opfsRoot) return null
+  try {
+    const fileHandle = await opfsRoot.getFileHandle(file.name, { create: true })
+    const writable = await fileHandle.createWritable()
+    await writable.write(file)
+    await writable.close()
+    return file.name
+  } catch (e) {
+    console.error('Error saving to OPFS:', e)
+    return null
+  }
+}
+
+async function loadFromOPFS(filename) {
+  if (!opfsRoot) return null
+  try {
+    const fileHandle = await opfsRoot.getFileHandle(filename)
+    const file = await fileHandle.getFile()
+    return file
+  } catch (e) {
+    console.error('Error loading from OPFS:', e)
+    return null
+  }
+}
+
+async function handleFileUpload(e) {
+  const files = e.target?.files || e?.dataTransfer?.files;
+  if (!files || files.length === 0) return;
+
+  for (const file of files) {
+    const savedName = await saveToOPFS(file)
+    if (savedName) {
+      const loadedFile = await loadFromOPFS(savedName)
+      if (loadedFile) {
+        const { torrent } = uploadTorrent([loadedFile])
+        const gun = useGun()
+        const { user } = useUser()
+
+        watch(torrent, async t => {
+          upload.value = t
+          open.value = true
+          const data = {
+            infoHash: t.infoHash,
+            length: t.length,
+            name: t.name,
+            author: user.pub,
+            storedName: savedName
+          }
+          emit('uploaded', data)
+          emit('url', downloadUrl.value)
+        })
+      }
+    }
+  }
+}
+
+onMounted(async () => {
+  await initStorage()
+  if (opfsRoot) {
+    for await (const [name, handle] of opfsRoot.entries()) {
+      const file = await loadFromOPFS(name)
+      if (file) {
+        const { torrent } = uploadTorrent([file])
+        watch(torrent, t => {
+          upload.value = t
+        })
+      }
+    }
+  }
+})
+
+function handleDragOver(e) {
   e.preventDefault()
   dragover.value = true
 }
 
-function handleDragLeave(e: DragEvent) {
+function handleDragLeave(e) {
   e.preventDefault()
   dragover.value = false
 }
 
-function handleDrop(e: DragEvent) {
+function handleDrop(e) {
   e.preventDefault()
   dragover.value = false
   handleFileUpload(e)
@@ -67,7 +129,8 @@ const { share, isSupported: shareSupported } = useShare()
 
 <template lang='pug'>
 .flex
-  label.border-2.shadow-lg.p-4.flex.flex-wrap.gap-2.bg-light-100.dark-bg-dark-400.rounded-lg.cursor-pointer.items-center(v-if="!upload" for="file"
+  label.border-2.shadow-lg.p-4.flex.flex-wrap.gap-2.bg-light-100.dark-bg-dark-400.rounded-lg.cursor-pointer.items-center(
+    v-if="!upload && storageInitialized" 
     @dragover.prevent="handleDragOver"
     @dragleave.prevent="handleDragLeave"
     @drop.prevent="handleDrop"
@@ -77,11 +140,12 @@ const { share, isSupported: shareSupported } = useShare()
     slot  
       .font-bold Drop your files here
     input#file(type="file" accept="*" @change="handleFileUpload($event)" style="display:none;")
+  .text-sm.text-red-500(v-if="!storageInitialized") Storage initialization failed
   .animate-pulse.p-2.flex.flex-wrap.gap-2.bg-light-100.dark-bg-dark-400.rounded.cursor-pointer.items-center.break-all.border-2.rounded-lg.shadow-lg(v-else @click="open = !open")
     .font-bold Sharing a file:
     .text-md.max-w-55ch {{ upload?.name }}
     .flex-1
-    .p-0 {{ prettyBytes(upload?.length) }}
+    .p-0 {{ prettyBytes(upload?.length || 0) }}
     .i-la-times(@click.prevent.stop="upload = null")
   ui-layer(:open="open" @close="open = false")
     .flex.flex-wrap.gap-2.p-4.items-start
