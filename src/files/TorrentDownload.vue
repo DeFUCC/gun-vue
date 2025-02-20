@@ -1,10 +1,8 @@
 <script setup lang="ts">
-
-import { useObjectUrl, useRafFn } from '@vueuse/core';
-import { ref, watch, shallowReactive, computed, reactive, shallowRef } from 'vue';
+import { ref } from 'vue';
 import { prettyBytes } from '../composables';
-import { uploadTorrent } from './useTorrent';
 import { FileCard } from '../components'
+import { useTorrent } from './useTorrent'
 
 const props = defineProps({
   id: {
@@ -13,46 +11,23 @@ const props = defineProps({
   }
 })
 
-function downloadTorrent(id: string) {
-  const torrent = reactive({
-    files: [],
-    task: null,
-    status: {
-      done: false,
-      progress: 0,
-      downloadSpeed: 0,
-      downloaded: 0,
-    }
-  })
-  import('webtorrent/dist/webtorrent.min.js').then((lib) => {
-    const WebTorrent = lib.default
-    const client = new WebTorrent()
-    torrent.task = client.add(id, (tor) => {
-      torrent.files = tor.files
-    })
-    client.on('download', () => {
-      const { progress, downloaded, done, downloadSpeed } = torrent.task
-      torrent.status = { done, progress, downloaded, downloadSpeed }
-    });
+const { download, downloadStatus } = useTorrent()
+const torrentFiles = ref([])
 
-  })
-  return torrent
-}
-
-const tor = downloadTorrent(`magnet:?xt=urn:btih:${props.id}&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com`)
-
-
+download(props.id).then(files => {
+  torrentFiles.value = files
+})
 </script>
 
 <template lang='pug'>
 .flex.flex-col.gap-2.max-w-55ch.relative
-  .bg-dark-100.op-20.absolute.top-0.bottom-0.left-0(inert :style="{ width: `${tor?.status?.progress * 100}%` }" v-if="tor?.status?.progress > 0 && !tor?.status?.done")
-  .p-2(v-if="tor?.status?.progress == 0 && !tor?.status?.done")
+  .bg-dark-100.op-20.absolute.top-0.bottom-0.left-0(inert :style="{ width: `${downloadStatus.progress * 100}%` }" v-if="downloadStatus.progress > 0 && !downloadStatus.done")
+  .p-2(v-if="downloadStatus.progress == 0 && !downloadStatus.done")
     .p-1 Waiting for the torrent... 
-  .p-2.text-sm.flex.flex-wrap.gap-2(v-else-if="!tor?.status?.done")
+  .p-2.text-sm.flex.flex-wrap.gap-2(v-else-if="!downloadStatus.done")
     .p-1 Torrent: 
-    .p-1 {{ !tor?.status?.done ? tor?.status?.progress : 'done' }}
-    .p-1 Total {{ prettyBytes(tor?.status?.downloaded) }} at {{ prettyBytes(tor?.status?.downloadSpeed) }}/s
+    .p-1 {{ !downloadStatus.done ? downloadStatus.progress : 'done' }}
+    .p-1 Total {{ prettyBytes(downloadStatus.downloaded || 0) }} at {{ prettyBytes(downloadStatus.downloadSpeed || 0) }}/s
 
-  file-card(v-for="file in tor?.files" :key="file?.name" :file="file")
+  file-card(v-for="file in torrentFiles" :key="file?.name" :file="file")
 </template>
