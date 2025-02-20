@@ -1,10 +1,15 @@
-![@gun-vue logo](https://gun-vue.js.org/media/gun-vue-logo.svg)
+[![@gun-vue logo](https://gun-vue.js.org/media/gun-vue-logo.svg)](https://gun-vue.js.org)
 
-# [gun-vue.js.org](https://gun-vue.js.org)
+# [**Try The Demo Now!**](https://gun-vue.js.org/app)
 
-## Gun Vue P2P Crypto Graph Web App Toolkit
+## Gun-Vue: Peer-to-Peer Progressive Web App Toolkit
 
-Gun-vue is a versatile toolkit that combines the power of the peer-to-peer JavaScript database Gun with the reactivity system of Vue into small, but precise to the purpose apps for everyone to make, share, use and discard whenever we want. It offers pluggable components for UX designers to compose, easily importable composables for UI developers to use, and a 2 LOC starter Relay peer for new p2p network enthusiasts to run on almost any hardware. With growing collection of demos and documentation, Gun-Vue is open-source and accessible to everyone! ✊
+**Gun-Vue** is an open-source toolkit for building **offline-first, peer-to-peer Progressive Web Apps (PWAs)**. It combines:  
+- [**Gun**](https://github.com/amark/gun), a browser-based graph database  
+- [**SEA**](https://gun.eco/docs/SEA), a browser-based cryptography layer for secure data and user authentication  
+- [**Vue**](https://github.com/vuejs/), a reactive JavaScript framework for creating dynamic user interfaces  
+
+With Gun-Vue, you can quickly create decentralized apps (dApps) using **pluggable UI components**, **reusable composables**, and a **2-line starter Relay** that can run on almost any hardware. A growing collection of demos and documentation makes it easy for newcomers to explore and build their own projects.
 
 ## What is @gun-vue?
 
