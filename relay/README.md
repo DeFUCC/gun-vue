@@ -25,13 +25,13 @@ This package is part of [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://
 - **Android** (via [F-Droid Termux](https://f-droid.org/en/packages/com.termux/))
 
 ---
-### Installation
+## Installation
 
-#### Requirements
+### Requirements
  - [Node.js >=16.x](https://nodejs.org/)
  - [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-#### Instructions
+### Instructions
 
 1. Create a new Node.js project:
 
@@ -79,7 +79,7 @@ Multicast on 233.255.255.255:8765
 **Your Gun-Vue: Relay is up and running!**
 
 ---
-#### Options
+### Options
 
 The relay can be customized with an options object by updating `start.js` with the following:
 
