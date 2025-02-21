@@ -1,48 +1,51 @@
-### A simple Gun DB relay peer
-
-A one liner gun js server easy to run on any free tier Node.js cloud like https://www.glitch.com, https://www.heroku.com or others, on a private VPS server or any other device like RaspberryPi or mostly any Android phone at hand.
-
 ![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/relay.svg)
 
-### Run in a cloud for free
+# Gun-Vue: Relay
 
-There's a plenty of cloud providers with free tiers suitable to the needs of running a Gun relay node.
+A simple gun.js relay peer for Node.js.
 
-- **[Remix a Glitch project now](https://glitch.com/~etogun)**
+It enables decentralized peer-to-peer web apps built for [gun.js](https://github.com/amark/gun) to connect and synchronize data.
 
-> More links to be added here later.
+This package is part of [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue)
 
-### Run on any device
+## Platforms
 
-All you need to run a Gun relay is a `NodeJS >=16.x` environment with `npm` package manager to import and run the script. It's already up and running in major clouds, but you may need to **[install NodeJS](https://nodejs.org/en/)** on your computer, or **[configure a RaspberryPi](https://dev.to/bogdaaamn/run-your-nodejs-application-on-a-headless-raspberry-pi-4jnn)**.
+ Installs on any device or service that runs Node.js:
 
-- **Computer**
+- **Cloud Platforms**
+  - [Heroku](https://www.heroku.com)
+  - [Glitch](https://www.glitch.com)
+- **Desktop**
+  - Linux
+  - MacOS
+  - Windows
+- **Raspberry Pi**
+  - [Raspberry Pi OS](https://www.raspberrypi.com/software/operating-systems/) ([Tutorial](https://dev.to/bogdaaamn/run-your-nodejs-application-on-a-headless-raspberry-pi-4jnn))
+  - [Alpine Linux](https://www.alpinelinux.org/)
+- **Android** (via [F-Droid Termux](https://f-droid.org/en/packages/com.termux/))
 
-  Open your terminal and check the version of Node with `node -v`. You may need to **[Install NodeJS](https://nodejs.org/en/)** or [update it](https://github.com/nvm-sh/nvm).
+---
+### Installation
 
-- **Android device**
+#### Requirements
+ - [Node.js >=16.x](https://nodejs.org/)
+ - [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-  You can easily run NodeJS apps on an Android phone with **[Termux](https://f-droid.org/en/packages/com.termux/)** app. Consider installing it from **[F-Droid](https://f-droid.org)** to get the fresh and stable version.
+#### Instructions
 
-- **RaspberryPi**
-
-  Flash your image and **[configure your Pi](https://dev.to/bogdaaamn/run-your-nodejs-application-on-a-headless-raspberry-pi-4jnn)** to run a local Gun server
-
-### How to use
-
-1. Run this in the command line and follow the steps to create a new NodeJS project
+1. Create a new Node.js project:
 
 ```shell
-npm init
+npm init -y
 ```
 
-2. Then install the package as a dependency
+2. Install the Gun-Vue: Relay package as a dependency:
 
 ```shell
 npm i @gun-vue/relay
 ```
 
-3. Add this line to the generated `package.json` file
+3. Open `package.json` and add:
 
 ```json
 "scripts": {
@@ -50,9 +53,7 @@ npm i @gun-vue/relay
   }
 ```
 
-3. Create a `start.js` script and edit it as follows:
-
-4. Start by pasting this minimal code that imports the `relay` and initiates it.
+4. Create a `start.js` script and add the following:
 
 ```js
 import relay from "@gun-vue/relay";
@@ -60,42 +61,43 @@ import relay from "@gun-vue/relay";
 relay.init();
 ```
 
-5. Save the `start.js` and run it.
+5. Start your Gun-Vue: Relay:
 
 ```shell
 node start.js
 ```
 
-You'll see the message from the relay server running with it's address to use as a Gun peer in your app:
+You will see the following message:
 
 ```
 Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
 AXE relay enabled!
-Server started at http://localhost:4200/gun
+Server started at http://localhost:8765/gun
 Multicast on 233.255.255.255:8765
 ```
 
-### You've got your Gun relay up and running!
+**Your Gun-Vue: Relay is up and running!**
 
-### Options
+---
+#### Options
 
-You can use customize your server with an options object:
+The relay can be customized with an options object by updating `start.js` with the following:
 
 ```js
 relay.init({
-	host: "localhost", // A host name used by the server to publish it's state to the graph. Set your peer URL without a protocol, like  'relay.some-site.com'
-	port: 4200, // Gun server port. You may use a more standard 8080.
-	store: false, // Put true if you want to have Gun store data on disk.
-	path: "public", // A public directory to expose your app with the build in express server. Insert a path like '../app/dist'
+	host: "localhost", // Domain or IP address where your relay is hosted (no 'http://')
+	port: 8765, // The port your relay will listen on (e.g., 8080)
+	store: false, // Use 'true' to enable persistent storage on disk
+	path: "public", // Folder to serve static files (e.g., your front-end build)
 });
 ```
 
-The options may be also set with `.env` file. The defaults are:
+Alternatively, create a `.env` file and add the following defaults:
 
 ```
 RELAY_HOST="localhost"
 RELAY_STORE=false
-RELAY_PORT=4200
+RELAY_PORT=8765
 RELAY_PATH="public"
 RELAY_QR=false
 ```
