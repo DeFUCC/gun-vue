@@ -34,7 +34,7 @@ const bg = computed(() => useBackground({ pub: newPair.value?.pub, size: 620 }))
 </script>
 
 <template lang="pug">
-.flex.flex-col.gap-4.bg-cover.rounded-2xl.w-full.p-16.pt-50.max-w-620px.bg-light-800.dark-bg-dark-500.justify-center(
+.flex.flex-col.gap-4.bg-cover.rounded-2xl.w-full.p-16.max-w-620px.bg-light-800.dark-bg-dark-500.justify-center(
   v-if="user.pub" 
   :style="{ ...bg }"
   )

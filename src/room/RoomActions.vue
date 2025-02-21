@@ -3,7 +3,7 @@ import { useRoom, currentRoom, rootRoom, recreateRoom, useUser, downloadFile, SE
 import { ref, computed, reactive } from 'vue'
 
 const props = defineProps({
-  pub: { type: String, default: currentRoom.pub }
+  pub: { type: String, default: () => currentRoom.pub }
 })
 
 const { user } = useUser()
@@ -21,6 +21,7 @@ const roomPub = computed(() => {
 
 async function download(enc) {
   const dec = await user.decrypt(enc)
+  console.log(dec, enc)
   downloadFile(JSON.stringify(dec), 'application/json', `room-${room.profile?.name}.json`)
 }
 
