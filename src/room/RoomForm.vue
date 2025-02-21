@@ -1,61 +1,67 @@
 <script setup>
 import { useUser, SEA, createRoom, useBackground, enterRoom } from '#composables';
-import { reactive, ref, computed } from 'vue'
+import { ref, computed } from 'vue'
+import { useRefHistory } from '@vueuse/core'
 
 const emit = defineEmits(['room'])
 
 const { user } = useUser()
 
-const create = reactive({
-  pair: null,
-  name: '',
-  publish: true,
-})
+const newPair = ref(null)
+const name = ref('')
+const publish = ref(true)
+
+const { history, undo, redo, canRedo, canUndo } = useRefHistory(newPair)
 
 async function genPair() {
-  let pair = await SEA.pair()
-  create.pair = pair
+  newPair.value = await SEA.pair()
 }
 
 function reset() {
-  create.pair = null
-  create.name = ''
-  create.publish = true
+  newPair.value = null
+  name.value = ''
+  publish.value = true
 }
 
 function createIt() {
-  createRoom(create);
-  emit('room', create?.pair?.pub)
+  createRoom({ pair: newPair.value, name: name.value, publish: publish.value });
+  emit('room', newPair.value?.pub)
   reset()
 }
 
-const bg = computed(() => useBackground({ pub: create.pair?.pub, size: 620 }))
+const bg = computed(() => useBackground({ pub: newPair.value?.pub, size: 620 }))
 
 </script>
 
 <template lang="pug">
-.flex.flex-col.gap-4.bg-cover.rounded-2xl.p-8.max-w-620px.bg-light-800.dark-bg-dark-500.justify-center(
+.flex.flex-col.gap-4.bg-cover.rounded-2xl.w-full.p-16.pt-50.max-w-620px.bg-light-800.dark-bg-dark-500.justify-center(
   v-if="user.pub" 
   :style="{ ...bg }"
   )
   .flex.gap-2
-    button.button.flex-1(@click="genPair()" ) Generate a new room
     button.button(
-      v-if="create.pair" 
-      @click="reset()" 
-      ) Reset
+      v-if="canUndo"
+      @click="undo()"
+      )
+      .i-la-undo
+    button.button(
+      v-if="canRedo" 
+      @click="redo()" 
+      )
+      .i-la-redo
+    button.button.flex-1(@click="genPair()" ) Generate a new room
 
   input.p-2.rounded-xl.dark-bg-dark-200(
-    v-if="create.pair" 
-    v-model="create.name" 
+    v-if="newPair" 
+    v-model="name" 
     type="text" 
     placeholder="New room name"
     )
   transition(name="fade")
-    .flex.gap-2(v-if="create.pair && create.name" )
+    .flex.gap-2(v-if="newPair && name" )
       button.button.flex-1(
         @click="createIt()" 
         ) Add room
       label.button.flex.items-center.gap-2(for="publish") Publish
-        input#publish(type="checkbox" switch v-model="create.publish" )
+        input#publish(type="checkbox" switch v-model="publish" )
 </template>

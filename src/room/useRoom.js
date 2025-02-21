@@ -271,7 +271,6 @@ export async function createRoom({
 	);
 
 	const gun = useGun();
-	await gun.user().get("rooms").get(`${roomPub}@${user.pub}`).put(true).then();
 
 	await gun.user().get("my_rooms").get(encPub).put(enc).then();
 
@@ -304,6 +303,8 @@ export async function createRoom({
 	}
 
 	if (publish) {
+		await gun.user().get("rooms").get(`${roomPub}@${user.pub}`).put(true).then();
+
 		await gun
 			.user(currentRoom.pub)
 			.get("rooms")
