@@ -10,6 +10,8 @@
 import { ref, reactive } from "vue";
 import { useStorage } from "@vueuse/core";
 
+import WebTorrent from "webtorrent/dist/webtorrent.min.js"
+
 export const defaultTrackers = [
 	'udp://tracker.leechers-paradise.org:6969',
 	'udp://tracker.coppersurfer.tk:6969',
@@ -66,7 +68,6 @@ export function useTorrent() {
 	async function init() {
 		try {
 			opfsRoot = await navigator.storage.getDirectory()
-			const WebTorrent = (await import("webtorrent/dist/webtorrent.min.js")).default
 			webTorrentClient = new WebTorrent()
 			initialized.value = true
 			await loadStoredFiles()
