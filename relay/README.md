@@ -72,8 +72,8 @@ You will see the following message:
 ```
 Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
 AXE relay enabled!
-Server started at http://localhost:8765/gun
-Multicast on 233.255.255.255:8765
+Server started at http://localhost:4200/gun
+Multicast on 233.255.255.255:4200
 ```
 
 **Your Gun-Vue: Relay is up and running!**
@@ -86,7 +86,7 @@ The relay can be customized with an options object by updating `start.js` with t
 ```js
 relay.init({
 	host: "localhost", // Domain or IP address where your relay is hosted (no 'http://')
-	port: 8765, // The port your relay will listen on (e.g., 8080)
+	port: 4200, // The port your relay will listen on (e.g., 8080)
 	store: false, // Use 'true' to enable persistent storage on disk
 	path: "public", // Folder to serve static files (e.g., your front-end build)
 });
@@ -97,7 +97,7 @@ Alternatively, create a `.env` file and add the following defaults:
 ```
 RELAY_HOST="localhost"
 RELAY_STORE=false
-RELAY_PORT=8765
+RELAY_PORT=4200
 RELAY_PATH="public"
 RELAY_QR=false
 ```
