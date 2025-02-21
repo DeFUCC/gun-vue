@@ -1,4 +1,4 @@
-![@gun-vue logo](https://gun-vue.js.org/media/gun-vue-logo.svg)
+![@gun-vue demo logo](https://gun-vue.js.org/media/svg/demo.svg)
 
 # Single page @gun-vue application build with Vite
 
