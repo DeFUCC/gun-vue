@@ -10,7 +10,7 @@ This package is part of [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://
 
 ## Platforms
 
- Installs on any device or service that runs Node.js:
+Installs on any device or service that runs Node.js:
 
 - **Cloud Platforms**
   - [Heroku](https://www.heroku.com)
@@ -25,11 +25,13 @@ This package is part of [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://
 - **Android** (via [F-Droid Termux](https://f-droid.org/en/packages/com.termux/))
 
 ---
+
 ## Installation
 
 ### Requirements
- - [Node.js >=16.x](https://nodejs.org/)
- - [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
+- [Node.js >=16.x](https://nodejs.org/)
+- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 ### Instructions
 
@@ -79,6 +81,7 @@ Multicast on 233.255.255.255:8765
 **Your Gun-Vue: Relay is up and running!**
 
 ---
+
 ### Options
 
 The relay can be customized with an options object by updating `start.js` with the following:
