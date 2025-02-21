@@ -4,7 +4,7 @@
 
 A simple gun.js relay peer for Node.js.
 
-It enables decentralized peer-to-peer web apps built for [gun.js](https://github.com/amark/gun) to connect and synchronize data.
+It enables decentralized peer-to-peer web apps built with [gun.js](https://github.com/amark/gun) to connect and synchronize data.
 
 This package is part of [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue)
 
