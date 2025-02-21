@@ -1,86 +1,49 @@
-[![@gun-vue logo](https://gun-vue.js.org/media/gun-vue-logo.svg)](https://gun-vue.js.org)
+<a href="https://gun-vue.js.org">
+  <img src="https://gun-vue.js.org/media/gun-vue-logo.svg" alt="@gun-vue logo" width="250" />
+</a>
 
-# [**Try The Demo Now!**](https://gun-vue.js.org/app)
+# Gun-Vue: The Peer-to-Peer Web App Toolkit
 
-## Gun-Vue: Peer-to-Peer Progressive Web App Toolkit
+[Homepage](https://gun-vue.js.org) • 
+[Quickstart](https://gun-vue.js.org/tutorials/getting-started.html) • 
+[npm](https://npmjs.com/org/gun-vue) • 
+[YouTube](https://www.youtube.com/playlist?list=PLncuCCb2zjt6wmlSNLiK1lZl150qX-rAw)
+<br><br>
+**Gun-Vue** empowers you to build **Offline-First, Progressive Web Apps (PWAs)** that run in any modern browser and synchronize **Peer-to-Peer** in **Realtime**—no central server needed.
 
-**Gun-Vue** is an open-source toolkit for building **offline-first, peer-to-peer Progressive Web Apps (PWAs)**. It combines:
+This is achieved by combining three key technologies:
 
-- [**Gun**](https://github.com/amark/gun), a browser-based graph database
-- [**SEA**](https://gun.eco/docs/SEA), a browser-based cryptography layer for secure data and user authentication
-- [**Vue**](https://github.com/vuejs/), a reactive JavaScript framework for creating dynamic user interfaces
+- [**gun.js**](https://gun.eco): Peer-to-peer graph database with CRDT-based real-time data synchronization.
+- [**sea.js**](https://gun.eco/docs/SEA): Security, Encryption, and Authorization layer for secure, end-to-end encrypted data.
+- [**vue.js**](https://vuejs.org): Reactive JavaScript framework for building intuitive and dynamic user interfaces.
 
-With Gun-Vue, you can quickly create decentralized apps (dApps) using **pluggable UI components**, **reusable composables**, and a **2-line starter Relay** that can run on almost any hardware. A growing collection of demos and documentation makes it easy for newcomers to explore and build their own projects.
+With **Gun-Vue**, these pieces come together into a set of modular [packages](#packages) designed to make real-time, decentralized web app development straightforward. Whether you’re building social networks, messaging tools, or file-sharing platforms, Gun-Vue helps you take advantage of **secure, serverless** interactivity—right in the browser.
 
-## What is @gun-vue?
+## [**📱 Try the Demo App!**](https://gun-vue.js.org/app)
+## [**✉️ Signup for Updates**](https://forms.gle/4oBqAE7xNDaCvFSY8) 
 
-@gun-vue is an open collection of interconnected building blocks designed for creating a wide range of decentralized apps for online and offline collaboration. It combines the strengths of Gun (a CRDT-based distributed graph database), Vue (a reactive JavaScript UI framework), and SEA (a web-browser cryptography adapter) to create an ecosystem of multiple app levels. The project aims to provide basic tools for everyone to participate in exploring this new graph universe and find their own way within it.
+## Packages
 
-The code is organised into distinct layers under the [@gun-vue npmjs.com organisation](https://www.npmjs.com/org/gun-vue) for you to install and use in your P2P apps.
+| Package                                                                          | npm                                                                                                                                                                   | Description                                                                                                                                                        |
+|----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**/app**](https://github.com/DeFUCC/gun-vue/tree/master/app)                  | [![npm version](https://img.shields.io/npm/v/@gun-vue/app?color=E23C92&logo=npm&style=for-the-badge)](https://www.npmjs.com/package/@gun-vue/app)                        |  [**Demo App**](https://gun-vue.js.org/app) featuring P2P social posts, end-to-end encrypted chat, web-torrent filesharing, and more!    |
+| [**/components**](https://github.com/DeFUCC/gun-vue/tree/master/components)      | [![npm version](https://img.shields.io/npm/v/@gun-vue/components?color=E23C92&logo=npm&style=for-the-badge)](https://www.npmjs.com/package/@gun-vue/components)           | **Prebuilt Vue 3 UI components** that let you integrate real-time, P2P functionality into your projects.                               |
+| [**/composables**](https://github.com/DeFUCC/gun-vue/tree/master/composables)    | [![npm version](https://img.shields.io/npm/v/@gun-vue/composables?color=E23C92&logo=npm&style=for-the-badge)](https://www.npmjs.com/package/@gun-vue/composables)         | **Reusable logic** (Vue 3 Composition API) for managing reactive, P2P data flows independently of any specific UI components.                                     |
+| [**/relay**](https://github.com/DeFUCC/gun-vue/tree/master/relay)                | [![npm version](https://img.shields.io/npm/v/@gun-vue/relay?color=E23C92&logo=npm&style=for-the-badge)](https://www.npmjs.com/package/@gun-vue/relay)                     | **Simple Gun.js Relay Peer** for connecting clients and optional persistent storage.                                      |
 
-## @gun-vue/app
+## Setup
 
-The main [gun-vue.js.org](https://gun-vue.js.org) web-site is a demo Gun-Vue PWA.
+Build the workspace yourself:
 
-### [Web app](https://gun-vue.js.org) hosted at GitHub pages and JS.org domain
-
-The app is accessible via the free for open source [js.org](https://js.org) subdomain since [Jan 2022](https://github.com/js-org/js.org/commit/56a145bb39e53c6d63edf63b26d331cf30c35061) and hosted at GitHub pages. It's built as a single HTML file that can be served from any domain or just opened as a local file. You can just press `Save Page As...` and have your local-first reactive p2p webapp with you everywhere.
-
-### [Open source code](https://github.com/DeFUCC/gun-vue/tree/master/src) at a GitHub monorepo
-
-The code is cut into vertical slices as small interconnectable components building fun mini-apps.
-
-This means that each folder in the `src` directory is a convenient section of the entire codebase, holding a shared basic structure but having distinct functionality.
-
-All the source code gets built by GitHub Actions on each tag being published. The resulting HTML code goes to the `_dist` folder and is deployed to the [GitHub Pages](https://github.com/DeFUCC/gun-vue/tree/gh-pages) static site hosting.
-
----
-
-## @gun-vue/components
-
-@gun-vue/components provides ready-to-use Vue 3 components as building blocks to implement Gun-powered interactivity in seconds.
-
-<a href="https://www.npmjs.com/package/@gun-vue/components" target="_blank"><img src="https://img.shields.io/npm/v/@gun-vue/components?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
-
-### [Playground](https://stackblitz.com/edit/gun-vue) at Stackblitz.com
-
-### [Learn more](https://github.com/DeFUCC/gun-vue/tree/master/components)
-
-Native web-components may be implemented in future.
-
----
-
-## @gun-vue/composables
-
-<a href="https://www.npmjs.com/package/@gun-vue/composables" target="_blank"><img src="https://img.shields.io/npm/v/@gun-vue/composables?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
-
-Composable functions for use with Vue 3 Composition API. They hold the core reactive logics that power the whole visual UI representation while being totally agnostic of it. You can combine these composables in Vanilla HTML+JS or import them into any of your existing static web-site builds for any realtime p2p activity.
-
-### [Documentation](https://gun-vue.js.org/composables) with Typedoc and Vitepress
-
-### [Learn more](https://github.com/DeFUCC/gun-vue/tree/master/composables)
-
----
-
-## [@gun-vue/relay](https://github.com/DeFUCC/gun-vue/tree/master/relay)
-
-A simple no-store Gun server to throw at any Node.js environment. From old laptops, Raspbery Pi's and free-tier hostings to high-load VPS and dedicated company servers.
-
-<a href="https://www.npmjs.com/package/@gun-vue/relay" target="__blank"><img src="https://img.shields.io/npm/v/@gun-vue/relay?color=E23C92&logo=npm&style=for-the-badge" alt="NPM version"></a>
-
----
-
-## Development video blog. Watch at [DeFUCC youtube channel](https://www.youtube.com/watch?v=gwZUQcCp01U&list=PLncuCCb2zjt6wmlSNLiK1lZl150qX-rAw)
-
-You can find shorter feature announcements there along with longer live coding sessions.
-
-## How to build the workspace repo yourself
-
-1. Clone this monorepo
-2. Install [pnpm](https://pnpm.io/installation)
-3. Use `pnpm i` to recursively install all dependencies in the workspaces
-4. Use `pnpm run dev`, `pnpm run docs` and `pnpm run app` scripts in the root folder to run corresponding dev servers.
-5. Use `builds` script to have all packages built and ready to be published in the `_dist` folder.
+1. Clone this monorepo.
+2. Install [pnpm](https://pnpm.io/installation).
+3. Run `pnpm i` to install all workspace dependencies.
+4. From the root folder, use:
+   - `pnpm run dev`
+   - `pnpm run docs`
+   - `pnpm run app`  
+   to start each corresponding dev server.
+5. Run `pnpm run builds` to build all packages in the `_dist` folder.
 
 ```bash
 corepack enable
@@ -89,6 +52,11 @@ pnpm run builds
 open ./_dist/index.html
 ```
 
-## Support us today!
+## Contributing
+Contributions are welcome! If you’d like to help make Gun-Vue better, please:
 
-MONERO wallet: 852xu44krejYiBrP8xqWQeXT1VgiBq5M1g1JW8RpRdMX3a1wpqZ1u5VGR5HPFyvvDY5MUJ4iZTaEwNm5ujZFxn6FSiHpYhL
+Fork the repository and clone it locally.
+Create a new branch for your feature or fix.
+Submit a pull request when ready, explaining your changes and why they’re useful.
+Open issues if you spot a bug or have a suggestion.
+We value respectful, inclusive collaboration. Be sure to check our issues to see what’s already being discussed.
