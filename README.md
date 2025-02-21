@@ -53,10 +53,10 @@ open ./_dist/index.html
 ```
 
 ## Contributing
-Contributions are welcome! If you’d like to help make Gun-Vue better, please:
 
-Fork the repository and clone it locally.
-Create a new branch for your feature or fix.
-Submit a pull request when ready, explaining your changes and why they’re useful.
-Open issues if you spot a bug or have a suggestion.
-We value respectful, inclusive collaboration. Be sure to check our issues to see what’s already being discussed.
+We welcome ideas, bug reports, and pull requests:
+1. Fork the repository and create a new branch.
+2. Make changes and test locally.
+3. Submit a pull request with a brief summary.
+
+Thank you for helping Gun-Vue improve!
