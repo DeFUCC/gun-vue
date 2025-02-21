@@ -73,7 +73,7 @@ You will see the following message:
 Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
 AXE relay enabled!
 Server started at http://localhost:4200/gun
-Multicast on 233.255.255.255:4200
+Multicast on 233.255.255.255:8765
 ```
 
 **Your Gun-Vue: Relay is up and running!**
