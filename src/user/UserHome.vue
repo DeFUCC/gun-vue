@@ -54,7 +54,7 @@ const list = computed(() => useRooms(user.pub))
 
       .flex.flex-col.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl
         button.items-center.w-full.flex.px-2.pb-2(@click="showRooms = !showRooms") 
-          .font-bold.text-lg My favourite rooms
+          .font-bold.text-lg Starred rooms
           .flex-1
           .i-la-angle-down(v-if="showRooms")
           .i-la-angle-up(v-else)

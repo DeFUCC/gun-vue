@@ -1,13 +1,10 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router";
-import { watch, watchEffect, computed } from "vue";
+import { watch, watchEffect, computed, ref } from "vue";
 import { currentRoom, useUser, rootRoom, useBackground, setPeer, relay } from "#composables";
 
 import config from '../gun.config.json'
 
-import NavBar from './app/NavBar.vue'
-import SideBar from './app/SideBar.vue'
-import NavFooter from './app/NavFooter.vue'
 
 const router = useRouter()
 const route = useRoute();
@@ -72,32 +69,51 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 
 
 
+const openShare = ref(false)
+
+
 </script>
 
 <template lang="pug">
 .app-container
-  //- side-bar.Side
-  nav-bar.Top
-    room-button.flex-auto(
-      @room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)"
-      @browse="$router.push(`/${$event}/`)" 
-      :key="currentRoom.pub"
-      :panel="false"
-      )
-    user-icon(
-      :size="40"
-      @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
-      @post="$router.push(`/posts/${$event}`)"
-      @chat="$router.push(`/private/${$event}`)"
-      )
 
-  .flex.flex-col.fixed.bottom-24.right-1.z-1000.gap-2.items-center.op-50.hover-op-100.transition
-    gun-tools
-    button.button
-      gun-relay
-    qr-share(:key="route.path")
-    ui-dark
-  .grid.Main.max-h-full
+  .Bottom.flex.w-full.items-stretch.justify-stretch.px-1.pt-0.shadow-lg.z-3000.overflow-x-scroll.overflow-y-visible.transition.bg-light-900.dark-bg-dark-200.w-full.h-16.sticky.bottom-0.text-2xl.bg-op-80.dark-bg-op-80.backdrop-blur(
+    style="flex: 0 0 auto" 
+  )
+    router-link(to="/")
+      .i-ph-house
+    router-link(to="/users/")
+      .i-ph-users
+    a.cursor-pointer(@click="openShare = !openShare" :class="{ 'router-link-active': openShare }")
+      .i-ion-share-outline
+    router-link(to="/private/")
+      .i-ph-chats-light
+    router-link(to="/settings/")
+      .i-la-cog
+
+
+  .flex.flex-col.z-400.sticky.top-0#titlebars.Top
+    .flex.flex-wrap.items-center.z-40.p-1.gap-2.bg-light-100.dark-bg-dark-200.shadow-xl.w-full.bg-cover( 
+      data-tauri-drag-region="true"
+      :style="{ ...bg }"
+      )
+      room-button.flex-auto(
+        @room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)"
+        @browse="$router.push(`/${$event}/`)" 
+        :key="currentRoom.pub"
+        :panel="false"
+        )
+      user-icon(
+        :size="40"
+        @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
+        @post="$router.push(`/posts/${$event}`)"
+        @chat="$router.push(`/private/${$event}`)"
+        )
+
+  .flex.flex-col.fixed.bottom-16.right-4.left-4.z-1000.gap-2.items-center.transition(v-if="openShare")
+    qr-share(:key="route.path" )
+
+  .grid.Main
     router-view(v-slot="{ Component }")
       transition(name="fade", mode="out-in")
         keep-alive(:exclude="['space']" :max="10")
@@ -118,7 +134,7 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
   grid-template-areas:
     "Top Top Top"
     "Main Main Main"
-    "Side Side Side";
+    "Bottom Bottom Bottom";
 }
 
 .Main {
@@ -129,11 +145,27 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
   grid-area: Footer;
 }
 
-.Side {
-  grid-area: Side;
+.Bottom {
+  grid-area: Bottom;
 }
 
 .Top {
   grid-area: Top;
+}
+
+.router-link-active {
+  @apply bg-light-100 dark-bg-dark-900;
+}
+
+a {
+  @apply op-80 hover-op-100 flex-1 flex items-center justify-center transition bg-light-900 dark-bg-dark-200
+}
+
+.link {
+  @apply p-2 text-xl rounded cursor-pointer flex items-center transition;
+}
+
+.link:hover {
+  @apply bg-light-600 dark-bg-dark-900;
 }
 </style>

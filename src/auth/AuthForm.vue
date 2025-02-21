@@ -72,8 +72,8 @@ function uploadFile(event) {
     input.py-1.px-4.m-1.rounded-xl(
       v-model="passphrase" 
       autofocus 
+      type="password"
       autocomplete="current-password" 
-      type="text" 
       placeholder="Enter the password"
       )
     button.button.text-2xl(
@@ -100,4 +100,4 @@ function uploadFile(event) {
         cols="40" 
         placeholder="Paste your key pair here"
         )
-</template> 
+</template>

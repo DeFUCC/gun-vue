@@ -1,20 +1,25 @@
 <script setup lang="ts">
 import { useUser } from '#composables';
+import { ref } from 'vue';
 import { rootRoutes } from '../routes'
 const { user } = useUser()
+
 </script>
 
 <template lang="pug">
 .flex.w-full.items-stretch.justify-stretch.px-1.pt-0.shadow-lg.z-3000.overflow-x-scroll.overflow-y-visible.transition.bg-light-900.dark-bg-dark-200.w-full.h-16.sticky.bottom-0.text-2xl.bg-op-80.dark-bg-op-80.backdrop-blur(
-  :key="user?.pub" style="flex: 0 0 auto" v-if="user?.pub"
+  :key="user?.pub" style="flex: 0 0 auto" 
   )
   router-link(to="/")
     .i-ph-house
   router-link(to="/users/")
     .i-ph-users
-  router-link(to="/private")
+  router-link(to="/private/")
     .i-ph-chats-light
+  router-link(to="/settings/")
+    .i-la-cog
   slot
+
 </template>
 
 <style lang="postcss" scoped>

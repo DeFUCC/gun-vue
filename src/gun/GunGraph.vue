@@ -1,4 +1,4 @@
-<script setup >
+<script setup>
 import { useGun, useColor, theme } from '#composables';
 import { ref, onBeforeUnmount } from 'vue'
 import { AccountAvatar } from '../components'
@@ -23,11 +23,11 @@ onBeforeUnmount(() => {
 </script>
 
 <template lang="pug">
-article.overflow-hidden.m-4.rounded-xl.break-all
+article.rounded-xl.break-all
   .p-2px.text-sm(
     v-for="(g, i) in graph",
     :key="i",
-    :style="{ backgroundColor: theme.dark? colorDeep.hex(i) : colorLight.hex(i) }"
+    :style="{ backgroundColor: theme.dark ? colorDeep.hex(i) : colorLight.hex(i) }"
   )
     .flex.cursor-pointer(@click="g.show = !g.show")
 

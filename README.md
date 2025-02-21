@@ -4,10 +4,11 @@
 
 ## Gun-Vue: Peer-to-Peer Progressive Web App Toolkit
 
-**Gun-Vue** is an open-source toolkit for building **offline-first, peer-to-peer Progressive Web Apps (PWAs)**. It combines:  
-- [**Gun**](https://github.com/amark/gun), a browser-based graph database  
-- [**SEA**](https://gun.eco/docs/SEA), a browser-based cryptography layer for secure data and user authentication  
-- [**Vue**](https://github.com/vuejs/), a reactive JavaScript framework for creating dynamic user interfaces  
+**Gun-Vue** is an open-source toolkit for building **offline-first, peer-to-peer Progressive Web Apps (PWAs)**. It combines:
+
+- [**Gun**](https://github.com/amark/gun), a browser-based graph database
+- [**SEA**](https://gun.eco/docs/SEA), a browser-based cryptography layer for secure data and user authentication
+- [**Vue**](https://github.com/vuejs/), a reactive JavaScript framework for creating dynamic user interfaces
 
 With Gun-Vue, you can quickly create decentralized apps (dApps) using **pluggable UI components**, **reusable composables**, and a **2-line starter Relay** that can run on almost any hardware. A growing collection of demos and documentation makes it easy for newcomers to explore and build their own projects.
 
@@ -19,19 +20,15 @@ The code is organised into distinct layers under the [@gun-vue npmjs.com organis
 
 ## @gun-vue/app
 
-The main [gun-vue.js.org](https://gun-vue.js.org) web-site is a demo Gun-Vue SPA, which is also automatically built into a set of desktop apps as playground and example of what can be made with it today.
+The main [gun-vue.js.org](https://gun-vue.js.org) web-site is a demo Gun-Vue PWA.
 
 ### [Web app](https://gun-vue.js.org) hosted at GitHub pages and JS.org domain
 
 The app is accessible via the free for open source [js.org](https://js.org) subdomain since [Jan 2022](https://github.com/js-org/js.org/commit/56a145bb39e53c6d63edf63b26d331cf30c35061) and hosted at GitHub pages. It's built as a single HTML file that can be served from any domain or just opened as a local file. You can just press `Save Page As...` and have your local-first reactive p2p webapp with you everywhere.
 
-### [Desktop app releases](https://github.com/DeFUCC/gun-vue/releases) via GitHub Actions and Tauri
+### [Open source code](https://github.com/DeFUCC/gun-vue/tree/master/src) at a GitHub monorepo
 
-Whenever a new version of Gun-Vue is published, an automated action creates a new release draft with a full kit of lightweight native desktop apps for Windows, Mac OS and Linux with [Tauri](https://tauri.app) by a [GitHub Action](https://github.com/DeFUCC/gun-vue/actions/workflows/tauri.yml). Mobile apps are coming too. This is a very nice way to have Gun-Vue available in case of DNS interuptions. Local relay should become a part of it, especially once GUN Rust port is stable enougth to be somehow integrated into Tauri app structure. So it can be essentially a full GUN node in a <10Mb native app.
-
-### [Open source code](https://github.com/DeFUCC/gun-vue/tree/master/src) at GitHub [pnpm](https://pnpm.io) monorepo
-
-The code is cut into vertical slices as small interconnectable apps in the common [source folder](https://github.com/DeFUCC/gun-vue/tree/master/src).
+The code is cut into vertical slices as small interconnectable components building fun mini-apps.
 
 This means that each folder in the `src` directory is a convenient section of the entire codebase, holding a shared basic structure but having distinct functionality.
 
