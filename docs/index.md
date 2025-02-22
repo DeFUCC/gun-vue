@@ -39,7 +39,7 @@ features:
 
   - title: Pluggable Components
     details: With Gun-Vue, you can create and use custom pluggable components, making it simple to extend the functionality of your app and reuse components across different projects.
-    link: https://github.com/DeFUCC/gun-vue/tree/master/src/components
+    link: https://gun-vue.js.org/packages/components.html
     linkText: Explore Pluggable Components
 
   - title: Easy Integration

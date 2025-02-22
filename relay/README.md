@@ -1,4 +1,4 @@
-![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/relay.svg)
+<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/relay.svg" alt="@gun-vue relay logo" width="400" />
 
 # Gun-Vue: Relay
 
