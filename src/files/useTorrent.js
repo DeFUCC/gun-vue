@@ -35,8 +35,12 @@ export function useTorrent() {
 	})
 	let opfsRoot = null
 	let webTorrentClient = null
+	let filesDir = null
 
-
+	async function getFilesDirectory() {
+		const dir = await opfsRoot.getDirectoryHandle('files', { create: true })
+		return dir
+	}
 
 	function buildMagnetUri(infoHash) {
 		const encodedTrackers = trackers.value.map(t => `&tr=${encodeURIComponent(t)}`).join('')
@@ -49,7 +53,7 @@ export function useTorrent() {
 
 	async function getMetadata(filename) {
 		try {
-			const metaHandle = await opfsRoot.getFileHandle(`${filename}.meta.json`)
+			const metaHandle = await filesDir.getFileHandle(`${filename}.meta.json`)
 			const metaFile = await metaHandle.getFile()
 			const text = await metaFile.text()
 			return JSON.parse(text)
@@ -59,7 +63,7 @@ export function useTorrent() {
 	}
 
 	async function saveMetadata(filename, metadata) {
-		const metaHandle = await opfsRoot.getFileHandle(`${filename}.meta.json`, { create: true })
+		const metaHandle = await filesDir.getFileHandle(`${filename}.meta.json`, { create: true })
 		const writable = await metaHandle.createWritable()
 		await writable.write(JSON.stringify(metadata))
 		await writable.close()
@@ -68,6 +72,7 @@ export function useTorrent() {
 	async function init() {
 		try {
 			opfsRoot = await navigator.storage.getDirectory()
+			filesDir = await getFilesDirectory()
 			webTorrentClient = new WebTorrent()
 			initialized.value = true
 			await loadStoredFiles()
@@ -78,8 +83,8 @@ export function useTorrent() {
 	}
 
 	async function loadStoredFiles() {
-		if (!opfsRoot) return
-		for await (const [name] of opfsRoot.entries()) {
+		if (!filesDir) return
+		for await (const [name] of filesDir.entries()) {
 			if (name.endsWith('.meta.json')) continue // Skip metadata files
 			const metadata = await getMetadata(name)
 			if (!metadata) continue
@@ -131,16 +136,16 @@ export function useTorrent() {
 		if (fileData?.torrent) {
 			fileData.torrent.destroy()
 		}
-		await opfsRoot?.removeEntry(filename)
-		await opfsRoot?.removeEntry(`${filename}.meta.json`).catch(() => { })
+		await filesDir?.removeEntry(filename)
+		await filesDir?.removeEntry(`${filename}.meta.json`).catch(() => { })
 		files.delete(filename)
 	}
 
 	async function saveToOPFS(file) {
-		if (!opfsRoot) return null
+		if (!filesDir) return null
 		try {
 			const safeFileName = sanitizeFileName(file.name)
-			const fileHandle = await opfsRoot.getFileHandle(safeFileName, { create: true })
+			const fileHandle = await filesDir.getFileHandle(safeFileName, { create: true })
 			const writable = await fileHandle.createWritable()
 			await writable.write(file)
 			await writable.close()
@@ -160,9 +165,9 @@ export function useTorrent() {
 	}
 
 	async function loadFromOPFS(filename) {
-		if (!opfsRoot) return null
+		if (!filesDir) return null
 		try {
-			const fileHandle = await opfsRoot.getFileHandle(filename)
+			const fileHandle = await filesDir.getFileHandle(filename)
 			return await fileHandle.getFile()
 		} catch (e) {
 			console.error('Error loading from OPFS:', e)
