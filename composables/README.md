@@ -1,6 +1,4 @@
-<a href="https://gun-vue.js.org">
-  <img src="https://gun-vue.js.org/media/svg/composables.svg" alt="@gun-vue composables logo" width="500" />
-</a>
+<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/composables.svg" alt="@gun-vue composables logo" width="750" />
 
 # Gun-Vue: Composables
 
