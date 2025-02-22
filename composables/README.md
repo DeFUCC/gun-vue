@@ -56,7 +56,7 @@ const { account, auth, leave } = useAccount();
 </div>
 ```
 
-### SSG environment notice (Nuxt, VitePress etc.)
+### SSR/SSG (Nuxt, VitePress, etc.)
 
 Gun-Vue is client-side only and may cause errors during SSR/SSG builds. To avoid issues, consider one of these approaches:
 
