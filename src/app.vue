@@ -77,21 +77,6 @@ const openShare = ref(false)
 <template lang="pug">
 .app-container
 
-  .Bottom.flex.w-full.items-stretch.justify-stretch.px-1.pt-0.shadow-lg.z-3000.overflow-x-scroll.overflow-y-visible.transition.bg-light-900.dark-bg-dark-200.w-full.h-16.sticky.bottom-0.text-2xl.bg-op-80.dark-bg-op-80.backdrop-blur(
-    style="flex: 0 0 auto" 
-  )
-    router-link(to="/")
-      .i-ph-house
-    router-link(to="/users/")
-      .i-ph-users
-    a.cursor-pointer(@click="openShare = !openShare" :class="{ 'router-link-active': openShare }")
-      .i-ion-share-outline
-    router-link(to="/private/")
-      .i-ph-chats-light
-    router-link(to="/settings/")
-      .i-la-cog
-
-
   .flex.flex-col.z-400.sticky.top-0#titlebars.Top
     .flex.flex-wrap.items-center.z-40.p-1.gap-2.bg-light-100.dark-bg-dark-200.shadow-xl.w-full.bg-cover( 
       data-tauri-drag-region="true"
@@ -118,6 +103,21 @@ const openShare = ref(false)
       transition(name="fade", mode="out-in")
         keep-alive(:exclude="['space']" :max="10")
           component(:is="Component")
+
+  .Bottom.flex.w-full.items-stretch.justify-stretch.px-1.pt-0.shadow-lg.z-3000.overflow-x-scroll.overflow-y-visible.transition.bg-light-900.dark-bg-dark-200.w-full.h-16.sticky.bottom-0.text-2xl.bg-op-80.dark-bg-op-80.backdrop-blur(
+    style="flex: 0 0 auto" 
+  )
+    router-link(to="/")
+      .i-ph-house
+    router-link(to="/users/")
+      .i-ph-users
+    a.cursor-pointer(@click="openShare = !openShare" :class="{ 'router-link-active': openShare }")
+      .i-ion-share-outline
+    router-link(to="/private/")
+      .i-ph-chats-light
+    router-link(to="/settings/")
+      .i-la-cog
+
 </template>
 
 
@@ -157,7 +157,7 @@ const openShare = ref(false)
   @apply bg-light-100 dark-bg-dark-900;
 }
 
-a {
+.Bottom a {
   @apply op-80 hover-op-100 flex-1 flex items-center justify-center transition bg-light-900 dark-bg-dark-200
 }
 
