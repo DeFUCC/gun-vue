@@ -9,22 +9,31 @@ Vue 3 Composition API `use` functions for [**Gun-Vue: The Peer-to-Peer Web App T
 > **Note**: This project is in its early stages. Not all features are fully implemented or reliably tested. [Contributions are welcome!](https://github.com/DeFUCC/gun-vue/tree/master?tab=readme-ov-file#contributing)
 
 ## Composables
+
+### Identity & Access
 - [**User**](https://github.com/DeFUCC/gun-vue/tree/master/src/user)  - the `gun.user()` system management
 - **Account** - user profile interface
-- **Color** - the `color-hash` interface to generate colors for hashes and pubs
+- **Password** - some elaborations on reimagining password system in a p2p graph environment
+
+### Data, Storage, & Networking
 - **Crypto** - the main cryptographic primitives like e2e encrypted messaging and more
 - **Date Tree** - the very performant concept of Date Tree graphs from [gun-util](https://github.com/diatche/gun-util#DateTree) made reactive and easy to use
+- **Relay** - Gun relay peer connection monitoring
 - **File** - some bindings to manage file uploads and downloads
 - **Hash** - everything you need to hash data and work with the hashes in a reliable way (i.e. URL-safe conversion)
-- **Mouse** - some basic bindings to reliably locate mouse pointer in an SVG - may be useful for many online games
-- **Password** - some elaborations on reimagining password system in a p2p graph environment
-- **Relay** - Gun relay peer connection monitoring
-- **Room** - private signed collaborative spaces with a certificate system for access management. (TBD)
-- **Space** - a simple demo of showing working with private user data in a shared space
-- **Posts** - hashed immutable data in the root of the db as a fun experiment, but with deep observations about freedom of speech and ways to explore the vastness of the public graph space available with Gun
-- **Chat** - basic public chat
-- **Rooms** - cryptographic data collections
+
+### Content & Collaboration
+- **Chat** - Public group chat
 - **Dictionary** - we find ourselves in great power if we have verified concepts to collaborate with
+- **Private Chat** - E2EE Messaging
+- **Posts** - hashed immutable data in the root of the db as a fun experiment, but with deep observations about freedom of speech and ways to explore the vastness of the public graph space available with Gun
+- **Room** - private signed collaborative spaces with a certificate system for access management. (TBD)
+- **Rooms** - cryptographic data collections
+- **Space** - a simple demo of showing working with private user data in a shared space
+
+### UI & Visual
+- **Color** - the `color-hash` interface to generate colors for hashes and pubs
+- **Mouse** - some basic bindings to reliably locate mouse pointer in an SVG - may be useful for many online games
 
 **... and more!**
 
