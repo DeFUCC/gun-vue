@@ -1,14 +1,15 @@
-# Gun DB + Vue UI composables collection
+<a href="https://gun-vue.js.org">
+  <img src="https://gun-vue.js.org/media/svg/composables.svg" alt="@gun-vue composables logo" width="500" />
+</a>
 
-A Composition API `use` functions set for Gun.js and Vue 3 reactivity system
+# Gun-Vue: Composables
 
-![@gun-vue composables logo](https://gun-vue.js.org/media/svg/composables.svg)
+Vue 3 Composition API `use` functions for [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue)
 
-[gun-vue.js.org](https://gun-vue.js.org)
+> **Note**: This project is in its early stages. Not all features are fully implemented or reliably tested. [Contributions are welcome!](https://github.com/DeFUCC/gun-vue/tree/master?tab=readme-ov-file#contributing)
 
-It's just the beginning and not all the functions are reliably implemented yet. So you're welcome to collaborate on existing and new features of the library.
-
-- **User** - the `gun.user()` system management
+## Composables
+- [**User**](https://github.com/DeFUCC/gun-vue/tree/master/src/user)  - the `gun.user()` system management
 - **Account** - user profile interface
 - **Color** - the `color-hash` interface to generate colors for hashes and pubs
 - **Crypto** - the main cryptographic primitives like e2e encrypted messaging and more
@@ -20,18 +21,14 @@ It's just the beginning and not all the functions are reliably implemented yet. 
 - **Relay** - Gun relay peer connection monitoring
 - **Room** - private signed collaborative spaces with a certificate system for access management. (TBD)
 - **Space** - a simple demo of showing working with private user data in a shared space
-- **Posts** - hashed immutable data in the root of the db as a fun experiment, but with deep observations about freedom of speach and ways to explore the vastness of the public graph space available with Gun
+- **Posts** - hashed immutable data in the root of the db as a fun experiment, but with deep observations about freedom of speech and ways to explore the vastness of the public graph space available with Gun
 - **Chat** - basic public chat
 - **Rooms** - cryptographic data collections
 - **Dictionary** - we find ourselves in great power if we have verified concepts to collaborate with
 
-... and more!
+**... and more!**
 
-**And there's more!**
-
-[READ FULL DOCUMENTATION ONLINE](https://gun-vue.js.org/docs)
-
-## How to use
+## Setup
 
 1. Install the library:
 
@@ -59,11 +56,13 @@ const { account, auth, leave } = useAccount();
 </div>
 ```
 
-#### SSG environment notice (Nuxt, Vitepress etc.)
+### SSG environment notice (Nuxt, VitePress etc.)
 
-Gun-Vue is client-side only and it may throw errors being executed during the SSG/SSR build process. One way to deal with it is to make the your GUN-enabled components asynchronous.
+Gun-Vue is client-side only and may cause errors during SSR/SSG builds. To avoid issues, consider one of these approaches:
 
-### 1. Make your component async
+> **Note**: We plan to refactor the code to be more usable and tree-shakeable in SSG environments. **Help needed!**
+
+#### Approach A: Make your component async
 
 ```vue
 <script setup async>
@@ -77,7 +76,7 @@ Gun-Vue is client-side only and it may throw errors being executed during the SS
 </template>
 ```
 
-### 2. Put it to load only on client side.
+#### Approach B: Load only on the client side
 
 ```html
 <ClientOnly>
@@ -87,8 +86,4 @@ Gun-Vue is client-side only and it may throw errors being executed during the SS
 </ClientOnly>
 ```
 
-This should prevent any Gun-Vue related code from running during build stage.
-
-- [ ] Refactor the code to be more useable and tree-shakeable in SSG environment. Help needed!
-
-![](https://gun-vue.js.org/composables/arkit.svg)
+This prevents Gun-Vue from running during build time.
