@@ -12,6 +12,45 @@ import { useStorage } from "@vueuse/core";
 
 import WebTorrent from "webtorrent/dist/webtorrent.min.js"
 
+// Memory-based fallback storage
+class MemoryFileSystem {
+	constructor() {
+		this.files = new Map()
+		this.metadata = new Map()
+	}
+
+	async getDirectoryHandle() {
+		return this // self-reference for compatibility
+	}
+
+	async getFileHandle(name, options = {}) {
+		if (!this.files.has(name) && options.create) {
+			this.files.set(name, null)
+		}
+		return {
+			createWritable: async () => ({
+				write: async (data) => {
+					this.files.set(name, data)
+				},
+				close: async () => { }
+			}),
+			getFile: async () => {
+				const data = this.files.get(name)
+				return new File([data], name)
+			}
+		}
+	}
+
+	async removeEntry(name) {
+		this.files.delete(name)
+		this.metadata.delete(name)
+	}
+
+	entries() {
+		return Array.from(this.files.keys()).map(name => [name])
+	}
+}
+
 export const defaultTrackers = [
 	'udp://tracker.leechers-paradise.org:6969',
 	'udp://tracker.coppersurfer.tk:6969',
@@ -36,6 +75,54 @@ export function useTorrent() {
 	let opfsRoot = null
 	let webTorrentClient = null
 	let filesDir = null
+
+	async function requestStoragePermission() {
+		try {
+			// Request persistent storage permission
+			const persist = await navigator.storage.persist()
+			if (!persist) {
+				console.warn('Storage persistence denied')
+			}
+			// Check if we have enough storage quota
+			const estimate = await navigator.storage.estimate()
+			console.log(`Storage quota: ${estimate.quota} bytes`)
+			console.log(`Storage usage: ${estimate.usage} bytes`)
+			return true
+		} catch (e) {
+			console.error('Storage permission error:', e)
+			return false
+		}
+	}
+
+	async function initStorage() {
+		try {
+			// Check if we're in private/incognito mode
+			const storageTest = await navigator.storage.estimate();
+			if (!storageTest.quota) {
+				throw new Error('Storage quota is 0, likely in private mode');
+			}
+
+			if ('storage' in navigator && 'getDirectory' in navigator.storage) {
+				const permission = await navigator.permissions.query({
+					name: 'persistent-storage'
+				});
+
+				if (permission.state === 'granted' || permission.state === 'prompt') {
+					await requestStoragePermission();
+					opfsRoot = await navigator.storage.getDirectory();
+					filesDir = await getFilesDirectory();
+					return true;
+				}
+			}
+
+			throw new Error('Storage API not available or permission denied');
+		} catch (e) {
+			console.warn('OPFS not available, falling back to in-memory storage:', e);
+			opfsRoot = new MemoryFileSystem();
+			filesDir = opfsRoot;
+			return true;
+		}
+	}
 
 	async function getFilesDirectory() {
 		const dir = await opfsRoot.getDirectoryHandle('files', { create: true })
@@ -71,14 +158,48 @@ export function useTorrent() {
 
 	async function init() {
 		try {
-			opfsRoot = await navigator.storage.getDirectory()
-			filesDir = await getFilesDirectory()
+			await initStorage()
 			webTorrentClient = new WebTorrent()
+			// Add global download progress listener
+			webTorrentClient.on('download', (bytes) => {
+				const activeTorrent = webTorrentClient.torrents[webTorrentClient.torrents.length - 1]
+				if (activeTorrent) {
+					Object.assign(downloadStatus, {
+						done: activeTorrent.done,
+						progress: activeTorrent.progress,
+						downloaded: activeTorrent.downloaded,
+						downloadSpeed: activeTorrent.downloadSpeed
+					})
+				}
+			})
 			initialized.value = true
 			await loadStoredFiles()
 		} catch (e) {
 			console.error('Torrent system initialization failed:', e)
 			return false
+		}
+	}
+
+	async function saveDownloadedFile(file, infoHash) {
+		const safeFileName = sanitizeFileName(file.name)
+		try {
+			const fileHandle = await filesDir.getFileHandle(safeFileName, { create: true })
+			const writable = await fileHandle.createWritable()
+			const buffer = await file.arrayBuffer()
+			await writable.write(buffer)
+			await writable.close()
+
+			await saveMetadata(safeFileName, {
+				originalName: file.name,
+				type: file.type || 'application/octet-stream',
+				lastModified: Date.now(),
+				infoHash
+			})
+
+			return safeFileName
+		} catch (e) {
+			console.error('Error caching downloaded file:', e)
+			return null
 		}
 	}
 
@@ -94,14 +215,16 @@ export function useTorrent() {
 				const newFile = new File([file], metadata.originalName, {
 					type: metadata.type
 				})
-				await shareFile(newFile, name)
+				// If this was a downloaded file, try to use its original infoHash
+				const options = metadata.infoHash ? { infoHash: metadata.infoHash } : undefined
+				await shareFile(newFile, name, options)
 			}
 		}
 	}
 
-	async function shareFile(file, name) {
+	async function shareFile(file, name, options = {}) {
 		return new Promise((resolve) => {
-			webTorrentClient.seed([file], (torrent) => {
+			webTorrentClient.seed([file], options, (torrent) => {
 				files.set(name, {
 					file,
 					torrent,
@@ -175,25 +298,76 @@ export function useTorrent() {
 		}
 	}
 
+	async function findFileByInfoHash(infoHash) {
+		if (!filesDir) return null
+
+		// Search through all files and their metadata
+		for await (const [name] of filesDir.entries()) {
+			if (name.endsWith('.meta.json')) continue
+			const metadata = await getMetadata(name)
+			if (metadata?.infoHash === infoHash) {
+				const file = await loadFromOPFS(name)
+				if (file) {
+					// Create an enhanced File object with additional WebTorrent-like properties
+					const enhancedFile = new File([file], metadata.originalName, {
+						type: metadata.type
+					})
+					// Add WebTorrent-specific properties
+					enhancedFile.path = metadata.originalName
+					enhancedFile.length = file.size
+					enhancedFile.progress = 1
+					enhancedFile.downloaded = file.size
+					// Add blob method to cached file
+					enhancedFile.blob = async () => new Blob([await enhancedFile.arrayBuffer()], { type: enhancedFile.type })
+					return enhancedFile
+				}
+			}
+		}
+		return null
+	}
+
 	async function download(id) {
 		if (!initialized.value) await init()
 
+		// First check if we already have this file cached
+		const cachedFile = await findFileByInfoHash(id)
+		if (cachedFile) {
+			console.log('File found in cache, returning without download')
+			return [cachedFile] // Return as array to match WebTorrent's files array format
+		}
+
 		return new Promise(async (resolve) => {
 			function handler(torrent) {
-				const torrentFiles = torrent.files
-				webTorrentClient.on('download', (torrent) => {
-					Object.assign(downloadStatus, {
-						done: torrent.done,
-						progress: torrent.progress,
-						downloaded: torrent.downloaded,
-						downloadSpeed: torrent.downloadSpeed
+				const torrentFiles = torrent.files.map(file => {
+					// Add blob method to each file
+					file.blob = () => new Promise((resolve, reject) => {
+						// Create a stream from the file
+						const chunks = []
+						const stream = file.createReadStream()
+
+						stream.on('data', chunk => chunks.push(chunk))
+						stream.on('end', () => {
+							const blob = new Blob(chunks, { type: file.type || 'application/octet-stream' })
+							resolve(blob)
+						})
+						stream.on('error', reject)
 					})
+					return file
 				})
+
+				// Save files when download completes
+				torrent.on('done', async () => {
+					for (const file of torrentFiles) {
+						await saveDownloadedFile(file, torrent.infoHash)
+					}
+				})
+
 				resolve(torrentFiles)
 			}
-			let old = await webTorrentClient.get(id)
-			if (old) {
-				handler(old)
+
+			let existing = await webTorrentClient.get(id)
+			if (existing) {
+				handler(existing)
 			} else {
 				const magnetUri = buildMagnetUri(id)
 				webTorrentClient.add(magnetUri, handler)
