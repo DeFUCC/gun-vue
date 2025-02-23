@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.4
+
+### Patch Changes
+
+- Files major upgrade and better UI
+
 ## 0.22.3
 
 ### Patch Changes
