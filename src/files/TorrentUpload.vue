@@ -49,7 +49,7 @@ const showFile = ref(false)
     @dragleave.prevent="dragover = false"
     @drop.prevent="handleFiles($event); dragover = false"
   )
-    .i-la-file-upload
+    .i-la-file
     input(type="file" accept="*" multiple @change="handleFiles" style="display:none")
 
   button.button(@click="showFiles = true")

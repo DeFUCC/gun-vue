@@ -1,5 +1,5 @@
 /**
- * File handling functions
+ * File sync functions with WebTorrent and OPFS
  * @module Torrent
  * @group Files
  * */
