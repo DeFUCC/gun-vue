@@ -66,9 +66,9 @@ import { theme } from '../ui/useTheme'
 
   .border-1.shadow-lg.rounded-lg.p-2.flex.items-center.gap-2
     ui-dark.button
-    .text-lg Dark Mode
+    button.text-lg(@click="") Dark Mode
     .flex-auto 
-    input.scale-120.mr-2(type="checkbox" v-model="theme.dark" switch)
+    input.mr-2(type="checkbox" v-model="theme.dark" switch)
 
   .flex.flex-col.border-1.shadow-lg.rounded-lg
     .p-2.flex.items-center.flex-wrap.w-full.gap-2  
