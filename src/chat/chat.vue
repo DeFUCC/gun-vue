@@ -3,7 +3,7 @@ import { ChatTopics } from '../components'
 </script>
 
 <template lang="pug">
-.flex.relative.items-stretch.bg-dark-50.dark-bg-dark-200.bg-opacity-40.max-h-90vh.min-h-90vh
+.flex.relative.items-stretch.bg-dark-50.dark-bg-dark-200.bg-opacity-40
   chat-topics(@topic="$router.push(`/chat/${$event}`)")
   router-view(v-slot="{ Component }")
     transition(

@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/repo",
-	"version": "0.22.3",
+	"version": "0.22.4",
 	"private": true,
 	"homepage": "https://gun-vue.js.org",
 	"repository": {
@@ -46,5 +46,17 @@
 			"commit": true,
 			"tag": true
 		}
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"bufferutil",
+			"core-js",
+			"esbuild",
+			"fs-native-extensions",
+			"node-datachannel",
+			"utf-8-validate",
+			"utp-native",
+			"vue-demi"
+		]
 	}
 }

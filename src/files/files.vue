@@ -18,6 +18,4 @@ import FileHash from './FileHash.vue';
       keep-alive
         component.flex-auto(:is="Component")
 
-
-  file-hash
 </template>
