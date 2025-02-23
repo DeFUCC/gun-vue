@@ -62,8 +62,8 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 </script>
 
 <template lang="pug">
-.flex.flex-col.overflow-y-scroll(
-  style="flex: 1000 1 auto"
+.flex.flex-col(
+  style="flex: 1 1 auto"
   :style="{ ...bg }"
   )
   ui-layer(
@@ -71,9 +71,9 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
     @close="selectedUser.pub = ''"
     )
     account-home(v-if="selectedUser?.pub" :pub="selectedUser.pub" )
-  .px-4.py-6.flex.flex-wrap.items-center.text-center
+  .backdrop-blur.z-100.bg-light-300.bg-op-30.dark-bg-dark-400.dark-bg-op-50.px-4.py-3.flex.flex-wrap.items-center.text-center.sticky.top-0
     .flex-1.ml-2.font-bold {{ currentChat }}
   chat-messages(:messages="sorted")
-  .p-4.bg-dark-50.bg-opacity-80.flex.gap-2.flex.sticky.bottom-0
+  .p-4.bg-dark-50.bg-opacity-80.flex.gap-2.sticky.bottom-0
     chat-input.flex-auto(@submit="send($event)")
 </template>
