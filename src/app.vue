@@ -82,12 +82,15 @@ const openShare = ref(false)
       data-tauri-drag-region="true"
       :style="{ ...bg }"
       )
-      room-button.flex-auto(
+      room-button(
         @room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)"
         @browse="$router.push(`/${$event}/`)" 
         :key="currentRoom.pub"
         :panel="false"
         )
+      .flex-auto.justify-center.flex
+        button.button(@click="openShare = !openShare" :class="{ 'router-link-active': openShare }")
+          .i-ion-share-outline
       user-icon(
         :size="40"
         @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
@@ -95,7 +98,7 @@ const openShare = ref(false)
         @chat="$router.push(`/private/${$event}`)"
         )
 
-  .flex.flex-col.fixed.bottom-16.right-4.left-4.z-1000.gap-2.items-center.transition(v-if="openShare")
+  .flex.flex-col.fixed.top-16.right-4.left-4.z-1000.gap-2.items-center.transition(v-if="openShare")
     qr-share(:key="route.path" )
 
   .grid.Main
@@ -113,9 +116,6 @@ const openShare = ref(false)
     router-link(to="/private/")
       .i-ph-chats-light
       span MESSAGES
-    a.cursor-pointer(@click="openShare = !openShare" :class="{ 'router-link-active': openShare }")
-      .i-ion-share-outline
-      span SHARE
     router-link(to="/files/")
       .i-ph-files
       span FILES
