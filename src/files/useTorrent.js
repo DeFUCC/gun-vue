@@ -63,18 +63,23 @@ export const defaultTrackers = [
 
 export const trackers = useStorage('trackers', defaultTrackers)
 
+export const activeFile = ref()
+
+const files = reactive(new Map())
+const initialized = ref(false)
+
+
+const downloadStatus = reactive({
+	done: false,
+	progress: 0,
+	downloadSpeed: 0,
+	downloaded: 0,
+})
+let opfsRoot = null
+let webTorrentClient = null
+let filesDir = null
+
 export function useTorrent() {
-	const files = reactive(new Map())
-	const initialized = ref(false)
-	const downloadStatus = reactive({
-		done: false,
-		progress: 0,
-		downloadSpeed: 0,
-		downloaded: 0,
-	})
-	let opfsRoot = null
-	let webTorrentClient = null
-	let filesDir = null
 
 	async function requestStoragePermission() {
 		try {

@@ -77,7 +77,7 @@ const openShare = ref(false)
 <template lang="pug">
 .app-container
 
-  .flex.flex-col.z-400.sticky.top-0#titlebars.Top
+  .flex.flex-col.z-400#titlebars.Top
     .flex.flex-wrap.items-center.z-40.p-1.gap-2.bg-light-100.dark-bg-dark-200.shadow-xl.w-full.bg-cover( 
       data-tauri-drag-region="true"
       :style="{ ...bg }"
@@ -104,19 +104,24 @@ const openShare = ref(false)
         keep-alive(:exclude="['space']" :max="10")
           component(:is="Component")
 
-  .Bottom.flex.w-full.items-stretch.justify-stretch.px-1.pt-0.shadow-lg.z-3000.overflow-x-scroll.overflow-y-visible.transition.bg-light-900.dark-bg-dark-200.w-full.h-16.sticky.bottom-0.text-2xl.bg-op-80.dark-bg-op-80.backdrop-blur(
+  .Bottom.flex.w-full.items-stretch.justify-stretch.px-1.pt-0.shadow-lg.z-3000.transition.bg-light-900.dark-bg-dark-200.w-full.text-2xl.bg-op-80.dark-bg-op-80.backdrop-blur(
     style="flex: 0 0 auto" 
   )
     router-link(to="/")
       .i-ph-house
-    router-link(to="/users/")
-      .i-ph-users
-    a.cursor-pointer(@click="openShare = !openShare" :class="{ 'router-link-active': openShare }")
-      .i-ion-share-outline
+      span ROOM
     router-link(to="/private/")
       .i-ph-chats-light
+      span MESSAGES
+    a.cursor-pointer(@click="openShare = !openShare" :class="{ 'router-link-active': openShare }")
+      .i-ion-share-outline
+      span SHARE
+    router-link(to="/files/")
+      .i-ph-files
+      span FILES
     router-link(to="/settings/")
       .i-la-cog
+      span SETTINGS
 
 </template>
 
@@ -125,8 +130,8 @@ const openShare = ref(false)
 .app-container {
   display: grid;
   width: 100%;
-  height: 100svh;
-  overflow-x: hidden;
+  max-height: 100svh;
+  overflow: hidden;
   overscroll-behavior-y: none;
   grid-template-columns: fit-content(20%) auto auto;
   grid-template-rows: 0.1fr 10fr auto;
@@ -139,6 +144,8 @@ const openShare = ref(false)
 
 .Main {
   grid-area: Main;
+  overflow-y: scroll;
+  overscroll-behavior-y: none;
 }
 
 .Footer {
@@ -153,19 +160,24 @@ const openShare = ref(false)
   grid-area: Top;
 }
 
-.router-link-active {
+/* .router-link-active {
   @apply bg-light-100 dark-bg-dark-900;
-}
+} */
 
 .Bottom a {
-  @apply op-80 hover-op-100 flex-1 flex items-center justify-center transition bg-light-900 dark-bg-dark-200
+  @apply op-80 hover-op-100 flex-1 flex flex-col items-center justify-center p-4 text-xl rounded cursor-pointer transition gap-1
 }
 
-.link {
-  @apply p-2 text-xl rounded cursor-pointer flex items-center transition;
+.Bottom a span {
+  @apply text-xs op-60 transition;
 }
 
-.link:hover {
+.Bottom a:hover span {
+  @apply op-100;
+}
+
+
+.Bottom a:hover {
   @apply bg-light-600 dark-bg-dark-900;
 }
 </style>

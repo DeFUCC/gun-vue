@@ -3,9 +3,12 @@ import { useGun } from '../gun/useGun';
 import { currentRoom } from '../room/useRoom';
 import { useUser } from '../user/useUser';
 import { reactive } from 'vue'
-import { prettyBytes } from '../composables';
+import { activeFile, prettyBytes } from '../composables';
 import { AccountAvatar } from '../all-components';
 import TorrentUpload from './TorrentUpload.vue';
+import FileShare from './FileShare.vue';
+import FileList from './FileList.vue';
+import FileInfo from './FileInfo.vue';
 
 function addFile(data) {
 
@@ -43,7 +46,11 @@ function removeFile(infoHash) {
 
 <template lang='pug'>
 .p-4.flex.flex-col.gap-2
-  TorrentUpload(@uploaded="addFile($event)")
+  //- TorrentUpload(@uploaded="addFile($event)")
+  FileShare(@uploaded="activeFile = $event")
+  FileList(@file="activeFile = $event")
+  ui-layer(:open="!!activeFile" @close="activeFile = null")
+    FileInfo(:file="activeFile")
   .flex.flex-col.gap-2
     router-link.p-2.flex.flex-wrap.items-center.gap-2.break-all.bg-light-300.dark-bg-dark-400.rounded(
       v-for="(file, f) in files" :key="f"
