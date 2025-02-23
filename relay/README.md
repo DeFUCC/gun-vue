@@ -2,9 +2,11 @@
 
 # Gun-Vue: Relay
 
-A simple gun.js relay peer for Node.js.
+[GitHub](https://github.com/DeFUCC/gun-vue/tree/master/relay) •
+[npm](https://www.npmjs.com/package/@gun-vue/relay) •
+[js.org](https://gun-vue.js.org/packages/relay.html)
 
-It enables decentralized peer-to-peer web apps built with [gun.js](https://github.com/amark/gun) to connect and synchronize data.
+A simple gun.js relay peer for Node.js. It enables decentralized peer-to-peer web apps built with [gun.js](https://github.com/amark/gun) to connect and synchronize data.
 
 This package is part of [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue)
 
@@ -26,7 +28,7 @@ Installs on any device or service that runs Node.js:
 
 ---
 
-## Installation
+## How-to Install
 
 ### Requirements
 
