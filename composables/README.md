@@ -1,37 +1,41 @@
-# Gun DB + Vue UI composables collection
+<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/composables.svg" alt="@gun-vue composables logo" width="750" />
 
-A Composition API `use` functions set for Gun.js and Vue 3 reactivity system
+# Gun-Vue: Composables
 
-![@gun-vue composables logo](https://gun-vue.js.org/media/svg/composables.svg)
+Vue 3 Composition API `use` functions for [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue)
 
-[gun-vue.js.org](https://gun-vue.js.org)
+> **Note**: This project is in its early stages. Not all features are fully implemented or reliably tested. [Contributions are welcome!](https://github.com/DeFUCC/gun-vue/tree/master?tab=readme-ov-file#contributing)
 
-It's just the beginning and not all the functions are reliably implemented yet. So you're welcome to collaborate on existing and new features of the library.
+## Composables
 
-- **User** - the `gun.user()` system management
+### Identity & Access
+- [**User**](https://github.com/DeFUCC/gun-vue/tree/master/src/user)  - the `gun.user()` system management
 - **Account** - user profile interface
-- **Color** - the `color-hash` interface to generate colors for hashes and pubs
+- **Password** - some elaborations on reimagining password system in a p2p graph environment
+
+### Data, Storage, & Networking
 - **Crypto** - the main cryptographic primitives like e2e encrypted messaging and more
 - **Date Tree** - the very performant concept of Date Tree graphs from [gun-util](https://github.com/diatche/gun-util#DateTree) made reactive and easy to use
+- **Relay** - Gun relay peer connection monitoring
 - **File** - some bindings to manage file uploads and downloads
 - **Hash** - everything you need to hash data and work with the hashes in a reliable way (i.e. URL-safe conversion)
-- **Mouse** - some basic bindings to reliably locate mouse pointer in an SVG - may be useful for many online games
-- **Password** - some elaborations on reimagining password system in a p2p graph environment
-- **Relay** - Gun relay peer connection monitoring
-- **Room** - private signed collaborative spaces with a certificate system for access management. (TBD)
-- **Space** - a simple demo of showing working with private user data in a shared space
-- **Posts** - hashed immutable data in the root of the db as a fun experiment, but with deep observations about freedom of speach and ways to explore the vastness of the public graph space available with Gun
-- **Chat** - basic public chat
-- **Rooms** - cryptographic data collections
+
+### Content & Collaboration
+- **Chat** - Public group chat
 - **Dictionary** - we find ourselves in great power if we have verified concepts to collaborate with
+- **Private Chat** - E2EE Messaging
+- **Posts** - hashed immutable data in the root of the db as a fun experiment, but with deep observations about freedom of speech and ways to explore the vastness of the public graph space available with Gun
+- **Room** - private signed collaborative spaces with a certificate system for access management. (TBD)
+- **Rooms** - cryptographic data collections
+- **Space** - a simple demo of showing working with private user data in a shared space
 
-... and more!
+### UI & Visual
+- **Color** - the `color-hash` interface to generate colors for hashes and pubs
+- **Mouse** - some basic bindings to reliably locate mouse pointer in an SVG - may be useful for many online games
 
-**And there's more!**
+**... and more!**
 
-[READ FULL DOCUMENTATION ONLINE](https://gun-vue.js.org/docs)
-
-## How to use
+## How-to Use
 
 1. Install the library:
 
@@ -59,11 +63,13 @@ const { account, auth, leave } = useAccount();
 </div>
 ```
 
-#### SSG environment notice (Nuxt, Vitepress etc.)
+### SSR/SSG (Nuxt, VitePress, etc.)
 
-Gun-Vue is client-side only and it may throw errors being executed during the SSG/SSR build process. One way to deal with it is to make the your GUN-enabled components asynchronous.
+Gun-Vue is client-side only and may cause errors during SSR/SSG builds. To avoid issues, consider one of these approaches:
 
-### 1. Make your component async
+> **Note**: We plan to refactor the code to be more usable and tree-shakeable in SSG environments. **Help needed!**
+
+#### Approach A: Make your component async
 
 ```vue
 <script setup async>
@@ -77,7 +83,7 @@ Gun-Vue is client-side only and it may throw errors being executed during the SS
 </template>
 ```
 
-### 2. Put it to load only on client side.
+#### Approach B: Load only on the client side
 
 ```html
 <ClientOnly>
@@ -87,8 +93,4 @@ Gun-Vue is client-side only and it may throw errors being executed during the SS
 </ClientOnly>
 ```
 
-This should prevent any Gun-Vue related code from running during build stage.
-
-- [ ] Refactor the code to be more useable and tree-shakeable in SSG environment. Help needed!
-
-![](https://gun-vue.js.org/composables/arkit.svg)
+This prevents Gun-Vue from running during build time.
