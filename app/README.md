@@ -1,6 +1,12 @@
-![@gun-vue demo logo](https://gun-vue.js.org/media/svg/demo.svg)
+<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/demo.svg" alt="@gun-vue demo logo" width="400" />
 
-# Single page @gun-vue application build with Vite
+# Gun-Vue: Demo App
+
+A Single Page App built with Vite, demonstrating the features and functionality of [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue)
+
+> **Note**: This project is in its early stages. Not all features are fully implemented or reliably tested. [Contributions are welcome!](https://github.com/DeFUCC/gun-vue/tree/master?tab=readme-ov-file#contributing)
+
+---
 
 A starter GUN client built with Vite plus some very useful plugins. With local express server to run Gun db at your dev machine.
 
