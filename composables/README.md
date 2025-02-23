@@ -35,7 +35,7 @@ Vue 3 Composition API `use` functions for [**Gun-Vue: The Peer-to-Peer Web App T
 
 **... and more!**
 
-## Setup
+## How-to Use
 
 1. Install the library:
 
