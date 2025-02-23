@@ -1,12 +1,12 @@
-# Gun-Vue is a library of reusable components for Gun built with Vue.
+<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/components.svg" alt="@gun-vue components logo" width="750" />
 
-It enables eager web developers to build p2p apps for their communities all over the world, free and open source.
+# Gun-Vue: Components
 
-![@gun-vue components logo](https://gun-vue.js.org/media/svg/components.svg)
+Reusable Vue 3 Components for [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue)
 
-[gun-vue.js.org](https://gun-vue.js.org)
+> **Note**: This project is in its early stages. Not all features are fully implemented or reliably tested. [Contributions are welcome!](https://github.com/DeFUCC/gun-vue/tree/master?tab=readme-ov-file#contributing)
 
-## How to install?
+## How-to install
 
 Gun-Vue is distributed as a regular NPM package and may be used in any Vue 3 project.
 
