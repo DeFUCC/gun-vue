@@ -5,12 +5,13 @@ import { useTorrent } from './useTorrent';
 import { QrShow, FileCard, UiLayer } from '../components'
 import { prettyBytes } from '../composables';
 
-const { files, initialized, upload, deleteFile, init } = useTorrent()
+const { files, initialized, upload, deleteFile, init, clearFiles, clearOPFS } = useTorrent()
 const showFiles = ref(false)
 const activeFile = ref(null)
 const dragover = ref(false)
 
 const emit = defineEmits(['uploaded', 'url'])
+
 
 onMounted(init)
 
@@ -57,7 +58,16 @@ const showFile = ref(false)
 
   ui-layer(:open="showFiles" @close="showFiles = false")
     .flex.flex-col.gap-2.p-4
-      .text-xl.font-bold Shared files
+      .flex.flex-col.gap-2
+        .flex.items-center.gap-2
+          .text-xl.font-bold Shared files
+          .flex-1
+          button.button.p-2.gap-2(@click="clearFiles")
+            .i-la-folder-minus
+            .p-0 Clear files
+          button.button.p-2.gap-2(@click="clearOPFS")
+            .i-la-trash
+            .p-0 Clear OPFS
       template(v-for="[name, data] in files" :key="name")
         .flex.gap-2.items-center.p-2.bg-light-100.dark-bg-dark-400.rounded.cursor-pointer(
           @click="activeFile = data"

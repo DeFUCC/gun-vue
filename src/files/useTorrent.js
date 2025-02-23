@@ -375,6 +375,53 @@ export function useTorrent() {
 		})
 	}
 
+	async function clearFiles() {
+		if (!filesDir) return
+
+		// Stop all active torrents first
+		for (const [filename, fileData] of files) {
+			if (fileData?.torrent) {
+				fileData.torrent.destroy()
+			}
+		}
+
+		// Clear the files Map
+		files.clear()
+
+		try {
+			// Clear the files directory
+			for await (const [name] of filesDir.entries()) {
+				await filesDir.removeEntry(name)
+			}
+			console.log('Files directory cleared successfully')
+		} catch (error) {
+			console.error('Error clearing files directory:', error)
+			throw error
+		}
+	}
+
+	async function clearOPFS() {
+		if (!opfsRoot) return
+
+		// Stop all torrents and clear files first
+		await clearFiles()
+
+		try {
+			// Clear the entire OPFS root
+			for await (const [name, handle] of opfsRoot.entries()) {
+				if (handle.kind === 'file') {
+					await opfsRoot.removeEntry(name)
+				} else if (handle.kind === 'directory') {
+					await opfsRoot.removeEntry(name, { recursive: true })
+				}
+			}
+			console.log('OPFS cleared successfully')
+		} catch (error) {
+			console.error('Error clearing OPFS:', error)
+			throw error
+		}
+	}
+
 	return {
 		files,
 		initialized,
@@ -383,6 +430,8 @@ export function useTorrent() {
 		upload,
 		download,
 		deleteFile,
-		trackers
+		trackers,
+		clearFiles,
+		clearOPFS
 	}
 }
