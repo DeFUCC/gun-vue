@@ -60,7 +60,7 @@ Reusable logic (Vue 3 Composition API) for managing reactive, P2P data flows ind
 [npm](https://www.npmjs.com/package/@gun-vue/relay) •
 [Docs](https://gun-vue.js.org/packages/relay.html)  
 
-Simple Gun.js Relay Peer for connecting clients and optional persistent storage.
+A Simple Gun Relay Peer for connecting clients and optional persistent storage.
 
 ## How to Build the Workspace
 
