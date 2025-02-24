@@ -48,7 +48,8 @@ Prebuilt Vue 3 UI components that let you integrate real-time, P2P functionality
 ### Gun-Vue: Composables
 [GitHub (/composables)](https://github.com/DeFUCC/gun-vue/tree/master/composables) •
 [npm](https://www.npmjs.com/package/@gun-vue/composables) •
-[Docs](https://gun-vue.js.org/packages/composables.html)  
+[Docs](https://gun-vue.js.org/packages/composables.html) •
+[API](https://gun-vue.js.org/reference/typedoc/modules.html)
 
 Reusable logic (Vue 3 Composition API) for managing reactive, P2P data flows independently of any specific UI components.
 
