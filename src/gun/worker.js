@@ -12,6 +12,6 @@ onmessage = async m => {
   }
   gun.get('check').get('time').once(d => console.log(d))
   gun.get('check').get('time').put(Date.now())
-  postMessage(`Worker answer: ${m.data} - OK`)
+  postMessage(`Worker answer: ${m.data?.message || m.data} - OK`)
 }
 

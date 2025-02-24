@@ -8,6 +8,10 @@ import config from '../gun.config.json'
 
 const router = useRouter()
 const route = useRoute();
+
+
+const { user } = useUser()
+
 watchEffect(() => {
   if (route.query?.room) {
     currentRoom.pub = String(route.query.room)
@@ -88,14 +92,18 @@ const openShare = ref(false)
         :key="currentRoom.pub"
         :panel="false"
         )
-      .flex-auto.justify-center.flex
+      .flex-auto
+      .justify-center.flex
         button.button(@click="openShare = !openShare" :class="{ 'router-link-active': openShare }")
           .i-ion-share-outline
-      user-icon(
-        :size="40"
-        @user="$router.push(`/users/${$event}`)" @room="$router.push(`/rooms/${$event}`)"
-        @post="$router.push(`/posts/${$event}`)"
-        @chat="$router.push(`/private/${$event}`)"
+        router-link.button(to="/settings/")
+          .i-la-cog
+      account-badge.cursor-pointer(
+        :size="42"
+        :showName="true"
+        :border="2" 
+        :pub="user.pub" 
+        @click="$router.push('/user/')"
         )
 
   .flex.flex-col.fixed.top-16.right-4.left-4.z-1000.gap-2.items-center.transition(v-if="openShare")
@@ -107,9 +115,9 @@ const openShare = ref(false)
         keep-alive(:exclude="['space']" :max="10")
           component(:is="Component")
 
-  .Bottom.flex.w-full.items-stretch.justify-stretch.px-1.pt-0.shadow-lg.z-3000.transition.bg-light-900.dark-bg-dark-200.w-full.text-2xl.bg-op-80.dark-bg-op-80.backdrop-blur(
+  //- .Bottom.flex.w-full.items-stretch.justify-stretch.px-1.pt-0.shadow-lg.z-30.transition.bg-light-900.dark-bg-dark-200.w-full.text-2xl.bg-op-80.dark-bg-op-80.backdrop-blur(
     style="flex: 0 0 auto" 
-  )
+    )
     router-link(to="/")
       .i-ph-house
       span ROOM

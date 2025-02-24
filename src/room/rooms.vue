@@ -5,7 +5,12 @@ import { RoomList } from '../components'
 
 <template lang="pug">
 .flex.flex-col
-  room-list.p-8(@browse="$router.push(`/rooms/${$event}`)" :key="currentRoom.pub")
+  .flex.p-2
+    router-link.text-lg.flex-auto(to="/rooms/") Rooms
+
+    router-link.button(to="/rooms/new/")
+      .i-la-plus
+
   router-view(v-slot="{ Component }")
     transition(
       name="fade" 

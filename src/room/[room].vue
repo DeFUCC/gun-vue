@@ -1,5 +1,5 @@
 <script setup>
-import { UiLayer, RoomPage } from '../components'
+import { RoomPage } from '../components'
 
 const props = defineProps({
   room: { type: String, default: '' }
@@ -9,14 +9,9 @@ const props = defineProps({
 </script>
 
 <template lang="pug">
-ui-layer(
-  :open="true" 
-  @close="$router.push('/rooms/')"
-  )
-  room-page( 
-    style="flex: 1 1 200px"
-    :pub="room"
-    @browse="$router.push(`/${$event}/`)"
-    @user="$router.push(`/users/${$event}/`)"
-    ) 
+room-page( 
+  :pub="room"
+  @browse="$router.push(`/${$event}/`)"
+  @user="$router.push(`/users/${$event}/`)"
+  ) 
 </template>

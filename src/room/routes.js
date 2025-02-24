@@ -13,7 +13,12 @@ export default [
         path: ':room',
         props: true,
         component: () => import('./[room].vue')
+      },
+      {
+        path: "new",
+        component: () => import("./new.vue"),
       }
     ]
   }
+
 ]

@@ -1,6 +1,10 @@
 
 export default [
   {
+    path: "/user/",
+    component: () => import("./user.vue"),
+  },
+  {
     path: "/users/",
     component: () => import("./users.vue"),
     children: [
