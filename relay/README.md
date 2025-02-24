@@ -60,7 +60,7 @@ Server started at http://localhost:4200/gun
 Multicast on 233.255.255.255:8765
 ```
 
-### Options
+#### Options
 
 The relay can be customized with an options object by updating `start.js`:
 
