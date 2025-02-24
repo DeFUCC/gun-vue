@@ -1,7 +1,11 @@
-<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/demo.svg" alt="@gun-vue demo logo" width="400" />
-
 # Gun-Vue: Demo App
 
+<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/demo.svg" alt="@gun-vue demo logo" width="400" />
+
+[GitHub (/app)](https://github.com/DeFUCC/gun-vue/tree/master/app) •
+[npm](https://www.npmjs.com/package/@gun-vue/app) •
+[Demo](https://gun-vue.js.org/app)
+<br><br>
 A Single Page App built with Vite, demonstrating the features and functionality of [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue)
 
 > **Note**: This project is in its early stages. Not all features are fully implemented or reliably tested. [Contributions are welcome!](https://github.com/DeFUCC/gun-vue/tree/master?tab=readme-ov-file#contributing)
