@@ -70,7 +70,7 @@ relay.init({
 	port: 4200, // The port your relay will listen on (e.g., 8080)
 	store: false, // Use 'true' to enable persistent storage on disk
 	path: "public", // Folder to serve static files (e.g., your front-end build)
-        showQr: "false", // Render a QR Code Link to the server
+	showQr: "false", // Render a QR Code Link to the server
 });
 ```
 
@@ -83,3 +83,59 @@ RELAY_PORT=4200
 RELAY_PATH="public"
 RELAY_QR=false
 ```
+
+## Standalone Executable
+
+You can build a standalone executable that bundles Node.js runtime with the relay server. This creates a larger file (≈90MB) but allows for easy distribution and running without Node.js installation.
+
+### Building the Executable
+
+1. Clone the repository and install dependencies:
+
+```shell
+pnpm install
+```
+
+2. Browse the /relay/ folder and build the bundled application:
+
+```shell
+cd relay
+pnpm build
+```
+
+3. Create the platform-specific executable:
+
+For MacOS:
+
+```shell
+pnpm app:macos
+```
+
+For Windows:
+
+```shell
+pnpm app:windows
+```
+
+For Linux:
+
+```shell
+pnpm app:linux
+```
+
+The executable will be created in the `dist` folder as:
+
+- MacOS: `gun-relay`
+- Windows: `gun-relay.exe`
+- Linux: `gun-relay-linux`
+
+### Running the Executable
+
+Simply double-click the executable or run it from the terminal:
+
+```shell
+./dist/gun-relay  # MacOS/Linux
+.\dist\gun-relay.exe  # Windows
+```
+
+The relay will start with default settings. You can still use environment variables to configure it by creating a `.env` file in the same directory as the executable.
