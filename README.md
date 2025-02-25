@@ -9,7 +9,7 @@
 [npm](https://npmjs.com/org/gun-vue) •
 [YouTube](https://www.youtube.com/playlist?list=PLncuCCb2zjt6wmlSNLiK1lZl150qX-rAw) •
 [Contact](https://forms.gle/4oBqAE7xNDaCvFSY8)
-<br><br>
+
 **Gun-Vue** empowers you to build **Offline-First, Progressive Web Apps (PWA)** that run in any modern browser and securely synchronize data **Peer-to-Peer (P2P)** in **Realtime** without centralized servers.
 
 **Gun-Vue** brings together three powerful technologies:
@@ -30,22 +30,24 @@
 
 [GitHub (/app)](https://github.com/DeFUCC/gun-vue/tree/master/app) •
 [npm](https://www.npmjs.com/package/@gun-vue/app) •
-[Demo](https://gun-vue.js.org/app)  
+[Demo](https://gun-vue.js.org/app)
 
 Features P2P social posts, end-to-end encrypted chat, web-torrent filesharing, and more!
 
 ---
 
 ### Gun-Vue: Components
+
 [GitHub (/components)](https://github.com/DeFUCC/gun-vue/tree/master/components) •
 [npm](https://www.npmjs.com/package/@gun-vue/components) •
-[Docs](https://gun-vue.js.org/packages/components.html)  
+[Docs](https://gun-vue.js.org/packages/components.html)
 
 Prebuilt Vue 3 UI components that let you integrate real-time, P2P functionality into your projects.
 
 ---
 
 ### Gun-Vue: Composables
+
 [GitHub (/composables)](https://github.com/DeFUCC/gun-vue/tree/master/composables) •
 [npm](https://www.npmjs.com/package/@gun-vue/composables) •
 [Docs](https://gun-vue.js.org/packages/composables.html) •
@@ -56,9 +58,10 @@ Reusable logic (Vue 3 Composition API) for managing reactive, P2P data flows ind
 ---
 
 ### Gun-Vue: Relay
+
 [GitHub (/relay)](https://github.com/DeFUCC/gun-vue/tree/master/relay) •
 [npm](https://www.npmjs.com/package/@gun-vue/relay) •
-[Docs](https://gun-vue.js.org/packages/relay.html)  
+[Docs](https://gun-vue.js.org/packages/relay.html)
 
 A Simple Gun Relay Peer for connecting clients and optional persistent storage.
 

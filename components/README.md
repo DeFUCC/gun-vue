@@ -5,7 +5,7 @@
 [GitHub (/components)](https://github.com/DeFUCC/gun-vue/tree/master/components) •
 [npm](https://www.npmjs.com/package/@gun-vue/components) •
 [Docs](https://gun-vue.js.org/packages/components.html)
-<br><br>
+
 Reusable Vue 3 Components for [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue)
 
 > **Note**: This project is in its early stages. Not all features are fully implemented or reliably tested. [Contributions are welcome!](https://github.com/DeFUCC/gun-vue/tree/master)
