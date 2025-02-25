@@ -48,9 +48,7 @@ function removeFile(infoHash) {
 .p-4.flex.flex-col.gap-2
   //- TorrentUpload(@uploaded="addFile($event)")
   FileShare(@uploaded="activeFile = $event")
-  FileList(@file="activeFile = $event")
-  ui-layer(:open="!!activeFile" @close="activeFile = null")
-    FileInfo(:file="activeFile")
+
   .flex.flex-col.gap-2
     router-link.p-2.flex.flex-wrap.items-center.gap-2.break-all.bg-light-300.dark-bg-dark-400.rounded(
       v-for="(file, f) in files" :key="f"

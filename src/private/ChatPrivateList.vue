@@ -26,7 +26,6 @@ const { user } = useUser()
 .flex.flex-col.gap-2.w-full
   slot
   .p-2.flex.gap-2(@click="$emit('chat', user?.pub)")
-    .text-lg Personal chat: 
     account-badge(:pub="user?.pub")
     .flex-1
     chat-private-count(:pub="user?.pub")

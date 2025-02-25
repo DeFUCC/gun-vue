@@ -1,5 +1,5 @@
 <script setup>
-import { useRoom, useColor, currentRoom, useBackground, useRoomLogo, favRoom } from '#composables';
+import { useRoom, useColor, currentRoom, useBackground, useRoomLogo } from '#composables';
 import { ref, computed } from 'vue'
 import { UiPanel, RoomPage } from '../components'
 
@@ -13,8 +13,6 @@ const props = defineProps({
 const open = ref(false)
 
 const current = computed(() => useRoom(props.pub))
-
-const colorDeep = useColor('deep')
 
 const bg = computed(() => useBackground({
   pub: props.pub,
@@ -36,22 +34,6 @@ const { logo } = useRoomLogo(props.pub)
       v-if="logo" 
       :src="logo"
       )
-    .font-bold.ml-1.mr-3(v-if="current?.room?.profile?.name") {{ current?.room.profile.name.substring(0, 15) }}
-  button.button(@click="favRoom(pub)")
-    .i-la-star(v-if="!current?.room?.isFavourite")
-    .i-la-star-solid(v-else)
-  ui-panel.break-all(
-    v-if="panel"
-    :open="open" 
-    :close-button="false" 
-    @close="open = false"
-    )
-    room-page(
-      :key="pub" 
-      @room="$emit('room', $event)" 
-      @rooms="$emit('rooms')"
-      @browse="$emit('browse', $event); open = false" 
-      )
-      
+    .font-bold.ml-1.mr-3(v-if="current?.room?.profile?.name") {{ current?.room.profile.name.substring(0, 15) }}      
 
 </template>

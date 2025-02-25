@@ -52,6 +52,23 @@ const list = computed(() => useRooms(user.pub))
         @click="$emit('user', user.pub); $emit('close')"
         )  My public profile
 
+
+    .flex.flex-col.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-h-40vh.overflow-y-scroll(style="flex: 1 1 200px")
+      button.z-100.bg-light-400.dark-bg-dark-700.rounded-xl.sticky.top-0.items-center.w-full.flex.p-2(@click="showChats = !showChats") 
+        .font-bold.text-lg Messages
+        .flex-1
+        .i-la-angle-down(v-if="showChats")
+        .i-la-angle-up(v-else)
+      transition(
+        name="fade" 
+        mode="out-in")
+        ChatPrivateList(@chat="$emit('chat', $event)" v-if="showChats")
+
+    .flex.flex-wrap.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-w-600px.max-h-40vh.overflow-y-scroll(style="flex: 1 1 300px" )
+      FileInfo( :file="activeFile" v-if="activeFile" @close="activeFile = null")
+      FileList(@file="activeFile = $event" v-else)
+        FileShare
+
     .flex.flex-col.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl(style="flex: 1 1 200px")
       UserRooms(@browse="$emit('room', $event)")
 
@@ -71,24 +88,6 @@ const list = computed(() => useRooms(user.pub))
             @browse="$emit('room', r)"
             :panel="false"
             )
-
-
-    .flex.flex-col.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl(style="flex: 1 1 200px")
-      button.items-center.w-full.flex.px-2.pb-2(@click="showChats = !showChats") 
-        .font-bold.text-lg My chats
-        .flex-1
-        .i-la-angle-down(v-if="showChats")
-        .i-la-angle-up(v-else)
-      transition(
-        name="fade" 
-        mode="out-in")
-        ChatPrivateList(@chat="$emit('chat', $event)" v-if="showChats")
-
-    .flex.flex-wrap.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-w-600px.max-h-40vh.overflow-y-scroll.overscroll-none(style="flex: 1 1 300px" )
-      FileInfo( :file="activeFile" v-if="activeFile" @close="activeFile = null")
-      FileList(@file="activeFile = $event" v-else)
-        FileShare
-
 
       
       

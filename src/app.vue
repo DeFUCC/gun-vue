@@ -4,6 +4,8 @@ import { watch, watchEffect, computed, ref } from "vue";
 import { currentRoom, useUser, rootRoom, useBackground, setPeer, relay } from "#composables";
 
 import config from '../gun.config.json'
+import GunSettings from "./gun/GunSettings.vue";
+import UiLayer from "./ui/UiLayer.vue";
 
 
 const router = useRouter()
@@ -75,6 +77,8 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, ligh
 
 const openShare = ref(false)
 
+const showSettings = ref(false)
+
 
 </script>
 
@@ -93,10 +97,10 @@ const openShare = ref(false)
         :panel="false"
         )
       .flex-auto
-      .justify-center.flex
+      .justify-center.flex.gap-2
         button.button(@click="openShare = !openShare" :class="{ 'router-link-active': openShare }")
           .i-ion-share-outline
-        router-link.button(to="/settings/")
+        button.button(@click="showSettings = !showSettings" :class="{ 'router-link-active': showSettings }")
           .i-la-cog
       account-badge.cursor-pointer(
         :size="42"
@@ -106,7 +110,7 @@ const openShare = ref(false)
         @click="$router.push('/user/')"
         )
 
-  .flex.flex-col.fixed.top-16.right-4.left-4.z-1000.gap-2.items-center.transition(v-if="openShare")
+  UiLayer(:open="openShare" @close="openShare = false")
     qr-share(:key="route.path" )
 
   .grid.Main
@@ -115,21 +119,8 @@ const openShare = ref(false)
         keep-alive(:exclude="['space']" :max="10")
           component(:is="Component")
 
-  //- .Bottom.flex.w-full.items-stretch.justify-stretch.px-1.pt-0.shadow-lg.z-30.transition.bg-light-900.dark-bg-dark-200.w-full.text-2xl.bg-op-80.dark-bg-op-80.backdrop-blur(
-    style="flex: 0 0 auto" 
-    )
-    router-link(to="/")
-      .i-ph-house
-      span ROOM
-    router-link(to="/private/")
-      .i-ph-chats-light
-      span MESSAGES
-    router-link(to="/files/")
-      .i-ph-files
-      span FILES
-    router-link(to="/settings/")
-      .i-la-cog
-      span SETTINGS
+  UiLayer(:open="showSettings" @close="showSettings = false")
+    GunSettings(:key="route.path")
 
 </template>
 
@@ -147,7 +138,6 @@ const openShare = ref(false)
   grid-template-areas:
     "Top Top Top"
     "Main Main Main"
-    "Bottom Bottom Bottom";
 }
 
 .Main {
