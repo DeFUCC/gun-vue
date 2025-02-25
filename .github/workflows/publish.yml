@@ -47,13 +47,13 @@ jobs:
           draft: true
           prerelease: false
 
-      - name: Upload _dist/index.html
+      - name: Upload _dist/app/index.html
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./_dist/index.html
+          asset_path: ./_dist/app/index.html
           asset_name: index.html
           asset_content_type: text/html
 

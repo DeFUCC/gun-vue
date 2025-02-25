@@ -41,11 +41,12 @@ const list = computed(() => useRooms(user.pub))
         .i-la-check
         .ml-2 I've stored my user key securely
   auth-login(v-if="!user.is")
+
   .flex.flex-wrap.w-full.gap-2.p-2(v-else)
     user-panel(
       @browse="$emit('browse', $event); $emit('close')"
       )
-    .p-4.flex.flex-col.items-stretch.gap-4(style="flex: 1 1 200px")
+    .flex.flex-col.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-h-40vh.overflow-y-scroll(style="flex: 1 1 200px")
       user-profile
       button.p-2.rounded-xl.font-bold.text-lg.shadow-md(
         :style="{ backgroundColor: user.color }"
