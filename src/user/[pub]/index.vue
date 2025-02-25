@@ -1,7 +1,7 @@
 <script setup>
 
 import { safeHash } from '#composables'
-import { UiLayer, AccountHome } from '../components'
+import { UiLayer, AccountHome } from '#components'
 
 import { ref, onMounted } from 'vue'
 const props = defineProps({
@@ -17,19 +17,15 @@ onMounted(() => {
 </script>
 
 <template lang="pug">
-.p-0
-  ui-layer(
-    :open="open" 
-    :close-button="false"  
-    @close="$router.push('/users/')")
-    account-home(
-    :key="pub" 
-    :pub="pub" 
-    @browse="$router.push(`/users/${$event}`)"
-    @post="$router.push(`/posts/${safeHash($event)}`)"
-    @chat="$router.push(`/private/${pub}`)" 
-    @project="$router.push(`/projects/${$event}`)"
-    )
+.p-0.flex.flex-col
+  account-home(
+  :key="pub" 
+  :pub="pub" 
+  @browse="$router.push(`/users/${$event}`)"
+  @post="$router.push(`/posts/${safeHash($event)}`)"
+  @chat="$router.push(`/private/${pub}`)" 
+  @project="$router.push(`/projects/${$event}`)"
+  )
   router-view(v-slot="{ Component }")
     transition(name="fade")
       component(:is="Component" )

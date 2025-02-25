@@ -1,10 +1,6 @@
 
 export default [
   {
-    path: "/user/",
-    component: () => import("./user.vue"),
-  },
-  {
     path: "/users/",
     component: () => import("./users.vue"),
     children: [
@@ -16,7 +12,7 @@ export default [
       {
         path: ':pub',
         props: true,
-        component: () => import('./[pub].vue'),
+        component: () => import('./[pub]/index.vue'),
         children: [
           {
             path: 'chat',

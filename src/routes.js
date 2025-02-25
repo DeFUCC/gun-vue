@@ -7,6 +7,10 @@ export default [
     path: '/',
     component: () => import('./index.vue')
   },
+  {
+    path: "/user/",
+    component: () => import("./user/user.vue"),
+  },
   ...routes
 ]
 
