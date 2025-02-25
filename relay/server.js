@@ -22,27 +22,39 @@ const testPort = (port) => {
 
 export default {
   initiated: false,
-  async init({
-    host = process.env.RELAY_HOST || ip.address(),
-    store = process.env.RELAY_STORE != 'false' || false,
-    port = process.env.RELAY_PORT || 4200,
-    path = process.env.RELAY_PATH || "public",
-    showQr = process.env.RELAY_QR || false,
-    indexHtml = '<html><body>Gun-Vue Relay</body></html>'
-  } = {}) {
+  async init(config = {}) {
     if (this.initiated) return;
     this.initiated = true;
+
+    let {
+      host = process.env.RELAY_HOST || ip.address(),
+      store = process.env.RELAY_STORE || false,
+      port = process.env.RELAY_PORT || 8765,
+      path = process.env.RELAY_PATH || "public",
+      showQr = process.env.RELAY_QR || false
+    } = config;
 
     console.clear();
     console.log('\x1b[36m=== GUN-VUE RELAY SERVER ===\x1b[0m\n');
 
     var app = express();
 
+    // Explicit root route handling
     app.get('/', (req, res) => {
-      res.send(indexHtml);
+      if (process?.sea?.isSea) {
+        res.sendFile('index.html', { root: process.sea.getAsset(path) });
+      } else {
+        res.sendFile('index.html', { root: path });
+      }
     });
 
-    // Find available port
+    // Serve static files for other routes
+    if (process?.sea?.isSea) {
+      app.use(express.static(process.sea.getAsset(path)));
+    } else {
+      app.use(express.static(path));
+    }
+
     let currentPort = parseInt(port);
     while (!(await testPort(currentPort))) {
       console.log(formatOutput('Port in use', `${currentPort}, trying next...`, '\x1b[33m'));
@@ -90,9 +102,8 @@ export default {
     db.get("status").put("running");
     db.get("started").put(Date.now());
 
-    console.log(formatOutput('Server URL', link + '/#/?relay=' + link + '/gun', '\x1b[32m'));
+    console.log(formatOutput('Stats URL', link + '/', '\x1b[32m'));
     console.log(formatOutput('Gun peer', link + '/gun', '\x1b[32m'));
-    console.log(formatOutput('Stats dashboard', link, '\x1b[32m'));
     console.log(formatOutput('Storage', store ? 'enabled' : 'disabled', store ? '\x1b[32m' : '\x1b[33m'));
 
     if (showQr != false) {

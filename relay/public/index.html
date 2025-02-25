@@ -2,79 +2,91 @@
 <!-- served from your routes in server.js -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="A cool thing made with Glitch" />
 
-    <title>No store GUN peer</title>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A cool thing made with Glitch" />
 
-    <style>
-      html {
-        font-size: 16px;
-      }
-      .qr svg {
-        max-height: 80vh;
-      }
-    </style>
+  <title>No store GUN peer</title>
 
-    <script defer type="module">
-      import "https://cdn.skypack.dev/gun";
-      import ms from "https://cdn.skypack.dev/ms";
-      import qrcodeSvg from "https://cdn.skypack.dev/@qrcode/svg";
-      import { createApp, reactive } from "https://cdn.skypack.dev/petite-vue";
+  <style>
+    html {
+      font-size: 16px;
+    }
 
-      const gun = GUN([window.location.href + "gun"]);
-      const db = gun.get(window.location.hostname);
+    .qr svg {
+      max-height: 80vh;
+    }
+  </style>
 
-      const relay = reactive({
-        status: "connecting",
-        pulse: 0,
-        started: 0,
-        store: false,
-        host: "",
-        message: "",
-        activeWires: 0,
-        ms,
-        talk(ev) {
-          db.get("message").put(ev.target.value);
-        },
-        listen() {
-          db.map().on((d, k) => {
-            relay[k] = d;
-          });
-        },
-      });
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@unocss/reset/tailwind.min.css" />
 
-      relay.listen();
+  <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
 
-      createApp({ relay, qrcodeSvg }).mount();
-    </script>
-  </head>
-  <body v-scope>
-    <header style="font-size: 1.2rem; line-height: 1rem">
-      <h2>Gun-vue relay peer</h2>
-      <h3><a href="https://gun-vue.js.org/">@gun-vue/relay</a></h3>
+  <script defer type="module">
+    import "https://cdn.skypack.dev/gun";
+    import ms from "https://cdn.skypack.dev/ms";
+    import qrcodeSvg from "https://cdn.skypack.dev/@qrcode/svg";
+    import { createApp, reactive } from "https://cdn.skypack.dev/petite-vue";
+
+    const gun = GUN([window.location.href + "gun"]);
+    const db = gun.get('relays').get(window.location.hostname);
+
+    const relay = reactive({
+      status: "connecting",
+      pulse: 0,
+      started: 0,
+      store: false,
+      host: "",
+      message: "",
+      activeWires: 0,
+      ms,
+      talk(ev) {
+        db.get("message").put(ev.target.value);
+      },
+      listen() {
+        db.map().on((d, k) => {
+          relay[k] = d;
+        });
+      },
+    });
+
+    relay.listen();
+
+    createApp({ relay, qrcodeSvg }).mount();
+  </script>
+</head>
+
+<body class="bg-dark-500 text-light-400" v-scope>
+  <header class="flex flex-wrap gap-2 p-4 bg-dark-200" style="font-size: 1.2rem; line-height: 1rem">
+    <h2 class="">Gun-vue relay peer</h2>
+    <div class="flex-1"></div>
+    <h3><a href="https://gun-vue.js.org/packages/relay">@gun-vue/relay</a></h3>
+  </header>
+  <main>
+    <section>
+      <h4>Data storage: {{relay.store}}</h4>
       <h4>
         Status: {{relay.status}} {{relay.ms(relay.pulse-relay.started)}}
         ({{(relay.pulse-relay.started)/1000}} s)
       </h4>
       <h4>Active wires: {{relay.activeWires}} / {{relay.totalConnections}}</h4>
       <h4>Peer link: <a :href="relay.link + '/gun'">{{relay.link}}/gun</a></h4>
-      <h4>Data storage: {{relay.store}}</h4>
-    </header>
-    <main>
+      <h4>Gun-Vue: <a target="_blank"
+          :href="`https://gun-vue.js.org/app/#/?relay=${relay.link}/gun`">{{`https://gun-vue.js.org/app/#/?relay=${relay.link}/gun`}}</a>
+      </h4>
+
+    </section>
+    <article>
       <h4>Talk box</h4>
-      <textarea
-        cols="35"
-        rows="10"
-        v-model="relay.message"
-        @change="relay.talk"
-        @keyup="relay.talk"
-      ></textarea>
-      <p>{{relay}}</p>
-      <div class="qr" v-if="relay.link" v-html="qrcodeSvg(relay.link)"></div>
-    </main>
-  </body>
+      <textarea class="bg-dark-100 shadow-inset p-2 rounded-lg w-full" cols="35" rows="10" v-model="relay.message"
+        @change="relay.talk" @keyup="relay.talk"></textarea>
+    </article>
+
+    <div style="max-width:300px" class="qr" v-if="relay.link" v-html="qrcodeSvg(relay.link)"></div>
+  </main>
+</body>
+
 </html>

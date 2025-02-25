@@ -20,7 +20,8 @@
 	"main": "server.js",
 	"files": [
 		"server.js",
-		"start.js"
+		"start.js",
+		"public/index.html"
 	],
 	"scripts": {
 		"start": "node start.js",

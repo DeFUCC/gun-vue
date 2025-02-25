@@ -19,7 +19,6 @@
 		"builds": "pnpm --filter composables run build && pnpm --filter components run build && pnpm --filter app run build && pnpm --filter app run build-app && pnpm --filter docs run build",
 		"preview": "pnpm --filter docs run serve",
 		"relay": "pnpm --filter relay run start",
-		"deploy": "cd app && sh deploy.sh",
 		"change": "pnpm changeset",
 		"version": "pnpm changeset version"
 	},

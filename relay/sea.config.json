@@ -1,4 +1,8 @@
 {
 	"main": "./dist/index.cjs",
-	"output": "./dist/sea-prep.blob"
+	"output": "./dist/sea-prep.blob",
+	"disableExperimentalSEAWarning": true,
+	"assets": {
+		"public": "public/index.html"
+	}
 }
