@@ -23,14 +23,22 @@
 		"start.js"
 	],
 	"scripts": {
-		"start": "node start.js"
+		"start": "node start.js",
+		"build": "node build.js && node --experimental-sea-config sea.config.json",
+		"app:macos": "cp $(command -v node) ./dist/gun-relay && codesign --remove-signature ./dist/gun-relay && postject ./dist/gun-relay NODE_SEA_BLOB ./dist/sea-prep.blob     --sentinel-fuse NODE_SEA_FUSE_fce680ab2cc467b6e072b8b5df1996b2     --macho-segment-name NODE_SEA  && codesign --sign - ./dist/gun-relay",
+		"app:windows": "copy /y %LOCALAPPDATA%\\nodejs\\node.exe .\\dist\\gun-relay.exe && postject .\\dist\\gun-relay.exe NODE_SEA_BLOB .\\dist\\sea-prep.blob --sentinel-fuse NODE_SEA_FUSE_fce680ab2cc467b6e072b8b5df1996b2",
+		"app:linux": "cp $(command -v node) ./dist/gun-relay-linux && chmod +x ./dist/gun-relay-linux && postject ./dist/gun-relay-linux NODE_SEA_BLOB ./dist/sea-prep.blob --sentinel-fuse NODE_SEA_FUSE_fce680ab2cc467b6e072b8b5df1996b2"
 	},
 	"dependencies": {
+		"esbuild": "0.25.0",
 		"dotenv": "16.4.7",
 		"express": "4.21.2",
 		"gun": "0.2020.1240",
 		"ip": "2.0.1",
 		"qrcode-terminal": "0.12.0",
 		"self-adjusting-interval": "1.0.0"
+	},
+	"devDependencies": {
+		"postject": "^1.0.0-alpha.6"
 	}
 }
