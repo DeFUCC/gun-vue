@@ -12,9 +12,8 @@ import "gun/lib/store";
 import "gun/lib/rindexed";
 import "gun/lib/webrtc";
 
-import GunWorker from "./useGunWorker";
-
-GunWorker.post("Welcome to Gun-Vue");
+// import GunWorker from "./useGunWorker";
+// GunWorker.post("Welcome to Gun-Vue");
 
 import { relay } from "./useRelay";
 
@@ -38,7 +37,6 @@ export function useGun(options = { localStorage: false }) {
 		if (typeof options === "object") {
 			Object.assign(opts, options);
 		}
-		console.log(opts.peers);
 		gun = Gun(opts);
 	}
 	return gun;

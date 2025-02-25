@@ -1,4 +1,3 @@
-
 <script setup>
 import { computed } from 'vue'
 import { useColor, usePosts, usePost, useMd } from '#composables';
@@ -22,8 +21,6 @@ const { post, download, downloading, } = usePost({ hash: props.hash })
 const { posts, backlinks } = usePosts(props.hash)
 
 </script>
-<!-- eslint-disable vue/no-v-html -->
-
 <template lang="pug">
 .rounded-lg.max-w-65ch.flex.flex-col.items-stretch.justify-center.w-full.overscroll-contain.bg-light-200.dark-bg-dark-500
   .flex.flex-wrap 
@@ -78,7 +75,6 @@ const { posts, backlinks } = usePosts(props.hash)
           .m-2(v-if="post?.statement") {{ post?.statement }} 
         .flex-auto
         .flex.flex-wrap.p-4.bg-dark-50.bg-opacity-25.dark-bg-dark-400.w-full.items-center.gap-1.text-sm
-          qr-share
           post-action-update(:hash="hash" )
           button.button.flex.items-center(@click="download()")
             .i-la-file-download(v-if="!downloading")

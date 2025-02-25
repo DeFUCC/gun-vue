@@ -11,7 +11,7 @@ const { rooms } = useRooms()
 </script>
 
 <template lang="pug">
-.flex.flex-col.mb-4 
+.flex.flex-col
   .flex.flex-wrap.gap-4.my-4
     room-form(@room="$emit('browse', $event)")
     room-card( 
@@ -27,4 +27,4 @@ const { rooms } = useRooms()
         tag="rooms"
         )
   
-</template> 
+</template>

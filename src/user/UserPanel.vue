@@ -18,8 +18,8 @@ const bg = computed(() => useBackground({ pub: user.pub, size: 600, light: 0.5, 
   :style="{ ...bg }"
   )
   .flex.items-center
-    user-avatar(:size="120")
-    .text-2xl.mx-2.font-bold {{ user?.name }}
+    user-avatar(:size="60")
+    .text-xl.mx-2.font-bold {{ user?.name }}
   mate-button(:pub="user.pub")
   .flex-1 
   .p-1.m-1.rounded-full.transition-all.duration-300.ease-in-out(:style="{ backgroundColor: user.blink ? 'white' : 'black' }")
