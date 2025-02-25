@@ -1,5 +1,11 @@
 # @gun-vue/relay
 
+## 0.6.0
+
+### Minor Changes
+
+- 91e52c8: Single Executable App build along with an esbuild bundle. Better terminal colors and layout, busy port fallback
+
 ## 0.5.2
 
 ### Patch Changes

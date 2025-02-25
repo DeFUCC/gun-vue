@@ -1,5 +1,11 @@
 # @gun-vue/docs
 
+## 0.22.5
+
+### Patch Changes
+
+- Better UI and cleaner components for app builders
+
 ## 0.22.4
 
 ### Patch Changes
