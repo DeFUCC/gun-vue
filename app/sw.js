@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gun-vue-v.0.22.4';
+const CACHE_NAME = 'gun-vue-v.0.22.5';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
