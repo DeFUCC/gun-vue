@@ -1,32 +1,16 @@
-<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/relay.svg" alt="@gun-vue relay logo" width="400" />
-
 # Gun-Vue: Relay
 
-A simple gun.js relay peer for Node.js.
+<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/relay.svg" alt="@gun-vue relay logo" width="400" />
 
-It enables decentralized peer-to-peer web apps built with [gun.js](https://github.com/amark/gun) to connect and synchronize data.
+[GitHub (/relay)](https://github.com/DeFUCC/gun-vue/tree/master/relay) •
+[npm](https://www.npmjs.com/package/@gun-vue/relay) •
+[Docs](https://gun-vue.js.org/packages/relay.html)
+<br><br>
+A simple [Gun](https://github.com/amark/gun) relay peer in Node.js.
 
 This package is part of [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue)
 
-## Platforms
-
-Installs on any device or service that runs Node.js:
-
-- **Cloud Platforms**
-  - [Heroku](https://www.heroku.com)
-  - [Glitch](https://www.glitch.com)
-- **Desktop**
-  - Linux
-  - MacOS
-  - Windows
-- **Raspberry Pi**
-  - [Raspberry Pi OS](https://www.raspberrypi.com/software/operating-systems/) ([Tutorial](https://dev.to/bogdaaamn/run-your-nodejs-application-on-a-headless-raspberry-pi-4jnn))
-  - [Alpine Linux](https://www.alpinelinux.org/)
-- **Android** (via [F-Droid Termux](https://f-droid.org/en/packages/com.termux/))
-
----
-
-## Installation
+## How to Install
 
 ### Requirements
 
@@ -55,7 +39,7 @@ npm i @gun-vue/relay
   }
 ```
 
-4. Create a `start.js` script and add the following:
+4. Create a `start.js` script and add:
 
 ```js
 import relay from "@gun-vue/relay";
@@ -63,13 +47,11 @@ import relay from "@gun-vue/relay";
 relay.init();
 ```
 
-5. Start your Gun-Vue: Relay:
+5. Test the relay:
 
 ```shell
 node start.js
 ```
-
-You will see the following message:
 
 ```
 Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!
@@ -78,13 +60,9 @@ Server started at http://localhost:4200/gun
 Multicast on 233.255.255.255:8765
 ```
 
-**Your Gun-Vue: Relay is up and running!**
+#### Options
 
----
-
-### Options
-
-The relay can be customized with an options object by updating `start.js` with the following:
+The relay can be customized with an options object by updating `start.js`:
 
 ```js
 relay.init({
@@ -92,6 +70,7 @@ relay.init({
 	port: 4200, // The port your relay will listen on (e.g., 8080)
 	store: false, // Use 'true' to enable persistent storage on disk
 	path: "public", // Folder to serve static files (e.g., your front-end build)
+        showQr: "false", // Render a QR Code Link to the server
 });
 ```
 

@@ -1,12 +1,16 @@
-<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/components.svg" alt="@gun-vue components logo" width="750" />
-
 # Gun-Vue: Components
 
+<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/components.svg" alt="@gun-vue components logo" width="750" />
+
+[GitHub (/components)](https://github.com/DeFUCC/gun-vue/tree/master/components) •
+[npm](https://www.npmjs.com/package/@gun-vue/components) •
+[Docs](https://gun-vue.js.org/packages/components.html)
+<br><br>
 Reusable Vue 3 Components for [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue)
 
-> **Note**: This project is in its early stages. Not all features are fully implemented or reliably tested. [Contributions are welcome!](https://github.com/DeFUCC/gun-vue/tree/master?tab=readme-ov-file#contributing)
+> **Note**: This project is in its early stages. Not all features are fully implemented or reliably tested. [Contributions are welcome!](https://github.com/DeFUCC/gun-vue/tree/master)
 
-## How-to install
+## How to Install
 
 Gun-Vue is distributed as a regular NPM package and may be used in any Vue 3 project.
 

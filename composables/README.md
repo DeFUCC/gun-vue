@@ -1,10 +1,15 @@
-<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/composables.svg" alt="@gun-vue composables logo" width="750" />
-
 # Gun-Vue: Composables
 
+<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/composables.svg" alt="@gun-vue composables logo" width="750" />
+
+[GitHub (/composables)](https://github.com/DeFUCC/gun-vue/tree/master/composables) •
+[npm](https://www.npmjs.com/package/@gun-vue/composables) •
+[Docs](https://gun-vue.js.org/packages/composables.html) •
+[API](https://gun-vue.js.org/reference/typedoc/modules.html)
+<br><br>
 Vue 3 Composition API `use` functions for [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue)
 
-> **Note**: This project is in its early stages. Not all features are fully implemented or reliably tested. [Contributions are welcome!](https://github.com/DeFUCC/gun-vue/tree/master?tab=readme-ov-file#contributing)
+> **Note**: This project is in its early stages. Not all features are fully implemented or reliably tested. [Contributions are welcome!](https://github.com/DeFUCC/gun-vue/tree/master)
 
 ## Composables
 
