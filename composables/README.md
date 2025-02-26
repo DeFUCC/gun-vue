@@ -2,49 +2,16 @@
 
 <img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/composables.svg" alt="@gun-vue composables logo" width="750" />
 
-[GitHub (/composables)](https://github.com/DeFUCC/gun-vue/tree/master/composables) •
+[GitHub (@gun-vue/composables)](https://github.com/DeFUCC/gun-vue/tree/master/composables) •
 [npm](https://www.npmjs.com/package/@gun-vue/composables) •
 [Docs](https://gun-vue.js.org/packages/composables.html) •
 [API](https://gun-vue.js.org/reference/typedoc/modules.html)
 
-Vue 3 Composition API `use` functions for [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue)
+Reusable logic built with the **Vue 3 Composition API** `use` functions. Manages **Gun** database interactions, **SEA** encryption, and reactive state. Check out [Gun-Vue: Features (/src)](https://github.com/DeFUCC/gun-vue/tree/master/src) for an overview.
 
-> **Note**: This project is in its early stages. Not all features are fully implemented or reliably tested. [Contributions are welcome!](https://github.com/DeFUCC/gun-vue/tree/master)
+> This code is part of [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue).
 
-## Composables
-
-### Identity & Access
-
-- [**User**](https://github.com/DeFUCC/gun-vue/tree/master/src/user) - the `gun.user()` system management
-- **Account** - user profile interface
-- **Password** - some elaborations on reimagining password system in a p2p graph environment
-
-### Data, Storage, & Networking
-
-- **Crypto** - the main cryptographic primitives like e2e encrypted messaging and more
-- **Date Tree** - the very performant concept of Date Tree graphs from [gun-util](https://github.com/diatche/gun-util#DateTree) made reactive and easy to use
-- **Relay** - Gun relay peer connection monitoring
-- **File** - some bindings to manage file uploads and downloads
-- **Hash** - everything you need to hash data and work with the hashes in a reliable way (i.e. URL-safe conversion)
-
-### Content & Collaboration
-
-- **Chat** - Public group chat
-- **Dictionary** - we find ourselves in great power if we have verified concepts to collaborate with
-- **Private Chat** - E2EE Messaging
-- **Posts** - hashed immutable data in the root of the db as a fun experiment, but with deep observations about freedom of speech and ways to explore the vastness of the public graph space available with Gun
-- **Room** - private signed collaborative spaces with a certificate system for access management. (TBD)
-- **Rooms** - cryptographic data collections
-- **Space** - An endless 2D space for the users to set their positions and draw shared pictures. Can be used to meet with people and verify their identity.
-
-### UI & Visual
-
-- **Color** - the `color-hash` interface to generate colors for hashes and pubs
-- **Mouse** - some basic bindings to reliably locate mouse pointer in an SVG - may be useful for many online games
-
-**... and more!**
-
-## How-to Use
+## How to Use
 
 1. Install the library:
 
