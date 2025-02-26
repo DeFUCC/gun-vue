@@ -6,7 +6,7 @@
 
 import { reactive, computed, ref } from "vue";
 import { useUser, useGun, SEA } from "../composables";
-import { refDebounced, watchDebounced } from "@vueuse/core";
+import { computedAsync } from "@vueuse/core";
 
 /**
  * @typedef {Object} Message
@@ -31,87 +31,66 @@ export function useMessages(pub) {
 	const gun = useGun();
 	const { user } = useUser();
 
-	/** @type {Chat} */
-	const chat = reactive({
-		epub: "",
-		messages: {},
-		sorted: [],
-		async send(message) {
-			if (!message) return;
-			const theDate = new Date();
-			const toSend = {
-				timestamp: theDate.getTime(),
-				text: message,
-			};
-			const today = theDate.toLocaleDateString("en-CA");
-			const secret = await user.secret(chat.epub);
-			const work = await SEA.work(secret, undefined, undefined, {
-				salt: today,
-			});
-			const enc = await SEA.encrypt(toSend, work);
-
-			gun.user().get("chat").get(pub).get(today).set(enc);
-		},
-	});
+	const epub = ref("");
+	const messages = ref({});
+	const sorted = computedAsync(
+		async () => Object.entries(messages.value || {}).sort(([, a], [, b]) => (a?.timestamp || 0) - (b?.timestamp || 0)).map(([, msg]) => msg),
+		[], // default value while computing
+		{ debounce: 200 }
+	);
 
 	gun
 		.user(pub)
 		.get("epub")
-		.once((d) => (chat.epub = d));
+		.once((d) => (epub.value = d));
 
 	gun
 		.user(pub)
-		.get("chat")
+		.get("messages")
 		.get(user.pub)
 		.map()
-		.once(function (d, k) {
-			parseMessages(d, k, pub, this);
+		.once(function (_, day) {
+			this.map().on(async (d, k) => messages.value[k] = await parseMessage(d, day, pub));
 		});
 
 	gun
 		.user()
-		.get("chat")
+		.get("messages")
 		.get(pub)
 		.map()
-		.once(function (d, k) {
-			parseMessages(d, k, user.pub, this);
+		.once(function (_, day) {
+			this.map().on(async (d, k) => messages.value[k] = await parseMessage(d, day, user.pub));
 		});
 
-	/**
-	 * @param {string} _data
-	 * @param {string} today
-	 * @param {string} author
-	 * @param {any} that
-	 */
-	function parseMessages(_data, today, author, that) {
-		that.map().on(async (d, k) => {
-			if (typeof d == "number") return;
-			if (d && d.startsWith("SEA")) {
-				const secret = await user.secret(chat.epub);
-				const work = await SEA.work(secret, undefined, undefined, {
-					salt: today,
-				});
-				const dec = await SEA.decrypt(d, work);
-				if (!dec || typeof dec != "object") return;
-				const message = {
-					timestamp: dec.timestamp,
-					author,
-					text: dec.text,
-				};
-				chat.messages[k] = message;
-			}
-		});
+
+	async function parseMessage(d, today, author) {
+		if (typeof d == "number") return;
+		if (d && d.startsWith("SEA")) {
+			const dec = await SEA.decrypt(
+				d,
+				await SEA.work(
+					await user.secret(epub.value),
+					undefined,
+					undefined,
+					{ salt: today, }));
+			if (!dec || typeof dec != "object") return;
+			return {
+				timestamp: dec.timestamp,
+				author,
+				text: dec.text,
+			};
+		}
 	}
 
-	watchDebounced(
-		() => chat.messages,
-		(msgs) => {
-			chat.sorted = Object.values(chat.messages || {}).sort((a, b) =>
-				a?.timestamp > b?.timestamp ? 1 : -1
-			);
-		},
-		{ debounce: 200, immediate: true, deep: true }
-	);
+
+
+	/** @type {Chat} */
+	const chat = reactive({
+		epub,
+		messages,
+		sorted,
+		send: sendMessage
+	});
 
 	return chat;
 }
@@ -134,7 +113,7 @@ export function useMessagesCount(pub) {
 
 	gun
 		.user(pub)
-		.get("chat")
+		.get("messages")
 		.get(user.pub)
 		.map()
 		.map()
@@ -145,7 +124,7 @@ export function useMessagesCount(pub) {
 
 	gun
 		.user()
-		.get("chat")
+		.get("messages")
 		.get(pub)
 		.map()
 		.map()
@@ -160,6 +139,31 @@ export function useMessagesCount(pub) {
 	return { count, available };
 }
 
+export async function sendMessage(pub, message) {
+	if (!pub || typeof message !== 'string' || message.trim() === '') return;
+
+	const gun = useGun();
+	const { user } = useUser();
+	const theDate = new Date();
+
+	const epub = await gun.user(pub).get("epub").then()
+
+	const today = theDate.toLocaleDateString("en-CA");
+
+	const enc = await SEA.encrypt(
+		{
+			timestamp: theDate.getTime(),
+			text: message,
+		},
+		await SEA.work(
+			await user.secret(epub),
+			undefined,
+			undefined,
+			{ salt: today }));
+
+	gun.user().get("messages").get(pub).get(today).set(enc);
+}
+
 /**
  * @returns {Object.<string, Message>}
  */
@@ -170,11 +174,12 @@ export function useMessagesList() {
 	if (user.is) {
 		gun
 			.user()
-			.get("chat")
+			.get("messages")
 			.map()
 			.on((d, k) => {
 				list[k] = d;
 			});
+
 		gun
 			.user()
 			.get("mates")

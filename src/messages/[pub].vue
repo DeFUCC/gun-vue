@@ -15,7 +15,7 @@ onMounted(() => {
 </script>
 
 <template lang="pug">
-MessageExchange.h-80vh(
+MessageExchange(
   :pub="pub" 
   @user="$router.push(`/users/${pub}`)"
   @back="$router.push('/messages/')"
