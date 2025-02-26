@@ -34,8 +34,8 @@ const chat = computed(() => useMessages(props.pub))
     slot
   ChatMessages.max-w-65ch.mx-auto(:messages="chat.sorted")
   .sticky.bottom-0.flex-0.bg-light-900.dark-bg-dark-600.p-4.flex.gap-2
-    FileShare(@url="chat.send($event)")
-    chat-input.flex-1(@submit="chat.send($event)")
+    FileShare(@url="chat.send(pub, $event)")
+    chat-input.flex-1(@submit="chat.send(pub, $event)")
 
   UiPanel(@close="selectedUser.pub = ''" :open="!!selectedUser.pub")
     AccountHome(:pub="selectedUser.pub" @chat="emit('user', $event)")
