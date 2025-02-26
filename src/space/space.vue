@@ -38,11 +38,11 @@ function leave() {
     :key="currentRoom.pub"
     :coord="coord" 
     @user="$router.push('/users/' + $event)" 
-    @chat="$router.push('/private/' + $event)" 
+    @chat="$router.push('/messages/' + $event)" 
     @enter="enter()"
     @leave="leave()"
     )
   router-view(v-slot="{ Component }")
-    transition(name="fade")
+    transition(name="fade" mode="out-in" appear)
       component(:is="Component")
 </template>

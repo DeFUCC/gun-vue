@@ -57,7 +57,7 @@ const bg = computed(() => useBackground({ pub: newPair.value?.pub, size: 620 }))
     type="text" 
     placeholder="New room name"
     )
-  transition(name="fade")
+  transition(name="fade" mode="out-in" appear)
     .flex.gap-2(v-if="newPair && name" )
       button.button.flex-1(
         @click="createIt()" 

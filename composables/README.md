@@ -31,7 +31,7 @@ Vue 3 Composition API `use` functions for [**Gun-Vue: The Peer-to-Peer Web App T
 
 - **Chat** - Public group chat
 - **Dictionary** - we find ourselves in great power if we have verified concepts to collaborate with
-- **Private Chat** - E2EE Messaging
+- **Private Messages** - E2EE Messaging
 - **Posts** - hashed immutable data in the root of the db as a fun experiment, but with deep observations about freedom of speech and ways to explore the vastness of the public graph space available with Gun
 - **Room** - private signed collaborative spaces with a certificate system for access management. (TBD)
 - **Rooms** - cryptographic data collections

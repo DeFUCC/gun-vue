@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { ChatPrivate } from '../components'
+import { MessageExchange } from '../components'
 
 
 const props = defineProps({
@@ -15,9 +15,9 @@ onMounted(() => {
 </script>
 
 <template lang="pug">
-chat-private.h-80vh(
+MessageExchange.h-80vh(
   :pub="pub" 
   @user="$router.push(`/users/${pub}`)"
-  @back="$router.push('/private/')"
+  @back="$router.push('/messages/')"
   )
 </template>

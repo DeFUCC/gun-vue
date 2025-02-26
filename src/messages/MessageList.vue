@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { usePrivateChatList } from './usePrivateChat';
-import { AccountBadge, ChatPrivateCount } from '../components'
+import { useMessagesList } from './useMessages';
+import { AccountBadge, MessagesCount } from '../components'
 import { ref } from 'vue';
 import { useUser } from '#composables';
 
@@ -11,7 +11,7 @@ const props = defineProps({
   }
 })
 
-const list = usePrivateChatList()
+const list = useMessagesList()
 
 defineEmits(['chat'])
 
@@ -28,7 +28,7 @@ const { user } = useUser()
   .p-2.flex.gap-2(@click="$emit('chat', user?.pub)")
     account-badge(:pub="user?.pub")
     .flex-1
-    chat-private-count(:pub="user?.pub")
+    MessagesCount(:pub="user?.pub")
   .p-2.rounded-xl.flex.items-center.bg-light-500.dark-bg-dark-400.cursor-pointer(
     v-for="(chat, pub) in list" 
     :key="pub" 
@@ -37,7 +37,7 @@ const { user } = useUser()
     )
     account-badge(:pub="pub")
     .flex-1
-    chat-private-count(:pub="pub")
+    MessagesCount(:pub="pub")
 </template>
 
 <style scoped lang="postcss">

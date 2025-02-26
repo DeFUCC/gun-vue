@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAccount, useUser, useBackground, useProjects } from '../composables';
-import { AccountAvatar, MateButton, ChatPrivateCount, AccountPetname, AccountProfile, MateList, ProjectCard, AccountReactions } from '../components'
+import { AccountAvatar, MateButton, MessagesCount, AccountPetname, AccountProfile, MateList, ProjectCard, AccountReactions } from '../components'
 import { computed, toRef } from 'vue'
 
 const props = defineProps({
@@ -35,7 +35,7 @@ const { projects } = useProjects(props.pub)
       .mt-2 {{ account?.lastSeen }}
     .flex-1
     mate-button.m-4(:pub="pub")
-    chat-private-count(
+    MessagesCount(
       v-if="user.is" 
       :pub="pub" 
       @chat="$emit('chat', pub)"

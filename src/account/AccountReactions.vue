@@ -34,7 +34,7 @@ const postList = computed(() => {
       v-model:current="postReaction" 
       :reactions="userPosts"
       )
-    transition(name="fade")
+    transition(name="fade" mode="out-in" appear)
       .flex.flex-col.bg-light-800.dark-bg-dark-200.rounded-2xl.gap-4(v-if="postReaction")
         transition-group(name="fade")
           .p-0.relative(

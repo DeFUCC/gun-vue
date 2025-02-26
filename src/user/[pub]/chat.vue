@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, toRef } from 'vue'
-import { ChatPrivate, UiLayer } from '../../components'
+import { MessageExchange, UiLayer } from '../../components'
 
 const props = defineProps({
   pub: { type: String, default: '' }
@@ -20,6 +20,6 @@ ui-layer(
   :open="open" 
   :close-button="false"  
   @close="$router.push(`/users/${pub}`)")
-  chat-private.w-90vw.h-80vh(:pub="pub")
+  MessageExchange.w-90vw.h-80vh(:pub="pub")
 
 </template>

@@ -29,22 +29,23 @@ Below is a simple example of how **Gun-Vue: Feature** is organized:
 ```
 
 ### [**Gun-Vue: Composables**](https://github.com/DeFUCC/gun-vue/tree/master/composables)
-> [Typedoc Reference](https://gun-vue.js.org/reference/typedoc/modules.html)
-  
-  Reusable logic built with the Vue 3 Composition API. Manages Gun database interactions, SEA encryption, and reactive state.
 
+> [Typedoc Reference](https://gun-vue.js.org/reference/typedoc/modules.html)
+
+Reusable logic built with the Vue 3 Composition API. Manages Gun database interactions, SEA encryption, and reactive state.
 
 ### [**Gun-Vue: Components**](https://github.com/DeFUCC/gun-vue/tree/master/components)
 
-  Vue Single-File Components (SFC) providing ready-to-use UI powered by UnoCSS, Pug templates, and your feature’s composables.  
+Vue Single-File Components (SFC) providing ready-to-use UI powered by UnoCSS, Pug templates, and your feature’s composables.
 
 ### **Routes**
 
-  File-based routing that ties composables and components into a complete user flow. Typically exported from `routes.js` and mapped to URLs in your app’s router.
+File-based routing that ties composables and components into a complete user flow. Typically exported from `routes.js` and mapped to URLs in your app’s router.
 
 ## How to Get Started
 
-### StackBlitz Starter Project  
+### StackBlitz Starter Project
+
 Launch the **[Gun-Vue: StackBlitz Starter Project](https://stackblitz.com/edit/gun-vue?embed=1&file=src/App.vue)** for a quick, no-setup demo highlighting core Gun-Vue features in a basic Vue 3 app.
 
 ### Build It Yourself
@@ -61,12 +62,13 @@ Launch the **[Gun-Vue: StackBlitz Starter Project](https://stackblitz.com/edit/g
 ---
 
 ## List of Gun-Vue: Features
+
 ### Identity & Access
 
 - [**auth**](https://github.com/DeFUCC/gun-vue/tree/master/src/auth)  
-  Handles user credentials, password-based logins, and secure sessions, letting you manage peer-to-peer authentication with ease.  
+  Handles user credentials, password-based logins, and secure sessions, letting you manage peer-to-peer authentication with ease.
 - [**account**](https://github.com/DeFUCC/gun-vue/tree/master/src/account)  
-  Full suite of user account displays—avatars, badges, profiles, reactions, and more—driven by a single public key for rich identity in your P2P app. 
+  Full suite of user account displays—avatars, badges, profiles, reactions, and more—driven by a single public key for rich identity in your P2P app.
 - [**user**](https://github.com/DeFUCC/gun-vue/tree/master/src/user)  
   Local-first, reactive P2P authentication layer built atop gun.user() and SEA—handling sign-up, sign-in, identity persistence, and decentralized user profiles (avatars, names, etc.).
 
@@ -77,12 +79,12 @@ Launch the **[Gun-Vue: StackBlitz Starter Project](https://stackblitz.com/edit/g
 - [**cast**](https://github.com/DeFUCC/gun-vue/tree/master/src/cast)  
   Capture and record audio/video from user devices with reactive controls, simplifying real-time media streaming or uploads.
 - [**crypto**](https://github.com/DeFUCC/gun-vue/tree/master/src/crypto)  
-  Main cryptographic primitives for end-to-end encrypted messaging, key generation, and more.  
+  Main cryptographic primitives for end-to-end encrypted messaging, key generation, and more.
 - [**files**](https://github.com/DeFUCC/gun-vue/tree/master/src/files)  
   Composables and utilities for file management, from local uploads and markdown parsing to torrent-based distribution.
 - [**gun**](https://github.com/DeFUCC/gun-vue/tree/master/src/gun)  
   Sets up the [Gun](https://gun.eco) database backbone—complete with Web Worker concurrency, relay connections, and real-time data sync for your decentralized app.
-- [**private**](https://github.com/DeFUCC/gun-vue/tree/master/src/private)  
+- [**messages**](https://github.com/DeFUCC/gun-vue/tree/master/src/messages)  
   Engage in fully encrypted, one-on-one or group chats—secured by elliptic keys and daily batch mixing—with optional real-time notifications.
 - [**project**](https://github.com/DeFUCC/gun-vue/tree/master/src/project)  
   Design, organize, and update collaborative public projects end-to-end, covering everything from brainstorming and resource planning to task management and final presentations.
@@ -98,15 +100,15 @@ Launch the **[Gun-Vue: StackBlitz Starter Project](https://stackblitz.com/edit/g
 - [**dict**](https://github.com/DeFUCC/gun-vue/tree/master/src/dict)  
   A crowdsourced dictionary where community members propose, refine, and vote on word definitions.
 - [**embed**](https://github.com/DeFUCC/gun-vue/tree/master/src/embed)  
-  Seamlessly integrate external media (e.g., YouTube videos) into your P2P app with ready-to-use iframe-based embedding components. 
+  Seamlessly integrate external media (e.g., YouTube videos) into your P2P app with ready-to-use iframe-based embedding components.
 - [**form**](https://github.com/DeFUCC/gun-vue/tree/master/src/form)  
   Rapidly build forms with reusable Vue components, capturing user input (text, links, images) and emitting validated results.
 - [**gift**](https://github.com/DeFUCC/gun-vue/tree/master/src/gift)  
-  Implements a gift economy framework with wish-lists, peer-to-peer contributions, and project-based giving—track who gave what, to whom, and why.  
+  Implements a gift economy framework with wish-lists, peer-to-peer contributions, and project-based giving—track who gave what, to whom, and why.
 - [**mate**](https://github.com/DeFUCC/gun-vue/tree/master/src/mate)  
-  Foster user-to-user connections with an emoji-based buddy system—managing friendly ties, nicknames, and mutual relationships in a decentralized network.  
+  Foster user-to-user connections with an emoji-based buddy system—managing friendly ties, nicknames, and mutual relationships in a decentralized network.
 - [**my**](https://github.com/DeFUCC/gun-vue/tree/master/src/my)  
-  Centralized ‘personal hub’ for each user—housing custom routes, profiles, and social features under a unified ‘My Account’ area.  
+  Centralized ‘personal hub’ for each user—housing custom routes, profiles, and social features under a unified ‘My Account’ area.
 - [**post**](https://github.com/DeFUCC/gun-vue/tree/master/src/post)  
   Publish hashed and timestamped content with tagging, file attachments, and emoji reactions—powering truly decentralized posts and discussions.
 - [**room**](https://github.com/DeFUCC/gun-vue/tree/master/src/room)  
@@ -119,6 +121,6 @@ Launch the **[Gun-Vue: StackBlitz Starter Project](https://stackblitz.com/edit/g
 ### UI & Visual
 
 - [**styles**](https://github.com/DeFUCC/gun-vue/tree/master/src/styles)  
-  Common styling resources or CSS files shared across different features.  
+  Common styling resources or CSS files shared across different features.
 - [**ui**](https://github.com/DeFUCC/gun-vue/tree/master/src/ui)  
   General UI utilities and components (e.g., layout, buttons, or design patterns).

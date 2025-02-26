@@ -9,7 +9,7 @@ const emit = defineEmits(['close'])
 </script>
 
 <template lang="pug">
-transition(name="fade")
+transition(name="fade" mode="out-in" appear)
   .fixed.w-full.h-full.top-0.left-0.z-500.flex.flex-col.items-end(v-show="open")
     transition-group(name="slide")
       .bg-dark-200.bg-opacity-30.w-full.h-full.absolute.z-2.cursor-pointer.backdrop-filter.backdrop-blur-sm(

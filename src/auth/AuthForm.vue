@@ -91,7 +91,7 @@ function uploadFile(event) {
       @change="uploadFile($event)"
       )
   .flex.flex-wrap
-    transition(name="fade")
+    transition(name="fade" mode="out-in" appear)
       textarea.p-2.text-sm.flex-1.w-full.dark-bg-dark-200(
         v-if="current == 'key'" 
         key="text" 

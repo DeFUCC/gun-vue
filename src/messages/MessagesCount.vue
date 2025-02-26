@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { usePrivateChatCount } from './usePrivateChat'
+import { useMessagesCount } from './useMessages'
 
 const props = defineProps({
   pub: {
@@ -10,7 +10,7 @@ const props = defineProps({
 
 defineEmits(['chat'])
 
-const { count, available } = usePrivateChatCount(props.pub)
+const { count, available } = useMessagesCount(props.pub)
 
 </script>
 

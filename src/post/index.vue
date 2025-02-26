@@ -22,7 +22,7 @@ const showGraph = ref()
       @click="showGraph = !showGraph")
       .i-la-eye
       .ml-2 Graph
-  transition(name="fade")
+  transition(name="fade" mode="out-in" appear)
     post-graph.absolute.top-2.right-2.left-2.z-10(
       v-if="showGraph" 
       @post="$router.push(`/posts/${safeHash($event)}`)")

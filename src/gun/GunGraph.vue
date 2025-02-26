@@ -36,7 +36,7 @@ article.rounded-xl.break-all
           :pub="i.slice(1, 88)" 
           :size="20")
       .item {{ i[0] == '~' ? i.slice(88) : i }}
-    transition(name="fade")
+    transition(name="fade" mode="out-in" appear)
       section(v-if="g.show")
         //- .id {{ i }}
         .p-2(

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { activeFile, useRooms, useUser } from '#composables';
 import { computed, ref, watch } from 'vue';
-import { UiLayer, AuthCredentials, AuthLogin, UserPanel, UserProfile, UserRooms, ChatPrivateList, FileList, } from '../components'
+import { UiLayer, AuthCredentials, AuthLogin, UserPanel, UserProfile, UserRooms, MessageList, FileList, } from '../components'
 import { useStorage } from '@vueuse/core'
 import RoomCard from '../room/RoomCard.vue';
 import RoomButton from '../room/RoomButton.vue';
@@ -63,7 +63,7 @@ const list = computed(() => useRooms(user.pub))
       transition(
         name="fade" 
         mode="out-in")
-        ChatPrivateList(@chat="$emit('chat', $event)" v-if="showChats")
+        MessageList(@chat="$emit('chat', $event)" v-if="showChats")
 
     .flex.flex-wrap.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-w-600px.max-h-40vh.overflow-y-scroll(style="flex: 1 1 300px" )
       FileInfo( :file="activeFile" v-if="activeFile" @close="activeFile = null")

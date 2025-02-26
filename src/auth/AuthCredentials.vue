@@ -60,7 +60,7 @@ const href = computed(() => safePair.value ? pass.links.pass : pass.links.pair)
         @click="copy(encPair)"
         )
         .i-la-copy
-        transition(name="fade")
+        transition(name="fade" mode="out-in" appear)
           .px-2(v-if="copied") Copied!
           .px-2(v-else) Copy
       a.m-2.button.items-center(

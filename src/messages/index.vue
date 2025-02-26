@@ -1,5 +1,4 @@
 <script setup>
-import { ChatPrivateList } from '../components'
 
 const props = defineProps({
   pub: {
@@ -14,7 +13,7 @@ const props = defineProps({
 <template lang='pug'>
 .flex.flex-col.h-full
   router-view(v-slot="{ Component }")
-    transition(name="fade")
+    transition(name="fade" mode="out-in" appear)
       keep-alive
         component(:is="Component" style="flex: 6" )
 </template>

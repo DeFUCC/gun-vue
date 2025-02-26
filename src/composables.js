@@ -7,7 +7,7 @@ export * from "./dict/composables"
 export * from "./files/composables"
 export * from "./gift/composables"
 export * from "./gun/composables"
-export * from './private/composables'
+export * from './messages/composables'
 export * from "./post/composables"
 export * from "./project/composables"
 export * from "./room/composables"
