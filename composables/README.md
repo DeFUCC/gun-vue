@@ -2,14 +2,17 @@
 
 <img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/composables.svg" alt="@gun-vue composables logo" width="750" />
 
-[GitHub (/composables)](https://github.com/DeFUCC/gun-vue/tree/master/composables) •
+[GitHub (@gun-vue/composables)](https://github.com/DeFUCC/gun-vue/tree/master/composables) •
 [npm](https://www.npmjs.com/package/@gun-vue/composables) •
 [Docs](https://gun-vue.js.org/packages/composables.html) •
 [API](https://gun-vue.js.org/reference/typedoc/modules.html)
 
-Vue 3 Composition API `use` functions for [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue)
+Reusable logic built with the **Vue 3 Composition API** `use` functions. Manages **Gun** database interactions, **SEA** encryption, and reactive state. Check out [Gun-Vue: Features (/src)](https://github.com/DeFUCC/gun-vue/tree/master/src) for an overview.
 
-> **Note**: This project is in its early stages. Not all features are fully implemented or reliably tested. [Contributions are welcome!](https://github.com/DeFUCC/gun-vue/tree/master)
+> This code is part of [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue).
+
+=======
+
 
 ## Composables
 

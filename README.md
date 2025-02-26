@@ -9,82 +9,121 @@
 [npm](https://npmjs.com/org/gun-vue) •
 [YouTube](https://www.youtube.com/playlist?list=PLncuCCb2zjt6wmlSNLiK1lZl150qX-rAw) •
 [Contact](https://forms.gle/4oBqAE7xNDaCvFSY8)
+<br><br>
+**Gun-Vue** empowers you to build **Offline-First, Progressive Web Apps (PWA)** that run in any modern browser and securely synchronize data **Peer-to-Peer (P2P)** in **Real-time** without centralized servers.
 
-**Gun-Vue** empowers you to build **Offline-First, Progressive Web Apps (PWA)** that run in any modern browser and securely synchronize data **Peer-to-Peer (P2P)** in **Realtime** without centralized servers.
+**Gun-Vue** utilizes three powerful technologies:
 
-**Gun-Vue** brings together three powerful technologies:
-
-- **Peer-To-Peer (P2P)** powered by [**Gun**](https://gun.eco)
+- **Peer-to-Peer (P2P)** powered by [**Gun**](https://gun.eco)
 - **Cryptography** powered by [**SEA**](https://gun.eco/docs/SEA)
-- **Web Apps** powered by [**Vue**](https://vuejs.org)
+- **Web Apps** powered by [**Vue 3**](https://vuejs.org)
 
-...and combines them into several modular packages that make development [**Fast**, **Easy**, and **Fun**](https://gun-vue.js.org/basics/what-is.html)!
+...and combines this [**Next-Gen Tech Stack**](https://gun-vue.js.org/basics/what-is.html) into a collection of [**Features**](#features) built from **Composables**, **Components**, and **Routes**, that make **Decentralized Web (DWeb)** development [**Fast & Fun**](https://gun-vue.js.org/tutorials/getting-started.html)! These features are showcased in the [**Gun-Vue: 📱 Demo App**](https://gun-vue.js.org/app), so you can start experimenting right now:
 
-## [**📱 Try the Demo App**](https://gun-vue.js.org/app)
+## [**Try the Gun-Vue: 📱 Demo App!**](https://gun-vue.js.org/app)
 
-## [**✉️ Get Updates**](https://forms.gle/4oBqAE7xNDaCvFSY8)
+## [**✉️ Sign-up for Updates**](https://forms.gle/4oBqAE7xNDaCvFSY8)
 
-## Packages
+## The Toolkit
 
-### Gun-Vue: Demo App
+### 📱 Demo App
 
-[GitHub (/app)](https://github.com/DeFUCC/gun-vue/tree/master/app) •
+[GitHub (@gun-vue/app)](https://github.com/DeFUCC/gun-vue/tree/master/app) •
 [npm](https://www.npmjs.com/package/@gun-vue/app) •
-[Demo](https://gun-vue.js.org/app)
+[📱 Demo App](https://gun-vue.js.org/app)  
 
-Features P2P social posts, end-to-end encrypted chat, web-torrent filesharing, and more!
+A **Single-Page App (SPA)** that runs in any modern browser, featuring **Peer-to-Peer**: **Social Posts**, **End-to-End Encrypted (E2EE) Chat**, **WebTorrent File Sharing**, and more!
 
 ---
 
-### Gun-Vue: Components
+### Relay
 
-[GitHub (/components)](https://github.com/DeFUCC/gun-vue/tree/master/components) •
+[GitHub (@gun-vue/relay)](https://github.com/DeFUCC/gun-vue/tree/master/relay) •
+[npm](https://www.npmjs.com/package/@gun-vue/relay) •
+[Docs](https://gun-vue.js.org/packages/relay.html)  
+
+A simple **Gun Relay Peer** that helps clients form **Peer-to-Peer (P2P)** connections.
+
+---
+
+### Features
+
+[GitHub (@gun-vue/src)](https://github.com/DeFUCC/gun-vue/tree/master/src)
+
+A collection of ready to use features such as: `User`, `Post`, `Chat`, `Project`, and more! Many of these are used in the [**Gun-Vue: 📱 Demo App**](https://gun-vue.js.org/app).
+
+---
+
+#### Components
+
+[GitHub (@gun-vue/components)](https://github.com/DeFUCC/gun-vue/tree/master/components) •
 [npm](https://www.npmjs.com/package/@gun-vue/components) •
-[Docs](https://gun-vue.js.org/packages/components.html)
+[Docs](https://gun-vue.js.org/packages/components.html)  
 
-Prebuilt Vue 3 UI components that let you integrate real-time, P2P functionality into your projects.
+Prebuilt **Vue 3 UI components** that simplify adding **secure, real-time, peer-to-peer** functionality to your application—no need to build core features from scratch.
 
 ---
 
-### Gun-Vue: Composables
+#### Composables
 
-[GitHub (/composables)](https://github.com/DeFUCC/gun-vue/tree/master/composables) •
+[GitHub (@gun-vue/composables)](https://github.com/DeFUCC/gun-vue/tree/master/composables) •
 [npm](https://www.npmjs.com/package/@gun-vue/composables) •
 [Docs](https://gun-vue.js.org/packages/composables.html) •
 [API](https://gun-vue.js.org/reference/typedoc/modules.html)
 
-Reusable logic (Vue 3 Composition API) for managing reactive, P2P data flows independently of any specific UI components.
+**Reusable logic** built with the **Vue 3 Composition API**, for managing **reactive, peer-to-peer data flows** independently of any specific UI component.
 
----
+#### Routes
 
-### Gun-Vue: Relay
+[GitHub (@gun-vue/src)](https://github.com/DeFUCC/gun-vue/tree/master/src)
 
-[GitHub (/relay)](https://github.com/DeFUCC/gun-vue/tree/master/relay) •
-[npm](https://www.npmjs.com/package/@gun-vue/relay) •
-[Docs](https://gun-vue.js.org/packages/relay.html)
+A set of preconfigured **Vue 3 Router** routes so you can quickly wire up user profiles, social posts, chat, and more with minimal setup.
 
-A Simple Gun Relay Peer for connecting clients and optional persistent storage.
+## How to Build the Toolkit
 
-## How to Build the Workspace
+> **Note**: For a more guided approach, see the [**Tutorials**](https://gun-vue.js.org/tutorials/getting-started.html) or try the [**StackBlitz Starter Project**](https://stackblitz.com/edit/gun-vue?embed=1&file=src/App.vue).
 
-1. Clone this monorepo.
-2. Install [pnpm](https://pnpm.io/installation).
-3. Run `pnpm i` to install all workspace dependencies.
-4. From the root folder, use:
-   - `pnpm run dev`
-   - `pnpm run docs`
-   - `pnpm run app`  
-     to start each corresponding dev server.
-5. Run `pnpm run builds` to build all packages in the `_dist` folder.
+### 1. Install `pnpm`
 
 ```bash
-corepack enable
-pnpm i
-pnpm run builds
-open ./_dist/index.html
+npm install -g pnpm
+```
+*(Alternatively, use [corepack](https://pnpm.io/installation#using-corepack))*
+
+### 2. Clone the Repository & Install Dependencies
+
+```bash
+git clone https://github.com/DeFUCC/gun-vue.git
+```
+```bash
+cd gun-vue
+```
+```bash
+pnpm install
 ```
 
-## [Tutorial: Build your first Gun-Vue Web App](https://gun-vue.js.org/tutorials/getting-started.html)
+### 3. Run a Development Server
+
+Pick **one** (or more) from the following, as needed:
+
+- **Core Dev Server**:
+  ```bash
+  pnpm run dev
+  ```
+- **Documentation Server**:
+  ```bash
+  pnpm run docs
+  ```
+  
+### 4. Build the Entire Toolkit
+
+```bash
+pnpm run builds
+```
+```bash
+open ./_dist/index.html
+```
+*(or manually open `_dist/index.html` in your browser.)*
 
 ## How to Contribute
 
