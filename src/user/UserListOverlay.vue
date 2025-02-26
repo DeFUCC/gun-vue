@@ -42,7 +42,7 @@ button.button.absolute.flex.items-center.m-4.p-2.right-0.top-0.z-200(
   )
   .i-la-plus
   .ml-2 Join
-transition(name="fade")
+transition(name="fade" mode="out-in" appear)
   .absolute.left-0.bottom-0.w-60.bg-light-200.dark-bg-dark-800.dark-bg-opacity-80.bg-opacity-70.z-100.overflow-y-scroll.px-2.max-h-full.flex.flex-col.gap-2.p-2.rounded-tr-xl(
     v-if="isLarge || (open && !isLarge)" 
     ref="panel" 
@@ -54,5 +54,5 @@ transition(name="fade")
       .flex.items-center
         .text-xl.mr-2.capitalize {{ state }}
         .px-2.py-1.rounded-xl.font-bold {{ guests.count[state] }}
-      guest-list(:state="state" @user="$emit('user',$event)")
-</template> 
+      guest-list(:state="state" @user="$emit('user', $event)")
+</template>

@@ -88,7 +88,7 @@ import { theme } from '../ui/useTheme'
         button.button(@click="showPeers = !showPeers; loadRelays()") 
           .i-la-angle-up(v-if="showPeers")
           .i-la-angle-down(v-else)
-      transition(name="fade")
+      transition(name="fade" mode="out-in" appear)
         ul.flex.flex-col.font-normal.items-start(v-if="showPeers")
           li.flex.w-full.text-left.p-1.hover-bg-light-500.cursor-pointer.hover-dark-bg-dark-600(
             v-for="link in relays" 
@@ -112,7 +112,7 @@ import { theme } from '../ui/useTheme'
       button.button(@click="showTrackers = !showTrackers") 
         .i-la-angle-up(v-if="showTrackers")
         .i-la-angle-down(v-else)
-    transition(name="fade")
+    transition(name="fade" mode="out-in" appear)
       .flex.flex-col.gap-2(v-if="showTrackers")
         .flex.items-center.gap-2
           input.p-1.rounded.flex-auto.bg-light-100.dark-bg-dark-800.max-w-60(v-model="newTracker")
@@ -132,7 +132,7 @@ import { theme } from '../ui/useTheme'
       button.button(@click="showGraph = !showGraph") 
         .i-la-angle-up(v-if="showGraph")
         .i-la-angle-down(v-else)
-    transition(name="fade")
+    transition(name="fade" mode="out-in" appear)
       gun-graph.max-h-40vh.overflow-y-scroll(v-if="showGraph")
 </template>
 

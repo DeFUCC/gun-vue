@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { toRef, computed } from "vue"
 import { useAccount, selectedUser } from '../composables'
-import { usePrivateChat } from './usePrivateChat'
+import { useMessages } from './useMessages'
 import { AccountAvatar, ChatInput, ChatMessages, TorrentUpload, UiPanel } from '../components'
 import AccountHome from "../account/AccountHome.vue"
 import FileShare from "../files/FileShare.vue"
@@ -17,7 +17,7 @@ defineEmits(['user', 'back'])
 
 const { account } = useAccount(toRef(props, 'pub'));
 
-const chat = computed(() => usePrivateChat(props.pub))
+const chat = computed(() => useMessages(props.pub))
 
 
 </script>

@@ -21,7 +21,7 @@ export const rootRoutes = {
   "/posts/": "Posts",
   "/users/": "Users",
   "/my/": "User",
-  "/private/": "Messages",
+  "/messages/": "Messages",
   "/rooms/": "Rooms",
   "/projects/": "Projects",
   "/gifts/": "Gifts",

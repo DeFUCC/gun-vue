@@ -1,5 +1,5 @@
 /**
- * [[include:./private/README.md]]
+ * [[include:./messages/README.md]]
  * @module PrivateChat
  * @group Chat
  */
@@ -27,7 +27,7 @@ import { refDebounced, watchDebounced } from "@vueuse/core";
  * @param {string} pub
  * @returns {Chat}
  */
-export function usePrivateChat(pub) {
+export function useMessages(pub) {
 	const gun = useGun();
 	const { user } = useUser();
 
@@ -120,7 +120,7 @@ export function usePrivateChat(pub) {
  * @param {string} pub
  * @returns {{count: import('vue').ComputedRef<number>, available: import('vue').Ref<boolean>}}
  */
-export function usePrivateChatCount(pub) {
+export function useMessagesCount(pub) {
 	const gun = useGun();
 	const { user } = useUser();
 	const messages = reactive({});
@@ -163,7 +163,7 @@ export function usePrivateChatCount(pub) {
 /**
  * @returns {Object.<string, Message>}
  */
-export function usePrivateChatList() {
+export function useMessagesList() {
 	const gun = useGun();
 	const { user } = useUser();
 	const list = reactive({});

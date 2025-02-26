@@ -7,7 +7,7 @@ import { UserHome } from '../components'
   user-home(
     @room="$router.push(`/rooms/${$event}`)" 
     @user="$router.push(`/users/${$event}`)" 
-    @chat="$router.push(`/private/${$event}`)"
+    @chat="$router.push(`/messages/${$event}`)"
     @post="$router.push(`/users/${$event}`)"
   )
   router-view(v-slot="{ Component }")

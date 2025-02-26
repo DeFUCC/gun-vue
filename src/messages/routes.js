@@ -1,12 +1,12 @@
 export default [
   {
-    path: "/private/",
+    path: "/messages/",
     props: true,
     component: () => import("./index.vue"),
     children: [
       {
         path: '',
-        name: "private",
+        name: "messages",
         component: () => import('./empty.vue')
       },
       {

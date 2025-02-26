@@ -23,11 +23,11 @@ onMounted(() => {
   :pub="pub" 
   @browse="$router.push(`/users/${$event}`)"
   @post="$router.push(`/posts/${safeHash($event)}`)"
-  @chat="$router.push(`/private/${pub}`)" 
+  @chat="$router.push(`/messages/${pub}`)" 
   @project="$router.push(`/projects/${$event}`)"
   )
   router-view(v-slot="{ Component }")
-    transition(name="fade")
+    transition(name="fade" mode="out-in" appear)
       component(:is="Component" )
 
 </template>

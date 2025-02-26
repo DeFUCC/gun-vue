@@ -20,7 +20,7 @@ const countMy = computed(() => countProjects(user.pub))
     //-     ) My posts
     //-       .px-8px.py-4px.text-xs.font-bold.bg-light-100.dark-bg-dark-500.rounded-xl {{ countMy }}
   router-view(v-slot="{ Component }")
-    transition(name="fade")
+    transition(name="fade" mode="out-in" appear)
       keep-alive(max="12")
         component(:is="Component" )
 </template>

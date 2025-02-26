@@ -4,7 +4,7 @@
 
 <template lang='pug'>
 UserHome(
-  @chat="$router.push(`/private/${$event}`)"
+  @chat="$router.push(`/messages/${$event}`)"
   @room="$router.push(`/rooms/${$event}`)"
   )
 </template>

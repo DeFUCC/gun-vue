@@ -10,7 +10,6 @@ const { user } = useUser()
 <template lang='pug'>
 mate-list(
   :pub="user.pub"  
-  @browse="$router.push(`/private/${$event}`)"
+  @browse="$router.push(`/messages/${$event}`)"
   )
 </template>
-

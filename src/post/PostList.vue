@@ -101,7 +101,7 @@ const filteredPosts = computed(() => {
         multiple
         @change="uploadPosts($event.target.files)"
       )
-      transition(name="fade")
+      transition(name="fade" mode="out-in" appear)
         post-form(
           v-if="add" 
           :tag="tag" 
