@@ -50,7 +50,7 @@ A simple **Gun Relay Peer** that helps clients form **Peer-to-Peer (P2P)** conne
 
 [GitHub (@gun-vue/src)](https://github.com/DeFUCC/gun-vue/tree/master/src)
 
-A collection of ready to use features such as: `User`, `Post`, `Chat`, `Project`, and more! Many of these are featured in the [**Gun-Vue: 📱 Demo App**](https://gun-vue.js.org/app).
+A collection of ready to use features such as: `User`, `Post`, `Chat`, `Project`, and more! Many of these are used in the [**Gun-Vue: 📱 Demo App**](https://gun-vue.js.org/app).
 
 ---
 
@@ -77,7 +77,7 @@ Prebuilt **Vue 3 UI components** that simplify adding **secure, real-time, peer-
 
 [GitHub (@gun-vue/src)](https://github.com/DeFUCC/gun-vue/tree/master/src)
 
-A set of preconfigured **Vue 3 Router** routes—no separate package needed—so you can quickly wire up user profiles, social posts, chat, and more with minimal setup.
+A set of preconfigured **Vue 3 Router** routes so you can quickly wire up user profiles, social posts, chat, and more with minimal setup.
 
 ## How to Build the Toolkit
 
