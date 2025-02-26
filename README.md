@@ -1,4 +1,4 @@
-# Gun-Vue: Peer-to-Peer Web App Toolkit
+# Gun-Vue: The Peer-to-Peer Web App Toolkit
 
 <a href="https://gun-vue.js.org">
   <img src="https://gun-vue.js.org/media/gun-vue-logo.svg" alt="@gun-vue logo" width="250" />
