@@ -101,7 +101,7 @@ const Graph = ForceGraph()
   });
 
 onMounted(() => {
-  Graph(document.getElementById('graph'))
+  Graph(graph.value)
 })
 
 //@ts-expect-error
@@ -117,6 +117,6 @@ useResizeObserver(graph, (entries) => {
 </script>
 
 <template lang="pug">
-.bg-light-700.dark-bg-dark-500.overflow-none.w-full.max-w-100vw.max-h-90vh.h-full(ref="graph")
-  #graph
+.bg-light-700.dark-bg-dark-500.overflow-none.max-w-100vw.max-h-100svh.w-full.h-full
+  #graph(ref="graph")
 </template>
