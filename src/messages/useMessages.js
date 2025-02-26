@@ -66,11 +66,13 @@ export function useMessages(pub) {
 	async function parseMessage(d, today, author) {
 		if (typeof d == "number") return;
 		if (d && d.startsWith("SEA")) {
-			const secret = await user.secret(epub.value);
-			const work = await SEA.work(secret, undefined, undefined, {
-				salt: today,
-			});
-			const dec = await SEA.decrypt(d, work);
+			const dec = await SEA.decrypt(
+				d,
+				await SEA.work(
+					await user.secret(epub.value),
+					undefined,
+					undefined,
+					{ salt: today, }));
 			if (!dec || typeof dec != "object") return;
 			return {
 				timestamp: dec.timestamp,
@@ -138,7 +140,7 @@ export function useMessagesCount(pub) {
 }
 
 export async function sendMessage(pub, message) {
-	if (!pub || !message) return;
+	if (!pub || typeof message !== 'string' || message.trim() === '') return;
 
 	const gun = useGun();
 	const { user } = useUser();
@@ -147,15 +149,17 @@ export async function sendMessage(pub, message) {
 	const epub = await gun.user(pub).get("epub").then()
 
 	const today = theDate.toLocaleDateString("en-CA");
-	const timestamp = theDate.getTime()
-	const secret = await user.secret(epub);
-	const work = await SEA.work(secret, undefined, undefined, {
-		salt: today,
-	});
-	const enc = await SEA.encrypt({
-		timestamp,
-		text: message,
-	}, work);
+
+	const enc = await SEA.encrypt(
+		{
+			timestamp: theDate.getTime(),
+			text: message,
+		},
+		await SEA.work(
+			await user.secret(epub),
+			undefined,
+			undefined,
+			{ salt: today }));
 
 	gun.user().get("messages").get(pub).get(today).set(enc);
 }
