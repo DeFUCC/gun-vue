@@ -37,7 +37,7 @@ export default defineConfig({
 			formats: ["es"],
 		},
 		outDir: "dist",
-		minify: tru,
+		minify: true,
 		target: "esnext",
 		sourcemap: false,
 		assetsInlineLimit: 100000000,
