@@ -37,13 +37,14 @@ export default defineConfig({
 			formats: ["es"],
 		},
 		outDir: "dist",
+		minify: tru,
 		target: "esnext",
 		sourcemap: false,
 		assetsInlineLimit: 100000000,
 		chunkSizeWarningLimit: 100000000,
 		cssCodeSplit: false,
 		rollupOptions: {
-			external: ['vue'],
+			// external: ['vue'],
 			output: {
 				inlineDynamicImports: true,
 			},

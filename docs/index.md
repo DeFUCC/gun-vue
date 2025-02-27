@@ -3,8 +3,8 @@ title: Gun-Vue
 layout: home
 hero:
   name: Gun-Vue
-  text: Reactive crypto graph webapp toolbox
-  tagline: Pluggable Vue UI powered by GUN graph database and SEA cryptography
+  text: Reactive and secure peer-to-peer graph web-app toolbox
+  tagline: Reactive Vue 3 composables, components and apps powered by GUN graph database
   image:
     src: gun-vue-logo.svg
     alt: Gun-Vue logo
