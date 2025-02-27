@@ -140,10 +140,41 @@ const showSettings = ref(false)
     "Main Main Main"
 }
 
+/* Add thin scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
 .Main {
   grid-area: Main;
-  overflow-y: scroll;
+  overflow-y: auto;
   overscroll-behavior-y: none;
+  scrollbar-width: thin;
+  /* For Firefox */
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  /* For Firefox */
 }
 
 .Footer {

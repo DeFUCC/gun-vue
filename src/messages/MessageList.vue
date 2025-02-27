@@ -25,7 +25,7 @@ const { user } = useUser()
 <template lang="pug">
 .flex.flex-col.gap-2.w-full
   slot
-  .p-2.flex.gap-2(@click="$emit('chat', user?.pub)")
+  .p-2.flex.gap-2(@click="$emit('chat', user?.pub)" v-if="!list[user?.pub]")
     account-badge(:pub="user?.pub")
     .flex-1
     MessagesCount(:pub="user?.pub")

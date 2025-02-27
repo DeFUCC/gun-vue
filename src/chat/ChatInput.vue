@@ -27,7 +27,7 @@ function send() {
     @click="send()"
     )
     .i-la-comment-dots.mx-2
-.p-4.flex.flex-col.items-center(v-else)
-  button.button(@click="user.auth = true")
-    | Log in to post messages
+//- .p-4.flex.flex-col.items-center(v-else)
+//-   button.button(@click="user.auth = true")
+//-     | Log in to post messages
 </template>

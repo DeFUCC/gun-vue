@@ -46,9 +46,9 @@ const list = computed(() => useRooms(user.pub))
     user-panel(
       @browse="$emit('browse', $event); $emit('close')"
       )
-    .flex.flex-col.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-h-40vh.overflow-y-scroll(style="flex: 1 1 200px")
+    .flex.flex-col.items-start.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-h-40vh.overflow-y-scroll(style="flex: 1 1 200px")
       user-profile
-      button.p-2.rounded-xl.font-bold.text-lg.shadow-md(
+      button.button(
         :style="{ backgroundColor: user.color }"
         @click="$emit('user', user.pub); $emit('close')"
         )  My public profile

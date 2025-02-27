@@ -18,11 +18,11 @@ const address = computed(() => {
 </script>
 
 <template lang="pug">
-.flex.flex-col.bg-light-400.dark-bg-dark-400
+.flex.flex-col.bg-light-400.dark-bg-dark-400.gap-4.p-4
   qr-show.max-w-full(:data="address")
-  .flex.flex-col.items-center.mb-4
-    .text-md.mx-4.my-2.break-all.max-w-420px.font-mono.op-70 {{ address }}
-    .flex.text-lg.mt-2
+  .flex.flex-col.items-center
+    input.w-full.text-md.break-all.max-w-420px.font-mono.op-70(v-model="address" disabled)
+    .flex.text-lg.my-2.gap-2
       button.button.text-lg.font-normal.items-center(v-if="canCopy" @click="copy(address)")
         .i-la-copy
         .ml-2(v-if="copied") Copied!

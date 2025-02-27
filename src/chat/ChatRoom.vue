@@ -2,7 +2,7 @@
 import { watch, computed } from 'vue'
 import { UiLayer, AccountHome, ChatMessages, ChatInput } from '../components'
 import { useChat, selectedUser, useBackground, currentRoom } from '../composables';
-import { useWebNotification, watchDebounced } from '@vueuse/core';
+// import { useWebNotification, watchDebounced } from '@vueuse/core';
 
 const props = defineProps({
   title: { type: String, default: 'Topics' },
@@ -30,30 +30,30 @@ watch(() => props.topic, topic => {
   currentChat.value = topic
 }, { immediate: true })
 
-watchDebounced(sorted, (next, prev) => {
-  if (next.length > prev.length) {
-    click()
-    const message = next.slice(-1)[0]
-    const {
-      isSupported,
-      notification,
-      show,
-      close,
-      onClick,
-      onShow,
-      onError,
-      onClose,
-    } = useWebNotification({
-      title: message?.text,
-      body: `${message?.timestamp} by ${message?.author}`,
-      lang: 'en',
-      tag: 'chat',
-    })
-    if (isSupported.value) {
-      show()
-    }
-  }
-}, { deep: true })
+// watchDebounced(sorted, (next, prev) => {
+//   if (next.length > prev.length) {
+//     click()
+//     const message = next.slice(-1)[0]
+//     const {
+//       isSupported,
+//       notification,
+//       show,
+//       close,
+//       onClick,
+//       onShow,
+//       onError,
+//       onClose,
+//     } = useWebNotification({
+//       title: message?.text,
+//       body: `${message?.timestamp} by ${message?.author}`,
+//       lang: 'en',
+//       tag: 'chat',
+//     })
+//     if (isSupported.value) {
+//       show()
+//     }
+//   }
+// }, { deep: true })
 
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 

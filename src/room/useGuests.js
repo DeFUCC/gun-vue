@@ -19,12 +19,8 @@ import { useGun, useAccount, currentRoom } from "../composables";
 
 let startTime = Date.now();
 
-/**
- * @param {Object} [options]
- * @param {number} [options.TIMEOUT=10000]
- * @returns {Object}
- */
-export function useGuests({ TIMEOUT = 10000 } = {}) {
+
+export function useGuests(roomPub = currentRoom.pub, { TIMEOUT = 10000 } = {}) {
 	const gun = useGun();
 
 	/** @type {Object.<string, Guest>} */
@@ -39,7 +35,7 @@ export function useGuests({ TIMEOUT = 10000 } = {}) {
 	});
 
 	gun
-		.user(currentRoom.pub)
+		.user(roomPub)
 		.get("space")
 		.map()
 		.once((pos, pub) => {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useGuests, joinRoom, useUser } from '#composables';
+import { useGuests, joinRoom, useUser, currentRoom } from '#composables';
 import { AccountBadge } from '../components'
 import { reactive, ref, computed, toRef } from 'vue'
 
@@ -7,12 +7,13 @@ import { reactive, ref, computed, toRef } from 'vue'
 const emit = defineEmits(['user'])
 
 const props = defineProps({
-  state: { type: String, default: "online" }
+  state: { type: String, default: "online" },
+  roomPub: { type: String, default: () => currentRoom.pub }
 })
 
 const { user } = useUser()
 
-const guests = useGuests()
+const guests = useGuests(props.roomPub)
 
 const isInRoom = computed(() => guests.guests[user.pub])
 
@@ -30,9 +31,9 @@ const isInRoom = computed(() => guests.guests[user.pub])
       @click="$emit('user', guest.pub)"
     ) 
   button.button.flex.items-center.m-4.p-2(
-    v-if="user.is && !isInRoom" 
-    @click.stop.prevent="joinRoom()"
+    v-if="user.is && !isInRoom && roomPub == currentRoom.pub" 
+    @click.stop.prevent="joinRoom(roomPub)"
     )
     .i-la-plus
     .ml-2 Join
-</template> 
+</template>
