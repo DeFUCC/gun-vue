@@ -73,24 +73,18 @@ Prebuilt **Vue 3 UI components** that simplify adding **secure, real-time, peer-
 
 **Reusable logic** built with the **Vue 3 Composition API**, for managing **reactive, peer-to-peer data flows** independently of any specific UI component.
 
-#### Routes
-
-[GitHub (@gun-vue/src)](https://github.com/DeFUCC/gun-vue/tree/master/src)
-
-A set of preconfigured **Vue 3 Router** routes so you can quickly wire up user profiles, social posts, chat, and more with minimal setup.
-
 ## How to Build the Toolkit
 
 > **Note**: For a more guided approach, see the [**Tutorials**](https://gun-vue.js.org/tutorials/getting-started.html) or try the [**StackBlitz Starter Project**](https://stackblitz.com/edit/gun-vue?embed=1&file=src/App.vue).
 
-### 1. Install `pnpm`
+1. Install `pnpm`
 
 ```bash
 npm install -g pnpm
 ```
 *(Alternatively, use [corepack](https://pnpm.io/installation#using-corepack))*
 
-### 2. Clone the Repository & Install Dependencies
+2. Clone the Repository & Install Dependencies
 
 ```bash
 git clone https://github.com/DeFUCC/gun-vue.git
@@ -102,9 +96,9 @@ cd gun-vue
 pnpm install
 ```
 
-### 3. Run a Development Server
+3. Run a Development Server
 
-Pick **one** (or more) from the following, as needed:
+    Pick **one** (or more) from the following, as needed:
 
 - **Core Dev Server**:
   ```bash
@@ -115,7 +109,7 @@ Pick **one** (or more) from the following, as needed:
   pnpm run docs
   ```
   
-### 4. Build the Entire Toolkit
+4. Build the Entire Toolkit
 
 ```bash
 pnpm run builds
