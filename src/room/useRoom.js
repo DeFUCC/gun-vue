@@ -210,6 +210,7 @@ export function updateRoomProfile(field, content) {
 	const gun = useGun();
 	const { user } = useUser();
 	let certificate = currentRoom.hosts?.[user.pub]?.profile;
+	if (!certificate) return
 	gun
 		.user(currentRoom.pub)
 		.get("profile")

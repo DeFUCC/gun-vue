@@ -42,25 +42,6 @@ export function useGun(options = { localStorage: false }) {
 	return gun;
 }
 
-/**
- * @param {...string} args
- * @returns {import('gun').IGunInstance}
- */
-export function useGunPath(...args) {
-	const gun = useGun();
-	let g;
-	for (let arg of args) {
-		g = gun.get(arg);
-	}
-	return g || gun;
-}
-
-/**
- * @param {...string} args
- */
-export function useGunMap(...args) {
-	// Implementation not provided in the original code
-}
 
 /**
  * get a secondary Gun instance for certificate management
