@@ -3,7 +3,7 @@
 import { isEmoji } from '#composables';
 const props = defineProps({
   reactions: { type: Object, default: () => ({}) },
-  current: { type: String, default: '' }
+  current: { type: [String, Boolean], default: '' }
 })
 
 const emit = defineEmits(['update:current'])

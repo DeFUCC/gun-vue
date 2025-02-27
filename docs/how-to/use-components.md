@@ -12,7 +12,7 @@ Ready to use Vue 3 components as building blocks to implement Gun powered intera
 
 ### Try [Playground](https://stackblitz.com/edit/gun-vue) at Stackblitz.com
 
-*Native web-components may be implemented in future.*
+_Native web-components may be implemented in future._
 
 ## How to install?
 
@@ -80,7 +80,7 @@ Most of the Gun-Vue components rely on realtime communication with the GUN datab
 
 We use [Vitepress](https://vitepress.dev/) as our Static Site Generator and there's a [plenty of documented ways](https://vitepress.dev/guide/ssr-compat) how to prevent GUN running during SSR.
 
-#### A. Define your component as a client-side
+#### Define your component as a client-side
 
 ```Vue
 <script setup>
@@ -95,20 +95,3 @@ const ClientComp = defineClientComponent(() => {
   <ClientComp />
 </template>
 ```
-
-#### B. Conditionally import and add your component to the app
-
-```js
-// .vitepress/theme/index.js
-export default {
-  // ...
-  async enhanceApp({ app }) {
-    if (!import.meta.env.SSR) {
-      app.component('YourComponent', await import('./YourComponent.vue'))
-    }
-  }
-}
-```
-
-
-

@@ -31,7 +31,7 @@ export default defineConfig({
 		emptyOutDir: true,
 		sourcemap: true,
 		rollupOptions: {
-			external: ["vue"],
+			// external: ["vue"],
 			output: {
 				minifyInternalExports: false,
 				manualChunks(id) {

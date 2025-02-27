@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.22.6
+
+### Patch Changes
+
+- Major docs update + fixes to the packages with external 'vue'
+
 ## 0.22.5
 
 ### Patch Changes

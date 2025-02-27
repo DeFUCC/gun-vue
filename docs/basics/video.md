@@ -1,8 +1,8 @@
 ---
-title: Video updates
+title: Screencasts
 ---
 
-# Gun-Vue video blog
+# Gun-Vue screencasts
 
 ### [Watch on YouTube](https://www.youtube.com/@defucc)
 
@@ -12,5 +12,3 @@ import { data } from './video.data'
 </script>
 
 <VideoBlog  />
-
-

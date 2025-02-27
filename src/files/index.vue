@@ -10,13 +10,13 @@ import FileShare from './FileShare.vue';
 import FileList from './FileList.vue';
 import FileInfo from './FileInfo.vue';
 
-function addFile(data) {
+function addFile(file) {
 
   const gun = useGun()
   const { user } = useUser()
   if (!user.pub) return
 
-  gun.user(currentRoom.pub).get('files').get(`${data.infoHash}@${user.pub}`).put(data, null, {
+  gun.user(currentRoom.pub).get('files').get(`${file.infoHash}@${user.pub}`).put(file, null, {
     opt: { cert: currentRoom.features?.files }
   })
 }
@@ -28,9 +28,13 @@ const { user } = useUser()
 const files = reactive({})
 
 gun.user(currentRoom.pub).get('files').map().on((d, k) => {
-  if (d == null) return
+
   const infohash = k.slice(0, 40)
   const author = k.slice(-87)
+  if (d == null) {
+    delete files[infohash]
+    return
+  }
   files[infohash] = files[infohash] ? { ...files[infohash], authors: { ...files[infohash].authors, [author]: true } } : { ...d, authors: { [author]: true } }
 })
 
@@ -47,7 +51,7 @@ function removeFile(infoHash) {
 <template lang='pug'>
 .p-4.flex.flex-col.gap-2
   //- TorrentUpload(@uploaded="addFile($event)")
-  FileShare(@uploaded="activeFile = $event")
+  FileShare(@uploaded="activeFile = $event; addFile($event.info)")
 
   .flex.flex-col.gap-2
     router-link.p-2.flex.flex-wrap.items-center.gap-2.break-all.bg-light-300.dark-bg-dark-400.rounded(

@@ -17,7 +17,7 @@ transition(name="fade" mode="out-in" appear)
         key="bg" 
         @click="$emit('close')"
         )
-      .layer(
+      .layer.z-200(
         v-if="open" 
         key="layer" 
         :style="{ top: offset || '10vh' }"

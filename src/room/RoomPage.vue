@@ -1,5 +1,5 @@
 <script setup>
-import { useRoom, rootRoom, currentRoom, useColor, useUser, useBackground, useMd } from '#composables';
+import { useRoom, rootRoom, currentRoom, useColor, useUser, useBackground, useMd, favRoom } from '#composables';
 import { ref, computed, reactive } from 'vue'
 import { RoomLogo, FormTitle, AccountBadge, RoomActions, RoomFeature, FormText, GuestList } from '../components'
 import { features } from '../../gun.config.json'
@@ -48,11 +48,16 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
       .flex.flex-wrap.items-center.gap-8 
         room-logo.flex-1.rounded-2xl.overflow-hidden.min-w-20(:pub="roomPub" :key="roomPub")
         .flex.flex-col.flex-auto(style="flex: 100")
-          form-title.font-bold.text-2xl(
-            :text="room.profile.name || roomPub.substring(0, 12)"
-            :editable="room.hosts[user.pub] && roomPub == currentRoom.pub && !edit.name"
-            @update="updateRoomProfile('name', $event)"
-          )
+          .flex.gap-2.items-center
+            form-title.font-bold.text-2xl(
+              :text="room.profile.name || roomPub.substring(0, 12)"
+              :editable="room.hosts[user.pub] && roomPub == currentRoom.pub && !edit.name"
+              @update="updateRoomProfile('name', $event)"
+              )
+            .flex-1 
+            button.button(@click="favRoom(roomPub)")
+              .i-la-star(v-if="!room.isFavourite") 
+              .i-la-star-solid(v-else)
           .text-md {{ room.profile.description }}
           .flex.items-center.flex-wrap
             .font-bold.mr-2 Hosts: 
@@ -82,8 +87,7 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
         @click="$emit('browse', c)" 
         )
 
-    .px-4
-      guest-list(@user="$emit('user', $event)")
+    .px-4.max-w-55ch
       guest-list(state="offline" @user="$emit('user', $event)")
     .relative
       .flex.items-center(v-if="edit.text === false" ) 

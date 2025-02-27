@@ -5,19 +5,13 @@ import { GunVuePlugin } from '../src/components'
 
 export function createGunVueApp(
   tag = "#app",
-  component = {
-    data() {
-      return {
-        message: 'Welcome to Gun-Vue space',
-        components: Object.keys(components)
-      }
-    }
-  },
-  init = app => console.log('GunVue app initiated')) {
+) {
   const gun = useGun();
-  const App = createApp(component)
+
+
+  const App = createApp()
+
   App.use(GunVuePlugin)
-  init(App)
   App.mount(tag)
   return { App, gun }
 }

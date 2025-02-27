@@ -11,7 +11,7 @@
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
 		"declaration": true,
-		"emitDeclarationOnly": true,
+		"noEmit": true,
 		"module": "esnext",
 		"target": "esnext",
 		"moduleResolution": "Node",

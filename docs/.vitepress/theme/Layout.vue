@@ -7,7 +7,7 @@ const { page } = useData()
 </script>
 
 <template lang="pug">
-layout
+layout.w-full
   template(#doc-before)
     iframe.shadow-2xl.rounded-lg.w-full(
       v-if="page?.frontmatter?.youtube" 

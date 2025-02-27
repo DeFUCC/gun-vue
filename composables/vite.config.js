@@ -25,7 +25,7 @@ export default defineConfig({
 		},
 		sourcemap: true,
 		rollupOptions: {
-			external: ["vue"],
+			// external: ["vue"],
 			output: {
 				minifyInternalExports: false,
 			},
