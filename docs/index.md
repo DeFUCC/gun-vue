@@ -18,10 +18,17 @@ hero:
       link: /tutorials/getting-started
 features:
   - icon: ✨
+    title: Local-first single HTML web-apps
+    details: All the components and logic required for your Gun-Vue application can be packed into a single file HTML PWA, simplifying deployment and sharing. Data is stored locally and synced with the global network only when necessary.
+    link: /app/
+    target: _self
+    linkText: Try the demo app
+
+  - icon: ✨
     title: Low-code trustful web-apps
     details: Build trustful reactive p2p crypto graph applications for casual use with family, friends and wider communities.
     linkText: Start building
-    link: /tutorials/first-app
+    link: /tutorials/getting-started
 
   - icon: <span class="i-carbon:ibm-toolchain"></span>
     title: Reactive composables
@@ -29,30 +36,32 @@ features:
     link: /packages/composables
     linkText: Explore composables
 
-  - icon: ⚡️
-    title: Reactive P2P database
-    details: Every object exported is reactive to changes in Gun p2p database
-
-  - icon: ✨
-    title: Local-first single HTML apps
-    details: Gun-Vue enables the creation of local-first applications, meaning data is stored locally and synced with the global network only when necessary. All the components and logic required for your Gun-Vue application can be packed into a single HTML file, simplifying deployment and making it easy to share your app with others.
-
-  - title: Pluggable Components
+  - icon: 🔄
+    title: Pluggable components
     details: With Gun-Vue, you can create and use custom pluggable components, making it simple to extend the functionality of your app and reuse components across different projects.
-    link: https://gun-vue.js.org/packages/components.html
-    linkText: Explore Pluggable Components
+    link: /packages/components
+    linkText: Explore components
 
-  - title: Easy Integration
-    details: Gun-Vue is designed to work seamlessly with existing Vue.js projects, making it simple to add real-time data synchronization and other Gun features to your app without major refactoring.
+  - title: Easy to run relays
+    details: A lightweight relay server that helps establish peer connections and ensures smooth data synchronization across the network. Easy to deploy and maintain, it serves as a crucial infrastructure component for your p2p applications.
+    link: /packages/relay
+    linkText: Explore relay
 
-  - title: Decentralized Data Storage
-    details: Leverage the power of Gun's decentralized data storage system to build apps that are resistant to censorship and data loss, providing a secure and resilient foundation for your projects.
+  - title: Developer-friendly codebase
+    details: Benefit from a thoughtfully structured monorepo with consistent patterns throughout. Written and maintained by a single author, the codebase features clear separation of layers, reusability, and a streamlined build system that makes it easy to understand and extend.
+    linkText: Watch screencasts
+    link: /basics/video
+
+  - title: Decentralized data storage
+    details: GUN is a peer-to-peer reactive graph database with automatic conflict resolution using CRDTs. Combined with SEA cryptography for security and DAM for mesh networking, it provides a resilient foundation for real-time, decentralized applications that are resistant to censorship and data loss.
     link: https://gun.eco/docs/
+    target: _blank
     linkText: Read Gun docs
 
-  - title: Open Source
-    details: Gun-Vue is an open-source project, meaning you can contribute to its development, report issues, and collaborate with the community to help improve the toolkit and build better apps.
+  - title: Open source
+    details: Gun-Vue is an open-source project with code open to learn from and improve together. It's meaning you can contribute to its development, report issues, and collaborate with the community to help improve the toolkit and build better apps.
     link: https://github.com/DeFUCC/gun-vue
+    target: _blank
     linkText: View on GitHub
 ---
 

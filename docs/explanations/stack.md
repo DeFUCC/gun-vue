@@ -4,29 +4,62 @@ title: Tech stack
 
 # Gun-Vue tech stack
 
-The name of the app states the two main libs that we use. But there's so much more!
+The project is structured as a monorepo with three main packages, each serving a specific purpose.
 
-## Composables
+## Composables (`@gun-vue/composables`)
 
-## Components
+Core functionality and data management:
 
-## App
+- **Gun.js Integration**: Uses `gun` (0.2020.1240) and `@gun-vue/gun-es` for decentralized data
+- **Utility Libraries**:
+  - `@vueuse/core`, `@vueuse/integrations`, `@vueuse/math` for Vue composition utilities
+  - `markdown-it` for Markdown processing with external links support
+  - `webtorrent` for P2P file sharing
+  - `recordrtc` for recording capabilities
+  - `jszip` for file compression
+  - `fuse.js` for fuzzy search
+- **Helper Libraries**:
+  - `curved-arrows` for visual connections
+  - `drauu` for drawing capabilities
+  - `gun-avatar` for user avatars
+  - `qrcode` for QR code generation
+  - `color-hash` for consistent color generation
+
+## Components (`@gun-vue/components`)
+
+UI and visualization layer:
+
+- **UI Framework**: Built with Vue 3
+- **Styling**: Uses `unocss` with Pug templating
+- **Interactive Elements**:
+  - `floating-vue` for tooltips and popovers
+  - `force-graph` for network visualizations
+  - `vue3-virtual-scroll-list` for efficient list rendering
+  - `@vueuse/gesture` for touch interactions
+  - `@vueuse/sound` for audio feedback
+- **Formatting**: `@coders-tm/vue-number-format` for number formatting
+- **QR Code**: `jsqr` for QR code scanning
+
+## App (`@gun-vue/app`)
+
+Application shell and routing:
+
+- **Core**: Built with Vue 3
+- **Routing**: `vue-router` for page navigation
+- **Development**:
+  - `vite-plugin-pages` for file-based routing
+  - `vite-plugin-pages-sitemap` for sitemap generation
+  - `vite-plugin-singlefile` for single-file builds
+- **UI**: Uses `unocss` for styling
+- **Animation**: `ola` for smooth animations
+
+## Development Tools
 
 - [Vite](https://vitejs.dev) - Next Generation Frontend Tooling
+- [pnpm workspaces](https://pnpm.io/workspaces) - Monorepo management
+- [TypeDoc](https://typedoc.org/) - Documentation generation
 
-## Docs
+## Documentation
 
-- [Vitepress](https://vitepress.dev/) - Vite & Vue Powered Static Site Generator. Simple, powerful, and fast. Meet the modern SSG framework you've always wanted.
-  - [Local search](https://github.com/vuejs/vitepress/blob/1769d329cc1f517136d9a543385edce335e5dd24/src/node/plugins/localSearchPlugin.ts) - need to fix the indexing (https://github.com/lucaong/minisearch/)
-  - [Config](https://vitepress.dev/reference/site-config)
-- [Diataxis](https://diataxis.fr/) - A systematic framework for technical documentation authoring.
-
-## Relay
-
-- [Express](http://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
-
-## Shared tools
-
-- [pnpm workspaces](https://pnpm.io/workspaces) - pnpm has built-in support for monorepositories (AKA multi-package repositories, multi-project repositories, or monolithic repositories). You can create a workspace to unite multiple projects inside a single repository.
-- [Changesets](https://github.com/changesets/changesets) - A tool to manage versioning and changelogs with a focus on multi-package repositories
-- [TypeDoc](https://typedoc.org/) - TypeDoc converts comments in TypeScript source code into rendered HTML documentation or a JSON model.
+- [Vitepress](https://vitepress.dev/) - Documentation site generator
+- [Diataxis](https://diataxis.fr/) - Documentation structure framework

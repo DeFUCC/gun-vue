@@ -7,8 +7,7 @@ export const sidebar = [
         "link": "/basics/what-is"
       },
       {
-        "text": "Video updates",
-        "link": "/basics/video"
+        "text": "Development screencasts", "link": "/basics/video"
       }
     ]
   },
@@ -23,10 +22,6 @@ export const sidebar = [
         "text": "Create your first app",
         "link": "/tutorials/first-app"
       },
-      {
-        "text": "Build a Vue app",
-        "link": "/tutorials/vue-app"
-      }
     ]
   },
   {
@@ -66,6 +61,10 @@ export const sidebar = [
       {
         "text": "Tech stack",
         "link": "/explanations/stack"
+      },
+      {
+        "text": "Gun DB",
+        "link": "/explanations/gun"
       },
       {
         "text": "Questions and Answers",

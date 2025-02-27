@@ -2,10 +2,6 @@
 title: Components
 ---
 
-
-<UiComponents ></UiComponents>
-
-
 # Gun-Vue is a library of reusable components for Gun built with Vue.
 
 It enables eager web developers to build p2p apps for their communities all over the world, free and open source.
@@ -13,6 +9,8 @@ It enables eager web developers to build p2p apps for their communities all over
 ![@gun-vue components logo](https://gun-vue.js.org/media/svg/components.svg)
 
 [gun-vue.js.org](https://gun-vue.js.org)
+
+<UiComponents ></UiComponents>
 
 ## How to install?
 
@@ -104,11 +102,11 @@ Another way is to have the whole `GunVuePlugin` be mounted only on client-side. 
 ```js
 // .vitepress/theme/index.ts
 export default {
-  async enhanceApp({ app }) {
-    if (!import.meta.env.SSR) {
-      const { GunVuePlugin } = await import('@gun-vue/components')
-      app.use(GunVuePlugin)
-    }
-  }
-}
+	async enhanceApp({ app }) {
+		if (!import.meta.env.SSR) {
+			const { GunVuePlugin } = await import("@gun-vue/components");
+			app.use(GunVuePlugin);
+		}
+	},
+};
 ```

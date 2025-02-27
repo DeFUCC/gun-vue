@@ -10,7 +10,7 @@ const { files, initialized, upload, deleteFile, init, clearFiles, clearOPFS } = 
 
 const dragover = ref(false)
 
-const emit = defineEmits(['uploaded', 'url'])
+const emit = defineEmits(['uploaded', 'url', 'infoHash'])
 
 onMounted(init)
 
@@ -25,8 +25,8 @@ async function handleFiles(e) {
 
     let url = new URL(window?.location?.href)
     url.hash = ''
-
-    emit('url', `${url.href}#/files/${activeFile.value.info.infoHash}`)
+    emit('infoHash', activeFile.value.info.infoHash)
+    emit('url', downloadUrl.value)
 
   }
 }
