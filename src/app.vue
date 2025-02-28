@@ -107,6 +107,7 @@ const showSettings = ref(false)
         :showName="true"
         :border="2" 
         :pub="user.pub" 
+        :key="user.pub"
         @click="$router.push('/user/')"
         )
 

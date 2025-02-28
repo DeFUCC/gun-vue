@@ -32,8 +32,7 @@ export async function issueCert({
 	tag = "word",
 	dot = "",
 	users = "*",
-	personal = false,
-	expires = false
+	personal = false
 }) {
 	/** @type {Policy} */
 	let policy = { "*": `${tag}` };
@@ -43,12 +42,9 @@ export async function issueCert({
 	if (personal) {
 		policy["+"] = "*";
 	}
-	const options = null
-	if (expires) {
-		options = { expiry: expires }
-	}
+
 	try {
-		let cert = await SEA.certify(users, policy, pair, null, options);
+		let cert = await SEA.certify(users, policy, pair, null);
 		return cert;
 	} catch (e) {
 		console.log("cert error: ", e);

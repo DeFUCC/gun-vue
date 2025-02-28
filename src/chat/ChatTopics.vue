@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { useMediaQuery, onClickOutside } from '@vueuse/core'
 import { useChat } from './composables';
 import { AccountAvatar } from '../components'
+import { useUser } from '#composables';
 
 defineProps({
   title: { type: String, default: 'Topics' },
@@ -10,6 +11,8 @@ defineProps({
 })
 
 defineEmits(['topic'])
+
+const { user } = useUser()
 
 const { addChat, chats } = useChat()
 
@@ -25,14 +28,14 @@ onClickOutside(chatsPanel, () => !isLarge.value ? panelOpen.value = false : null
 </script>
 
 <template lang="pug">
-button.button.fixed.z-200.top-16.left-4(v-if="(!panelOpen && !isLarge)" @click="panelOpen = true")
+button.button.fixed.z-2000.top-16.left-4(v-if="(!panelOpen && !isLarge)" @click="panelOpen = true")
   | {{ title }}
 transition(name="fade" mode="out-in" appear)
   .px-1.py-2.flex.flex-col.bg-dark-50.dark-bg-dark-400.bg-opacity-95.gap-2.overflow-y-scroll.scroll-smooth.absolute.sm-static.z-20000.w-220px.max-w-full.text-light-900.backdrop-filter.backdrop-blur-xl.pb-8(v-if="isLarge || (panelOpen && !isLarge)" ref="chatsPanel" style="flex: 0 1 320px")
     .flex.flex-wrap
       .text-xl.font-bold.p-2 {{ title }}
       .flex-1
-      .cursor-pointer.self-center.text-2xl.p-2(@click="adding = !adding")
+      .cursor-pointer.self-center.text-2xl.p-2(@click="adding = !adding" v-if="user.is")
         transition(name="fade" mode="out-in")
           .i-la-plus(v-if="!adding")
           .i-la-times(v-else)

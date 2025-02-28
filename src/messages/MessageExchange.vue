@@ -32,7 +32,7 @@ const chat = computed(() => useMessages(props.pub))
     .text-sm.op-40 Seen {{ account.lastSeen }} ago
     .flex-1
     slot
-  ChatMessages.max-w-55ch.w-full(:messages="chat.sorted")
+  ChatMessages.max-w-55ch.w-full.mx-auto(:messages="chat.sorted")
   .sticky.bottom-0.flex-0.bg-light-900.dark-bg-dark-600.p-4.flex.gap-2.w-full
     FileShare(@url="chat.send(pub, $event)")
     chat-input.flex-1(@submit="chat.send(pub, $event)")

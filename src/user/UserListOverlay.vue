@@ -41,7 +41,7 @@ button.button.absolute.flex.items-center.m-4.p-2.right-0.top-0.z-200(
   @click.stop.prevent="joinRoom()"
   )
   .i-la-plus
-  .ml-2 Join
+  .ml-2 Join Room
 transition(name="fade" mode="out-in" appear)
   .absolute.left-0.top-0.min-w-60.max-w-50vh.bg-light-200.dark-bg-dark-800.dark-bg-opacity-80.bg-opacity-70.z-100.overflow-y-scroll.px-2.max-h-full.flex.flex-col.gap-2.p-2.rounded-tr-xl(
     v-if="isLarge || (open && !isLarge)" 

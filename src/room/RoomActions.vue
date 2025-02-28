@@ -47,11 +47,11 @@ async function download(enc) {
       @click="enterRoom(roomPub)"
       )
       .i-ion-enter-outline
-      .ml-2 Enter
+      .ml-2 Enter Room
     button.button(
       v-else 
       @click="leaveRoom()"
       )
       .i-ion-exit-outline
-      .ml-2 Leave
+      .ml-2 Leave Room
 </template>

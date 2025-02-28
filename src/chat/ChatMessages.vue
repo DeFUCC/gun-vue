@@ -22,7 +22,7 @@ watchDebounced(() => props.messages, () => {
 </script>
 
 <template lang="pug">
-virtual-list.flex.flex-col.bg-opacity-80.p-4.gap-2.overflow-y-scroll.scroll-smooth.flex-auto(
+virtual-list.flex.flex-col.bg-opacity-80.p-4.gap-2.overflow-y-scroll.scroll-smooth.flex-auto.bg-stone-600.dark-bg-dark-600(
   ref="list"
   :data-key="'timestamp'"
   :data-sources="messages"
