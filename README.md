@@ -18,7 +18,7 @@
 - **Cryptography** powered by [**SEA**](https://gun.eco/docs/SEA)
 - **Web Apps** powered by [**Vue 3**](https://vuejs.org)
 
-...and combines this [**Next-Gen Tech Stack**](https://gun-vue.js.org/basics/what-is.html) into a collection of [**Features**](#features) built from **Composables**, **Components**, and **Routes**, that make **Decentralized Web (DWeb)** development [**Fast & Fun**](https://gun-vue.js.org/tutorials/getting-started.html)! These features are showcased in the [**Gun-Vue: 📱 Demo App**](https://gun-vue.js.org/app), so you can start experimenting right now:
+...and combines this [**Next-Gen Tech Stack**](https://gun-vue.js.org/basics/what-is.html) into a collection of [**Features**](#features) built from **Composables** and **Components**, that make **Decentralized Web (DWeb)** development [**Fast & Fun**](https://gun-vue.js.org/tutorials/getting-started.html)! These features are showcased in the [**Gun-Vue: 📱 Demo App**](https://gun-vue.js.org/app), so you can start experimenting right now:
 
 ## [**Try the Gun-Vue: 📱 Demo App!**](https://gun-vue.js.org/app)
 
