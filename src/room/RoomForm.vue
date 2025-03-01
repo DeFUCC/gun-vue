@@ -34,10 +34,18 @@ const bg = computed(() => useBackground({ pub: newPair.value?.pub, size: 620 }))
 </script>
 
 <template lang="pug">
-.flex.flex-col.gap-4.bg-cover.rounded-2xl.w-full.p-16.max-w-620px.bg-light-800.dark-bg-dark-500.justify-center(
+.flex.flex-col.gap-4.w-full.p-16.max-w-620px.h-full.transition.items-center(
   v-if="user.pub" 
-  :style="{ ...bg }"
+  :key="newPair"
   )
+  transition(name="fade" mode="out-in")
+    .bg-cover.absolute.top-0.left-0.right-0.bottom-0.-z-1( :style="{ ...bg }")
+  label(for="title") New room name
+  input#title.text-center.p-2.rounded-xl.dark-bg-dark-200( d
+    v-model="name" 
+    type="text" 
+    autofocus
+    )
   .flex.gap-2
     button.button(
       v-if="canUndo"
@@ -49,14 +57,9 @@ const bg = computed(() => useBackground({ pub: newPair.value?.pub, size: 620 }))
       @click="redo()" 
       )
       .i-la-redo
-    button.button.flex-1(@click="genPair()" ) Generate a new room
+    button.button.flex-1(@click="genPair()" ) Generate a new room key
 
-  input.p-2.rounded-xl.dark-bg-dark-200(
-    v-if="newPair" 
-    v-model="name" 
-    type="text" 
-    placeholder="New room name"
-    )
+
   transition(name="fade" mode="out-in" appear)
     .flex.gap-2(v-if="newPair && name" )
       button.button.flex-1(

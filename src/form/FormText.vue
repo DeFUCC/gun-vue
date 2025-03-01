@@ -50,14 +50,13 @@ function importPostFile(event) {
 </script>
 
 <template lang="pug">
-.flex.flex-col
-  .flex.flex-col.text-left
-    textarea#myMD.dark-bg-dark-200.p-2(
-      ref="md"  
-      v-model="text"
-      placeholder="Main text content (with **markdown** support)"
-      )
-  .flex.flex-wrap.bg-dark-100.p-4
+.flex.flex-col.items-stretch.w-full.p-4.gap-4
+  textarea#myMD.dark-bg-dark-800.p-4.min-h-40vh.w-90vw.max-w-55ch(
+    ref="md"  
+    v-model="text"
+    placeholder="Main text content (with **markdown** support)"
+    )
+  .flex.flex-wrap.bg-dark-100.p-4.rounded-xl
     button.button.m-1(@click="$emit('close')")
       .i-la-check
       .ml-2 Save

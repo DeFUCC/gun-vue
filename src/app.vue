@@ -1,6 +1,6 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router";
-import { watch, watchEffect, computed, ref } from "vue";
+import { watch, watchEffect, computed, ref, onMounted } from "vue";
 import { currentRoom, useUser, rootRoom, useBackground, setPeer, relay } from "#composables";
 
 import config from '../gun.config.json'
@@ -79,6 +79,18 @@ const openShare = ref(false)
 
 const showSettings = ref(false)
 
+const disclaimer = ref(false)
+
+onMounted(() => {
+  setTimeout(() => {
+    console.log(user)
+    if (!user?.is) {
+      disclaimer.value = true
+    }
+  }, 100)
+
+
+})
 
 </script>
 
@@ -113,6 +125,10 @@ const showSettings = ref(false)
 
   UiLayer(:open="openShare" @close="openShare = false")
     qr-share(:key="route.path" )
+
+  UiLayer(:open="disclaimer" @close="disclaimer = false")
+    .bg-light-400.dark-bg-dark-400
+      .p-2 Disclaimer
 
   .grid.Main
     router-view(v-slot="{ Component }")

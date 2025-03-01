@@ -254,8 +254,8 @@ export async function createRoom({
 		})),
 	});
 
-	const enc = await user.encrypt(`${pair}`);
-	const encPub = await user.encrypt(`${roomPub}`);
+	const enc = await user.encrypt(pair);
+	const encPub = await user.encrypt(roomPub);
 
 	const gunConfig = {
 		...config,
