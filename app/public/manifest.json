@@ -40,10 +40,10 @@
 	],
 	"screenshots": [
 		{
-			"src": "./media/jpg/demo.jpg",
+			"src": "./media/gun-vue-hero.png",
 			"type": "image/jpg",
-			"sizes": "1280x720",
-			"form_factor": "wide"
+			"sizes": "1280x1280",
+			"form_factor": "any"
 		}
 	],
 	"launch_handler": {
