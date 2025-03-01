@@ -95,31 +95,30 @@ let initiated = false;
  * @property {Function} authWithPass
  */
 export function useAuth() {
-	if (!initiated) {
-		const gun = useGun();
-		gun
-			.user()
-			.get("safe")
-			.map()
-			.on((d, k) => {
-				pass.safe[k] = d;
-			});
 
-		watchEffect(async () => {
-			if (!pass.show) {
-				pass.dec = {};
-				return;
-			}
-			if (pass?.safe?.pass) {
-				pass.dec.pass = await user.decrypt(pass.safe.pass);
-				pass.input = pass.dec.pass || "";
-			}
-			if (pass?.safe?.enc) {
-				pass.dec.pair = await SEA.decrypt(pass.safe.enc, pass.dec.pass);
-			}
+	const gun = useGun();
+	gun
+		.user()
+		.get("safe")
+		.map()
+		.on((d, k) => {
+			pass.safe[k] = d;
 		});
-	}
-	initiated = true;
+
+	watchEffect(async () => {
+		if (!pass.show) {
+			pass.dec = {};
+			return;
+		}
+		if (pass?.safe?.pass) {
+			pass.dec.pass = await user.decrypt(pass.safe.pass);
+			pass.input = pass.dec.pass || "";
+		}
+		if (pass?.safe?.enc) {
+			pass.dec.pair = await SEA.decrypt(pass.safe.enc, pass.dec.pass);
+		}
+	});
+
 	return { pass, setPass, authWithPass };
 }
 

@@ -124,7 +124,7 @@ onMounted(() => {
     qr-share(:key="route.path" )
 
   UiLayer(:open="disclaimer" @close="disclaimer = false")
-    .p-4.flex.flex-col.gap-4.max-w-55ch
+    .p-4.flex.flex-col.gap-4.max-w-55ch.max-h-70svh
       img.w-30.absolute(src="/media/gun-vue-logo.svg")
       h1.text-2xl.mt-8.ml-20  Gun-Vue: Demo App
 

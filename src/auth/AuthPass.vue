@@ -2,6 +2,8 @@
 import { useAuth } from '#composables'
 const { pass } = useAuth();
 
+const emit = defineEmits(['set'])
+
 </script>
 
 <template lang="pug">
@@ -10,7 +12,7 @@ const { pass } = useAuth();
     .mx-2
       .i-la-asterisk
     .px-1 Enter a passphrase to encrypt your key with
-  .flex.items-center.px-4
+  form.flex.items-center.px-4(@submit.prevent.stop="pass.set(); emit('set')")
     .ml-1.flex.flex-col.items-center
       .i-la-check.text-green-600.m-1(v-if="pass.safe?.enc")
     input.p-2.mx-4.rounded-xl.w-full.dark-bg-dark-200(
@@ -21,8 +23,8 @@ const { pass } = useAuth();
     )
     button.button.items-center(
       v-if="pass.input.length >= pass.minLength",
-      @click="pass.set()"
-    ) 
+      type="submit"
+      ) 
       .i-la-check
       .ml-2 Set
     button.button.items-center(

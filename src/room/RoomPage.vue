@@ -91,7 +91,7 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
       guest-list(state="offline" @user="$emit('user', $event)" :roomPub="room?.pub" :key="room.pub")
     .relative
       .flex.items-center(v-if="edit.text === false" ) 
-        .p-4.prose.max-w-65ch.break-all(v-html="md.render(room.profile?.text || '')")
+        .p-4.prose.max-w-65ch(v-html="md.render(room.profile?.text || '')")
         button.button.absolute.top-4.right-4.z-200(
           v-if="room.hosts?.[user.pub]" 
           @click="edit.text = room.profile?.text || ''"
