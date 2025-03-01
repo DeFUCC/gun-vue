@@ -2,8 +2,10 @@
 import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed, ref, onMounted } from "vue";
 import { currentRoom, useUser, rootRoom, useBackground, setPeer, relay } from "#composables";
+import { useStorage } from '@vueuse/core'
 
 import config from '../gun.config.json'
+
 import GunSettings from "./gun/GunSettings.vue";
 import UiLayer from "./ui/UiLayer.vue";
 
@@ -68,12 +70,7 @@ router.beforeEach((to, from) => {
   return true
 });
 
-
-
-
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, light: 0.8, overlay: 0.5 }))
-
-
 
 const openShare = ref(false)
 
@@ -81,15 +78,15 @@ const showSettings = ref(false)
 
 const disclaimer = ref(false)
 
+const approval = useStorage('approved-experimental', false)
+
 onMounted(() => {
   setTimeout(() => {
     console.log(user)
-    if (!user?.is) {
+    if (!user?.is && !approval.value) {
       disclaimer.value = true
     }
   }, 100)
-
-
 })
 
 </script>
@@ -127,8 +124,23 @@ onMounted(() => {
     qr-share(:key="route.path" )
 
   UiLayer(:open="disclaimer" @close="disclaimer = false")
-    .bg-light-400.dark-bg-dark-400
-      .p-2 Disclaimer
+    .p-4.flex.flex-col.gap-4.max-w-55ch
+      img.w-30.absolute(src="/media/gun-vue-logo.svg")
+      h1.text-2xl.mt-8.ml-20  Gun-Vue: Demo App
+
+      .text-2xl ⚠️ Experimental Technology Playground
+
+      p Gun-Vue is an experimental demonstration platform under active development. All features are provided "as is" without any warranties. The platform may experience technical issues, functionality changes, or data loss at any time. This demo is intended solely for testing peer-to-peer connectivity and decentralized data sharing concepts.
+
+      p Your account security relies entirely on cryptographic keypairs generated and stored on your device. Gun-Vue developers do not have access to, control over, or ability to recover any keypairs, encrypted data, or user content. By using this demo, you acknowledge and accept full responsibility for managing your keypairs and any associated risks.
+
+      p All content shared through this demo is public, unmoderated, and transmitted directly between connected peers. Gun-Vue developers are not responsible for and have no control over user-generated content, relay server operations, or peer interactions. This software is provided under the MIT license, and its developers explicitly disclaim any liability for how others may use or misuse this technology.
+
+      button.sticky.bottom-4.text-center.button.mt-4(
+        data-umami-event="Agree and proceed"
+        @click="approval = true; disclaimer = false") 
+        .mx-auto Agree and proceed
+
 
   .grid.Main
     router-view(v-slot="{ Component }")

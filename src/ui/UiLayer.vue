@@ -27,26 +27,16 @@ const handleClick = (e) => {
 </script>
 
 <template lang="pug">
-dialog.modal-dialog.layer(ref="dialog" @click="handleClick" :style="{ marginTop: offset || '10vh' }")
-  button.button.fixed.right-4.top-4(
-    v-if="closeButton"
-    @click="$emit('close')"
-  )
-    .i-la-times
+dialog.modal-dialog.rounded-2xl.shadow-2xl.overflow-y-scroll.max-h-88vh.max-w-98vw.overscroll-y-none(ref="dialog" @click="handleClick" :style="{ marginTop: offset || '10vh' }")
   slot
 </template>
 
 <style lang="postcss" scoped>
 .modal-dialog {
-  @apply p-4 m-0 bg-dark-200 bg-opacity-30 backdrop-filter backdrop-blur-sm dark-text-white;
+  @apply p-2 bg-light-200 bg-opacity-90 dark-bg-dark-200 dark-bg-op-90 backdrop-filter backdrop-blur dark-text-white;
 
   &::backdrop {
     @apply backdrop-blur bg-light-400/30 dark-bg-dark-400/30
   }
-}
-
-.layer {
-  @apply bg-light-100 dark-bg-dark-400 rounded-2xl mx-auto shadow-2xl overflow-y-scroll overscroll-contain relative max-h-88vh max-w-98vw;
-  overscroll-behavior-y: none;
 }
 </style>

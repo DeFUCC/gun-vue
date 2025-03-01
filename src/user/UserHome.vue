@@ -30,7 +30,7 @@ const starredRooms = computed(() => Object.entries(useRooms(user.pub)).filter(([
 </script>
 
 <template lang="pug">
-.flex.flex-col.items-center.w-full
+.flex.flex-col.items-center.w-full.justify-center
   ui-layer(
     :open="user.is && !safe" 
     close-button 
