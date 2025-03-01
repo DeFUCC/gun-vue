@@ -55,7 +55,7 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
               @update="updateRoomProfile('name', $event)"
               )
             .flex-1 
-            button.button(@click="favRoom(roomPub)" v-if="user?.is")
+            button.button.z-100(@pointerdown="favRoom(roomPub)" v-if="user?.is")
               .i-la-star(v-if="!room.isFavourite") 
               .i-la-star-solid(v-else)
           .text-md {{ room.profile.description }}
