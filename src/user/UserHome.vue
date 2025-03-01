@@ -25,7 +25,7 @@ watch(() => user.is, () => {
 const showChats = useStorage('showChats', true)
 const showRooms = useStorage('showRooms', true)
 
-const list = computed(() => useRooms(user.pub))
+const starredRooms = computed(() => Object.entries(useRooms(user.pub)).filter(([k, v]) => v[user.pub]).map((([k]) => k)))
 
 </script>
 
@@ -83,7 +83,7 @@ const list = computed(() => useRooms(user.pub))
         mode="out-in")
         .flex.flex-col.gap-4( v-if="showRooms" :key="user.pub")
           RoomButton(
-            v-for="(_, r) in list?.rooms?.value"
+            v-for="(r) in starredRooms"
             :key="r"
             :pub="r"
             @browse="$emit('room', r)"

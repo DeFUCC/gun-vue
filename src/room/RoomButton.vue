@@ -35,5 +35,5 @@ const { logo } = useRoomLogo(props.pub)
       :src="logo"
       )
     .font-bold.ml-1.mr-3(v-if="current?.room?.profile?.name") {{ current?.room.profile.name.substring(0, 15) }}      
-
+    slot
 </template>

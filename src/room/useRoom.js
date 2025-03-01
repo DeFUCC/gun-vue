@@ -175,10 +175,19 @@ export function useRoomLogo(pub = currentRoom.pub) {
  * @returns {Object}
  */
 export function useRooms(pub = currentRoom.pub) {
-	const rooms = computed(() => {
-		return listPersonal("rooms", pub);
-	});
-	return { rooms, createRoom };
+	const gun = useGun();
+	const records = reactive({});
+	gun
+		.user(pub)
+		.get('rooms')
+		.map()
+		.on(function (data, key) {
+			let k = key.substring(0, 87);
+			records[k] = records[k] || {};
+			records[k][key.substring(88)] = data;
+		});
+	return records;
+	return { rooms };
 }
 
 /**
@@ -187,18 +196,7 @@ export function useRooms(pub = currentRoom.pub) {
  * @returns {Object}
  */
 export function listPersonal(tag, pub = currentRoom.pub) {
-	const gun = useGun();
-	const records = reactive({});
-	gun
-		.user(pub)
-		.get(`${tag}`)
-		.map()
-		.on(function (data, key) {
-			let k = key.substring(0, 87);
-			records[k] = records[k] || {};
-			records[k][key.substring(88)] = data;
-		});
-	return records;
+
 }
 
 /**

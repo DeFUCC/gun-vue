@@ -5,7 +5,7 @@ import { RoomCard, PostActionReact } from '../components'
 
 defineEmits(['browse'])
 
-const { rooms } = useRooms()
+const rooms = useRooms()
 
 
 </script>
