@@ -92,7 +92,7 @@ export function useChat(current = "general") {
 			.filter(chat =>
 				allowList[chat.title] ||
 				(!blockList[chat.title] &&
-					(chat.rating > 0 || chat.my === 0)) // show if rating > 0 OR user hasn't voted
+					(chat.rating > 0 || (user.is && chat.my === 0)))
 			)
 			.sort((a, b) => {
 				return b.rating - a.rating;
