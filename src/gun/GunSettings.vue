@@ -43,6 +43,12 @@ const showGraph = ref(false)
 
 import { theme } from '../ui/useTheme'
 
+function refresh() {
+  setTimeout(() => {
+    window.location.reload(), 100;
+  });
+}
+
 </script>
 
 <template lang="pug">
@@ -63,6 +69,8 @@ import { theme } from '../ui/useTheme'
       target="_blank"
       ) Docs
     .flex-auto
+    button.button(@click="refresh()" aria-label="refresh the page" title="Refresh") 
+      .i-la-undo-alt
 
   .border-1.shadow-lg.rounded-lg.p-2.flex.items-center.gap-2
     ui-dark.button

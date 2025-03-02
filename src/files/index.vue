@@ -61,7 +61,8 @@ function removeFile(infoHash) {
       .text-sm {{ file?.name }}
       .text-8px.font-mono.flex-1.min-w-6 {{ file?.infoHash }}
       .text-md {{ prettyBytes(file?.length || 0) }}
-      AccountAvatar(:pub="pub" :key="pub" :size="22" v-for="(author, pub) in file.authors" @click.stop.prevent="$router.push(`/users/${pub}`)")
+      AccountBadge(:pub="pub" :key="pub" :size="22" v-for="(author, pub) in file.authors" @click.stop.prevent="$router.push(`/users/${pub}`)")
+
       button(@click.stop.prevent="removeFile(file.infoHash)" aria-label="Remove the file from this room" v-if="file.authors[user?.is?.pub]")
         .i-la-trash-alt
 </template>

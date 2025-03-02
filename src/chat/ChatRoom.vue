@@ -57,8 +57,6 @@ watch(() => props.topic, topic => {
 
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
 
-
-
 </script>
 
 <template lang="pug">
