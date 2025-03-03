@@ -7,7 +7,7 @@ const props = defineProps({
   pub: { type: String, default: 'OKrDaDeD8VeA27d673RqlodSnebnaDq6Ci23Ys_ABWE.q8fI2lkxO46R8TMjeUeAf7I0yBS5mdH_Cb9_285Wkqk' }
 })
 
-defineEmits(['browse', 'feed', 'post', 'chat', 'user', 'project'])
+defineEmits(['feed', 'post', 'chat', 'user', 'project'])
 
 const { account } = useAccount(toRef(props, 'pub'));
 const { user } = useUser()
@@ -50,7 +50,7 @@ const { projects } = useProjects(props.pub)
   .p-4.flex.flex-col
     mate-list(
       :pub="pub" 
-      @browse="$emit('browse', $event)"
+      @browse="$emit('user', $event)"
       )
     //- account-stars(:pub="pub" @feed="$emit('feed', $event)")
     template(v-if="Object.keys(projects).length > 0")

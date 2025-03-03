@@ -1,5 +1,5 @@
 <script setup>
-import { useUser } from '#composables';
+import { selectedUser, useUser } from '#composables';
 import { ProjectPage } from '../components'
 
 const { user } = useUser()
@@ -12,8 +12,8 @@ const props = defineProps({
 <template lang="pug">
 project-page(
   :key="id" 
-  :path="id+'@'+user.pub"
+  :path="id + '@' + user.pub"
   @gift="$router.push(`/gifts/${$event}`)"
-  @user="$router.push(`/users/${$event}`)"
+  @user="selectedUser.pub = $event"
 )
 </template>

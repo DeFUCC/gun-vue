@@ -1,13 +1,3 @@
-/**
- * [[include:./room/README.md]]
- * @module Room
- * @group Rooms
- */
-
-/**
- * @module useProject
- * @group Projects
- */
 import {
 	useGun,
 	generateCerts,
@@ -23,16 +13,8 @@ import { useStorage } from "@vueuse/core";
 
 const rootRoom = config.room;
 
-/**
- * @typedef {Object} CurrentRoom
- * @property {string} pub
- * @property {boolean} isRoot
- * @property {Object.<string, Object>} [hosts]
- * @property {Object.<string, string>} [features]
- * @property {Object.<string, string>} [profile]
- */
+export const selectedRoom = ref(null)
 
-/** @type {CurrentRoom} */
 export const currentRoom = reactive({
 	pub: useStorage("current-room", rootRoom.pub),
 	isRoot: computed(() => currentRoom.pub == rootRoom.pub),
@@ -67,13 +49,9 @@ watchEffect(() => {
 	}
 });
 
-/**
- * Reactive room controls
- * @param {string} [pub=currentRoom.pub]
- * @returns {Object}
- */
+
 export function useRoom(pub = currentRoom.pub) {
-	/** @type {CurrentRoom} */
+
 	const room = reactive({
 		pub: pub,
 		isFavourite: false,
@@ -122,10 +100,6 @@ export function useRoom(pub = currentRoom.pub) {
 	};
 }
 
-/**
- * @param {string} [pub=currentRoom.pub]
- * @returns {Object}
- */
 export function useRoomLogo(pub = currentRoom.pub) {
 	const logo = ref();
 	const gun = useGun();
@@ -146,10 +120,6 @@ export function useRoomLogo(pub = currentRoom.pub) {
 				});
 		});
 
-	/**
-	 * @param {string} file
-	 * @returns {Promise<void>}
-	 */
 	async function uploadLogo(file) {
 		if (file) {
 			const hash = await hashText(file);
@@ -171,9 +141,7 @@ export function useRoomLogo(pub = currentRoom.pub) {
 	};
 }
 
-/**
- * @returns {Object}
- */
+
 export function useRooms(pub = currentRoom.pub) {
 	const gun = useGun();
 	const records = reactive({});
@@ -190,20 +158,11 @@ export function useRooms(pub = currentRoom.pub) {
 	return { rooms };
 }
 
-/**
- * @param {string} tag
- * @param {string} [pub=currentRoom.pub]
- * @returns {Object}
- */
 export function listPersonal(tag, pub = currentRoom.pub) {
 
 }
 
-/**
- * Update a profile field of a room
- * @param {string} field - parameter to write to
- * @param {any} content
- */
+
 export function updateRoomProfile(field, content) {
 	const gun = useGun();
 	const { user } = useUser();
@@ -219,13 +178,6 @@ export function updateRoomProfile(field, content) {
 		.put(content, null, { opt: { cert: certificate } });
 }
 
-/**
- * Create a new room inside the current room
- * @param {Object} options
- * @param {Object} options.pair
- * @param {string} [options.name]
- * @returns {Promise<void>}
- */
 export async function createRoom({
 	pair,
 	name,
@@ -329,11 +281,6 @@ export async function createRoom({
 	);
 }
 
-/**
- * @param {string} enc
- * @param {string} [name]
- * @returns {Promise<void>}
- */
 export async function recreateRoom(enc, name) {
 	const dec = await user.decrypt(enc);
 	createRoom({
@@ -342,10 +289,6 @@ export async function recreateRoom(enc, name) {
 	});
 }
 
-/**
- * @param {string} pub
- * @returns {Promise<void>}
- */
 export async function submitRoom(pub) {
 	const gun = useGun();
 	const already = await gun
@@ -388,10 +331,6 @@ export async function favRoom(pub = currentRoom.pub) {
 		.put(!already);
 }
 
-/**
- * The right way to come inside a room
- * @param {string} pub
- */
 export function enterRoom(pub) {
 	currentRoom.pub = pub;
 }
@@ -404,15 +343,6 @@ export function leaveRoom() {
 }
 
 
-/**
- * @param {Object} options
- * @param {string} options.tag
- * @param {string} options.key
- * @param {string} options.text
- * @param {string} [options.pub=currentRoom.pub]
- * @param {string} [options.cert]
- * @returns {Promise<void>}
- */
 export async function addPersonal({
 	tag,
 	key,

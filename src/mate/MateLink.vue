@@ -7,7 +7,7 @@ const colorDeep = useColor('deep')
 
 const props = defineProps({
   emoji: { type: String, default: '' },
-  from: { type: String, default: '' },
+  from: { type: String, default: '#333' },
   to: { type: String, default: '' },
   back: { type: String, default: '' },
 })

@@ -52,7 +52,7 @@ watch(picture, pic => {
     )
     slot
       .i-la-image
-  ui-layer.max-h-60vh.mt-20(
+  ui-layer(
     :open="add" 
     @close="add = false"
     )

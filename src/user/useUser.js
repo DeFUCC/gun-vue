@@ -1,52 +1,14 @@
-/**
- * [[include:./user/README.md]]
- *
- * ## <UserIcon />
- * <UserIcon />
- * @module User
- * @group Users
- */
-
 import { SEA, useGun } from "../composables";
 import { useColor } from "../ui/composables";
 import { computed, reactive } from "vue";
 
 const colorDeep = useColor("deep");
 
-/**
- * @type {{ pub: string }}
- */
 export const selectedUser = reactive({
 	pub: "",
 });
 
-/**
- * @typedef {Object} User
- * @property {boolean} initiated
- * @property {boolean} auth
- * @property {Object} is
- * @property {string} [is.pub]
- * @property {string} [is.epub]
- * @property {string|Object} [is.alias]
- * @property {string} name
- * @property {string} pub
- * @property {string} color
- * @property {number} pulse
- * @property {any} pulser
- * @property {boolean} blink
- * @property {Object} safe
- * @property {boolean} safe.saved
- * @property {string} safe.password
- * @property {string} safe.enc
- * @property {string} safe.pass
- * @property {Object} [db]
- * @property {function(): Object} pair
- * @property {function(string): Promise<string>} encrypt
- * @property {function(string): Promise<string>} decrypt
- * @property {function(string): Promise<string>} secret
- */
 
-/** @type {User} */
 export const user = reactive({
 	initiated: false,
 	auth: false,
@@ -82,23 +44,13 @@ export const user = reactive({
 
 let pairReads = 0;
 
-/**
- * @returns {Object}
- */
 function pair() {
 	console.log("User pair read", ++pairReads);
 	const gun = useGun();
 	return gun.user()?._?.sea;
 }
 
-/**
- * Get access to current logged in user
- * @returns {{user: User, auth: Function, leave: Function}}
- * @example
- * import { useUser } from '@gun-vue/composables'
- *
- * const { user, auth, leave } = useUser()
- */
+
 export function useUser() {
 	if (!user.initiated) {
 		const gun = useGun();
@@ -154,19 +106,6 @@ export function useUser() {
 }
 
 
-
-/**
- * Authenticate with a SEA key pair
- * @param {Object} pair - SEA key pair
- * @param {Function} [cb] - Callback function
- * @example
- * import { auth, SEA } from '@gun-vue/composables'
- *
- * async function login() {
- *    const pair = await SEA.pair()
- *    auth(pair)
- * }
- */
 export async function auth(pair, cb = (pair) => { }) {
 	const gun = useGun();
 	if (!isPair(pair)) {
@@ -179,13 +118,6 @@ export async function auth(pair, cb = (pair) => { }) {
 	});
 }
 
-/**
- * Log out the user
- * @example
- * import { leave } from '@gun-vue/composables'
- *
- * leave()
- **/
 export function leave() {
 	const gun = useGun();
 	let is = !!user.is?.pub;
@@ -200,38 +132,18 @@ export function leave() {
 	}, 500);
 }
 
-/**
- * Check if the soul belongs to the current user
- * @param {string} soul
- * @returns {boolean}
- */
+
 export function isMine(soul) {
 	if (!soul) return;
 	return soul.slice(1, 88) == user.pub;
 }
 
-/**
- * Add a field to the User profile
- * @param {string} title - Field title
- * @example
- * import { addProfileField } from '@gun-vue/composables'
- *
- * addProfileField('city')
- */
+
 export function addProfileField(title) {
 	const gun = useGun();
 	gun.user().get("profile").get(title).put("");
 }
 
-/**
- * Update a profile field
- * @param {string} field - Field name
- * @param {string} data - Field value
- * @example
- * import { updateProfile } from '@gun-vue/composables'
- *
- * updateProfile('city', 'Bangkok')
- */
 export function updateProfile(field, data) {
 	if (field && data !== undefined) {
 		const gun = useGun();
@@ -239,11 +151,6 @@ export function updateProfile(field, data) {
 	}
 }
 
-/**
- * Check if the object is a proper SEA pair
- * @param {Object} pair
- * @returns {boolean}
- */
 export function isPair(pair) {
 	return Boolean(
 		pair &&

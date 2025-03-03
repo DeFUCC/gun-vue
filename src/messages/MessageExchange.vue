@@ -5,6 +5,7 @@ import { useMessages } from './useMessages'
 import { AccountAvatar, ChatInput, ChatMessages, TorrentUpload, UiPanel } from '../components'
 import AccountHome from "../account/AccountHome.vue"
 import FileShare from "../files/FileShare.vue"
+import UiLayer from "../ui/UiLayer.vue"
 
 const props = defineProps({
   pub: {
@@ -27,7 +28,7 @@ const chat = computed(() => useMessages(props.pub))
   .w-full.p-2.flex.flex-wrap.items-center.gap-2.sticky.top-0.bg-light-800.bg-op-30.backdrop-blur.dark-bg-dark-800.dark-bg-op-30.z-100.shadow
     button.p-2.bg-light-300.dark-bg-dark-400.rounded-xl(@click="$emit('back')")
       .i-la-angle-left
-    account-avatar.cursor-pointer(:pub="pub" @click="$emit('user', pub)")
+    account-avatar.cursor-pointer(:pub="pub" @click="selectedUser.pub = pub")
     .text-lg.font-bold.p-2 {{ account.profile?.name }}
     .text-sm.op-40 Seen {{ account.lastSeen }} ago
     .flex-1
@@ -37,6 +38,5 @@ const chat = computed(() => useMessages(props.pub))
     FileShare(@url="chat.send(pub, $event)")
     chat-input.flex-1(@submit="chat.send(pub, $event)")
 
-  UiPanel(@close="selectedUser.pub = ''" :open="!!selectedUser.pub")
-    AccountHome(:pub="selectedUser.pub" @chat="emit('user', $event)")
+
 </template>

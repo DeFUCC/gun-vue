@@ -1,5 +1,5 @@
 <script setup>
-import { currentRoom, rootRoom } from './composables';
+import { currentRoom, rootRoom, selectedUser } from './composables';
 
 import { RoomPage } from './components'
 </script>
@@ -9,6 +9,6 @@ import { RoomPage } from './components'
   room-page(
     :key="currentRoom.pub" 
     @browse="$router.push(`/${$event}/`)"
-    @user="$router.push(`/users/${$event}/`)"
+    @user="selectedUser.pub = $event"
     )
 </template>

@@ -1,6 +1,6 @@
 <script setup>
 
-import { safeHash } from '#composables'
+import { safeHash, selectedUser } from '#composables'
 import { UiLayer, AccountHome } from '#components'
 
 import { ref, onMounted } from 'vue'
@@ -21,7 +21,7 @@ onMounted(() => {
   account-home(
   :key="pub" 
   :pub="pub" 
-  @browse="$router.push(`/users/${$event}`)"
+  @user="selectedUser.pub = $event"
   @post="$router.push(`/posts/${safeHash($event)}`)"
   @chat="$router.push(`/messages/${pub}`)" 
   @project="$router.push(`/projects/${$event}`)"

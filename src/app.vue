@@ -1,18 +1,21 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed, ref, onMounted } from "vue";
-import { currentRoom, useUser, rootRoom, useBackground, setPeer, relay } from "#composables";
+import { currentRoom, useUser, rootRoom, useBackground, setPeer, relay, selectedUser, safeHash, selectedRoom } from "#composables";
 import { useStorage } from '@vueuse/core'
 
 import config from '../gun.config.json'
 
 import GunSettings from "./gun/GunSettings.vue";
 import UiLayer from "./ui/UiLayer.vue";
-
+import AccountHome from "./account/AccountHome.vue";
+import UserHome from "./user/UserHome.vue";
+import QrShare from "./qr/QrShare.vue";
+import RoomCard from "./room/RoomCard.vue";
+import RoomProfile from "./room/RoomProfile.vue";
 
 const router = useRouter()
 const route = useRoute();
-
 
 const { user } = useUser()
 
@@ -82,7 +85,6 @@ const approval = useStorage('approved-experimental', false)
 
 onMounted(() => {
   setTimeout(() => {
-    console.log(user)
     if (!user?.is && !approval.value) {
       disclaimer.value = true
     }
@@ -93,17 +95,15 @@ onMounted(() => {
 
 <template lang="pug">
 .app-container
-
   .flex.flex-col.z-400#titlebars.Top
     .flex.flex-wrap.items-center.z-40.p-1.gap-2.bg-light-100.dark-bg-dark-200.shadow-xl.w-full.bg-cover( 
       data-tauri-drag-region="true"
       :style="{ ...bg }"
       )
       room-button(
-        @room="$router.push(`/rooms/${$event}`)" @rooms="$router.push(`/rooms/`)"
-        @browse="$router.push(`/${$event}/`)" 
         :key="currentRoom.pub"
         :panel="false"
+        @click="$router.push('/')"
         )
       .flex-auto
       .justify-center.flex.gap-2
@@ -117,11 +117,26 @@ onMounted(() => {
         :border="2" 
         :pub="user.pub" 
         :key="user.pub"
-        @click="$router.push('/user/')"
+        @click="user.auth = true"
         )
+  UiLayer(@close="selectedRoom = null" :open="!!selectedRoom")
+    RoomProfile(:pub="selectedRoom" :key="selectedRoom")
+
+  UiLayer(@close="selectedUser.pub = ''" :open="!!selectedUser.pub")
+    AccountHome(:pub="selectedUser.pub" @chat="selectedUser.pub = $event" :key="selectedUser.pub")
+
+  UiLayer(:open="user.auth" @close="user.auth = false")
+    UserHome.max-w-80vw(
+      :key="user.pub"
+      @chat="$router.push(`/messages/${$event}`); user.auth = false"
+      @room="selectedRoom = $event"
+      )
 
   UiLayer(:open="openShare" @close="openShare = false")
-    qr-share(:key="route.path" )
+    QrShare(:key="route.path" )
+
+  UiLayer(:open="showSettings" @close="showSettings = false")
+    GunSettings(:key="route.path")
 
   UiLayer(:open="disclaimer" @close="disclaimer = false")
     .p-4.flex.flex-col.gap-4.max-w-55ch.max-h-70svh
@@ -147,9 +162,6 @@ onMounted(() => {
       transition(name="fade", mode="out-in")
         keep-alive(:exclude="['space']" :max="10")
           component(:is="Component")
-
-  UiLayer(:open="showSettings" @close="showSettings = false")
-    GunSettings(:key="route.path")
 
 </template>
 

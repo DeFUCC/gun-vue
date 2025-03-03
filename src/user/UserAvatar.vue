@@ -20,7 +20,7 @@ const { remove, upload, avatar } = useUserAvatar()
     :size="size" 
     )
 
-  form-picture.absolute(
+  form-picture.absolute.op-10.hover-50.focused-op-100(
     :options="{ picSize: props.pic, preserveRatio: false }"
     @update="upload($event)"
     )

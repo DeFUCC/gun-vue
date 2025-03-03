@@ -1,9 +1,12 @@
 <script setup>
+import { selectedUser, useUser } from '#composables';
 import { RoomPage } from '../components'
 
 const props = defineProps({
   room: { type: String, default: '' }
 })
+
+const { user } = useUser()
 
 
 </script>
@@ -11,7 +14,8 @@ const props = defineProps({
 <template lang="pug">
 room-page( 
   :pub="room"
+  :key="user"
   @browse="$router.push(`/${$event}/`)"
-  @user="$router.push(`/users/${$event}/`)"
+  @user="selectedUser.pub = $event"
   ) 
 </template>

@@ -32,6 +32,5 @@ function send() {
 .p-4.flex.flex-col.items-center(v-else)
   button.button(@click="user.auth = !user.auth")
     | Log in to post messages
-  transition(name="fade")
-    AuthLogin(v-if="user.auth")
+
 </template>

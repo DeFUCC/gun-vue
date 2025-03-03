@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { prettyBytes } from '../composables';
+import { niceBytes } from '../composables';
 import { FileCard } from '../components'
 import { useTorrent } from './useTorrent'
 
@@ -27,7 +27,7 @@ download(props.id).then(files => {
   .p-2.text-sm.flex.flex-wrap.gap-2(v-else-if="!downloadStatus.done")
     .p-1 Torrent: 
     .p-1 {{ !downloadStatus.done ? downloadStatus.progress : 'done' }}
-    .p-1 Total {{ prettyBytes(downloadStatus.downloaded || 0) }} at {{ prettyBytes(downloadStatus.downloadSpeed || 0) }}/s
+    .p-1 Total {{ niceBytes(downloadStatus.downloaded || 0) }} at {{ niceBytes(downloadStatus.downloadSpeed || 0) }}/s
 
   file-card(v-for="file in torrentFiles" :key="file?.name" :file="file")
 </template>

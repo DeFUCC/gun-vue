@@ -1,5 +1,5 @@
 <script setup>
-import { safeHash, currentRoom } from '#composables'
+import { safeHash, currentRoom, selectedUser } from '#composables'
 import { PostList, PostGraph } from '#components'
 import { ref, computed } from 'vue'
 
@@ -15,7 +15,7 @@ const showGraph = ref()
     :header="false" 
     @close="$router.push('/posts/')"
     @browse="$router.push(`/posts/${safeHash($event)}`)"
-    @user="$router.push(`/users/${$event}`)"
+    @user="selectedUser.pub = $event"
     )
     button.button(
       :class="{ active: showGraph }" 

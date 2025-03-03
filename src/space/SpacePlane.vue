@@ -122,7 +122,7 @@ onBeforeUnmount(() => {
   font-family='Commissioner , sans-serif', 
   text-anchor='middle', 
   dominant-baseline='middle', 
-  :viewBox=" `${-pad + pos[0] - Number(width) / 2} ${-pad + pos[1] - Number(height) / 2} ${Number(width) * Number(zoom) + 2 * pad} ${Number(height) * Number(zoom) + 2 * pad}`",
+  :viewBox="`${-pad + pos[0] - Number(width) / 2} ${-pad + pos[1] - Number(height) / 2} ${Number(width) * Number(zoom) + 2 * pad} ${Number(height) * Number(zoom) + 2 * pad}`",
   @click=" !user.is ? user.auth = true : null;")
 
     defs
@@ -135,61 +135,50 @@ onBeforeUnmount(() => {
     text.text-xs(
       text-anchor='end', 
       fill="currentColor"
-      :transform=" `translate(${pos[0] + Number(width) / 2 - 10} ${pos[1] - Number(height) / 2 + 20})`"
+      :transform="`translate(${pos[0] + Number(width) / 2 - 10} ${pos[1] - Number(height) / 2 + 20})`"
       ) {{ pos }}
 
     g.opacity-90(
-      v-for="  guest   in   guests ", :key=" guest.draw", v-html=" guest.draw")
+      v-for="guest in guests", :key="guest.draw", v-html="guest.draw")
 
     svg.opacity-70(
       ref="paper", 
-      :x=" pos[0] - Number(width) / 2 - pad", 
-      :y=" pos[1] - Number(height) / 2 - pad", 
-      :viewBox=" `${-pad + pos[0] - Number(width) / 2} ${-pad + pos[1] - Number(height) / 2} ${Number(width) + 2 * pad} ${Number(height) + 2 * pad}`", 
-      :class=" {'pointer-events-none': !draw.enabled,'touch-none': draw.enabled } ")
+      :x="pos[0] - Number(width) / 2 - pad", 
+      :y="pos[1] - Number(height) / 2 - pad", 
+      :viewBox="`${-pad + pos[0] - Number(width) / 2} ${-pad + pos[1] - Number(height) / 2} ${Number(width) + 2 * pad} ${Number(height) + 2 * pad}`", 
+      :class="{ 'pointer-events-none': !draw.enabled, 'touch-none': draw.enabled }")
 
     rect(ref='area', 
-    :x=" pos[0] - Number(width) / 2", 
-    :y=" pos[1] - Number(height) / 2", 
+    :x="pos[0] - Number(width) / 2", 
+    :y="pos[1] - Number(height) / 2", 
     rx='12', 
-    :width=" Number(width)", 
-    :height=" Number(height)", 
+    :width="Number(width)", 
+    :height="Number(height)", 
     fill='none', stroke='#3333', stroke-width='1')
 
     g.link
       line(
-      :x1=" pos[0]"
-      :x2=" space.my.mouse.x",
-      :y1=" pos[1]",
-      :y2=" space.my.mouse.y", 
+      :x1="pos[0]"
+      :x2="space.my.mouse.x",
+      :y1="pos[1]",
+      :y2="space.my.mouse.y", 
       :stroke="user.color", 
       stroke-dasharray="6")
 
-    g.pointer(:transform=" `translate(${pos[0]} ${pos[1]})`")
+    g.pointer(:transform="`translate(${pos[0]} ${pos[1]})`")
       g.mouse
-        circle(style='filter:url(#shadowButton)', :fill=" user.color", r='8')
+        circle(style='filter:url(#shadowButton)', :fill="user.color", r='8')
 
     g.arrows
-      space-arrow(v-for="(  link, key  ) in   links ", :key="key", :link=" link", @user="selectedUser.pub = $event")
+      space-arrow(v-for="(link, key) in links", :key="key", :link="link", @user="selectedUser.pub = $event")
 
     g.guests
       space-guest.cursor-pointer.transition-all.ease-out.duration-600(
         v-for='guest in guests', 
-        :key=" guest?.pub", 
-        v-bind=" guest", 
-        :style=" { transform: `translate(${guest?.pos?.x}px, ${guest?.pos?.y}px)` }", 
+        :key="guest?.pub", 
+        v-bind="guest", 
+        :style="{ transform: `translate(${guest?.pos?.x}px, ${guest?.pos?.y}px)` }", 
         @updateStatus="setStatus($event)"
         )
-
-  ui-layer.z-4000(:open="!!selectedUser.pub", @close="selectedUser.pub = null")
-
-    account-home.max-w-600px(
-      :key=" selectedUser.pub", 
-      :pub=" selectedUser.pub", 
-      @user=" $emit('user', $event) ", 
-      @post=" $emit('post', String(safeHash($event))) ", 
-      @chat=" $emit('chat', selectedUser.pub) ", 
-      @close=" selectedUser.pub = null"
-      )
 
 </template>

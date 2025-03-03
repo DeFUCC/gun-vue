@@ -10,8 +10,6 @@ const props = defineProps({
   clickSound: { type: String, default: 'audio/safe.mp3' }
 })
 
-const emit = defineEmits(['account'])
-
 let audio
 
 
@@ -64,11 +62,6 @@ const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200 }))
   style="flex: 1 1 auto"
   :style="{ ...bg }"
   )
-  ui-layer(
-    :open="!!selectedUser?.pub"
-    @close="selectedUser.pub = ''"
-    )
-    account-home(v-if="selectedUser?.pub" :pub="selectedUser.pub" )
   .backdrop-blur.z-100.bg-light-300.bg-op-30.dark-bg-dark-400.dark-bg-op-50.px-4.py-3.flex.flex-wrap.items-center.text-center.sticky.top-0
     .flex-1.ml-2.font-bold {{ currentChat }}
   chat-messages(:messages="sorted")

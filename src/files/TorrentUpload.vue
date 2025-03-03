@@ -3,7 +3,7 @@ import { useClipboard, useShare } from '@vueuse/core';
 import { ref, computed, onMounted } from 'vue';
 import { useTorrent } from './useTorrent';
 import { QrShow, FileCard, UiLayer } from '../components'
-import { prettyBytes } from '../composables';
+import { niceBytes } from '../composables';
 import FileInfo from './FileInfo.vue';
 
 const { files, initialized, upload, deleteFile, init, clearFiles, clearOPFS } = useTorrent()
@@ -55,7 +55,7 @@ const showFile = ref(false)
         )
           .text-md.max-w-55ch {{ name }}
           .flex-1
-          .p-0 {{ prettyBytes(data.file.size) }}
+          .p-0 {{ niceBytes(data.file.size) }}
           button.p-2(@click.stop="deleteFile(name)")
             .i-la-trash
 

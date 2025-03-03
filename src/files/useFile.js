@@ -1,18 +1,5 @@
-/**
- * File handling functions
- * @module File
- * @group Files
- * */
-
 import { reactive } from "vue";
 
-/**
- * A method to download any text as a file
- * @param {string|Blob} text - the text to download
- * @param {string} fileType - the file type like "application/json"
- * @param {string} fileName - the full file name like "myKey.json"
- * @param {boolean} [isBlob=true]
- */
 export function downloadFile(text, fileType, fileName, isBlob = true) {
 	const a = document.createElement("a");
 	a.download = fileName;
@@ -32,11 +19,7 @@ export function downloadFile(text, fileType, fileName, isBlob = true) {
 	document.body.removeChild(a);
 }
 
-/**
- * Upload and parse JSON keypair
- * @param {FileList} files
- * @param {Function} [callback] - a function to handle the loaded file from the reader
- */
+
 export function uploadText(files, callback = (r) => console.log(r)) {
 	if (!files.length) return;
 	const file = files[0];
@@ -52,54 +35,19 @@ export function uploadText(files, callback = (r) => console.log(r)) {
 	};
 }
 
-/**
- * @typedef {Object} PictureUploadOptions
- * @property {boolean} [preserveRatio=false] - should we preserve the original picture aspect ratio?
- * @property {number} [picSize=100] - width of the rendered picture
- * @property {number} [maxSize=10240000] - maximum size of an uploaded picture
- */
-
-/**
- * @typedef {Object} PictureUploadData
- * @property {Object} state - a reactive object with the state of the upload
- * @property {Function} handleChange - handler function to use with `@change="handleUpload"` on an `<input type="file">` element
- */
-
-/**
- * @typedef {Object} UploadState
- * @property {Array} errors
- * @property {'' | 'loading' | 'success'} status
- * @property {Object} output
- */
-
-/**
- * Process an uploaded picture by rendering in into a canvas with given size. Returns a base64 encoded image to be stored and displayed as `img.src`
- * @param {PictureUploadOptions} options
- * @returns {PictureUploadData}
- * @example
- * const src = ref(null)
- *
- * const {state, handleUpload} = usePictureUpload({
- *  preserveRatio: true,
- * })
- *
- * watch(()=>state.output, file => src.value = file.content)
- */
 export function usePictureUpload({
 	preserveRatio = false,
 	picSize = 100,
 	maxSize = 10240000,
 }) {
-	/** @type {UploadState} */
+
 	const state = reactive({
 		errors: [],
 		status: "",
 		output: {},
 	});
 
-	/**
-	 * @param {Event} event
-	 */
+
 	function handleChange(event) {
 		const fileList = event.target.files;
 		reset();
@@ -108,9 +56,7 @@ export function usePictureUpload({
 		Array.from(fileList).map((file) => processFile(file));
 	}
 
-	/**
-	 * @param {File} file
-	 */
+
 	function processFile(file) {
 		fileToBase64(file).then((res) => {
 			state.output = {
@@ -123,10 +69,7 @@ export function usePictureUpload({
 		return null;
 	}
 
-	/**
-	 * @param {File} file
-	 * @returns {Promise<string>}
-	 */
+
 	function fileToBase64(file) {
 		return new Promise((resolve, reject) => {
 			const reader = new FileReader(),
@@ -191,19 +134,13 @@ export function usePictureUpload({
 		state.output = {};
 	}
 
-	/**
-	 * @param {number} bytes
-	 * @returns {number}
-	 */
+
 	function bytesToMegabytes(bytes) {
 		const value = bytes * Math.pow(10, -6);
 		return value;
 	}
 
-	/**
-	 * @param {string} signature
-	 * @returns {boolean}
-	 */
+
 	function checkMimetype(signature) {
 		const signatures = [
 			"89504E47", // image/png
@@ -221,10 +158,7 @@ export function usePictureUpload({
 		return signatures.includes(signature);
 	}
 
-	/**
-	 * @param {ArrayBufferLike} data
-	 * @returns {string}
-	 */
+
 	function getMimeTypeSignature(data) {
 		const uint = new Uint8Array(data);
 		let bytes = [];
@@ -234,10 +168,7 @@ export function usePictureUpload({
 		return bytes.join("").toUpperCase();
 	}
 
-	/**
-	 * @param {string} name
-	 * @returns {string}
-	 */
+
 	function sanitizeFileName(name) {
 		return (
 			name
@@ -247,9 +178,7 @@ export function usePictureUpload({
 		);
 	}
 
-	/**
-	 * @param {string[]} errors
-	 */
+
 	function flashErrors(errors) {
 		if (errors.length === 2) {
 			console.error("File upload failed due to size and type!");
@@ -266,11 +195,8 @@ export function usePictureUpload({
 
 const units = ["bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
 
-/**
- * @param {number|string} x
- * @returns {string}
- */
-function niceBytes(x) {
+
+export function niceBytes(x) {
 	let l = 0;
 
 	let n = parseInt(x + "", 10) || 0;
@@ -281,10 +207,7 @@ function niceBytes(x) {
 	return n.toFixed(n < 10 && l > 0 ? 1 : 0) + " " + units[l];
 }
 
-/**
- * @param {string} encoded
- * @returns {string|null}
- */
+
 export function base64MimeType(encoded) {
 	var result = null;
 	if (typeof encoded !== "string") {
@@ -297,18 +220,12 @@ export function base64MimeType(encoded) {
 	return result;
 }
 
-/**
- * @param {string} encoded
- * @returns {string|undefined}
- */
+
 export function base64FileType(encoded) {
 	return encoded.match(/[^:]\w+\/[\w-+\d.]+(?=;|,)/)?.[0];
 }
 
-/**
- * @param {string} encoded
- * @returns {string}
- */
+
 export function base64Extension(encoded) {
 	return encoded.substring(
 		encoded.indexOf("/") + 1,
@@ -324,10 +241,7 @@ var signatures = {
 	"/9j/": "image/jpg",
 };
 
-/**
- * @param {string} b64
- * @returns {string|undefined}
- */
+
 export function detectMimeType(b64) {
 	for (var s in signatures) {
 		if (b64.indexOf(s) === 0) {

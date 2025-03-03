@@ -3,7 +3,7 @@ import { useClipboard, useShare } from '@vueuse/core';
 import { ref, computed, onMounted } from 'vue';
 import { useTorrent } from './useTorrent';
 import { QrShow, FileCard, UiLayer } from '../components'
-import { prettyBytes } from '../composables';
+import { niceBytes } from '../composables';
 
 
 const props = defineProps({

@@ -1,7 +1,7 @@
 <script setup>
 import { useObjectUrl } from '@vueuse/core';
 import { ref, onMounted, computed } from 'vue';
-import { prettyBytes } from '../composables';
+import { niceBytes } from '../composables';
 
 const props = defineProps({
   file: {
@@ -31,7 +31,7 @@ const img = useObjectUrl(blob)
   .flex.flex-wrap.gap-2.p-2.items-center
     .flex-1.font-bold {{ file.name }} 
     .text-sm {{ file.type }} 
-    .font-mono {{ prettyBytes(file.length || 0) }}
+    .font-mono {{ niceBytes(file.length || 0) }}
     .text-green-400.flex.items-center.gap-2(v-if="file?.done") 
       .i-la-check
       .p-0 Downloaded

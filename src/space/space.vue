@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { currentRoom } from '#composables'
+import { currentRoom, selectedUser } from '#composables'
 import { SpacePlane } from '../components'
 
 const props = defineProps({
@@ -37,7 +37,7 @@ function leave() {
   space-plane.h-90vh(
     :key="currentRoom.pub"
     :coord="coord" 
-    @user="$router.push('/users/' + $event)" 
+    @user="selectedUser.pub = $event" 
     @chat="$router.push('/messages/' + $event)" 
     @enter="enter()"
     @leave="leave()"

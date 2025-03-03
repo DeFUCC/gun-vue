@@ -7,6 +7,5 @@ import { ChatRoom } from '../components'
 <template lang="pug">
 chat-room(
 	:key="currentRoom.pub"
-	@account="$router.push(`/users/${$event}`)"
 	)
 </template>

@@ -1,9 +1,9 @@
 <script setup>
 import { useGun } from '../gun/useGun';
 import { currentRoom } from '../room/useRoom';
-import { useUser } from '../user/useUser';
+import { selectedUser, useUser } from '../user/useUser';
 import { reactive } from 'vue'
-import { activeFile, prettyBytes } from '../composables';
+import { activeFile, niceBytes } from '../composables';
 import { AccountAvatar } from '../all-components';
 import TorrentUpload from './TorrentUpload.vue';
 import FileShare from './FileShare.vue';
@@ -60,8 +60,8 @@ function removeFile(infoHash) {
       )
       .text-sm {{ file?.name }}
       .text-8px.font-mono.flex-1.min-w-6 {{ file?.infoHash }}
-      .text-md {{ prettyBytes(file?.length || 0) }}
-      AccountBadge(:pub="pub" :key="pub" :size="22" v-for="(author, pub) in file.authors" @click.stop.prevent="$router.push(`/users/${pub}`)")
+      .text-md {{ niceBytes(file?.length || 0) }}
+      AccountBadge(:pub="pub" :key="pub" :size="22" v-for="(author, pub) in file.authors" @click.stop.prevent="selectedUser.pub = pub")
 
       button(@click.stop.prevent="removeFile(file.infoHash)" aria-label="Remove the file from this room" v-if="file.authors[user?.is?.pub]")
         .i-la-trash-alt

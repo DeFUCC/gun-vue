@@ -11,17 +11,14 @@ const colorDeep = useColor('deep')
 
 const { emoji, isMate, toggleMate } = useMate(props.pub)
 
-
-
 </script>
 
 <template lang="pug">
 .flex.items-center(v-if="user.is && user.pub != pub")
-  button.flex.items-center.rounded-2xl.shadow-xl.px-2.text-3xl.bg-light-500.dark-bg-dark-700(
+  .flex.items-center.rounded-2xl.shadow-xl.px-2.text-3xl.bg-light-500.dark-bg-dark-700(
     :style="{ backgroundColor: isMate ? colorDeep.hex(pub) : '' }" 
-    @click="toggleMate()"
     )
-    account-badge(
+    account-badge.w-8(
       :pub="user.pub" 
       :show-name="false"
       )
@@ -33,6 +30,7 @@ const { emoji, isMate, toggleMate } = useMate(props.pub)
       placeholder="" 
       @click.stop.prevent
       )
-    .i-la-plus(v-if="!isMate")
-    .i-la-times(v-else)
+    button.button(@click="toggleMate()")
+      .i-la-plus(v-if="!isMate")
+      .i-la-times(v-else)
 </template>

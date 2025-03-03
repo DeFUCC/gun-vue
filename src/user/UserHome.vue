@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { activeFile, useRooms, useUser } from '#composables';
+import { activeFile, selectedUser, useRooms, useUser } from '#composables';
 import { computed, ref, watch } from 'vue';
 import { UiLayer, AuthCredentials, AuthLogin, UserPanel, UserProfile, UserRooms, MessageList, FileList, } from '../components'
 import { useStorage } from '@vueuse/core'
@@ -8,7 +8,7 @@ import RoomButton from '../room/RoomButton.vue';
 import FileShare from '../files/FileShare.vue';
 import FileInfo from '../files/FileInfo.vue';
 
-const emit = defineEmits(['user', 'room', 'close', 'chat', 'browse'])
+const emit = defineEmits(['room', 'close', 'chat', 'browse'])
 
 const { user } = useUser()
 
@@ -43,14 +43,13 @@ const starredRooms = computed(() => Object.entries(useRooms(user.pub)).filter(([
   auth-login(v-if="!user.is")
 
   .flex.flex-wrap.w-full.gap-2.p-0(v-else)
-    user-panel(
+    user-panel.sticky.top-0.z-1000(
       @browse="$emit('browse', $event); $emit('close')"
       )
     .flex.flex-col.items-start.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-h-40vh.overflow-y-scroll(style="flex: 1 1 300px")
       user-profile
         button.button(
-
-          @click="$emit('user', user.pub); $emit('close')"
+          @click="selectedUser.pub = user.pub"
           )  Public profile
 
 
@@ -89,7 +88,4 @@ const starredRooms = computed(() => Object.entries(useRooms(user.pub)).filter(([
             @browse="$emit('room', r)"
             :panel="false"
             )
-
-      
-      
 </template>

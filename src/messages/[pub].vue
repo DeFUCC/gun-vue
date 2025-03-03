@@ -17,7 +17,6 @@ onMounted(() => {
 <template lang="pug">
 MessageExchange(
   :pub="pub" 
-  @user="$router.push(`/users/${pub}`)"
   @back="$router.push('/messages/')"
   )
 </template>

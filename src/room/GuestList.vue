@@ -22,7 +22,8 @@ const isInRoom = computed(() => guests.guests[user.pub])
 <template lang="pug">
 .flex.flex-wrap
   transition-group(name="fade")
-    account-badge.shadow-md.m-1(
+    account-badge.shadow-md.m-1.max-w-200px(
+      style="flex: 1 0 90px"
       v-for="(guest, p) in guests[state]"
       :key="p" 
       :size="30"

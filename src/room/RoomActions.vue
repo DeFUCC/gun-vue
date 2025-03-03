@@ -6,6 +6,8 @@ const props = defineProps({
   pub: { type: String, default: () => currentRoom.pub }
 })
 
+const emit = defineEmits(['room'])
+
 const { user } = useUser()
 
 const { room, leaveRoom, enterRoom } = useRoom(props.pub)
@@ -44,13 +46,13 @@ async function download(enc) {
   .flex.flex-wrap.py-4(v-if="roomPub != rootRoom.pub")
     button.button(
       v-if="currentRoom.pub !== roomPub" 
-      @click="enterRoom(roomPub)"
+      @click="enterRoom(roomPub); emit('room')"
       )
       .i-ion-enter-outline
       .ml-2 Enter Room
     button.button(
       v-else 
-      @click="leaveRoom()"
+      @click="leaveRoom(); emit('room')"
       )
       .i-ion-exit-outline
       .ml-2 Leave Room
