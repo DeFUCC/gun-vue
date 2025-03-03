@@ -1,1 +1,0 @@
-import{l as o,t}from"./components.Df5bLPAY.js";function d({pub:r,size:n=200,light:e=.5,overlay:a=.5,draw:s="squares",attachment:u="fixed"}){if(r)return{background:`linear-gradient(hsla(255,0%,${e*100}%,${a}), hsla(255,0%,${e*100}%,${a})), url(${o({pub:r,draw:s,reflect:!1,size:n,dark:t.dark})})`,backgroundSize:"cover, cover",backgroundAttachment:`${u},${u}`}}export{d as u};
