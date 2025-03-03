@@ -39,7 +39,7 @@
 		"buffer": "6.0.3",
 		"color-hash": "2.0.2",
 		"curved-arrows": "0.3.0",
-		"drauu": "0.4.2",
+		"drauu": "0.4.3",
 		"fuse.js": "7.1.0",
 		"grapheme-breaker-mjs": "1.0.4",
 		"gun": "0.2020.1240",
@@ -59,7 +59,6 @@
 	},
 	"devDependencies": {
 		"@types/color-hash": "2.0.0",
-		"@types/recordrtc": "5.6.14",
-		"vite-plugin-checker": "0.8.0"
+		"@types/recordrtc": "5.6.14"
 	}
 }

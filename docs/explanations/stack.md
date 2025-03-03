@@ -47,7 +47,6 @@ Application shell and routing:
 - **Core**: Built with Vue 3
 - **Routing**: `vue-router` for page navigation
 - **Development**:
-  - `vite-plugin-pages` for file-based routing
   - `vite-plugin-pages-sitemap` for sitemap generation
   - `vite-plugin-singlefile` for single-file builds
 - **UI**: Uses `unocss` for styling

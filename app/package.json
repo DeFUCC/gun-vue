@@ -43,8 +43,6 @@
 	"devDependencies": {
 		"@unocss/extractor-pug": "65.5.0",
 		"@vitejs/plugin-vue": "5.2.1",
-		"vite-plugin-pages": "0.32.4",
-		"vite-plugin-pages-sitemap": "1.7.1",
 		"vite-plugin-singlefile": "2.1.0"
 	}
 }

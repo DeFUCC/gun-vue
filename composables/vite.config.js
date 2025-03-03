@@ -1,7 +1,6 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
-import checker from "vite-plugin-checker";
 
 //@ts-ignore
 const filename = fileURLToPath(import.meta.url);
@@ -10,12 +9,6 @@ const dirname = path.dirname(filename);
 export default defineConfig({
 	plugins: [
 		moduleExclude("text-encoding"),
-		checker({
-			typescript: {
-				buildMode: true,
-				root: path.resolve(dirname, "../src/"),
-			},
-		}),
 	],
 	build: {
 		outDir: "dist",
