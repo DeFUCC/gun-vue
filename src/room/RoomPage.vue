@@ -70,7 +70,7 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
                 :selectable="true"
                 )
 
-          room-actions(:pub="roomPub")
+          room-actions(:pub="roomPub" @room="emit('browse', '/')")
 
   slot
   .flex.flex-col.items-center.bg-light-300.dark-bg-dark-400

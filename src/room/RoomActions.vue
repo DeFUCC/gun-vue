@@ -46,7 +46,7 @@ async function download(enc) {
   .flex.flex-wrap.py-4(v-if="roomPub != rootRoom.pub")
     button.button(
       v-if="currentRoom.pub !== roomPub" 
-      @click="enterRoom(roomPub); emit('room')"
+      @click="emit('room'); enterRoom(roomPub)"
       )
       .i-ion-enter-outline
       .ml-2 Enter Room

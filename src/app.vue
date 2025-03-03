@@ -120,7 +120,7 @@ onMounted(() => {
         @click="user.auth = true"
         )
   UiLayer(@close="selectedRoom = null" :open="!!selectedRoom")
-    RoomProfile(:pub="selectedRoom" :key="selectedRoom")
+    RoomProfile(:pub="selectedRoom" :key="selectedRoom" @browse="$router.push($event); selectedRoom = null")
 
   UiLayer(@close="selectedUser.pub = ''" :open="!!selectedUser.pub")
     AccountHome(:pub="selectedUser.pub" @chat="selectedUser.pub = $event" :key="selectedUser.pub")
