@@ -25,36 +25,36 @@ watch(() => user.is, () => {
 const showChats = useStorage('showChats', true)
 const showRooms = useStorage('showRooms', true)
 
-const list = computed(() => useRooms(user.pub))
+const starredRooms = computed(() => Object.entries(useRooms(user.pub)).filter(([k, v]) => v[user.pub]).map((([k]) => k)))
 
 </script>
 
 <template lang="pug">
-.flex.flex-col.items-center.w-full
+.flex.flex-col.items-center.w-full.justify-stretch
   ui-layer(
     :open="user.is && !safe" 
     close-button 
     @close="isSafe()"
     )
-    auth-credentials(v-if="!safe")
+    auth-credentials(v-if="!safe" :key="user.is")
       button.button.mx-8.justify-center(@click="isSafe()")
         .i-la-check
         .ml-2 I've stored my user key securely
   auth-login(v-if="!user.is")
 
-  .flex.flex-wrap.w-full.gap-2.p-2(v-else)
+  .flex.flex-wrap.w-full.gap-2.p-0(v-else)
     user-panel(
       @browse="$emit('browse', $event); $emit('close')"
       )
-    .flex.flex-col.items-start.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-h-40vh.overflow-y-scroll(style="flex: 1 1 200px")
+    .flex.flex-col.items-start.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-h-40vh.overflow-y-scroll(style="flex: 1 1 300px")
       user-profile
-      button.button(
-        :style="{ backgroundColor: user.color }"
-        @click="$emit('user', user.pub); $emit('close')"
-        )  My public profile
+        button.button(
+
+          @click="$emit('user', user.pub); $emit('close')"
+          )  Public profile
 
 
-    .flex.flex-col.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-h-40vh.overflow-y-scroll(style="flex: 1 1 200px")
+    .flex.flex-col.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-h-40vh.overflow-y-scroll(style="flex: 1 1 300px")
       button.z-100.bg-light-400.dark-bg-dark-700.rounded-xl.sticky.top-0.items-center.w-full.flex.p-2(@click="showChats = !showChats") 
         .font-bold.text-lg Messages
         .flex-1
@@ -67,7 +67,7 @@ const list = computed(() => useRooms(user.pub))
 
     .flex.flex-wrap.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-w-600px.max-h-40vh.overflow-y-scroll(style="flex: 1 1 300px" )
       FileInfo( :file="activeFile" v-if="activeFile" @close="activeFile = null")
-      FileList(@file="activeFile = $event" v-else)
+      FileList.w-full(@file="activeFile = $event" v-else)
         FileShare
 
     .flex.flex-col.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl(style="flex: 1 1 200px")
@@ -83,7 +83,7 @@ const list = computed(() => useRooms(user.pub))
         mode="out-in")
         .flex.flex-col.gap-4( v-if="showRooms" :key="user.pub")
           RoomButton(
-            v-for="(_, r) in list?.rooms?.value"
+            v-for="(r) in starredRooms"
             :key="r"
             :pub="r"
             @browse="$emit('room', r)"

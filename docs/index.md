@@ -16,6 +16,10 @@ hero:
     - theme: alt
       text: Getting started
       link: /tutorials/getting-started
+    - theme: alt
+      text: Join mailing list
+      target: _blank
+      link: https://docs.google.com/forms/d/e/1FAIpQLSduBkhHdxMDEM4GhyPmqcMDsVjQyVVJ1BUYpV7oeYCIUmgMNw/viewform?usp=header
 features:
   - icon: ✨
     title: Local-first single HTML web-apps

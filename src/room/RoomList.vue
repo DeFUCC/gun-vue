@@ -1,11 +1,11 @@
 <script setup>
 import { useRooms } from '#composables';
 import { reactive, ref, computed } from 'vue'
-import { RoomForm, RoomCard, PostActionReact } from '../components'
+import { RoomCard, PostActionReact } from '../components'
 
 defineEmits(['browse'])
 
-const { rooms } = useRooms()
+const rooms = useRooms()
 
 
 </script>
@@ -13,7 +13,6 @@ const { rooms } = useRooms()
 <template lang="pug">
 .flex.flex-col
   .flex.flex-wrap.gap-4.my-4
-    room-form(@room="$emit('browse', $event)")
     room-card( 
       v-for="(authors, pub) in rooms"
       :key="pub" 

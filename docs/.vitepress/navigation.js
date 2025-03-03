@@ -7,7 +7,7 @@ export const sidebar = [
         "link": "/basics/what-is"
       },
       {
-        "text": "Development screencasts", "link": "/basics/video"
+        "text": "YouTube devlog", "link": "/basics/video"
       }
     ]
   },

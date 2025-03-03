@@ -20,7 +20,7 @@ const { logo, uploadLogo, removeLogo } = useRoomLogo(props.pub)
 .flex.flex-col.relative.items-center.justify-center
   img(:src="logo || 'https://gun-vue.js.org/media/gun-vue-logo.svg'")
 
-  form-picture.absolute(
+  form-picture.absolute.z-100000(
     v-if="room.hosts[user.pub]"
     :options="{ picSize: props.pic, preserveRatio: false }"
     @update="uploadLogo($event)"

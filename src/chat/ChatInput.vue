@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useUser } from '../composables'
+import AuthLogin from '../auth/AuthLogin.vue'
+import UiLayer from '../ui/UiLayer.vue'
 
 const { user } = useUser()
 
@@ -27,7 +29,9 @@ function send() {
     @click="send()"
     )
     .i-la-comment-dots.mx-2
-//- .p-4.flex.flex-col.items-center(v-else)
-//-   button.button(@click="user.auth = true")
-//-     | Log in to post messages
+.p-4.flex.flex-col.items-center(v-else)
+  button.button(@click="user.auth = !user.auth")
+    | Log in to post messages
+  transition(name="fade")
+    AuthLogin(v-if="user.auth")
 </template>

@@ -111,7 +111,7 @@ const filteredPosts = computed(() => {
       v-if="!user.pub" 
       style="order:-2147483647; flex: 1000 100%"
       )
-        button.button(@click="user.auth = true") Authorize to post here
+        button.button(@click="user.auth = true") Login to reply
         slot
   .flex.flex-wrap.gap-4.p-2
     transition-group(name="list")

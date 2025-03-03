@@ -24,14 +24,26 @@
 			"sizes": "512x512",
 			"type": "image/png",
 			"purpose": "any"
+		},
+		{
+			"src": "./media/gun-vue-logo.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "maskable"
+		},
+		{
+			"src": "./media/gun-vue-logo.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "any"
 		}
 	],
 	"screenshots": [
 		{
-			"src": "./media/jpg/demo.jpg",
+			"src": "./media/gun-vue-hero.png",
 			"type": "image/jpg",
-			"sizes": "1280x720",
-			"form_factor": "wide"
+			"sizes": "1280x1280",
+			"form_factor": "any"
 		}
 	],
 	"launch_handler": {

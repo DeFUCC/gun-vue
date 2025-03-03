@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.23.0
+
+### Minor Changes
+
+- Many small improvements and fixes along with some brreaking changes to the graph structure.
+
 ## 0.22.6
 
 ### Patch Changes

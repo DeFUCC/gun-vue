@@ -35,5 +35,5 @@ const isInRoom = computed(() => guests.guests[user.pub])
     @click.stop.prevent="joinRoom(roomPub)"
     )
     .i-la-plus
-    .ml-2 Join
+    .ml-2 Join Room
 </template>

@@ -20,6 +20,9 @@ import { refDebounced } from "@vueuse/core";
  * @typedef {Object.<string, Message>} MessageMap
  */
 
+
+const chatPath = "chat"
+
 /**
  * @param {string} [current="general"]
  * @returns {Object}
@@ -30,35 +33,107 @@ export function useChat(current = "general") {
 
 	const currentChat = ref(current);
 
-	const chats = computed(() => {
-		const chatList = reactive({
-			general: {},
-		});
-		gun
-			.user(currentRoom.pub)
-			.get("chat")
-			.map()
-			.on((d, k) => {
-				const [title, author] = k.split("@");
-				chatList[title] = chatList[title] || {};
-				if (d) {
-					chatList[title][author] = d;
-				} else {
-					delete chatList?.[title]?.[author];
+	const chatVotes = reactive({
+		[current]: {
+			upvotes: new Set(),
+			downvotes: new Set()
+		}
+	});
+
+	const blockList = reactive({})
+	const allowList = reactive({})
+
+
+	gun
+		.user(currentRoom.pub)
+		.get(chatPath)
+		.map()
+		.on((d, k) => {
+			const [title, author] = k.split("@");
+			if (!chatVotes[title]) {
+				chatVotes[title] = {
+					upvotes: new Set(),
+					downvotes: new Set()
+				};
+			}
+
+			// Clear both sets for this author first
+			chatVotes[title].upvotes.delete(author);
+			chatVotes[title].downvotes.delete(author);
+
+			if (d === true) {
+				chatVotes[title].upvotes.add(author);
+				if (author == user.pub) {
+					delete blockList[title];
+					allowList[title] = true;
 				}
+			} else if (d === false) {
+				chatVotes[title].downvotes.add(author);
+				if (author == user.pub) {
+					blockList[title] = true;
+					delete allowList[title];
+				}
+			} else if (d === null && author == user.pub) {
+				// When vote is reset to null, remove from both lists
+				delete blockList[title];
+				delete allowList[title];
+			}
+		});
+
+	const chats = computed(() => {
+		return Object.entries(chatVotes)
+			.map(([title, votes]) => ({
+				title,
+				authors: Array.from(votes.upvotes),
+				rating: votes.upvotes.size - votes.downvotes.size,
+				my: votes.upvotes.has(user.pub) ? 1 :
+					votes.downvotes.has(user.pub) ? -1 : 0
+			}))
+			.filter(chat =>
+				allowList[chat.title] ||
+				(!blockList[chat.title] &&
+					(chat.rating > 0 || (user.is && chat.my === 0)))
+			)
+			.sort((a, b) => {
+				return b.rating - a.rating;
 			});
-		return chatList;
 	});
 
 	/**
 	 * @param {string} title
 	 */
-	function addChat(title) {
+	async function addChat(title) {
+		const prev = await gun
+			.user(currentRoom.pub)
+			.get(chatPath)
+			.get(`${slugify(title)}@${user.pub}`)
+			.then();
+
+		// If already upvoted, reset to null, otherwise set to true
+		const newValue = prev === true ? null : true;
+
 		gun
 			.user(currentRoom.pub)
-			.get("chat")
-			.get(`${slugify(title) || title}@${user.pub}`)
-			.put(true, undefined, { opt: { cert: currentRoom.features.chat } });
+			.get(chatPath)
+			.get(`${slugify(title)}@${user.pub}`)
+			.put(newValue, undefined, { opt: { cert: currentRoom.features.chat } });
+	}
+
+	async function removeChat(title) {
+		const prev = await gun
+			.user(currentRoom.pub)
+			.get(chatPath)
+			.get(`${slugify(title)}@${user.pub}`)
+			.then();
+
+		// If already downvoted, reset to null, otherwise set to false
+		const newValue = prev === false ? null : false;
+
+		gun
+			.user(currentRoom.pub)
+			.get(chatPath)
+			.get(`${slugify(title)}@${user.pub}`)
+			.put(newValue, undefined, { opt: { cert: currentRoom.features.chat } });
 	}
 
 	const topicDb = computed(() =>
@@ -100,6 +175,7 @@ export function useChat(current = "general") {
 	return {
 		send,
 		addChat,
+		removeChat,
 		currentChat,
 		chats,
 		messages,

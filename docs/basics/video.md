@@ -1,5 +1,5 @@
 ---
-title: Screencasts
+title: Youtube videos
 ---
 
 # Gun-Vue screencasts

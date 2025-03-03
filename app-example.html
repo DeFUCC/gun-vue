@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="./app/dist/app.css" />
   <script type="importmap">
-			{ "imports": { "@gun-vue/app": "https://esm.sh/@gun-vue/app@0.21.5"} }
+			{ "imports": { "@gun-vue/app": "https://esm.sh/@gun-vue/app"} }
 		</script>
   <script type="module">
     import { createGunVueApp } from "@gun-vue/app";
@@ -17,7 +17,7 @@
 
 <body>
   <div id="app" class="flex flex-col">
-    <h1>Chat example app!</h1>
+    <h1 class="p-4 text-lg bg-light-300 shadow-lg">Chat example app!</h1>
     <div class="flex items-center gap-4 p-4">
       <gun-relay></gun-relay>
       <user-icon></user-icon>

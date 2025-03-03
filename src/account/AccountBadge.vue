@@ -57,7 +57,7 @@ function select() {
     :pub="pub" 
     :size="size"
     )
-  .mx-2.font-bold.text-sm.max-w-8ch.overflow-ellipsis.overflow-hidden.whitespace-nowrap(v-if="showName && name" :key="pub") {{ name }}
+  .mx-2.font-bold.text-sm.max-w-8ch.overflow-ellipsis.overflow-hidden.whitespace-nowrap(v-if="showName && pub && name") {{ name }} 
   .tip.mx-2.font-bold.text-sm.max-w-8ch.overflow-ellipsis.overflow-hidden.whitespace-nowrap.absolute.opacity-0.hover-opacity-100.transition-all.duration-300.ease-in.text-center.transform.translate-y-2.p-1.rounded-lg(
     v-if="name && !showName"
     :style="{ transform: `translateY(${-size - 5}px) translateX(-50%)`, backgroundColor: colorDeep.hex(pub) }"

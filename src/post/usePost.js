@@ -129,11 +129,11 @@ export async function addPost(to, post) {
  * downloadPost(post)
  */
 export async function downloadPost(post) {
-	let { title } = post;
+	let { title, statement } = post;
 
 	const { zipPost, addFile, downloadZip } = useZip();
 
-	if (title && !post.raw) {
+	if ((title || statement) && !post.raw) {
 		await zipPost({ ...post });
 	} else {
 		title = "file";

@@ -1,4 +1,6 @@
 <script setup>
+import { ref, watch } from 'vue'
+
 const props = defineProps({
   open: { type: Boolean, default: false },
   offset: { type: String, default: '' },
@@ -6,33 +8,35 @@ const props = defineProps({
   back: { type: Boolean, default: true }
 })
 const emit = defineEmits(['close'])
+
+const dialog = ref(null)
+
+watch(() => props.open, (isOpen) => {
+  if (isOpen) {
+    dialog.value?.showModal()
+  } else {
+    dialog.value?.close()
+  }
+})
+
+const handleClick = (e) => {
+  if (props.back && e.target === dialog.value) {
+    emit('close')
+  }
+}
 </script>
 
 <template lang="pug">
-transition(name="fade" mode="out-in" appear)
-  .fixed.w-full.h-full.top-0.left-0.z-500.flex.flex-col.items-center(v-show="open")
-    transition-group(name="fade")
-      .bg-dark-200.bg-opacity-30.w-full.h-full.absolute.z-2.cursor-pointer.backdrop-filter.backdrop-blur-sm(
-        v-if="open && back" 
-        key="bg" 
-        @click="$emit('close')"
-        )
-      .layer.z-200(
-        v-if="open" 
-        key="layer" 
-        :style="{ top: offset || '10vh' }"
-        )
-        button.button.fixed.right-4.top-4( 
-          v-if="closeButton" 
-          @click="$emit('close')"
-          )
-          .i-la-times
-        slot
+dialog.modal-dialog.rounded-2xl.shadow-2xl.overflow-y-scroll.max-h-88vh.max-w-98vw.overscroll-y-none(ref="dialog" @click="handleClick" :style="{ marginTop: offset || '10vh' }")
+  slot
 </template>
 
 <style lang="postcss" scoped>
-.layer {
-  @apply bg-light-100 dark-bg-dark-400 rounded-3xl z-200 shadow-2xl overflow-y-scroll overscroll-contain max-h-88vh max-w-98vw relative z-500;
-  overscroll-behavior-y: none;
+.modal-dialog {
+  @apply p-2 bg-light-200 bg-opacity-90 dark-bg-dark-200 dark-bg-op-90 backdrop-filter backdrop-blur dark-text-white;
+
+  &::backdrop {
+    @apply backdrop-blur bg-light-400/30 dark-bg-dark-400/30
+  }
 }
 </style>
