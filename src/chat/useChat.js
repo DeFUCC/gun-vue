@@ -74,7 +74,6 @@ export function useChat(current = "general") {
 					delete allowList[title];
 				}
 			} else if (d === null && author == user.pub) {
-				// When vote is reset to null, remove from both lists
 				delete blockList[title];
 				delete allowList[title];
 			}
@@ -90,9 +89,10 @@ export function useChat(current = "general") {
 					votes.downvotes.has(user.pub) ? -1 : 0
 			}))
 			.filter(chat =>
+				chat.title == 'general' ||
 				allowList[chat.title] ||
 				(!blockList[chat.title] &&
-					(chat.rating > 0 || (user.is && chat.my === 0)))
+					chat.rating >= 0)
 			)
 			.sort((a, b) => {
 				return b.rating - a.rating;

@@ -82,7 +82,7 @@ const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attach
         :cert="room.features[c]"
         :type="c"
         :title="title"
-        :pub="pub || currentRoom.pub"
+        :pub="roomPub"
         :open="room.features[c] || (c == 'users' && room.features.space) || (c == 'chat' && room.features.chat)"
         @click="$emit('browse', c)" 
         )
