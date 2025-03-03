@@ -41,14 +41,14 @@ export default defineConfig({
 		['meta', { property: 'og:type', content: 'website' }],
 		['meta', { property: 'og:title', content: 'Gun-Vue: The Peer-to-Peer Web App Toolkit' }],
 		['meta', { property: 'og:description', content: 'Open source library and tech demo for p2p reactive graph development' }],
-		['meta', { property: 'og:image', content: 'https://gun-vue.js.org/media/gun-vue-card.png' }],
+		['meta', { property: 'og:image', content: 'https://gun-vue.js.org/media/gun-vue-kit.png' }],
 		// Twitter
 		['meta', { name: 'twitter:card', content: 'summary_large_image' }],
 		['meta', { name: 'twitter:site', content: '@defucc' }],
 		['meta', { name: 'twitter:creator', content: '@defucc' }],
 		['meta', { name: 'twitter:title', content: 'Gun-Vue: The Peer-to-Peer Web App Toolkit' }],
 		['meta', { name: 'twitter:description', content: 'Open source library and tech demo for p2p reactive graph development' }],
-		['meta', { name: 'twitter:image', content: 'https://gun-vue.js.org/media/gun-vue-card.png' }]
+		['meta', { name: 'twitter:image', content: 'https://gun-vue.js.org/media/gun-vue-kit.png' }]
 	],
 	transformHead({ pageData }) {
 		return [

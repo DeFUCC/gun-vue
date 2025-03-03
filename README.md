@@ -1,7 +1,7 @@
 # Gun-Vue: The Peer-to-Peer Web App Toolkit
 
 <a href="https://gun-vue.js.org">
-  <img src="https://github.com/DeFUCC/gun-vue/blob/master/docs/public/media/gun-vue-card.png" alt="@gun-vue logo" width="650" />
+  <img src="https://github.com/DeFUCC/gun-vue/blob/master/docs/public/media/gun-vue-kit.png" alt="@gun-vue logo" width="650" />
 </a>
 <br>
 <br>
@@ -32,7 +32,7 @@
 
 [GitHub (@gun-vue/app)](https://github.com/DeFUCC/gun-vue/tree/master/app) •
 [npm](https://www.npmjs.com/package/@gun-vue/app) •
-[📱 Demo App](https://gun-vue.js.org/app)  
+[📱 Demo App](https://gun-vue.js.org/app)
 
 A **Single-Page App (SPA)** that runs in any modern browser, featuring **Peer-to-Peer**: **Social Posts**, **End-to-End Encrypted (E2EE) Chat**, **WebTorrent File Sharing**, and more!
 
@@ -42,7 +42,7 @@ A **Single-Page App (SPA)** that runs in any modern browser, featuring **Peer-to
 
 [GitHub (@gun-vue/relay)](https://github.com/DeFUCC/gun-vue/tree/master/relay) •
 [npm](https://www.npmjs.com/package/@gun-vue/relay) •
-[Docs](https://gun-vue.js.org/packages/relay.html)  
+[Docs](https://gun-vue.js.org/packages/relay.html)
 
 A simple **Gun Relay Peer** that helps clients form **Peer-to-Peer (P2P)** connections.
 
@@ -60,7 +60,7 @@ A collection of ready to use features such as: `User`, `Post`, `Chat`, `Project`
 
 [GitHub (@gun-vue/components)](https://github.com/DeFUCC/gun-vue/tree/master/components) •
 [npm](https://www.npmjs.com/package/@gun-vue/components) •
-[Docs](https://gun-vue.js.org/packages/components.html)  
+[Docs](https://gun-vue.js.org/packages/components.html)
 
 Prebuilt **Vue 3 UI components** that simplify adding **secure, real-time, peer-to-peer** functionality to your application—no need to build core features from scratch.
 
@@ -84,23 +84,26 @@ Prebuilt **Vue 3 UI components** that simplify adding **secure, real-time, peer-
 ```bash
 npm install -g pnpm
 ```
-*(Alternatively, use [corepack](https://pnpm.io/installation#using-corepack))*
+
+_(Alternatively, use [corepack](https://pnpm.io/installation#using-corepack))_
 
 2. Clone the Repository & Install Dependencies
 
 ```bash
 git clone https://github.com/DeFUCC/gun-vue.git
 ```
+
 ```bash
 cd gun-vue
 ```
+
 ```bash
 pnpm install
 ```
 
 3. Run a Development Server
 
-    Pick **one** (or more) from the following, as needed:
+   Pick **one** (or more) from the following, as needed:
 
 - **Core Dev Server**:
   ```bash
@@ -110,16 +113,18 @@ pnpm install
   ```bash
   pnpm run docs
   ```
-  
+
 4. Build the Entire Toolkit
 
 ```bash
 pnpm run builds
 ```
+
 ```bash
 open ./_dist/index.html
 ```
-*(or manually open `_dist/index.html` in your browser.)*
+
+_(or manually open `_dist/index.html` in your browser.)_
 
 ## How to Contribute
 

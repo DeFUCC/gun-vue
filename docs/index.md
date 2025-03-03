@@ -14,10 +14,10 @@ hero:
       link: /app/
       target: _self
     - theme: alt
-      text: Getting started
+      text: Get started
       link: /tutorials/getting-started
     - theme: alt
-      text: Join mailing list
+      text: Contact
       target: _blank
       link: https://docs.google.com/forms/d/e/1FAIpQLSduBkhHdxMDEM4GhyPmqcMDsVjQyVVJ1BUYpV7oeYCIUmgMNw/viewform?usp=header
 features:
