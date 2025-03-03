@@ -1,5 +1,35 @@
 # @gun-vue/components
 
+## 0.24.0
+
+### Minor Changes
+
+- # Gun-Vue 0.24
+
+  Lean web-app achieved! Some bugs still persist, though not as critical as those already solved.
+
+  - Proper PWA setup with offline capabilities
+
+  - OPFS + Web-torrents dynamic file sharing space with integrations into chats across the app
+
+  - New settings panel to hold all relay and configurations
+
+  - Private Chats are now called messages and also display a chat with yourself, where you can store your notes in encrypted graph, encrypted and signed by your key on your machine.
+
+  - Dialogs all the way! Now we have robust overlays with all user and room data that is shared between more specialized and isolated room features.
+
+  - New voting system for public chat topics ensures coexistence of multiple communities in the same room
+
+  - Improved security: `user.my_rooms` pub-keys are encrypted so even for every room we know who is the host, we don't know the exact rooms that user owns.
+
+  - Fixed a couple of tiny bugs in encyption process, that was breaking the room keys operations. Now all goes smooth.
+
+  - Relay now has a Node.js SEA (Single Executable Application) build! Build a relay yourself and run as a single executable ~95Mb in size. Our goal is not more than 5-10Mb.
+
+  - Huge cleanup and distillation of components. Started removing jsdoc to have pure JS that is human- and machine-readable at the same time.
+
+  - Updated docs with explanations, tutorials and reference
+
 ## 0.23.0
 
 ### Minor Changes
