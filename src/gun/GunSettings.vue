@@ -89,8 +89,10 @@ function refresh() {
         .i-la-undo-alt
 
     .flex.flex-col.px-2.pb-4
-      .flex.items-baseline.gap-2
+      .flex.items-center.gap-2
         .text-lg.text-left Volunteer GUN relay peers
+        a(href="https://github.com/amark/gun/wiki/volunteer.dht" target="_blank")
+          .i-la-info-circle
         .text-sm(v-if="Object.keys(relays).length") {{ Object.keys(relays).length }}
         .flex-auto
         button.button(@click="showPeers = !showPeers; loadRelays()") 

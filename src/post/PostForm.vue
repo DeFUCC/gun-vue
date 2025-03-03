@@ -82,7 +82,7 @@ form.w-full.flex.flex-col.p-2.shadow-xl.m-1.rounded-2xl(action="javascript:void(
       @update="postData.icon = $event"
       )
       .i-la-info-circle
-    form-picture(@update="postData.cover = $event")
+    form-picture(field="cover" update="postData.cover = $event")
     form-link(@update="postData.link = $event")
     form-youtube(@update="postData.youtube = $event")
     button.m-1.button(

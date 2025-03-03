@@ -59,10 +59,8 @@ const starredRooms = computed(() => Object.entries(useRooms(user.pub)).filter(([
         .flex-1
         .i-la-angle-down(v-if="showChats")
         .i-la-angle-up(v-else)
-      transition(
-        name="fade" 
-        mode="out-in")
-        MessageList(@chat="$emit('chat', $event)" v-if="showChats")
+
+      MessageList(@chat="$emit('chat', $event)" v-if="showChats")
 
     .flex.flex-wrap.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-w-600px.max-h-40vh.overflow-y-scroll(style="flex: 1 1 300px" )
       FileInfo( :file="activeFile" v-if="activeFile" @close="activeFile = null")

@@ -123,7 +123,7 @@ onMounted(() => {
     RoomProfile(:pub="selectedRoom" :key="selectedRoom" @browse="$router.push($event); selectedRoom = null")
 
   UiLayer(@close="selectedUser.pub = ''" :open="!!selectedUser.pub")
-    AccountHome(:pub="selectedUser.pub" @chat="selectedUser.pub = $event" :key="selectedUser.pub")
+    AccountHome(:pub="selectedUser.pub" @chat="$router.push(`/messages/${$event}`); selectedUser.pub = null" :key="selectedUser.pub")
 
   UiLayer(:open="user.auth" @close="user.auth = false")
     UserHome.max-w-80vw(
