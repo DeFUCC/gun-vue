@@ -26,7 +26,7 @@ function createUser() {
   }))
 }
 
-
+const emit = defineEmits(['back'])
 
 </script>
 
@@ -48,8 +48,8 @@ function createUser() {
     .flex.justify-center.my-4
       button.m-2.button.items-center(
         type="button"
-        v-if="history.length > 2" 
-        @click.stop="undo()"
+
+        @click.stop=" history.length > 2 ? undo() : $emit('back')"
         )
         .i-la-undo.text-2xl
       button.m-2.button.items-center(

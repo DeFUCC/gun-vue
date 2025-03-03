@@ -14,5 +14,5 @@ const generate = ref(false)
     ) Create a new account
   .flex.justify-center.mt-4(v-if="!generate") or
   auth-form(v-if="!generate")
-  auth-create(v-else)
+  auth-create(v-else  @back="generate = false")
 </template>

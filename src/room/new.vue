@@ -1,6 +1,7 @@
 <script setup>
 import { useUser } from '#composables';
 import AuthLogin from '../auth/AuthLogin.vue';
+import RoomForm from './RoomForm.vue';
 
 const { user } = useUser()
 </script>

@@ -1,6 +1,6 @@
 <script setup>
 import { useUser, SEA, createRoom, useBackground, enterRoom } from '#composables';
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRefHistory } from '@vueuse/core'
 
 const emit = defineEmits(['room'])
@@ -16,6 +16,10 @@ const { history, undo, redo, canRedo, canUndo } = useRefHistory(newPair)
 async function genPair() {
   newPair.value = await SEA.pair()
 }
+
+onMounted(() => {
+  genPair()
+})
 
 function reset() {
   newPair.value = null
