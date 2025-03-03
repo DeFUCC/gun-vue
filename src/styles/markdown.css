@@ -824,11 +824,10 @@
 
 .markdown-body .highlight pre,
 .markdown-body pre {
-	padding: 16px;
-	overflow: auto;
+	max-width: 60vw;
+	overflow-x: scroll;
 	font-size: 85%;
 	line-height: 1.45;
-	background-color: #f6f8fa;
 	border-radius: 6px;
 }
 
@@ -838,7 +837,8 @@
 	max-width: auto;
 	padding: 0;
 	margin: 0;
-	overflow: visible;
+	overflow-x: scroll;
+	max-width: 100%;
 	line-height: inherit;
 	word-wrap: normal;
 	background-color: transparent;
