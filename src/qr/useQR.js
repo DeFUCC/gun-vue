@@ -1,10 +1,3 @@
-/**
- * [[include:./qr/README.md]]
- * <QrShow :data="'Hello world!'" />
- * @module QR
- * @group UI
- */
-
 export function useQR() {
   return {
     processFile

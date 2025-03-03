@@ -1,32 +1,10 @@
-/**
- * [[include:./chat/README.md]]
- * @module Chat
- * @group Chat
- */
-
 import { ref, reactive, computed } from "vue";
 import slugify from "slugify";
 import { useUser, useGun, currentRoom } from "../composables";
 import { refDebounced } from "@vueuse/core";
 
-/**
- * @typedef {Object} Message
- * @property {string|number} timestamp
- * @property {string} [author]
- * @property {string} text
- */
-
-/**
- * @typedef {Object.<string, Message>} MessageMap
- */
-
-
 const chatPath = "chat"
 
-/**
- * @param {string} [current="general"]
- * @returns {Object}
- */
 export function useChat(current = "general") {
 	const gun = useGun();
 	const { user } = useUser();
@@ -99,9 +77,6 @@ export function useChat(current = "general") {
 			});
 	});
 
-	/**
-	 * @param {string} title
-	 */
 	async function addChat(title) {
 		const prev = await gun
 			.user(currentRoom.pub)
@@ -161,9 +136,6 @@ export function useChat(current = "general") {
 		debList.value.sort((a, b) => (a.timestamp > b.timestamp ? 1 : -1))
 	);
 
-	/**
-	 * @param {string} message
-	 */
 	function send(message) {
 		if (!message) return;
 		let now = Date.now();

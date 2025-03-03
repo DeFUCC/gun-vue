@@ -1,9 +1,3 @@
-/**
- * A 2D-space
- * @module Space
- * @group Space
- */
-
 import { useGun } from "../composables";
 import { useSvgMouse } from "../ui/composables";
 import { useUser } from "../user/composables";
@@ -13,28 +7,6 @@ import { getArrow } from "curved-arrows";
 import { useElementBounding, onKeyDown, useKeyModifier } from "@vueuse/core";
 import { useClamp } from "@vueuse/math";
 
-/**
- * @typedef {Object} SpaceGuest
- * @property {string} pub
- * @property {string} draw
- * @property {string} status
- * @property {boolean} blink
- * @property {number} pulse
- * @property {boolean} hasPos
- * @property {{x: number, y: number}} pos
- */
-
-/**
- *  A space to navigate with mouse clicks
- * @param {Object} options
- * @param {number} [options.TIMEOUT=10000]
- * @param {number} [options.randomness=0.1]
- * @returns {Object}
- * @example
- * const { space, plane, links, width, height, guests, area, join } = useSpace({
- * TIMEOUT: 10000,
- * })
- */
 export function useSpace({ TIMEOUT = 10000, randomness = 0.1 } = {}) {
 	const plane = ref();
 	const { area, mouse } = useSvgMouse(plane);
@@ -122,7 +94,7 @@ export function useSpace({ TIMEOUT = 10000, randomness = 0.1 } = {}) {
 		if (pub == user.pub) {
 			space.joined = true;
 		}
-		/** @type {SpaceGuest} */
+
 		const guest = {
 			pub: pub,
 			draw: "",
@@ -224,32 +196,7 @@ export function useSpace({ TIMEOUT = 10000, randomness = 0.1 } = {}) {
 	};
 }
 
-/**
- * @typedef {Object} Pos
- * @property {number} x
- * @property {number} y
- */
 
-/**
- * @typedef {Object} Arrow
- * @property {number} sx
- * @property {number} sy
- * @property {number} c1x
- * @property {number} c1y
- * @property {number} c2x
- * @property {number} c2y
- * @property {number} ex
- * @property {number} ey
- * @property {number} ae
- * @property {number} as
- */
-
-/**
- * @param {Pos} pos1
- * @param {Pos} pos2
- * @param {number} [seed=0]
- * @returns {Arrow}
- */
 function generateArrow(pos1, pos2, seed = 0) {
 	let arrowArray = getArrow(pos1.x, pos1.y, pos2.x, pos2.y, {
 		padEnd: 20,

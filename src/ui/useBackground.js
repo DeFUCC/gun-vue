@@ -1,25 +1,6 @@
-/**
- * @module Background
- * @group UI
- */
-
 import { gunAvatar } from "../composables";
 import { theme } from "./useTheme";
 
-/**
- * @typedef {Object} BackgroundOptions
- * @property {string} pub
- * @property {number} [size=200]
- * @property {number} [light=0.5]
- * @property {number} [overlay=0.5]
- * @property {('squares'|'circles')} [draw='squares']
- * @property {string} [attachment='fixed']
- */
-
-/**
- * @param {BackgroundOptions} options
- * @returns {Object|undefined}
- */
 export function useBackground({
 	pub,
 	size = 200,

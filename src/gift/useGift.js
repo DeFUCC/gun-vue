@@ -1,9 +1,3 @@
-/**
- * Gift economy
- * @module Gift
- * @group Gift economy
- * */
-
 import { giftPath } from "./composables";
 import { useUser } from "../user/composables";
 import { reactive, computed, ref, watch } from "vue";
@@ -13,25 +7,9 @@ import { useGun } from "../gun/composables";
 import { computedAsync } from "@vueuse/core";
 import { currentRoom } from "../room/composables";
 
-/**
- * @typedef {Object} Gift
- * @property {string} [from]
- * @property {string} [to]
- * @property {number} [qn]
- * @property {string} [ql]
- * @property {string} [wish]
- * @property {string} [project]
- * @property {string} [room]
- * @property {number} [date]
- */
-
-/**
- * @param {string} hash
- * @returns {{gift: Gift, state: Object}}
- */
 export function useGift(hash) {
 	const gun = useGun();
-	/** @type {Gift} */
+
 	const gift = reactive({});
 	const state = reactive({
 		from: false,
@@ -69,19 +47,11 @@ export function useGift(hash) {
 	return { gift, state };
 }
 
-/**
- * @param {string} hash
- * @param {boolean} [state=true]
- */
 export async function giftState(hash, state = true) {
 	const { user } = useUser();
 	user.db.get(giftPath).get(hash).put(state);
 }
 
-/**
- * @param {Gift} giftConf
- * @returns {{gift: Gift, cleanGift: import('vue').ComputedRef, valid: import('vue').ComputedRef, propose: Function, proposed: import('vue').Ref, hash: import('vue').ComputedRef}}
- */
 export function useNewGift(giftConf) {
 	const { user } = useUser();
 
@@ -168,10 +138,6 @@ export function useNewGift(giftConf) {
 	return { gift, cleanGift, valid, propose, proposed, hash };
 }
 
-/**
- * @param {object} obj
- * @returns {object}
- */
 export function removeEmptyKeys(obj) {
 	return Object.entries(obj)
 		.filter(([_, v]) => {

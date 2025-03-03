@@ -335,9 +335,6 @@ export function enterRoom(pub) {
 	currentRoom.pub = pub;
 }
 
-/**
- * Leave the room
- */
 export function leaveRoom() {
 	currentRoom.pub = rootRoom.pub;
 }

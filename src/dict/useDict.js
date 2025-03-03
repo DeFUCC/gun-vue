@@ -1,9 +1,3 @@
-/**
- * [[include:./dict/README.md]]
- * @module Dict
- * @group Dictionary
- */
-
 export * from "./langs";
 
 import Fuse from "fuse.js";
@@ -18,19 +12,11 @@ import {
 	hashObj,
 } from "../composables";
 
-/**
- * @typedef {Object} DictRecord
- * @property {string} word
- * @property {string} def
- */
-
-/** @type {DictRecord} */
 export const dictRecord = reactive({
 	word: null,
 	def: null,
 });
 
-/** @type {import('vue').Ref} */
 export const dictLang = useStorage("dict-lang", "en");
 
 watch(dictRecord, () => {
@@ -39,10 +25,6 @@ watch(dictRecord, () => {
 	}
 });
 
-/**
- * Use filtrable words list
- * @returns {Object}
- */
 export function useWords() {
 	const gun = useGun();
 	const input = ref("");
@@ -78,7 +60,6 @@ export function useWords() {
 				linked[hash] || (await gun.get("dict").get("#word").get(hash).then());
 		});
 
-	/** @type {Object.<string, string>} */
 	const words = reactive({});
 
 	gun
@@ -90,7 +71,6 @@ export function useWords() {
 			words[k] = d;
 		});
 
-	/** @type {import('vue').ComputedRef<Fuse<{ text: string; hash: string; }>>} */
 	const fuse = computed(() => {
 		let arr = Object.entries(words).map((entry) => {
 			return { text: entry[1], hash: entry[0] };
@@ -106,11 +86,6 @@ export function useWords() {
 	return { input, found, words, linked, word, addWord };
 }
 
-/**
- * Get a word by it's hash
- * @param {string} hash
- * @returns {Object}
- */
 export function useWord(hash) {
 	const gun = useGun();
 
@@ -126,10 +101,6 @@ export function useWord(hash) {
 	return { word };
 }
 
-/**
- * Dictionary definitions browser
- * @returns {Object}
- */
 export function useDefs() {
 	const gun = useGun();
 
@@ -194,11 +165,6 @@ export function useDefs() {
 	return { def, addDef, defs, found, linked };
 }
 
-/**
- * @param {Object} param0
- * @param {string} param0.word
- * @param {string} param0.def
- */
 async function addRecord({ word, def }) {
 	const gun = useGun();
 	const { user } = useUser();
@@ -217,10 +183,6 @@ async function addRecord({ word, def }) {
 	dictRecord.def = null;
 }
 
-/**
- * @param {string} hash
- * @returns {Object}
- */
 export function useDictRecordsFor(hash) {
 	const gun = useGun();
 	const links = reactive({});
@@ -247,10 +209,6 @@ export function useDictRecordsFor(hash) {
 	return links;
 }
 
-/**
- * @param {string} pub
- * @returns {Object}
- */
 export function useDictRecordsBy(pub) {
 	const gun = useGun();
 	const records = reactive({});
@@ -275,9 +233,6 @@ export function useDictRecordsBy(pub) {
 	return records;
 }
 
-/**
- * @returns {Object}
- */
 export function useDictAuthors() {
 	const gun = useGun();
 	const authors = reactive({});
@@ -294,9 +249,6 @@ export function useDictAuthors() {
 	return authors;
 }
 
-/**
- * @returns {Object}
- */
 export function useDictLangs() {
 	const gun = useGun();
 	const langs = reactive({});
@@ -320,10 +272,6 @@ export function useDictLangs() {
 	return langs;
 }
 
-/**
- * @param {string} link
- * @returns {Object}
- */
 export function parseHashLink(link) {
 	return {
 		from: link.slice(0, 44),
@@ -332,12 +280,6 @@ export function parseHashLink(link) {
 	};
 }
 
-/**
- * @param {Object} param0
- * @param {string} param0.text
- * @param {number} param0.stress
- * @returns {string}
- */
 export function renderStress({ text, stress }) {
 	const stressMark = "&#x301;";
 	if (!text) return;
@@ -345,10 +287,6 @@ export function renderStress({ text, stress }) {
 	return str[0].toUpperCase() + str.slice(1);
 }
 
-/**
- * @param {string} str
- * @returns {string}
- */
 export function letterFilter(str) {
 	if (!str) return "";
 	let clean = str.toLowerCase().matchAll(/\p{L}/gu, "");

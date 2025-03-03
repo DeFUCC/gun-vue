@@ -1,20 +1,6 @@
-/**
- * Reactions to posts with emojis
- * @module Reactions
- * @group Posts
- */
-
 import { useGun, currentRoom } from '../composables';
 import { reactive } from 'vue';
 
-/**
- * @typedef {Object.<string, string>} AuthorList
- */
-
-/**
- * @param {AuthorList} authors
- * @returns {Object.<string, string[]>}
- */
 export function useReactions(authors) {
 	const reactions = {};
 	for (let pub in authors) {
@@ -27,10 +13,6 @@ export function useReactions(authors) {
 	return reactions;
 }
 
-/**
- * @param {AuthorList} authors
- * @returns {number}
- */
 export function countRating(authors) {
 	let count = 0;
 	for (let author in authors) {
@@ -43,10 +25,7 @@ export function countRating(authors) {
 	return count;
 }
 
-/**
- * @param {string} pub
- * @returns {import('./usePosts').PostList}
- */
+
 export function useUserPosts(pub) {
 	const gun = useGun();
 	const posts = reactive({});

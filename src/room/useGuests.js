@@ -1,21 +1,5 @@
-/**
- * @module Guests
- * @group Rooms
- */
-
 import { computed, reactive, watchEffect } from "vue";
 import { useGun, useAccount, currentRoom } from "../composables";
-
-/**
- * @typedef {import("../composables").Account} Account
- */
-
-/**
- * @typedef {Object} Guest
- * @property {import("vue").ComputedRef<number>} [order]
- * @property {import("vue").ComputedRef<boolean>} [online]
- * @extends {Account}
- */
 
 let startTime = Date.now();
 
@@ -23,7 +7,6 @@ let startTime = Date.now();
 export function useGuests(roomPub = currentRoom.pub, { TIMEOUT = 10000 } = {}) {
 	const gun = useGun();
 
-	/** @type {Object.<string, Guest>} */
 	const guests = reactive({});
 	const online = reactive({});
 	const offline = reactive({});

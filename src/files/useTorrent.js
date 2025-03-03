@@ -1,12 +1,3 @@
-/**
- * File sync functions with WebTorrent and OPFS
- * @module Torrent
- * @group Files
- * */
-
-// https://github.com/webtorrent/webtorrent/blob/master/docs/api.md#torrentonwire-function-wire-
-// https://github.com/webtorrent/parse-torrent
-
 import { ref, reactive } from "vue";
 import { useStorage } from "@vueuse/core";
 

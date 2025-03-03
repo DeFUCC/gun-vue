@@ -1,9 +1,3 @@
-/**
- * Get and handle a particular post by its tag and hash
- * @module Tags
- * @group Posts
- */
-
 import { computed, reactive, ref } from "vue";
 import slugify from "slugify";
 import Fuse from "fuse.js";
@@ -11,10 +5,6 @@ import { useGun } from "../gun/composables";
 import { hashText } from "../crypto/composables";
 import { currentRoom } from "../room/composables";
 
-/**
- * Toolkit to deal with the available tags
- * @returns {{search: import('vue').Ref, slug: import('vue').ComputedRef, tags: Object, addTag: Function}}
- */
 export function useTagList() {
 	const gun = useGun();
 
@@ -80,11 +70,6 @@ export function useTagList() {
 	return { search, slug, tags, addTag };
 }
 
-/**
- * @param {string} tag
- * @param {string} [pub]
- * @returns {import('./usePosts').PostList}
- */
 export function listPersonalTag(tag, pub = currentRoom.pub) {
 	const gun = useGun();
 	const records = reactive({});

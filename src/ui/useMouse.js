@@ -1,37 +1,9 @@
-/**
- * Handle mouse movement inside an SVG
- * @module Mouse
- * @group UI
- * */
-
 import { useMousePressed, useMouseInElement } from "@vueuse/core";
 import { ref, reactive, onMounted, onBeforeUnmount, watch } from "vue";
 
-/**
- * @typedef {Object} Mouse
- * @property {number} x - absolute X coordinate to place a marker to
- * @property {number} y - absolute Y coordinate to place a marker to
- * @property {number} normX - [0-1] relative X coordinate
- * @property {number} normY - [0-1] relative Y coordinate
- * @property {boolean} pressed - is mouse pressed?
- * @property {boolean} inside - is mouse inside the area?
- */
-
-/**
- * @typedef {Object} useMouse
- * @property {import('vue').Ref} area
- * @property {Mouse} mouse
- */
-
-/**
- * Correct mouse position in an SVG space
- * @param {import('vue').Ref} [area=ref(null)]
- * @returns {useMouse}
- */
 export function useSvgMouse(area = ref(null)) {
 	const { pressed } = useMousePressed();
 
-	/** @type {Mouse} */
 	const mouse = reactive({
 		x: 0,
 		y: 0,
@@ -53,11 +25,6 @@ export function useSvgMouse(area = ref(null)) {
 		document.removeEventListener("mousemove", getCursorPosition);
 	});
 
-	/**
-	 * @param {MouseEvent} event
-	 * @param {SVGElement} [rect=area.value]
-	 * @param {boolean} [corr=false]
-	 */
 	function getCursorPosition(event, rect = area.value, corr = false) {
 		const svgElement = rect.closest("svg");
 		if (!svgElement) return;

@@ -1,25 +1,8 @@
-/**
- * React to posts with emojis
- * @module Reaction
- * @group Posts
- */
-
 import { useUser, currentRoom, getFirstEmoji, useGun } from "../composables";
 import { ref, watchEffect } from "vue";
 
 const rootsTags = ["rooms"];
 
-/**
- * @typedef {Object} ReactionVector
- * @property {string} tag
- * @property {string} hash
- * @property {boolean} [back]
- */
-
-/**
- * @param {ReactionVector} options
- * @returns {{reaction: import('vue').Ref<string>, react: (r: string) => void}}
- */
 export function useReaction({ tag, hash, back }) {
 	const { user } = useUser();
 	const reaction = ref("👍");
@@ -59,13 +42,6 @@ export function useReaction({ tag, hash, back }) {
 	return { reaction, react };
 }
 
-/**
- * @typedef {ReactionVector & {reaction: string | boolean}} Reaction
- */
-
-/**
- * @param {Reaction} param0
- */
 export async function reactToPost({ tag, hash, back, reaction = true }) {
 	const { user } = useUser();
 	const gun = useGun();

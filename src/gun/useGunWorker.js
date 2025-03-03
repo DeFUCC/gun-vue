@@ -1,9 +1,3 @@
-/**
- * Gun DB to be used as an inlined Web Worker
- * @module GunWorker
- * @group Database
- */
-
 import worker from "./worker.js?worker&inline";
 import { useWebWorker } from "@vueuse/core";
 import { watch } from "vue";

@@ -1,8 +1,3 @@
-/**
- * @module Draw
- * @group Space
- */
-
 import {
 	computed,
 	markRaw,
@@ -68,9 +63,7 @@ export const brush = toReactive(
 const _mode = ref("stylus");
 let disableDump = false;
 
-/**
- * @type {import('drauu').Options}
- */
+
 export const drauuOptions = reactive({
 	brush,
 	acceptsInputTypes: computed(() => (draw.enabled ? undefined : ["pen"])),

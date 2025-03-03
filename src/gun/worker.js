@@ -1,5 +1,3 @@
-console.log('Worker initiated')
-
 import { Gun, SEA } from "@gun-vue/gun-es";
 
 onmessage = async m => {

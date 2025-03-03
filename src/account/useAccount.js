@@ -1,9 +1,3 @@
-/**
- * [[include:./account/README.md]]
- * @module Account
- * @group Users
- * */
-
 import { useGun, useUser, SEA } from "../composables";
 import { useColor } from "../ui/composables";
 import { computed, reactive, ref } from "vue";
@@ -12,44 +6,6 @@ import ms from "ms";
 const colorDeep = useColor("deep");
 const TIMEOUT = 10000;
 
-/**
- * @typedef {Object} Profile
- * @property {string} [name]
- * @property {string} [first_name]
- * @property {string} [last_name]
- * @property {string} [birth_day]
- */
-
-/**
- * @typedef {Object} Account
- * @property {string} [pub]
- * @property {string} [color]
- * @property {number} [pulse]
- * @property {boolean} [blink]
- * @property {Profile} [profile]
- * @property {string} [petname]
- * @property {Object} [db]
- * @property {string|number} [lastSeen]
- */
-
-/**
- * Load and handle user's account by a public key
- * @param {import("@vueuse/core").MaybeRef<string>} pubKey
- * @returns {{account: import("vue").ComputedRef<Account>, setPetname: (pub: string, name: string) => Promise<void>}}
- * @example
- * import { ref } from 'vue'
- * import { useAccount, SEA } from '@gun-vue/composables'
- *
- * const pub = ref()
- *
- * async function generatePair() {
- *  pub.value = await SEA.pair()
- * }
- *
- * const { account } = useAccount(pub)
- *
- * generatePair()
- */
 export function useAccount(pubKey) {
 	const gun = useGun();
 	const pub = ref(pubKey);
@@ -103,12 +59,7 @@ export function useAccount(pubKey) {
 	return { account, setPetname };
 }
 
-/**
- * Set a petname for a user
- * @param {string} pub - Public key of the user
- * @param {string} name - Petname to set
- * @returns {Promise<void>}
- */
+
 export async function setPetname(pub, name) {
 	const { user } = useUser();
 	if (!user.is) return;

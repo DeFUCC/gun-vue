@@ -1,55 +1,23 @@
-/**
- * @module Cast
- * @group Files
- */
-
 import { useTimestamp } from "@vueuse/core";
 import { useDevicesList, useEventListener, useStorage } from "@vueuse/core";
 import { ref, reactive, computed, watch, shallowRef, nextTick } from "vue";
 
-/**
- * @type {import('vue').Ref<string>}
- */
 export const currentCamera = useStorage("cast-camera", "default");
 
-/**
- * @type {import('vue').Ref<string>}
- */
 export const currentMic = useStorage("cast-mic", "default");
 
-/**
- * @type {import('vue').Ref<string>}
- */
 export const recordingName = ref("");
 
-/**
- * @type {import('vue').Ref<boolean>}
- */
 export const recordCamera = ref(true);
 
-/**
- * @type {import('vue').Ref<string>}
- */
 export const mimeType = useStorage("slidev-record-mimetype", "video/webm");
 
-/**
- * @type {Object.<string, string>}
- */
 export const mimeExtMap = {
 	"video/webm": "webm",
 	"video/webm;codecs=h264": "mp4",
 	"video/x-matroska;codecs=avc1": "mkv",
 };
 
-/**
- * @typedef {'video/webm' | 'video/webm;codecs=h264' | 'video/x-matroska;codecs=avc1' | undefined} MimeTypes
- */
-
-/**
- * @param {string} media
- * @param {MimeTypes} mimeType
- * @returns {string}
- */
 export function getFilename(media, mimeType) {
 	const d = new Date();
 
@@ -66,9 +34,6 @@ export function getFilename(media, mimeType) {
 		.join("-")}.${ext}`;
 }
 
-/**
- * @returns {string[]}
- */
 export function getSupportedMimeTypes() {
 	if (MediaRecorder && typeof MediaRecorder.isTypeSupported === "function") {
 		return Object.keys(mimeExtMap).filter((mime) =>
@@ -101,10 +66,6 @@ export const {
 	},
 });
 
-/**
- * @param {string} name
- * @param {string} url
- */
 export function download(name, url) {
 	const a = document.createElement("a");
 	a.setAttribute("href", url);
@@ -114,9 +75,6 @@ export function download(name, url) {
 	document.body.removeChild(a);
 }
 
-/**
- * @returns {Object}
- */
 export function useRecording() {
 	const recording = ref(false);
 	const recordingStartedAt = ref(0);
@@ -140,7 +98,6 @@ export function useRecording() {
 	const streamCapture = shallowRef();
 	const streamSlides = shallowRef();
 
-	/** @type {import('recordrtc').Options} */
 	const config = {
 		type: "video",
 		bitsPerSecond: 4 * 256 * 8 * 1024,
@@ -196,9 +153,6 @@ export function useRecording() {
 		}
 	});
 
-	/**
-	 * @param {Object} customConfig
-	 */
 	async function startRecording(customConfig = {}) {
 		await ensureDevicesListPermissions();
 		const { default: Recorder } = await import("recordrtc");
@@ -262,9 +216,6 @@ export function useRecording() {
 		});
 	}
 
-	/**
-	 * @param {import('vue').Ref} stream
-	 */
 	function closeStream(stream) {
 		const s = stream.value;
 		if (!s) return;

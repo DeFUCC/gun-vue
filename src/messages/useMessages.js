@@ -1,32 +1,7 @@
-/**
- * [[include:./messages/README.md]]
- * @module PrivateChat
- * @group Chat
- */
-
 import { reactive, computed, ref } from "vue";
 import { useUser, useGun, SEA } from "../composables";
 import { computedAsync } from "@vueuse/core";
 
-/**
- * @typedef {Object} Message
- * @property {number} timestamp
- * @property {string} [author]
- * @property {string} text
- */
-
-/**
- * @typedef {Object} Chat
- * @property {string} epub
- * @property {Object.<string, Message>} messages
- * @property {Message[]} [sorted]
- * @property {(message: string) => Promise<void>} send
- */
-
-/**
- * @param {string} pub
- * @returns {Chat}
- */
 export function useMessages(pub) {
 	const gun = useGun();
 	const { user } = useUser();
@@ -82,9 +57,6 @@ export function useMessages(pub) {
 		}
 	}
 
-
-
-	/** @type {Chat} */
 	const chat = reactive({
 		epub,
 		messages,
@@ -95,10 +67,6 @@ export function useMessages(pub) {
 	return chat;
 }
 
-/**
- * @param {string} pub
- * @returns {{count: import('vue').ComputedRef<number>, available: import('vue').Ref<boolean>}}
- */
 export function useMessagesCount(pub) {
 	const gun = useGun();
 	const { user } = useUser();
@@ -164,9 +132,6 @@ export async function sendMessage(pub, message) {
 	gun.user().get("messages").get(pub).get(today).set(enc);
 }
 
-/**
- * @returns {Object.<string, Message>}
- */
 export function useMessagesList() {
 	const gun = useGun();
 	const { user } = useUser();

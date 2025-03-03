@@ -1,9 +1,3 @@
-/**
- * Get and handle a particular post by its tag and hash
- * @module Posts
- * @group Posts
- */
-
 import { computed, reactive, ref, shallowReactive } from "vue";
 
 import JSZip from "jszip";
@@ -12,27 +6,6 @@ import { detectMimeType, useZip, parseMd, currentRoom } from "../composables";
 import { useGun } from "../gun/composables";
 import { addPost, usePost } from "./composables";
 
-/**
- * @typedef {Object.<string, Object.<string, string>>} PostList
- */
-
-/**
- * Use a list of immutable data from a #tag
- * @param {string} tag
- * @returns {{
- *   posts: PostList,
- *   backlinks: PostList,
- *   countPosts: import('vue').ComputedRef<number>,
- *   countBacklinks: import('vue').ComputedRef<number>,
- *   downloadPosts: Function,
- *   downloading: import('vue').Ref<boolean>,
- *   uploadPosts: Function
- * }}
- * @example
- * import { usePosts } from '@gun-vue/composables'
- *
- * const { posts, timestamps, count, uploadPosts, downloadPosts} = usePosts('MyTag')
- */
 export function usePosts(tag) {
 	if (!tag) return;
 	const gun = useGun();
@@ -107,16 +80,6 @@ export function usePosts(tag) {
 	};
 }
 
-/**
- * Export a list of posts as a zip file
- * @param {string} tag
- * @param {PostList} posts
- * @returns {Promise<boolean>}
- * @example
- * import {downloadFeed} from '@gun-vue/components'
- *
- * downloadFeed('myTag',posts)
- */
 export async function downloadFeed(tag, posts) {
 	if (!posts) return;
 
@@ -132,15 +95,7 @@ export async function downloadFeed(tag, posts) {
 	return true;
 }
 
-/**
- * Upload zip files and add all the MD files from it to the tag
- * @param {string} tag
- * @param {FileList} files
- * @example
- * import { uploadFeed } from '@gun-vue/composables'
- * @example
- * <input type="file" @change="uploadFeed( 'myTag', $event.target.files )" />
- */
+
 export function uploadFeed(tag, files) {
 	Array.from(files).forEach(async (file) => {
 		const zip = await JSZip.loadAsync(file);

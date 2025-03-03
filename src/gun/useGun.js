@@ -1,9 +1,3 @@
-/**
- * Gun DB initialization and basic methods
- * @module Gun
- * @group Database
- */
-
 import Gun from "gun/gun";
 import "gun/lib/then";
 import "gun/lib/radix";
@@ -23,14 +17,7 @@ import { relay } from "./useRelay";
 /** @type {import('gun').IGunInstance} The main Gun instance for database operations */
 let gun;
 
-/**
- * Instantiate a Gun instance for DB manipulations
- * @param {import('gun').GunOptions} [options={ localStorage: false }] - Gun options
- * @returns {import('gun').IGunInstance}
- * @example
- * import { useGun } from '@gun-vue/composables'
- * const gun = useGun()
- */
+
 export function useGun(options = { localStorage: false }) {
 	if (!gun) {
 		const opts = { peers: [relay.peer] };
@@ -43,32 +30,13 @@ export function useGun(options = { localStorage: false }) {
 }
 
 
-/**
- * get a secondary Gun instance for certificate management
- * @param {object} [options={ localStorage: false }]
- * @returns {import('gun').IGunInstance}
- */
 export function useGunSecondary(options = { localStorage: false }) {
 	const gun2 = Gun({ peers: [relay.peer], ...options });
 	return gun2;
 }
 
-/**
- * SEA library
- * @constant SEA
- */
 export { default as SEA } from "gun/sea.js";
 
-/**
- * Get a soul for any given node
- * A wrapper for `Gun.node.soul`
- */
 export const soul = Gun?.node?.soul;
 
-/**
- * Generate a random UUID
- * A wrapper for `Gun.text.random`
- * @param {number} [num]
- * @returns {string}
- */
 export const genUUID = Gun?.text?.random;

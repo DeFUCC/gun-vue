@@ -1,48 +1,9 @@
-/**
- * [[include:./project/README.md]]
- * @module useProject
- * @group Projects
- */
-
 import { reactive, ref, computed } from "vue";
 import { useGunSecondary, useGun, genUUID } from "../gun/composables";
 import { currentRoom } from "../room/composables";
 import { useUser, user } from "../user/composables";
 import { hashText, isHash } from "../crypto/composables";
 
-/**
- * @typedef {'design' | 'project' | 'event' | 'object' | 'opportunity' | 'task' | 'purchase'} ProjectType
- */
-
-/**
- * @typedef {Object} ProjectItem
- * @property {string} id
- * @property {ProjectType} [type]
- * @property {string} [title]
- * @property {string} [description]
- * @property {string[]} [tags]
- * @property {string} [content]
- * @property {string} [author]
- * @property {string} [room]
- * @property {string[]} [makers]
- * @property {string} [source]
- * @property {string[]} [targets]
- * @property {string} [updatedAt]
- * @property {string} [createdAt]
- * @property {string} [startAt]
- * @property {string} [finishAt]
- * @property {[number, number]} [location]
- * @property {string} [address]
- * @property {boolean} [public]
- * @property {boolean} [funding]
- * @property {string} [color]
- * @property {Object.<string, string>} [media]
- */
-
-/**
- * @param {string} [title]
- * @returns {{newProject: ProjectItem, addProject: (cb?: Function) => Promise<void>}}
- */
 export function useNewProject(title) {
 	const { user } = useUser();
 
@@ -57,9 +18,6 @@ export function useNewProject(title) {
 		author: computed(() => user.pub),
 	});
 
-	/**
-	 * @param {Function} [cb]
-	 */
 	async function addProject(cb) {
 		const gun = useGun();
 
@@ -93,11 +51,6 @@ export function useNewProject(title) {
 	return { newProject, addProject };
 }
 
-/**
- * @param {string} title
- * @param {string} field
- * @param {string} value
- */
 export function updateProjectField(title, field, value) {
 	const gun = useGun();
 	const proj = gun.user().get("projects").get(title);
@@ -106,10 +59,6 @@ export function updateProjectField(title, field, value) {
 	});
 }
 
-/**
- * @param {string} path
- * @returns {{project: ProjectItem, updateField: (field: string, value: string) => void, updateCover: (image: string) => Promise<void>}}
- */
 export function useProject(path) {
 	const gun = useGun();
 
@@ -131,17 +80,12 @@ export function useProject(path) {
 			}
 		});
 
-	/**
-	 * @param {string} field
-	 * @param {string} value
-	 */
+
 	function updateField(field, value) {
 		updateProjectField(path.slice(0, -88), field, value);
 	}
 
-	/**
-	 * @param {string} image
-	 */
+
 	async function updateCover(image) {
 		const hash = await hashText(image);
 		if (!hash) return;
@@ -152,10 +96,6 @@ export function useProject(path) {
 	return { project, updateField, updateCover };
 }
 
-/**
- * @param {import('vue').Ref<string>} [path]
- * @returns {{project: import('vue').ComputedRef<ProjectItem>, updateField: (field: string, value: string) => void, updateCover: (image: string) => Promise<void>}}
- */
 export function useComputedProject(path = ref()) {
 	const gun = useGun();
 
@@ -178,17 +118,10 @@ export function useComputedProject(path = ref()) {
 		return proj;
 	});
 
-	/**
-	 * @param {string} field
-	 * @param {string} value
-	 */
 	function updateField(field, value) {
 		updateProjectField(path.value.slice(0, -88), field, value);
 	}
 
-	/**
-	 * @param {string} image
-	 */
 	async function updateCover(image) {
 		const hash = await hashText(image);
 		if (!hash) return;
@@ -199,10 +132,6 @@ export function useComputedProject(path = ref()) {
 	return { project, updateField, updateCover };
 }
 
-/**
- * @param {string} path
- * @returns {Promise<void>}
- */
 export async function removeProject(path) {
 	const gun = useGun();
 	const gun2 = useGunSecondary();

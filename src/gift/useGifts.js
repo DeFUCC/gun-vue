@@ -1,29 +1,11 @@
-/**
- * Gift economy
- * @module Gifts
- * @group Gift economy
- * */
-
 import { reactive, computed } from "vue";
 import { useGun, useUser, currentRoom } from "../composables";
 
 import { giftPath } from "./composables";
 
-/**
- * @typedef {import('./useGift').Gift} Gift
- */
-
-/**
- * @typedef {Object.<string, Gift>} GiftList
- */
-
-/**
- * @returns {{gifts: GiftList}}
- */
 export function useGifts() {
 	const gun = useGun();
 
-	/** @type {GiftList} */
 	const gifts = reactive({});
 
 	gun
@@ -47,17 +29,12 @@ export function useGifts() {
 	return { gifts };
 }
 
-/**
- * @returns {{gifts: GiftList, from: GiftList, to: GiftList, newGifts: GiftList}}
- */
 export function useMyGifts() {
 	const { user } = useUser();
 	const gun = useGun();
-	/** @type {GiftList} */
+
 	const gifts = reactive({});
-	/** @type {GiftList} */
 	const from = reactive({});
-	/** @type {GiftList} */
 	const to = reactive({});
 
 	gun
@@ -84,7 +61,6 @@ export function useMyGifts() {
 				});
 		});
 
-	/** @type {GiftList} */
 	const newGifts = reactive({});
 
 	gun
@@ -114,10 +90,6 @@ export function useMyGifts() {
 	return { gifts, from, to, newGifts };
 }
 
-/**
- * @param {string} path
- * @returns {{gifts: Object, collections: import('vue').ComputedRef}}
- */
 export function useProjectGifts(path) {
 	const pub = path.slice(-87);
 	const gun = useGun();

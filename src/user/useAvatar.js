@@ -7,15 +7,6 @@ import {
 } from "../composables";
 import { ref, watch, toRef } from "vue";
 
-/**
- * @typedef {import('@vueuse/core').MaybeRefOrGetter} MaybeRefOrGetter
- */
-
-/**
- * @param {MaybeRefOrGetter<string>} pubKey
- * @param {MaybeRefOrGetter<number>} [picSize=42]
- * @returns {{avatar: import('vue').Ref, blink: import('vue').Ref}}
- */
 export function useAvatar(pubKey, picSize = 42) {
 	const pub = toRef(pubKey);
 	const size = toRef(picSize);
@@ -60,16 +51,6 @@ export function useAvatar(pubKey, picSize = 42) {
 	};
 }
 
-/**
- * @typedef {Object} UserAvatarReturn
- * @property {function} remove
- * @property {function(any): Promise<void>} upload
- * @property {import('vue').Ref} avatar
- */
-
-/**
- * @returns {UserAvatarReturn}
- */
 export function useUserAvatar() {
 	const { user } = useUser();
 	const gun = useGun();
@@ -89,9 +70,6 @@ export function useUserAvatar() {
 		}
 	});
 
-	/**
-	 * @param {any} file
-	 */
 	async function upload(file) {
 		if (file) {
 			const hash = await hashText(file);

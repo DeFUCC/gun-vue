@@ -1,9 +1,3 @@
-/**
- * Relay connection management
- * @module Relay
- * @group Database
- */
-
 import { useGun } from "./composables";
 import { computed, reactive, watch } from "vue";
 import { useStorage } from "@vueuse/core";
@@ -13,34 +7,6 @@ import config from "../../gun.config.json";
 
 const defaultPeer = config.relay;
 
-/**
- * Peer server status reactive object
- * @typedef {Object} Relay
- * @property {string} peer
- * @property {string} hostname
- * @property {string} status
- * @property {number} pulse
- * @property {number} lag
- * @property {number} started
- * @property {number} diff
- * @property {string} age
- * @property {boolean} blink
- * @example
- * {
- * "peer": "https://peer.era.eco/gun",
- * "hostname": "6db1edbb5aae",
- * "status": "running",
- * "started": 1642666725795,
- * "pulse": 1642677007483,
- * "lag": 8,
- * "diff": 10281688,
- * "age": "3h",
- * "delay": 22,
- * "blink": true
- * }
- */
-
-/** @type {Relay} */
 export const relay = reactive({
 	list: [],
 	peer: useStorage("peer", defaultPeer),
@@ -63,9 +29,6 @@ watch(
 	}
 );
 
-/**
- * @param {string} url
- */
 export function setPeer(url) {
 	relay.peer = url;
 	setTimeout(() => {
@@ -80,15 +43,6 @@ export function resetPeer() {
 	});
 }
 
-/**
- * Peer server status monitor
- * @returns {{relay: Relay, setPeer: (url: string) => void, resetPeer: () => void}}
- *
- * @example
- * import { useRelay } from '@gun-vue/composables';
- *
- * const { relay, setPeer, resetPeer } = useRelay()
- */
 export function useRelay() {
 	const gun = useGun();
 	if (relay.pulse == 0 && relay?.hostname) {

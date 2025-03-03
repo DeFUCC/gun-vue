@@ -1,19 +1,9 @@
-/**
- * Project list and its manipulations
- * @module Projects
- * @group Projects
- */
-
 import { computed, reactive, ref } from "vue";
 import { useGun } from "../gun/composables";
 import { currentRoom } from "../room/composables";
 import Fuse from "fuse.js";
 import { isHash } from "../crypto/composables";
 
-/**
- * @param {string} [pub=currentRoom.pub]
- * @returns {Object}
- */
 export function useProjects(pub = currentRoom.pub) {
 	const search = ref("");
 	const projects = reactive({});
@@ -65,10 +55,6 @@ export function useProjects(pub = currentRoom.pub) {
 	return { projects, search, candidates };
 }
 
-/**
- * @param {string} [pub=currentRoom.pub]
- * @returns {import("vue").ComputedRef<number>}
- */
 export function countProjects(pub = currentRoom.pub) {
 	const list = reactive({});
 	const gun = useGun();

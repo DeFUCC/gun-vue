@@ -1,14 +1,5 @@
-/**
- * Deterministic colors derived from pub keys, hashes or any other string data
- * @module Color
- * @group UI
- * */
-
 import ColorHash from "color-hash";
 
-/**
- * @typedef {'light' | 'regular' | 'deep' | 'dark'} Palette
- */
 
 const color = {
 	light: new ColorHash({
@@ -33,17 +24,6 @@ const color = {
 	}),
 };
 
-/**
- * Get a color generator of a certain palette
- * @param {Palette} [palette='deep']
- * @returns {ColorHash} Color-Hash instance
- * @see https://github.com/zenozeng/color-hash
- * @example
- * import {useColor} from '@gun-vue/composables'
- * const colorDeep = useColor('deep')
- * const color = colorDeep.hex('any text data')
- * // color == '#e052ae'
- */
 export function useColor(palette = "deep") {
 	if (typeof palette == "object") {
 		return new ColorHash(palette);
