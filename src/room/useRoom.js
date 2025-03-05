@@ -100,69 +100,6 @@ export function useRoom(pub = currentRoom.pub) {
 	};
 }
 
-export function useRoomLogo(pub = currentRoom.pub) {
-	const logo = ref();
-	const gun = useGun();
-	gun
-		.user(pub)
-		.get("profile")
-		.get("logo")
-		.on((hash) => {
-			if (!hash) {
-				logo.value = null;
-				return;
-			}
-			gun
-				.get("#logos")
-				.get(hash)
-				.once((d) => {
-					logo.value = d;
-				});
-		});
-
-	async function uploadLogo(file) {
-		if (file) {
-			const hash = await hashText(file);
-			gun.get("#logos").get(hash).put(file);
-			updateRoomProfile("logo", hash);
-		} else {
-			removeLogo();
-		}
-	}
-
-	function removeLogo() {
-		updateRoomProfile("logo", null);
-	}
-
-	return {
-		logo,
-		uploadLogo,
-		removeLogo,
-	};
-}
-
-
-export function useRooms(pub = currentRoom.pub) {
-	const gun = useGun();
-	const records = reactive({});
-	gun
-		.user(pub)
-		.get('rooms')
-		.map()
-		.on(function (data, key) {
-			let k = key.substring(0, 87);
-			records[k] = records[k] || {};
-			records[k][key.substring(88)] = data;
-		});
-	return records;
-	return { rooms };
-}
-
-export function listPersonal(tag, pub = currentRoom.pub) {
-
-}
-
-
 export function updateRoomProfile(field, content) {
 	const gun = useGun();
 	const { user } = useUser();
@@ -304,62 +241,10 @@ export async function submitRoom(pub) {
 		.put(!already, null, { opt: { cert: currentRoom.features?.rooms } });
 }
 
-export function joinRoom(pub = currentRoom.pub) {
-	const gun = useGun();
-	gun
-		.user(pub)
-		.get("space")
-		.get(user.pub)
-		.put(JSON.stringify({ x: Math.random(), y: Math.random() }), null, {
-			opt: { cert: currentRoom.features?.space },
-		});
-}
-
-export async function favRoom(pub = currentRoom.pub) {
-	const gun = useGun();
-	const { user } = useUser();
-	const already = await gun
-		.user()
-		.get("rooms")
-		.get(`${pub}@${user.pub}`)
-		.then();
-
-	gun
-		.user()
-		.get("rooms")
-		.get(`${pub}@${user.pub}`)
-		.put(!already);
-}
-
 export function enterRoom(pub) {
 	currentRoom.pub = pub;
 }
 
 export function leaveRoom() {
 	currentRoom.pub = rootRoom.pub;
-}
-
-
-export async function addPersonal({
-	tag,
-	key,
-	text,
-	pub = currentRoom.pub,
-	cert,
-}) {
-	const gun = useGun();
-	if (!cert) cert = await gun.user(pub).get("features").get(tag).then();
-	if (!cert) {
-		cert = currentRoom.features?.[`${tag}`];
-	}
-	if (!cert && pub != user.pub) {
-		console.log("No certificate found");
-		return;
-	}
-
-	gun
-		.user(pub)
-		.get(`${tag}`)
-		.get(`${key}@${user.pub}`)
-		.put(text, null, { opt: { cert } });
 }

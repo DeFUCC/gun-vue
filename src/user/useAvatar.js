@@ -57,7 +57,7 @@ export function useUserAvatar() {
 
 	const avatar = ref(null);
 
-	user.db.get("avatar").on((hash) => {
+	user.db.get("avatar").once((hash) => {
 		if (hash) {
 			gun
 				.get("#avatars")
