@@ -18,6 +18,7 @@ composables/lib/
 **/.vitepress/dist
 **/.vitepress/.temp
 docs/reference/typedoc
+docs/composables/typedoc
 app/dist
 components/types
 src/types

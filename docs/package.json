@@ -29,7 +29,8 @@
 		"td": "typedoc --watch --plugin typedoc-plugin-markdown"
 	},
 	"dependencies": {
-		"@unocss/reset": "65.5.0"
+		"@unocss/reset": "65.5.0",
+		"@gun-vue/composables": "^0.24.0"
 	},
 	"devDependencies": {
 		"@unocss/extractor-pug": "65.5.0",

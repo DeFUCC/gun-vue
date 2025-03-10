@@ -7,78 +7,100 @@ export const sidebar = [
         "link": "/basics/what-is"
       },
       {
-        "text": "YouTube devlog", "link": "/basics/video"
-      }
+        "text": "Video devlog", "link": "/blog/video"
+      },
     ]
   },
   {
-    "text": "Tutorials",
+    "text": "App",
+    "link": "/apps/index",
     "items": [
       {
         "text": "Getting started",
-        "link": "/tutorials/getting-started"
+        "link": "/apps/getting-started"
       },
       {
         "text": "Create your first app",
-        "link": "/tutorials/first-app"
+        "link": "/apps/first-app"
       },
     ]
   },
   {
-    "text": "Packages",
-    "link": "/packages/index",
+    "text": "Composables",
+    "link": "/composables/index",
     "items": [
       {
-        "text": "Composables",
-        "link": "/packages/composables"
+        "text": "Features",
+        "link": "/composables/index"
       },
       {
-        "text": "Components",
-        "link": "/packages/components"
+        "text": "How To Use",
+        "link": "/composables/how-to"
       },
       {
-        "text": "Relay",
-        "link": "/packages/relay"
+        "text": "SSG",
+        "link": "/composables/ssg"
+      },
+      {
+        "text": "TypeDoc",
+        "link": "/composables/typedoc/modules.md"
       }
     ]
   },
   {
-    "text": "How to",
+    "text": "Components",
+    "link": "/components/index",
     "items": [
       {
-        "text": "Using a composable",
-        "link": "/how-to/use-components"
+        "text": "Features",
+        "link": "/components/index"
+      },
+      {
+        "text": "How To Use",
+        "link": "/components/how-to"
+      },
+      {
+        "text": "SSG",
+        "link": "/components/ssg"
       }
     ]
   },
   {
-    "text": "Explanations",
+    "text": "Relay",
+    "link": "/relay/index",
     "items": [
       {
-        "text": "CRDTs: How it works and why",
-        "link": "/explanations/crdt"
+        "text": "Platforms",
+        "link": "/relay/index"
       },
+      {
+        "text": "How To Run",
+        "link": "/relay/how-to"
+      },
+      {
+        "text": "Options",
+        "link": "/relay/options"
+      },
+    ]
+  },
+  {
+    "text": "Infromation",
+    "items": [
       {
         "text": "Tech stack",
-        "link": "/explanations/stack"
+        "link": "/info/stack"
       },
       {
         "text": "Gun DB",
-        "link": "/explanations/gun"
+        "link": "/info/gun"
+      },
+      {
+        "text": "CRDTs: How it works and why",
+        "link": "/info/crdt"
       },
       {
         "text": "Questions and Answers",
-        "link": "/explanations/qna"
-      }
-    ]
-  },
-  {
-    "text": "Reference",
-    "link": "/reference/",
-    "items": [
-      {
-        "text": "Composables TypeDoc",
-        "link": "/reference/typedoc/modules"
+        "link": "/info/qna"
       }
     ]
   }

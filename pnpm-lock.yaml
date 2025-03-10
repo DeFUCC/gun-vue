@@ -215,6 +215,9 @@ importers:
 
   docs:
     dependencies:
+      '@gun-vue/composables':
+        specifier: ^0.24.0
+        version: 0.24.0(focus-trap@7.6.4)(typescript@5.5.4)
       '@unocss/reset':
         specifier: 65.5.0
         version: 65.5.0
@@ -233,7 +236,7 @@ importers:
         version: 65.5.0(postcss@8.5.3)(vite@6.2.0(@types/node@22.13.4)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.13(typescript@5.5.4))
       vitepress:
         specifier: 2.0.0-alpha.3
-        version: 2.0.0-alpha.3(@algolia/client-search@5.20.0)(@types/node@22.13.4)(drauu@0.4.3)(fuse.js@7.1.0)(jiti@2.4.2)(postcss@8.5.3)(qrcode@1.5.4)(search-insights@2.6.0)(terser@5.39.0)(tsx@4.19.2)(typescript@5.5.4)(yaml@2.7.0)
+        version: 2.0.0-alpha.3(@algolia/client-search@5.20.0)(@types/node@22.13.4)(drauu@0.4.2)(fuse.js@7.1.0)(jiti@2.4.2)(postcss@8.5.3)(qrcode@1.5.4)(search-insights@2.6.0)(terser@5.39.0)(tsx@4.19.2)(typescript@5.5.4)(yaml@2.7.0)
       vue:
         specifier: 3.5.13
         version: 3.5.13(typescript@5.5.4)
@@ -471,6 +474,9 @@ packages:
         optional: true
       search-insights:
         optional: true
+
+  '@drauu/core@0.4.2':
+    resolution: {integrity: sha512-kb2DdE8E+5CHESd9887yYFqa1MBSWQeu64qS9/oW70yLSXJS+XCt/QWBcSRzY2mWd6TVugyuq/wRnTNOx5c1/g==}
 
   '@drauu/core@0.4.3':
     resolution: {integrity: sha512-MmFKN0DEIS+78wtfag7DiQDuE7eSpHRt4tYh0m8bEUnxbH1v2pieQ6Ir+1WZ3Xxkkf5L5tmDfeYQtCSwUz1Hyg==}
@@ -930,6 +936,9 @@ packages:
 
   '@gerrit0/mini-shiki@1.27.2':
     resolution: {integrity: sha512-GeWyHz8ao2gBiUW4OJnQDxXQnFgZQwwQk05t/CVVgNBN7/rK8XZ7xY6YhLVv9tH3VppWWmr9DCl3MwemB/i+Og==}
+
+  '@gun-vue/composables@0.24.0':
+    resolution: {integrity: sha512-DLDVeMCo7L4LC8uVhcE2UuFdPd4Yuj6d6e8NE49Z7db9VYlfMIKdKKp5V97hSobbEaJH8W62aOOzqolCm5ReqA==}
 
   '@gun-vue/gun-es@0.2.1240':
     resolution: {integrity: sha512-R8L230z94ldSQRTcDbN/3xH2CmnHGcTMbURff8gEswXfjp6CxjA/YOe9iLLuipEXyHHPMTfpACoBP0XDtXXOxA==}
@@ -1937,6 +1946,9 @@ packages:
   dotenv@16.4.7:
     resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
     engines: {node: '>=12'}
+
+  drauu@0.4.2:
+    resolution: {integrity: sha512-wujr8c13hxnpmC/8wh1Ck9+bq9q3svUWBvVxoQUiwNVE4RaeSHbGxfZURwbnoc+5MSKyJyr4mZeUF0bza8MiZQ==}
 
   drauu@0.4.3:
     resolution: {integrity: sha512-3pk6ZdfgElrEW+L4C03Xtrr7VVdSmcWlBb8cUj+WUWree2hEN8IE9fxRBL9HYG5gr8hAEXFNB0X263Um1WlYwA==}
@@ -4026,6 +4038,8 @@ snapshots:
     transitivePeerDependencies:
       - '@algolia/client-search'
 
+  '@drauu/core@0.4.2': {}
+
   '@drauu/core@0.4.3': {}
 
   '@esbuild/aix-ppc64@0.23.1':
@@ -4265,6 +4279,55 @@ snapshots:
       '@shikijs/engine-oniguruma': 1.29.2
       '@shikijs/types': 1.29.2
       '@shikijs/vscode-textmate': 10.0.1
+
+  '@gun-vue/composables@0.24.0(focus-trap@7.6.4)(typescript@5.5.4)':
+    dependencies:
+      '@gun-vue/gun-es': 0.2.1240
+      '@vueuse/core': 12.7.0(typescript@5.5.4)
+      '@vueuse/integrations': 12.7.0(drauu@0.4.2)(focus-trap@7.6.4)(fuse.js@7.1.0)(qrcode@1.5.4)(typescript@5.5.4)
+      '@vueuse/math': 12.7.0(typescript@5.5.4)
+      buffer: 6.0.3
+      color-hash: 2.0.2
+      curved-arrows: 0.3.0
+      drauu: 0.4.2
+      fuse.js: 7.1.0
+      grapheme-breaker-mjs: 1.0.4
+      gun: 0.2020.1240(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      gun-avatar: 1.9.4(typescript@5.5.4)
+      jszip: 3.10.1
+      markdown-it: 14.1.0
+      markdown-it-external-links: 0.0.6
+      ms: 2.1.3
+      qrcode: 1.5.4
+      recordrtc: 5.6.2
+      slugify: 1.6.6
+      ultramatter: 0.0.4
+      url-regex: 5.0.0
+      vue: 3.5.13(typescript@5.5.4)
+      webtorrent: 2.5.19
+      yamlify-object: 2.0.0
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - async-validator
+      - axios
+      - bufferutil
+      - change-case
+      - focus-trap
+      - idb-keyval
+      - jwt-decode
+      - nprogress
+      - sortablejs
+      - supports-color
+      - typescript
+      - universal-cookie
+      - utf-8-validate
+
+  '@gun-vue/gun-es@0.2.1240':
+    dependencies:
+      gun: 0.2020.1240(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   '@gun-vue/gun-es@0.2.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)':
     dependencies:
@@ -4875,6 +4938,19 @@ snapshots:
       vue: 3.5.13(typescript@5.5.4)
       vue-demi: 0.14.10(vue@3.5.13(typescript@5.5.4))
 
+  '@vueuse/integrations@12.7.0(drauu@0.4.2)(focus-trap@7.6.4)(fuse.js@7.1.0)(qrcode@1.5.4)(typescript@5.5.4)':
+    dependencies:
+      '@vueuse/core': 12.7.0(typescript@5.5.4)
+      '@vueuse/shared': 12.7.0(typescript@5.5.4)
+      vue: 3.5.13(typescript@5.5.4)
+    optionalDependencies:
+      drauu: 0.4.2
+      focus-trap: 7.6.4
+      fuse.js: 7.1.0
+      qrcode: 1.5.4
+    transitivePeerDependencies:
+      - typescript
+
   '@vueuse/integrations@12.7.0(drauu@0.4.3)(focus-trap@7.6.4)(fuse.js@7.1.0)(qrcode@1.5.4)(typescript@5.5.4)':
     dependencies:
       '@vueuse/core': 12.7.0(typescript@5.5.4)
@@ -5451,6 +5527,10 @@ snapshots:
 
   dotenv@16.4.7: {}
 
+  drauu@0.4.2:
+    dependencies:
+      '@drauu/core': 0.4.2
+
   drauu@0.4.3:
     dependencies:
       '@drauu/core': 0.4.3
@@ -5876,6 +5956,27 @@ snapshots:
       - '@vue/composition-api'
       - bufferutil
       - typescript
+      - utf-8-validate
+
+  gun-avatar@1.9.4(typescript@5.5.4):
+    dependencies:
+      '@unocss/reset': 0.48.4
+      '@vueuse/core': 9.11.1(vue@3.5.13(typescript@5.5.4))
+      gun: 0.2020.1239
+      vue: 3.5.13(typescript@5.5.4)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - bufferutil
+      - typescript
+      - utf-8-validate
+
+  gun@0.2020.1239:
+    dependencies:
+      ws: 7.5.9(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+    optionalDependencies:
+      '@peculiar/webcrypto': 1.4.0
+    transitivePeerDependencies:
+      - bufferutil
       - utf-8-validate
 
   gun@0.2020.1239(bufferutil@4.0.8)(utf-8-validate@6.0.4):
@@ -7238,7 +7339,7 @@ snapshots:
       tsx: 4.19.2
       yaml: 2.7.0
 
-  vitepress@2.0.0-alpha.3(@algolia/client-search@5.20.0)(@types/node@22.13.4)(drauu@0.4.3)(fuse.js@7.1.0)(jiti@2.4.2)(postcss@8.5.3)(qrcode@1.5.4)(search-insights@2.6.0)(terser@5.39.0)(tsx@4.19.2)(typescript@5.5.4)(yaml@2.7.0):
+  vitepress@2.0.0-alpha.3(@algolia/client-search@5.20.0)(@types/node@22.13.4)(drauu@0.4.2)(fuse.js@7.1.0)(jiti@2.4.2)(postcss@8.5.3)(qrcode@1.5.4)(search-insights@2.6.0)(terser@5.39.0)(tsx@4.19.2)(typescript@5.5.4)(yaml@2.7.0):
     dependencies:
       '@docsearch/css': 3.9.0
       '@docsearch/js': 3.9.0(@algolia/client-search@5.20.0)(search-insights@2.6.0)
@@ -7250,7 +7351,7 @@ snapshots:
       '@vue/devtools-api': 7.7.2
       '@vue/shared': 3.5.13
       '@vueuse/core': 12.7.0(typescript@5.5.4)
-      '@vueuse/integrations': 12.7.0(drauu@0.4.3)(focus-trap@7.6.4)(fuse.js@7.1.0)(qrcode@1.5.4)(typescript@5.5.4)
+      '@vueuse/integrations': 12.7.0(drauu@0.4.2)(focus-trap@7.6.4)(fuse.js@7.1.0)(qrcode@1.5.4)(typescript@5.5.4)
       focus-trap: 7.6.4
       mark.js: 8.11.1
       minisearch: 7.1.2

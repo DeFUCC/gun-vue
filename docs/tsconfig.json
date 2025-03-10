@@ -35,9 +35,9 @@
 		"entryPoints": [
 			"../src/"
 		],
-		"readme": "reference/index.md",
+		"readme": "composables/index.md",
 		"includeVersion": true,
-		"out": "reference/typedoc/",
+		"out": "composables/typedoc/",
 		"githubPages": false,
 		"entryPointStrategy": "expand",
 		"name": "Gun-Vue docs",

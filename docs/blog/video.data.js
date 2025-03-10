@@ -1,6 +1,6 @@
 import { createContentLoader } from 'vitepress'
 
-export default createContentLoader('/basics/video/**/*.md', {
+export default createContentLoader('/blog/video/**/*.md', {
   excerpt: true,
   transform(rawData) {
     return rawData.sort((a, b) => {
