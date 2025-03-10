@@ -72,6 +72,7 @@ export default {
     });
 
     const link = "http://" + host + (port ? ":" + port : "");
+    const extLink = "https://" + host
     let totalConnections = 0;
     let activeWires = 0;
 
@@ -98,11 +99,13 @@ export default {
     db.get("host").put(host);
     db.get("port").put(port);
     db.get("link").put(link);
+    db.get("extLink").put(extLink);
     db.get("store").put(store);
     db.get("status").put("running");
     db.get("started").put(Date.now());
 
-    console.log(formatOutput('Stats URL', link + '/', '\x1b[32m'));
+    console.log(formatOutput('Internal URL', link + '/', '\x1b[32m'));
+    console.log(formatOutput('External URL', extLink + '/', '\x1b[32m'));
     console.log(formatOutput('Gun peer', link + '/gun', '\x1b[32m'));
     console.log(formatOutput('Storage', store ? 'enabled' : 'disabled', store ? '\x1b[32m' : '\x1b[33m'));
 

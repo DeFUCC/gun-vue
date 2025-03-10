@@ -2,11 +2,11 @@
 title: Relay
 ---
 
+![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/relay.svg)
+
 ### A simple Gun DB relay peer
 
-A one liner gun js server easy to run on any free tier nodejs cloud like **[Glitch.com](https://glitch.com/~etogun)**, www.heroku.com or others, on a private VPS server or any other device like RaspberryPi or simply an Android phone.
-
-![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/relay.svg)
+A one liner gun js server easy to run on any free tier nodejs cloud like **[Glitch.com](https://glitch.com/~etogun)**, [heroku.com](https://heroku.com) or others, on a private VPS server or any other device like RaspberryPi or simply an Android phone.
 
 ### Run in a cloud for free
 

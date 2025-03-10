@@ -73,10 +73,8 @@
         ({{(relay.pulse-relay.started)/1000}} s)
       </h4>
       <h4>Active wires: {{relay.activeWires}} / {{relay.totalConnections}}</h4>
-      <h4>Peer link: <a :href="relay.link + '/gun'">{{relay.link}}/gun</a></h4>
-      <h4>Gun-Vue: <a target="_blank"
-          :href="`https://gun-vue.js.org/app/#/?relay=${relay.link}/gun`">{{`https://gun-vue.js.org/app/#/?relay=${relay.link}/gun`}}</a>
-      </h4>
+      <h4 v-if="relay.link">Peer link: <a :href="relay.link + '/gun'">{{relay.link}}/gun</a></h4>
+      <h4 v-if="relay.extLink">External link: <a :href="relay.extLink + '/gun'">{{relay.extLink}}/gun</a></h4>
 
     </section>
     <article>
