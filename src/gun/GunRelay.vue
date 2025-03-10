@@ -1,5 +1,5 @@
 <script setup>
-import { useRelay, useRelays } from '#composables'
+import { useRelay } from '#composables'
 import { UiLayer, GunRelayList } from '../components'
 import { ref } from 'vue'
 
@@ -9,10 +9,6 @@ const props = defineProps({
 
 const { relay, setPeer, resetPeer } = useRelay()
 const open = ref(false)
-
-const { relays, loadRelays } = useRelays()
-
-
 
 </script>
 
@@ -27,7 +23,7 @@ const { relays, loadRelays } = useRelays()
   ui-layer(
     :open="open" 
     @close="open = false")
-    .p-4.min-w-60vw.max-w-full
+    .p-4.min-w-60vw.max-w-full(v-if="!open")
       .h-2.w-full.mb-2.rounded-full.transition-all.duration-300.ease-in-out.opacity-40(
         :style="{ backgroundColor: relay.blink ? 'white' : 'black' }"
         )
@@ -43,6 +39,7 @@ const { relays, loadRelays } = useRelays()
           .num.p-0 Pulse drift: {{ relay.lag }} ms
           .num.p-0 Active wires: {{ relay.activeWires }} / {{ relay.totalConnections }}
           .p-0 Data storage is {{ relay.store ? 'enabled' : 'disabled' }}
+
       gun-relay-list
 </template>
 

@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Gun-Vue
   text: The Peer-to-Peer Web App Toolkit
-  tagline: Reactive Vue Apps, Components and Composables powered by Decentralized Graph Database GUN
+  tagline: Reactive Web Apps powered by GUN Graph Database + Vue 3 Composables & Components
   image:
     src: gun-vue-logo.svg
     alt: Gun-Vue logo

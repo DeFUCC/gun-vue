@@ -17,13 +17,15 @@
 
 <body>
   <div id="app" class="flex flex-col">
-    <h1 class="p-4 text-lg bg-light-300 shadow-lg">Chat example app!</h1>
+    <gun-settings></gun-settings>
     <div class="flex items-center gap-4 p-4">
+      <h1 class="p-4 text-lg flex-1">Chat example app</h1>
       <gun-relay></gun-relay>
       <user-icon></user-icon>
-      <room-button></room-button>
     </div>
     <chat-room topic="Chat example"></chat-room>
+    <room-profile></room-profile>
+
   </div>
 </body>
 
