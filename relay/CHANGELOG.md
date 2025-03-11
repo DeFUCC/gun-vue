@@ -1,5 +1,11 @@
 # @gun-vue/relay
 
+## 0.6.1
+
+### Patch Changes
+
+- fixed relay
+
 ## 0.6.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/relay",
-	"version": "0.6.0",
+	"version": "0.6.1",
 	"description": "A simple GUN peer relay for self- hosting",
 	"homepage": "https://gun-vue.js.org",
 	"bugs": {
