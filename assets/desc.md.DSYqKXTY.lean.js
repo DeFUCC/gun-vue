@@ -1,0 +1,1 @@
+import{_ as r,c as t,o as a,ag as o}from"./chunks/framework.Cn0LGHOD.js";const f=JSON.parse('{"title":"Gun-Vue v.0.23.0","description":"","frontmatter":{},"headers":[],"relativePath":"desc.md","filePath":"desc.md"}'),n={name:"desc.md"};function s(g,e,l,h,i,p){return a(),t("div",null,e[0]||(e[0]=[o("",6)]))}const b=r(n,[["render",s]]);export{f as __pageData,b as default};
