@@ -29,15 +29,15 @@
 		"td": "typedoc --watch --plugin typedoc-plugin-markdown"
 	},
 	"dependencies": {
-		"@unocss/reset": "65.5.0",
-		"@gun-vue/composables": "^0.24.0"
+		"@unocss/reset": "66.1.0-beta.3",
+		"@gun-vue/composables": "0.24.0"
 	},
 	"devDependencies": {
-		"@unocss/extractor-pug": "65.5.0",
+		"@unocss/extractor-pug": "66.1.0-beta.3",
 		"pug": "3.0.3",
 		"sitemap-ts": "1.8.0",
-		"unocss": "65.5.0",
-		"vitepress": "2.0.0-alpha.3",
+		"unocss": "66.1.0-beta.3",
+		"vitepress": "2.0.0-alpha.4",
 		"vue": "3.5.13"
 	}
 }
