@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  gun-relay:
+    build:
+      context: ./relay
+    container_name: gun-relay
+    restart: unless-stopped
+    ports:
+      - "8765:8765"
+    environment:
+      - NODE_ENV=production
+      - PORT=8765
+    volumes:
+      - relay-data:/app/store
+
+volumes:
+  relay-data:
