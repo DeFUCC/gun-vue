@@ -167,8 +167,8 @@ importers:
         specifier: 0.2020.1240
         version: 0.2020.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       gun-avatar:
-        specifier: 1.9.4
-        version: 1.9.4(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4)
+        specifier: 1.9.6
+        version: 1.9.6(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4)
       jszip:
         specifier: 3.10.1
         version: 3.10.1
@@ -212,6 +212,9 @@ importers:
       '@types/recordrtc':
         specifier: 5.6.14
         version: 5.6.14
+      vite:
+        specifier: 6.2.1
+        version: 6.2.1(@types/node@22.13.4)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.2)(yaml@2.7.0)
 
   docs:
     dependencies:
@@ -1131,6 +1134,9 @@ packages:
 
   '@unocss/reset@0.48.4':
     resolution: {integrity: sha512-9WPoGwLrG5vZQzMxgd7/zJkUUmL06WYtrAiRdf5gYsCBbnpx6eq0II0TvU8PEzvseqgkhEpN19iSgnsuTZ34kA==}
+
+  '@unocss/reset@66.0.0':
+    resolution: {integrity: sha512-YLFz/5yT7mFJC8JSmIUA5+bS3CBCJbtztOw+8rWzjQr/BEVSGuihWUUpI2Df6VVxXIXxKanZR6mIl59yvf+GEA==}
 
   '@unocss/reset@66.1.0-beta.3':
     resolution: {integrity: sha512-QV8ZWhj/4cuTGtxiqDmSZDc339cb9IJT40o9FGmOMRH20kJNlDX0OIsevOX/LsTiGgp6KTM5ORVr6QUMmiRv0w==}
@@ -2190,6 +2196,9 @@ packages:
 
   gun-avatar@1.9.4:
     resolution: {integrity: sha512-wOZPqjt0OuIOV2I+HOTmUUEupZhKzjAzf4me8fzhbw69GeHDIn3GjZVz5mjheaD7R3WQWvxGgkR5H5gm9X5Vxw==}
+
+  gun-avatar@1.9.6:
+    resolution: {integrity: sha512-WZDtiTEk11r7EKG10I35lS0qQ4ni3JTWArl+ZY3WLZc3i87m2yn1yVOoTbT355J1tIru55zHDBhxmh7yQ46AnQ==}
 
   gun@0.2020.1239:
     resolution: {integrity: sha512-e4BsRL4P6oLT1m7G+0H8VhhdfFEHhcPc5tOnmgTO6q9ZQrT+Q0B5XKrpAV3NcuLq3SpnOevlz6+Ul5CVaavcXQ==}
@@ -4591,6 +4600,8 @@ snapshots:
 
   '@unocss/reset@0.48.4': {}
 
+  '@unocss/reset@66.0.0': {}
+
   '@unocss/reset@66.1.0-beta.3': {}
 
   '@unocss/rule-utils@66.1.0-beta.3':
@@ -5792,14 +5803,13 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  gun-avatar@1.9.4(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4):
+  gun-avatar@1.9.6(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4):
     dependencies:
-      '@unocss/reset': 0.48.4
-      '@vueuse/core': 9.11.1(vue@3.5.13(typescript@5.5.4))
-      gun: 0.2020.1239(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+      '@unocss/reset': 66.0.0
+      '@vueuse/core': 13.0.0(vue@3.5.13(typescript@5.5.4))
+      gun: 0.2020.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       vue: 3.5.13(typescript@5.5.4)
     transitivePeerDependencies:
-      - '@vue/composition-api'
       - bufferutil
       - typescript
       - utf-8-validate
@@ -5807,15 +5817,6 @@ snapshots:
   gun@0.2020.1239(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       ws: 7.5.9(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-    optionalDependencies:
-      '@peculiar/webcrypto': 1.4.0
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-
-  gun@0.2020.1239(bufferutil@4.0.8)(utf-8-validate@6.0.4):
-    dependencies:
-      ws: 7.5.9(bufferutil@4.0.8)(utf-8-validate@6.0.4)
     optionalDependencies:
       '@peculiar/webcrypto': 1.4.0
     transitivePeerDependencies:
