@@ -1,7 +1,7 @@
 # Gun-Vue: The Peer-to-Peer Web App Toolkit
 
 <a href="https://gun-vue.js.org">
-  <img src="https://github.com/DeFUCC/gun-vue/blob/master/docs/public/media/gun-vue-kit.png" alt="@gun-vue logo" width="650" />
+  <img src="https://github.com/DeFUCC/gun-vue/blob/main/docs/public/media/gun-vue-kit.png" alt="@gun-vue logo" width="650" />
 </a>
 <br>
 <br>
