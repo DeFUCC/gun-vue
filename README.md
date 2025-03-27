@@ -75,6 +75,22 @@ Prebuilt **Vue 3 UI components** that simplify adding **secure, real-time, peer-
 
 **Reusable logic** built with the **Vue 3 Composition API**, for managing **reactive, peer-to-peer data flows** independently of any specific UI component.
 
+#### Gun-Avatar
+
+[GitHub (@gun-vue/gun-avatar)](https://github.com/DeFUCC/gun-avatar/) •
+[npm](https://www.npmjs.com/package/gun-avatar) •
+[Docs](https://gun-avatar.js.org) •
+
+Human recognizable visual public key representation. Exports consistent and easy to recognize canvas/svg avatar images for SEA keypairs. Is exported by **Composables** library as a `gunAvatar()` function and is available as a separate library to import and use. Versions 2.0+ support embedding and extracting arbitrary text data into and from the generated PNG files.
+
+#### Gun-ES
+
+[GitHub (@gun-vue/gun-es)](https://github.com/DeFUCC/gun-es) •
+[npm](https://www.npmjs.com/package/@gun-vue/gun-es) •
+[Docs](https://gun.eco) •
+
+An ESM treated GUN (that is still in CJS) so that it's compatible with modern JS module system. Exports { Gun, SEA } with opinionated setup of using the scalable IndexedDB storage, WebRTC adapter and then() promisification.
+
 ## How to Build the Toolkit
 
 > **Note**: For a more guided approach, see the [**Tutorials**](https://gun-vue.js.org/apps/getting-started.html) or try the [**StackBlitz Starter Project**](https://stackblitz.com/edit/gun-vue?embed=1&file=src/App.vue).

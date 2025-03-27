@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUser, downloadFile, useAuth, gunAvatar } from '#composables'
+import { useUser, useAuth, gunAvatar } from '#composables'
 import { AuthPass, QrShow } from '../components'
 import { ref, computed } from 'vue'
 import { useClipboard, useShare } from '@vueuse/core'
@@ -32,7 +32,95 @@ const encPair = computed(() => {
 
 const href = computed(() => safePair.value ? pass.links.pass : pass.links.pair)
 
-const png = computed(() => gunAvatar({ pub: user.pub }))
+const png = computed(() => gunAvatar({ pub: user.pub, embed: encPair.value }))
+
+const bookmarks = computed(() => generateBookmarkFiles(href.value))
+
+function downloadData(data: string | Blob, fileName: string, mimeType?: string) {
+  // Handle string data by converting to blob
+  const blob = data instanceof Blob
+    ? data
+    : new Blob([data], { type: mimeType || 'text/plain' })
+
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = fileName
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}
+
+// Simplified specialized download functions
+function downloadBookmark(bookmark) {
+  if (!bookmark?.content || !bookmark?.extension) return
+  downloadData(
+    bookmark.content,
+    `${user.name || 'account'}${bookmark.extension}`,
+    bookmark.mime
+  )
+}
+
+function downloadPng(dataUrl: string) {
+  // For data URLs, we can pass them directly
+  downloadData(
+    dataUrl,
+    `${user.name || 'avatar'}.png`
+  )
+}
+
+function downloadJson(content: string) {
+  downloadData(
+    content,
+    `${user.name || 'account'}.json`,
+    'application/json'
+  )
+}
+
+function generateBookmarkFiles(url, title = 'Bookmark') {
+
+
+  // Windows .url file
+  const urlContent = "[InternetShortcut]\n" +
+    "URL=" + url;
+
+  // macOS .webloc file
+  const weblocContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+    "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n" +
+    "<plist version=\"1.0\">\n" +
+    "<dict>\n" +
+    "  <key>URL</key>\n" +
+    "  <string>" + url + "</string>\n" +
+    "</dict>\n" +
+    "</plist>";
+
+
+
+  // Linux .desktop file
+  const desktopContent = "[Desktop Entry]\n" +
+    "Encoding=UTF-8\n" +
+    "Type=Link\n" +
+    "Name=" + title + "\n" +
+    "URL=" + url;
+
+  return {
+    Win: {
+      content: urlContent,
+      extension: '.url',
+      mime: 'application/internet-shortcut'
+    },
+    Mac: {
+      content: weblocContent,
+      extension: '.webloc',
+      mime: 'application/x-apple-plist'
+    },
+    Linux: {
+      content: desktopContent,
+      extension: '.desktop',
+      mime: 'application/x-desktop'
+    }
+  };
+}
 
 </script>
 
@@ -48,53 +136,94 @@ const png = computed(() => gunAvatar({ pub: user.pub }))
       .text-sm {{ safePair ? 'Encrypted' : 'Plain Text' }}
       .text-m Key Pair
     .flex.flex-wrap
+      button.m-2.button.items-center(@click="show('key')")
+        .i-la-envelope-open-text
+        .px-2 Text
       button.m-2.button.items-center(
-        v-if="canShare" 
-        :class="{ active: current == 'pass' }" 
-        @click="share({ title: 'Your key pair', text: encPair })"
-        )
-        .i-la-share
-        .px-1 Share
-      button.m-2.button.items-center(
-        v-if="canCopy" 
-        @click="copy(encPair)"
-        )
-        .i-la-copy
-        transition(name="fade" mode="out-in" appear)
-          .px-2(v-if="copied") Copied!
-          .px-2(v-else) Copy
-      a.m-2.button.items-center(
         :href="href" 
         target="_blank" 
-        @click="show('links')" 
+        @click="show('link')" 
         )
         .i-la-link
         .px-2 Link
       button.m-2.button.items-center(@click="show('qr')")
         .i-la-qrcode
         .px-2 QR
-      button.m-2.button.items-center(@click="show('key')")
-        .i-la-envelope-open-text
-        .px-2 Text
-      button.m-2.button.items-center(@click="downloadFile(encPair, 'text/json', (user.name || 'account') + '.json', false); current = null")
-        .i-la-file-download
-        .px-2 JSON
-      button.m2.button.items-center(@click="show('avatar')")
+
+      button.m2.button.items-center(@click="show('png')")
         .i-la-user-circle
         .px-2 PNG
   .flex.w-full.justify-center.mt-4(v-if="current")
-    transition-group(name="fade")
-      textarea.p-4.text-sm.flex-1.rounded-xl(
-        v-if="current == 'key'",
-        key="text",
-        rows="9",
-        :value="encPair"
-      )
-      qr-show.max-w-600px(
-        v-if="current == 'qr'" 
-        key="qr" 
-        :data="safePair ? pass.links.pass : pass.links.pair"
-        )
+    transition-group(name="fade" mode="out-in")
+
+      .p-2.flex.flex-col.w-full.items-start(v-if="current == 'key'", key="text")
+        .flex.gap-2.items-center.mx-4
+          button.button.items-center(
+            v-if="canCopy" 
+            @click="copy(encPair)"
+            )
+            .i-la-copy
+            transition(name="fade" mode="out-in" appear)
+              .px-2(v-if="copied") Copied!
+              .px-2(v-else) Copy
+          button.button.items-center(
+            v-if="canShare" 
+            :class="{ active: current == 'pass' }" 
+            @click="share({ title: user.name || 'Gun-Vue keypair', text: encPair })"
+            )
+            .i-la-share
+            .px-1 Share
+          button.button.items-center(@click="downloadJson(encPair); current = null")
+            .i-la-download
+            .px-2 Download
+        .w-full.p-4.text-sm.flex-1.rounded-xl.break-all.select-all(
+          key="text",
+        ) {{ encPair }}
+
+      .p-2.flex.flex-col.items-center(v-if="current == 'png'" key="png")
+        img.cursor-pointer.shadow-lg.rounded-full.hover-lightness-120.hover-shadow-2xl.-hover-translate-y-1.transition.active-translate-y-1( :src="png" @click="downloadPng(png)")
+        .text-sm.op-50.text-center.m-4.max-w-50 Click the image to download the PNG file with your key embedded. You can use to login later. 
+
+      .p-4.flex.flex-col.gap-2(
+        key="link"
+        v-if="current == 'link'") 
+        .flex.gap-2.items-center.mx-4
+          button.button.items-center(
+            v-if="canCopy" 
+            @click="copy(href)"
+            )
+            .i-la-copy
+            transition(name="fade" mode="out-in" appear)
+              .px-2(v-if="copied") Copied!
+              .px-2(v-else) Copy
+          button.button.items-center(
+            v-if="canShare" 
+            :class="{ active: current == 'pass' }"
+            @click="share({ title: user.name || 'Gun-Vue Login link', text: href })"
+            )
+            .i-la-share
+            .px-1 Share
+
+          button.button.items-center(
+            v-for="(bookmark, b) in bookmarks" :key="bookmark?.content"
+            @click="downloadBookmark(bookmark)"
+            )
+            .i-la-download
+            .px-2 {{ b }}
+
+        a.m-2.button.items-center.break-all(
+          :href="href" 
+          target="_blank" 
+          @click="show('links')" 
+          )
+          .i-la-link
+          .px-2.font-normal.font-mono.text-xs {{ href }}
+
+      .p-4.flex.flex-col.gap-2.items-center(v-if="current == 'qr'" key="qr" )
+        qr-show.max-w-600px(
+          :data="safePair ? pass.links.pass : pass.links.pair"
+          )
+        .text-sm.op-50.text-center.mx-4.max-w-80 Make a screenshot to save the QR code for logging in later.
   slot
 </template>
 

@@ -167,8 +167,8 @@ importers:
         specifier: 0.2020.1240
         version: 0.2020.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       gun-avatar:
-        specifier: 2.0.0
-        version: 2.0.0(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4)
+        specifier: 2.0.1
+        version: 2.0.1(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4)
       jszip:
         specifier: 3.10.1
         version: 3.10.1
@@ -2204,8 +2204,8 @@ packages:
   gun-avatar@1.9.4:
     resolution: {integrity: sha512-wOZPqjt0OuIOV2I+HOTmUUEupZhKzjAzf4me8fzhbw69GeHDIn3GjZVz5mjheaD7R3WQWvxGgkR5H5gm9X5Vxw==}
 
-  gun-avatar@2.0.0:
-    resolution: {integrity: sha512-yvni6iO2Tp6n38P9eFxFv2wjOdDOsDD4rvGMJa7BDAD8Jod40+ZsNsyAoLJD/tcq6yYwN4t5hkADlfN1zeCEIQ==}
+  gun-avatar@2.0.1:
+    resolution: {integrity: sha512-AjwGJkBqIQfOt2uhZ5hnVqMstkTPb5OQzt1/mxvcVHZkX9UjNL4A4lT/HgD536Qi+ag/EmzhJAe4/M3SaPmGqw==}
 
   gun@0.2020.1239:
     resolution: {integrity: sha512-e4BsRL4P6oLT1m7G+0H8VhhdfFEHhcPc5tOnmgTO6q9ZQrT+Q0B5XKrpAV3NcuLq3SpnOevlz6+Ul5CVaavcXQ==}
@@ -5826,7 +5826,7 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  gun-avatar@2.0.0(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4):
+  gun-avatar@2.0.1(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4):
     dependencies:
       '@unocss/reset': 66.0.0
       '@vueuse/core': 13.0.0(vue@3.5.13(typescript@5.5.4))
