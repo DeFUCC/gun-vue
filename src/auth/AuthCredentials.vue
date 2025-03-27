@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUser, downloadFile, useAuth } from '#composables'
+import { useUser, downloadFile, useAuth, gunAvatar } from '#composables'
 import { AuthPass, QrShow } from '../components'
 import { ref, computed } from 'vue'
 import { useClipboard, useShare } from '@vueuse/core'
@@ -31,6 +31,8 @@ const encPair = computed(() => {
 });
 
 const href = computed(() => safePair.value ? pass.links.pass : pass.links.pair)
+
+const png = computed(() => gunAvatar({ pub: user.pub }))
 
 </script>
 
@@ -75,8 +77,11 @@ const href = computed(() => safePair.value ? pass.links.pass : pass.links.pair)
         .i-la-envelope-open-text
         .px-2 Text
       button.m-2.button.items-center(@click="downloadFile(encPair, 'text/json', (user.name || 'account') + '.json', false); current = null")
-        .i-la-file-code
+        .i-la-file-download
         .px-2 JSON
+      button.m2.button.items-center(@click="show('avatar')")
+        .i-la-user-circle
+        .px-2 PNG
   .flex.w-full.justify-center.mt-4(v-if="current")
     transition-group(name="fade")
       textarea.p-4.text-sm.flex-1.rounded-xl(

@@ -85,8 +85,8 @@ importers:
         specifier: 3.35.3
         version: 3.35.3
       '@unocss/reset':
-        specifier: 66.1.0-beta.3
-        version: 66.1.0-beta.3
+        specifier: 66.1.0-beta.7
+        version: 66.1.0-beta.7
       '@vueuse/core':
         specifier: 13.0.0
         version: 13.0.0(vue@3.5.13(typescript@5.5.4))
@@ -100,8 +100,8 @@ importers:
         specifier: 5.2.2
         version: 5.2.2(vue@3.5.13(typescript@5.5.4))
       force-graph:
-        specifier: 1.49.3
-        version: 1.49.3
+        specifier: 1.49.5
+        version: 1.49.5
       fuse.js:
         specifier: 7.1.0
         version: 7.1.0
@@ -167,8 +167,8 @@ importers:
         specifier: 0.2020.1240
         version: 0.2020.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       gun-avatar:
-        specifier: 1.9.6
-        version: 1.9.6(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4)
+        specifier: 2.0.0
+        version: 2.0.0(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4)
       jszip:
         specifier: 3.10.1
         version: 3.10.1
@@ -1141,6 +1141,9 @@ packages:
   '@unocss/reset@66.1.0-beta.3':
     resolution: {integrity: sha512-QV8ZWhj/4cuTGtxiqDmSZDc339cb9IJT40o9FGmOMRH20kJNlDX0OIsevOX/LsTiGgp6KTM5ORVr6QUMmiRv0w==}
 
+  '@unocss/reset@66.1.0-beta.7':
+    resolution: {integrity: sha512-6GAvIfcuEGkx3rryIHWaF6Uwh0QZJYJTmDog/88X2He8v1yGR2RfrUSrrYUf8KfmLQYSZ/u7WazLwJTVmpvjaQ==}
+
   '@unocss/rule-utils@66.1.0-beta.3':
     resolution: {integrity: sha512-eYrgxQNgWbuT/rwRJDAEr7HfTe9FmMeFWtRF7Vcu+ILrb0dhF3+vAldERWifz5Dn2brWSrD24f15eCfZ8c2zDA==}
     engines: {node: '>=14'}
@@ -1728,6 +1731,10 @@ packages:
   cpus@1.0.3:
     resolution: {integrity: sha512-PXHBvGLuL69u55IkLa5e5838fLhIMHxmkV4ge42a8alGyn7BtawYgI0hQ849EedvtHIOLNNH3i6eQU1BiE9SUA==}
 
+  crc-32@0.3.0:
+    resolution: {integrity: sha512-kucVIjOmMc1f0tv53BJ/5WIX+MGLcKuoBhnGqQrgKJNqLByb/sVMWfW/Aw6hw0jgcqjJ2pi9E5y32zOIpaUlsA==}
+    engines: {node: '>=0.8'}
+
   create-torrent@6.1.0:
     resolution: {integrity: sha512-War593HCsg4TotHgMGWTJqnDHN0pmEU2RM13xUzzSZ78TpRNOC2bbcsC5yMO3pqIkedHEWFzYNqH1yhwuuBYTg==}
     engines: {node: '>=12'}
@@ -2084,8 +2091,8 @@ packages:
   focus-trap@7.6.4:
     resolution: {integrity: sha512-xx560wGBk7seZ6y933idtjJQc1l+ck+pI3sKvhKozdBV1dRZoKhkW5xoCaFv9tQiX5RH1xfSxjuNu6g+lmN/gw==}
 
-  force-graph@1.49.3:
-    resolution: {integrity: sha512-blBqeFq3vdIzqGgvWrML9xA2R0nS5nvjHsEt9lcWVZ29IcdWQ6wa4G0CG/Uv8bP9olwpsJPZSJe3W8vNhiMCnQ==}
+  force-graph@1.49.5:
+    resolution: {integrity: sha512-mCTLxsaOPfp4Jq4FND8sHTpa8aZDLNXgkwAN98IDZ8Ve3nralz0gNsmE4Nx6NFm48olJ0gzCQYYLJrrYDqifew==}
     engines: {node: '>=12'}
 
   formdata-polyfill@4.0.10:
@@ -2197,8 +2204,8 @@ packages:
   gun-avatar@1.9.4:
     resolution: {integrity: sha512-wOZPqjt0OuIOV2I+HOTmUUEupZhKzjAzf4me8fzhbw69GeHDIn3GjZVz5mjheaD7R3WQWvxGgkR5H5gm9X5Vxw==}
 
-  gun-avatar@1.9.6:
-    resolution: {integrity: sha512-WZDtiTEk11r7EKG10I35lS0qQ4ni3JTWArl+ZY3WLZc3i87m2yn1yVOoTbT355J1tIru55zHDBhxmh7yQ46AnQ==}
+  gun-avatar@2.0.0:
+    resolution: {integrity: sha512-yvni6iO2Tp6n38P9eFxFv2wjOdDOsDD4rvGMJa7BDAD8Jod40+ZsNsyAoLJD/tcq6yYwN4t5hkADlfN1zeCEIQ==}
 
   gun@0.2020.1239:
     resolution: {integrity: sha512-e4BsRL4P6oLT1m7G+0H8VhhdfFEHhcPc5tOnmgTO6q9ZQrT+Q0B5XKrpAV3NcuLq3SpnOevlz6+Ul5CVaavcXQ==}
@@ -2783,6 +2790,15 @@ packages:
   pkg-types@1.3.1:
     resolution: {integrity: sha512-/Jm5M4RvtBFVkKWRu2BLUTNP8/M2a+UwuAX+ae4770q1qVGtfjG+WTCupoZixokjmHiry8uI+dlY8KXYV5HVVQ==}
 
+  png-chunk-text@1.0.0:
+    resolution: {integrity: sha512-DEROKU3SkkLGWNMzru3xPVgxyd48UGuMSZvioErCure6yhOc/pRH2ZV+SEn7nmaf7WNf3NdIpH+UTrRdKyq9Lw==}
+
+  png-chunks-encode@1.0.0:
+    resolution: {integrity: sha512-J1jcHgbQRsIIgx5wxW9UmCymV3wwn4qCCJl6KYgEU/yHCh/L2Mwq/nMOkRPtmV79TLxRZj5w3tH69pvygFkDqA==}
+
+  png-chunks-extract@1.0.0:
+    resolution: {integrity: sha512-ZiVwF5EJ0DNZyzAqld8BP1qyJBaGOFaq9zl579qfbkcmOwWLLO4I9L8i2O4j3HkI6/35i0nKG2n+dZplxiT89Q==}
+
   pngjs@5.0.0:
     resolution: {integrity: sha512-40QW5YalBNfQo5yRYmiw7Yz6TKKVr3h6970B2YE+3fQpsWcrbj1PzJgxeJ19DRQjhMbKPIuMY8rFaXc8moolVw==}
     engines: {node: '>=10.13.0'}
@@ -3082,6 +3098,9 @@ packages:
   slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
+
+  sliced@1.0.1:
+    resolution: {integrity: sha512-VZBmZP8WU3sMOZm1bdgTadsQbcscK0UM8oKxKVBs4XAhUo2Xxzm/OFMGBkPusxw9xL3Uy8LrzEqGqJhclsr0yA==}
 
   slugify@1.6.6:
     resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
@@ -4604,6 +4623,8 @@ snapshots:
 
   '@unocss/reset@66.1.0-beta.3': {}
 
+  '@unocss/reset@66.1.0-beta.7': {}
+
   '@unocss/rule-utils@66.1.0-beta.3':
     dependencies:
       '@unocss/core': 66.1.0-beta.3
@@ -5232,6 +5253,8 @@ snapshots:
 
   cpus@1.0.3: {}
 
+  crc-32@0.3.0: {}
+
   create-torrent@6.1.0:
     dependencies:
       bencode: 4.0.0
@@ -5649,7 +5672,7 @@ snapshots:
     dependencies:
       tabbable: 6.2.0
 
-  force-graph@1.49.3:
+  force-graph@1.49.5:
     dependencies:
       '@tweenjs/tween.js': 19.0.0
       accessor-fn: 1.3.2
@@ -5803,11 +5826,14 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  gun-avatar@1.9.6(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4):
+  gun-avatar@2.0.0(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4):
     dependencies:
       '@unocss/reset': 66.0.0
       '@vueuse/core': 13.0.0(vue@3.5.13(typescript@5.5.4))
       gun: 0.2020.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+      png-chunk-text: 1.0.0
+      png-chunks-encode: 1.0.0
+      png-chunks-extract: 1.0.0
       vue: 3.5.13(typescript@5.5.4)
     transitivePeerDependencies:
       - bufferutil
@@ -6364,6 +6390,17 @@ snapshots:
       mlly: 1.7.4
       pathe: 2.0.3
 
+  png-chunk-text@1.0.0: {}
+
+  png-chunks-encode@1.0.0:
+    dependencies:
+      crc-32: 0.3.0
+      sliced: 1.0.1
+
+  png-chunks-extract@1.0.0:
+    dependencies:
+      crc-32: 0.3.0
+
   pngjs@5.0.0: {}
 
   postcss@8.5.2:
@@ -6759,6 +6796,8 @@ snapshots:
       sax: 1.2.4
 
   slash@3.0.0: {}
+
+  sliced@1.0.1: {}
 
   slugify@1.6.6: {}
 

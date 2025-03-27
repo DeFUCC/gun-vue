@@ -43,7 +43,7 @@
 		"fuse.js": "7.1.0",
 		"grapheme-breaker-mjs": "1.0.4",
 		"gun": "0.2020.1240",
-		"gun-avatar": "1.9.6",
+		"gun-avatar": "2.0.0",
 		"jszip": "3.10.1",
 		"markdown-it": "14.1.0",
 		"markdown-it-external-links": "0.0.6",
