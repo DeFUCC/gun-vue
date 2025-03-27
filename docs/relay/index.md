@@ -2,7 +2,7 @@
 title: Relay
 ---
 
-![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/relay.svg)
+![@gun-vue logo](https://raw.githubusercontent.com/DeFUCC/gun-vue/main/app/public/media/svg/relay.svg)
 
 ### A simple Gun DB relay peer
 

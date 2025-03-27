@@ -1,24 +1,23 @@
 # Gun-Vue: Composables
 
-<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/composables.svg" alt="@gun-vue composables logo" width="750" />
+<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/main/app/public/media/svg/composables.svg" alt="@gun-vue composables logo" width="750" />
 
-[GitHub (@gun-vue/composables)](https://github.com/DeFUCC/gun-vue/tree/master/composables) •
+[GitHub (@gun-vue/composables)](https://github.com/DeFUCC/gun-vue/tree/main/composables) •
 [npm](https://www.npmjs.com/package/@gun-vue/composables) •
 [Docs](https://gun-vue.js.org/packages/composables.html) •
 [API](https://gun-vue.js.org/reference/typedoc/modules.html)
 
-Reusable logic built with the **Vue 3 Composition API** `use` functions. Manages **Gun** database interactions, **SEA** encryption, and reactive state. Check out [Gun-Vue: Features (/src)](https://github.com/DeFUCC/gun-vue/tree/master/src) for an overview.
+Reusable logic built with the **Vue 3 Composition API** `use` functions. Manages **Gun** database interactions, **SEA** encryption, and reactive state. Check out [Gun-Vue: Features (/src)](https://github.com/DeFUCC/gun-vue/tree/main/src) for an overview.
 
 > This code is part of [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue).
 
 =======
 
-
 ## Composables
 
 ### Identity & Access
 
-- [**User**](https://github.com/DeFUCC/gun-vue/tree/master/src/user) - the `gun.user()` system management
+- [**User**](https://github.com/DeFUCC/gun-vue/tree/main/src/user) - the `gun.user()` system management
 - **Account** - user profile interface
 - **Password** - some elaborations on reimagining password system in a p2p graph environment
 

@@ -1,12 +1,12 @@
 # Gun-Vue: Components
 
-<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/components.svg" alt="@gun-vue components logo" width="750" />
+<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/main/app/public/media/svg/components.svg" alt="@gun-vue components logo" width="750" />
 
-[GitHub (@gun-vue/components)](https://github.com/DeFUCC/gun-vue/tree/master/components) •
+[GitHub (@gun-vue/components)](https://github.com/DeFUCC/gun-vue/tree/main/components) •
 [npm](https://www.npmjs.com/package/@gun-vue/components) •
 [Docs](https://gun-vue.js.org/packages/components.html)
 
-Vue 3 **Single-File Components (SFC)** providing ready-to-use UI powered by [**UnoCSS**](https://unocss.dev/), [**Pug**](https://pugjs.org/) templates, and your feature’s composables.  
+Vue 3 **Single-File Components (SFC)** providing ready-to-use UI powered by [**UnoCSS**](https://unocss.dev/), [**Pug**](https://pugjs.org/) templates, and your feature’s composables.
 
 > This code is part of [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue).
 

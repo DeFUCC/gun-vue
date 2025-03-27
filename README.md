@@ -30,7 +30,7 @@
 
 ### 📱 Demo App
 
-[GitHub (@gun-vue/app)](https://github.com/DeFUCC/gun-vue/tree/master/app) •
+[GitHub (@gun-vue/app)](https://github.com/DeFUCC/gun-vue/tree/main/app) •
 [npm](https://www.npmjs.com/package/@gun-vue/app) •
 [📱 Demo App](https://gun-vue.js.org/app)
 
@@ -40,7 +40,7 @@ A **Single-Page App (SPA)** that runs in any modern browser, featuring **Peer-to
 
 ### Relay
 
-[GitHub (@gun-vue/relay)](https://github.com/DeFUCC/gun-vue/tree/master/relay) •
+[GitHub (@gun-vue/relay)](https://github.com/DeFUCC/gun-vue/tree/main/relay) •
 [npm](https://www.npmjs.com/package/@gun-vue/relay) •
 [Docs](https://gun-vue.js.org/packages/relay.html)
 
@@ -50,7 +50,7 @@ A simple **Gun Relay Peer** that helps clients form **Peer-to-Peer (P2P)** conne
 
 ### Features
 
-[GitHub (@gun-vue/src)](https://github.com/DeFUCC/gun-vue/tree/master/src)
+[GitHub (@gun-vue/src)](https://github.com/DeFUCC/gun-vue/tree/main/src)
 
 A collection of ready to use features such as: `User`, `Post`, `Chat`, `Project`, and more! Many of these are used in the [**Gun-Vue: 📱 Demo App**](https://gun-vue.js.org/app).
 
@@ -58,7 +58,7 @@ A collection of ready to use features such as: `User`, `Post`, `Chat`, `Project`
 
 #### Components
 
-[GitHub (@gun-vue/components)](https://github.com/DeFUCC/gun-vue/tree/master/components) •
+[GitHub (@gun-vue/components)](https://github.com/DeFUCC/gun-vue/tree/main/components) •
 [npm](https://www.npmjs.com/package/@gun-vue/components) •
 [Docs](https://gun-vue.js.org/packages/components.html)
 
@@ -68,7 +68,7 @@ Prebuilt **Vue 3 UI components** that simplify adding **secure, real-time, peer-
 
 #### Composables
 
-[GitHub (@gun-vue/composables)](https://github.com/DeFUCC/gun-vue/tree/master/composables) •
+[GitHub (@gun-vue/composables)](https://github.com/DeFUCC/gun-vue/tree/main/composables) •
 [npm](https://www.npmjs.com/package/@gun-vue/composables) •
 [Docs](https://gun-vue.js.org/packages/composables.html) •
 [API](https://gun-vue.js.org/reference/typedoc/modules.html)

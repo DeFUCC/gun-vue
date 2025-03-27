@@ -1,12 +1,12 @@
 # Gun-Vue: Demo App
 
-<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/demo.svg" alt="@gun-vue demo logo" width="400" />
+<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/main/app/public/media/svg/demo.svg" alt="@gun-vue demo logo" width="400" />
 
-[GitHub (@gun-vue/app)](https://github.com/DeFUCC/gun-vue/tree/master/app) •
+[GitHub (@gun-vue/app)](https://github.com/DeFUCC/gun-vue/tree/main/app) •
 [npm](https://www.npmjs.com/package/@gun-vue/app) •
 [📱 Demo App](https://gun-vue.js.org/app)
 
-A Single Page App built with Vite, demonstrating the [Features](https://github.com/DeFUCC/gun-vue/tree/master/src) of [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue)
+A Single Page App built with Vite, demonstrating the [Features](https://github.com/DeFUCC/gun-vue/tree/main/src) of [**Gun-Vue: The Peer-to-Peer Web App Toolkit**](https://github.com/DeFUCC/gun-vue)
 
 > **Note**: This project is in its early stages. Not all features are fully implemented or reliably tested. [Contributions are welcome!](https://github.com/DeFUCC/gun-vue/tree/master)
 

@@ -1,8 +1,8 @@
 # Gun-Vue: Relay
 
-<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/master/app/public/media/svg/relay.svg" alt="@gun-vue relay logo" width="400" />
+<img src="https://raw.githubusercontent.com/DeFUCC/gun-vue/main/app/public/media/svg/relay.svg" alt="@gun-vue relay logo" width="400" />
 
-[GitHub (/relay)](https://github.com/DeFUCC/gun-vue/tree/master/relay) •
+[GitHub (/relay)](https://github.com/DeFUCC/gun-vue/tree/main/relay) •
 [npm](https://www.npmjs.com/package/@gun-vue/relay) •
 [Docs](https://gun-vue.js.org/packages/relay.html)
 <br><br>

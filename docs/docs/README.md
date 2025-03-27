@@ -24,9 +24,9 @@ The app is accessible via the free for open source [js.org](https://js.org) subd
 
 Whenever a new version of Gun-Vue is published, an automated action creates a new release draft with a full kit of lightweight native desktop apps for Windows, Mac OS and Linux with [Tauri](https://tauri.app) by a [GitHub Action](https://github.com/DeFUCC/gun-vue/actions/workflows/tauri.yml). Mobile apps are coming too. This is a very nice way to have Gun-Vue available in case of DNS interuptions. Local relay should become a part of it, especially once GUN Rust port is stable enougth to be somehow integrated into Tauri app structure. So it can be essentially a full GUN node in a <10Mb native app.
 
-### [Open source code](https://github.com/DeFUCC/gun-vue/tree/master/src) at GitHub [pnpm](https://pnpm.io) monorepo
+### [Open source code](https://github.com/DeFUCC/gun-vue/tree/main/src) at GitHub [pnpm](https://pnpm.io) monorepo
 
-The code is cut into vertical slices as small interconnectable apps in the common [source folder](https://github.com/DeFUCC/gun-vue/tree/master/src).
+The code is cut into vertical slices as small interconnectable apps in the common [source folder](https://github.com/DeFUCC/gun-vue/tree/main/src).
 
 This means that each folder in the `src` directory is a convenient section of the entire codebase, holding a shared basic structure but having distinct functionality.
 
@@ -42,7 +42,7 @@ All the source code gets built by GitHub Actions on each tag being published. Th
 
 ### [Playground](https://stackblitz.com/edit/gun-vue) at Stackblitz.com
 
-### [Learn more](https://github.com/DeFUCC/gun-vue/tree/master/components)
+### [Learn more](https://github.com/DeFUCC/gun-vue/tree/main/components)
 
 Native web-components may be implemented in future.
 
@@ -56,11 +56,11 @@ Composable functions for use with Vue 3 Composition API. They hold the core reac
 
 ### [Documentation](https://gun-vue.js.org/composables) with Typedoc and Vitepress
 
-### [Learn more](https://github.com/DeFUCC/gun-vue/tree/master/composables)
+### [Learn more](https://github.com/DeFUCC/gun-vue/tree/main/composables)
 
 ---
 
-## [@gun-vue/relay](https://github.com/DeFUCC/gun-vue/tree/master/relay)
+## [@gun-vue/relay](https://github.com/DeFUCC/gun-vue/tree/main/relay)
 
 A simple no-store Gun server to throw at any Node.js environment. From old laptops, Raspbery Pi's and free-tier hostings to high-load VPS and dedicated company servers.
 

@@ -32,9 +32,9 @@ The app is reachable via the free [js.org](https://js.org) subdomain since [Jan 
 
 Every time a new version of Gun-Vue is published, an automated action creates a new release draft with a full kit of lightweight native desktop apps for Windows, Mac OS and Linux with [Tauri](https://tauri.app) by a [GitHub Action](https://github.com/DeFUCC/gun-vue/actions/workflows/tauri.yml). Mobile apps are coming.
 
-### [Open source code](https://github.com/DeFUCC/gun-vue/tree/master/src) at GitHub [pnpm](https://pnpm.io) monorepo
+### [Open source code](https://github.com/DeFUCC/gun-vue/tree/main/src) at GitHub [pnpm](https://pnpm.io) monorepo
 
-The code is cut into vertical slices as small interconnectable apps in the common [source folder](https://github.com/DeFUCC/gun-vue/tree/master/src).
+The code is cut into vertical slices as small interconnectable apps in the common [source folder](https://github.com/DeFUCC/gun-vue/tree/main/src).
 
 This means that each folder in the `src` directory is a quite convenient section of the whole codebase. Each holds shared basic structure, but has distinct functionality.
 
@@ -50,7 +50,7 @@ Ready to use Vue 3 components as building blocks to implement Gun powered intera
 
 ### [Playground](https://stackblitz.com/edit/gun-vue) at Stackblitz.com
 
-### [Learn more](https://github.com/DeFUCC/gun-vue/tree/master/components)
+### [Learn more](https://github.com/DeFUCC/gun-vue/tree/main/components)
 
 Native web-components may be implemented in future.
 
@@ -64,11 +64,11 @@ Composable functions for use with Vue 3 Composition API
 
 ### [Documentation](https://gun-vue.js.org/composables) with Typedoc and Vitepress
 
-### [Learn more](https://github.com/DeFUCC/gun-vue/tree/master/composables)
+### [Learn more](https://github.com/DeFUCC/gun-vue/tree/main/composables)
 
 ---
 
-## [@gun-vue/relay](https://github.com/DeFUCC/gun-vue/tree/master/relay)
+## [@gun-vue/relay](https://github.com/DeFUCC/gun-vue/tree/main/relay)
 
 A simple no-store Gun server to throw at any free tier Node.js environment.
 
