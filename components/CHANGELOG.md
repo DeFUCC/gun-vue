@@ -1,5 +1,11 @@
 # @gun-vue/components
 
+## 0.24.1
+
+### Patch Changes
+
+- Much better credentials management - save and load JSON, QR, PNG keypairs interchangeably.
+
 ## 0.24.0
 
 ### Minor Changes
