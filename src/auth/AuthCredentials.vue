@@ -36,41 +36,61 @@ const png = computed(() => gunAvatar({ pub: user.pub, embed: encPair.value }))
 
 const bookmarks = computed(() => generateBookmarkFiles(href.value))
 
-function downloadData(data: string, fileName: string, mimeType = 'text/plain') {
-  // Convert plain text to data URL if it's not already
-  const dataUrl = data.startsWith('data:')
-    ? data
-    : `data:${mimeType};base64,${btoa(unescape(encodeURIComponent(data)))}`
-
+function ensureDownload(dataUrl: string, fileName: string) {
   const link = document.createElement('a')
-  link.download = fileName
   link.href = dataUrl
-  link.click()
+  link.download = fileName
+  link.target = '_blank'
+
+  // Try HTML5 download
+  const result = link.dispatchEvent(new MouseEvent('click'))
+
+  // If download attribute fails, open in new tab as fallback
+  if (!result) {
+    window.open(dataUrl, '_blank')
+  }
 }
 
+function downloadData(content: string, fileName: string, mimeType = 'text/plain') {
+  try {
+    // For data URLs (like PNG), use directly
+    if (content.startsWith('data:')) {
+      ensureDownload(content, fileName)
+      return
+    }
+
+    // For text content, create a properly formatted data URL
+    const base64 = btoa(unescape(encodeURIComponent(content)))
+    const dataUrl = `data:${mimeType};charset=utf-8;base64,${base64}`
+    ensureDownload(dataUrl, fileName)
+  } catch (err) {
+    console.warn('Download failed, trying share...', err)
+    // Fallback to share API if available
+    if (canShare) {
+      share({
+        title: fileName,
+        text: content,
+      })
+    } else {
+      // Last resort - open in new tab
+      const blob = new Blob([content], { type: mimeType })
+      window.open(URL.createObjectURL(blob), '_blank')
+    }
+  }
+}
+
+// Simplified download handlers
 function downloadBookmark(bookmark) {
   if (!bookmark?.content || !bookmark?.extension) return
-  downloadData(
-    bookmark.content,
-    `${user.name || 'account'}${bookmark.extension}`,
-    bookmark.mime
-  )
+  downloadData(bookmark.content, `${user.name || 'account'}${bookmark.extension}`, bookmark.mime)
 }
 
 function downloadPng(dataUrl: string) {
-  // dataUrl is already in correct format for PNG
-  downloadData(
-    dataUrl,
-    `${user.name || 'avatar'}.png`
-  )
+  downloadData(dataUrl, `${user.name || 'avatar'}.png`)
 }
 
 function downloadJson(content: string) {
-  downloadData(
-    content,
-    `${user.name || 'account'}.json`,
-    'application/json'
-  )
+  downloadData(content, `${user.name || 'account'}.json`, 'application/json')
 }
 
 function generateBookmarkFiles(url, title = 'Bookmark') {
