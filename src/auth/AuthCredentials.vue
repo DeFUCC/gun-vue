@@ -1,8 +1,9 @@
-<script setup lang="ts">
+<script setup>
 import { useUser, useAuth, gunAvatar } from '#composables'
 import { AuthPass, QrShow } from '../components'
 import { ref, computed } from 'vue'
 import { useClipboard, useShare } from '@vueuse/core'
+import { useCredentials } from './useCredentials'
 
 const emit = defineEmits(['close'])
 
@@ -34,108 +35,12 @@ const href = computed(() => safePair.value ? pass.links.pass : pass.links.pair)
 
 const png = computed(() => gunAvatar({ pub: user.pub, embed: encPair.value }))
 
-const bookmarks = computed(() => generateBookmarkFiles(href.value))
+const { saveBookmark, savePng, saveJson, saveLink } = useCredentials()
 
-function ensureDownload(dataUrl: string, fileName: string) {
-  const link = document.createElement('a')
-  link.href = dataUrl
-  link.download = fileName
-  link.target = '_blank'
-
-  // Try HTML5 download
-  const result = link.dispatchEvent(new MouseEvent('click'))
-
-  // If download attribute fails, open in new tab as fallback
-  if (!result) {
-    window.open(dataUrl, '_blank')
-  }
-}
-
-function downloadData(content: string, fileName: string, mimeType = 'text/plain') {
-  try {
-    // For data URLs (like PNG), use directly
-    if (content.startsWith('data:')) {
-      ensureDownload(content, fileName)
-      return
-    }
-
-    // For text content, create a properly formatted data URL
-    const base64 = btoa(unescape(encodeURIComponent(content)))
-    const dataUrl = `data:${mimeType};charset=utf-8;base64,${base64}`
-    ensureDownload(dataUrl, fileName)
-  } catch (err) {
-    console.warn('Download failed, trying share...', err)
-    // Fallback to share API if available
-    if (canShare) {
-      share({
-        title: fileName,
-        text: content,
-      })
-    } else {
-      // Last resort - open in new tab
-      const blob = new Blob([content], { type: mimeType })
-      window.open(URL.createObjectURL(blob), '_blank')
-    }
-  }
-}
-
-// Simplified download handlers
-function downloadBookmark(bookmark) {
-  if (!bookmark?.content || !bookmark?.extension) return
-  downloadData(bookmark.content, `${user.name || 'account'}${bookmark.extension}`, bookmark.mime)
-}
-
-function downloadPng(dataUrl: string) {
-  downloadData(dataUrl, `${user.name || 'avatar'}.png`)
-}
-
-function downloadJson(content: string) {
-  downloadData(content, `${user.name || 'account'}.json`, 'application/json')
-}
-
-function generateBookmarkFiles(url, title = 'Bookmark') {
-
-
-  // Windows .url file
-  const urlContent = "[InternetShortcut]\n" +
-    "URL=" + url;
-
-  // macOS .webloc file
-  const weblocContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
-    "<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n" +
-    "<plist version=\"1.0\">\n" +
-    "<dict>\n" +
-    "  <key>URL</key>\n" +
-    "  <string>" + url + "</string>\n" +
-    "</dict>\n" +
-    "</plist>";
-
-
-
-  // Linux .desktop file
-  const desktopContent = "[Desktop Entry]\n" +
-    "Encoding=UTF-8\n" +
-    "Type=Link\n" +
-    "Name=" + title + "\n" +
-    "URL=" + url;
-
-  return {
-    Win: {
-      content: urlContent,
-      extension: '.url',
-      mime: 'application/internet-shortcut'
-    },
-    Mac: {
-      content: weblocContent,
-      extension: '.webloc',
-      mime: 'application/x-apple-plist'
-    },
-    Linux: {
-      content: desktopContent,
-      extension: '.desktop',
-      mime: 'application/x-desktop'
-    }
-  };
+const platforms = {
+  Win: 'Windows',
+  Mac: 'MacOS',
+  Linux: 'Linux'
 }
 
 </script>
@@ -189,7 +94,7 @@ function generateBookmarkFiles(url, title = 'Bookmark') {
             )
             .i-la-share
             .px-1 Share
-          button.button.items-center(@click="downloadJson(encPair); current = null")
+          button.button.items-center(@click="downloadJson(encPair)")
             .i-la-download
             .px-2 Download
         .w-full.p-4.text-sm.flex-1.rounded-xl.break-all.select-all(
@@ -197,7 +102,7 @@ function generateBookmarkFiles(url, title = 'Bookmark') {
         ) {{ encPair }}
 
       .p-2.flex.flex-col.items-center(v-else-if="current == 'png'" key="png")
-        img.cursor-pointer.shadow-lg.rounded-full.hover-lightness-120.hover-shadow-2xl.-hover-translate-y-1.transition.active-translate-y-1( :src="png" @click="downloadPng(png)")
+        img.cursor-pointer.shadow-lg.rounded-full.hover-lightness-120.hover-shadow-2xl.-hover-translate-y-1.transition.active-translate-y-1( :src="png" @click="savePng(png, user.name)")
         .text-sm.op-50.text-center.m-4.max-w-50 Click the image to download the PNG file with your key embedded. You can use to login later. 
 
       .p-4.flex.flex-col.gap-2(
@@ -221,11 +126,11 @@ function generateBookmarkFiles(url, title = 'Bookmark') {
             .px-1 Share
 
           button.button.items-center(
-            v-for="(bookmark, b) in bookmarks" :key="bookmark?.content"
-            @click="downloadBookmark(bookmark)"
+            v-for="(label, platform) in platforms" :key="platform"
+            @click="saveLink(href, platform, user.name)"
             )
             .i-la-download
-            .px-2 {{ b }}
+            .px-2 {{ label }}
 
         a.m-2.button.items-center.break-all(
           :href="href" 

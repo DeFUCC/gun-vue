@@ -68,7 +68,7 @@ function uploadQR(file) {
   processFile(file, (data) => pair.value = data)
 }
 
-// File handling functions
+// Simplified file handling
 async function handleFiles(files) {
   const file = files[0]
   if (!file) return
@@ -84,48 +84,25 @@ async function handleFiles(files) {
       console.error('Failed to extract data from PNG:', e)
     }
   } else if (type.startsWith('image/')) {
-    uploadQR(file)
+    processFile(file, (data) => pair.value = data)
   }
 }
 
-// Drop zone handlers
-function onDrop(e) {
-  e.preventDefault()
-  const files = e.dataTransfer?.files
-  if (files?.length) handleFiles(files)
-  removeDragClass()
-}
-
-function onDragOver(e) {
-  e.preventDefault()
-  addDragClass()
-}
-
-function onDragLeave(e) {
-  e.preventDefault()
-  removeDragClass()
-}
-
-function addDragClass() {
-  document.body.classList.add('dragging')
-}
-
-function removeDragClass() {
-  document.body.classList.remove('dragging')
-}
+const over = ref(false)
 
 </script>
 
 <template lang="pug">
-#dropzone.flex.flex-col.my-4.flex-1.items-center.bg-light-700.dark-bg-dark-50.rounded-3xl.p-4.shadow-lg(
-  @drop="onDrop"
-  @dragover="onDragOver"
-  @dragleave="onDragLeave"
+#dropzone.flex.flex-col.my-4.flex-1.items-center.bg-light-700.dark-bg-dark-50.rounded-3xl.p-4.shadow-lg.border-4.border-dark-100.dark-border-light-100.border-op-0.dark-border-op-0(
+  @drop.prevent="handleFiles($event.dataTransfer?.files); over = false"
+  @dragover.prevent="over = true"
+  @dragleave.prevent="over = false"
+  :class="{ 'border-op-100 dark-border-op-100': over }"
 )
   .font-bold.text-xl I already have an account
   .text-md Login with a saved key
-  .text-sm.opacity-50.my-2 Drag and drop your key file here (PNG, JSON, or QR image)
-  .flex.flex-wrap.justify-center
+
+  .flex.flex-wrap.justify-center.my-2
     button.button.m-2.cursor-pointer.flex.items-center(@click="show('key')")
       .i-la-key.text-xl
       .p-1.ml-1.font-bold Paste
@@ -170,6 +147,9 @@ function removeDragClass() {
       accept="image/png" 
       @change="uploadPNG($event)"
     )
+
+  .text-sm.opacity-50 Drag and drop your key file here (PNG, JSON, or QR image)
+
   .flex.flex-wrap
     transition(name="fade" mode="out-in" appear)
       textarea.p-2.text-sm.flex-1.w-full.dark-bg-dark-200(
