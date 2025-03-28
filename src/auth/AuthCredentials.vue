@@ -36,22 +36,18 @@ const png = computed(() => gunAvatar({ pub: user.pub, embed: encPair.value }))
 
 const bookmarks = computed(() => generateBookmarkFiles(href.value))
 
-function downloadData(data: string | Blob, fileName: string, mimeType?: string) {
-  // Handle string data by converting to blob
-  const blob = data instanceof Blob
+function downloadData(data: string, fileName: string, mimeType = 'text/plain') {
+  // Convert plain text to data URL if it's not already
+  const dataUrl = data.startsWith('data:')
     ? data
-    : new Blob([data], { type: mimeType || 'text/plain' })
+    : `data:${mimeType};base64,${btoa(unescape(encodeURIComponent(data)))}`
 
-  const url = URL.createObjectURL(blob)
   const link = document.createElement('a')
-  link.href = url
   link.download = fileName
-  document.body.appendChild(link)
+  link.href = dataUrl
   link.click()
-  document.body.removeChild(link)
 }
 
-// Simplified specialized download functions
 function downloadBookmark(bookmark) {
   if (!bookmark?.content || !bookmark?.extension) return
   downloadData(
@@ -62,7 +58,7 @@ function downloadBookmark(bookmark) {
 }
 
 function downloadPng(dataUrl: string) {
-  // For data URLs, we can pass them directly
+  // dataUrl is already in correct format for PNG
   downloadData(
     dataUrl,
     `${user.name || 'avatar'}.png`
@@ -135,27 +131,27 @@ function generateBookmarkFiles(url, title = 'Bookmark') {
         .i-la-unlock(v-else)
       .text-sm {{ safePair ? 'Encrypted' : 'Plain Text' }}
       .text-m Key Pair
-    .flex.flex-wrap
-      button.m-2.button.items-center(@click="show('key')")
+    .flex.flex-wrap.gap-2.p-2
+      button.button.items-center(@click="show('key')" :class="{ active: current == 'key' }")
         .i-la-envelope-open-text
         .px-2 Text
-      button.m-2.button.items-center(
+      button.button.items-center(
         :href="href" 
         target="_blank" 
         @click="show('link')" 
+        :class="{ active: current == 'link' }"
         )
         .i-la-link
         .px-2 Link
-      button.m-2.button.items-center(@click="show('qr')")
+      button.button.items-center(@click="show('qr')" :class="{ active: current == 'qr' }")
         .i-la-qrcode
         .px-2 QR
 
-      button.m2.button.items-center(@click="show('png')")
+      button.button.items-center(@click="show('png')" :class="{ active: current == 'png' }")
         .i-la-user-circle
         .px-2 PNG
   .flex.w-full.justify-center.mt-4(v-if="current")
-    transition-group(name="fade" mode="out-in")
-
+    transition(name="fade" mode="out-in")
       .p-2.flex.flex-col.w-full.items-start(v-if="current == 'key'", key="text")
         .flex.gap-2.items-center.mx-4
           button.button.items-center(
@@ -180,14 +176,14 @@ function generateBookmarkFiles(url, title = 'Bookmark') {
           key="text",
         ) {{ encPair }}
 
-      .p-2.flex.flex-col.items-center(v-if="current == 'png'" key="png")
+      .p-2.flex.flex-col.items-center(v-else-if="current == 'png'" key="png")
         img.cursor-pointer.shadow-lg.rounded-full.hover-lightness-120.hover-shadow-2xl.-hover-translate-y-1.transition.active-translate-y-1( :src="png" @click="downloadPng(png)")
         .text-sm.op-50.text-center.m-4.max-w-50 Click the image to download the PNG file with your key embedded. You can use to login later. 
 
       .p-4.flex.flex-col.gap-2(
         key="link"
-        v-if="current == 'link'") 
-        .flex.gap-2.items-center.mx-4
+        v-else-if="current == 'link'") 
+        .flex.flex-wrap.gap-2.items-center.mx-4
           button.button.items-center(
             v-if="canCopy" 
             @click="copy(href)"
@@ -219,7 +215,7 @@ function generateBookmarkFiles(url, title = 'Bookmark') {
           .i-la-link
           .px-2.font-normal.font-mono.text-xs {{ href }}
 
-      .p-4.flex.flex-col.gap-2.items-center(v-if="current == 'qr'" key="qr" )
+      .p-4.flex.flex-col.gap-2.items-center(v-else-if="current == 'qr'" key="qr" )
         qr-show.max-w-600px(
           :data="safePair ? pass.links.pass : pass.links.pair"
           )
