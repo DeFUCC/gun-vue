@@ -1,0 +1,1 @@
+import{D as s,t as c}from"./components.CIQxl-l7.js";function t({pub:r,size:n=200,light:e=.5,overlay:a=.5,draw:o="squares",attachment:u="fixed"}){if(r)return{background:`linear-gradient(hsla(255,0%,${e*100}%,${a}), hsla(255,0%,${e*100}%,${a})), url(${s({pub:r,draw:o,reflect:!1,size:n,dark:c.dark})})`,backgroundSize:"cover, cover",backgroundAttachment:`${u},${u}`}}export{t as u};
