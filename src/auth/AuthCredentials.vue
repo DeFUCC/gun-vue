@@ -35,7 +35,7 @@ const href = computed(() => safePair.value ? pass.links.pass : pass.links.pair)
 
 const png = computed(() => gunAvatar({ pub: user.pub, embed: encPair.value }))
 
-const { saveBookmark, savePng, saveJson, saveLink } = useCredentials()
+const { saveBookmark, savePng, saveJson, saveLink, sharePng } = useCredentials()
 
 const platforms = {
   Win: 'Windows',
@@ -102,6 +102,17 @@ const platforms = {
         ) {{ encPair }}
 
       .p-2.flex.flex-col.items-center(v-else-if="current == 'png'" key="png")
+
+        .flex.gap-2.items-center.mt-4
+          button.button.items-center(@click="savePng(png, user.name)")
+            .i-la-download
+            .px-2 Download
+          button.button.items-center(
+            v-if="canShare"
+            @click="sharePng(png, user.name)"
+          )
+            .i-la-share
+            .px-1 Share
         img.cursor-pointer.shadow-lg.rounded-full.hover-lightness-120.hover-shadow-2xl.-hover-translate-y-1.transition.active-translate-y-1( :src="png" @click="savePng(png, user.name)")
         .text-sm.op-50.text-center.m-4.max-w-50 Click the image to download the PNG file with your key embedded. You can use to login later. 
 

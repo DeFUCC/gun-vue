@@ -73,6 +73,26 @@ export function useCredentials() {
         `${userName || 'account'}.json`,
         'application/json'
       )
+    },
+    sharePng: async (dataUrl, userName) => {
+      if (!canShare) {
+        console.log('Sharing not supported')
+        return
+      }
+      try {
+        const blob = await fetch(dataUrl).then(res => res.blob())
+        if (!blob) {
+          console.error('Failed to create blob from data URL')
+          return
+        }
+        const file = new File([blob], `${userName || 'avatar'}.png`, { type: 'image/png' })
+        return share({
+          title: userName || 'Gun-Vue avatar',
+          files: [file]
+        }).catch(err => console.error('Share failed:', err))
+      } catch (err) {
+        console.error('Share preparation failed:', err)
+      }
     }
   }
 }
