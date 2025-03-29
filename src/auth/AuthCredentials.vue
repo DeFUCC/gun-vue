@@ -94,7 +94,7 @@ const platforms = {
             )
             .i-la-share
             .px-1 Share
-          button.button.items-center(@click="downloadJson(encPair)")
+          button.button.items-center(@click="saveJson(encPair, user.name)")
             .i-la-download
             .px-2 Download
         .w-full.p-4.text-sm.flex-1.rounded-xl.break-all.select-all(
