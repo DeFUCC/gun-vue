@@ -1,21 +1,12 @@
-<script setup lang="ts">
+<script setup>
 import { computed, reactive, watchEffect, onMounted } from 'vue'
 import { useColor, useMates, useGun, currentRoom, gunAvatar, user } from '#composables';
-import type { Mate } from "../composables"
 import ForceGraph from 'force-graph';
 
 import { ref } from 'vue'
 import { useResizeObserver } from '@vueuse/core'
 
-export interface Rec {
-  source: string
-  target: string
-  emoji: string
-  back: string
-}
-
 const graph = ref(null)
-
 
 //https://github.com/vasturiano/force-graph
 
@@ -24,12 +15,7 @@ const emit = defineEmits(['user'])
 const colorDeep = useColor('deep')
 const gun = useGun()
 
-const guests: Record<string, {
-  pub: string
-  name: string
-  color: string
-  links: Record<string, Mate>
-}> = reactive({})
+const guests = reactive({})
 
 gun
   .user(currentRoom.pub)
@@ -47,7 +33,7 @@ gun
 
 
 const links = computed(() => {
-  let arr: Rec[] = []
+  let arr = []
   Object.values(guests).forEach(node => {
     Object.entries(node.links).forEach(link => {
       if (!guests[link[0]] || !link[1].text) return
@@ -67,7 +53,6 @@ const Graph = ForceGraph()
   .nodeId('pub')
   .nodeColor('color')
   .nodeVal(node => {
-    //@ts-expect-error types not extended...
     if (node.pub == user.pub) {
       return 10
     } else {
@@ -80,10 +65,9 @@ const Graph = ForceGraph()
   .linkLabel('emoji')
   .linkCurvature(0.2)
   .linkColor(link => {
-    //@ts-expect-error not extended...
     return colorDeep.hex(link.source?.pub || 0)
   })
-  .linkWidth((link: Rec) => {
+  .linkWidth((link) => {
     if (link.back) return 3
     return 1
   })
@@ -96,7 +80,6 @@ const Graph = ForceGraph()
     Graph.zoom(4, 2000);
   })
   .onNodeClick(node => {
-    //@ts-expect-error
     emit('user', node.pub)
   });
 
@@ -104,7 +87,6 @@ onMounted(() => {
   Graph(graph.value)
 })
 
-//@ts-expect-error
 watchEffect(() => Graph.graphData({ nodes: Object.values(guests), links: links.value }))
 
 useResizeObserver(graph, (entries) => {
