@@ -1,1 +1,0 @@
-import{u as s}from"./useQR.Czr6d5ly.js";import{c as i,o as n,k as m}from"./framework.BoVd_Pm6.js";const d={__name:"QrLoad",emits:["loaded"],setup(p,{emit:l}){const{processFile:t}=s();return(o,e)=>(n(),i("input",{id:"qr-input",type:"file",accept:"image/*",onChange:e[0]||(e[0]=r=>m(t)(r.target.files[0],a=>o.$emit("loaded",a)))},null,32))}};export{d as default};
