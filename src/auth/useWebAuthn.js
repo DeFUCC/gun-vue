@@ -40,8 +40,8 @@
 
 import { ref, watchEffect } from 'vue';
 import { useStorage } from '@vueuse/core';
-import Gun from 'gun';
-const SEA = Gun.SEA;
+import { SEA } from '../composables';
+
 
 export function useWebAuthn() {
   // idHash ↦ { username, encKeypair }
