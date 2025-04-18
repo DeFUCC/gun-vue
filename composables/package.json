@@ -33,10 +33,12 @@
 	},
 	"dependencies": {
 		"@gun-vue/gun-es": "0.2.1240",
+		"@passwordless-id/webauthn": "^2.3.0",
 		"@vueuse/core": "13.0.0",
 		"@vueuse/integrations": "13.0.0",
 		"@vueuse/math": "13.0.0",
 		"buffer": "6.0.3",
+		"cbor2": "^1.12.0",
 		"color-hash": "2.0.2",
 		"curved-arrows": "0.3.0",
 		"drauu": "0.4.3",
