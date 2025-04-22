@@ -4,6 +4,9 @@ import { AuthPass, QrShow } from '../components'
 import { ref, computed } from 'vue'
 import { useClipboard, useShare } from '@vueuse/core'
 import { useCredentials } from './useCredentials'
+import { useWebAuthn } from './useWebAuthn'
+
+const { users, storeUser, getUser, deleteUser } = useWebAuthn();
 
 const emit = defineEmits(['close'])
 
@@ -43,6 +46,7 @@ const platforms = {
   Linux: 'Linux'
 }
 
+
 </script>
 
 <template lang="pug">
@@ -75,6 +79,10 @@ const platforms = {
       button.button.items-center(@click="show('png')" :class="{ active: current == 'png' }")
         .i-la-user-circle
         .px-2 PNG
+      button.button.items-center(@click="storeUser(user.name, user.pair())")
+        .i-la-key 
+        .px-2 PassKey
+
   .flex.w-full.justify-center.mt-4(v-if="current")
     transition(name="fade" mode="out-in")
       .p-2.flex.flex-col.w-full.items-start(v-if="current == 'key'", key="text")

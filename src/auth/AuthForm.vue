@@ -3,6 +3,7 @@ import { useUser, safeJSONParse, uploadText, SEA, parseLink, useQR } from '../co
 import { QrLoad } from '../components'
 import { ref, watch } from 'vue'
 import { extractFromFile } from "gun-avatar"
+import { useWebAuthn } from './useWebAuthn'
 
 const { processFile } = useQR()
 
@@ -90,6 +91,19 @@ async function handleFiles(files) {
 
 const over = ref(false)
 
+const { users, storeUser, getUser, deleteUser } = useWebAuthn();
+
+const name = ref('')
+
+async function passKeyLogin(u) {
+  // To authenticate (login) and get keypair:
+  try {
+    pair.value = await getUser(u);
+  } catch (e) {
+    console.error(e.message);
+  }
+}
+
 </script>
 
 <template lang="pug">
@@ -103,7 +117,10 @@ const over = ref(false)
   .text-md Login with a saved key
 
   .flex.flex-wrap.justify-center.my-2
-    button.button.m-2.cursor-pointer.flex.items-center(@click="show('key')")
+    button.button.items-center(@click="show('passkey')" :class="{ active: current == 'passkey' }")
+      .i-la-key 
+      .px-2 PassKey
+    button.button.m-2.cursor-pointer.flex.items-center(@click="show('key')" :class="{ active: current == 'key' }")
       .i-la-key.text-xl
       .p-1.ml-1.font-bold Paste
     label.button.m-2.cursor-pointer.flex.items-center(for="qr-input")
@@ -115,6 +132,7 @@ const over = ref(false)
     label.button.m-2.cursor-pointer.flex.items-center(for="png-input")
       .i-la-user-circle.text-xl
       .p-1.ml-1.font-bold PNG
+
   form.flex(v-if="passphrase !== null")
     input.py-1.px-4.m-1.rounded-xl(
       v-model="passphrase" 
@@ -152,14 +170,16 @@ const over = ref(false)
 
   .flex.flex-wrap
     transition(name="fade" mode="out-in" appear)
+      .flex.flex-col.p-2.text-sm.flex-1.w-full.dark-bg-dark-200(v-if="current == 'passkey'" )
+        .p-2(v-for="u in users" :key="u" @click="passKeyLogin(u)") {{ u }}
       textarea.p-2.text-sm.flex-1.w-full.dark-bg-dark-200(
-        v-if="current == 'key'" 
-        key="text" 
-        v-model="pair" 
-        rows="6" 
-        cols="40" 
-        placeholder="Paste your key pair here or drag and drop a file"
-        )
+        v-else-if="current == 'key'" 
+          key="text" 
+          v-model="pair" 
+          rows="6" 
+          cols="40" 
+          placeholder="Paste your key pair here or drag and drop a file"
+          )
 </template>
 
 <style scoped>
