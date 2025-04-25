@@ -91,14 +91,15 @@ async function handleFiles(files) {
 
 const over = ref(false)
 
-const { users, storeUser, getUser, deleteUser } = useWebAuthn();
+const { users, storeUser, login, deleteUser } = useWebAuthn();
 
 const name = ref('')
 
-async function passKeyLogin(u) {
+async function passKeyLogin() {
   // To authenticate (login) and get keypair:
   try {
-    pair.value = await getUser(u);
+    const { username, keypair } = await login();
+    pair.value = keypair
   } catch (e) {
     console.error(e.message);
   }
@@ -117,7 +118,7 @@ async function passKeyLogin(u) {
   .text-md Login with a saved key
 
   .flex.flex-wrap.justify-center.my-2
-    button.button.items-center(@click="show('passkey')" :class="{ active: current == 'passkey' }")
+    button.button.items-center(@click="passKeyLogin()")
       .i-la-key 
       .px-2 PassKey
     button.button.m-2.cursor-pointer.flex.items-center(@click="show('key')" :class="{ active: current == 'key' }")
@@ -170,10 +171,9 @@ async function passKeyLogin(u) {
 
   .flex.flex-wrap
     transition(name="fade" mode="out-in" appear)
-      .flex.flex-col.p-2.text-sm.flex-1.w-full.dark-bg-dark-200(v-if="current == 'passkey'" )
-        .p-2(v-for="u in users" :key="u" @click="passKeyLogin(u)") {{ u }}
+
       textarea.p-2.text-sm.flex-1.w-full.dark-bg-dark-200(
-        v-else-if="current == 'key'" 
+        v-if="current == 'key'" 
           key="text" 
           v-model="pair" 
           rows="6" 

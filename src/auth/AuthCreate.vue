@@ -1,13 +1,18 @@
 <script setup lang="ts">
-import { useUser, SEA, useColor, updateProfile } from '#composables'
+import { useUser, SEA, useColor, updateProfile, derivePair } from '#composables'
 import { AccountAvatar } from '../components'
 import { useRefHistory } from '@vueuse/core'
-import { ref, nextTick } from 'vue'
+import { ref, nextTick, reactive } from 'vue'
+import AuthDerive from './AuthDerive.vue'
 
 const colorDeep = useColor('deep')
 const colorLight = useColor('light')
 
 const { user, auth } = useUser()
+
+const openDerivePair = ref()
+const password = ref('')
+const extras = reactive({})
 
 const name = ref('')
 
@@ -22,11 +27,15 @@ generatePair()
 
 function createUser() {
   auth(newPair.value, () => nextTick(() => {
-    updateProfile('name', name.value)
+    updateProfile('name', name.value || 'Noname')
   }))
 }
 
 const emit = defineEmits(['back'])
+
+async function deriveKeyPair() {
+  newPair.value = await derivePair(password.value, extras)
+}
 
 </script>
 
@@ -45,24 +54,34 @@ const emit = defineEmits(['back'])
     @click="generatePair()"
     )
   form.flex.flex-col(@submit.prevent="createUser()")
-    .flex.justify-center.my-4
-      button.m-2.button.items-center(
+    .flex.flex-wrap.justify-center.my-4.gap-2
+      button.gap-2.button.items-center(
         type="button"
 
         @click.stop=" history.length > 2 ? undo() : $emit('back')"
         )
         .i-la-undo.text-2xl
-      button.m-2.button.items-center(
+        .text-sm Previous
+      button.gap-2.button.items-center(
         type="button"
         @click.stop="generatePair()")
-        .i-fad-random-1dice.text-3xl
+        .i-la-dice.text-2xl
+        .text-sm Random
+      button.gap-2.button.items-center(
+        type="button"
+        @click.stop="openDerivePair = !openDerivePair"
+        :class="{ active: openDerivePair }"
+        )
+        .i-la-fingerprint.text-2xl
+        .text-sm Derive
+    AuthDerive(@pair="newPair = $event" v-if="openDerivePair")
     input.p-4.rounded-2xl.my-2.dark-bg-dark-200(
       v-model="name" 
       placeholder="Enter your name or nickname"
       autocomplete="username" 
       )
     button.button.w-full.flex.justify-center.items-center(
-      v-if="newPair && !user.is && name" 
+      v-if="newPair && !user.is" 
       type="submit"
       ) Authenticate
 </template>
