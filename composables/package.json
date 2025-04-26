@@ -34,6 +34,7 @@
 	"dependencies": {
 		"@gun-vue/gun-es": "0.2.1240",
 		"@passwordless-id/webauthn": "^2.3.0",
+		"@scure/bip39": "^1.6.0",
 		"@vueuse/core": "13.0.0",
 		"@vueuse/integrations": "13.0.0",
 		"@vueuse/math": "13.0.0",
@@ -42,6 +43,7 @@
 		"color-hash": "2.0.2",
 		"curved-arrows": "0.3.0",
 		"drauu": "0.4.3",
+		"elliptic": "^6.6.1",
 		"fuse.js": "7.1.0",
 		"grapheme-breaker-mjs": "1.0.4",
 		"gun": "0.2020.1240",

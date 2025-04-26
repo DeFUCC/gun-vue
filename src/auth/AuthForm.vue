@@ -1,9 +1,9 @@
 <script setup>
-import { useUser, safeJSONParse, uploadText, SEA, parseLink, useQR } from '../composables'
+import { useUser, safeJSONParse, uploadText, SEA, parseLink, useQR, derivePair } from '../composables'
 import { QrLoad } from '../components'
 import { ref, watch } from 'vue'
 import { extractFromFile } from "gun-avatar"
-import { useWebAuthn } from './useWebAuthn'
+import { getPassKey } from './usePassKeys'
 
 const { processFile } = useQR()
 
@@ -91,17 +91,12 @@ async function handleFiles(files) {
 
 const over = ref(false)
 
-const { users, storeUser, getUser, deleteUser } = useWebAuthn();
-
 const name = ref('')
 
-async function passKeyLogin(u) {
-  // To authenticate (login) and get keypair:
-  try {
-    pair.value = await getUser(u);
-  } catch (e) {
-    console.error(e.message);
-  }
+async function passKeyLogin() {
+  let id = await getPassKey()
+  console.log(id)
+  pair.value = await derivePair(JSON.stringify(id))
 }
 
 </script>
@@ -117,7 +112,7 @@ async function passKeyLogin(u) {
   .text-md Login with a saved key
 
   .flex.flex-wrap.justify-center.my-2
-    button.button.items-center(@click="show('passkey')" :class="{ active: current == 'passkey' }")
+    button.button.items-center(@click="passKeyLogin()")
       .i-la-key 
       .px-2 PassKey
     button.button.m-2.cursor-pointer.flex.items-center(@click="show('key')" :class="{ active: current == 'key' }")
@@ -170,10 +165,9 @@ async function passKeyLogin(u) {
 
   .flex.flex-wrap
     transition(name="fade" mode="out-in" appear)
-      .flex.flex-col.p-2.text-sm.flex-1.w-full.dark-bg-dark-200(v-if="current == 'passkey'" )
-        .p-2(v-for="u in users" :key="u" @click="passKeyLogin(u)") {{ u }}
+
       textarea.p-2.text-sm.flex-1.w-full.dark-bg-dark-200(
-        v-else-if="current == 'key'" 
+        v-if="current == 'key'" 
           key="text" 
           v-model="pair" 
           rows="6" 
