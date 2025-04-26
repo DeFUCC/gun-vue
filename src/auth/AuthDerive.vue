@@ -12,7 +12,7 @@ const pair = ref()
 
 const error = ref(false)
 
-watch([password, extra], async () => {
+watch(password, async () => {
     try {
         pair.value = await derivePair(password.value)
         error.value = false

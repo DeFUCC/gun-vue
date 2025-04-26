@@ -12,7 +12,6 @@ const { user, auth } = useUser()
 
 const openDerivePair = ref()
 const password = ref('')
-const extras = reactive({})
 
 const name = ref('')
 
@@ -35,7 +34,7 @@ function createUser() {
 const emit = defineEmits(['back'])
 
 async function deriveKeyPair() {
-  newPair.value = await derivePair(password.value, extras)
+  newPair.value = await derivePair(password.value)
 }
 
 </script>
