@@ -3,7 +3,7 @@ import { useUser, safeJSONParse, uploadText, SEA, parseLink, useQR } from '../co
 import { QrLoad } from '../components'
 import { ref, watch } from 'vue'
 import { extractFromFile } from "gun-avatar"
-import { useWebAuthn } from './useWebAuthn'
+import { getPassKey } from './usePassKeys'
 
 const { processFile } = useQR()
 
@@ -91,18 +91,13 @@ async function handleFiles(files) {
 
 const over = ref(false)
 
-const { users, storeUser, login, deleteUser } = useWebAuthn();
+// const { users, storeUser, login, deleteUser } = useWebAuthn();
 
 const name = ref('')
 
 async function passKeyLogin() {
-  // To authenticate (login) and get keypair:
-  try {
-    const { username, keypair } = await login();
-    pair.value = keypair
-  } catch (e) {
-    console.error(e.message);
-  }
+  let id = await getPassKey()
+  console.log(id)
 }
 
 </script>

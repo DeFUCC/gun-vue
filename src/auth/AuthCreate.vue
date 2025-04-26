@@ -27,7 +27,7 @@ generatePair()
 
 function createUser() {
   auth(newPair.value, () => nextTick(async () => {
-    let n = useGun().user(newPair.value.pub).get('profile').get('name').once().then()
+    let n = await useGun().user(newPair.value.pub).get('profile').get('name').once().then()
     if (!n) updateProfile('name', name.value || 'Noname')
   }))
 }
