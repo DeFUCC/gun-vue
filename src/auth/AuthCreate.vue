@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUser, SEA, useColor, updateProfile, derivePair } from '#composables'
+import { useUser, SEA, useColor, updateProfile, derivePair, useGun } from '#composables'
 import { AccountAvatar } from '../components'
 import { useRefHistory } from '@vueuse/core'
 import { ref, nextTick, reactive } from 'vue'
@@ -26,8 +26,9 @@ async function generatePair() {
 generatePair()
 
 function createUser() {
-  auth(newPair.value, () => nextTick(() => {
-    updateProfile('name', name.value || 'Noname')
+  auth(newPair.value, () => nextTick(async () => {
+    let n = useGun().user(newPair.value.pub).get('profile').get('name').once().then()
+    if (!n) updateProfile('name', name.value || 'Noname')
   }))
 }
 
