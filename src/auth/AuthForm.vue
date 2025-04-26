@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, safeJSONParse, uploadText, SEA, parseLink, useQR } from '../composables'
+import { useUser, safeJSONParse, uploadText, SEA, parseLink, useQR, derivePair } from '../composables'
 import { QrLoad } from '../components'
 import { ref, watch } from 'vue'
 import { extractFromFile } from "gun-avatar"
@@ -91,13 +91,12 @@ async function handleFiles(files) {
 
 const over = ref(false)
 
-// const { users, storeUser, login, deleteUser } = useWebAuthn();
-
 const name = ref('')
 
 async function passKeyLogin() {
   let id = await getPassKey()
   console.log(id)
+  pair.value = await derivePair(JSON.stringify(id))
 }
 
 </script>

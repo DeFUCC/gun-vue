@@ -34,6 +34,7 @@
 	"dependencies": {
 		"@gun-vue/gun-es": "0.2.1240",
 		"@passwordless-id/webauthn": "^2.3.0",
+		"@scure/bip39": "^1.6.0",
 		"@vueuse/core": "13.0.0",
 		"@vueuse/integrations": "13.0.0",
 		"@vueuse/math": "13.0.0",

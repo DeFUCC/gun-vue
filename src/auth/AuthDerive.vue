@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { derivePair } from '#composables'
+import { derivePair, pass } from '#composables'
 import { ref, reactive, watch } from 'vue'
 import { createPassKey } from './usePassKeys'
 
 const openDerivePair = ref()
 const password = ref('')
-const extra = ref('')
 
 const emit = defineEmits(['pair'])
 
@@ -15,7 +14,7 @@ const error = ref(false)
 
 watch([password, extra], async () => {
     try {
-        pair.value = await derivePair(password.value, extra.value)
+        pair.value = await derivePair(password.value)
         error.value = false
         emit('pair', pair.value)
     } catch (e) {
@@ -24,8 +23,7 @@ watch([password, extra], async () => {
 })
 
 async function generatePK() {
-    const id = await createPassKey()
-    console.log(id)
+    password.value = JSON.stringify(await createPassKey())
 }
 
 </script>
@@ -37,6 +35,5 @@ async function generatePK() {
         .text-xl Derive your keypair 
     button.button(@click.stop.prevent="generatePK()") PassKey
     input.p-2.text-lg(v-model="password" @input="derivePair()" placeholder="Passphrase")
-    input.p-2.text-lg(v-model="extra" @input="derivePair()" placeholder="Extra entropy")
     .text-red(v-if="error") {{ error }}
 </template>
