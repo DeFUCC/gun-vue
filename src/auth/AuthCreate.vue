@@ -4,6 +4,7 @@ import { AccountAvatar } from '../components'
 import { useRefHistory } from '@vueuse/core'
 import { ref, nextTick, reactive } from 'vue'
 import AuthDerive from './AuthDerive.vue'
+import { createPassKey } from './usePassKeys'
 
 const colorDeep = useColor('deep')
 const colorLight = useColor('light')
@@ -33,35 +34,40 @@ function createUser() {
 
 const emit = defineEmits(['back'])
 
-async function deriveKeyPair() {
-  newPair.value = await derivePair(password.value)
+async function generatePK() {
+  newPair.value = await derivePair(JSON.stringify(await createPassKey(name.value)))
 }
 
 </script>
 
 <template lang="pug">
-.flex.flex-col.items-center.flex-1.p-2.bg-light-700.dark-bg-dark-200.rounded-3xl.shadow-lg.text-center.p-4.transition.duration-300ms.ease-in(
+.flex.flex-col.items-center.flex-1.p-2.bg-light-700.dark-bg-dark-200.rounded-3xl.shadow-lg.text-center.p-4.transition.duration-300ms.ease-in.relative(
   v-if="!user.is" 
-  :style="{ backgroundColor: colorDeep.hex(newPair?.pub || '') }"
   )
+  button.button.absolute.top-4.right-4(@click="$emit('back')")
+    .i-la-times
   .text-xl.font-bold Create a new account
   .mb-4.mt-2 Tap the circle to generate a new key
-  account-avatar.cursor-pointer.rounded-full.shadow-xl.border-8(
+  account-avatar.rounded-full.shadow-xl.border-8(
     v-if="newPair" 
     :pub="newPair.pub" 
     :size="200" 
-    :style="{ borderColor: colorDeep.hex(newPair.pub) }" 
-    @click="generatePair()"
     )
-  form.flex.flex-col(@submit.prevent="createUser()")
-    .flex.flex-wrap.justify-center.my-4.gap-2
+
+  form.flex.flex-col.gap-4.mt-4(@submit.prevent="name && createUser()")
+    input.p-4.rounded-2xl.dark-bg-dark-200(
+      v-model="name" 
+      autofocus
+      placeholder="Enter your name or nickname"
+      autocomplete="username" 
+      )
+    .flex.flex-wrap.justify-center.gap-2
       button.gap-2.button.items-center(
         type="button"
 
         @click.stop=" history.length > 2 ? undo() : $emit('back')"
         )
         .i-la-undo.text-2xl
-        .text-sm Previous
       button.gap-2.button.items-center(
         type="button"
         @click.stop="generatePair()")
@@ -69,19 +75,22 @@ async function deriveKeyPair() {
         .text-sm Random
       button.gap-2.button.items-center(
         type="button"
+        @click.stop="generatePK()"
+        )
+        .i-la-fingerprint.text-2xl
+        .text-sm PassKey
+      button.gap-2.button.items-center(
+        type="button"
         @click.stop="openDerivePair = !openDerivePair"
         :class="{ active: openDerivePair }"
         )
-        .i-la-fingerprint.text-2xl
+        .i-la-flask.text-2xl
         .text-sm Derive
-    AuthDerive(@pair="newPair = $event" v-if="openDerivePair")
-    input.p-4.rounded-2xl.my-2.dark-bg-dark-200(
-      v-model="name" 
-      placeholder="Enter your name or nickname"
-      autocomplete="username" 
-      )
+
+    AuthDerive(@pair="newPair = $event" v-if="openDerivePair" @login="createUser()")
+
     button.button.w-full.flex.justify-center.items-center(
-      v-if="newPair && !user.is" 
+      v-if="newPair" 
       type="submit"
       ) Authenticate
 </template>

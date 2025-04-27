@@ -33,6 +33,7 @@
 	},
 	"dependencies": {
 		"@gun-vue/gun-es": "0.2.1240",
+		"@noble/curves": "^1.9.0",
 		"@passwordless-id/webauthn": "^2.3.0",
 		"@scure/bip39": "^1.6.0",
 		"@vueuse/core": "13.0.0",

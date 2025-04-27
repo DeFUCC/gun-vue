@@ -3,6 +3,8 @@ import vue from "@vitejs/plugin-vue";
 import { viteSingleFile } from "vite-plugin-singlefile"
 import Unocss from 'unocss/vite'
 
+import fs from 'fs/promises';
+import crypto from 'crypto';
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -57,14 +59,20 @@ export default defineConfig({
 	},
 });
 
-
+async function generateHash(content) {
+	const hash = crypto.createHash('md5');
+	hash.update(content);
+	return hash.digest('hex');
+}
 
 function viteBuildScript() {
 	return {
 		name: 'vite-build-script',
-		transformIndexHtml(html) {
+		async transformIndexHtml(html) {
+			let final = html
 			if (process.env.NODE_ENV === 'production') {
-				return html.replace(/<!-- Production build insert -->/, `<script async defer src="https://stat.defucc.me/script.js" data-website-id="9e6f4375-b00a-4348-9aed-4101363b2f5c"></script>
+
+				final = html.replace('</head>', `<script async defer src="https://stat.defucc.me/script.js" data-website-id="9e6f4375-b00a-4348-9aed-4101363b2f5c"></script>
           
           <script>
     if ('serviceWorker' in navigator) {
@@ -79,10 +87,28 @@ function viteBuildScript() {
       });
     }
   </script>
-	
+	</head>
 	`);
+
+				const hash = await generateHash(html);
+				const swPath = path.resolve('./public/sw.js');
+
+				let swContent = await fs.readFile(swPath, 'utf8');
+				swContent = swContent.replace(
+					/const CACHE_NAME = ['"]([^'"]+)['"]/,
+					(match, p1) => {
+						const baseName = p1.split('-v.')[0];
+						return `const CACHE_NAME = '${baseName}-v.${new Date().toISOString().slice(0, 10)}-${hash}'`;
+					}
+				);
+				await fs.writeFile(path.resolve('../docs/public/app/sw.js'), swContent);
+				console.log(`✓ Service worker cache updated with hash: ${hash}`);
 			}
-			return html;
+
+			return final;
 		},
 	};
 }
+
+
+
