@@ -28,6 +28,10 @@ button.button {
 	@apply p-2 flex font-bold rounded-xl shadow-md hover-(shadow-lg bg-light-100) transition-all duration-200 ease-out items-center hover-dark-bg-dark-100 dark-bg-dark-800 bg-light-300 hover-bg-light-100;
 }
 
+.button:disabled {
+	@apply op-50;
+}
+
 .button.active {
 	@apply bg-dark-100 shadow-xl text-light-300 dark-bg-light-300 dark-text-dark-500;
 }

@@ -5,6 +5,7 @@ import { createPassKey } from './usePassKeys'
 
 const openDerivePair = ref()
 const password = ref('')
+const extra = ref('')
 
 const emit = defineEmits(['pair', 'login'])
 
@@ -12,21 +13,16 @@ const pair = ref()
 
 const error = ref(false)
 
-watch(pair, p => emit('pair', p))
-
-watch(password, async () => {
+watch([password, extra], async ([p, e]) => {
     try {
-        pair.value = await derivePair(password.value)
+        if (!p) return
+        pair.value = await derivePair(password.value, extra.value)
         error.value = false
+        emit('pair', pair.value)
     } catch (e) {
         error.value = e
     }
 })
-
-async function generatePK() {
-    pair.value = await derivePair(JSON.stringify(await createPassKey()))
-    emit('login')
-}
 
 </script>
 
@@ -35,7 +31,7 @@ async function generatePK() {
     .flex.gap-1.items-center
         .i-la-fingerprint.text-2xl
         .text-xl Derive your keypair 
-    button.button(@click.stop.prevent="generatePK()") PassKey
     input.p-2.text-lg(v-model="password" placeholder="Passphrase")
+    input.p-2.text-lg(v-model="extra" placeholder="Extra entropy")
     .text-red(v-if="error") {{ error }}
 </template>
