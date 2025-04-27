@@ -53,8 +53,15 @@ async function deriveKeyPair() {
     :style="{ borderColor: colorDeep.hex(newPair.pub) }" 
     @click="generatePair()"
     )
-  form.flex.flex-col(@submit.prevent="createUser()")
-    .flex.flex-wrap.justify-center.my-4.gap-2
+
+  input.p-4.rounded-2xl.my-2.dark-bg-dark-200(
+    v-model="name" 
+    placeholder="Enter your name or nickname"
+    autocomplete="username" 
+    )
+
+  form.flex.flex-col.gap-4.mt-4(@submit.prevent="createUser()")
+    .flex.flex-wrap.justify-center.gap-2
       button.gap-2.button.items-center(
         type="button"
 
@@ -74,14 +81,12 @@ async function deriveKeyPair() {
         )
         .i-la-fingerprint.text-2xl
         .text-sm Derive
-    AuthDerive(@pair="newPair = $event" v-if="openDerivePair")
-    input.p-4.rounded-2xl.my-2.dark-bg-dark-200(
-      v-model="name" 
-      placeholder="Enter your name or nickname"
-      autocomplete="username" 
-      )
+
+    AuthDerive(@pair="newPair = $event" v-if="openDerivePair" @login="createUser()")
+
+
     button.button.w-full.flex.justify-center.items-center(
       v-if="newPair && !user.is" 
       type="submit"
-      ) Authenticate
+      ) Create user
 </template>

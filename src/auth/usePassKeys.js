@@ -1,24 +1,13 @@
-// usePassKeys.js
-
-/**
- * Base64url encode a Uint8Array
- */
 const toBase64url = (buf) =>
   btoa(String.fromCharCode(...buf))
     .replace(/\+/g, '-')
     .replace(/\//g, '_')
     .replace(/=+$/, '');
 
-/**
- * Generate a random 32-byte challenge
- */
 const randomChallenge = () => crypto.getRandomValues(new Uint8Array(32));
 
-/**
- * Create a new passkey (resident credential).
- * Optionally accepts a displayName.
- * Returns { id }
- */
+const randomUserId = () => crypto.getRandomValues(new Uint8Array(16));
+
 export async function createPassKey(name) {
   const displayName = name || `User ${new Date().toISOString().replace('T', ' ').slice(0, 16)}`;
 
@@ -26,7 +15,7 @@ export async function createPassKey(name) {
     challenge: randomChallenge(),
     rp: { name: 'App' },
     user: {
-      id: new Uint8Array(1), // minimal placeholder ID
+      id: randomUserId(),
       name: displayName,
       displayName: displayName
     },
@@ -45,10 +34,7 @@ export async function createPassKey(name) {
   return { id };
 }
 
-/**
- * Get an existing passkey (resident credential).
- * Returns { id }
- */
+
 export async function getPassKey() {
   const options = {
     challenge: randomChallenge(),
