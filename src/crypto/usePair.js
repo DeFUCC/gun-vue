@@ -1,8 +1,7 @@
 import { p256 } from '@noble/curves/p256';
 
-const TEXT_ENCODER = new TextEncoder();
-
 export async function derivePair(pwd, extra) {
+    const TEXT_ENCODER = new TextEncoder();
     const pwdBytes = pwd
         ? (typeof pwd === 'string' ? TEXT_ENCODER.encode(normalizeString(pwd)) : pwd)
         : crypto.getRandomValues(new Uint8Array(32));
