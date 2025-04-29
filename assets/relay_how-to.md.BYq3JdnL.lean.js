@@ -1,1 +1,0 @@
-import{_ as a,c as i,o as e,ag as t}from"./chunks/framework.BoVd_Pm6.js";const k=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"relay/how-to.md","filePath":"relay/how-to.md"}'),n={name:"relay/how-to.md"};function l(p,s,o,h,r,d){return e(),i("div",null,s[0]||(s[0]=[t("",14)]))}const u=a(n,[["render",l]]);export{k as __pageData,u as default};

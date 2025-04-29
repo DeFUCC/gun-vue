@@ -48,5 +48,18 @@
 	],
 	"launch_handler": {
 		"client_mode": ["focus-existing", "auto"]
-	}
+	},
+	"file_handlers": [
+		{
+			"action": "/app/#auth",
+			"accept": {
+				"application/json": [".webkey"]
+			}
+		}
+	],
+	"url_handlers": [
+		{
+			"origin": "https://gun-vue.js.org"
+		}
+	]
 }
