@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useUser } from '../composables'
 import AuthLogin from '../auth/AuthLogin.vue'
 import UiLayer from '../ui/UiLayer.vue'
+import { onStartTyping, useFocus } from '@vueuse/core'
 
 const { user } = useUser()
 
@@ -15,12 +16,26 @@ function send() {
   message.value = ''
 }
 
+const text = ref()
+
+onStartTyping(() => {
+  if (!text.value.active)
+    text.value.focus()
+})
+
+const { focused } = useFocus(text)
+
+onMounted(() => {
+  focused.value = true
+})
+
 </script>
 
 <template lang="pug">
 .flex.gap-2(v-if="user.pub")
   textarea.p-2.rounded-xl.bg-light-200.flex-1.dark-bg-dark-200(
     v-model="message" 
+    ref="text"
     placeholder="Your message" 
     @keydown.enter.prevent.stop="send()"
     )
