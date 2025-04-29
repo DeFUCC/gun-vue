@@ -33,7 +33,7 @@ function createIt() {
   reset()
 }
 
-const bg = computed(() => useBackground({ pub: newPair.value?.pub, size: 620 }))
+const bg = computed(() => useBackground({ pub: newPair.value?.pub, size: 1920, svg: false }))
 
 </script>
 

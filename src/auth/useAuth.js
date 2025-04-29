@@ -1,5 +1,6 @@
 import { computed, reactive, watchEffect } from "vue";
-import { useGun, SEA, auth, isPair, user } from "../composables";
+import { useGun, SEA, auth, isPair, user, uploadText, useQR } from "../composables";
+import { extractFromFile } from "gun-avatar"
 
 export const pass = reactive({
 	input: "",
@@ -95,7 +96,6 @@ async function setPass(text) {
 export function useAuthLink(data, passPhrase) {
 	if (!data) return;
 	const decoded = decodeURIComponent(data);
-	console.log("dec", decoded);
 	if (decoded.substring(0, 3) == "SEA") {
 		if (passPhrase) {
 			authEncPass(decoded, passPhrase);
@@ -117,4 +117,24 @@ export function useAuthLink(data, passPhrase) {
 async function authEncPass(encPair, passphrase) {
 	let pair = await SEA.decrypt(encPair, passphrase);
 	auth(pair);
+}
+
+
+export async function handleAuthFiles(files, pair) {
+	const file = files[0]
+	if (!file) return
+	const type = file.type.toLowerCase()
+	try {
+		if (type === 'application/json' || file.name.endsWith('.webkey')) {
+			return await uploadText([file])
+		} else if (type === 'image/png' || type === 'image/svg+xml') {
+			const data = await extractFromFile(file)
+			if (data?.content) return data.content
+		} else if (type.startsWith('image/')) {
+			const { processFile: processQr } = useQR()
+			return await processQr(file)
+		}
+	} catch (e) {
+		console.error('Failed to extract auth data from file:', e)
+	}
 }

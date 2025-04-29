@@ -20,19 +20,23 @@ export function downloadFile(text, fileType, fileName, isBlob = true) {
 }
 
 
-export function uploadText(files, callback = (r) => console.log(r)) {
-	if (!files.length) return;
+export async function uploadText(files) {
+	if (!files || files.length === 0) { return undefined; }
+
 	const file = files[0];
 	const maxBytes = 20000000;
+
 	if (file.size > maxBytes) {
-		console.error("File is bigger than " + niceBytes(maxBytes)) + " limit";
-		return;
+		console.error("File is bigger than " + maxBytes + " bytes limit");
+		return undefined;
 	}
-	let reader = new FileReader();
-	reader.readAsText(file);
-	reader.onload = () => {
-		callback(reader.result);
-	};
+
+	return new Promise((resolve, reject) => {
+		let reader = new FileReader();
+		reader.onload = () => { resolve(reader.result); };
+		reader.onerror = (error) => { reject(error); };
+		reader.readAsText(file);
+	});
 }
 
 export function usePictureUpload({

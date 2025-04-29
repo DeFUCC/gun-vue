@@ -22,17 +22,13 @@ const text = computed({
 
 
 
-function importPostFile(event) {
-  uploadText(event.target?.files, (file) => {
-    let { frontmatter, content } = parseMd(file);
-    emit('frontmatter', frontmatter)
-    if (content) {
-      add.value = true
-      nextTick(() => {
-        // simplemde.value(content)
-      })
-    }
-  });
+async function importPostFile(event) {
+  let file = await uploadText(event.target?.files);
+  let { frontmatter, content } = parseMd(file);
+  emit('frontmatter', frontmatter)
+  if (content) {
+    add.value = true
+  }
 }
 </script>
 

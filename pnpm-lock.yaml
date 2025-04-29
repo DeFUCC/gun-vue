@@ -182,8 +182,8 @@ importers:
         specifier: 0.2020.1240
         version: 0.2020.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       gun-avatar:
-        specifier: 2.0.1
-        version: 2.0.1(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4)
+        specifier: 2.2.1
+        version: 2.2.1(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4)
       jszip:
         specifier: 3.10.1
         version: 3.10.1
@@ -806,6 +806,9 @@ packages:
 
   '@gun-vue/gun-es@0.2.1240':
     resolution: {integrity: sha512-R8L230z94ldSQRTcDbN/3xH2CmnHGcTMbURff8gEswXfjp6CxjA/YOe9iLLuipEXyHHPMTfpACoBP0XDtXXOxA==}
+
+  '@gun-vue/gun-es@0.3.1240':
+    resolution: {integrity: sha512-a05ZdoTlZkV54pmUkMNC3fcmVZ38dQ27MZ1EC/UtSY9SHlFNpGqNy7sujUQJOCslz0DI304OeUo/zIwe0izfNA==}
 
   '@iconify-json/carbon@1.2.8':
     resolution: {integrity: sha512-6xh4YiFBz6qoSnB3XMe23WvjTJroDFXB17J1MbiT7nATFe+70+em1acRXr8hgP/gYpwFMHFc4IvjA/IPTPnTzg==}
@@ -2249,8 +2252,8 @@ packages:
   gun-avatar@1.9.4:
     resolution: {integrity: sha512-wOZPqjt0OuIOV2I+HOTmUUEupZhKzjAzf4me8fzhbw69GeHDIn3GjZVz5mjheaD7R3WQWvxGgkR5H5gm9X5Vxw==}
 
-  gun-avatar@2.0.1:
-    resolution: {integrity: sha512-AjwGJkBqIQfOt2uhZ5hnVqMstkTPb5OQzt1/mxvcVHZkX9UjNL4A4lT/HgD536Qi+ag/EmzhJAe4/M3SaPmGqw==}
+  gun-avatar@2.2.1:
+    resolution: {integrity: sha512-Tvsyubris5NAaodCm1uuMhUikRgoAR+8XN/ROOlvf0paia98IS72i6ZWVOlWlCFVk0RhulnGdPPPN87L+39vAA==}
 
   gun@0.2020.1239:
     resolution: {integrity: sha512-e4BsRL4P6oLT1m7G+0H8VhhdfFEHhcPc5tOnmgTO6q9ZQrT+Q0B5XKrpAV3NcuLq3SpnOevlz6+Ul5CVaavcXQ==}
@@ -4254,6 +4257,14 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
+  '@gun-vue/gun-es@0.3.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)':
+    dependencies:
+      '@noble/curves': 1.9.0
+      gun: 0.2020.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
   '@iconify-json/carbon@1.2.8':
     dependencies:
       '@iconify/types': 2.0.0
@@ -5914,11 +5925,11 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  gun-avatar@2.0.1(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4):
+  gun-avatar@2.2.1(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4):
     dependencies:
+      '@gun-vue/gun-es': 0.3.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       '@unocss/reset': 66.0.0
       '@vueuse/core': 13.0.0(vue@3.5.13(typescript@5.5.4))
-      gun: 0.2020.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       png-chunk-text: 1.0.0
       png-chunks-encode: 1.0.0
       png-chunks-extract: 1.0.0
