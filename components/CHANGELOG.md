@@ -1,5 +1,11 @@
 # @gun-vue/components
 
+## 0.24.2
+
+### Patch Changes
+
+- New Gun-Avatar and key derivation auth
+
 ## 0.24.1
 
 ### Patch Changes
