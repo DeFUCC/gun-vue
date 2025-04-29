@@ -134,8 +134,8 @@ importers:
   composables:
     dependencies:
       '@gun-vue/gun-es':
-        specifier: 0.2.1240
-        version: 0.2.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+        specifier: 0.3.1240
+        version: 0.3.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       '@noble/curves':
         specifier: ^1.9.0
         version: 1.9.0
@@ -182,8 +182,8 @@ importers:
         specifier: 0.2020.1240
         version: 0.2020.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       gun-avatar:
-        specifier: 2.2.1
-        version: 2.2.1(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4)
+        specifier: 2.2.2
+        version: 2.2.2(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4)
       jszip:
         specifier: 3.10.1
         version: 3.10.1
@@ -2252,8 +2252,8 @@ packages:
   gun-avatar@1.9.4:
     resolution: {integrity: sha512-wOZPqjt0OuIOV2I+HOTmUUEupZhKzjAzf4me8fzhbw69GeHDIn3GjZVz5mjheaD7R3WQWvxGgkR5H5gm9X5Vxw==}
 
-  gun-avatar@2.2.1:
-    resolution: {integrity: sha512-Tvsyubris5NAaodCm1uuMhUikRgoAR+8XN/ROOlvf0paia98IS72i6ZWVOlWlCFVk0RhulnGdPPPN87L+39vAA==}
+  gun-avatar@2.2.2:
+    resolution: {integrity: sha512-hEr0JaDIHhG1AmKSmhOdHkKTVgsuB1/iLJapJWTBfNtxskVum0xkhKvAAylLRzz8P/bMhHwDAPoS2vKSK3cuWg==}
 
   gun@0.2020.1239:
     resolution: {integrity: sha512-e4BsRL4P6oLT1m7G+0H8VhhdfFEHhcPc5tOnmgTO6q9ZQrT+Q0B5XKrpAV3NcuLq3SpnOevlz6+Ul5CVaavcXQ==}
@@ -4250,13 +4250,6 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@gun-vue/gun-es@0.2.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)':
-    dependencies:
-      gun: 0.2020.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-
   '@gun-vue/gun-es@0.3.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)':
     dependencies:
       '@noble/curves': 1.9.0
@@ -5925,7 +5918,7 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  gun-avatar@2.2.1(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4):
+  gun-avatar@2.2.2(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4):
     dependencies:
       '@gun-vue/gun-es': 0.3.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       '@unocss/reset': 66.0.0

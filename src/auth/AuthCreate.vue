@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { useUser, SEA, useColor, updateProfile, derivePair, useGun } from '#composables'
+import { useUser, SEA, useColor, updateProfile, useGun } from '#composables'
 import { AccountAvatar } from '../components'
 import { useRefHistory } from '@vueuse/core'
 import { ref, nextTick, reactive } from 'vue'
 import AuthDerive from './AuthDerive.vue'
 import { createPassKey } from './usePassKeys'
+import derivePair from '@gun-vue/gun-es/derive'
 
 const colorDeep = useColor('deep')
 const colorLight = useColor('light')

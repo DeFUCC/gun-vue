@@ -1,9 +1,10 @@
 <script setup>
-import { useUser, safeJSONParse, uploadText, SEA, parseLink, useQR, derivePair, handleAuthFiles } from '../composables'
+import { useUser, safeJSONParse, uploadText, SEA, parseLink, useQR, handleAuthFiles } from '../composables'
 import { QrLoad } from '../components'
 import { ref, watch } from 'vue'
 import { extractFromFile } from "gun-avatar"
 import { getPassKey } from './usePassKeys'
+import derivePair from '@gun-vue/gun-es/derive'
 
 const { processFile: processQr } = useQR()
 
@@ -115,7 +116,7 @@ if ('launchQueue' in window) {
       .px-2 PassKey
     button.button.cursor-pointer.flex.items-center(@click="show('key')" :class="{ active: current == 'key' }")
       .i-la-key.text-2xl
-      .p-1.ml-1.font-bold Paste
+      .p-1.ml-1.font-bold Text
     label.button.cursor-pointer.flex.items-center(for="qr-input")
       .i-la-qrcode.text-2xl
       .p-1.ml-1.font-bold QR

@@ -32,7 +32,7 @@
 		"serve": "vite preview"
 	},
 	"dependencies": {
-		"@gun-vue/gun-es": "0.2.1240",
+		"@gun-vue/gun-es": "0.3.1240",
 		"@noble/curves": "^1.9.0",
 		"@passwordless-id/webauthn": "^2.3.0",
 		"@scure/bip39": "^1.6.0",
@@ -48,7 +48,7 @@
 		"fuse.js": "7.1.0",
 		"grapheme-breaker-mjs": "1.0.4",
 		"gun": "0.2020.1240",
-		"gun-avatar": "2.2.1",
+		"gun-avatar": "2.2.2",
 		"jszip": "3.10.1",
 		"markdown-it": "14.1.0",
 		"markdown-it-external-links": "0.0.6",

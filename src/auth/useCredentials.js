@@ -71,7 +71,7 @@ export function useCredentials() {
 
   function saveJson(content, userName, extension = '.webkey') {
     saveAs(
-      JSON.stringify(content),
+      content,
       `${userName || ('account ' + (new Date()).getDate())}.${extension}`,
       'application/json'
     )

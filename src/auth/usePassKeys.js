@@ -13,7 +13,7 @@ export async function createPassKey(name) {
 
   const options = {
     challenge: randomChallenge(),
-    rp: { name: 'App' },
+    rp: { name: 'Gun-Vue' },
     user: {
       id: randomUserId(),
       name: displayName,

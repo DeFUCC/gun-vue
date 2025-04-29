@@ -6,7 +6,6 @@ import { useClipboard, useShare } from '@vueuse/core'
 import { useCredentials } from './useCredentials'
 
 
-
 const emit = defineEmits(['close'])
 
 const current = ref('pass')
@@ -82,7 +81,9 @@ const platforms = {
         .px-2 Avatar
 
   .flex.w-full.justify-center.mt-4(v-if="current")
+
     transition(name="fade" mode="out-in")
+
       .p-2.flex.flex-col.w-full.items-start(v-if="current == 'key'", key="text")
         .flex.gap-2.items-center.mx-4
           button.button.items-center(

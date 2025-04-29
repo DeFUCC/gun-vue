@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { derivePair, pass } from '#composables'
+import { pass } from '#composables'
 import { ref, reactive, watch } from 'vue'
 import { createPassKey } from './usePassKeys'
+import derivePair from '@gun-vue/gun-es/derive'
 
 const openDerivePair = ref()
 const password = ref('')
