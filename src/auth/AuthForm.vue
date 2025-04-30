@@ -93,9 +93,7 @@ if ('launchQueue' in window) {
     if (fileHandle) {
       const file = await fileHandle.getFile()
       console.log('loading', file)
-      setTimeout(async () => {
-        pair.value = await handleAuthFiles(file)
-      }, 500)
+      pair.value = await handleAuthFiles([file])
     }
   });
 }
