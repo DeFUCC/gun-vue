@@ -92,7 +92,7 @@ if ('launchQueue' in window) {
     const fileHandle = launchParams.files?.[0];
     if (fileHandle) {
       fileHandle.getFile().then(async file => {
-        pair.value = await handleAuthFiles(await file.getFile())
+        pair.value = await handleAuthFiles(file)
       });
     }
   });
