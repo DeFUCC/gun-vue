@@ -69,7 +69,7 @@ export function useCredentials() {
         }.${extension}`, blob.type))
   }
 
-  function saveJson(content, userName, extension = '.webkey') {
+  function saveJson(content, userName, extension = 'webkey') {
     saveAs(
       content,
       `${userName || ('account ' + (new Date()).getDate())}.${extension}`,
