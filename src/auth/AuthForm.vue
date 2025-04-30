@@ -88,12 +88,14 @@ async function handleDrop(event) {
 }
 
 if ('launchQueue' in window) {
-  window.launchQueue.setConsumer(launchParams => {
+  window.launchQueue.setConsumer(async launchParams => {
     const fileHandle = launchParams.files?.[0];
     if (fileHandle) {
-      fileHandle.getFile().then(async file => {
+      const file = await fileHandle.getFile()
+      console.log('loading', file)
+      setTimeout(async () => {
         pair.value = await handleAuthFiles(file)
-      });
+      }, 500)
     }
   });
 }
