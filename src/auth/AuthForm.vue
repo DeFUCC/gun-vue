@@ -71,14 +71,12 @@ async function uploadQR(file) {
 }
 
 
-
 const over = ref(false)
 
 const name = ref('')
 
 async function passKeyLogin() {
   let id = await getPassKey()
-  console.log(id)
   pair.value = await derivePair(JSON.stringify(id))
 }
 

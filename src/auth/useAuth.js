@@ -124,16 +124,18 @@ export async function handleAuthFiles(files, pair) {
 	const file = files[0]
 	if (!file) return
 	const type = file.type.toLowerCase()
+	let result
 	try {
 		if (type === 'application/json' || file.name.endsWith('.webkey')) {
-			return await uploadText([file])
+			result = await uploadText([file])
 		} else if (type === 'image/png' || type === 'image/svg+xml') {
 			const data = await extractFromFile(file)
-			if (data?.content) return data.content
+			if (data?.content) result = data.content
 		} else if (type.startsWith('image/')) {
-			const { processFile: processQr } = useQR()
-			return await processQr(file)
+			const { processFile } = useQR()
+			result = await processFile(file)
 		}
+		return result
 	} catch (e) {
 		console.error('Failed to extract auth data from file:', e)
 	}

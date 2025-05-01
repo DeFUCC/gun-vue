@@ -34,7 +34,7 @@ const encPair = computed(() => {
 
 const href = computed(() => safePair.value ? pass.links.pass : pass.links.pair)
 
-const png = computed(() => gunAvatar({ pub: user.pub, embed: encPair.value }))
+const png = computed(() => gunAvatar({ pub: user.pub, embed: encPair.value, svg: false }))
 
 const svgContent = computed(() => gunAvatar({ pub: user.pub, embed: encPair.value, svg: true }))
 

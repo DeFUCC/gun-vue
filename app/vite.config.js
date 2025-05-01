@@ -14,7 +14,7 @@ const dirname = path.dirname(filename);
 export default defineConfig({
 	clearScreen: false,
 	server: {
-		port: 3142,
+		port: 3342,
 		strictPort: false,
 		fs: {
 			allow: ['../']

@@ -18,7 +18,7 @@ const bg = computed(() => useBackground({ pub: user.pub, size: 600, light: 0.5, 
   :style="{ ...bg }"
   )
   .flex.items-center
-    user-avatar(:size="120")
+    user-avatar(:size="120" :editable="false")
     .text-xl.mx-2.font-bold {{ user?.name }}
   mate-button(:pub="user.pub")
 
