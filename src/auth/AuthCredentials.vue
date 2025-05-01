@@ -111,7 +111,7 @@ const platforms = {
       .p-2.flex.flex-col.items-center(v-else-if="current == 'avatar'" key="avatar")
 
         .flex.gap-2.items-center.mt-4
-          button.button.items-center(@click="saveImage(png, user.name)")
+          button.button.items-center(@click="saveImage(png, user.name, 'png')")
             .i-la-download.text-2xl
             .px-2 PNG
           button.button.items-center(@click="saveImage(svg, user.name, 'svg')")
