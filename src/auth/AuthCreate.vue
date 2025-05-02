@@ -1,28 +1,30 @@
 <script setup lang="ts">
-import { useUser, SEA, updateProfile, useGun, gunAvatar } from '#composables'
-import { AccountAvatar } from '../components'
 import { useRefHistory, onStartTyping, useFocus, asyncComputed } from '@vueuse/core'
 import { ref, nextTick, reactive, onMounted, computed } from 'vue'
-import AuthDerive from './AuthDerive.vue'
-import derivePair from '@gun-vue/gun-es/derive'
-
-
 import * as bip39 from '@scure/bip39';
 import { wordlist } from '@scure/bip39/wordlists/english';
+import derivePair from '@gun-vue/gun-es/derive'
+
+import { useUser, updateProfile, useGun, gunAvatar } from '#composables'
+
+const { user, auth } = useUser()
 
 const name = ref('')
 const entropy = ref(crypto.getRandomValues(new Uint8Array(20)))
-const { history, undo, redo } = useRefHistory(entropy)
+
+const passKeys = reactive(new Set())
+
+const { history, undo, canUndo, canRedo, redo } = useRefHistory(entropy)
 
 const mnemonic = computed(() => bip39.entropyToMnemonic(entropy.value, wordlist))
 
-const pair = asyncComputed(async () => await derivePair(entropy.value), {}, { immediate: true })
+const isPassKey = computed(() => passKeys.has(entropy.value))
+
+const pair = asyncComputed(async () => await derivePair(btoa(String.fromCharCode(...entropy.value))), {}, { immediate: true })
 
 async function updateEntropy() {
   entropy.value = crypto.getRandomValues(new Uint8Array(20))
 }
-
-const { user, auth } = useUser()
 
 function createUser() {
   auth(pair.value, () => nextTick(async () => {
@@ -34,21 +36,18 @@ function createUser() {
 const emit = defineEmits(['back'])
 
 async function generatePK() {
+  let key = await createPassKey(name.value)
+  passKeys.add(key)
 
-  entropy.value = await createPassKey(name.value)
+  entropy.value = key
 }
 
 const input = ref(null)
 const { focused } = useFocus(input)
 
-onStartTyping(() => {
-  if (!input.value.active)
-    input.value.focus()
-})
+onStartTyping(() => { if (!input.value.active) input.value.focus() })
 
-onMounted(() => {
-  focused.value = true
-})
+onMounted(() => { focused.value = true })
 
 async function createPassKey(name) {
   if (!name) return
@@ -75,8 +74,13 @@ async function createPassKey(name) {
     }
   });
 
-  return new Uint8Array(await crypto.subtle.digest('SHA-256', credential.rawId)).slice(0, 20);
+  return new Uint8Array(await crypto.subtle.digest('SHA-256', credential.rawId)).slice(0, 20)
+
 }
+
+const toBase64 = u8 => btoa(String.fromCharCode(...u8));
+
+const toUint8Array = b64 => new Uint8Array([...atob(b64)].map(c => c.charCodeAt(0)));
 
 
 
@@ -108,9 +112,16 @@ form.flex.flex-col.items-center.flex-1.bg-light-700.dark-bg-dark-200.rounded-3xl
     .flex.flex-wrap.justify-center.gap-2
       button.gap-2.button.items-center(
         type="button"
+        v-if="canUndo"
         @click.stop="undo()"
         )
         .i-la-undo.text-2xl
+      button.gap-2.button.items-center(
+        type="button"
+        v-if="canRedo"
+        @click.stop="redo()"
+        )
+        .i-la-redo.text-2xl
       button.gap-2.button.items-center(
         type="button"
         @click.stop="updateEntropy()")
@@ -120,13 +131,14 @@ form.flex.flex-col.items-center.flex-1.bg-light-700.dark-bg-dark-200.rounded-3xl
         type="button"
         :disabled="!name"
         @click.stop="generatePK()"
+        :class="{ [isPassKey ? 'bg-green! dark-bg-green-800!' : '']: true }"
         )
         .i-la-fingerprint.text-2xl
         .text-sm PassKey
 
-    .p-4.bg-red.rounded-xl.max-w-35ch
-      p.blur-lg.hover-blur-0.transition-500.font-mono {{ mnemonic }} 
-
+    .p-4.rounded-xl.max-w-100.font-mono(:class="{ [isPassKey ? 'bg-green! dark-bg-green-800!' : 'bg-red']: true }")
+      p.blur-lg.hover-blur-0.transition-500.select-all {{ mnemonic }} 
+    .max-w-100.text-xs.font-mono(:class="{ [isPassKey ? 'text-green-700' : 'text-red']: true }") {{ isPassKey ? 'Key is generated from a PassKey and can be open elsewhere with the same credentials. You can recover your seed phrase from it later.' : 'Key is generated randomly. Store the seed phrase securely or you will never be able to recover it again. Store your derived key pair securely.' }}
 
     button.button.w-full.flex.justify-center.items-center(
       v-if="pair" 

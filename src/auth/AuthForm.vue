@@ -3,7 +3,6 @@ import { useUser, safeJSONParse, uploadText, SEA, parseLink, useQR, handleAuthFi
 import { QrLoad } from '../components'
 import { ref, watch } from 'vue'
 import { extractFromFile } from "gun-avatar"
-import { getPassKey } from './usePassKeys'
 import derivePair from '@gun-vue/gun-es/derive'
 
 const { processFile: processQr } = useQR()
@@ -84,11 +83,10 @@ async function passKeyLogin() {
     }
   });
 
-  console.log(credential)
+  let bits = new Uint8Array(await crypto.subtle.digest('SHA-256', credential.rawId)).slice(0, 20)
 
-  let bits = new Uint8Array(await crypto.subtle.digest('SHA-256', credential.rawId)).slice(0, 20);
 
-  pair.value = await derivePair(bits)
+  pair.value = await derivePair(btoa(String.fromCharCode(...bits)))
 }
 
 

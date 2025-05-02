@@ -35,7 +35,7 @@ function isLink(text) {
         v-model="text", 
         type="text" 
         @keydown.enter="update()")
-      .-ml-16
+      .-ml-16.flex.gap-1
         button.p-1(
           type="submit" 
           @click="update()")
