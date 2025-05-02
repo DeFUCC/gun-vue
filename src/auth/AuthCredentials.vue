@@ -36,7 +36,7 @@ const href = computed(() => safePair.value ? pass.links.pass : pass.links.pair)
 
 const png = computed(() => gunAvatar({ pub: user.pub, embed: encPair.value, svg: false }))
 
-const svgContent = computed(() => gunAvatar({ pub: user.pub, embed: encPair.value, svg: true }))
+const svgContent = computed(() => gunAvatar({ pub: user.pub, embed: encPair.value, svg: true, p3: false }))
 
 const { saveBookmark, saveImage, saveJson, saveLink, shareImage } = useCredentials()
 
@@ -63,7 +63,7 @@ const platforms = {
     .flex.flex-wrap.gap-2.p-2
       button.button.items-center(@click="show('key')" :class="{ active: current == 'key' }")
         .i-la-envelope-open-text.text-2xl
-        .px-2 Text
+        .px-2 Key
       button.button.items-center(
         :href="href" 
         target="_blank" 
@@ -103,7 +103,7 @@ const platforms = {
             .px-1 Share
           button.button.items-center(@click="saveJson(encPair, user.name)")
             .i-la-download.text-2xl
-            .px-2 Download
+            .px-2 WebKey
         .w-full.p-4.text-sm.flex-1.rounded-xl.break-all.select-all.transition-4000(
           key="text", :class="{ 'blur-lg hover-blur-0': !safePair }"
         ) {{ encPair }}

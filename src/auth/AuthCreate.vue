@@ -1,35 +1,32 @@
 <script setup lang="ts">
-import { useUser, SEA, useColor, updateProfile, useGun } from '#composables'
+import { useUser, SEA, updateProfile, useGun, gunAvatar } from '#composables'
 import { AccountAvatar } from '../components'
-import { useRefHistory, onStartTyping, useFocus } from '@vueuse/core'
-import { ref, nextTick, reactive, onMounted } from 'vue'
+import { useRefHistory, onStartTyping, useFocus, asyncComputed } from '@vueuse/core'
+import { ref, nextTick, reactive, onMounted, computed } from 'vue'
 import AuthDerive from './AuthDerive.vue'
-import { createPassKey } from './usePassKeys'
 import derivePair from '@gun-vue/gun-es/derive'
 
 
-const colorDeep = useColor('deep')
-const colorLight = useColor('light')
+import * as bip39 from '@scure/bip39';
+import { wordlist } from '@scure/bip39/wordlists/english';
+
+const name = ref('')
+const entropy = ref(crypto.getRandomValues(new Uint8Array(20)))
+const { history, undo, redo } = useRefHistory(entropy)
+
+const mnemonic = computed(() => bip39.entropyToMnemonic(entropy.value, wordlist))
+
+const pair = asyncComputed(async () => await derivePair(entropy.value), {}, { immediate: true })
+
+async function updateEntropy() {
+  entropy.value = crypto.getRandomValues(new Uint8Array(20))
+}
 
 const { user, auth } = useUser()
 
-const openDerivePair = ref()
-const password = ref('')
-
-const name = ref('')
-
-const newPair = ref(null)
-const { history, undo, redo } = useRefHistory(newPair)
-
-async function generatePair() {
-  newPair.value = await SEA.pair()
-}
-
-generatePair()
-
 function createUser() {
-  auth(newPair.value, () => nextTick(async () => {
-    let n = await useGun().user(newPair.value.pub).get('profile').get('name').once().then()
+  auth(pair.value, () => nextTick(async () => {
+    let n = await useGun().user(pair.value.pub).get('profile').get('name').once().then()
     if (!n) updateProfile('name', name.value || 'Noname')
   }))
 }
@@ -37,8 +34,8 @@ function createUser() {
 const emit = defineEmits(['back'])
 
 async function generatePK() {
-  newPair.value = await derivePair(JSON.stringify(await createPassKey(name.value)))
-  createUser()
+
+  entropy.value = await createPassKey(name.value)
 }
 
 const input = ref(null)
@@ -53,6 +50,37 @@ onMounted(() => {
   focused.value = true
 })
 
+async function createPassKey(name) {
+  if (!name) return
+
+  const credential = await navigator.credentials.create({
+    publicKey: {
+      challenge: crypto.getRandomValues(new Uint8Array(32)),
+      rp: { name: 'Gun-Vue' },
+      user: {
+        id: crypto.getRandomValues(new Uint8Array(16)),
+        name,
+        displayName: name
+      },
+      pubKeyCredParams: [
+        { type: 'public-key', alg: -7 },
+        { type: 'public-key', alg: -257 }
+      ],
+      authenticatorSelection: {
+        residentKey: 'required',
+        userVerification: 'preferred'
+      },
+      attestation: 'none',
+      timeout: 60000
+    }
+  });
+
+  return new Uint8Array(await crypto.subtle.digest('SHA-256', credential.rawId)).slice(0, 20);
+}
+
+
+
+
 </script>
 
 <template lang="pug">
@@ -62,34 +90,32 @@ form.flex.flex-col.items-center.flex-1.bg-light-700.dark-bg-dark-200.rounded-3xl
   )
   button.button.absolute.top-0.left-0(@click="$emit('back')")
     .i-la-angle-left
-  .text-xl.font-bold Create a new account
-  .mb-4.mt-2 Tap the circle to generate a new key
-  .flex.items-center 
-    button.gap-2.button.items-center(
-      type="button"
-      @click.stop=" history.length > 2 ? undo() : $emit('back')"
+  .h-300px.w-300px.border-8.rounded-full.shadow-xl
+    object(
+      :data="gunAvatar({ pub: pair.pub, size: 280, svg: 'interactive' })"
+      v-if="pair" 
       )
-      .i-la-undo.text-2xl
-    account-avatar.rounded-full.shadow-xl.border-8(
-      v-if="newPair" 
-      :pub="newPair.pub" 
-      :size="200" 
-      @click.stop="generatePair()"
-      )
-    button.gap-2.button.items-center(
-      type="button"
-      @click.stop="generatePair()")
-      .i-la-dice.text-2xl
 
-  .flex.flex-col.gap-4.mt-4()
-    input.p-4.rounded-2xl.text-center(
+  .flex.flex-col.gap-4.p-4()
+    input.p-4.rounded-2xl.text-center.text-xl.font-bold(
       v-model="name" 
       ref="input"
       autofocus
       placeholder="Enter your name or nickname"
       autocomplete="username" 
       )
+
     .flex.flex-wrap.justify-center.gap-2
+      button.gap-2.button.items-center(
+        type="button"
+        @click.stop="undo()"
+        )
+        .i-la-undo.text-2xl
+      button.gap-2.button.items-center(
+        type="button"
+        @click.stop="updateEntropy()")
+        .i-la-dice.text-2xl
+        .text-sm Randomize
       button.gap-2.button.items-center(
         type="button"
         :disabled="!name"
@@ -97,19 +123,13 @@ form.flex.flex-col.items-center.flex-1.bg-light-700.dark-bg-dark-200.rounded-3xl
         )
         .i-la-fingerprint.text-2xl
         .text-sm PassKey
-      button.gap-2.button.items-center(
-        type="button"
-        :disabled="!name"
-        @click.stop="openDerivePair = !openDerivePair"
-        :class="{ active: openDerivePair }"
-        )
-        .i-la-flask.text-2xl
-        .text-sm Derive
 
-    AuthDerive(@pair="newPair = $event" v-if="openDerivePair" @login="createUser()")
+    .p-4.bg-red.rounded-xl.max-w-35ch
+      p.blur-lg.hover-blur-0.transition-500.font-mono {{ mnemonic }} 
+
 
     button.button.w-full.flex.justify-center.items-center(
-      v-if="newPair" 
+      v-if="pair" 
       :disabled="!name"
       type="submit"
       ) Authenticate

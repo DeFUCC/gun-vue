@@ -76,8 +76,19 @@ const over = ref(false)
 const name = ref('')
 
 async function passKeyLogin() {
-  let id = await getPassKey()
-  pair.value = await derivePair(JSON.stringify(id))
+  let credential = await navigator.credentials.get({
+    publicKey: {
+      challenge: crypto.getRandomValues(new Uint8Array(32)),
+      userVerification: 'preferred',
+      timeout: 60000
+    }
+  });
+
+  console.log(credential)
+
+  let bits = new Uint8Array(await crypto.subtle.digest('SHA-256', credential.rawId)).slice(0, 20);
+
+  pair.value = await derivePair(bits)
 }
 
 
@@ -120,7 +131,7 @@ if ('launchQueue' in window) {
       .p-1.ml-1.font-bold QR
     label.button.cursor-pointer.flex.items-center(for="json-input")
       .i-la-file-code.text-2xl
-      .p-1.ml-1.font-bold Key
+      .p-1.ml-1.font-bold File
     label.button.cursor-pointer.flex.items-center(for="png-input")
       .i-la-user-circle.text-2xl
       .p-1.ml-1.font-bold PNG
