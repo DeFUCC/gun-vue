@@ -4,6 +4,8 @@ import { QrLoad } from '../components'
 import { ref, watch } from 'vue'
 import { extractFromFile } from "gun-avatar"
 import derivePair from '@gun-vue/gun-es/derive'
+import { validateMnemonic, mnemonicToEntropy } from '@scure/bip39'
+import { wordlist } from '@scure/bip39/wordlists/english';
 
 const { processFile: processQr } = useQR()
 
@@ -31,6 +33,12 @@ watch(pair, async (p) => {
   if (p && typeof p == 'string' && p.substring(0, 3) == 'SEA') {
     passphrase.value = ''
   }
+
+  if (p && typeof p == 'string' && validateMnemonic(p.trim(), wordlist)) {
+    const entropy = mnemonicToEntropy(p.trim(), wordlist)
+    p = await derivePair(btoa(String.fromCharCode(...entropy)))
+  }
+
 
   let obj = safeJSONParse(p)
   if (obj?.pub && obj?.priv) {
@@ -108,48 +116,48 @@ if ('launchQueue' in window) {
 </script>
 
 <template lang="pug">
-#dropzone.flex.flex-col.my-4.flex-1.items-center.bg-light-700.dark-bg-dark-50.rounded-3xl.p-4.shadow-lg.border-4.border-dark-100.dark-border-light-100.border-op-0.dark-border-op-0(
+#dropzone.flex.flex-col.gap-4.my-4.flex-1.items-center.bg-light-700.dark-bg-dark-50.rounded-3xl.p-4.shadow-lg.border-4.border-dark-100.dark-border-light-100.border-op-0.dark-border-op-0(
   @drop.prevent="handleDrop($event); over = false"
   @dragover.prevent="over = true"
   @dragleave.prevent="over = false"
   :class="{ 'border-op-100 dark-border-op-100': over }"
 )
-  .font-bold.text-xl I already have an account
   .text-md Login with a saved key
 
   .flex.flex-wrap.justify-center.my-2.gap-2
-    button.button.items-center(@click="passKeyLogin()")
-      .i-la-fingerprint.text-2xl
-      .px-2 PassKey
-    button.button.cursor-pointer.flex.items-center(@click="show('key')" :class="{ active: current == 'key' }")
-      .i-la-key.text-2xl
+
+    button.flex-1.button.cursor-pointer.flex.items-center(@click="show('key')" :class="{ active: current == 'key' }")
+      .i-la-key.text-4xl
       .p-1.ml-1.font-bold Text
-    label.button.cursor-pointer.flex.items-center(for="qr-input")
-      .i-la-qrcode.text-2xl
+    button.flex-1.button.items-center(@click="passKeyLogin()")
+      .i-la-fingerprint.text-4xl
+      .px-2 PassKey
+    label.flex-1.button.cursor-pointer.flex.items-center(for="qr-input")
+      .i-la-qrcode.text-4xl
       .p-1.ml-1.font-bold QR
-    label.button.cursor-pointer.flex.items-center(for="json-input")
-      .i-la-file-code.text-2xl
+    label.flex-1.button.cursor-pointer.flex.items-center(for="json-input")
+      .i-la-file-code.text-4xl
       .p-1.ml-1.font-bold File
-    label.button.cursor-pointer.flex.items-center(for="png-input")
-      .i-la-user-circle.text-2xl
+    label.flex-1.button.cursor-pointer.flex.items-center(for="png-input")
+      .i-la-user-circle.text-4xl
       .p-1.ml-1.font-bold PNG
-    label.button.cursor-pointer.flex.items-center(for="svg-input")
-      .i-la-user.text-2xl
+    label.flex-1.button.cursor-pointer.flex.items-center(for="svg-input")
+      .i-la-user.text-4xl
       .p-1.ml-1.font-bold SVG
 
   form.flex(v-if="passphrase !== null")
-    input.py-1.px-4.m-1.rounded-xl(
+    input.py-3.px-4.m-4.rounded-xl.text-xl.text-center(
       v-model="passphrase" 
       autofocus 
       type="password"
       autocomplete="current-password" 
       placeholder="Enter the password"
       )
-    button.button.text-2xl(
+    button.button.text-4xl(
       type="submit" 
       @click="decode()"
       )
-      .i-la-sign-in-alt.text-2xl
+      .i-la-sign-in-alt.text-4xl
   .hidden
     qr-load(@loaded="pair = $event")
     input#qr-input(
@@ -186,7 +194,7 @@ if ('launchQueue' in window) {
           v-model="pair" 
           rows="6" 
           cols="40" 
-          placeholder="Paste your key pair here or drag and drop a file"
+          placeholder="Your seed phrase or your keypair"
           )
 </template>
 

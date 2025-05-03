@@ -84,6 +84,9 @@ importers:
       '@coders-tm/vue-number-format':
         specifier: 3.35.4
         version: 3.35.4
+      '@scure/bip39':
+        specifier: 1.6.0
+        version: 1.6.0
       '@unocss/reset':
         specifier: 66.1.0-beta.7
         version: 66.1.0-beta.7

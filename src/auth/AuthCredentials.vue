@@ -50,21 +50,23 @@ const platforms = {
 </script>
 
 <template lang="pug">
-.flex.flex-col.items-stretch.pb-4.border-1.border-dark-100.border-opacity-10.max-w-120.mx-auto.dark-bg-dark-200(v-if="user.is" :key="user.is")
-  .mt-4.mx-6 Please make sure to safely store your cryptographic keypair to be able to use it again later
+.flex.flex-wrap.items-center.pb-4.border-1.border-dark-100.border-opacity-10.mx-auto.dark-bg-dark-200.rounded-xl.p-4(v-if="user.is" :key="user.is")
+
   auth-pass
-  .flex.p-4.items-center.bg-dark-100.bg-opacity-20.mt-2.shadow-inset(v-if="pass?.safe?.enc")
-    .flex.flex-col.w-34.items-center(:style="{ color: safePair ? 'green' : 'red' }")
+
+  .flex.items-center.bg-dark-100.bg-opacity-20.shadow-inset(v-if="pass?.safe?.enc")
+    .flex.flex-wrap.w-34.items-center(:style="{ color: safePair ? 'green' : 'red' }")
       button.m-2.button.text-2xl(@click="safePair = !safePair")
         .i-la-lock(v-if="safePair")
         .i-la-unlock(v-else)
-      .text-sm {{ safePair ? 'Encrypted' : 'Plain Text' }}
-      .text-m Key Pair
+      .flex-1
+        .text-sm {{ safePair ? 'Encrypted' : 'Plain Text' }}
+        .text-m Key Pair
     .flex.flex-wrap.gap-2.p-2
-      button.button.items-center(@click="show('key')" :class="{ active: current == 'key' }")
+      button.flex-1.button.items-center(@click="show('key')" :class="{ active: current == 'key' }")
         .i-la-envelope-open-text.text-2xl
         .px-2 Key
-      button.button.items-center(
+      button.flex-1.button.items-center(
         :href="href" 
         target="_blank" 
         @click="show('link')" 
@@ -72,11 +74,11 @@ const platforms = {
         )
         .i-la-link.text-2xl
         .px-2 Link
-      button.button.items-center(@click="show('qr')" :class="{ active: current == 'qr' }")
+      button.flex-1.button.items-center(@click="show('qr')" :class="{ active: current == 'qr' }")
         .i-la-qrcode.text-2xl
         .px-2 QR
 
-      button.button.items-center(@click="show('avatar')" :class="{ active: current == 'avatar' }")
+      button.flex-1.button.items-center(@click="show('avatar')" :class="{ active: current == 'avatar' }")
         .i-la-user-circle.text-2xl
         .px-2 Avatar
 

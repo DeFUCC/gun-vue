@@ -94,18 +94,18 @@ form.flex.flex-col.items-center.flex-1.bg-light-700.dark-bg-dark-200.rounded-3xl
   )
   button.button.absolute.top-0.left-0(@click="$emit('back')")
     .i-la-angle-left
-  .h-300px.w-300px.border-8.rounded-full.shadow-xl
+  .h-240px.w-240px.border-8.rounded-full.shadow-xl.flex.items-center.justify-center 
     object(
-      :data="gunAvatar({ pub: pair.pub, size: 280, svg: 'interactive' })"
+      :data="gunAvatar({ pub: pair.pub, size: 220, svg: 'interactive' })"
       v-if="pair" 
       )
 
-  .flex.flex-col.gap-4.p-4()
-    input.p-4.rounded-2xl.text-center.text-xl.font-bold(
+  .flex.flex-col.gap-4.p-4.max-w-70vw()
+    input.p-4.rounded-2xl.text-center.text-xl.font-bol.max-w-full(
       v-model="name" 
       ref="input"
       autofocus
-      placeholder="Enter your name or nickname"
+      placeholder="Your Name"
       autocomplete="username" 
       )
 
@@ -116,29 +116,36 @@ form.flex.flex-col.items-center.flex-1.bg-light-700.dark-bg-dark-200.rounded-3xl
         @click.stop="undo()"
         )
         .i-la-undo.text-2xl
-      button.gap-2.button.items-center(
-        type="button"
-        v-if="canRedo"
-        @click.stop="redo()"
-        )
-        .i-la-redo.text-2xl
+
       button.gap-2.button.items-center(
         type="button"
         @click.stop="updateEntropy()")
-        .i-la-dice.text-2xl
-        .text-sm Randomize
+        .i-la-redo-alt.text-2xl
       button.gap-2.button.items-center(
+        title="Requires name to create a new credential"
         type="button"
         :disabled="!name"
         @click.stop="generatePK()"
         :class="{ [isPassKey ? 'bg-green! dark-bg-green-800!' : '']: true }"
         )
         .i-la-fingerprint.text-2xl
-        .text-sm PassKey
+      button.gap-2.button.items-center(
+        type="button"
+        :disabled="!canRedo"
+        @click.stop="redo()"
+        )
+        .i-la-redo.text-2xl
 
-    .p-4.rounded-xl.max-w-100.font-mono(:class="{ [isPassKey ? 'bg-green! dark-bg-green-800!' : 'bg-red']: true }")
+    .p-4.rounded-xl.max-w-100.font-mono.bg-light-900.dark-bg-dark-700.border-2(:class="{ [isPassKey ? 'border-green!' : 'border-red']: true }")
+
       p.blur-lg.hover-blur-0.transition-500.select-all {{ mnemonic }} 
-    .max-w-100.text-xs.font-mono(:class="{ [isPassKey ? 'text-green-700' : 'text-red']: true }") {{ isPassKey ? 'Key is generated from a PassKey and can be open elsewhere with the same credentials. You can recover your seed phrase from it later.' : 'Key is generated randomly. Store the seed phrase securely or you will never be able to recover it again. Store your derived key pair securely.' }}
+
+
+    .max-w-100.text-12px.font-mono.text-green-700(v-if="isPassKey") This passphrase comes from your PassKey and can be accessed from another device with the same credentials provider. You can recover this seed phrase from your credentials ID later. But best practice is to write it down somewhere just in case of possible provider failures. Even if the seed phrase gets destroyed a derived key pair may be securely stored and used as well.
+
+    .max-w-100.text-12px.font-mono.text-red(v-else) Random seed phrases are not stored after use for key derivation. Store it privately to derive this key pair on other devices. If you ever lose your seed phrase you can still store your derived key pair and use it as purely random one.
+
+
 
     button.button.w-full.flex.justify-center.items-center(
       v-if="pair" 
