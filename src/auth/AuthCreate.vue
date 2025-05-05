@@ -94,7 +94,7 @@ form.flex.flex-col.items-center.flex-1.bg-light-700.dark-bg-dark-200.rounded-3xl
   )
   button.button.absolute.top-0.left-0(@click="$emit('back')")
     .i-la-angle-left
-  .h-240px.w-240px.border-8.rounded-full.shadow-xl.flex.items-center.justify-center 
+  .h-240px.w-240px.rounded-full.shadow-xl.flex.items-center.justify-center 
     object(
       :data="gunAvatar({ pub: pair.pub, size: 220, svg: 'interactive' })"
       v-if="pair" 
