@@ -176,8 +176,8 @@ importers:
         specifier: 0.2020.1240
         version: 0.2020.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       gun-avatar:
-        specifier: 2.2.2
-        version: 2.2.2(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4)
+        specifier: 2.2.3
+        version: 2.2.3(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4)
       jszip:
         specifier: 3.10.1
         version: 3.10.1
@@ -2118,8 +2118,8 @@ packages:
   grapheme-breaker-mjs@1.0.4:
     resolution: {integrity: sha512-ioZDDccBdDLVRdaVOJaUn70pIlzAoo1E29vXD1vECBaQvE8HSZHe++gklBr4iR3bYThko+MrXdpxty3pzy4azg==}
 
-  gun-avatar@2.2.2:
-    resolution: {integrity: sha512-hEr0JaDIHhG1AmKSmhOdHkKTVgsuB1/iLJapJWTBfNtxskVum0xkhKvAAylLRzz8P/bMhHwDAPoS2vKSK3cuWg==}
+  gun-avatar@2.2.3:
+    resolution: {integrity: sha512-Q/rlpr/RvDq1fDP8hRJDRRTx5lWcraOlRT6e+oixcMOqLNJmqvZa7rcZPbhGh0t/bYnxXEgU1yIihXpqxsoBcQ==}
 
   gun@0.2020.1240:
     resolution: {integrity: sha512-uhnyadZTywn0HHgBjS2DePqpcdwLeVm6nFeSZZBPJRltm9O8MjFPyltaxk2PBKS+O8wSZac9qlbCIriJDgQQog==}
@@ -5572,7 +5572,7 @@ snapshots:
     dependencies:
       unicode-trie: 2.0.0
 
-  gun-avatar@2.2.2(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4):
+  gun-avatar@2.2.3(bufferutil@4.0.8)(typescript@5.5.4)(utf-8-validate@6.0.4):
     dependencies:
       '@gun-vue/gun-es': 0.3.1240(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       '@unocss/reset': 66.0.0

@@ -112,7 +112,7 @@ form.flex.flex-col.items-center.flex-1.bg-light-700.dark-bg-dark-200.rounded-3xl
     .flex.flex-wrap.justify-center.gap-2
       button.gap-2.button.items-center(
         type="button"
-        v-if="canUndo"
+        :disabled="!canUndo"
         @click.stop="undo()"
         )
         .i-la-undo.text-2xl

@@ -7,12 +7,12 @@ const generate = ref(false)
 </script>
 
 <template lang="pug">
-.flex.flex-col.p-4
-  button.button.text-xl.flex.justify-center.rounded-2xl.shadow-lg.hover-shadow-xl.transition.duration-200.ease-out.font-bold(
-    v-if="!generate" 
-    @click="generate = true"
-    ) Create a new account
-  .flex.justify-center.mt-4(v-if="!generate") or
-  auth-form(v-if="!generate")
-  auth-create(v-else  @back="generate = false")
+.flex.flex-col
+  transition(name="fade" mode="out-in")
+    auth-form(v-if="!generate")
+      button.w-full.text-xl.flex.justify-center.rounded-2xl.shadow-lg.hover-shadow-xl.transition.duration-200.ease-out.font-bold.p-4.bg-green-300.dark-bg-green-800(
+      v-if="!generate" 
+      @click="generate = true"
+      ) Create a new account
+    auth-create(v-else  @back="generate = false")
 </template>

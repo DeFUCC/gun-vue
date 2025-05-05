@@ -1,14 +1,15 @@
 <script setup>
-import { useUser, safeJSONParse, uploadText, SEA, parseLink, useQR, handleAuthFiles } from '../composables'
-import { QrLoad } from '../components'
 import { ref, watch } from 'vue'
 import { extractFromFile } from "gun-avatar"
 import derivePair from '@gun-vue/gun-es/derive'
 import { validateMnemonic, mnemonicToEntropy } from '@scure/bip39'
 import { wordlist } from '@scure/bip39/wordlists/english';
 
-const { processFile: processQr } = useQR()
+import { useUser, safeJSONParse, uploadText, SEA, parseLink, useQR, handleAuthFiles } from '../composables'
 
+import { QrLoad } from '../components'
+
+const { processFile: processQr } = useQR()
 
 const current = ref('pass')
 const pair = ref()
@@ -38,7 +39,6 @@ watch(pair, async (p) => {
     const entropy = mnemonicToEntropy(p.trim(), wordlist)
     p = await derivePair(btoa(String.fromCharCode(...entropy)))
   }
-
 
   let obj = safeJSONParse(p)
   if (obj?.pub && obj?.priv) {
@@ -116,13 +116,13 @@ if ('launchQueue' in window) {
 </script>
 
 <template lang="pug">
-#dropzone.flex.flex-col.gap-4.my-4.flex-1.items-center.bg-light-700.dark-bg-dark-50.rounded-3xl.p-4.shadow-lg.border-4.border-dark-100.dark-border-light-100.border-op-0.dark-border-op-0(
+#dropzone.flex.flex-col.gap-4.flex-1.items-center.bg-light-700.dark-bg-dark-50.rounded-3xl.p-4.shadow-lg.border-4.border-dark-100.dark-border-light-100.border-op-0.dark-border-op-0(
   @drop.prevent="handleDrop($event); over = false"
   @dragover.prevent="over = true"
   @dragleave.prevent="over = false"
   :class="{ 'border-op-100 dark-border-op-100': over }"
 )
-  .text-md Login with a saved key
+  slot.text-md Login with a saved key
 
   .flex.flex-wrap.justify-center.my-2.gap-2
 
@@ -183,19 +183,19 @@ if ('launchQueue' in window) {
       @change="uploadAvatar($event)"
     )
 
-  .text-sm.opacity-50 Drag and drop your file here (PNG, JSON, or QR photo/screenshot)
+  .text-sm.opacity-50 Drag and drop your key file here
 
-  .flex.flex-wrap
-    transition(name="fade" mode="out-in" appear)
 
-      textarea.p-2.text-sm.flex-1.w-full.dark-bg-dark-200(
-        v-if="current == 'key'" 
-          key="text" 
-          v-model="pair" 
-          rows="6" 
-          cols="40" 
-          placeholder="Your seed phrase or your keypair"
-          )
+  transition(name="fade" mode="out-in" appear)
+
+    textarea.p-2.text-sm.flex-1.w-full.dark-bg-dark-200(
+      v-if="current == 'key'" 
+        key="text" 
+        v-model="pair" 
+        rows="6" 
+        cols="40" 
+        placeholder="Your seed phrase or your keypair"
+        )
 </template>
 
 <style scoped>

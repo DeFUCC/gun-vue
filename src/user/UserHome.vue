@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { activeFile, selectedUser, useRooms, useUser } from '#composables';
 import { computed, onBeforeUnmount, ref, watch } from 'vue';
-import { UiLayer, AuthCredentials, AuthLogin, UserPanel, UserProfile, UserRooms, MessageList, FileList, } from '../components'
 import { useStorage } from '@vueuse/core'
+
+import { activeFile, selectedUser, useRooms, useUser } from '#composables';
+import { UiLayer, AuthCredentials, AuthLogin, UserPanel, UserProfile, UserRooms, MessageList, FileList, } from '../components'
+
+
 import RoomCard from '../room/RoomCard.vue';
 import RoomButton from '../room/RoomButton.vue';
 import FileShare from '../files/FileShare.vue';
@@ -45,7 +48,7 @@ const starredRooms = computed(() => Object.entries(useRooms(user.pub)).filter(([
 
   auth-login(v-if="!user.is")
 
-  .flex.flex-wrap.w-full.gap-2.p-0(v-else)
+  .flex.flex-wrap.w-full.gap-2(v-else)
     user-panel.z-1000(
       @browse="$emit('browse', $event); $emit('close')"
       )
