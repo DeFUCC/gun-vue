@@ -8,6 +8,7 @@ export function useBackground({
 	overlay = 0.5,
 	draw = "squares",
 	attachment = "fixed",
+	round = false
 }) {
 	if (!pub) return;
 
@@ -19,6 +20,7 @@ export function useBackground({
 				reflect: false,
 				size: size,
 				dark: theme.dark,
+				round
 			})})`,
 		backgroundSize: "cover, cover",
 		backgroundAttachment: `${attachment},${attachment}`,

@@ -5,6 +5,7 @@ const props = defineProps({
   pub: { type: String, default: '' },
   size: { type: Number, default: 42, },
   border: { type: Number, default: 2, },
+  interactive: { type: Boolean, default: false },
 });
 
 const colorDeep = useColor('deep')

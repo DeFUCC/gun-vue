@@ -35,7 +35,7 @@ export default defineConfig({
 		['link', { rel: 'icon', href: '/media/gun-vue-logo.svg', sizes: 'any', type: 'image/svg+xml' }],
 		['link', { rel: 'mask-icon', href: '/media/gun-vue-logo.svg', color: '#FFFFFF' }],
 		['link', { rel: 'apple-touch-icon', href: '/media/gun-vue-logo.png' }],
-		['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
+		['meta', { name: 'mobile-web-app-capable', content: 'yes' }],
 		['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' }],
 		// Open Graph / Facebook
 		['meta', { property: 'og:type', content: 'website' }],

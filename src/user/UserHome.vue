@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { activeFile, selectedUser, useRooms, useUser } from '#composables';
-import { computed, ref, watch } from 'vue';
-import { UiLayer, AuthCredentials, AuthLogin, UserPanel, UserProfile, UserRooms, MessageList, FileList, } from '../components'
+import { computed, onBeforeUnmount, ref, watch } from 'vue';
 import { useStorage } from '@vueuse/core'
+
+import { activeFile, selectedUser, useRooms, useUser } from '#composables';
+import { UiLayer, AuthCredentials, AuthLogin, UserPanel, UserProfile, UserRooms, MessageList, FileList, } from '../components'
+
+
 import RoomCard from '../room/RoomCard.vue';
 import RoomButton from '../room/RoomButton.vue';
 import FileShare from '../files/FileShare.vue';
@@ -18,9 +21,19 @@ function isSafe() {
 
 const safe = ref(false)
 
+let sub
+
 watch(() => user.is, () => {
-  user.db.get('safe').get('saved').on(s => safe.value = s)
+  if (sub) sub.off()
+  user.db.get('safe').get('saved').on((s, _k, _, ev) => {
+    sub = ev
+    safe.value = s
+  })
 }, { immediate: true })
+
+onBeforeUnmount(() => {
+  sub?.off()
+})
 
 const showChats = useStorage('showChats', true)
 const showRooms = useStorage('showRooms', true)
@@ -31,22 +44,16 @@ const starredRooms = computed(() => Object.entries(useRooms(user.pub)).filter(([
 
 <template lang="pug">
 .flex.flex-col.items-center.w-full.justify-stretch
-  ui-layer(
-    :open="user.is && !safe" 
-    close-button 
-    @close="isSafe()"
-    )
-    auth-credentials(v-if="!safe" :key="user.is")
-      button.button.mx-8.justify-center(@click="isSafe()")
-        .i-la-check
-        .ml-2 I've stored my user key securely
+
+
   auth-login(v-if="!user.is")
 
-  .flex.flex-wrap.w-full.gap-2.p-0(v-else)
-    user-panel.sticky.top-0.z-1000(
+  .flex.flex-wrap.w-full.gap-2(v-else)
+    user-panel.z-1000(
       @browse="$emit('browse', $event); $emit('close')"
       )
-    .flex.flex-col.items-start.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-h-40vh.overflow-y-scroll(style="flex: 1 1 300px")
+
+    .flex.flex-col.items-start.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-h-40vh.overflow-y-scroll.z-100(style="flex: 1 1 300px")
       user-profile
         button.button(
           @click="selectedUser.pub = user.pub"

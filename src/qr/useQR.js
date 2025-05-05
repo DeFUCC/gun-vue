@@ -4,12 +4,11 @@ export function useQR() {
   }
 }
 
-async function processFile(file, callback) {
-  const imageData = await imageDataFromFile(file)
-  const jsQR = (await import('jsqr')).default
-  const result = jsQR(imageData.data, imageData.width, imageData.height)
-  console.log(result.data)
-  callback?.(result?.data)
+async function processFile(file) {
+  const imageData = await imageDataFromFile(file);
+  const jsQR = (await import('jsqr')).default;
+  const result = jsQR(imageData.data, imageData.width, imageData.height);
+  return result?.data;
 }
 
 async function imageDataFromFile(file) {

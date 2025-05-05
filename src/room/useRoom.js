@@ -214,7 +214,7 @@ export async function createRoom({
 	downloadFile(
 		JSON.stringify(pair),
 		"application/json",
-		`room_${name || roomPub}.json`
+		`room_${name || roomPub}.webkey`
 	);
 }
 

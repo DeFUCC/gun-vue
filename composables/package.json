@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/composables",
-	"version": "0.24.1",
+	"version": "0.24.2",
 	"homepage": "https://gun-vue.js.org",
 	"bugs": {
 		"url": "https://github.com/DeFUCC/gun-vue/issues"
@@ -32,23 +32,20 @@
 		"serve": "vite preview"
 	},
 	"dependencies": {
-		"@gun-vue/gun-es": "0.2.1240",
-		"@noble/curves": "^1.9.0",
+		"@gun-vue/gun-es": "0.3.1240",
 		"@passwordless-id/webauthn": "^2.3.0",
 		"@scure/bip39": "^1.6.0",
-		"@vueuse/core": "13.0.0",
-		"@vueuse/integrations": "13.0.0",
-		"@vueuse/math": "13.0.0",
-		"buffer": "6.0.3",
+		"@vueuse/core": "13.1.0",
+		"@vueuse/integrations": "13.1.0",
+		"@vueuse/math": "13.1.0",
 		"cbor2": "^1.12.0",
 		"color-hash": "2.0.2",
 		"curved-arrows": "0.3.0",
 		"drauu": "0.4.3",
-		"elliptic": "^6.6.1",
 		"fuse.js": "7.1.0",
 		"grapheme-breaker-mjs": "1.0.4",
 		"gun": "0.2020.1240",
-		"gun-avatar": "2.0.1",
+		"gun-avatar": "2.2.3",
 		"jszip": "3.10.1",
 		"markdown-it": "14.1.0",
 		"markdown-it-external-links": "0.0.6",
@@ -59,12 +56,12 @@
 		"ultramatter": "0.0.4",
 		"url-regex": "5.0.0",
 		"vue": "3.5.13",
-		"webtorrent": "2.5.19",
+		"webtorrent": "2.6.3",
 		"yamlify-object": "2.0.0"
 	},
 	"devDependencies": {
 		"@types/color-hash": "2.0.0",
 		"@types/recordrtc": "5.6.14",
-		"vite": "6.2.1"
+		"vite": "6.3.3"
 	}
 }

@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/docs",
-	"version": "0.24.1",
+	"version": "0.24.2",
 	"private": "true",
 	"homepage": "https://gun-vue.js.org",
 	"bugs": {
@@ -29,8 +29,7 @@
 		"td": "typedoc --watch --plugin typedoc-plugin-markdown"
 	},
 	"dependencies": {
-		"@unocss/reset": "66.1.0-beta.3",
-		"@gun-vue/composables": "0.24.0"
+		"@unocss/reset": "66.1.0-beta.3"
 	},
 	"devDependencies": {
 		"@unocss/extractor-pug": "66.1.0-beta.3",

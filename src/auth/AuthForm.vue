@@ -1,12 +1,15 @@
 <script setup>
-import { useUser, safeJSONParse, uploadText, SEA, parseLink, useQR, derivePair } from '../composables'
-import { QrLoad } from '../components'
 import { ref, watch } from 'vue'
 import { extractFromFile } from "gun-avatar"
-import { getPassKey } from './usePassKeys'
+import derivePair from '@gun-vue/gun-es/derive'
+import { validateMnemonic, mnemonicToEntropy } from '@scure/bip39'
+import { wordlist } from '@scure/bip39/wordlists/english';
 
-const { processFile } = useQR()
+import { useUser, safeJSONParse, uploadText, SEA, parseLink, useQR, handleAuthFiles } from '../composables'
 
+import { QrLoad } from '../components'
+
+const { processFile: processQr } = useQR()
 
 const current = ref('pass')
 const pair = ref()
@@ -32,6 +35,11 @@ watch(pair, async (p) => {
     passphrase.value = ''
   }
 
+  if (p && typeof p == 'string' && validateMnemonic(p.trim(), wordlist)) {
+    const entropy = mnemonicToEntropy(p.trim(), wordlist)
+    p = await derivePair(btoa(String.fromCharCode(...entropy)))
+  }
+
   let obj = safeJSONParse(p)
   if (obj?.pub && obj?.priv) {
     auth(obj)
@@ -48,11 +56,11 @@ async function decode(p = pair.value) {
   pair.value = await SEA.decrypt(p, passphrase.value);
 }
 
-function uploadFile(event) {
-  uploadText(event.target?.files, (file) => pair.value = file)
+async function uploadFile(event) {
+  pair.value = await uploadText(event.target?.files)
 }
 
-async function uploadPNG(event) {
+async function uploadAvatar(event) {
   const file = event.target?.files?.[0]
   if (!file) return
   try {
@@ -61,86 +69,95 @@ async function uploadPNG(event) {
       pair.value = data.content
     }
   } catch (e) {
-    console.error('Failed to extract data from PNG:', e)
+    console.error('Failed to extract data from avatar:', e)
   }
 }
 
-function uploadQR(file) {
-  processFile(file, (data) => pair.value = data)
+async function uploadQR(file) {
+  pair.value = await processQr(file)
 }
 
-// Simplified file handling
-async function handleFiles(files) {
-  const file = files[0]
-  if (!file) return
-
-  const type = file.type.toLowerCase()
-  if (type === 'application/json') {
-    uploadText([file], (text) => pair.value = text)
-  } else if (type === 'image/png') {
-    try {
-      const data = await extractFromFile(file)
-      if (data?.content) pair.value = data.content
-    } catch (e) {
-      console.error('Failed to extract data from PNG:', e)
-    }
-  } else if (type.startsWith('image/')) {
-    processFile(file, (data) => pair.value = data)
-  }
-}
 
 const over = ref(false)
 
 const name = ref('')
 
 async function passKeyLogin() {
-  let id = await getPassKey()
-  console.log(id)
-  pair.value = await derivePair(JSON.stringify(id))
+  let credential = await navigator.credentials.get({
+    publicKey: {
+      challenge: crypto.getRandomValues(new Uint8Array(32)),
+      userVerification: 'preferred',
+      timeout: 60000
+    }
+  });
+
+  let bits = new Uint8Array(await crypto.subtle.digest('SHA-256', credential.rawId)).slice(0, 20)
+
+
+  pair.value = await derivePair(btoa(String.fromCharCode(...bits)))
+}
+
+
+async function handleDrop(event) {
+  pair.value = await handleAuthFiles(event.dataTransfer?.files)
+}
+
+if ('launchQueue' in window) {
+  window.launchQueue.setConsumer(async launchParams => {
+    const fileHandle = launchParams.files?.[0];
+    if (fileHandle) {
+      const file = await fileHandle.getFile()
+      console.log('loading', file)
+      pair.value = await handleAuthFiles([file])
+    }
+  });
 }
 
 </script>
 
 <template lang="pug">
-#dropzone.flex.flex-col.my-4.flex-1.items-center.bg-light-700.dark-bg-dark-50.rounded-3xl.p-4.shadow-lg.border-4.border-dark-100.dark-border-light-100.border-op-0.dark-border-op-0(
-  @drop.prevent="handleFiles($event.dataTransfer?.files); over = false"
+#dropzone.flex.flex-col.gap-4.flex-1.items-center.bg-light-700.dark-bg-dark-50.rounded-3xl.p-4.shadow-lg.border-4.border-dark-100.dark-border-light-100.border-op-0.dark-border-op-0(
+  @drop.prevent="handleDrop($event); over = false"
   @dragover.prevent="over = true"
   @dragleave.prevent="over = false"
   :class="{ 'border-op-100 dark-border-op-100': over }"
 )
-  .font-bold.text-xl I already have an account
-  .text-md Login with a saved key
+  slot.text-md Login with a saved key
 
-  .flex.flex-wrap.justify-center.my-2
-    button.button.items-center(@click="passKeyLogin()")
-      .i-la-key 
+  .flex.flex-wrap.justify-center.my-2.gap-2
+
+    button.flex-1.button.cursor-pointer.flex.items-center(@click="show('key')" :class="{ active: current == 'key' }")
+      .i-la-key.text-4xl
+      .p-1.ml-1.font-bold Text
+    button.flex-1.button.items-center(@click="passKeyLogin()")
+      .i-la-fingerprint.text-4xl
       .px-2 PassKey
-    button.button.m-2.cursor-pointer.flex.items-center(@click="show('key')" :class="{ active: current == 'key' }")
-      .i-la-key.text-xl
-      .p-1.ml-1.font-bold Paste
-    label.button.m-2.cursor-pointer.flex.items-center(for="qr-input")
-      .i-la-qrcode.text-xl
+    label.flex-1.button.cursor-pointer.flex.items-center(for="qr-input")
+      .i-la-qrcode.text-4xl
       .p-1.ml-1.font-bold QR
-    label.button.m-2.cursor-pointer.flex.items-center(for="json-input")
-      .i-la-file-code.text-xl
-      .p-1.ml-1.font-bold JSON
-    label.button.m-2.cursor-pointer.flex.items-center(for="png-input")
-      .i-la-user-circle.text-xl
+    label.flex-1.button.cursor-pointer.flex.items-center(for="json-input")
+      .i-la-file-code.text-4xl
+      .p-1.ml-1.font-bold File
+    label.flex-1.button.cursor-pointer.flex.items-center(for="png-input")
+      .i-la-user-circle.text-4xl
       .p-1.ml-1.font-bold PNG
+    label.flex-1.button.cursor-pointer.flex.items-center(for="svg-input")
+      .i-la-user.text-4xl
+      .p-1.ml-1.font-bold SVG
 
   form.flex(v-if="passphrase !== null")
-    input.py-1.px-4.m-1.rounded-xl(
+    input.py-3.px-4.m-4.rounded-xl.text-xl.text-center(
       v-model="passphrase" 
       autofocus 
       type="password"
       autocomplete="current-password" 
       placeholder="Enter the password"
       )
-    button.button.text-2xl(
+    button.button.text-4xl(
       type="submit" 
       @click="decode()"
       )
-      .i-la-sign-in-alt
+      .i-la-sign-in-alt.text-4xl
   .hidden
     qr-load(@loaded="pair = $event")
     input#qr-input(
@@ -152,28 +169,33 @@ async function passKeyLogin() {
       ref="file" 
       tabindex="-1" 
       type="file" 
-      accept="application/json" 
+      accept=".webkey,application/json" 
       @change="uploadFile($event)"
       )
     input#png-input(
       type="file" 
       accept="image/png" 
-      @change="uploadPNG($event)"
+      @change="uploadAvatar($event)"
+    )
+    input#svg-input(
+      type="file" 
+      accept="image/svg+xml" 
+      @change="uploadAvatar($event)"
     )
 
-  .text-sm.opacity-50 Drag and drop your key file here (PNG, JSON, or QR image)
+  .text-sm.opacity-50 Drag and drop your key file here
 
-  .flex.flex-wrap
-    transition(name="fade" mode="out-in" appear)
 
-      textarea.p-2.text-sm.flex-1.w-full.dark-bg-dark-200(
-        v-if="current == 'key'" 
-          key="text" 
-          v-model="pair" 
-          rows="6" 
-          cols="40" 
-          placeholder="Paste your key pair here or drag and drop a file"
-          )
+  transition(name="fade" mode="out-in" appear)
+
+    textarea.p-2.text-sm.flex-1.w-full.dark-bg-dark-200(
+      v-if="current == 'key'" 
+        key="text" 
+        v-model="pair" 
+        rows="6" 
+        cols="40" 
+        placeholder="Your seed phrase or your keypair"
+        )
 </template>
 
 <style scoped>

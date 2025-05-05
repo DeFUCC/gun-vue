@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/app",
-	"version": "0.24.1",
+	"version": "0.24.2",
 	"type": "module",
 	"homepage": "https://gun-vue.js.org",
 	"funding": {
@@ -36,13 +36,13 @@
 	},
 	"dependencies": {
 		"@unocss/reset": "66.1.0-beta.3",
-		"@vueuse/core": "13.0.0",
+		"@vueuse/core": "13.1.0",
 		"ola": "1.2.1",
-		"vue-router": "4.5.0"
+		"vue-router": "4.5.1"
 	},
 	"devDependencies": {
 		"@unocss/extractor-pug": "66.1.0-beta.3",
-		"@vitejs/plugin-vue": "5.2.1",
+		"@vitejs/plugin-vue": "5.2.3",
 		"vite-plugin-singlefile": "2.2.0"
 	}
 }

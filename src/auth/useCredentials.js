@@ -51,48 +51,57 @@ export function useCredentials() {
     URL.revokeObjectURL(url)
   }
 
-  return {
-    saveLink: (url, platform, userName) => {
-      const bookmarks = generateBookmarkFiles(url)
-      const bookmark = bookmarks[platform]
-      if (!bookmark?.content || !bookmark?.extension) return
-      saveAs(
-        bookmark.content,
-        `${userName || 'account'}${bookmark.extension}`,
-        bookmark.mime
-      )
-    },
-    savePng: (dataUrl, userName) => {
-      fetch(dataUrl)
-        .then(res => res.blob())
-        .then(blob => saveAs(blob, `${userName || 'avatar'}.png`, blob.type))
-    },
-    saveJson: (content, userName) => {
-      saveAs(
-        JSON.stringify(content),
-        `${userName || 'account'}.json`,
-        'application/json'
-      )
-    },
-    sharePng: async (dataUrl, userName) => {
-      if (!canShare) {
-        console.log('Sharing not supported')
+  function saveLink(url, platform, userName) {
+    const bookmarks = generateBookmarkFiles(url)
+    const bookmark = bookmarks[platform]
+    if (!bookmark?.content || !bookmark?.extension) return
+    saveAs(
+      bookmark.content,
+      `${userName || 'account'}${bookmark.extension}`,
+      bookmark.mime
+    )
+  }
+
+  function saveImage(dataUrl, userName, extension = 'png') {
+    fetch(dataUrl)
+      .then(res => res.blob())
+      .then(blob => saveAs(blob, `${userName || ('account ' + (new Date()).getDate())
+        }.${extension}`, blob.type))
+  }
+
+  function saveJson(content, userName, extension = 'webkey') {
+    saveAs(
+      content,
+      `${userName || ('account ' + (new Date()).getDate())}.${extension}`,
+      'application/json'
+    )
+  }
+
+  async function shareImage(dataUrl, userName, type = 'png') {
+    if (!canShare) {
+      console.log('Sharing not supported')
+      return
+    }
+    try {
+      const blob = await fetch(dataUrl).then(res => res.blob())
+      if (!blob) {
+        console.error('Failed to create blob from data URL')
         return
       }
-      try {
-        const blob = await fetch(dataUrl).then(res => res.blob())
-        if (!blob) {
-          console.error('Failed to create blob from data URL')
-          return
-        }
-        const file = new File([blob], `${userName || 'avatar'}.png`, { type: 'image/png' })
-        return share({
-          title: userName || 'Gun-Vue avatar',
-          files: [file]
-        }).catch(err => console.error('Share failed:', err))
-      } catch (err) {
-        console.error('Share preparation failed:', err)
-      }
+      const file = new File([blob], `${userName || 'avatar'}.${type}`, { type: type == 'png' ? 'image/png' : 'image/svg+xml' })
+      return share({
+        title: userName || 'Gun-Vue avatar',
+        files: [file]
+      }).catch(err => console.error('Share failed:', err))
+    } catch (err) {
+      console.error('Share preparation failed:', err)
     }
+  }
+
+  return {
+    saveLink,
+    saveImage,
+    saveJson,
+    shareImage
   }
 }
