@@ -19,6 +19,7 @@ dialog.rounded-2xl.shadow-2xl.overflow-y-scroll.max-h-88vh.max-w-98vw.overscroll
   ref="dialog"
   @click="back && $event.target === dialog && $emit('close')"
   :style="{ marginTop: offset }"
+  style="scrollbar-width: thin;scrollbar-gutter: stable;"
 )
   slot
 </template>

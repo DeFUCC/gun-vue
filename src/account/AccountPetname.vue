@@ -3,7 +3,7 @@ import { useUser, setPetname, SEA } from '../composables'
 import { watch, ref } from 'vue'
 import { Dropdown } from 'floating-vue'
 import { AccountAvatar } from '../components'
-
+import { gunAvatar } from 'gun-avatar'
 
 const props = defineProps({
   pub: { type: String, default: '' }
@@ -37,11 +37,8 @@ const petnameRules = {
 </script>
 
 <template lang="pug">
-.flex.items-center.gap-2.px-2(v-if="user.is")
-  account-avatar(
-    :pub="pub" 
-    :size="40"
-    )
+.flex.items-center.gap-2.p-2.bg-light-600.dark-bg-dark-400(v-if="user.is")
+  object(:data="gunAvatar({ pub: pub, size: 40, svg: 'interactive' })")
   .text-lg.flex.items-center.gap-2(v-if="petname && !editPetname") {{ petname }}
     .i-la-pen(@click="editPetname = !editPetname")
   input.m-1.p-2.rounded-lg.dark-bg-dark-100(
@@ -81,5 +78,3 @@ li {
   @apply ml-0;
 }
 </style>
-
-

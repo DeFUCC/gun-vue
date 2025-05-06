@@ -5,7 +5,7 @@ import { UserHome } from '../components'
 
 <template lang="pug">
 .flex.flex-col
-  user-home(
+  UserHome(
     @room="selectedRoom = $event" 
     @user="selectedUser.pub = $event" 
     @chat="$router.push(`/messages/${$event}`)"

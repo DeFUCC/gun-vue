@@ -1,11 +1,11 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import { extractFromFile } from "gun-avatar"
 import derivePair from '@gun-vue/gun-es/derive'
 import { validateMnemonic, mnemonicToEntropy } from '@scure/bip39'
 import { wordlist } from '@scure/bip39/wordlists/english';
 
-import { useUser, safeJSONParse, uploadText, SEA, parseLink, useQR, handleAuthFiles } from '../composables'
+import { useUser, safeJSONParse, uploadText, SEA, parseLink, useQR } from '../composables'
 
 import { QrLoad } from '../components'
 
@@ -93,24 +93,48 @@ async function passKeyLogin() {
 
   let bits = new Uint8Array(await crypto.subtle.digest('SHA-256', credential.rawId)).slice(0, 20)
 
-
   pair.value = await derivePair(btoa(String.fromCharCode(...bits)))
 }
 
 
 async function handleDrop(event) {
-  pair.value = await handleAuthFiles(event.dataTransfer?.files)
+  pair.value = await handleAuthFile(event.dataTransfer?.files[0])
 }
 
-if ('launchQueue' in window) {
-  window.launchQueue.setConsumer(async launchParams => {
-    const fileHandle = launchParams.files?.[0];
-    if (fileHandle) {
-      const file = await fileHandle.getFile()
-      console.log('loading', file)
-      pair.value = await handleAuthFiles([file])
+async function handleUpload(event) {
+  pair.value = await handleAuthFile(event.target?.files[0])
+}
+
+onMounted(() => {
+  if ('launchQueue' in window) {
+    window.launchQueue.setConsumer(async launchParams => {
+      const fileHandle = launchParams.files?.[0];
+      if (fileHandle) {
+        const file = await fileHandle.getFile()
+        pair.value = await handleAuthFile(file)
+      }
+    });
+  }
+})
+
+async function handleAuthFile(file, pair) {
+  if (!file) return
+  const type = file.type.toLowerCase()
+  let result
+  try {
+    if (type === 'application/json' || file.name.endsWith('.webkey')) {
+      result = await uploadText([file])
+    } else if (type === 'image/png' || type === 'image/svg+xml') {
+      const data = await extractFromFile(file)
+      if (data?.content) result = data.content
+    } else if (type.startsWith('image/')) {
+      const { processFile } = useQR()
+      result = await processFile(file)
     }
-  });
+    return result
+  } catch (e) {
+    console.error('Failed to extract auth data from file:', e)
+  }
 }
 
 </script>
@@ -132,18 +156,14 @@ if ('launchQueue' in window) {
     button.flex-1.button.items-center(@click="passKeyLogin()")
       .i-la-fingerprint.text-4xl
       .px-2 PassKey
-    label.flex-1.button.cursor-pointer.flex.items-center(for="qr-input")
-      .i-la-qrcode.text-4xl
-      .p-1.ml-1.font-bold QR
-    label.flex-1.button.cursor-pointer.flex.items-center(for="json-input")
-      .i-la-file-code.text-4xl
+    label.flex-1.button.cursor-pointer.flex.items-center(for="file-input")
+      .i-la-file-upload.text-4xl
       .p-1.ml-1.font-bold File
-    label.flex-1.button.cursor-pointer.flex.items-center(for="png-input")
-      .i-la-user-circle.text-4xl
-      .p-1.ml-1.font-bold PNG
-    label.flex-1.button.cursor-pointer.flex.items-center(for="svg-input")
-      .i-la-user.text-4xl
-      .p-1.ml-1.font-bold SVG
+    input#file-input.hidden(
+      type="file",
+      accept="image/*,.webkey,application/json,image/svg+xml"
+      @change="handleUpload($event)"
+      )
 
   form.flex(v-if="passphrase !== null")
     input.py-3.px-4.m-4.rounded-xl.text-xl.text-center(
@@ -159,29 +179,7 @@ if ('launchQueue' in window) {
       )
       .i-la-sign-in-alt.text-4xl
   .hidden
-    qr-load(@loaded="pair = $event")
-    input#qr-input(
-      type="file",
-      accept="image/*",
-      @change="uploadQR($event.target.files[0])"
-      )
-    input#json-input(
-      ref="file" 
-      tabindex="-1" 
-      type="file" 
-      accept=".webkey,application/json" 
-      @change="uploadFile($event)"
-      )
-    input#png-input(
-      type="file" 
-      accept="image/png" 
-      @change="uploadAvatar($event)"
-    )
-    input#svg-input(
-      type="file" 
-      accept="image/svg+xml" 
-      @change="uploadAvatar($event)"
-    )
+
 
   .text-sm.opacity-50 Drag and drop your key file here
 

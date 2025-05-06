@@ -43,7 +43,6 @@ const { projects } = useProjects(props.pub)
   account-petname(
     v-if="pub != user.pub" 
     :pub="pub" 
-    :style="{ backgroundColor: account.color }"
     )
 
   account-profile.p-4(:pub="pub")

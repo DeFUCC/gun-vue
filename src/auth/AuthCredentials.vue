@@ -1,174 +1,113 @@
 <script setup>
-import { useUser, useAuth, gunAvatar } from '#composables'
-import { AuthPass, QrShow } from '../components'
-import { ref, computed } from 'vue'
-import { useClipboard, useShare } from '@vueuse/core'
-import { useCredentials } from './useCredentials'
+import { ref, computed, reactive, watchEffect } from "vue";
+import { asyncComputed, useClipboard, useShare } from "@vueuse/core";
 
+import { useUser, gunAvatar, SEA, useGun } from "#composables";
 
-const emit = defineEmits(['close'])
+import { useCredentials } from "./useCredentials";
+import { QrShow } from "../components";
 
-const current = ref('pass')
+const emit = defineEmits(["close"]);
 
-const { user } = useUser()
+const { text, copy, copied, isSupported: canCopy } = useClipboard();
+const { share, isSupported: canShare } = useShare();
 
-function show(option) {
-  if (current.value != option) {
-    current.value = option;
-  } else {
-    current.value = null;
-  }
+const { saveImage, saveJson, saveLink, shareImage } = useCredentials();
+const { user } = useUser();
+
+const input = ref("");
+const isSet = ref(false);
+const shows = ref(false);
+const showQr = ref(false);
+
+const enc = asyncComputed(async () =>
+  input.value ? await SEA.encrypt(user.pair(), input.value) : null
+);
+const href = computed(() => genLink(enc.value));
+const png = computed(() =>
+  gunAvatar({ pub: user.pub, embed: enc.value, svg: false })
+);
+
+const svgContent = computed(() =>
+  gunAvatar({ pub: user.pub, embed: enc.value, svg: true, p3: false })
+);
+
+function genLink(text = "", auth_url = "#/auth/") {
+  let base = encodeURIComponent(text);
+  return window.location.origin + window.location.pathname + auth_url + base;
 }
-
-const { pass } = useAuth()
-
-
-const { text, copy, copied, isSupported: canCopy } = useClipboard()
-const { share, isSupported: canShare } = useShare()
-
-const safePair = ref(true)
-
-const encPair = computed(() => {
-  return safePair.value ? pass?.safe?.enc : JSON.stringify(user.pair())
-});
-
-const href = computed(() => safePair.value ? pass.links.pass : pass.links.pair)
-
-const png = computed(() => gunAvatar({ pub: user.pub, embed: encPair.value, svg: false }))
-
-const svgContent = computed(() => gunAvatar({ pub: user.pub, embed: encPair.value, svg: true, p3: false }))
-
-const { saveBookmark, saveImage, saveJson, saveLink, shareImage } = useCredentials()
-
-const platforms = {
-  Win: 'Windows',
-  Mac: 'MacOS',
-  Linux: 'Linux'
-}
-
-
 </script>
 
 <template lang="pug">
-.flex.flex-wrap.items-center.pb-4.border-1.border-dark-100.border-opacity-10.mx-auto.dark-bg-dark-200.rounded-xl.p-4(v-if="user.is" :key="user.is")
+.flex.flex-col.items-stretcvh.gap-2.shadow-lg.bg-dark-100.backdrop-blur.bg-opacity-60.rounded-xl.p-4(v-if="user.is" :key="user.is")
+  form.flex.flex-col.items-center.justify-center.gap-2.relative.flex-1(@submit.prevent.stop="isSet = true")
 
-  auth-pass
 
-  .flex.items-center.bg-dark-100.bg-opacity-20.shadow-inset(v-if="pass?.safe?.enc")
-    .flex.flex-wrap.w-34.items-center(:style="{ color: safePair ? 'green' : 'red' }")
-      button.m-2.button.text-2xl(@click="safePair = !safePair")
-        .i-la-lock(v-if="safePair")
-        .i-la-unlock(v-else)
-      .flex-1
-        .text-sm {{ safePair ? 'Encrypted' : 'Plain Text' }}
-        .text-m Key Pair
-    .flex.flex-wrap.gap-2.p-2
-      button.flex-1.button.items-center(@click="show('key')" :class="{ active: current == 'key' }")
-        .i-la-envelope-open-text.text-2xl
-        .px-2 Key
-      button.flex-1.button.items-center(
-        :href="href" 
-        target="_blank" 
-        @click="show('link')" 
-        :class="{ active: current == 'link' }"
-        )
-        .i-la-link.text-2xl
-        .px-2 Link
-      button.flex-1.button.items-center(@click="show('qr')" :class="{ active: current == 'qr' }")
+    .flex.w-full.relative
+      input#password.p-4.rounded-xl.w-full.dark-bg-dark-700.text-center(
+        v-model="input",
+        name="password"
+        autocomplete="current-password" 
+        :disabled="isSet"
+        :type="shows ? 'text' : 'password'"
+        :placeholder="`5+ letters`")
+
+      button.text-xl.absolute.right-2.top-4.op-40.hover-op-90.transition-800(@click="shows = !shows" type="button")
+        .i-la-eye(v-if="!shows")
+        .i-la-eye-slash(v-else)
+    .text-sm.p-2.op-60.justify-center(v-if="!isSet") Set a password to encrypt your key backup
+    .flex.gap-2.w-full
+      button.button.items-center.flex-1(
+        :disabled="input.length < 5 || isSet",
+        v-if="!isSet"
+        type="submit") 
+        .i-la-check.text-2xl
+        .ml-2 Set
+
+  .flex.flex-col.items-start(v-if="isSet")
+    .text-sm.p-2.op-60.text-center Save your encrypted key in a secure place. Write down the password. Keep it safe.
+    .flex.gap-2.p-2.text-sm.flex-wrap.items-center
+      .i-la-key.text-3xl
+      button.button.items-center.text-2xl(v-if="canCopy" @click="copy(enc)")
+        .i-la-copy(v-if="!copied")
+        .i-la-check(v-else)
+      button.button.items-center(@click="saveJson(enc, user.name)")
+        .i-la-download.text-2xl
+      button.button.items-center.text-2xl(v-if="canShare" @click="share({ title: user.name || 'User', text: enc })")
+        .i-la-share-square.text-2xl
+
+    .flex.gap-2.p-2.text-sm.flex-wrap.items-center
+      a.i-la-link.text-3xl(:href target="_blank")
+      button.button.items-center.text-2xl(v-if="canCopy" @click="copy(href)")
+        .i-la-copy(v-if="!copied")
+        .i-la-check(v-else)
+      button.flex-1.button.items-center(@click="showQr = !showQr" :class="{ active: showQr }")
         .i-la-qrcode.text-2xl
-        .px-2 QR
+      button.button.items-center(@click="saveLink(href, user.name)")
+        .i-la-download.text-2xl
+      button.button.items-center(v-if="canShare" @click="share({ title: user.name || 'User', text: href })")
+        .i-la-share-square.text-2xl
 
-      button.flex-1.button.items-center(@click="show('avatar')" :class="{ active: current == 'avatar' }")
-        .i-la-user-circle.text-2xl
-        .px-2 Avatar
+    .flex.flex-wrap.p-2.gap-2.items-center
+      img(:src="gunAvatar({ pub: user.pub, size: 35 })")
+      button.button.items-center(@click="saveImage(png, user.name, 'png')")
+        .i-la-image.text-2xl
+      button.button.items-center(@click="saveImage(svgContent, user.name, 'svg')")
+        .i-la-file-image.text-2xl
+      button.button.items-center(v-if="canShare" @click="shareImage(png, user.name)")
+        .i-la-share-square.text-2xl
 
-  .flex.w-full.justify-center.mt-4(v-if="current")
+  transition(name="fade" mode="out-in")
+    .p-4.flex.flex-col.gap-2.items-center(v-if="showQr" key="qr")
+      qr-show(:data="enc")
 
-    transition(name="fade" mode="out-in")
-
-      .p-2.flex.flex-col.w-full.items-start(v-if="current == 'key'", key="text")
-        .flex.gap-2.items-center.mx-4
-          button.button.items-center(
-            v-if="canCopy" 
-            @click="copy(encPair)"
-            )
-            .i-la-copy.text-2xl
-            transition(name="fade" mode="out-in" appear)
-              .px-2(v-if="copied") Copied!
-              .px-2(v-else) Copy
-          button.button.items-center(
-            v-if="canShare" 
-            :class="{ active: current == 'pass' }" 
-            @click="share({ title: user.name || 'Gun-Vue keypair', text: encPair })"
-            )
-            .i-la-share.text-2xl
-            .px-1 Share
-          button.button.items-center(@click="saveJson(encPair, user.name)")
-            .i-la-download.text-2xl
-            .px-2 WebKey
-        .w-full.p-4.text-sm.flex-1.rounded-xl.break-all.select-all.transition-4000(
-          key="text", :class="{ 'blur-lg hover-blur-0': !safePair }"
-        ) {{ encPair }}
-
-      .p-2.flex.flex-col.items-center(v-else-if="current == 'avatar'" key="avatar")
-
-        .flex.gap-2.items-center.mt-4
-          button.button.items-center(@click="saveImage(png, user.name, 'png')")
-            .i-la-download.text-2xl
-            .px-2 PNG
-          button.button.items-center(@click="saveImage(svg, user.name, 'svg')")
-            .i-la-download.text-2xl
-            .px-2 SVG
-          button.button.items-center(
-            v-if="canShare"
-            @click="shareImage(png, user.name)")
-            .i-la-share.text-2xl
-            .px-1 Share
-        img.cursor-pointer.shadow-lg.rounded-full.hover-lightness-120.hover-shadow-2xl.-hover-translate-y-1.transition.active-translate-y-1( :src="png" @click="saveImage(png, user.name)")
-        .text-sm.op-50.text-center.m-4.max-w-50 Click the image to download the PNG file with your key embedded. You can use to login later. 
-
-      .p-4.flex.flex-col.gap-2(
-        key="link"
-        v-else-if="current == 'link'") 
-        .flex.flex-wrap.gap-2.items-center.mx-4
-          button.button.items-center(
-            v-if="canCopy" 
-            @click="copy(href)"
-            )
-            .i-la-copy.text-2xl
-            transition(name="fade" mode="out-in" appear)
-              .px-2(v-if="copied") Copied!
-              .px-2(v-else) Copy
-          button.button.items-center(
-            v-if="canShare" 
-            :class="{ active: current == 'pass' }"
-            @click="share({ title: user.name || 'Gun-Vue Login link', text: href })"
-            )
-            .i-la-share.text-2xl
-            .px-1 Share
-
-          button.button.items-center(
-            v-for="(label, platform) in platforms" :key="platform"
-            @click="saveLink(href, platform, user.name)"
-            )
-            .i-la-download.text-2xl
-            .px-2 {{ label }}
-
-        a.m-2.button.items-center.break-all(
-          :href="href" 
-          target="_blank" 
-          @click="show('links')" 
-          )
-          .i-la-link.text-2xl
-          .px-2.font-normal.font-mono.text-xs.transition-4000(:class="{ 'blur-lg hover-blur-0': !safePair }") {{ href }}
-
-      .p-4.flex.flex-col.gap-2.items-center(v-else-if="current == 'qr'" key="qr" )
-        qr-show.max-w-600px.transition-4000(
-          :class="{ 'blur-lg hover-blur-0': !safePair }"
-          :data="safePair ? pass.links.pass : pass.links.pair"
-          )
-        .text-sm.op-50.text-center.mx-4.max-w-80 Make a screenshot to save the QR code for logging in later.
-  slot
+  button.button.items-center.flex-1.justify-center(
+    v-if="isSet"
+    @click="input = ''; isSet = false; emit('close')"
+    :disabled="!input || !isSet"
+    type="button") 
+    .i-la-check.text-2xl
+    .ml-2 Key pair backed up
 </template>
 
 <style scoped></style>

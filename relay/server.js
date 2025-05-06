@@ -1,6 +1,6 @@
 import express from "express";
 import Gun from "gun";
-import qr from "qrcode-terminal";
+import qr from "qr";
 import ip from "ip";
 import 'dotenv/config'
 import setSelfAdjustingInterval from 'self-adjusting-interval';
@@ -26,7 +26,7 @@ export default {
       store = process.env.RELAY_STORE || false,
       port = process.env.RELAY_PORT || 8765,
       path = process.env.RELAY_PATH || "public",
-      showQr = process.env.RELAY_QR || false
+      showQr = process.env.RELAY_QR || true
     } = config;
 
     console.clear();
@@ -97,7 +97,7 @@ export default {
 
     if (showQr != false) {
       console.log('\n=== QR CODE ===');
-      qr.generate(link, { small: true });
+      console.log(qr(link, 'ascii', { border: 1 }))
       console.log('===============\n');
     }
 

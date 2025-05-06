@@ -13,6 +13,10 @@ import UserHome from "./user/UserHome.vue";
 import QrShare from "./qr/QrShare.vue";
 import RoomCard from "./room/RoomCard.vue";
 import RoomProfile from "./room/RoomProfile.vue";
+import AuthLogin from "./auth/AuthLogin.vue";
+import AccountBadge from "./account/AccountBadge.vue";
+import RoomButton from "./room/RoomButton.vue";
+import AuthPanel from "./auth/AuthPanel.vue";
 
 const router = useRouter()
 const route = useRoute();
@@ -100,7 +104,7 @@ onMounted(() => {
       data-tauri-drag-region="true"
       :style="{ ...bg }"
       )
-      room-button(
+      RoomButton(
         :key="currentRoom.pub"
         :panel="false"
         @click="$router.push('/')"
@@ -111,7 +115,7 @@ onMounted(() => {
           .i-ion-share-outline
         button.button(@click="showSettings = !showSettings" :class="{ 'router-link-active': showSettings }")
           .i-la-cog
-      account-badge.cursor-pointer(
+      AccountBadge.cursor-pointer(
         :size="42"
         :showName="true"
         :border="2" 
@@ -126,10 +130,10 @@ onMounted(() => {
     AccountHome(:pub="selectedUser.pub" @chat="$router.push(`/messages/${$event}`); selectedUser.pub = null" :key="selectedUser.pub")
 
   UiLayer(:open="user.auth" @close="user.auth = false")
-    UserHome.max-w-80vw(
-      :key="user.pub"
-      @chat="$router.push(`/messages/${$event}`); user.auth = false"
-      @room="selectedRoom = $event"
+    AuthLogin(v-if="!user.is")
+    AuthPanel(
+      v-else
+      @home="router.push('/my'); user.auth = false"
       )
 
   UiLayer(:open="openShare" @close="openShare = false")
