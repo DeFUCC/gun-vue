@@ -7,10 +7,6 @@ import { wordlist } from '@scure/bip39/wordlists/english';
 
 import { useUser, safeJSONParse, uploadText, SEA, parseLink, useQR } from '../composables'
 
-import { QrLoad } from '../components'
-
-const { processFile: processQr } = useQR()
-
 const current = ref('pass')
 const pair = ref()
 const passphrase = ref(null)
@@ -139,7 +135,7 @@ async function handleAuthFile(file, pair) {
 </script>
 
 <template lang="pug">
-#dropzone.flex.flex-col.gap-4.flex-1.items-center.bg-light-700.dark-bg-dark-50.rounded-3xl.p-4.shadow-lg.border-4.border-dark-100.dark-border-light-100.border-op-0.dark-border-op-0(
+#dropzone.flex.flex-col.gap-4.flex-1.items-stretch.bg-light-700.dark-bg-dark-50.rounded-3xl.p-4.shadow-lg.border-4.border-dark-100.dark-border-light-100.border-op-0.dark-border-op-0(
   @drop.prevent="handleDrop($event); over = false"
   @dragover.prevent="over = true"
   @dragleave.prevent="over = false"
