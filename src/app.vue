@@ -1,7 +1,7 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router";
 import { watch, watchEffect, computed, ref, onMounted } from "vue";
-import { currentRoom, useUser, rootRoom, useBackground, setPeer, relay, selectedUser, safeHash, selectedRoom } from "#composables";
+import { currentRoom, useUser, rootRoom, useBackground, setPeer, relay, selectedUser, safeHash, selectedRoom, useGun } from "#composables";
 import { useStorage } from '@vueuse/core'
 
 import config from '../gun.config.json'
@@ -13,15 +13,16 @@ import UserHome from "./user/UserHome.vue";
 import QrShare from "./qr/QrShare.vue";
 import RoomCard from "./room/RoomCard.vue";
 import RoomProfile from "./room/RoomProfile.vue";
-import AuthLogin from "./auth/AuthLogin.vue";
 import AccountBadge from "./account/AccountBadge.vue";
 import RoomButton from "./room/RoomButton.vue";
 import AuthPanel from "./auth/AuthPanel.vue";
+import AuthForm from "./auth/AuthForm.vue";
 
 const router = useRouter()
 const route = useRoute();
 
 const { user } = useUser()
+const gun = useGun()
 
 const openShare = ref(false)
 const showSettings = ref(false)
@@ -125,7 +126,7 @@ onMounted(() => {
     AccountHome(:pub="selectedUser.pub" @chat="$router.push(`/messages/${$event}`); selectedUser.pub = null" :key="selectedUser.pub")
 
   UiLayer(:open="user.auth" @close="user.auth = false")
-    AuthLogin(v-if="!user.is")
+    AuthForm(v-if="!user.is" @auth="gun.user().auth($event)")
     AuthPanel(
       v-else
       @home="router.push('/my'); user.auth = false"

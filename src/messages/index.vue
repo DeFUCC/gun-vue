@@ -1,8 +1,6 @@
 <script setup>
 import { useUser } from '#composables';
-import AuthLogin from '../auth/AuthLogin.vue';
 import MessageList from './MessageList.vue';
-
 
 const props = defineProps({
   pub: {
@@ -13,7 +11,6 @@ const props = defineProps({
 
 const { user } = useUser()
 
-
 </script>
 
 <template lang='pug'>
@@ -21,7 +18,6 @@ const { user } = useUser()
   MessageList(
     @chat="$router.push(`/messages/${$event}`)"
     )
-    AuthLogin(v-if="!user.is")
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in" appear)
       keep-alive

@@ -3,7 +3,7 @@ import { computed, onBeforeUnmount, ref, watch } from 'vue';
 import { useStorage } from '@vueuse/core'
 
 import { activeFile, selectedUser, useRooms, useUser } from '#composables';
-import { UiLayer, AuthCredentials, AuthLogin, AuthPanel, UserProfile, UserRooms, MessageList, FileList, UserAvatar } from '../components'
+import { UiLayer, AuthCredentials, AuthPanel, UserProfile, UserRooms, MessageList, FileList, UserAvatar } from '../components'
 
 
 import RoomCard from '../room/RoomCard.vue';

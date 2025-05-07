@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useUser } from '../composables'
-import AuthLogin from '../auth/AuthLogin.vue'
 import UiLayer from '../ui/UiLayer.vue'
 import { onStartTyping, useFocus } from '@vueuse/core'
 

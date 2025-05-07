@@ -1,18 +1,17 @@
 <script setup>
 import { ref, computed, reactive, watchEffect } from "vue";
 import { asyncComputed, useClipboard, useShare } from "@vueuse/core";
-
-import { useUser, gunAvatar, SEA, useGun } from "#composables";
-
+import { useUser, gunAvatar, SEA } from "#composables";
 import { useCredentials } from "./useCredentials";
-import { QrShow } from "../components";
+import { genLink } from './useAuth'
+
+import QrShow from "../qr/QrShow.vue";
 
 const emit = defineEmits(["close"]);
 
 const { text, copy, copied, isSupported: canCopy } = useClipboard();
 const { share, isSupported: canShare } = useShare();
 
-const { saveImage, saveJson, saveLink, shareImage } = useCredentials();
 const { user } = useUser();
 
 const input = ref("");
@@ -32,10 +31,7 @@ const svgContent = computed(() =>
   gunAvatar({ pub: user.pub, embed: enc.value, svg: true, p3: false })
 );
 
-function genLink(text = "", auth_url = "#/auth/") {
-  let base = encodeURIComponent(text);
-  return window.location.origin + window.location.pathname + auth_url + base;
-}
+const { saveImage, saveJson, saveLink, shareImage } = useCredentials();
 </script>
 
 <template lang="pug">
@@ -105,15 +101,7 @@ function genLink(text = "", auth_url = "#/auth/") {
 
   transition(name="fade" mode="out-in")
     .p-4.flex.flex-col.gap-2.items-center(v-if="showQr" key="qr")
-      qr-show(:data="enc")
-
-  //- button.button.items-center.flex-1.justify-center(
-  //-   v-if="isSet"
-  //-   @click="input = ''; isSet = false; emit('close')"
-  //-   :disabled="!input || !isSet"
-  //-   type="button") 
-  //-   .i-la-check.text-2xl
-  //-   .ml-2 Key backup complete
+      QrShow(:data="enc")
 
   .text-sm.p-2.op-60.text-center(v-if="isSet") Save your encrypted key in a secure place. Write down the password. Keep it safe.
 </template>

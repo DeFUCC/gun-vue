@@ -1,93 +1,74 @@
-export async function createPassKey(name) {
-  if (!name) return;
+import { extractFromFile } from "gun-avatar"
+import derivePair from '@gun-vue/gun-es/derive'
+import { validateMnemonic, mnemonicToEntropy, entropyToMnemonic } from '@scure/bip39'
+import { wordlist } from '@scure/bip39/wordlists/english'
 
-  const challenge = generateChallenge();
-  const challengeBase64url = encodeChallenge(challenge);
+import { useQR } from '../composables'
 
+const auth_url = "#/auth/"
+
+export function genLink(text = "") {
+  let base = encodeURIComponent(text);
+  return window.location.origin + window.location.pathname + auth_url + base;
+}
+
+export async function parseKey(p) {
+  if (!p) return false
+  if (typeof p == 'string') {
+    if (p.includes(auth_url)) {
+      p = decodeURIComponent(link.substring(link.indexOf(auth_url) + auth_url.length))
+    }
+    if (p.substring(0, 3) == 'SEA') {
+      return ''
+    }
+    if (validateMnemonic(p.trim(), wordlist)) {
+      const entropy = mnemonicToEntropy(p.trim(), wordlist)
+      p = await derivePair(btoa(String.fromCharCode(...entropy)))
+    }
+    if (typeof p == 'string') {
+      p = JSON.parse(p)
+    }
+  }
+
+  if (p?.pub && p?.priv) {
+    return p
+  } else {
+    return null
+  }
+}
+
+
+export async function handleAuthFile(file, pair) {
+  if (!file) return false
+  const type = file.type.toLowerCase()
+  let result = null
   try {
-    const credential = await navigator.credentials.create({
-      publicKey: {
-        challenge,
-        rp: { name: "Gun-Vue" },
-        user: {
-          id: crypto.getRandomValues(new Uint8Array(16)),
-          name,
-          displayName: name,
-        },
-        pubKeyCredParams: [
-          { type: "public-key", alg: -7 },
-          { type: "public-key", alg: -257 },
-        ],
-        authenticatorSelection: {
-          residentKey: "required",
-          userVerification: "preferred",
-        },
-        attestation: "none",
-        timeout: 60000,
-      },
+    if (type === 'application/json' || file.name.endsWith('.webkey')) {
+      result = await uploadText(file)
+    } else if (type === 'image/png' || type === 'image/svg+xml') {
+      const data = await extractFromFile(file)
+      if (data?.content) result = data.content
+    } else if (type.startsWith('image/')) {
+      const { processFile } = useQR()
+      result = await processFile(file)
+    }
+  } catch (e) {
+    console.error('Failed to extract auth data from file:', e)
+  }
+
+  return result
+}
+
+async function uploadText(file) {
+  if (!file || file.size > 20_000_000) {
+    console.error("File is missing or too big");
+    return;
+  }
+  return await new Promise((res, rej) => {
+    const reader = Object.assign(new FileReader(), {
+      onload: () => res(reader.result),
+      onerror: rej
     });
-
-    if (!verifyChallenge(credential, challengeBase64url)) return false;
-
-    return generatePassKeyIdentifier(credential.rawId);
-  } catch (error) {
-    console.error("Error creating passkey:", error);
-    return false;
-  }
-}
-
-export async function passKeyLogin() {
-  const challenge = generateChallenge();
-  const challengeBase64url = encodeChallenge(challenge);
-
-  try {
-    const credential = await navigator.credentials.get({
-      publicKey: {
-        challenge,
-        userVerification: "preferred",
-        timeout: 60000,
-      },
-    });
-
-    if (!verifyChallenge(credential, challengeBase64url)) return false;
-
-    return generatePassKeyIdentifier(credential.rawId);
-  } catch (error) {
-    console.error("Error during passkey login:", error);
-    return false;
-  }
-}
-
-function generateChallenge() {
-  return crypto.getRandomValues(new Uint8Array(32));
-}
-
-function encodeChallenge(challenge) {
-  return btoa(String.fromCharCode(...challenge))
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_")
-    .replace(/=+$/, "");
-}
-
-function verifyChallenge(credential, expectedChallenge) {
-  const clientDataJSON = JSON.parse(
-    new TextDecoder().decode(credential.response.clientDataJSON)
-  );
-
-  if (clientDataJSON.challenge !== expectedChallenge) {
-    console.error(
-      "Wrong challenge received! Check your authentication provider security.",
-      clientDataJSON.challenge,
-      expectedChallenge
-    );
-    return false;
-  }
-
-  return true;
-}
-
-async function generatePassKeyIdentifier(rawId) {
-  const hash = await crypto.subtle.digest("SHA-256", rawId);
-  const bits = new Uint8Array(hash).slice(0, 20);
-  return btoa(String.fromCharCode(...bits));
-}
+    reader.readAsText(file);
+  });
+};
