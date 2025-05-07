@@ -1,6 +1,6 @@
 {
 	"name": "@gun-vue/docs",
-	"version": "0.24.2",
+	"version": "0.25.0",
 	"private": "true",
 	"homepage": "https://gun-vue.js.org",
 	"bugs": {

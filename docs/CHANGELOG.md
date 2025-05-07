@@ -1,5 +1,11 @@
 # @gun-vue/docs
 
+## 0.25.0
+
+### Minor Changes
+
+- Authentication fully rebuilt with KDF.
+
 ## 0.24.2
 
 ### Patch Changes
