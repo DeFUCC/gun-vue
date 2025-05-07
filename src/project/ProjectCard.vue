@@ -1,11 +1,9 @@
 <script setup>
-import { useColor, useUser, removeProject, currentRoom } from '#composables'
+import { useUser, removeProject, currentRoom } from '#composables'
 import { AccountAvatar, UiLink } from '../components'
 
 const { user } = useUser()
 
-const colorLight = useColor('light')
-const colorDeep = useColor('deep')
 
 defineEmits(['user'])
 

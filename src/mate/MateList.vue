@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
-import { useColor, useMates, isEmoji, user } from '../composables';
+import { useMates, isEmoji, user } from '../composables';
 import { MateLink } from '../components'
 
 const props = defineProps({

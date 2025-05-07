@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, useColor, } from '#composables';
+import { useUser } from '#composables';
 import { computed, ref } from 'vue'
 
 const props = defineProps({
@@ -8,7 +8,6 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['react', 'user'])
-const colorDeep = useColor('deep')
 
 const { user } = useUser();
 
@@ -17,7 +16,7 @@ const { user } = useUser();
 <template lang="pug">
 button.rounded-2xl.text-lg.bg-light-200.dark-bg-dark-700.flex.items-center.pl-1.pr-1.mr-1(
   v-if="user.pub"
-  :style="{ backgroundColor: isMy ? colorDeep.hex(user.pub) : '' }"
+  :style="{ backgroundColor: isMy ? 'green' : '' }"
   ) 
   //- account-avatar.rounded-full.shadow-md(:pub="user.pub" :size="32")
   .flex.items-center.px-2.py-1.text-xl(

@@ -1,5 +1,5 @@
 <script setup>
-import { useUser, useMate, useColor } from '#composables';
+import { useUser, useMate } from '#composables';
 import { AccountBadge } from '../components'
 
 const props = defineProps({
@@ -7,7 +7,6 @@ const props = defineProps({
 })
 
 const { user } = useUser()
-const colorDeep = useColor('deep')
 
 const { emoji, isMate, toggleMate } = useMate(props.pub)
 
@@ -16,7 +15,7 @@ const { emoji, isMate, toggleMate } = useMate(props.pub)
 <template lang="pug">
 .flex.items-center(v-if="user.is && user.pub != pub")
   .flex.items-center.rounded-2xl.shadow-xl.px-2.text-3xl.bg-light-500.dark-bg-dark-700(
-    :style="{ backgroundColor: isMate ? colorDeep.hex(pub) : '' }" 
+    :style="{ backgroundColor: isMate ? 'green' : '' }" 
     )
     account-badge.w-8(
       :pub="user.pub" 

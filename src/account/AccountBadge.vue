@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch, watchEffect } from 'vue'
-import { useGun, useColor, selectedUser, useUser, SEA, theme } from '../composables'
+import { useGun, selectedUser, useUser, SEA, theme } from '../composables'
 import { AccountAvatar } from '../components'
 
 const props = defineProps({
@@ -14,8 +14,6 @@ const props = defineProps({
 const name = ref('')
 const petname = ref('')
 
-const colorDeep = useColor('deep')
-const colorLight = useColor('light')
 
 const gun = useGun()
 const { user } = useUser()

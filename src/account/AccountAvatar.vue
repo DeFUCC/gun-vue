@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAvatar, useColor } from '../composables'
+import { useAvatar } from '../composables'
 
 const props = defineProps({
   pub: { type: String, default: '' },
@@ -8,7 +8,6 @@ const props = defineProps({
   interactive: { type: Boolean, default: false },
 });
 
-const colorDeep = useColor('deep')
 
 const { avatar, blink } = useAvatar(() => props.pub, () => props.size)
 
@@ -19,7 +18,7 @@ const { avatar, blink } = useAvatar(() => props.pub, () => props.size)
 .flex.flex-col.items-center.justify-center
   img.border.rounded-full.overflow-hidden.transition.duration-500.ease-out(
     v-if="pub"
-    :style="{ borderColor: blink ? colorDeep.hex(pub) : 'transparent', borderWidth: `${border}px` }",
+    :style="{ borderColor: blink ? 'white' : 'transparent', borderWidth: `${border}px` }",
     :width="size"
     :height="size"
     :src="avatar"

@@ -1,9 +1,7 @@
 <script setup>
-import { dictRecord, useColor, selectedUser } from '#composables';
+import { dictRecord, selectedUser } from '#composables';
 import { AccountAvatar } from '../../components'
 
-const color = useColor('light')
-const colorDeep = useColor('deep')
 
 defineProps({
   links: { type: [Array, Object], default: () => [] },
@@ -21,13 +19,11 @@ defineEmits(['def', 'word'])
   .p-2.rounded-xl.flex.gap-1.flex-wrap(
     v-for="(authors, link) in links" 
     :key="link"
-    :style="{ backgroundColor: link == dictRecord.word || link == dictRecord.def ? colorDeep.hex(link) : color.hex(link) }"
     @click.stop.prevent="$emit(type, link)"
     )
       .p-1.rounded-full(
         v-for="(is, author) in authors" 
         :key="author" 
-        :style="{ backgroundColor: colorDeep.hex(author) }"
         ) 
         account-avatar(
           v-if="link == dictRecord.word || link == dictRecord.def" 

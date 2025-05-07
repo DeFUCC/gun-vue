@@ -1,5 +1,5 @@
 <script setup>
-import { useWord, useColor, letterFilter, dictRecord, useDictRecordsFor } from '#composables';
+import { useWord, letterFilter, dictRecord, useDictRecordsFor } from '#composables';
 import { DictDefCard } from '../components'
 
 const props = defineProps({
@@ -8,8 +8,6 @@ const props = defineProps({
 
 defineEmits(['def', 'close'])
 
-const color = useColor('light')
-
 const { word } = useWord(props.hash)
 const links = useDictRecordsFor(props.hash)
 
@@ -17,7 +15,7 @@ const links = useDictRecordsFor(props.hash)
 </script>
 
 <template lang="pug">
-.flex.flex-col.p-4.rounded-xl(:style="{ backgroundColor: color.hex(hash) }" )
+.flex.flex-col.p-4.rounded-xl
   .flex.items-center.rounded-lg.capitalize.mb-4
     .text-2xl.font-bold {{ letterFilter(word) }}
 

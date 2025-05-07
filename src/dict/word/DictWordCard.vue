@@ -1,5 +1,5 @@
 <script setup>
-import { useWord, useColor, letterFilter, dictRecord, useDictRecordsFor, useUser } from '#composables';
+import { useWord, letterFilter, dictRecord, useDictRecordsFor, useUser } from '#composables';
 import { DictLinkList, DictLinkButton } from '../components'
 
 const props = defineProps({
@@ -9,8 +9,6 @@ const props = defineProps({
 defineEmits(['def'])
 
 const { user } = useUser()
-
-const color = useColor('light')
 
 const { word } = useWord(props.hash)
 const links = useDictRecordsFor(props.hash)

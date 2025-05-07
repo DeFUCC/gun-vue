@@ -5,7 +5,6 @@ import {
   useDraw,
   useSpace,
   useUser,
-  useColor,
   useRoom,
   selectedUser,
   safeHash,
@@ -28,8 +27,6 @@ const props = defineProps({
 const emit = defineEmits(["user", "enter", "leave", "chat", "post", "update:coord"]);
 
 const { user } = useUser();
-
-const colorDeep = useColor("deep");
 
 const {
   space,

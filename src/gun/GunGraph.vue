@@ -1,12 +1,11 @@
 <script setup>
-import { useGun, useColor, theme } from '#composables';
+import { useGun, theme } from '#composables';
 import { ref, onBeforeUnmount } from 'vue'
 import { AccountAvatar } from '../components'
 
 const graph = ref({});
 
-const colorLight = useColor('light')
-const colorDeep = useColor('deep')
+
 
 const gun = useGun()
 
@@ -19,15 +18,13 @@ onBeforeUnmount(() => {
 });
 
 
-
 </script>
 
 <template lang="pug">
-article.rounded-xl.break-all
-  .p-2px.text-sm(
+article.rounded-xl.break-all.flex.flex-col.gap-2
+  .text-sm.bg-light-800.dark-bg-dark-800(
     v-for="(g, i) in graph",
     :key="i",
-    :style="{ backgroundColor: theme.dark ? colorDeep.hex(i) : colorLight.hex(i) }"
   )
     .flex.cursor-pointer(@click="g.show = !g.show")
 

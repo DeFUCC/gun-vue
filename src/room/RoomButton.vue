@@ -1,5 +1,5 @@
 <script setup>
-import { useRoom, useColor, currentRoom, useBackground, useRoomLogo } from '#composables';
+import { useRoom, currentRoom, useBackground, useRoomLogo } from '#composables';
 import { ref, computed } from 'vue'
 import { UiPanel, RoomPage } from '../components'
 

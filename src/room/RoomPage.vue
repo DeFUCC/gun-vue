@@ -1,5 +1,5 @@
 <script setup>
-import { useRoom, rootRoom, currentRoom, useColor, useUser, useBackground, useMd, favRoom } from '#composables';
+import { useRoom, rootRoom, currentRoom, useUser, useBackground, useMd, favRoom } from '#composables';
 import { ref, computed, reactive } from 'vue'
 import { RoomLogo, FormTitle, AccountBadge, RoomActions, RoomFeature, FormText, GuestList } from '../components'
 import { features } from '../../gun.config.json'
@@ -34,7 +34,6 @@ const edit = reactive({
   text: false,
 })
 
-const colorDeep = useColor('deep')
 
 const bg = computed(() => useBackground({ pub: roomPub.value, size: 1200, attachment: 'local' }))
 

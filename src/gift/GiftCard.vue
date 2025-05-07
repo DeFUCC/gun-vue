@@ -1,5 +1,5 @@
 <script setup>
-import { giftState, useColor, useUser, useGift, useGun, currentRoom, useProject } from '#composables'
+import { giftState, useUser, useGift, useGun, currentRoom, useProject } from '#composables'
 import { AccountBadge, GiftStatus } from '../components'
 import { computed, ref } from 'vue'
 
@@ -10,8 +10,6 @@ const props = defineProps({
 const emit = defineEmits(['project'])
 
 const { user } = useUser()
-
-const color = useColor()
 
 const { gift, state } = useGift(props.hash)
 
@@ -37,10 +35,8 @@ const { project } = useProject(computed(() => gift.project))
   v-if="Object.keys(gift).length > 0"
   :style="{ opacity: state.complete ? 1 : 0.5 }"
   ) 
-  //- .font-mono.text-7px.absolute.-bottom-2.right-2.opacity-40(
-    :style="{ color: color.hex(hash) }"
-    ) {{ hash }}
-  .w-3.min-w-3.h-full.flex-0(:style="{ backgroundColor: color.hex(hash) }")
+
+  .w-3.min-w-3.h-full.flex-0()
   .flex.flex-wrap.gap-2.items-center.px-2
     .flex-0.flex.flex-wrap.px-2.gap-2
       .flex.flex-col

@@ -23,7 +23,6 @@ Core functionality and data management:
   - `drauu` for drawing capabilities
   - `gun-avatar` for user avatars
   - `qrcode` for QR code generation
-  - `color-hash` for consistent color generation
 
 ## Components (`@gun-vue/components`)
 

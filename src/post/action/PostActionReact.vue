@@ -1,5 +1,5 @@
 <script setup>
-import { useReaction, useUser, useColor, useReactions, countRating } from '#composables';
+import { useReaction, useUser, useReactions, countRating } from '#composables';
 import { computed, ref } from 'vue'
 import { PostReactionButton, AccountBadge } from '../../components'
 
@@ -11,7 +11,7 @@ const props = defineProps({
 })
 
 defineEmits(['react', 'user'])
-const colorDeep = useColor('deep')
+
 
 const { user } = useUser();
 

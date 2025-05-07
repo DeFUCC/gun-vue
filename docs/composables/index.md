@@ -10,7 +10,6 @@ It's just the beginning and not all the functions are reliably implemented yet. 
 
 - **User** - the `gun.user()` system management
 - **Account** - user profile interface
-- **Color** - the `color-hash` interface to generate colors for hashes and pubs
 - **Crypto** - the main cryptographic primitives like e2e encrypted messaging and more
 - **Date Tree** - the very performant concept of Date Tree graphs from [gun-util](https://github.com/diatche/gun-util#DateTree) made reactive and easy to use
 - **File** - some bindings to manage file uploads and downloads

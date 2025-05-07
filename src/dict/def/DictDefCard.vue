@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useGun, useUser, useColor, useDictRecordsFor, dictRecord, langParts } from '#composables';
+import { useGun, useUser, useDictRecordsFor, dictRecord, langParts } from '#composables';
 import { DictLinkList, DictLinkButton } from '../components'
 
 const props = defineProps({
@@ -12,7 +12,6 @@ const props = defineProps({
   },
 })
 
-const color = useColor('light')
 
 const gun = useGun()
 const { user } = useUser()
@@ -33,7 +32,7 @@ const links = useDictRecordsFor(props.hash)
 .flex.flex-col.rounded-xl.text-xl.p-2.bg-light-800.dark-bg-dark-400
   .text-lg.flex.items-center.flex-wrap(
     style="text-decoration-line: underline"
-    :style="{ textDecorationStyle: langParts[def?.part]?.underline, textDecorationColor: color.hex(hash) }"
+    :style="{ textDecorationStyle: langParts[def?.part]?.underline }"
     ) {{ def?.text }}
 
   .flex.flex-wrap.items-center

@@ -1,13 +1,12 @@
 <script setup>
 import { computed, reactive, watchEffect, onMounted } from 'vue'
-import { useColor, useMates, useGun, currentRoom, usePosts, user } from '#composables';
+import { useMates, useGun, currentRoom, usePosts, user } from '#composables';
 import ForceGraph from 'force-graph';
 
 //https://github.com/vasturiano/force-graph
 
 const emit = defineEmits(['post'])
 
-const colorDeep = useColor('deep')
 const gun = useGun()
 
 const nodes = reactive({})
@@ -32,7 +31,6 @@ gun
       let node = data
       nodes[hash] = {
         hash,
-        color: colorDeep.hex(hash),
         name: node?.title || node?.statement || hash,
       }
     }
@@ -66,7 +64,7 @@ onMounted(() => {
       return rndms[l.index] = rndms[l.index] || Math.random() * 1 - 0.5
     })
     .linkColor(link => {
-      return colorDeep.hex(link?.author || 0)
+      return 'green'
     })
     .linkWidth((link) => {
       return 2

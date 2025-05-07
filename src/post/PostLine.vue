@@ -1,9 +1,8 @@
 <script setup>
-import { useColor, usePost } from '#composables'
+import { usePost } from '#composables'
 import { computed, ref, watchEffect } from 'vue'
 
-const colorLight = useColor('light')
-const colorDeep = useColor('deep')
+
 
 defineEmits(['user'])
 
@@ -21,7 +20,7 @@ const { post } = usePost({ hash: props.hash })
 
 <template lang="pug">
 .line(
-  :style="{ backgroundColor: colorDeep.hex(hash) }"
+  :style="{ backgroundColor: 'green' }"
   )
   .flex.flex-wrap.items-center.max-w-full.w-full.backdrop-blur-lg.rounded-lg.bg-light-100.bg-opacity-90.backdrop-blur-sm.backdrop-filter.shadow-md.hover-bg-opacity-20.transition-all
     .p-0(

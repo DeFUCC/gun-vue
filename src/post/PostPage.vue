@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { useColor, usePosts, usePost, useMd } from '#composables';
+import { usePosts, usePost, useMd } from '#composables';
 import { PostLine, EmbedYoutube, UiLink, QrShare, PostActionUpdate, PostList } from '../components'
 
 
@@ -13,8 +13,6 @@ const props = defineProps({
 
 defineEmits(['close', 'browse', 'user'])
 
-const colorLight = computed(() => useColor('light').hex(props.hash))
-const colorDeep = computed(() => useColor('deep').hex(props.hash))
 
 const { post, download, downloading, } = usePost({ hash: props.hash })
 
@@ -62,7 +60,7 @@ const { posts, backlinks } = usePosts(props.hash)
             v-if="post.icon"
             style="flex:0 1 40px" 
             :src="post.icon" 
-            :style="{ borderColor: colorDeep }"
+            :style="{ borderColor: 'white' }"
             )
           .text-2xl.font-bold.m-2(
 

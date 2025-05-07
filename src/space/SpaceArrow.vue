@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
-import { useColor } from '../composables'
 import { useDraggable } from '@vueuse/core'
 
 const emit = defineEmits(['user'])
@@ -11,7 +10,6 @@ const props = defineProps({
   randomness: { type: Number, default: 0.1 }
 })
 
-const colorDeep = useColor('deep')
 </script>
 
 <template lang="pug">
@@ -21,13 +19,13 @@ g.arrow(ref="handle")
     :y1="link.arrow.sy"
     :x2="link.arrow.c1x"
     :y2="link.arrow.c1y"
-    :stroke="colorDeep.hex(link.user)"
+    stroke="green"
     stroke-width="1"
     )
 
   path(
     :d="`M ${link.arrow.sx} ${link.arrow.sy} C ${link.arrow.c1x} ${link.arrow.c1y}, ${link.arrow.c2x} ${link.arrow.c2y}, ${link.arrow.ex} ${link.arrow.ey}`"
-    :stroke="colorDeep.hex(link.user)"
+    stroke="green"
     stroke-width="2"
     fill="none"
     stroke-linecap="round"
@@ -35,7 +33,7 @@ g.arrow(ref="handle")
   polygon(
     :points="`0,${-head} ${head * 2},0, 0,${head}`"
     :transform="`translate(${link.arrow.ex}, ${link.arrow.ey}) rotate(${link.arrow.ae})`"
-    :fill="colorDeep.hex(link.user)"
+    fill="green"
     )
   g.handle
     circle.cursor-pointer(
@@ -43,8 +41,8 @@ g.arrow(ref="handle")
       :cy="link.arrow.c1y"
       stroke-width="2"
       :r="18"
-      :stroke="colorDeep.hex(link.user)"
-      :fill="colorDeep.hex(link.mate)"
+      stroke="green"
+      fill="green"
       @click.prevent.stop="$emit('user', link.mate)"
       )
     text.text-2xl.pointer-events-none(

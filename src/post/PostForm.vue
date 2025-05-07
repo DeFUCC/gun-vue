@@ -1,7 +1,7 @@
 <script setup>
 import { reactive, ref, onMounted, watch, computed } from 'vue'
 
-import { addPost, useColor } from '#composables'
+import { addPost } from '#composables'
 import { FormPicture, FormLink, FormYoutube, UiLayer, FormText } from '../components'
 
 const props = defineProps({
@@ -13,11 +13,6 @@ const props = defineProps({
 
 const emit = defineEmits(['close'])
 
-const colorDeep = useColor('deep')
-
-const addColor = computed(() => {
-  return colorDeep.hex(props.tag)
-})
 
 const titleInput = ref()
 
@@ -129,12 +124,12 @@ button:disabled {
 }
 
 .active {
-  background-color: v-bind(addColor);
+  background-color: green;
 }
 
 .plus {
   transition: all 100ms ease-in;
-  background-color: v-bind(addColor);
+  background-color: green;
   filter: grayscale(50%) brightness(100%);
 }
 

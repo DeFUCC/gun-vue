@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useGun, useColor, useDictRecordsFor, dictRecord, langParts, useUser } from '#composables';
+import { useGun, useDictRecordsFor, dictRecord, langParts, useUser } from '#composables';
 import { DictWordCard, DictWordList } from '../components'
 
 const props = defineProps({
@@ -10,8 +10,6 @@ const props = defineProps({
 })
 
 defineEmits(['word', 'close'])
-
-const color = useColor('light')
 
 const gun = useGun()
 const { user } = useUser()
@@ -28,9 +26,7 @@ const links = useDictRecordsFor(props.hash)
 </script>
 
 <template lang="pug">
-.flex.flex-col.rounded-xl.text-xl.p-4(
-  :style="{ backgroundColor: color.hex(hash) }"
-  )
+.flex.flex-col.rounded-xl.text-xl.p-4
   .flex.flex-col.mb-4 
     .text-xl.flex.flex-wrap.items-center(
       style="text-decoration-line: underline"

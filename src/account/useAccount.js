@@ -1,9 +1,7 @@
 import { useGun, useUser, SEA } from "../composables";
-import { useColor } from "../ui/composables";
 import { computed, reactive, ref } from "vue";
 import ms from "ms";
 
-const colorDeep = useColor("deep");
 const TIMEOUT = 10000;
 
 export function useAccount(pubKey) {
@@ -13,7 +11,7 @@ export function useAccount(pubKey) {
 	const account = computed(() => {
 		const acc = reactive({
 			pub: pub.value,
-			color: computed(() => (pub.value ? colorDeep.hex(pub.value) : "gray")),
+			color: computed(() => "gray"),
 			profile: {
 				name: "",
 			},

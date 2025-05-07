@@ -41,7 +41,6 @@ Reusable logic built with the **Vue 3 Composition API** `use` functions. Manages
 
 ### UI & Visual
 
-- **Color** - the `color-hash` interface to generate colors for hashes and pubs
 - **Mouse** - some basic bindings to reliably locate mouse pointer in an SVG - may be useful for many online games
 
 **... and more!**

@@ -1,5 +1,5 @@
 <script setup>
-import { useGuests, useNewGift, useUser, useProject, useProjects, currentRoom, useColor, useGun } from '#composables'
+import { useGuests, useNewGift, useUser, useProject, useProjects, currentRoom, useGun } from '#composables'
 import { AccountBadge, AuthForm, ProjectCard, RoomButton } from '../components'
 import { toRef, watch, computed, reactive } from 'vue'
 import { component as NumberFormat } from '@coders-tm/vue-number-format' // https://vue-number-format.netlify.app/guide/#globally
@@ -32,8 +32,6 @@ const { guests, count } = useGuests()
 const { project } = useProject(toRef(newGift, 'project'))
 
 const { projects } = useProjects()
-
-const color = useColor()
 
 watch(() => newGift.wallet, w => {
   if (!w) return
@@ -149,6 +147,5 @@ const userProjects = computed(() => {
 
         pre.overflow-scroll.font-mono.text-xs.m-4.opacity-50.break-all.col-span-2 {{ cleanGift }}
         .font-mono.text-xs.col-span-2.text-center.rounded-lg.m-2.transition(
-          :style="{ backgroundColor: color.hex(hash || '') }"
         ) {{ hash }}
 </template>

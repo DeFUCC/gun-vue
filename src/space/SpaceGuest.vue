@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useColor, selectedUser, useUser, useAvatar } from '../composables';
+import { selectedUser, useUser, useAvatar } from '../composables';
 import { computed } from 'vue'
 import { SpaceStatus } from './components';
 const props = defineProps(
@@ -21,8 +21,8 @@ const age = computed(() => Date.now() - Number(props.pulse))
 
 const isOffline = computed(() => age.value > TIMEOUT)
 
-const colorDeep = useColor()
-const color = computed(() => colorDeep.hex(props.pub))
+
+const color = computed(() => 'green')
 
 const { avatar, blink } = useAvatar(() => props.pub, () => props.size)
 
@@ -74,7 +74,7 @@ g.guest(
 )
   SpaceStatus.opacity-20.hover-opacity-90.transition.font-mono(
     :content="status"
-    @update="$emit('updateStatus',$event)"
+    @update="$emit('updateStatus', $event)"
     :editable="user.pub == pub"
     :max-row-length="30"
     :line-height="22"

@@ -1,13 +1,9 @@
 import { SEA, useGun } from "../composables";
-import { useColor } from "../ui/composables";
 import { computed, reactive } from "vue";
-
-const colorDeep = useColor("deep");
 
 export const selectedUser = reactive({
 	pub: "",
 });
-
 
 export const user = reactive({
 	initiated: false,
@@ -15,7 +11,7 @@ export const user = reactive({
 	is: null,
 	name: "",
 	pub: computed(() => user?.is?.pub),
-	color: computed(() => (user.pub ? colorDeep.hex(user.pub) : "gray")),
+	color: computed(() => ("gray")),
 	pulse: 0,
 	pulser: null,
 	blink: false,

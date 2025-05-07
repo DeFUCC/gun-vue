@@ -1,6 +1,6 @@
 <script setup>
 import { computed, reactive, watchEffect, onMounted } from 'vue'
-import { useColor, useMates, useGun, currentRoom, gunAvatar, user } from '#composables';
+import { useMates, useGun, currentRoom, gunAvatar, user } from '#composables';
 import ForceGraph from 'force-graph';
 
 import { ref } from 'vue'
@@ -12,7 +12,6 @@ const graph = ref(null)
 
 const emit = defineEmits(['user'])
 
-const colorDeep = useColor('deep')
 const gun = useGun()
 
 const guests = reactive({})
@@ -25,7 +24,7 @@ gun
     guests[k] = {
       pub: k,
       name: await gun.user(k).get('profile').get('name').then(),
-      color: colorDeep.hex(k),
+      color: 'green',
       links: useMates(k)
     }
   })

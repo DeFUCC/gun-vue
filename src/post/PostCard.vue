@@ -1,10 +1,7 @@
 <script setup>
-import { useColor, usePost } from '#composables'
+import { usePost } from '#composables'
 import { computed, ref, watchEffect } from 'vue'
 import { UiLink, PostActionReact } from '../components'
-
-const colorLight = useColor('light')
-const colorDeep = useColor('deep')
 
 defineEmits(['user'])
 
@@ -24,7 +21,7 @@ const hasText = computed(() => post.icon || post.title || post.statement || post
 
 <template lang="pug">
 .card(
-  :style="{ backgroundImage: `url(${post?.cover || post?.raw})`, backgroundColor: colorDeep.hex(hash) }"
+  :style="{ backgroundImage: `url(${post?.cover || post?.raw})` }"
   )
   .p-0(
     :style="{ paddingTop: post?.cover || post?.raw ? '18em' : '0' }"
