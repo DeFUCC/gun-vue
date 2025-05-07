@@ -5,117 +5,46 @@ import derivePair from '@gun-vue/gun-es/derive'
 import { validateMnemonic, mnemonicToEntropy } from '@scure/bip39'
 import { wordlist } from '@scure/bip39/wordlists/english';
 
-import { useUser, safeJSONParse, uploadText, SEA, parseLink, useQR } from '../composables'
+import { useGun, safeJSONParse, uploadText, SEA, useQR } from '../composables'
 
-const current = ref('pass')
-const pair = ref()
+const key = ref()
 const passphrase = ref(null)
 const showKey = ref(false)
+const dragOver = ref(false)
 
-const { auth } = useUser()
-
-function show(option) {
-  if (current.value != option) {
-    current.value = option;
-  } else {
-    current.value = null;
+watch(key, async p => {
+  const gun = useGun()
+  const pair = await handleKey(p)
+  if (pair == '') { passphrase.value = '' }
+  if (pair && pair.pub) {
+    gun.user().auth(pair)
   }
-}
+})
 
-watch(pair, async (p) => {
-  if (!p) return
-
+async function handleKey(p) {
+  if (!p) return false
   if (typeof p == 'string' && p.includes('#/auth/')) {
     p = parseLink(p)
   }
   if (p && typeof p == 'string' && p.substring(0, 3) == 'SEA') {
-    passphrase.value = ''
-    return
+    return ''
   }
-
   if (p && typeof p == 'string' && validateMnemonic(p.trim(), wordlist)) {
     const entropy = mnemonicToEntropy(p.trim(), wordlist)
     p = await derivePair(btoa(String.fromCharCode(...entropy)))
   }
-
   let obj = safeJSONParse(p)
   if (obj?.pub && obj?.priv) {
-    auth(obj)
-    pair.value = null
+    return obj
   } else {
-    console.log('No valid pair')
-  }
-})
-
-async function decode(p = pair.value) {
-  if (typeof p == 'string' && p.includes('#/auth/')) {
-    p = parseLink(p)
-  }
-  pair.value = await SEA.decrypt(p, passphrase.value);
-}
-
-async function uploadFile(event) {
-  pair.value = await uploadText(event.target?.files)
-}
-
-async function uploadAvatar(event) {
-  const file = event.target?.files?.[0]
-  if (!file) return
-  try {
-    const data = await extractFromFile(file)
-    if (data?.content) {
-      pair.value = data.content
-    }
-  } catch (e) {
-    console.error('Failed to extract data from avatar:', e)
+    return null
   }
 }
-
-
-const over = ref(false)
-
-const name = ref('')
-
-async function passKeyLogin() {
-  let credential = await navigator.credentials.get({
-    publicKey: {
-      challenge: crypto.getRandomValues(new Uint8Array(32)),
-      userVerification: 'preferred',
-      timeout: 60000
-    }
-  });
-
-  let bits = new Uint8Array(await crypto.subtle.digest('SHA-256', credential.rawId)).slice(0, 20)
-
-  pair.value = await derivePair(btoa(String.fromCharCode(...bits)))
-}
-
-
-async function handleDrop(event) {
-  pair.value = await handleAuthFile(event.dataTransfer?.files[0])
-  showKey.value = true
-}
-
-async function handleUpload(event) {
-  pair.value = await handleAuthFile(event.target?.files[0])
-}
-
-onMounted(() => {
-  if ('launchQueue' in window) {
-    window.launchQueue.setConsumer(async launchParams => {
-      const fileHandle = launchParams.files?.[0];
-      if (fileHandle) {
-        const file = await fileHandle.getFile()
-        pair.value = await handleAuthFile(file)
-      }
-    });
-  }
-})
 
 async function handleAuthFile(file, pair) {
-  if (!file) return
+  if (!file) return false
   const type = file.type.toLowerCase()
-  let result
+  let result = null
   try {
     if (type === 'application/json' || file.name.endsWith('.webkey')) {
       result = await uploadText([file])
@@ -126,23 +55,93 @@ async function handleAuthFile(file, pair) {
       const { processFile } = useQR()
       result = await processFile(file)
     }
-    return result
   } catch (e) {
     console.error('Failed to extract auth data from file:', e)
   }
+
+  return result
+}
+
+async function passKeyLogin() {
+  const challenge = crypto.getRandomValues(new Uint8Array(32));
+
+  const credential = await navigator.credentials.get({
+    publicKey: {
+      challenge,
+      userVerification: 'preferred',
+      timeout: 60000
+    }
+  })
+
+  const challengeBase64url = btoa(String.fromCharCode(...challenge)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+
+  const clientDataJSON = JSON.parse(new TextDecoder().decode(credential.response.clientDataJSON))
+
+  if (clientDataJSON.challenge !== challengeBase64url) {
+    console.error('Wrong challenge received! Check your authentication provider security.', clientDataJSON.challenge, challengeBase64url)
+    return false
+  }
+
+  const bits = new Uint8Array(await crypto.subtle.digest('SHA-256', credential.rawId)).slice(0, 20)
+
+  return btoa(String.fromCharCode(...bits))
+
+}
+
+async function handlePassKey() {
+  const entropy = await passKeyLogin()
+  if (!entropy) return
+  key.value = await derivePair(entropy)
+}
+
+
+onMounted(() => {
+  if ('launchQueue' in window) {
+    window.launchQueue.setConsumer(async launchParams => {
+      const fileHandle = launchParams.files?.[0];
+      if (fileHandle) {
+        const file = await fileHandle.getFile()
+        key.value = await handleAuthFile(file)
+        showKey.value = true
+      }
+    });
+  }
+})
+
+async function handleDrop(event) {
+  key.value = await handleAuthFile(event.dataTransfer?.files[0])
+  showKey.value = true
+}
+
+async function handleUpload(event) {
+  key.value = await handleAuthFile(event.target?.files[0])
+  showKey.value = true
+}
+
+async function decode(p = key.value) {
+  if (typeof p == 'string' && p.includes('#/auth/')) {
+    p = parseLink(p)
+  }
+  key.value = await SEA.decrypt(p, passphrase.value);
+}
+
+function parseLink(link, auth_url = "#/auth/") {
+  let index = link.indexOf(auth_url);
+  let base = link.substring(index + auth_url.length);
+  return decodeURIComponent(base);
 }
 
 </script>
 
 <template lang="pug">
 #dropzone.flex.flex-col.gap-4.flex-1.items-stretch.bg-light-700.dark-bg-dark-50.rounded-3xl.p-4.shadow-lg.border-4.border-dark-100.dark-border-light-100.border-op-0.dark-border-op-0(
-  @drop.prevent="handleDrop($event); over = false"
-  @dragover.prevent="over = true"
-  @dragleave.prevent="over = false"
-  :class="{ 'border-op-100 dark-border-op-100': over }"
+  @drop.prevent="handleDrop($event); dragOver = false"
+  @dragover.prevent="dragOver = true"
+  @dragleave.prevent="dragOver = false"
+  :class="{ 'border-op-100 dark-border-op-100': dragOver }"
 )
   slot.text-md Login with a saved key
-  button.flex-1.button.items-center(@click="passKeyLogin()")
+  button.flex-1.button.items-center(@click="handlePassKey()")
     .i-la-fingerprint.text-4xl
     .px-2 Login
 
@@ -162,7 +161,7 @@ async function handleAuthFile(file, pair) {
       textarea.p-2.text-sm.flex-1.w-full.dark-bg-dark-200(
 
         key="text" 
-        v-model="pair" 
+        v-model="key" 
         rows="6" 
         cols="40" 
         placeholder="Your seed phrase or your keypair"

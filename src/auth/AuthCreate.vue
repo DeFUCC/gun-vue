@@ -84,8 +84,6 @@ const toBase64 = u8 => btoa(String.fromCharCode(...u8));
 const toUint8Array = b64 => new Uint8Array([...atob(b64)].map(c => c.charCodeAt(0)));
 
 
-
-
 </script>
 
 <template lang="pug">

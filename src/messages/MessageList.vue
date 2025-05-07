@@ -30,7 +30,7 @@ onClickOutside(chatsPanel, () => !isLarge.value ? panelOpen.value = false : null
 </script>
 
 <template lang="pug">
-button.button.z-2000.top-16.left-4(style="flex: 1 0 200px" v-if="(!panelOpen && !isLarge)" @click="panelOpen = true")
+button.button.z-2000.top-3.left-2.absolute(style="flex: 1 0 200px" v-if="(!panelOpen && !isLarge)" @click="panelOpen = true")
   .i-la-angle-right
 transition(name="fade" mode="out-in" appear)
   .px-1.py-2.flex.flex-col.bg-dark-50.dark-bg-dark-400.bg-opacity-95.gap-2.overflow-y-scroll.scroll-smooth.absolute.sm-static.z-20000.min-w-260px.max-w-full.text-dark-900.dark-text-light-800.backdrop-filter.backdrop-blur-xl.pb-8(
