@@ -5,7 +5,7 @@ import derivePair from '@gun-vue/gun-es/derive'
 import { validateMnemonic, mnemonicToEntropy } from '@scure/bip39'
 import { wordlist } from '@scure/bip39/wordlists/english';
 
-import { useGun, safeJSONParse, uploadText, SEA, useQR } from '../composables'
+import { useGun, safeJSONParse, SEA, useQR } from '../composables'
 
 const key = ref()
 const passphrase = ref(null)
@@ -15,21 +15,56 @@ const dragOver = ref(false)
 watch(key, async p => {
   const gun = useGun()
   const pair = await handleKey(p)
-  if (pair == '') { passphrase.value = '' }
+  if (pair === '') { passphrase.value = '' }
   if (pair && pair.pub) {
     gun.user().auth(pair)
   }
 })
 
+onMounted(() => {
+  if ('launchQueue' in window) {
+    window.launchQueue.setConsumer(async launchParams => {
+      const fileHandle = launchParams.files?.[0];
+      if (fileHandle) {
+        const file = await fileHandle.getFile()
+        key.value = await handleAuthFile(file)
+        showKey.value = true
+      }
+    });
+  }
+})
+
+
+async function handlePassKey() {
+  const entropy = await passKeyLogin()
+  if (!entropy) return
+  key.value = await derivePair(entropy)
+}
+
+async function handleDrop(event) {
+  key.value = await handleAuthFile(event.dataTransfer?.files[0])
+  showKey.value = true
+}
+
+async function handleUpload(event) {
+  key.value = await handleAuthFile(event.target?.files[0])
+  showKey.value = true
+}
+
+async function handlePassphrase(p) {
+  key.value = await SEA.decrypt(p, passphrase.value)
+}
+
 async function handleKey(p) {
   if (!p) return false
-  if (typeof p == 'string' && p.includes('#/auth/')) {
-    p = parseLink(p)
+  let auth_url = "#/auth/"
+  if (typeof p == 'string' && p.includes(auth_url)) {
+    p = decodeURIComponent(link.substring(link.indexOf(auth_url) + auth_url.length))
   }
-  if (p && typeof p == 'string' && p.substring(0, 3) == 'SEA') {
+  if (typeof p == 'string' && p.substring(0, 3) == 'SEA') {
     return ''
   }
-  if (p && typeof p == 'string' && validateMnemonic(p.trim(), wordlist)) {
+  if (typeof p == 'string' && validateMnemonic(p.trim(), wordlist)) {
     const entropy = mnemonicToEntropy(p.trim(), wordlist)
     p = await derivePair(btoa(String.fromCharCode(...entropy)))
   }
@@ -47,7 +82,7 @@ async function handleAuthFile(file, pair) {
   let result = null
   try {
     if (type === 'application/json' || file.name.endsWith('.webkey')) {
-      result = await uploadText([file])
+      result = await uploadText(file)
     } else if (type === 'image/png' || type === 'image/svg+xml') {
       const data = await extractFromFile(file)
       if (data?.content) result = data.content
@@ -61,6 +96,21 @@ async function handleAuthFile(file, pair) {
 
   return result
 }
+
+async function uploadText(file) {
+  if (!file || file.size > 20_000_000) {
+    console.error("File is missing or too big");
+    return;
+  }
+  return await new Promise((res, rej) => {
+    const reader = Object.assign(new FileReader(), {
+      onload: () => res(reader.result),
+      onerror: rej
+    });
+    reader.readAsText(file);
+  });
+};
+
 
 async function passKeyLogin() {
   const challenge = crypto.getRandomValues(new Uint8Array(32));
@@ -85,51 +135,8 @@ async function passKeyLogin() {
   const bits = new Uint8Array(await crypto.subtle.digest('SHA-256', credential.rawId)).slice(0, 20)
 
   return btoa(String.fromCharCode(...bits))
-
 }
 
-async function handlePassKey() {
-  const entropy = await passKeyLogin()
-  if (!entropy) return
-  key.value = await derivePair(entropy)
-}
-
-
-onMounted(() => {
-  if ('launchQueue' in window) {
-    window.launchQueue.setConsumer(async launchParams => {
-      const fileHandle = launchParams.files?.[0];
-      if (fileHandle) {
-        const file = await fileHandle.getFile()
-        key.value = await handleAuthFile(file)
-        showKey.value = true
-      }
-    });
-  }
-})
-
-async function handleDrop(event) {
-  key.value = await handleAuthFile(event.dataTransfer?.files[0])
-  showKey.value = true
-}
-
-async function handleUpload(event) {
-  key.value = await handleAuthFile(event.target?.files[0])
-  showKey.value = true
-}
-
-async function decode(p = key.value) {
-  if (typeof p == 'string' && p.includes('#/auth/')) {
-    p = parseLink(p)
-  }
-  key.value = await SEA.decrypt(p, passphrase.value);
-}
-
-function parseLink(link, auth_url = "#/auth/") {
-  let index = link.indexOf(auth_url);
-  let base = link.substring(index + auth_url.length);
-  return decodeURIComponent(base);
-}
 
 </script>
 
@@ -176,7 +183,7 @@ function parseLink(link, auth_url = "#/auth/") {
           )
         button.button.text-4xl(
           type="submit" 
-          @click="decode()"
+          @click="handlePassphrase(key)"
           )
           .i-la-sign-in-alt.text-4xl
 </template>
