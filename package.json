@@ -5,7 +5,7 @@
 	"homepage": "https://gun-vue.js.org",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/DeFUCC/gun-vue"
+		"url": "git+https://github.com/DeFUCC/gun-vue.git"
 	},
 	"funding": {
 		"type": "github",
