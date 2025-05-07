@@ -1,7 +1,10 @@
 <script setup>
-import { useUser } from '#composables';
+import { useUser, useGun } from '#composables';
 
 const { user } = useUser()
+
+const gun = useGun()
+
 </script>
 
 <template lang="pug">
@@ -10,5 +13,5 @@ const { user } = useUser()
     span.font-bold {{ user.name }}
   router-link(to="/my/") Go to your profile
 .p-4(v-else)
-  auth-form
+  auth-form(@auth="gun.user().auth($event)")
 </template>

@@ -23,6 +23,11 @@ const route = useRoute();
 
 const { user } = useUser()
 
+const openShare = ref(false)
+const showSettings = ref(false)
+const disclaimer = ref(false)
+const approval = useStorage('approved-experimental', false)
+
 watchEffect(() => {
   if (route.query?.room) {
     currentRoom.pub = String(route.query.room)
@@ -34,9 +39,6 @@ watch(() => route.fullPath, () => {
   if ((rel && rel != relay.peer)) {
     setPeer(String(rel))
   }
-  // if (!rel && relay.peer != config.relay) {
-  //   setPeer(String(config.relay))
-  // }
 }, { immediate: true })
 
 watch(() => relay.peer, peer => {
@@ -61,7 +63,6 @@ router.beforeEach((to, from) => {
   if (to.meta.requiresAuth && !user.pub) {
     return {
       path: '/auth/',
-      // save the location we were at to come back later
       query: { redirect: to.fullPath },
     }
   }
@@ -79,13 +80,7 @@ router.beforeEach((to, from) => {
 
 const bg = computed(() => useBackground({ pub: currentRoom.pub, size: 1200, light: 0.8, overlay: 0.5 }))
 
-const openShare = ref(false)
 
-const showSettings = ref(false)
-
-const disclaimer = ref(false)
-
-const approval = useStorage('approved-experimental', false)
 
 onMounted(() => {
   setTimeout(() => {
