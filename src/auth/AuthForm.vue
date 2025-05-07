@@ -115,7 +115,7 @@ function createAccount() {
     .px-2(v-if="!create") Use PassKey
     .px-2(v-else) New PassKey
 
-  button.select-none.flex-1.button.cursor-pointer.flex.items-center(@click="showKey = !showKey" :class="{ active: showKey }" :disabled="!name")
+  button.select-none.flex-1.button.cursor-pointer.flex.items-center(@click="showKey = !showKey" :class="{ active: showKey }" :disabled="create && !name")
     .i-la-key.text-4xl
     .p-1.ml-1.font-bold(v-if="!create") Use Key 
     .p-1.ml-1.font-bold(v-else) Generate Key 
