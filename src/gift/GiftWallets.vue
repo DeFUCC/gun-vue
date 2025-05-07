@@ -101,7 +101,7 @@ ui-layer(
         )
 
       .p-2 URL
-      input.shadow-lg.rounded-xl.p-2(
+      input#url.shadow-lg.rounded-xl.p-2(
         v-model="newWallet.url" 
         type="text" 
         placeholder="Link to the payment gateway"

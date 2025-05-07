@@ -1,33 +1,6 @@
 import { computed, reactive, watchEffect } from "vue";
-import { useGun, SEA, auth, isPair, user, uploadText, useQR } from "../composables";
+import { useGun, SEA, isPair, user, uploadText, useQR } from "../composables";
 import { extractFromFile } from "gun-avatar"
-
-export const pass = reactive({
-	input: "",
-	show: false,
-	safePair: false,
-	minLength: 5,
-	safe: {
-		saved: false,
-		password: "",
-		enc: "",
-		pass: "",
-	},
-	dec: {},
-	links: reactive({
-		pass: computed(() => {
-			return genLink(pass.safe?.enc);
-		}),
-		pair: computed(() => {
-			return genLink(JSON.stringify(user.pair()));
-		}),
-	}),
-	set() {
-		setPass(pass.input);
-		pass.input = "";
-		pass.show = false;
-	},
-});
 
 function genLink(text = "", auth_url = "#/auth/") {
 	let base = encodeURIComponent(text);
@@ -40,49 +13,16 @@ export function parseLink(link, auth_url = "#/auth/") {
 	return decodeURIComponent(base);
 }
 
-let initiated = false;
-
-
-export function useAuth() {
-
-	const gun = useGun();
-	gun
-		.user()
-		.get("safe")
-		.map()
-		.on((d, k) => {
-			pass.safe[k] = d;
-		});
-
-	watchEffect(async () => {
-		if (!pass.show) {
-			pass.dec = {};
-			return;
-		}
-		if (pass?.safe?.pass) {
-			pass.dec.pass = await user.decrypt(pass.safe.pass);
-			pass.input = pass.dec.pass || "";
-		}
-		if (pass?.safe?.enc) {
-			pass.dec.pair = await SEA.decrypt(pass.safe.enc, pass.dec.pass);
-		}
-	});
-
-	return { pass, setPass, authWithPass };
-}
-
-
 export async function hasPass(pub) {
 	const gun = useGun();
 	return await gun.get(`~${pub}`).get("safe").get("enc").then();
 }
 
-
 async function authWithPass(pub, passphrase) {
 	const gun = useGun();
 	let encPair = await gun.get(`~${pub}`).get("safe").get("enc").then();
 	let pair = await SEA.decrypt(encPair, passphrase);
-	auth(pair);
+	gun.user().auth(pair);
 }
 
 async function setPass(text) {
@@ -95,17 +35,20 @@ async function setPass(text) {
 
 export function useAuthLink(data, passPhrase) {
 	if (!data) return;
+	const gun = useGun();
 	const decoded = decodeURIComponent(data);
 	if (decoded.substring(0, 3) == "SEA") {
 		if (passPhrase) {
-			authEncPass(decoded, passPhrase);
+			SEA.decrypt(decoded, passPhrase).then(pair => {
+				gun.user().auth(pair);
+			})
 		}
 		return "encrypted";
 	} else {
 		try {
 			let d = JSON.parse(decoded);
 			if (isPair(d)) {
-				auth(d);
+				gun.user().auth(d);
 			}
 			return "success";
 		} catch (e) {
@@ -113,12 +56,6 @@ export function useAuthLink(data, passPhrase) {
 		}
 	}
 }
-
-async function authEncPass(encPair, passphrase) {
-	let pair = await SEA.decrypt(encPair, passphrase);
-	auth(pair);
-}
-
 
 export async function handleAuthFiles(files, pair) {
 	const file = files[0]

@@ -7,7 +7,7 @@ import derivePair from '@gun-vue/gun-es/derive'
 
 import { useUser, updateProfile, useGun, gunAvatar } from '#composables'
 
-const { user, auth } = useUser()
+const { user } = useUser()
 
 const name = ref('')
 const entropy = ref(crypto.getRandomValues(new Uint8Array(20)))
@@ -27,8 +27,9 @@ async function updateEntropy() {
 }
 
 function createUser() {
-  auth(pair.value, () => nextTick(async () => {
-    let n = await useGun().user(pair.value.pub).get('profile').get('name').once().then()
+  const gun = useGun()
+  gun.user().auth(pair.value, () => nextTick(async () => {
+    let n = await gun.user(pair.value.pub).get('profile').get('name').once().then()
     if (!n) updateProfile('name', name.value || 'Noname')
   }))
 }

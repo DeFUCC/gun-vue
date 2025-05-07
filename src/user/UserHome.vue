@@ -3,7 +3,7 @@ import { computed, onBeforeUnmount, ref, watch } from 'vue';
 import { useStorage } from '@vueuse/core'
 
 import { activeFile, selectedUser, useRooms, useUser } from '#composables';
-import { UiLayer, AuthCredentials, AuthLogin, UserPanel, UserProfile, UserRooms, MessageList, FileList, } from '../components'
+import { UiLayer, AuthCredentials, AuthLogin, AuthPanel, UserProfile, UserRooms, MessageList, FileList, UserAvatar } from '../components'
 
 
 import RoomCard from '../room/RoomCard.vue';
@@ -43,54 +43,46 @@ const starredRooms = computed(() => Object.entries(useRooms(user.pub)).filter(([
 </script>
 
 <template lang="pug">
-.flex.flex-col.items-center.w-full.justify-stretch
+.flex.flex-wrap.items-stretch.gap-2.p-2.w-full.justify-stretch
+  .flex.flex-col.items-start.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-h-40vh.overflow-y-scroll.z-100(style="flex: 1 1 300px")
+    user-avatar(:size="120" :editable="true")
+    user-profile
+      button.button(
+        @click="selectedUser.pub = user.pub"
+        )  Public profile
 
 
-  auth-login(v-if="!user.is")
+  .flex.flex-col.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-h-40vh.overflow-y-scroll(style="flex: 1 1 300px")
+    button.z-100.bg-light-400.dark-bg-dark-700.rounded-xl.sticky.top-0.items-center.w-full.flex.p-2(@click="showChats = !showChats") 
+      .font-bold.text-lg Messages
+      .flex-1
+      .i-la-angle-down(v-if="showChats")
+      .i-la-angle-up(v-else)
 
-  .flex.flex-wrap.w-full.gap-2(v-else)
-    user-panel.z-1000(
-      @browse="$emit('browse', $event); $emit('close')"
-      )
+    MessageList(@chat="$emit('chat', $event)" v-if="showChats")
 
-    .flex.flex-col.items-start.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-h-40vh.overflow-y-scroll.z-100(style="flex: 1 1 300px")
-      user-profile
-        button.button(
-          @click="selectedUser.pub = user.pub"
-          )  Public profile
+  .flex.flex-wrap.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-w-600px.max-h-40vh.overflow-y-scroll(style="flex: 1 1 300px" )
+    FileInfo( :file="activeFile" v-if="activeFile" @close="activeFile = null")
+    FileList.w-full(@file="activeFile = $event" v-else)
+      FileShare
 
+  .flex.flex-col.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl(style="flex: 1 1 200px")
+    UserRooms(@browse="$emit('room', $event)")
 
-    .flex.flex-col.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-h-40vh.overflow-y-scroll(style="flex: 1 1 300px")
-      button.z-100.bg-light-400.dark-bg-dark-700.rounded-xl.sticky.top-0.items-center.w-full.flex.p-2(@click="showChats = !showChats") 
-        .font-bold.text-lg Messages
-        .flex-1
-        .i-la-angle-down(v-if="showChats")
-        .i-la-angle-up(v-else)
-
-      MessageList(@chat="$emit('chat', $event)" v-if="showChats")
-
-    .flex.flex-wrap.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl.max-w-600px.max-h-40vh.overflow-y-scroll(style="flex: 1 1 300px" )
-      FileInfo( :file="activeFile" v-if="activeFile" @close="activeFile = null")
-      FileList.w-full(@file="activeFile = $event" v-else)
-        FileShare
-
-    .flex.flex-col.items-stretch.bg-light-900.dark-bg-dark-500.p-2.rounded-xl(style="flex: 1 1 200px")
-      UserRooms(@browse="$emit('room', $event)")
-
-      button.items-center.w-full.flex.px-2.pb-2(@click="showRooms = !showRooms") 
-        .font-bold.text-lg Starred rooms
-        .flex-1
-        .i-la-angle-down(v-if="showRooms")
-        .i-la-angle-up(v-else)
-      transition(
-        name="fade" 
-        mode="out-in")
-        .flex.flex-col.gap-4( v-if="showRooms" :key="user.pub")
-          RoomButton(
-            v-for="(r) in starredRooms"
-            :key="r"
-            :pub="r"
-            @browse="$emit('room', r)"
-            :panel="false"
-            )
+    button.items-center.w-full.flex.px-2.pb-2(@click="showRooms = !showRooms") 
+      .font-bold.text-lg Starred rooms
+      .flex-1
+      .i-la-angle-down(v-if="showRooms")
+      .i-la-angle-up(v-else)
+    transition(
+      name="fade" 
+      mode="out-in")
+      .flex.flex-col.gap-4( v-if="showRooms" :key="user.pub")
+        RoomButton(
+          v-for="(r) in starredRooms"
+          :key="r"
+          :pub="r"
+          @browse="$emit('room', r)"
+          :panel="false"
+          )
 </template>

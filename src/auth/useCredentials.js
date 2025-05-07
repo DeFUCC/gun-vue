@@ -51,7 +51,10 @@ export function useCredentials() {
     URL.revokeObjectURL(url)
   }
 
-  function saveLink(url, platform, userName) {
+  const getOS = () => { const p = navigator.userAgentData?.platform?.toLowerCase() ?? ''; const u = navigator.userAgent ?? ''; return p.startsWith('mac') ? 'Mac' : p.startsWith('linux') ? 'Linux' : u.includes('Mac') ? 'Mac' : u.includes('Linux') && !u.includes('Android') ? 'Linux' : 'Windows'; };
+
+  function saveLink(url, userName) {
+    const platform = getOS()
     const bookmarks = generateBookmarkFiles(url)
     const bookmark = bookmarks[platform]
     if (!bookmark?.content || !bookmark?.extension) return

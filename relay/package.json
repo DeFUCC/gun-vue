@@ -33,7 +33,7 @@
 		"express": "5.1.0",
 		"gun": "0.2020.1240",
 		"ip": "2.0.1",
-		"qrcode-terminal": "0.12.0",
+		"qr": "0.4.2",
 		"self-adjusting-interval": "1.0.0"
 	}
 }

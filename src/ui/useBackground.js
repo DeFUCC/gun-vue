@@ -3,7 +3,7 @@ import { theme } from "./useTheme";
 
 export function useBackground({
 	pub,
-	size = 200,
+	size = 500,
 	light = 0.5,
 	overlay = 0.5,
 	draw = "squares",

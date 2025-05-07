@@ -1,3 +1,6 @@
+import decodeQR from 'qr/decode.js';
+import { Bitmap } from 'qr';
+
 export function useQR() {
   return {
     processFile
@@ -5,71 +8,51 @@ export function useQR() {
 }
 
 async function processFile(file) {
-  const imageData = await imageDataFromFile(file);
-  const jsQR = (await import('jsqr')).default;
-  const result = jsQR(imageData.data, imageData.width, imageData.height);
-  return result?.data;
-}
 
-async function imageDataFromFile(file) {
-  if (/image.*/.test(file.type)) {
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    const result = await asyncListenEvent(reader, "load")
-    //@ts-expect-error
-    return imageDataFromUrl(result?.target?.result)
-  } else {
-    console.log("File is not an image")
+  if (!/image.*/.test(file.type)) {
+    console.log("File is not an image");
+    return null;
   }
-}
 
-async function imageDataFromUrl(url) {
-  if (!url) return
-  const image = document.createElement("img")
-  image.src = url;
-  await asyncListenEvent(image, "load")
+  try {
+    const dataUrl = await new Promise(resolve => {
+      const reader = new FileReader();
+      reader.onload = e => resolve(e.target.result);
+      reader.readAsDataURL(file);
+    });
 
-  return imageDataFromImage(image)
-}
+    const img = new Image();
+    await new Promise(resolve => {
+      img.onload = resolve;
+      img.src = dataUrl;
+    });
 
-function imageDataFromImage(imageElement) {
-  const width = imageElement.naturalWidth;
-  const height = imageElement.naturalHeight;
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    ctx.drawImage(img, 0, 0);
 
-  return imageDataFromCanvas(imageElement, width, height);
-}
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const { width, height, data } = imageData;
 
-function imageDataFromCanvas(canvasImageSource, width, height) {
-  const canvas = document.createElement("canvas");
-  const canvasCtx = canvas.getContext("2d");
-  canvas.width = 1920;
-  canvas.height = 1080;
-  const scalingRatio = Math.min(
-    1,
-    canvas.width / width,
-    canvas.height / height
-  )
-  const widthScaled = scalingRatio * width
-  const heightScaled = scalingRatio * height
+    const bitmapData = [];
+    for (let y = 0; y < height; y++) {
+      const row = [];
+      for (let x = 0; x < width; x++) {
+        const idx = (y * width + x) * 4;
+        const gray = (data[idx] + data[idx + 1] + data[idx + 2]) / 3;
+        row.push(gray < 128 ? 1 : 0); // 1 for dark, 0 for light
+      }
+      bitmapData.push(row);
+    }
 
-  canvasCtx.drawImage(canvasImageSource, 0, 0, widthScaled, heightScaled)
-
-  return canvasCtx.getImageData(0, 0, widthScaled, heightScaled)
-}
-
-function asyncListenEvent(eventTarget, successEvent, errorEvent) {
-  let _resolve, _reject;
-  const promise = new Promise((resolve, reject) => {
-    _resolve = resolve;
-    _reject = reject;
-  });
-
-  eventTarget.addEventListener(successEvent, _resolve);
-  eventTarget.addEventListener(errorEvent, _reject);
-  promise.finally(() => {
-    eventTarget.removeEventListener(successEvent, _resolve)
-    eventTarget.removeEventListener(errorEvent, _reject);
-  })
-
-  return promise
+    const bitmap = new Bitmap({ width, height });
+    bitmap.data = bitmapData;
+    const result = decodeQR(bitmap.toImage());
+    return result
+  } catch (error) {
+    console.error("Error processing QR code:", error);
+    return null;
+  }
 }
