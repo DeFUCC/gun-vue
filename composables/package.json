@@ -17,7 +17,7 @@
 	"license": "MIT",
 	"author": "davay42 <davay@defucc.me>",
 	"type": "module",
-	"packageManager": "pnpm@9.15.4",
+	"packageManager": "pnpm@10.10.0",
 	"exports": "./dist/composables.js",
 	"main": "./dist/composables.js",
 	"module": "./dist/composables.js",
@@ -32,7 +32,7 @@
 		"serve": "vite preview"
 	},
 	"dependencies": {
-		"@gun-vue/gun-es": "0.3.1240",
+		"@gun-vue/gun-es": "0.4.1240",
 		"@scure/bip39": "1.6.0",
 		"@vueuse/core": "13.1.0",
 		"@vueuse/integrations": "13.1.0",
@@ -41,7 +41,6 @@
 		"drauu": "0.4.3",
 		"fuse.js": "7.1.0",
 		"grapheme-breaker-mjs": "1.0.4",
-		"gun": "0.2020.1240",
 		"gun-avatar": "2.2.4",
 		"jszip": "3.10.1",
 		"markdown-it": "14.1.0",
@@ -58,6 +57,6 @@
 	},
 	"devDependencies": {
 		"@types/recordrtc": "5.6.14",
-		"vite": "6.3.3"
+		"vite": "6.3.5"
 	}
 }

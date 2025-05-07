@@ -1,13 +1,4 @@
-import Gun from "gun/gun";
-import "gun/lib/then";
-import "gun/lib/radix";
-import "gun/lib/radisk";
-import "gun/lib/store";
-import "gun/lib/rindexed";
-import "gun/lib/webrtc";
-
-// import GunWorker from "./useGunWorker";
-// GunWorker.post("Welcome to Gun-Vue");
+import { Gun, SEA } from "@gun-vue/gun-es"
 
 import { relay } from "./useRelay";
 
@@ -18,24 +9,18 @@ import { relay } from "./useRelay";
 let gun;
 
 
-export function useGun(options = { localStorage: false }) {
-	if (!gun) {
-		const opts = { peers: [relay.peer] };
-		if (typeof options === "object") {
-			Object.assign(opts, options);
-		}
-		gun = Gun(opts);
-	}
+export function useGun({ localStorage = false, peers = [relay.peer] } = {}) {
+	if (!gun) { gun = Gun({ localStorage, peers }); }
 	return gun;
 }
 
 
-export function useGunSecondary(options = { localStorage: false }) {
-	const gun2 = Gun({ peers: [relay.peer], ...options });
+export function useGunSecondary({ localStorage = false, peers = [relay.peer] } = {}) {
+	const gun2 = Gun({ peers, localStorage });
 	return gun2;
 }
 
-export { default as SEA } from "gun/sea.js";
+export { Gun, SEA }
 
 export const soul = Gun?.node?.soul;
 

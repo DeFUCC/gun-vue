@@ -16,7 +16,7 @@
 		"url": "https://github.com/sponsors/davay42"
 	},
 	"type": "module",
-	"packageManager": "pnpm@9.15.4",
+	"packageManager": "pnpm@10.10.0",
 	"main": "server.js",
 	"files": [
 		"server.js",
@@ -28,8 +28,8 @@
 		"build": "node build.js"
 	},
 	"dependencies": {
-		"esbuild": "0.25.3",
-		"dotenv": "16.4.7",
+		"dotenv": "16.5.0",
+		"esbuild": "0.25.4",
 		"express": "5.1.0",
 		"gun": "0.2020.1240",
 		"ip": "2.0.1",

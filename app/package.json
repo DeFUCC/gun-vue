@@ -23,7 +23,7 @@
 	"files": [
 		"/dist"
 	],
-	"packageManager": "pnpm@9.15.4",
+	"packageManager": "pnpm@10.10.0",
 	"scripts": {
 		"build-app": "vite build --emptyOutDir",
 		"build": "vite build --config vite.config.lib.js",
@@ -35,13 +35,13 @@
 		"vue": "3.5.13"
 	},
 	"dependencies": {
-		"@unocss/reset": "66.1.0-beta.3",
+		"@unocss/reset": "66.1.0",
 		"@vueuse/core": "13.1.0",
 		"ola": "1.2.1",
 		"vue-router": "4.5.1"
 	},
 	"devDependencies": {
-		"@unocss/extractor-pug": "66.1.0-beta.3",
+		"@unocss/extractor-pug": "66.1.0",
 		"@vitejs/plugin-vue": "5.2.3",
 		"vite-plugin-singlefile": "2.2.0"
 	}
