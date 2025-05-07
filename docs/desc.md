@@ -1,4 +1,4 @@
-# Gun-Vue v.0.23.0
+# Gun-Vue v.0.25.0
 
 # The Peer-to-Peer Web App Toolkit
 
