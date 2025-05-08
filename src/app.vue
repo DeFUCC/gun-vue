@@ -1,7 +1,7 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router";
-import { watch, watchEffect, computed, ref, onMounted } from "vue";
-import { currentRoom, useUser, rootRoom, useBackground, setPeer, relay, selectedUser, safeHash, selectedRoom, useGun } from "#composables";
+import { watch, watchEffect, computed, ref, onMounted, nextTick } from "vue";
+import { currentRoom, useUser, rootRoom, useBackground, setPeer, relay, selectedUser, safeHash, selectedRoom, useGun, updateProfile } from "#composables";
 import { useStorage } from '@vueuse/core'
 
 import config from '../gun.config.json'
@@ -91,6 +91,14 @@ onMounted(() => {
   }, 100)
 })
 
+function createUser({ pair, name }) {
+  const gun = useGun()
+  gun.user().auth(pair, () => nextTick(async () => {
+    let n = await gun.user(pair.pub).get('profile').get('name').once().then()
+    if (!n) updateProfile('name', name || 'Noname')
+  }))
+}
+
 </script>
 
 <template lang="pug">
@@ -126,7 +134,7 @@ onMounted(() => {
     AccountHome(:pub="selectedUser.pub" @chat="$router.push(`/messages/${$event}`); selectedUser.pub = null" :key="selectedUser.pub")
 
   UiLayer(:open="user.auth" @close="user.auth = false")
-    AuthForm(v-if="!user.is" @auth="gun.user().auth($event)")
+    AuthForm(v-if="!user.is" @auth="createUser($event)")
     AuthPanel(
       v-else
       @home="router.push('/my'); user.auth = false"

@@ -1,6 +1,6 @@
 <script setup>
 import { useGuests, useNewGift, useUser, useProject, useProjects, currentRoom, useGun } from '#composables'
-import { AccountBadge, AuthForm, ProjectCard, RoomButton } from '../components'
+import { AccountBadge, ProjectCard, RoomButton } from '../components'
 import { toRef, watch, computed, reactive } from 'vue'
 import { component as NumberFormat } from '@coders-tm/vue-number-format' // https://vue-number-format.netlify.app/guide/#globally
 import currencies from './currencies.json';

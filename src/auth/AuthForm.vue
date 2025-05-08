@@ -37,7 +37,7 @@ watch(key, async p => {
   const pair = await parseKey(p)
   if (pair === '') { passphrase.value = '' }
   if (pair && pair.pub && pair.priv) {
-    emit('auth', pair)
+    emit('auth', { pair, name: name.value })
   }
 })
 
