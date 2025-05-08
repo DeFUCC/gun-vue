@@ -10,12 +10,11 @@ const { user } = useUser()
     router-link.link(to="/my/") Home
     router-link.link(to="/my/profile/") Profile
     router-link.link(to="/my/mates/") Mates
-    router-link.link(to="/my/wallets/") Wallets
   router-view(v-slot="{ Component }")
     transition(name="fade" mode="out-in")
       keep-alive
         component(:is="Component")
-</template> 
+</template>
 
 <style lang="postcss" scoped>
 .link {

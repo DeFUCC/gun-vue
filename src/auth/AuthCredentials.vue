@@ -1,9 +1,13 @@
 <script setup>
 import { ref, computed, reactive, watchEffect } from "vue";
 import { asyncComputed, useClipboard, useShare } from "@vueuse/core";
-import { useUser, gunAvatar, SEA } from "#composables";
+import { gunAvatar } from 'gun-avatar'
+import { SEA } from '@gun-vue/gun-es'
+
 import { useCredentials } from "./useCredentials";
 import { genLink } from './useAuth'
+
+import { useUser } from "#composables";
 
 import QrShow from "../qr/QrShow.vue";
 
@@ -23,12 +27,10 @@ const enc = asyncComputed(async () =>
   input.value && input.value.length >= 5 && isSet.value ? await SEA.encrypt(user.pair(), input.value) : null
 );
 const href = computed(() => genLink(enc.value));
-const png = computed(() =>
-  gunAvatar({ pub: user.pub, embed: enc.value, svg: false })
+const png = computed(() => gunAvatar({ pub: user.pub, embed: enc.value, svg: false })
 );
 
-const svgContent = computed(() =>
-  gunAvatar({ pub: user.pub, embed: enc.value, svg: true, p3: false })
+const svgContent = computed(() => gunAvatar({ pub: user.pub, embed: enc.value, svg: true, p3: false })
 );
 
 const { saveImage, saveJson, saveLink, shareImage } = useCredentials();

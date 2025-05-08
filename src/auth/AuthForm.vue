@@ -1,12 +1,10 @@
 <script setup>
 import { ref, watch, onMounted, computed, nextTick } from 'vue'
-
-import derivePair from '@gun-vue/gun-es/derive'
+import { onStartTyping, useFocus } from '@vueuse/core'
 import { entropyToMnemonic } from '@scure/bip39'
 import { wordlist } from '@scure/bip39/wordlists/english'
-import { onStartTyping, useFocus } from '@vueuse/core'
-
-import { SEA, useQR } from '../composables'
+import derivePair from '@gun-vue/gun-es/derive'
+import { SEA } from '@gun-vue/gun-es'
 
 import { handleAuthFile, parseKey } from './useAuth'
 import { createPassKey, passKeyLogin } from './useWebAuthn'
