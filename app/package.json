@@ -15,7 +15,8 @@
 		"directory": "app"
 	},
 	"exports": {
-		".": "./dist/app.js"
+		".": "./dist/app.js",
+		"./styles.css": "./dist/app.css"
 	},
 	"main": "./dist/app.js",
 	"module": "./dist/app.js",
@@ -31,17 +32,17 @@
 		"preview": "vite preview --host"
 	},
 	"peerDependencies": {
-		"vue": "3.5.13"
+		"vue": "3.5.15"
 	},
 	"dependencies": {
-		"@unocss/reset": "66.1.0",
-		"@vueuse/core": "13.1.0",
+		"@unocss/reset": "66.1.2",
+		"@vueuse/core": "13.2.0",
 		"ola": "1.2.1",
 		"vue-router": "4.5.1"
 	},
 	"devDependencies": {
-		"@unocss/extractor-pug": "66.1.0",
-		"@vitejs/plugin-vue": "5.2.3",
+		"@unocss/extractor-pug": "66.1.2",
+		"@vitejs/plugin-vue": "5.2.4",
 		"vite-plugin-singlefile": "2.2.0"
 	}
 }

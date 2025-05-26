@@ -29,14 +29,13 @@
 		"td": "typedoc --watch --plugin typedoc-plugin-markdown"
 	},
 	"dependencies": {
-		"@unocss/reset": "66.1.0"
+		"@unocss/reset": "66.1.2"
 	},
 	"devDependencies": {
-		"@unocss/extractor-pug": "66.1.0",
+		"@unocss/extractor-pug": "66.1.2",
 		"pug": "3.0.3",
-		"sitemap-ts": "1.8.0",
-		"unocss": "66.1.0",
-		"vitepress": "2.0.0-alpha.4",
-		"vue": "3.5.13"
+		"unocss": "66.1.2",
+		"vitepress": "2.0.0-alpha.5",
+		"vue": "3.5.15"
 	}
 }

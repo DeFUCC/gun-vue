@@ -23,7 +23,7 @@
 		"version": "pnpm changeset version"
 	},
 	"devDependencies": {
-		"@changesets/cli": "2.29.3",
+		"@changesets/cli": "2.29.4",
 		"@iconify-json/carbon": "1.2.8",
 		"@iconify-json/fad": "1.2.1",
 		"@iconify-json/ic": "1.2.2",
@@ -35,7 +35,7 @@
 		"pug": "3.0.3",
 		"typedoc": "0.27.9",
 		"typedoc-plugin-markdown": "4.4.2",
-		"unocss": "66.1.0",
+		"unocss": "66.1.2",
 		"vite": "6.3.5"
 	},
 	"standard-version": {
