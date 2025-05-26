@@ -15,8 +15,7 @@
 		"directory": "app"
 	},
 	"exports": {
-		".": "./dist/app.js",
-		"./style.css": "./dist/style.css"
+		".": "./dist/app.js"
 	},
 	"main": "./dist/app.js",
 	"module": "./dist/app.js",
