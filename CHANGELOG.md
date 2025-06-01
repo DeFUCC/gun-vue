@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.25.1
+
+### Patch Changes
+
+- Bump deps and fix styles for components
+
 ## 0.25.0
 
 ### Minor Changes
