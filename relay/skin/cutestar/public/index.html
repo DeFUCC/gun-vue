@@ -1,0 +1,1816 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Gun Database - Decentralized real-time database management interface" />
+  <meta name="keywords" content="gun, database, p2p, real-time, websocket, decentralized" />
+
+  <title>Gun Database | P2P Real-time Database</title>
+
+  <style>
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    /* 宇宙美学主题 */
+    body {
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f0f23 100%);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* 星空背景动画 */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.5), transparent);
+      background-repeat: repeat;
+      background-size: 200px 100px;
+      animation: stars 20s linear infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes stars {
+      from { transform: translateX(0); }
+      to { transform: translateX(-200px); }
+    }
+
+    /* 流星动画 */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -50px;
+      left: -50px;
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+      transform: rotate(45deg);
+      animation: meteor 8s ease-in-out infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes meteor {
+      0%, 90%, 100% { opacity: 0; transform: translateX(-100px) translateY(-100px) rotate(45deg); }
+      10%, 80% { opacity: 1; }
+      50% { transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px)) rotate(45deg); }
+    }
+
+    /* 宇宙卡片样式 */
+    .cosmic-card {
+      background: linear-gradient(135deg, 
+        rgba(30, 41, 59, 0.8) 0%, 
+        rgba(15, 23, 42, 0.9) 25%,
+        rgba(17, 24, 39, 0.8) 50%,
+        rgba(30, 41, 59, 0.9) 100%);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 0 1px rgba(139, 92, 246, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cosmic-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(139, 92, 246, 0.03),
+        transparent
+      );
+      transform: rotate(45deg);
+      transition: all 0.5s ease;
+      pointer-events: none;
+    }
+
+    .cosmic-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      border-color: rgba(139, 92, 246, 0.6);
+      box-shadow: 
+        0 12px 48px rgba(139, 92, 246, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 0 1px rgba(139, 92, 246, 0.3),
+        0 0 20px rgba(139, 92, 246, 0.1);
+    }
+
+    .cosmic-card:hover::before {
+      transform: rotate(45deg) translate(100%, 100%);
+    }
+
+    /* 时间模块专用样式 */
+    .time-cosmic-card {
+      background: linear-gradient(135deg, 
+        rgba(59, 130, 246, 0.1) 0%,
+        rgba(139, 92, 246, 0.1) 50%,
+        rgba(239, 68, 68, 0.1) 100%);
+      border: 2px solid rgba(59, 130, 246, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .time-cosmic-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+      );
+      transition: left 0.5s ease;
+    }
+
+    .time-cosmic-card:hover::before {
+      left: 100%;
+    }
+
+    /* 时间数字发光效果 */
+    .time-glow {
+      text-shadow: 
+        0 0 10px currentColor,
+        0 0 20px currentColor,
+        0 0 30px currentColor;
+      animation: pulse-glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse-glow {
+      from { 
+        text-shadow: 
+          0 0 10px currentColor,
+          0 0 20px currentColor,
+          0 0 30px currentColor;
+      }
+      to { 
+        text-shadow: 
+          0 0 15px currentColor,
+          0 0 25px currentColor,
+          0 0 35px currentColor,
+          0 0 45px currentColor;
+      }
+    }
+
+    /* 宇宙按钮样式 */
+    .cosmic-btn {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+      border: 1px solid rgba(59, 130, 246, 0.5);
+      color: #e2e8f0;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .cosmic-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.3s ease;
+    }
+
+    .cosmic-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(59, 130, 246, 0.8);
+      box-shadow: 
+        0 8px 25px rgba(59, 130, 246, 0.3),
+        0 0 20px rgba(59, 130, 246, 0.2);
+      color: #ffffff;
+    }
+
+    .cosmic-btn:hover::before {
+      left: 100%;
+    }
+
+    /* 悬浮统计卡片 */
+    .floating-stat {
+      background: linear-gradient(135deg, 
+        rgba(16, 185, 129, 0.1) 0%,
+        rgba(59, 130, 246, 0.1) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .floating-stat::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+      transform: scale(0);
+      transition: transform 0.3s ease;
+    }
+
+    .floating-stat:hover {
+      transform: translateY(-8px) scale(1.05);
+      border-color: rgba(16, 185, 129, 0.6);
+      box-shadow: 
+        0 12px 40px rgba(16, 185, 129, 0.2),
+        0 0 20px rgba(16, 185, 129, 0.1);
+    }
+
+    .floating-stat:hover::before {
+      transform: scale(1);
+    }
+
+    /* 数值发光动画 */
+    .stat-value-cosmic {
+      font-size: 2.5rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, #10b981, #3b82f6, #8b5cf6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: cosmic-shimmer 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
+    }
+
+    @keyframes cosmic-shimmer {
+      0%, 100% { filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.5)); }
+      50% { filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.8)); }
+    }
+
+    /* 移动端优化 */
+          @media (max-width: 768px) {
+        body::before {
+          background-size: 150px 75px;
+          animation: stars 15s linear infinite;
+        }
+
+        .cosmic-card {
+          padding: 20px;
+          margin-bottom: 20px;
+          border-radius: 12px;
+        }
+
+        .time-glow {
+          font-size: 3rem !important;
+        }
+
+        .stat-value-cosmic {
+          font-size: 2rem;
+        }
+
+        .floating-stat {
+          padding: 16px;
+        }
+
+        .cosmic-btn {
+          padding: 10px 20px;
+          font-size: 14px;
+        }
+
+        /* 时间模块的响应式调整 */
+        .time-cosmic-card {
+          padding: 16px;
+        }
+
+        /* 主时间显示区域 */
+        .time-cosmic-card .text-right {
+          text-align: center;
+          margin-bottom: 8px;
+        }
+
+        /* 时间单位调整 */
+        .time-cosmic-card .text-sm.text-gray-400 {
+          font-size: 0.75rem;
+          margin-top: 2px;
+        }
+
+        /* 详细时间显示调整 */
+        .time-cosmic-card .flex.items-center.gap-3 {
+          gap: 1rem;
+          justify-content: center;
+          padding-left: 0;
+          border-left: none;
+          margin-top: 8px;
+        }
+
+        .time-cosmic-card .text-center {
+          min-width: 40px;
+        }
+
+        .time-cosmic-card .font-bold {
+          font-size: 1rem;
+        }
+
+        .time-cosmic-card .text-xs.text-gray-500 {
+          font-size: 0.65rem;
+          margin-top: 2px;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .time-glow {
+          font-size: 2.5rem !important;
+        }
+
+        .time-cosmic-card .flex.items-center.gap-3 {
+          gap: 0.5rem;
+        }
+
+        .time-cosmic-card .text-center {
+          min-width: 32px;
+        }
+
+        .time-cosmic-card .font-bold {
+          font-size: 0.875rem;
+        }
+      }
+
+    /* 减少动画对性能敏感设备的影响 */
+    @media (prefers-reduced-motion: reduce) {
+      body::before,
+      body::after,
+      .time-glow,
+      .cosmic-card::before,
+      .floating-stat::before {
+        animation: none;
+      }
+      
+      .cosmic-card,
+      .floating-stat,
+      .cosmic-btn {
+        transition: none;
+      }
+    }
+
+    /* 深色模式适配 */
+    @media (prefers-color-scheme: light) {
+      body {
+        background: linear-gradient(135deg, #1e1b4b 0%, #312e81 25%, #3730a3 50%, #1e1b4b 100%);
+      }
+    }
+
+    .qr-container {
+      min-height: 300px;
+      min-width: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .qr-container canvas {
+      border-radius: 8px;
+    }
+
+    .status-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .status-online {
+      background-color: #10b981;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+    }
+
+    .status-connecting {
+      background-color: #f59e0b;
+      animation: pulse 2s infinite;
+    }
+
+    .status-offline {
+      background-color: #ef4444;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #374151;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #10b981;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    @media (max-width: 640px) {
+      .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+
+      .stat-value-cosmic {
+        font-size: 1.75rem;
+      }
+
+      .stat-label {
+        font-size: 0.75rem;
+      }
+
+      .floating-stat {
+        padding: 12px;
+        min-height: 90px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .stat-grid {
+        grid-template-columns: repeat(1, 1fr);
+      }
+
+      .floating-stat {
+        min-height: 70px;
+      }
+    }
+
+
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+
+
+    .language-switcher {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(55, 65, 81, 0.8);
+      border-radius: 20px;
+      padding: 4px;
+    }
+
+    .language-btn {
+      padding: 6px 12px;
+      border-radius: 16px;
+      border: none;
+      background: transparent;
+      color: #9ca3af;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.875rem;
+    }
+
+    .language-btn.active {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .language-btn:hover:not(.active) {
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+    }
+
+    .alert {
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      border-left: 4px solid;
+    }
+
+    .alert-warning {
+      background-color: rgba(245, 158, 11, 0.1);
+      border-left-color: #f59e0b;
+      color: #d97706;
+    }
+
+    .alert-info {
+      background-color: rgba(59, 130, 246, 0.1);
+      border-left-color: #3b82f6;
+      color: #2563eb;
+    }
+
+    .alert-success {
+      background-color: rgba(16, 185, 129, 0.1);
+      border-left-color: #10b981;
+      color: #059669;
+    }
+
+    .super-node-warning {
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 8px;
+    }
+
+    .config-changed {
+      animation: highlightConfig 2s ease-out;
+    }
+
+    @keyframes highlightConfig {
+      0% { background-color: rgba(16, 185, 129, 0.2); }
+      100% { background-color: transparent; }
+    }
+
+    .tech-card {
+      background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+      border: 1px solid #374151;
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .tech-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+      border-color: #4b5563;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .tech-card:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 640px) {
+      .tech-card {
+        padding: 20px;
+      }
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@unocss/reset/tailwind.min.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
+
+  <script defer type="module">
+    import "https://cdn.skypack.dev/gun";
+    import ms from "https://cdn.skypack.dev/ms";
+    import QRCode from "https://cdn.skypack.dev/qrcode";
+    import { createApp, reactive } from "https://cdn.skypack.dev/petite-vue";
+
+    const gun = GUN([window.location.href + "gun"]);
+    
+    // 尝试多个可能的主机名（优先使用实际的主机标识）
+    const possibleHosts = [
+      window.location.hostname,
+      window.location.host,
+      window.location.hostname + ':' + window.location.port,
+      'localhost',
+      '127.0.0.1'
+    ].filter(h => h && h !== ':'); // 过滤掉空值和无效格式
+    
+    console.log('Trying hosts:', possibleHosts);
+    
+    // 创建一个活跃的数据库引用，会动态切换到有数据的主机
+    let activeDb = null;
+    let foundHost = null;
+
+    // 国际化翻译对象
+    const translations = {
+      en: {
+        title: "Gun Database",
+        subtitle: "Decentralized Real-time P2P Database",
+        activeConnections: "Active Connections",
+        totalConnections: "Total Connections",
+        uptime: "Uptime",
+        persistentStorage: "Persistent Storage",
+        superNode: "Super Node Mode",
+        databaseConfiguration: "Database Configuration",
+        persistentStorageDesc: "Enable disk-based data persistence",
+        superNodeDesc: "Enable super node mode (provides STUN/TURN-like functionality, READ-ONLY database)",
+        peerConnection: "Peer Connection",
+        externalAccess: "External Access",
+        databaseOperations: "Database Operations",
+        exportData: "Export Data",
+        clearData: "Clear Data",
+        restartApp: "Restart Required",
+        storageMonitor: "Storage Monitor",
+        storeUsage: "Database Storage Usage",
+        diskSpace: "Disk Space",
+        storeSize: "Store Size",
+        storeFiles: "Store Files",
+        totalSpace: "Total Space",
+        freeSpace: "Free Space",
+        usedSpace: "Used Space",
+        refreshStorage: "Refresh Storage",
+        directoryStatus: "Directory Status",
+        exists: "Exists",
+        notExists: "Not Exists",
+        dbDiskRatio: "DB Disk Ratio",
+        diskUsage: "Disk Usage",
+        dbDiskPortion: "DB Disk Portion",
+        fileDetails: "File Details",
+        refreshing: "Refreshing...",
+        realtimeCommunication: "Real-time Communication Test",
+        messageBroadcasting: "Message Broadcasting",
+        messagePlaceholder: "Type your message here... It will sync across all connected peers",
+        messageDesc: "Messages sent here will be synchronized across all connected peers in real-time",
+        quickAccessQr: "Quick Access QR Code",
+        qrDesc: "Scan to connect mobile devices or share with other peers",
+        poweredBy: "Powered by",
+        version: "Version",
+        runtime: "Runtime",
+        techStack: "Technical Support",
+        descriptions: {
+          gunjs: "Real-time, decentralized, offline-first database",
+          gunvue: "Vue.js toolkit for Gun.js applications",
+          talkflow: "Decentralized social, AI, and robotics platform"
+        },
+        nodeMode: "Node Mode",
+        relayMode: "Relay",
+        superMode: "Super",
+        status: {
+          running: "RUNNING",
+          connecting: "CONNECTING",
+          offline: "OFFLINE"
+        },
+        confirmations: {
+          clearData: "Are you sure you want to clear all stored data? This action cannot be undone.",
+          restartRelay: "Are you sure you want to restart the relay? This will disconnect all peers temporarily."
+        },
+        alerts: {
+          configChanged: "Configuration has been updated. Please restart the application for changes to take effect.",
+          superNodeWarning: "⚠️ Super Node Mode: Database becomes READ-ONLY and provides NAT traversal assistance to other peers.",
+          restartRequired: "🔄 Changes require application restart to take effect.",
+          exportSuccess: "Data exported successfully!",
+          clearSuccess: "Store data cleared successfully!",
+          operationFailed: "Operation failed. Please try again."
+        }
+      },
+      zh: {
+        title: "Gun 数据库",
+        subtitle: "去中心化实时P2P数据库",
+        activeConnections: "活跃连接",
+        totalConnections: "总连接数",
+        uptime: "运行时间",
+        persistentStorage: "持久化存储",
+        superNode: "超级节点模式",
+        databaseConfiguration: "数据库配置",
+        persistentStorageDesc: "启用基于磁盘的数据持久化",
+        superNodeDesc: "启用超级节点模式（提供类似STUN/TURN的功能，数据库为只读状态）",
+        peerConnection: "节点连接",
+        externalAccess: "外部访问",
+        databaseOperations: "数据库操作",
+        exportData: "📥 导出数据",
+        clearData: "🗑️ 清空数据",
+        restartApp: "🔄 需要重启",
+        storageMonitor: "存储监视器",
+        storeUsage: "数据库存储使用情况",
+        diskSpace: "磁盘空间",
+        storeSize: "存储大小",
+        storeFiles: "存储文件",
+        totalSpace: "总空间",
+        freeSpace: "可用空间",
+        usedSpace: "已用空间",
+        refreshStorage: "刷新存储",
+        directoryStatus: "目录状态",
+        exists: "存在",
+        notExists: "不存在",
+        dbDiskRatio: "数据库占比",
+        diskUsage: "磁盘使用率",
+        dbDiskPortion: "数据库占磁盘比例",
+        fileDetails: "存储文件详情",
+        refreshing: "刷新中...",
+        realtimeCommunication: "实时通信测试",
+        messageBroadcasting: "消息广播",
+        messagePlaceholder: "在此输入您的消息...它将与所有连接的节点实时同步",
+        messageDesc: "在此发送的消息将与所有连接的节点实时同步",
+        quickAccessQr: "快速访问二维码",
+        qrDesc: "扫描以连接移动设备或与其他节点分享",
+        poweredBy: "技术支持",
+        version: "版本",
+        runtime: "运行时间",
+        techStack: "技术支持",
+        descriptions: {
+          gunjs: "实时、去中心化、离线优先数据库",
+          gunvue: "Gun.js 的 Vue.js 工具包",
+          talkflow: "去中心化社交、AI和机器人平台"
+        },
+        nodeMode: "节点模式",
+        relayMode: "Relay",
+        superMode: "Super",
+        status: {
+          running: "运行中",
+          connecting: "连接中",
+          offline: "离线"
+        },
+        confirmations: {
+          clearData: "您确定要清空所有存储的数据吗？此操作无法撤销。",
+          restartRelay: "您确定要重启中继服务器吗？这将暂时断开所有节点连接。"
+        },
+        alerts: {
+          configChanged: "配置已更新。请重启应用程序以使更改生效。",
+          superNodeWarning: "⚠️ 超级节点模式：数据库变为只读状态，为其他节点提供NAT穿透协助。",
+          restartRequired: "🔄 更改需要重启应用程序才能生效。",
+          exportSuccess: "数据导出成功！",
+          clearSuccess: "存储数据清空成功！",
+          operationFailed: "操作失败，请重试。"
+        }
+      }
+    };
+
+    const relay = reactive({
+      status: "connecting",
+      pulse: 0,
+      started: 0,
+      store: false,
+      super: false,
+      host: "",
+      message: "",
+      activeWires: 0,
+      totalConnections: 0,
+      configStore: false,
+      configSuper: false,
+      uptime: 0,
+      currentLanguage: 'en',
+      showAlert: false,
+      alertMessage: '',
+      alertType: 'info',
+      configChanged: false,
+      storageInfo: null,
+      loadingStorage: false,
+      ms,
+      
+      // 计算属性
+      get statusClass() {
+        switch(this.status) {
+          case 'running': return 'status-online';
+          case 'connecting': return 'status-connecting';
+          default: return 'status-offline';
+        }
+      },
+
+      get formattedUptime() {
+        return this.ms(this.pulse - this.started);
+      },
+
+      get uptimeSeconds() {
+        return Math.floor((this.pulse - this.started) / 1000);
+      },
+
+      // 智能时间单位转换
+      get smartUptime() {
+        const seconds = this.uptimeSeconds;
+        
+        if (seconds < 60) {
+          return { value: seconds, unit: '秒', unitEn: 'seconds', color: '#10b981' };
+        } else if (seconds < 3600) {
+          const minutes = Math.floor(seconds / 60);
+          return { value: minutes, unit: '分钟', unitEn: 'minutes', color: '#3b82f6' };
+        } else if (seconds < 86400) {
+          const hours = Math.floor(seconds / 3600);
+          return { value: hours, unit: '小时', unitEn: 'hours', color: '#8b5cf6' };
+        } else if (seconds < 2592000) {
+          const days = Math.floor(seconds / 86400);
+          return { value: days, unit: '天', unitEn: 'days', color: '#f59e0b' };
+        } else if (seconds < 31536000) {
+          const months = Math.floor(seconds / 2592000);
+          return { value: months, unit: '月', unitEn: 'months', color: '#ef4444' };
+        } else {
+          const years = Math.floor(seconds / 31536000);
+          return { value: years, unit: '年', unitEn: 'years', color: '#ec4899' };
+        }
+      },
+
+      // 详细时间分解
+      get detailedUptime() {
+        const totalSeconds = this.uptimeSeconds;
+        const years = Math.floor(totalSeconds / 31536000);
+        const months = Math.floor((totalSeconds % 31536000) / 2592000);
+        const days = Math.floor((totalSeconds % 2592000) / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+        
+        return { years, months, days, hours, minutes, seconds };
+      },
+
+      get t() {
+        return translations[this.currentLanguage] || translations.en;
+      },
+
+      get statusText() {
+        return this.t.status[this.status] || this.status.toUpperCase();
+      },
+
+      get hasConfigChanges() {
+        return this.configStore !== this.store || this.configSuper !== this.super;
+      },
+
+      get qrLink() {
+        // 优先使用服务器提供的链接，否则使用当前页面地址
+        return this.link || `${window.location.protocol}//${window.location.host}`;
+      },
+
+      get formattedStoreSize() {
+        if (!this.storageInfo?.storeDirectory?.size) return '0 B';
+        return this.formatBytes(this.storageInfo.storeDirectory.size);
+      },
+
+      get formattedDiskSpace() {
+        if (!this.storageInfo?.diskSpace?.current) return null;
+        const disk = this.storageInfo.diskSpace.current;
+        return {
+          total: this.formatBytes(disk.total),
+          free: this.formatBytes(disk.free),
+          used: this.formatBytes(disk.used),
+          usedPercent: ((disk.used / disk.total) * 100).toFixed(1)
+        };
+      },
+
+      get storeUsagePercent() {
+        if (!this.storageInfo?.storeDirectory?.size || !this.storageInfo?.diskSpace?.current) return 0;
+        const storeSize = this.storageInfo.storeDirectory.size;
+        const totalDisk = this.storageInfo.diskSpace.current.total;
+        return ((storeSize / totalDisk) * 100).toFixed(4);
+      },
+
+      // 方法
+      talk(ev) {
+        db.get("message").put(ev.target.value);
+      },
+
+      async loadConfig() {
+        try {
+          const response = await fetch('/api/config');
+          const config = await response.json();
+          this.configStore = config.store;
+          this.configSuper = config.super;
+        } catch (error) {
+          console.log('Failed to load config:', error);
+        }
+      },
+
+      async toggleStorage() {
+        try {
+          const response = await fetch('/api/config', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ store: !this.configStore })
+          });
+          
+          const result = await response.json();
+          if (result.success) {
+            this.configStore = result.config.store;
+            this.showAlertMessage(this.t.alerts.configChanged, 'success');
+            this.configChanged = true;
+          } else {
+            this.showAlertMessage(this.t.alerts.operationFailed, 'warning');
+          }
+        } catch (error) {
+          console.log('Storage toggle failed:', error);
+          this.showAlertMessage(this.t.alerts.operationFailed, 'warning');
+        }
+      },
+
+      async toggleSuperNode() {
+        try {
+          const response = await fetch('/api/config', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ super: !this.configSuper })
+          });
+          
+          const result = await response.json();
+          if (result.success) {
+            this.configSuper = result.config.super;
+            this.showAlertMessage(this.t.alerts.configChanged, 'success');
+            this.configChanged = true;
+          } else {
+            this.showAlertMessage(this.t.alerts.operationFailed, 'warning');
+          }
+        } catch (error) {
+          console.log('Super node toggle failed:', error);
+          this.showAlertMessage(this.t.alerts.operationFailed, 'warning');
+        }
+      },
+
+      async clearData() {
+        if (confirm(this.t.confirmations.clearData)) {
+          try {
+            const response = await fetch('/api/clear', {
+              method: 'POST'
+            });
+            
+            const result = await response.json();
+            if (result.success) {
+              this.message = "";
+              db.get("message").put("");
+              this.showAlertMessage(this.t.alerts.clearSuccess, 'success');
+            } else {
+              this.showAlertMessage(this.t.alerts.operationFailed, 'warning');
+            }
+          } catch (error) {
+            console.log('Clear data failed:', error);
+            this.showAlertMessage(this.t.alerts.operationFailed, 'warning');
+          }
+        }
+      },
+
+      listen() {
+        console.log('🔍 开始搜索活跃的Gun数据库节点...');
+        
+        // 为每个可能的主机名创建监听器
+        possibleHosts.forEach((hostname, index) => {
+          const hostDb = gun.get('relays').get(hostname);
+          
+          console.log(`📡 尝试连接到节点: ${hostname}`);
+          
+          // 监听每个主机的数据变化
+          hostDb.map().on((d, k) => {
+            if (d && d !== null && d !== undefined) {
+              // 找到有数据的主机，设置为活跃数据库
+              if (!activeDb || foundHost !== hostname) {
+                console.log(`✅ 发现活跃节点: ${hostname}`);
+                activeDb = hostDb;
+                foundHost = hostname;
+              }
+              
+              // 更新数据
+              relay[k] = d;
+              console.log(`📊 数据更新 [${hostname}]: ${k} =`, d);
+              
+              // 如果是状态数据，标记为运行中
+              if (k === 'pulse' || k === 'status') {
+                relay.status = 'running';
+              }
+            }
+          });
+          
+          // 专门监听关键字段，确保数据同步
+          const keyFields = ['pulse', 'started', 'activeWires', 'totalConnections', 'host', 'port', 'link', 'status', 'store', 'super'];
+          keyFields.forEach(field => {
+            hostDb.get(field).on((data, key) => {
+              if (data !== null && data !== undefined) {
+                relay[field] = data;
+                console.log(`🔄 字段更新 [${hostname}]: ${field} =`, data);
+                
+                // 确保状态正确
+                if (field === 'pulse' || field === 'status') {
+                  relay.status = 'running';
+                }
+              }
+            });
+          });
+        });
+        
+        // 延迟设置默认值和健康检查
+        setTimeout(() => {
+          if (!relay.pulse || relay.pulse === 0) {
+            console.log('⚠️ 未检测到服务器心跳，尝试获取静态配置');
+            this.fetchServerInfo();
+          }
+          
+          if (!relay.link) {
+            relay.link = `${window.location.protocol}//${window.location.host}`;
+            console.log("📍 使用默认链接:", relay.link);
+          }
+          
+          if (!relay.host) {
+            relay.host = window.location.hostname;
+            console.log("📍 使用默认主机:", relay.host);
+          }
+        }, 3000);
+        
+        // 定期检查连接状态
+        setInterval(() => {
+          this.checkConnectionHealth();
+        }, 5000);
+      },
+
+      async generateQRCode() {
+        console.log('Generating QR Code for:', this.qrLink);
+        
+        const qrContainer = document.querySelector('.qr-container');
+        if (!qrContainer) {
+          console.error('QR container not found');
+          return;
+        }
+        
+        if (!this.qrLink) {
+          console.error('No link available for QR code');
+          qrContainer.innerHTML = '<div class="text-center p-8 text-gray-600">No link available</div>';
+          return;
+        }
+        
+        try {
+          // 显示加载状态
+          qrContainer.innerHTML = '<div class="text-center p-8 text-gray-600">Generating QR Code...</div>';
+          
+          const canvas = document.createElement('canvas');
+          
+          console.log('QRCode library:', QRCode);
+          
+          await QRCode.toCanvas(canvas, this.qrLink, {
+            width: 300,
+            margin: 2,
+            color: {
+              dark: '#000000',
+              light: '#FFFFFF'
+            }
+          });
+          
+          console.log('QR Code generated successfully');
+          qrContainer.innerHTML = '';
+          qrContainer.appendChild(canvas);
+          
+        } catch (error) {
+          console.error('QR Code generation failed:', error);
+          
+          // 尝试使用SVG方式
+          try {
+            const svgString = await QRCode.toString(this.qrLink, {
+              type: 'svg',
+              width: 300,
+              margin: 2,
+              color: {
+                dark: '#000000',
+                light: '#FFFFFF'
+              }
+            });
+            
+            qrContainer.innerHTML = svgString;
+            console.log('QR Code generated as SVG');
+            
+          } catch (svgError) {
+            console.error('SVG QR Code generation also failed:', svgError);
+            
+            // 最后降级到简单文本显示
+            qrContainer.innerHTML = `
+              <div class="text-center p-8">
+                <div class="text-gray-600 mb-2">QR Code generation failed</div>
+                <div class="text-sm text-gray-500 break-all">${this.qrLink}</div>
+                <div class="mt-4">
+                  <a href="${this.qrLink}" target="_blank" class="text-blue-400 hover:text-blue-300">
+                    Open Link
+                  </a>
+                </div>
+              </div>
+            `;
+          }
+        }
+      },
+
+      async exportData() {
+        try {
+          const response = await fetch('/api/export');
+          const result = await response.json();
+          
+          if (result.success) {
+            const data = {
+              ...result.data,
+              relayInfo: {
+                timestamp: Date.now(),
+                host: this.host,
+                status: this.status,
+                connections: this.totalConnections,
+                uptime: this.uptimeSeconds,
+                message: this.message,
+                store: this.store,
+                super: this.super
+              }
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], {
+              type: 'application/json'
+            });
+            
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `gun-database-full-export-${Date.now()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            this.showAlertMessage(this.t.alerts.exportSuccess, 'success');
+          } else {
+            this.showAlertMessage(this.t.alerts.operationFailed, 'warning');
+          }
+        } catch (error) {
+          console.log('Export failed:', error);
+          this.showAlertMessage(this.t.alerts.operationFailed, 'warning');
+        }
+      },
+
+      switchLanguage(lang) {
+        this.currentLanguage = lang;
+        localStorage.setItem('gun-db-language', lang);
+        document.title = `${this.t.title} | P2P Real-time Database`;
+      },
+
+      showAlertMessage(message, type = 'info') {
+        this.alertMessage = message;
+        this.alertType = type;
+        this.showAlert = true;
+        
+        setTimeout(() => {
+          this.showAlert = false;
+        }, 5000);
+      },
+
+      formatBytes(bytes) {
+        if (bytes === 0) return '0 B';
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+      },
+
+      async loadStorageInfo() {
+        this.loadingStorage = true;
+        try {
+          const response = await fetch('/api/storage');
+          const result = await response.json();
+          
+          if (result.success) {
+            this.storageInfo = result.data;
+            console.log('Storage info loaded:', result.data);
+          } else {
+            console.error('Failed to load storage info:', result.error);
+            this.showAlertMessage('Failed to load storage information', 'warning');
+          }
+        } catch (error) {
+          console.error('Storage info request failed:', error);
+          this.showAlertMessage('Failed to load storage information', 'warning');
+        } finally {
+          this.loadingStorage = false;
+        }
+      },
+
+      // 获取服务器信息的备用方法
+      async fetchServerInfo() {
+        try {
+          console.log('🔍 尝试通过API获取服务器信息...');
+          
+          // 先获取配置信息
+          const configResponse = await fetch('/api/config');
+          const config = await configResponse.json();
+          
+          if (config) {
+            console.log('📊 通过API获取到配置:', config);
+            this.configStore = config.store;
+            this.configSuper = config.super;
+            this.store = config.store;
+            this.super = config.super;
+          }
+          
+          // 再获取实时统计信息
+          const statsResponse = await fetch('/api/gun-stats');
+          const statsResult = await statsResponse.json();
+          
+          if (statsResult.success && statsResult.data) {
+            const stats = statsResult.data.summary;
+            console.log('📊 通过API获取到统计信息:', stats);
+            
+            // 更新连接统计
+            this.totalConnections = stats.totalConnections || 0;
+            this.activeWires = stats.activeWires || 0;
+            this.pulse = stats.pulse || Date.now();
+            this.started = stats.started || (Date.now() - 10000);
+            this.host = stats.host || window.location.hostname;
+            this.port = stats.port || window.location.port;
+            this.link = stats.link || `${window.location.protocol}//${window.location.host}`;
+            
+            if (!this.status || this.status === 'connecting') {
+              this.status = 'running';
+            }
+            
+            console.log('✅ 服务器统计信息已更新');
+            console.log(`📊 连接统计: 总连接=${this.totalConnections}, 活跃=${this.activeWires}`);
+          }
+          
+        } catch (error) {
+          console.error('❌ 获取服务器信息失败:', error);
+          
+          // 如果API调用失败，设置基本的默认值
+          if (!this.started) {
+            this.started = Date.now() - 10000;
+          }
+          if (!this.pulse) {
+            this.pulse = Date.now();
+          }
+          if (!this.status || this.status === 'connecting') {
+            this.status = 'running';
+          }
+          if (!this.host) {
+            this.host = window.location.hostname;
+          }
+          if (!this.link) {
+            this.link = `${window.location.protocol}//${window.location.host}`;
+          }
+        }
+      },
+
+      // 检查连接健康状态
+      checkConnectionHealth() {
+        const now = Date.now();
+        const timeSinceLastPulse = now - this.pulse;
+        
+        // 如果超过10秒没有收到心跳，标记为连接中
+        if (timeSinceLastPulse > 10000) {
+          if (this.status === 'running') {
+            console.log('⚠️ 心跳超时，状态改为连接中');
+            this.status = 'connecting';
+          }
+        }
+        
+        // 如果超过30秒没有收到心跳，尝试重新获取信息
+        if (timeSinceLastPulse > 30000) {
+          console.log('🔄 长时间未收到心跳，尝试重新获取服务器信息');
+          this.fetchServerInfo();
+        }
+      }
+    });
+
+    // 从本地存储恢复语言设置
+    const savedLanguage = localStorage.getItem('gun-db-language');
+    if (savedLanguage && translations[savedLanguage]) {
+      relay.currentLanguage = savedLanguage;
+    }
+
+    // 初始化默认数据
+    relay.link = `${window.location.protocol}//${window.location.host}`;
+    relay.host = window.location.hostname;
+    
+    // 加载配置
+    relay.loadConfig();
+    relay.listen();
+    
+    // 加载存储信息
+    relay.loadStorageInfo();
+
+    // 监听链接变化，自动生成二维码
+    const app = createApp({ relay }).mount();
+    
+    // 初始化二维码
+    setTimeout(() => {
+      relay.generateQRCode();
+    }, 500);
+    
+    // 监听链接变化
+    let lastLink = relay.link;
+    setInterval(() => {
+      if (relay.link !== lastLink) {
+        lastLink = relay.link;
+        relay.generateQRCode();
+      }
+    }, 1000);
+
+    // 定期更新存储信息
+    setInterval(() => {
+      relay.loadStorageInfo();
+    }, 10000); // 每10秒更新一次
+
+    // 定期获取统计信息 - 作为Gun实时连接的备用方案
+    setInterval(() => {
+      // 如果长时间没有收到Gun的实时数据，使用API获取
+      const now = Date.now();
+      const timeSinceLastPulse = now - relay.pulse;
+      
+      if (timeSinceLastPulse > 5000) { // 5秒没有心跳就尝试API
+        console.log('🔄 使用API获取最新统计信息 (Gun心跳超时)');
+        relay.fetchServerInfo();
+      }
+    }, 8000); // 每8秒检查一次
+  </script>
+</head>
+
+<body class="text-light-400 min-h-screen" v-scope>
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-purple-900/20 to-blue-900/20 shadow-2xl border-b border-purple-500/30 backdrop-blur-md" style="-webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);">
+    <div class="max-w-6xl mx-auto px-4 py-4 sm:py-6">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+        <!-- Logo and Title -->
+        <div class="flex items-center space-x-3 sm:space-x-4">
+          <div class="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center">
+            <svg class="w-14 h-8 sm:w-16 sm:h-9" viewBox="0 0 722 404" xmlns="http://www.w3.org/2000/svg">
+              <defs><style>.cls-1{fill:#ffffff;opacity:1;isolation:isolate;}</style></defs>
+              <title>gun_logo</title>
+              <path id="path2987" class="cls-1" d="M8.47,395.09C7.95,394.21,63,204.33,64.42,202c0.94-1.53,73.38-1.53,74.32,0,0.39,0.63-7.82,30.4-18.24,66.17s-18.69,65.72-18.36,66.56c0.82,2.15,24.29,2.16,25.94,0,1.82-2.37,46.8-158.36,46-159.61-0.39-.64-21.93-1.11-50.56-1.11-27.43,0-50.14-.44-50.47-1S83.29,135.28,96.5,90.36l24-81.68,88.35-.31c48.59-.17,88.77.1,89.27,0.61s-13.88,51.7-32,113.76-43.11,148-55.61,190.92-23.23,79-23.82,80.21c-1,2-6.52,2.13-89.42,2.13-48.58,0-88.57-.41-88.87-0.91h0ZM192.74,112.68c1.37-1.77,12.54-39.94,12.54-42.87,0-1.68-1.83-2-12.66-2-8.7,0-13,.48-13.82,1.52-1.37,1.81-12.56,40-12.56,42.85,0,1.7,1.8,2,12.66,2,8.68,0,13-.48,13.84-1.52h0Zm78,60.39c-0.3-.51,10.27-37.7,23.49-82.66l24-81.73,36.43-.32c20-.18,36.92.16,37.5,0.74S387,31.57,378.58,60.18c-8.09,27.5-14.71,50.93-14.71,52.06,0,1.82,1.54,2,13.72,1.71l13.72-.34,15.25-51.3c8.39-28.21,15.69-52,16.24-52.76C423.91,7.88,495,7.35,496,9c0.3,0.5-10.27,37.7-23.5,82.65l-24,81.73-88.59.31c-48.72.17-88.84-.1-89.14-0.61h0Zm195.18,0c-0.3-.5,10.27-37.7,23.5-82.65l24-81.73,88.29-.31c48.56-.17,88.68.1,89.16,0.61s-10,37.7-23.19,82.66l-24.06,81.73-36.43.32c-20,.18-36.92-0.16-37.5-0.74s5.23-22.46,13.64-51.07c8.09-27.5,14.71-50.93,14.71-52.06,0-1.82-1.54-2-13.72-1.71l-13.72.35-15.25,51.3c-8.39,28.21-15.69,52-16.24,52.76-1.12,1.65-72.24,2.19-73.22.55h0Zm220.81-54c-5.18-4.07-5.19-8.62-.05-27.49,3.55-13.06,5.39-17.76,7.93-20.34a11.12,11.12,0,0,1,18.8,5.64c1.19,6.36-7.57,37-11.8,41.33a11,11,0,0,1-14.88.86h0Z"/>
+              <path id="path2989-1" class="cls-1" d="M299.45,191.7c-11.68,0-18.5.9-26,8.8C262.44,212,259.87,231,264,244.38c5.83,15.24,22.38,20.32,29.59,23.62-17.94-14.49-11.44-43.79,7.26-57.54h15.26c34.3,0,32.14-3.19,32.61,20.6h0.16c0.66-33.59.09-38.59-30-39.26-7.85.15-14.17-.08-19.48-0.09h0Zm59.17,67c-3.45,21.81-16.77,24.32-42.49,24.25H238.78l-7.19,24.25h79.63c28.91-.62,43.12-24.25,47.4-48.48h0Z"/>
+            </svg>
+          </div>
+          <div class="min-w-0 flex-1">
+            <h1 class="text-2xl sm:text-3xl font-bold text-white truncate">{{relay.t.title}}</h1>
+            <p class="text-sm sm:text-base text-gray-300 truncate">{{relay.t.subtitle}}</p>
+          </div>
+        </div>
+        
+        <!-- Right Side Controls -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+          <!-- Language Switcher -->
+          <div class="language-switcher">
+            <button 
+              class="language-btn"
+              :class="{ active: relay.currentLanguage === 'en' }"
+              @click="relay.switchLanguage('en')">
+              EN
+            </button>
+            <button 
+              class="language-btn"
+              :class="{ active: relay.currentLanguage === 'zh' }"
+              @click="relay.switchLanguage('zh')">
+              中文
+            </button>
+          </div>
+          
+          <!-- Status -->
+          <div class="flex items-center space-x-2">
+            <span :class="['status-indicator', relay.statusClass]"></span>
+            <span class="text-sm font-medium whitespace-nowrap">{{relay.statusText}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 py-6 sm:py-8">
+    <!-- Alert Messages -->
+    <div v-if="relay.showAlert" :class="['alert', 'alert-' + relay.alertType]">
+      {{relay.alertMessage}}
+    </div>
+
+    <!-- Restart Required Warning -->
+    <div v-if="relay.hasConfigChanges" class="alert alert-warning">
+      {{relay.t.alerts.restartRequired}}
+    </div>
+
+    <!-- Elegant Time Module -->
+    <div class="cosmic-card">
+      <div class="flex items-center justify-between">
+        <h3 class="text-xl font-semibold text-white flex items-center gap-2">
+           {{relay.t.runtime || '系统运行时间'}}
+        </h3>
+        
+        <!-- Compact Time Display -->
+        <div class="flex items-center gap-4">
+          <!-- Main Time -->
+          <div class="text-right">
+            <div class="time-glow text-3xl font-bold" :style="{ color: relay.smartUptime.color }">
+              {{relay.smartUptime.value}}
+            </div>
+            <div class="text-sm text-gray-400 -mt-1">
+              {{relay.currentLanguage === 'zh' ? relay.smartUptime.unit : relay.smartUptime.unitEn}}
+            </div>
+          </div>
+          
+          <!-- Detailed Breakdown - Compact -->
+          <div v-if="relay.uptimeSeconds > 60" class="flex items-center gap-3 text-sm border-l border-gray-600 pl-4">
+            <div v-if="relay.detailedUptime.days > 0" class="text-center">
+              <div class="font-bold text-orange-400">{{relay.detailedUptime.days}}</div>
+              <div class="text-xs text-gray-500">{{relay.currentLanguage === 'zh' ? '天' : 'D'}}</div>
+            </div>
+            <div v-if="relay.uptimeSeconds >= 3600" class="text-center">
+              <div class="font-bold text-purple-400">{{relay.detailedUptime.hours}}</div>
+              <div class="text-xs text-gray-500">{{relay.currentLanguage === 'zh' ? '时' : 'H'}}</div>
+            </div>
+            <div v-if="relay.uptimeSeconds >= 60" class="text-center">
+              <div class="font-bold text-blue-400">{{relay.detailedUptime.minutes}}</div>
+              <div class="text-xs text-gray-500">{{relay.currentLanguage === 'zh' ? '分' : 'M'}}</div>
+            </div>
+            <div class="text-center">
+              <div class="font-bold text-green-400">{{relay.detailedUptime.seconds}}</div>
+              <div class="text-xs text-gray-500">{{relay.currentLanguage === 'zh' ? '秒' : 'S'}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="stat-grid">
+      <div class="floating-stat">
+        <span class="stat-value-cosmic">{{relay.activeWires || 0}}</span>
+        <div class="stat-label text-gray-300 mt-2">{{relay.t.activeConnections}}</div>
+      </div>
+      <div class="floating-stat">
+        <span class="stat-value-cosmic">{{relay.totalConnections || 0}}</span>
+        <div class="stat-label text-gray-300 mt-2">{{relay.t.totalConnections}}</div>
+      </div>
+              <div class="floating-stat" 
+             :style="{ 
+               'border-color': relay.configSuper ? 'rgba(251, 146, 60, 0.3)' : 'rgba(16, 185, 129, 0.3)',
+               'background': relay.configSuper ? 
+                 'linear-gradient(135deg, rgba(251, 146, 60, 0.1) 0%, rgba(249, 115, 22, 0.1) 100%)' : 
+                 'linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%)'
+             }">
+          <span class="stat-value-cosmic" 
+                :style="{ 
+                  'background': relay.configSuper ? 
+                    'linear-gradient(135deg, #fb923c, #f97316, #ea580c)' : 
+                    'linear-gradient(135deg, #10b981, #3b82f6, #8b5cf6)',
+                  'background-clip': 'text',
+                  '-webkit-background-clip': 'text',
+                  '-webkit-text-fill-color': 'transparent'
+                }">
+            {{relay.configSuper ? relay.t.superMode : relay.t.relayMode}}
+          </span>
+          <div class="stat-label text-gray-300 mt-2">{{relay.t.nodeMode}}</div>
+        </div>
+      <div class="floating-stat">
+        <span class="stat-value-cosmic">{{relay.store ? 'ON' : 'OFF'}}</span>
+        <div class="stat-label text-gray-300 mt-2">{{relay.t.persistentStorage}}</div>
+      </div>
+      <div class="floating-stat">
+        <span class="stat-value-cosmic">{{relay.formattedStoreSize}}</span>
+        <div class="stat-label text-gray-300 mt-2">{{relay.t.storeSize}}</div>
+      </div>
+    </div>
+
+    <!-- Database Configuration -->
+    <div class="cosmic-card" :class="{ 'config-changed': relay.configChanged }">
+      <h3 class="text-xl font-semibold mb-4 text-white">{{relay.t.databaseConfiguration}}</h3>
+      
+      <div class="space-y-8">
+        <!-- Storage Control -->
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between space-y-3 sm:space-y-0 sm:space-x-4">
+          <div class="flex-1 min-w-0">
+            <label class="text-white font-medium block">{{relay.t.persistentStorage}}</label>
+            <p class="text-gray-400 text-sm mt-1 leading-relaxed">{{relay.t.persistentStorageDesc}}</p>
+          </div>
+          <div class="flex-shrink-0">
+            <label class="toggle-switch">
+              <input type="checkbox" 
+                     v-model="relay.configStore" 
+                     @change="relay.toggleStorage"
+                     aria-label="Toggle persistent storage"
+                     title="Enable or disable persistent storage">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Super Node Control -->
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between space-y-3 sm:space-y-0 sm:space-x-4">
+          <div class="flex-1 min-w-0">
+            <label class="text-white font-medium block">{{relay.t.superNode}}</label>
+            <p class="text-gray-400 text-sm mt-1 leading-relaxed">{{relay.t.superNodeDesc}}</p>
+            <div v-if="relay.configSuper" class="super-node-warning mt-3">
+              <p class="text-yellow-300 text-sm leading-relaxed">{{relay.t.alerts.superNodeWarning}}</p>
+            </div>
+          </div>
+          <div class="flex-shrink-0">
+            <label class="toggle-switch">
+              <input type="checkbox" 
+                     v-model="relay.configSuper" 
+                     @change="relay.toggleSuperNode"
+                     aria-label="Toggle super node mode"
+                     title="Enable or disable super node mode">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Connection Info -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+          <div v-if="relay.link" class="min-w-0">
+            <label class="text-white font-medium block mb-2">{{relay.t.peerConnection}}</label>
+            <a :href="relay.link + '/gun'" 
+               class="block text-blue-400 hover:text-blue-300 break-all text-sm sm:text-base">
+              {{relay.link}}/gun
+            </a>
+          </div>
+          
+          <div v-if="relay.extLink && relay.extLink !== relay.link" class="min-w-0">
+            <label class="text-white font-medium block mb-2">{{relay.t.externalAccess}}</label>
+            <a :href="relay.extLink + '/gun'" 
+               class="block text-blue-400 hover:text-blue-300 break-all text-sm sm:text-base">
+              {{relay.extLink}}/gun
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Storage Monitor -->
+    <div class="cosmic-card">
+      <h3 class="text-xl font-semibold mb-4 text-white">{{relay.t.storageMonitor}}</h3>
+      
+      <div class="space-y-6">
+        <!-- Storage Overview -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+          
+          <!-- Database Storage -->
+          <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+            <h4 class="text-lg font-medium text-white mb-3">{{relay.t.storeUsage}}</h4>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center">
+                <span class="text-gray-400">{{relay.t.storeSize}}</span>
+                <span class="text-green-400 font-mono">{{relay.formattedStoreSize}}</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-gray-400">{{relay.t.storeFiles}}</span>
+                <span class="text-blue-400 font-mono">{{relay.storageInfo?.storeDirectory?.files || 0}}</span>
+              </div>
+              <div v-if="relay.storageInfo?.storeDirectory?.exists" class="flex justify-between items-center">
+                <span class="text-gray-400">{{relay.t.directoryStatus}}</span>
+                <span class="text-green-400">✓ {{relay.t.exists}}</span>
+              </div>
+              <div v-else class="flex justify-between items-center">
+                <span class="text-gray-400">{{relay.t.directoryStatus}}</span>
+                <span class="text-yellow-400">○ {{relay.t.notExists}}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Disk Space -->
+          <div v-if="relay.formattedDiskSpace" class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+            <h4 class="text-lg font-medium text-white mb-3">{{relay.t.diskSpace}}</h4>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center">
+                <span class="text-gray-400">{{relay.t.totalSpace}}</span>
+                <span class="text-blue-400 font-mono">{{relay.formattedDiskSpace.total}}</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-gray-400">{{relay.t.freeSpace}}</span>
+                <span class="text-green-400 font-mono">{{relay.formattedDiskSpace.free}}</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-gray-400">{{relay.t.usedSpace}}</span>
+                <span class="text-orange-400 font-mono">{{relay.formattedDiskSpace.used}} ({{relay.formattedDiskSpace.usedPercent}}%)</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-gray-400">{{relay.t.dbDiskRatio}}</span>
+                <span class="text-purple-400 font-mono">{{relay.storeUsagePercent}}%</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Progress Bars -->
+        <div v-if="relay.formattedDiskSpace" class="space-y-4">
+          <div>
+            <div class="flex justify-between text-sm text-gray-400 mb-2">
+              <span>{{relay.t.diskUsage}}</span>
+              <span>{{relay.formattedDiskSpace.usedPercent}}%</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-orange-500 h-2 rounded-full transition-all duration-300" 
+                   :style="{ width: relay.formattedDiskSpace.usedPercent + '%' }"></div>
+            </div>
+          </div>
+          
+          <div v-if="relay.storageInfo?.storeDirectory?.size > 0">
+            <div class="flex justify-between text-sm text-gray-400 mb-2">
+              <span>{{relay.t.dbDiskPortion}}</span>
+              <span>{{relay.storeUsagePercent}}%</span>
+            </div>
+            <div class="w-full bg-gray-700 rounded-full h-2">
+              <div class="bg-purple-500 h-2 rounded-full transition-all duration-300" 
+                   :style="{ width: Math.min(parseFloat(relay.storeUsagePercent), 100) + '%' }"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- File Details -->
+        <div v-if="relay.storageInfo?.storeDirectory?.details?.length > 0" class="space-y-3">
+          <h4 class="text-lg font-medium text-white">{{relay.t.fileDetails}}</h4>
+          <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+            <div class="space-y-2 max-h-48 overflow-y-auto">
+              <div v-for="file in relay.storageInfo.storeDirectory.details" :key="file.name" 
+                   class="flex justify-between items-center text-sm">
+                <div class="flex items-center space-x-2">
+                  <span v-if="file.type === 'file'" class="text-blue-400">📄</span>
+                  <span v-else class="text-yellow-400">📁</span>
+                  <span class="text-gray-300 truncate">{{file.name}}</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <span class="text-gray-400 font-mono">{{relay.formatBytes(file.size)}}</span>
+                  <span class="text-gray-500 text-xs">{{new Date(file.modified).toLocaleString()}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Refresh Button -->
+        <div class="flex justify-end">
+          <button @click="relay.loadStorageInfo" 
+                  :disabled="relay.loadingStorage"
+                  class="cosmic-btn text-sm sm:text-base">
+            <span v-if="relay.loadingStorage">🔄 {{relay.t.refreshing}}</span>
+            <span v-else>📊 {{relay.t.refreshStorage}}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Database Operations -->
+    <div class="cosmic-card">
+      <h3 class="text-xl font-semibold mb-4 text-white">{{relay.t.databaseOperations}}</h3>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+        <button @click="relay.exportData" class="cosmic-btn text-sm sm:text-base">
+          📥 {{relay.t.exportData}}
+        </button>
+        <button @click="relay.clearData" class="cosmic-btn text-sm sm:text-base" style="border-color: rgba(239, 68, 68, 0.5); background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.2));">
+          🗑️ {{relay.t.clearData}}
+        </button>
+        <button v-if="relay.hasConfigChanges" @click="window.location.reload()" 
+                class="cosmic-btn text-sm sm:text-base sm:col-span-2 lg:col-span-1" style="border-color: rgba(34, 197, 94, 0.5); background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(21, 128, 61, 0.2));">
+          🔄 {{relay.t.restartApp}}
+        </button>
+      </div>
+    </div>
+
+    <!-- Real-time Communication -->
+    <div class="cosmic-card">
+      <h3 class="text-xl font-semibold mb-4 text-white">{{relay.t.realtimeCommunication}}</h3>
+      
+      <div class="space-y-4">
+        <label for="message-input" class="block text-white font-medium">
+          {{relay.t.messageBroadcasting}}
+        </label>
+        <p class="text-gray-400 text-sm">
+          {{relay.t.messageDesc}}
+        </p>
+        <textarea 
+          id="message-input"
+          class="bg-dark-100 shadow-inset p-4 rounded-lg w-full border border-gray-600 focus:border-green-500 focus:ring-1 focus:ring-green-500 text-white" 
+          cols="35" 
+          rows="6" 
+          v-model="relay.message"
+          @change="relay.talk" 
+          @keyup="relay.talk"
+          :placeholder="relay.t.messagePlaceholder"></textarea>
+      </div>
+    </div>
+
+    <!-- QR Code (Always visible) -->
+    <div class="cosmic-card">
+      <h3 class="text-xl font-semibold mb-4 text-white">{{relay.t.quickAccessQr}}</h3>
+      <div class="flex justify-center">
+        <div class="qr-container bg-white p-4 rounded-lg">
+          <!-- QR Code will be generated here -->
+          <div class="text-center p-8 text-gray-600">
+            Generating QR Code...
+          </div>
+        </div>
+      </div>
+      <p class="text-center text-gray-400 mt-4">
+        {{relay.t.qrDesc}}
+      </p>
+      <div class="text-center text-gray-500 text-sm mt-2">
+        {{relay.qrLink}}
+      </div>
+    </div>
+  </main>
+
+  <!-- Technology Stack Section -->
+  <section class="bg-gradient-to-r from-indigo-900/20 to-purple-900/20 mt-16 border-t border-purple-500/20" style="-webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);">
+    <div class="max-w-6xl mx-auto px-4 py-8">
+      <h3 class="text-xl font-semibold text-center text-white mb-8">{{relay.t.techStack}}</h3>
+      
+      <!-- Technology Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        
+        <!-- Gun.js -->
+        <a href="https://github.com/amark/gun" target="_blank" rel="noopener" class="tech-card group block">
+          <div class="flex flex-col items-center text-center">
+            <div class="w-16 h-16 mb-4 flex items-center justify-center bg-gray-700 rounded-lg group-hover:bg-gray-600 transition-colors">
+              <img src="./gun.svg" alt="Gun.js Logo" class="w-12 h-7 object-contain">
+            </div>
+            <h4 class="text-lg font-semibold text-white mb-2">Gun.js</h4>
+            <p class="text-gray-400 text-sm leading-relaxed">{{relay.t.descriptions.gunjs}}</p>
+          </div>
+        </a>
+
+        <!-- Gun-Vue -->
+        <a href="https://github.com/DeFUCC/gun-vue" target="_blank" rel="noopener" class="tech-card group block">
+          <div class="flex flex-col items-center text-center">
+            <div class="w-16 h-16 mb-4 flex items-center justify-center bg-gray-700 rounded-lg group-hover:bg-gray-600 transition-colors">
+              <img src="./gun-vue-logo.svg" alt="Gun-Vue Logo" class="w-12 h-10 object-contain">
+            </div>
+            <h4 class="text-lg font-semibold text-white mb-2">Gun-Vue</h4>
+            <p class="text-gray-400 text-sm leading-relaxed">{{relay.t.descriptions.gunvue}}</p>
+          </div>
+        </a>
+
+        <!-- TalkFlow -->
+        <a href="https://github.com/ponzs/talkflow" target="_blank" rel="noopener" class="tech-card group block">
+          <div class="flex flex-col items-center text-center">
+            <div class="w-16 h-16 mb-4 flex items-center justify-center bg-gray-700 rounded-lg group-hover:bg-gray-600 transition-colors">
+              <img src="./TalkFlow.png" alt="TalkFlow Logo" class="w-10 h-10 object-contain">
+            </div>
+            <h4 class="text-lg font-semibold text-white mb-2">TalkFlow</h4>
+            <p class="text-gray-400 text-sm leading-relaxed">{{relay.t.descriptions.talkflow}}</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-r from-purple-900/10 to-blue-900/10 border-t border-purple-500/20 backdrop-blur-sm" style="-webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);">
+    <div class="max-w-6xl mx-auto px-4 py-6">
+      <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+        <div class="text-gray-400 text-sm">
+          © 2025 MIT License
+        </div>
+        <div class="flex items-center space-x-4 text-sm text-gray-400">
+          <span>{{relay.t.version}} 0.6.1</span>
+          <span>•</span>
+          <span>{{relay.t.runtime}}: {{relay.formattedUptime}}</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
