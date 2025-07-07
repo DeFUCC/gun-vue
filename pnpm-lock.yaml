@@ -256,6 +256,69 @@ importers:
         specifier: 1.0.0
         version: 1.0.0
 
+  relay/skin/cutestar:
+    dependencies:
+      cors:
+        specifier: ^2.8.5
+        version: 2.8.5
+      dotenv:
+        specifier: 16.5.0
+        version: 16.5.0
+      esbuild:
+        specifier: 0.25.4
+        version: 0.25.4
+      express:
+        specifier: 5.1.0
+        version: 5.1.0
+      gun:
+        specifier: 0.2020.1240
+        version: 0.2020.1240(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      ip:
+        specifier: 2.0.1
+        version: 2.0.1
+      node-fetch:
+        specifier: ^3.3.2
+        version: 3.3.2
+      ollama:
+        specifier: ^0.5.16
+        version: 0.5.16
+      promisify:
+        specifier: ^0.0.3
+        version: 0.0.3
+      qr:
+        specifier: 0.4.2
+        version: 0.4.2
+      self-adjusting-interval:
+        specifier: 1.0.0
+        version: 1.0.0
+      xmlhttprequest:
+        specifier: ^1.8.0
+        version: 1.8.0
+
+  relay/skin/made in spider-man:
+    dependencies:
+      dotenv:
+        specifier: 16.5.0
+        version: 16.5.0
+      esbuild:
+        specifier: 0.25.4
+        version: 0.25.4
+      express:
+        specifier: 5.1.0
+        version: 5.1.0
+      gun:
+        specifier: 0.2020.1240
+        version: 0.2020.1240(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      ip:
+        specifier: 2.0.1
+        version: 2.0.1
+      qr:
+        specifier: 0.4.2
+        version: 0.4.2
+      self-adjusting-interval:
+        specifier: 1.0.0
+        version: 1.0.0
+
 packages:
 
   '@algolia/autocomplete-core@1.17.9':
@@ -1589,6 +1652,10 @@ packages:
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
 
+  cors@2.8.5:
+    resolution: {integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==}
+    engines: {node: '>= 0.10'}
+
   cpus@1.0.3:
     resolution: {integrity: sha512-PXHBvGLuL69u55IkLa5e5838fLhIMHxmkV4ge42a8alGyn7BtawYgI0hQ849EedvtHIOLNNH3i6eQU1BiE9SUA==}
 
@@ -2440,8 +2507,8 @@ packages:
   node-fetch-native@1.6.6:
     resolution: {integrity: sha512-8Mc2HhqPdlIfedsuZoc3yioPuzp6b+L5jRCRY1QzuWZh2EGJVQrGppC6V6cF0bLdbW0+O2YpqCA25aF/1lvipQ==}
 
-  node-fetch@3.3.0:
-    resolution: {integrity: sha512-BKwRP/O0UvoMKp7GNdwPlObhYGB5DQqwhEDQlNKuoqwVYSxkSZCSbHjnFFmUEtwSKRPU4kNK8PbDYYitwaE3QA==}
+  node-fetch@3.3.2:
+    resolution: {integrity: sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   node-gyp-build@4.8.4:
@@ -2469,6 +2536,9 @@ packages:
 
   ola@1.2.1:
     resolution: {integrity: sha512-richuePlugumsBC+ohk6NuVYkDPGQiVAHZU0qEkJ/Hy6oDaJCxCnuUQootYQ8T4k+pVeFf0Xdw7i17zTulKpTA==}
+
+  ollama@0.5.16:
+    resolution: {integrity: sha512-OEbxxOIUZtdZgOaTPAULo051F5y+Z1vosxEYOoABPnQKeW7i4O8tJNlxCB+xioyoorVqgjkdj+TA1f1Hy2ug/w==}
 
   on-finished@2.4.1:
     resolution: {integrity: sha512-oVlzkg3ENAhCk2zdv7IJwd/QUD4z2RxRwpkcGY8psCVcCYZNq4wYnVWALHM+brtuJjePWiYF/ClmuDr8Ch5+kg==}
@@ -2617,6 +2687,9 @@ packages:
 
   promise@7.3.1:
     resolution: {integrity: sha512-nolQXZ/4L+bP/UGlkfaIujX9BKxGwmQ9OT4mOt5yvy8iK1h3wqTEJCijzGANTCCl9nWjY41juyAn2K3Q1hLLTg==}
+
+  promisify@0.0.3:
+    resolution: {integrity: sha512-CcBGsRhhq466fsZVyHfptuKqon6eih0CqMsJE0kWIIjbpVNEyDoaKLELm2WVs//W/WXRBHip+6xhTExTkHUwtA==}
 
   property-information@7.0.0:
     resolution: {integrity: sha512-7D/qOz/+Y4X/rzSB6jKxKUsQnphO046ei8qxG59mtM3RG3DHgTK81HrxrmoDVINJb8NKT5ZsRbwHvQ6B68Iyhg==}
@@ -3358,6 +3431,12 @@ packages:
     resolution: {integrity: sha512-5Skuyj4qyz/jfwS4UQrXtft+/b2CdocJULJeR9EUFfozWVcZLkCOQ21014PaTZX0oELDze1zG4zpZlcDDdWwPg==}
     engines: {node: '>=16'}
 
+  whatwg-fetch@3.6.20:
+    resolution: {integrity: sha512-EqhiFU6daOA8kpjOWTL0olhVOF3i7OrFzSYiGsEMB8GcXS+RrzauAERX65xMeNWVqxA6HXH2m69Z9LaKKdisfg==}
+
+  when@3.7.8:
+    resolution: {integrity: sha512-5cZ7mecD3eYcMiCH4wtRPA5iFJZ50BJYDfckI5RRpQiktMiYTcn0ccLTZOvcbBume+1304fQztxeNzNS9Gvrnw==}
+
   which-module@2.0.0:
     resolution: {integrity: sha512-B+enWhmw6cjfVC7kS8Pj9pCrKSc5txArRyaYGe088shv/FGWH+0Rjx/xPgtsWfsUtS27FkP697E4DDhgrgoc0Q==}
 
@@ -3408,6 +3487,10 @@ packages:
   xmlbuilder@11.0.1:
     resolution: {integrity: sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==}
     engines: {node: '>=4.0'}
+
+  xmlhttprequest@1.8.0:
+    resolution: {integrity: sha512-58Im/U0mlVBLM38NdZjHyhuMtCqa61469k2YP/AaPbvCoV9aQGUpbJBj1QRm2ytRiVQBD/fsw7L2bJGDVQswBA==}
+    engines: {node: '>=0.4.0'}
 
   y18n@4.0.3:
     resolution: {integrity: sha512-JKhqTOwSrqNA1NY5lSztJ1GrBiUodLMmIZuLiDaMRJ+itFd+ABVE8XBjOvIWL+rSqNDC74LCSFmlb/U4UZ4hJQ==}
@@ -4889,6 +4972,11 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
+  cors@2.8.5:
+    dependencies:
+      object-assign: 4.1.1
+      vary: 1.1.2
+
   cpus@1.0.3: {}
 
   crc-32@0.3.0: {}
@@ -4911,7 +4999,7 @@ snapshots:
   cross-fetch-ponyfill@1.0.3:
     dependencies:
       abort-controller: 3.0.0
-      node-fetch: 3.3.0
+      node-fetch: 3.3.2
 
   cross-spawn@7.0.6:
     dependencies:
@@ -5821,7 +5909,7 @@ snapshots:
 
   node-fetch-native@1.6.6: {}
 
-  node-fetch@3.3.0:
+  node-fetch@3.3.2:
     dependencies:
       data-uri-to-buffer: 4.0.1
       fetch-blob: 3.2.0
@@ -5847,6 +5935,10 @@ snapshots:
       ufo: 1.5.4
 
   ola@1.2.1: {}
+
+  ollama@0.5.16:
+    dependencies:
+      whatwg-fetch: 3.6.20
 
   on-finished@2.4.1:
     dependencies:
@@ -5981,6 +6073,10 @@ snapshots:
   promise@7.3.1:
     dependencies:
       asap: 2.0.6
+
+  promisify@0.0.3:
+    dependencies:
+      when: 3.7.8
 
   property-information@7.0.0: {}
 
@@ -6913,6 +7009,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  whatwg-fetch@3.6.20: {}
+
+  when@3.7.8: {}
+
   which-module@2.0.0:
     optional: true
 
@@ -6957,6 +7057,8 @@ snapshots:
       xmlbuilder: 11.0.1
 
   xmlbuilder@11.0.1: {}
+
+  xmlhttprequest@1.8.0: {}
 
   y18n@4.0.3:
     optional: true
