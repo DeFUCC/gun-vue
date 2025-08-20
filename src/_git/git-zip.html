@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git Zip Repository Demo</title>
+  <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
+  <script type="importmap">
+    {
+        "imports": {
+            "vue": "https://esm.sh/vue@3/dist/vue.esm-browser.prod.js",
+            "@vueuse/core": "https://esm.sh/@vueuse/core@10.5.0/index.mjs",
+            "@zip.js/zip.js": "https://esm.sh/@zip.js/zip.js@2.7.34/index.js",
+            "isomorphic-git": "https://esm.sh/isomorphic-git@1.25.0/index.js"
+        }
+    }
+    </script>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+  <div id="app">
+    <div class="max-w-6xl mx-auto p-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Control Panel -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <div class="bg-green-600 text-white p-4">
+            <h1 class="text-xl font-bold">Git Zip Repository</h1>
+            <p class="text-green-100 text-sm mt-1">Git operations in your browser</p>
+          </div>
+
+          <div class="p-4 space-y-4">
+            <!-- Step Buttons -->
+            <div class="space-y-2">
+              <button @click="initializeRepository" :disabled="isLoading"
+                class="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-gray-400">
+                1. Initialize Repository
+              </button>
+
+              <button @click="createReadme" :disabled="isLoading || currentStep === 'none'"
+                class="w-full px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:bg-gray-400">
+                2. Create README.md
+              </button>
+
+              <button @click="stageReadme"
+                :disabled="isLoading || !['readme-created', 'committed'].includes(currentStep)"
+                class="w-full px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 disabled:bg-gray-400">
+                3. Stage README (git add)
+              </button>
+
+              <div class="flex gap-2">
+                <input v-model="commitMessage" type="text" placeholder="Commit message..."
+                  class="flex-1 p-2 border rounded" />
+                <button @click="commitReadme" :disabled="isLoading || currentStep !== 'readme-staged'"
+                  class="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 disabled:bg-gray-400">
+                  4. Commit
+                </button>
+              </div>
+
+              <button @click="loadHistory" :disabled="isLoading || currentStep === 'none'"
+                class="w-full px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:bg-gray-400">
+                5. Load History
+              </button>
+
+              <button @click="saveToStorage" :disabled="isLoading || currentStep === 'none'"
+                class="w-full px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-700 disabled:bg-gray-400">
+                6. Save to LocalStorage
+              </button>
+
+              <button @click="loadReadmeFromRepo" :disabled="isLoading || currentStep === 'none'"
+                class="w-full px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 disabled:bg-gray-400">
+                7. Load README from Repo
+              </button>
+            </div>
+
+            <!-- Status -->
+            <div class="p-3 bg-gray-100 rounded">
+              <div class="text-sm font-medium">Current Step: {{ currentStep }}</div>
+              <div v-if="isLoading" class="text-sm text-blue-600">Loading...</div>
+            </div>
+
+            <!-- Clear Buttons -->
+            <div class="flex gap-2">
+              <button @click="clearLogs" class="px-3 py-1 bg-gray-500 text-white text-sm rounded hover:bg-gray-600">
+                Clear Logs
+              </button>
+              <button @click="clearRepository" class="px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700">
+                Clear Repository
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- README Editor -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <div class="bg-gray-800 text-white p-4">
+            <h2 class="text-lg font-bold">README.md Editor</h2>
+          </div>
+          <div class="p-4 space-y-3">
+            <textarea v-model="readmeContent" class="w-full h-64 p-3 border rounded font-mono text-sm"
+              placeholder="README content will appear here..."></textarea>
+            <div class="flex justify-end">
+              <button @click="saveReadme" :disabled="isLoading || currentStep === 'none'"
+                class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-gray-400">
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logs Panel -->
+      <div class="mt-6 bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="bg-gray-800 text-white p-4">
+          <h2 class="text-lg font-bold">Debug Logs</h2>
+        </div>
+        <div class="p-4">
+          <div class="h-64 overflow-y-auto bg-black text-green-400 p-3 rounded font-mono text-sm">
+            <div v-for="log in logs" :key="log.timestamp" class="mb-1">
+              <span class="text-gray-500">[{{ log.timestamp }}]</span>
+              <span :class="{
+                'text-green-400': log.type === 'success',
+                'text-red-400': log.type === 'error',
+                'text-yellow-400': log.type === 'warning',
+                'text-blue-400': log.type === 'info'
+              }">{{ log.message }}</span>
+            </div>
+            <div v-if="logs.length === 0" class="text-gray-500">No logs yet...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Commit History -->
+      <div v-if="commitHistory.length > 0" class="mt-6 bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="bg-gray-800 text-white p-4">
+          <h2 class="text-lg font-bold">Commit History</h2>
+        </div>
+        <div class="p-4 space-y-3">
+          <div v-for="commit in commitHistory" :key="commit.oid" class="p-3 border rounded bg-gray-50">
+            <div class="flex justify-between items-start">
+              <div class="flex-1">
+                <p class="font-medium">{{ commit.commit.message }}</p>
+                <p class="text-sm text-gray-600 mt-1">
+                  by {{ commit.commit.author.name }} &lt;{{ commit.commit.author.email }}&gt;
+                </p>
+              </div>
+              <div class="text-sm text-gray-500 ml-4">
+                {{ formatDate(commit.commit.author.timestamp) }}
+              </div>
+            </div>
+            <div class="text-xs text-gray-400 mt-2 font-mono">
+              {{ commit.oid.substring(0, 7) }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createApp, ref, onMounted, computed } from 'vue'
+    import { useStorage } from '@vueuse/core'
+    import * as zip from '@zip.js/zip.js'
+    import git from 'isomorphic-git'
+
+    // Zip File System Adapter - Fixed version
+    class ZipFsAdapter {
+      constructor(zipBlob = null) {
+        this.entries = new Map()
+        this.modified = new Set()
+        // Initialize with an empty .git directory
+        this.entries.set('.git/', { filename: '.git/', directory: true })
+        this.ready = zipBlob ? this.loadFromZip(zipBlob) : Promise.resolve()
+      }
+
+      async loadFromZip(zipBlob) {
+        const zipReader = new zip.ZipReader(new zip.BlobReader(zipBlob))
+        const entries = await zipReader.getEntries()
+
+        for (const entry of entries) {
+          if (!entry.directory) {
+            const data = await entry.getData(new zip.Uint8ArrayWriter())
+            this.entries.set(entry.filename, {
+              filename: entry.filename,
+              data: data,
+              directory: false
+            })
+          } else {
+            this.entries.set(entry.filename, {
+              filename: entry.filename,
+              directory: true
+            })
+          }
+        }
+        await zipReader.close()
+      }
+
+      // Normalize paths - this is crucial for isomorphic-git compatibility
+      _normalizePath(filepath) {
+        if (filepath === '/' || filepath === '') return ''
+        if (filepath.startsWith('/')) return filepath.slice(1)
+        return filepath
+      }
+
+      async readFile(filepath, options = {}) {
+        const normalizedPath = this._normalizePath(filepath)
+        const entry = this.entries.get(normalizedPath)
+
+        if (!entry || entry.directory) {
+          const err = new Error(`ENOENT: no such file or directory, open '${filepath}'`)
+          err.code = 'ENOENT'
+          err.errno = -2
+          throw err
+        }
+
+        if (options.encoding === 'utf8') {
+          return new TextDecoder().decode(entry.data)
+        }
+        return entry.data
+      }
+
+      async writeFile(filepath, data, options = {}) {
+        const normalizedPath = this._normalizePath(filepath)
+        let uint8Data
+
+        if (typeof data === 'string') {
+          uint8Data = new TextEncoder().encode(data)
+        } else {
+          uint8Data = new Uint8Array(data)
+        }
+
+        this.entries.set(normalizedPath, {
+          filename: normalizedPath,
+          data: uint8Data,
+          directory: false
+        })
+        this.modified.add(normalizedPath)
+      }
+
+      async mkdir(dirpath, options = {}) {
+        const normalizedPath = this._normalizePath(dirpath)
+        const dirPath = normalizedPath.endsWith('/') ? normalizedPath : normalizedPath + '/'
+
+        this.entries.set(dirPath, {
+          filename: dirPath,
+          directory: true
+        })
+        this.modified.add(dirPath)
+      }
+
+      async readdir(dirpath) {
+        const normalizedPath = this._normalizePath(dirpath)
+        const searchPath = normalizedPath === '' ? '' : (normalizedPath.endsWith('/') ? normalizedPath : normalizedPath + '/')
+        const results = []
+
+        for (const [filename] of this.entries) {
+          if (filename.startsWith(searchPath) && filename !== searchPath) {
+            const relativePath = filename.substring(searchPath.length)
+            const parts = relativePath.split('/')
+            const name = parts[0]
+            if (name && !results.includes(name)) {
+              results.push(name)
+            }
+          }
+        }
+
+        return results
+      }
+
+      async stat(filepath) {
+        const normalizedPath = this._normalizePath(filepath)
+        const currentTime = new Date()
+
+        // Create a proper stats object with all required properties
+        const createStats = (type, mode, size = 0) => ({
+          dev: 1,
+          ino: 1,
+          mode: mode,
+          nlink: 1,
+          uid: 1,
+          gid: 1,
+          rdev: 0,
+          size: size,
+          blksize: 4096,
+          blocks: Math.ceil(size / 4096),
+          atimeMs: currentTime.getTime(),
+          mtimeMs: currentTime.getTime(),
+          ctimeMs: currentTime.getTime(),
+          birthtimeMs: currentTime.getTime(),
+          atime: currentTime,
+          mtime: currentTime,
+          ctime: currentTime,
+          birthtime: currentTime,
+          type: type,
+          isFile: () => type === 'file',
+          isDirectory: () => type === 'dir',
+          isSymbolicLink: () => false,
+          isBlockDevice: () => false,
+          isCharacterDevice: () => false,
+          isFIFO: () => false,
+          isSocket: () => false
+        })
+
+        if (normalizedPath === '') {
+          return createStats('dir', 0o40755)
+        }
+
+        const entry = this.entries.get(normalizedPath)
+        if (entry) {
+          const isDir = entry.directory
+          return createStats(
+            isDir ? 'dir' : 'file',
+            isDir ? 0o40755 : 0o100644,
+            entry.data ? entry.data.length : 0
+          )
+        }
+
+        // Check if it's a directory by looking for files that start with this path
+        const dirPath = normalizedPath.endsWith('/') ? normalizedPath : normalizedPath + '/'
+        const hasChildren = Array.from(this.entries.keys()).some(key =>
+          key.startsWith(dirPath) && key !== dirPath
+        )
+
+        if (hasChildren) {
+          return createStats('dir', 0o40755)
+        }
+
+        const err = new Error(`ENOENT: no such file or directory, stat '${filepath}'`)
+        err.code = 'ENOENT'
+        err.errno = -2
+        throw err
+      }
+
+      async lstat(filepath) {
+        return this.stat(filepath)
+      }
+
+      async unlink(filepath) {
+        const normalizedPath = this._normalizePath(filepath)
+        if (!this.entries.has(normalizedPath)) {
+          const err = new Error(`ENOENT: no such file or directory, unlink '${filepath}'`)
+          err.code = 'ENOENT'
+          err.errno = -2
+          throw err
+        }
+        this.entries.delete(normalizedPath)
+        this.modified.add(normalizedPath)
+      }
+
+      async rmdir(dirpath) {
+        const normalizedPath = this._normalizePath(dirpath)
+        const dirPath = normalizedPath.endsWith('/') ? normalizedPath : normalizedPath + '/'
+
+        const children = await this.readdir(dirpath)
+        if (children.length > 0) {
+          const err = new Error(`ENOTEMPTY: directory not empty, rmdir '${dirpath}'`)
+          err.code = 'ENOTEMPTY'
+          err.errno = -39
+          throw err
+        }
+        this.entries.delete(dirPath)
+        this.modified.add(dirPath)
+      }
+
+      async exportZip() {
+        const zipWriter = new zip.ZipWriter(new zip.BlobWriter())
+
+        for (const [filename, entry] of this.entries) {
+          if (entry.directory) {
+            continue // Skip directories for now
+          } else {
+            const data = entry.data || new Uint8Array(0)
+            await zipWriter.add(filename, new zip.Uint8ArrayReader(data))
+          }
+        }
+
+        return await zipWriter.close()
+      }
+
+      // Check if file exists without throwing
+      async exists(filepath) {
+        try {
+          await this.stat(filepath)
+          return true
+        } catch {
+          return false
+        }
+      }
+
+      // Required stubs for isomorphic-git compatibility
+      async readlink(filepath) {
+        const err = new Error('ENOSYS: readlink not implemented')
+        err.code = 'ENOSYS'
+        err.errno = -38
+        throw err
+      }
+
+      async symlink(target, path) {
+        const err = new Error('ENOSYS: symlink not implemented')
+        err.code = 'ENOSYS'
+        err.errno = -38
+        throw err
+      }
+
+      async chmod(filepath, mode) {
+        // No-op for browser/zip
+        return
+      }
+
+      async utimes(filepath, atime, mtime) {
+        // No-op for browser/zip
+        return
+      }
+    }
+
+    // Git Repository Wrapper
+    class GitZipRepository {
+      constructor(zipBlob = null) {
+        this.fs = new ZipFsAdapter(zipBlob)
+      }
+
+      async init() {
+        await this.fs.ready
+        // Always initialize git - this ensures proper .git structure
+        await git.init({
+          fs: this.fs,
+          dir: '/',
+          defaultBranch: 'main'
+        })
+      }
+
+      async add(filepath) {
+        // Ensure the index is initialized before adding
+        await git.init({ fs: this.fs, dir: '/' })
+
+        // Normalize the filepath to ensure it works with isomorphic-git
+        const normalizedPath = filepath.startsWith('/') ? filepath.slice(1) : filepath
+
+        await git.add({
+          fs: this.fs,
+          dir: '/',
+          filepath: normalizedPath
+        })
+      }
+
+      async commit(message, author) {
+        return await git.commit({
+          fs: this.fs,
+          dir: '/',
+          message,
+          author
+        })
+      }
+
+      async log() {
+        try {
+          return await git.log({
+            fs: this.fs,
+            dir: '/',
+            depth: 50
+          })
+        } catch (error) {
+          return []
+        }
+      }
+
+      async writeFile(filepath, content) {
+        await this.fs.writeFile(filepath, content)
+      }
+
+      async readFile(filepath) {
+        try {
+          return await this.fs.readFile(filepath, { encoding: 'utf8' })
+        } catch (error) {
+          return null
+        }
+      }
+
+      async exportZip() {
+        return await this.fs.exportZip()
+      }
+    }
+
+    const App = {
+      setup() {
+        const readmeContent = ref('')
+        const commitMessage = ref('')
+        const commitHistory = ref([])
+        const isLoading = ref(false)
+        const repo = ref(null)
+        const logs = ref([])
+        const currentStep = ref('none')
+
+        // Store zip blob as base64 in localStorage
+        const storedZipData = useStorage('git-zip-repo', null)
+
+        const addLog = (message, type = 'info') => {
+          logs.value.push({
+            timestamp: new Date().toLocaleTimeString(),
+            message,
+            type
+          })
+        }
+
+        const clearLogs = () => {
+          logs.value = []
+        }
+
+        // Step 1: Initialize Repository
+        const initializeRepository = async () => {
+          isLoading.value = true
+          currentStep.value = 'init'
+          addLog('Starting repository initialization...', 'info')
+
+          try {
+            // Check if we have existing data
+            if (storedZipData.value) {
+              addLog('Found existing zip data in localStorage', 'info')
+              try {
+                const binaryString = atob(storedZipData.value)
+                const bytes = new Uint8Array(binaryString.length)
+                for (let i = 0; i < binaryString.length; i++) bytes[i] = binaryString.charCodeAt(i)
+                const zipBlob = new Blob([bytes])
+                repo.value = new GitZipRepository(zipBlob)
+                addLog('Created repository from existing zip', 'success')
+              } catch (error) {
+                addLog('Error loading existing zip: ' + error.message, 'error')
+                repo.value = new GitZipRepository()
+              }
+            } else {
+              addLog('No existing data, creating new repository', 'info')
+              repo.value = new GitZipRepository()
+            }
+
+            // Always initialize git to ensure proper setup
+            addLog('Initializing git repository...', 'info')
+            await repo.value.init()
+            addLog('Git repository initialized', 'success')
+
+            currentStep.value = 'initialized'
+            addLog('Repository initialization complete', 'success')
+          } catch (error) {
+            addLog('Error initializing repository: ' + error.message, 'error')
+            currentStep.value = 'error'
+          } finally {
+            isLoading.value = false
+          }
+        }
+
+        // Step 2: Create/Edit README
+        const createReadme = async () => {
+          if (!repo.value) {
+            addLog('No repository initialized', 'error')
+            return
+          }
+
+          isLoading.value = true
+          addLog('Creating README.md file...', 'info')
+
+          try {
+            const demoContent = `# Demo Repository
+
+Welcome to this demo Git repository stored in a ZIP file!
+
+## Features
+
+- Edit this README.md file
+- Commit changes with custom messages
+- View commit history
+- All stored locally in your browser's localStorage
+
+## How it works
+
+This demo uses:
+- **isomorphic-git** for Git operations
+- **@zip.js/zip.js** for ZIP file handling
+- **Vue 3** for the UI
+- **localStorage** for persistence
+
+Try editing this content and saving your changes!`
+
+            await repo.value.writeFile('README.md', demoContent)
+            readmeContent.value = demoContent
+            addLog('README.md file created in filesystem', 'success')
+            currentStep.value = 'readme-created'
+          } catch (error) {
+            addLog('Error creating README: ' + error.message, 'error')
+          } finally {
+            isLoading.value = false
+          }
+        }
+
+        // Step 3: Stage file (git add)
+        const stageReadme = async () => {
+          if (!repo.value) {
+            addLog('No repository initialized', 'error')
+            return
+          }
+
+          isLoading.value = true
+          addLog('Staging README.md for commit...', 'info')
+
+          try {
+            await repo.value.add('README.md')
+            addLog('README.md successfully staged for commit', 'success')
+            currentStep.value = 'readme-staged'
+          } catch (error) {
+            addLog('Error staging README: ' + error.message, 'error')
+          } finally {
+            isLoading.value = false
+          }
+        }
+
+        // Step 4: Commit changes
+        const commitReadme = async () => {
+          if (!repo.value) {
+            addLog('No repository initialized', 'error')
+            return
+          }
+
+          isLoading.value = true
+          const message = commitMessage.value.trim() || 'Initial commit with README'
+          addLog(`Committing with message: "${message}"`, 'info')
+
+          try {
+            const commitResult = await repo.value.commit(message, {
+              name: 'Demo User',
+              email: 'demo@example.com'
+            })
+            addLog(`Commit successful: ${commitResult.substring(0, 7)}`, 'success')
+            currentStep.value = 'committed'
+            commitMessage.value = ''
+          } catch (error) {
+            addLog('Error committing: ' + error.message, 'error')
+          } finally {
+            isLoading.value = false
+          }
+        }
+
+        // Step 5: Load commit history
+        const loadHistory = async () => {
+          if (!repo.value) {
+            addLog('No repository initialized', 'error')
+            return
+          }
+
+          isLoading.value = true
+          addLog('Loading commit history...', 'info')
+
+          try {
+            const history = await repo.value.log()
+            commitHistory.value = history
+            addLog(`Loaded ${history.length} commits`, 'success')
+            currentStep.value = 'history-loaded'
+          } catch (error) {
+            addLog('Error loading history: ' + error.message, 'error')
+          } finally {
+            isLoading.value = false
+          }
+        }
+
+        // Step 6: Save to localStorage
+        const saveToStorage = async () => {
+          if (!repo.value) {
+            addLog('No repository initialized', 'error')
+            return
+          }
+
+          isLoading.value = true
+          addLog('Exporting repository to zip and saving to localStorage...', 'info')
+
+          try {
+            const zipBlob = await repo.value.exportZip()
+            const arrayBuffer = await zipBlob.arrayBuffer()
+            const bytes = new Uint8Array(arrayBuffer)
+
+            // Convert to base64 for localStorage
+            let binaryString = ''
+            for (let i = 0; i < bytes.byteLength; i++) {
+              binaryString += String.fromCharCode(bytes[i])
+            }
+            storedZipData.value = btoa(binaryString)
+            addLog(`Saved ${bytes.length} bytes to localStorage`, 'success')
+            currentStep.value = 'saved'
+          } catch (error) {
+            addLog('Error saving to storage: ' + error.message, 'error')
+          } finally {
+            isLoading.value = false
+          }
+        }
+
+        // Step 7: Load README from repository
+        const loadReadmeFromRepo = async () => {
+          if (!repo.value) {
+            addLog('No repository initialized', 'error')
+            return
+          }
+
+          isLoading.value = true
+          addLog('Loading README.md from repository...', 'info')
+
+          try {
+            const content = await repo.value.readFile('README.md')
+            if (content) {
+              readmeContent.value = content
+              addLog('README.md loaded successfully', 'success')
+            } else {
+              addLog('README.md not found in repository', 'warning')
+            }
+          } catch (error) {
+            addLog('Error loading README from repo: ' + error.message, 'error')
+          } finally {
+            isLoading.value = false
+          }
+        }
+
+        const clearRepository = async () => {
+          if (confirm('Are you sure you want to clear the repository? This will delete all data.')) {
+            storedZipData.value = null
+            readmeContent.value = ''
+            commitMessage.value = ''
+            commitHistory.value = []
+            repo.value = null
+            currentStep.value = 'none'
+            addLog('Repository cleared', 'info')
+          }
+        }
+
+        const formatDate = (timestamp) => {
+          return new Date(timestamp * 1000).toLocaleString()
+        }
+
+        // Save README changes
+        const saveReadme = async () => {
+          if (!repo.value) {
+            addLog('No repository initialized', 'error')
+            return
+          }
+
+          isLoading.value = true
+          addLog('Saving changes to README.md...', 'info')
+
+          try {
+            await repo.value.writeFile('README.md', readmeContent.value)
+            addLog('Changes saved successfully', 'success')
+            currentStep.value = 'readme-created' // This will enable the Stage button
+          } catch (error) {
+            addLog('Error saving changes: ' + error.message, 'error')
+          } finally {
+            isLoading.value = false
+          }
+        }
+
+        return {
+          readmeContent,
+          saveReadme,
+          commitMessage,
+          commitHistory,
+          isLoading,
+          logs,
+          currentStep,
+          initializeRepository,
+          createReadme,
+          stageReadme,
+          commitReadme,
+          loadHistory,
+          saveToStorage,
+          loadReadmeFromRepo,
+          clearRepository,
+          clearLogs,
+          formatDate
+        }
+      }
+    }
+
+    createApp(App).mount('#app')
+  </script>
+</body>
+
+</html>
