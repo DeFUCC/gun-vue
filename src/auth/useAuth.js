@@ -1,5 +1,5 @@
 import { extractFromFile } from "gun-avatar"
-import derivePair from '@gun-vue/gun-es/derive'
+import derivePair from 'gun-es/derive'
 import { validateMnemonic, mnemonicToEntropy, entropyToMnemonic } from '@scure/bip39'
 import { wordlist } from '@scure/bip39/wordlists/english'
 import decodeQR from 'qr/decode.js';

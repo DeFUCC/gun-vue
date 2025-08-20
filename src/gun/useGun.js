@@ -1,4 +1,4 @@
-import { Gun, SEA } from "@gun-vue/gun-es"
+import { Gun, SEA } from "gun-es"
 
 import { relay } from "./useRelay";
 

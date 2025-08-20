@@ -3,7 +3,7 @@ import { useRefHistory, onStartTyping, useFocus, asyncComputed } from '@vueuse/c
 import { ref, nextTick, reactive, onMounted, computed } from 'vue'
 import * as bip39 from '@scure/bip39';
 import { wordlist } from '@scure/bip39/wordlists/english';
-import derivePair from '@gun-vue/gun-es/derive'
+import derivePair from 'gun-es/derive'
 
 import { useUser, updateProfile, useGun, gunAvatar } from '#composables'
 

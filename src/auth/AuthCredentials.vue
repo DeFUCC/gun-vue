@@ -2,7 +2,7 @@
 import { ref, computed, reactive, watchEffect } from "vue";
 import { asyncComputed, useClipboard, useShare } from "@vueuse/core";
 import { gunAvatar } from 'gun-avatar'
-import { SEA } from '@gun-vue/gun-es'
+import { SEA } from 'gun-es'
 
 import { useCredentials } from "./useCredentials";
 import { genLink } from './useAuth'

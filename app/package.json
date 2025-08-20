@@ -32,17 +32,17 @@
 		"preview": "vite preview --host"
 	},
 	"peerDependencies": {
-		"vue": "3.5.15"
+		"vue": "3.6.0-alpha.2"
 	},
 	"dependencies": {
-		"@unocss/reset": "66.1.2",
-		"@vueuse/core": "13.2.0",
+		"@unocss/reset": "66.4.2",
+		"@vueuse/core": "13.7.0",
 		"ola": "1.2.1",
 		"vue-router": "4.5.1"
 	},
 	"devDependencies": {
-		"@unocss/extractor-pug": "66.1.2",
-		"@vitejs/plugin-vue": "5.2.4",
-		"vite-plugin-singlefile": "2.2.0"
+		"@unocss/extractor-pug": "66.4.2",
+		"@vitejs/plugin-vue": "6.0.1",
+		"vite-plugin-singlefile": "2.3.0"
 	}
 }
