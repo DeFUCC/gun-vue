@@ -1,1 +1,0 @@
-import{_ as i,c as a,o as e,ah as t}from"./chunks/framework.DOfjDz1B.js";const g=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"relay/how-to.md","filePath":"relay/how-to.md"}'),n={name:"relay/how-to.md"};function l(h,s,r,o,p,d){return e(),a("div",null,s[0]||(s[0]=[t("",14)]))}const c=i(n,[["render",l]]);export{g as __pageData,c as default};

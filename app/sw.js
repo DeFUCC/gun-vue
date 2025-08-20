@@ -1,4 +1,4 @@
-const CACHE_NAME = 'gun-vue-v.2025-06-01-aec5b61e334fb90fd864920c0b7d997d';
+const CACHE_NAME = 'gun-vue-v.2025-08-20-5226f6b6dbb68128aa8c74aeb6f5f006';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
