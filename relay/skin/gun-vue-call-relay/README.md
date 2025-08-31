@@ -19,7 +19,10 @@ Prerequisites:
 - pnpm (recommended) or npm
 
 Install dependencies:
-- pnpm i
+```
+pnpm i
+
+```
 
 Configure environment (optional but recommended):
 - Create relay/.env with at least:
@@ -49,8 +52,13 @@ TURN_CREDENTIAL=
 ```
 
 Start the relay:
-- pnpm start
-- Or: node -r dotenv/config start.js
+```
+pnpm start
+```
+- Or:
+```
+node -r dotenv/config start.js
+```
 
 Verify:
 - Open http://localhost:8765/ in your browser
