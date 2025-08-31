@@ -4,7 +4,6 @@ import qr from "qr";
 import ip from "ip";
 import 'dotenv/config'
 import setSelfAdjustingInterval from 'self-adjusting-interval';
-// Add Socket.IO signaling + SEA verification
 import { Server as SocketIOServer } from 'socket.io';
 import SEA from 'gun/sea.js';
 import crypto from 'crypto';
@@ -218,6 +217,10 @@ export default {
 
     console.log(`Internal URL: ${link}/`);
     console.log(`External URL: ${extLink}/`);
+    // Explicitly print a localhost URL to avoid HTTPS upgrade issues on LAN IPs
+    console.log(`Localhost URL: http://localhost:${port}/`);
+    console.log(`ICE endpoint: http://localhost:${port}/ice`);
+    console.log(`Socket.IO path: http://localhost:${port}/socket.io`);
     console.log(`Gun peer: ${link}/gun`);
     console.log(`Storage: ${store ? 'enabled' : 'disabled'}`);
 
