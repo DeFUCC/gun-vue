@@ -13,7 +13,9 @@
 环境要求：Node.js 18+；建议使用 pnpm。
 
 安装依赖：
-- pnpm i
+```
+pnpm i
+```
 
 配置环境（建议）：创建 relay/.env，示例：
 ```
@@ -37,8 +39,13 @@ TURN_CREDENTIAL=
 ```
 
 启动：
-- pnpm start
-- 或：node -r dotenv/config start.js
+```
+pnpm start
+```
+- 或：
+```
+node -r dotenv/config start.js
+```
 
 验证：
 - 访问 http://localhost:8765/
