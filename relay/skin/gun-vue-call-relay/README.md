@@ -21,7 +21,6 @@ Prerequisites:
 Install dependencies:
 ```
 pnpm i
-
 ```
 
 Configure environment (optional but recommended):
