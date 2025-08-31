@@ -1,0 +1,42 @@
+{
+	"name": "@gun-vue/relay",
+	"version": "0.6.1",
+	"description": "A simple GUN peer relay for self- hosting",
+	"homepage": "https://gun-vue.js.org",
+	"bugs": {
+		"url": "https://github.com/defucc/gun-vue/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/DeFUCC/gun-vue.git",
+		"directory": "relay"
+	},
+	"funding": {
+		"type": "github",
+		"url": "https://github.com/sponsors/davay42"
+	},
+	"type": "module",
+	"packageManager": "pnpm@10.10.0",
+	"main": "server.js",
+	"files": [
+		"server.js",
+		"start.js",
+		"public/index.html"
+	],
+	"scripts": {
+		"start": "node start.js",
+		"build": "node build.js"
+	},
+	"dependencies": {
+		"crypto-js": "^4.2.0",
+		"dotenv": "16.5.0",
+		"esbuild": "0.25.4",
+		"express": "5.1.0",
+		"gun": "0.2020.1240",
+		"ip": "2.0.1",
+		"qr": "0.4.2",
+		"self-adjusting-interval": "1.0.0",
+		"socket.io": "^4.8.1",
+		"node-turn": "^0.0.6"
+	}
+}
