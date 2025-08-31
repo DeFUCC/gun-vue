@@ -1,5 +1,3 @@
-<!-- This is a static file -->
-<!-- served from your routes in server.js -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,8 +64,15 @@
       logs: { en: 'Logs', zh: '日志' },
       logs_help: { en: 'Recent events, ICE candidates, and errors will appear here to help debugging.', zh: '最近事件、ICE 候选与错误会显示在这里，便于调试。' },
 
-      auth_failed: { en: 'Authentication failed', zh: '认证失败' }
-     
+      auth_failed: { en: 'Authentication failed', zh: '认证失败' },
+
+      // Signaling i18n
+      signaling: { en: 'Signaling', zh: '信令' },
+      use_manual_signaling: { en: 'Use manual signaling', zh: '使用手动信令' },
+      manual_signaling_url: { en: 'Manual signaling URL', zh: '手动信令地址' },
+      current_signaling: { en: 'Current signaling', zh: '当前使用的信令' },
+      apply: { en: 'Apply', zh: '应用' },
+      signaling_help: { en: 'You can override the signaling server for debugging. When enabled, Start will connect to your manual URL.', zh: '可手动指定信令服务器用于调试。启用后，点击“开始”将连接到你设置的地址。' }
     };
 
     const gun = GUN([window.location.href + "gun"]);
@@ -114,6 +119,10 @@
       iceServers: [],
       signalingOrigin: "",
 
+      // Manual signaling config
+      manualSignalingEnabled: (localStorage.getItem('manual_signaling_enabled') === '1'),
+      manualSignalingUrl: (localStorage.getItem('manual_signaling_url') || 'http://localhost:8765'),
+
       // E2EE session materials
       e2eeKey: null,
       e2eeSalt: null,
@@ -137,6 +146,18 @@
           state.pair = json; state.roomPub = json.pub; state.hasPrivate = !!json.priv;
           localStorage.setItem('room_pair', JSON.stringify(json));
         }catch(e){ /* ignore */ }
+      },
+
+      saveManualSignaling(){
+        localStorage.setItem('manual_signaling_enabled', state.manualSignalingEnabled ? '1' : '0');
+        if (state.manualSignalingUrl) localStorage.setItem('manual_signaling_url', state.manualSignalingUrl);
+        // If not yet connected, reflect immediately; otherwise, user can Stop/Start to reconnect
+        if (!state.connected) {
+          if (state.manualSignalingEnabled && state.manualSignalingUrl) {
+            state.signalingOrigin = state.manualSignalingUrl;
+            state.addLog('Using manual signaling: ' + state.signalingOrigin);
+          }
+        }
       },
 
       // media
@@ -279,15 +300,27 @@
             const data = await res.json();
             state.iceServers = Array.isArray(data.iceServers) ? data.iceServers : [];
             // Prefer local signaling origin for localhost testing if provided
-            if (data.signaling && data.signaling.localOrigin) {
+            if (data.signaling && (data.signaling.localOrigin || data.signaling.currentOrigin)) {
               state.addLog('Signaling origins: '+JSON.stringify(data.signaling));
-              state.signalingOrigin = data.signaling.localOrigin;
+            }
+            const suggested = (data.signaling && (data.signaling.localOrigin || data.signaling.currentOrigin)) || window.location.origin;
+            // Manual override if enabled
+            if (state.manualSignalingEnabled && state.manualSignalingUrl) {
+              state.signalingOrigin = state.manualSignalingUrl;
+              state.addLog('Using manual signaling: ' + state.signalingOrigin);
             } else {
-              state.signalingOrigin = window.location.origin;
+              state.signalingOrigin = suggested;
             }
             state.addLog('ICE loaded: '+JSON.stringify(state.iceServers));
           } catch(e) {
             state.addLog('ICE load failed, using fallback: '+e.message);
+            // Even if ICE failed, still honor manual signaling if set
+            if (state.manualSignalingEnabled && state.manualSignalingUrl) {
+              state.signalingOrigin = state.manualSignalingUrl;
+              state.addLog('Using manual signaling (no /ice): ' + state.signalingOrigin);
+            } else {
+              state.signalingOrigin = window.location.origin;
+            }
           }
 
           // derive room key first
@@ -455,6 +488,20 @@
             <video :id="'remote-'+id" autoplay playsinline></video>
           </div>
         </div>
+      </div>
+
+      <!-- Signaling configuration -->
+      <div class="space-y-2">
+        <h3 class="text-lg font-bold">{{ state.t('signaling') }}</h3>
+        <div class="flex items-center gap-2">
+          <label><input type="checkbox" v-model="state.manualSignalingEnabled" @change="state.saveManualSignaling" /> {{ state.t('use_manual_signaling') }}</label>
+        </div>
+        <div class="flex items-center gap-2">
+          <input class="w-full border rounded px-2 py-1" :placeholder="state.t('manual_signaling_url')" v-model="state.manualSignalingUrl" :disabled="!state.manualSignalingEnabled" />
+          <button class="px-3 py-1 rounded bg-gray-700 text-white" @click="state.saveManualSignaling">{{ state.t('apply') }}</button>
+        </div>
+        <div class="text-sm">{{ state.t('current_signaling') }}: <span class="font-mono">{{ state.signalingOrigin || '-' }}</span></div>
+        <div class="text-xs text-gray-500">{{ state.t('signaling_help') }}</div>
       </div>
 
       <div class="space-y-2">
