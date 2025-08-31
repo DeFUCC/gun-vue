@@ -10,6 +10,9 @@ A cute-styled relay server skin with star-themed design elements.
 ### 2. [Made in Spider-Man](./made%20in%20spider-man)
 A Spider-Man themed relay server skin with unique web-style design.
 
+### 3. [gun-vue-call-relay](./gun-vue-call-relay)
+A simple p2p video/voice call server.
+
 ## How to Use Skins
 
 1. Choose your preferred skin by clicking the links above
