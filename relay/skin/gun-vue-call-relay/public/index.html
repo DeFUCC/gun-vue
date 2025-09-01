@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A cool thing made with Glitch" />
+
+  <title>GUN-VUE Relay + E2EE Call - Demo</title>
+
+  <style>
+    html { font-size: 16px; }
+    .qr svg { max-height: 80vh; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    video { width: 100%; background: #000; border-radius: 8px; }
+    textarea { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    label { display: inline-flex; align-items: center; gap: 6px; }
+    .badge { padding: 2px 8px; border-radius: 9999px; background: #222; color: #9ae6b4; font-size: 12px; }
+  </style>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@unocss/reset/tailwind.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
+
+  <script defer type="module">
+    import "https://cdn.skypack.dev/gun";
+    import SEA from "https://cdn.skypack.dev/gun/sea";
+    import ms from "https://cdn.skypack.dev/ms";
+    import qrcodeSvg from "https://cdn.skypack.dev/@qrcode/svg";
+    import { createApp, reactive, nextTick } from "https://cdn.skypack.dev/petite-vue";
+    import { io } from "https://cdn.jsdelivr.net/npm/socket.io-client@4.8.1/dist/socket.io.esm.min.js";
+
+    // i18n dictionary (default English)
+    const i18n = {
+      ui_language: { en: 'Language', zh: '语言' },
+      english: { en: 'English', zh: '英文' },
+      chinese: { en: 'Chinese', zh: '中文' },
+      room_key: { en: 'Room Key', zh: '房间密钥' },
+      room_key_tip: { en: 'Tip: Both sides can join the same room by sharing the same room public key (pub). Sharing the full key pair is recommended to enable E2EE.', zh: '提示：双方使用相同的房间公钥（pub）即可进入同一房间。推荐共享完整密钥对以启用 E2EE。' },
+      generate_keypair: { en: 'Generate Key Pair', zh: '生成密钥对' },
+      enable_e2ee: { en: 'Enable End-to-End Encryption', zh: '启用端到端加密' },
+      need_full_keypair: { en: 'A full key pair is required to join the room.', zh: '需要完整密钥对才能加入房间' },
+
+      device_selection: { en: 'Device Selection', zh: '设备选择' },
+      microphone: { en: 'Microphone', zh: '麦克风' },
+      camera: { en: 'Camera', zh: '摄像头' },
+      enable_mic: { en: 'Enable Microphone', zh: '启用麦克风' },
+      enable_cam: { en: 'Enable Camera', zh: '启用摄像头' },
+      device_selection_help: { en: 'Pick your desired input devices before starting. You can disable mic or camera as needed.', zh: '开始前请选择输入设备。你也可以根据需要关闭麦克风或摄像头。' },
+
+      start: { en: 'Start', zh: '开始' },
+      stop: { en: 'Stop', zh: '停止' },
+      controls_help: { en: 'Start will fetch ICE, set up media and signaling, and join the room. Stop will close connections and release devices.', zh: '“开始”将获取 ICE、设置媒体与信令并加入房间；“停止”将关闭连接并释放设备。' },
+
+      local_video: { en: 'Local Video', zh: '本地视频' },
+      local_video_help: { en: 'If you see a black screen, check camera permission or disable the camera in Device Selection.', zh: '如果看到黑屏，请检查摄像头权限，或在“设备选择”中关闭摄像头。' },
+
+      connection_status: { en: 'Connection Status', zh: '连接状态' },
+      connected: { en: 'Connected', zh: '已连接' },
+      not_connected: { en: 'Not connected', zh: '未连接' },
+      peers: { en: 'Peers', zh: '节点数' },
+      connection_status_help: { en: 'Peers shows the number of other participants in the room. ICE/connection state changes are logged below.', zh: 'Peers 显示房间内的其他参与者数量。ICE 与连接状态变化会记录在日志中。' },
+
+      logs: { en: 'Logs', zh: '日志' },
+      logs_help: { en: 'Recent events, ICE candidates, and errors will appear here to help debugging.', zh: '最近事件、ICE 候选与错误会显示在这里，便于调试。' },
+
+      auth_failed: { en: 'Authentication failed', zh: '认证失败' },
+
+      // Signaling i18n
+      signaling: { en: 'Signaling', zh: '信令' },
+      use_manual_signaling: { en: 'Use manual signaling', zh: '使用手动信令' },
+      manual_signaling_url: { en: 'Manual signaling URL', zh: '手动信令地址' },
+      current_signaling: { en: 'Current signaling', zh: '当前使用的信令' },
+      apply: { en: 'Apply', zh: '应用' },
+      signaling_help: { en: 'You can override the signaling server for debugging. When enabled, Start will connect to your manual URL.', zh: '可手动指定信令服务器用于调试。启用后，点击“开始”将连接到你设置的地址。' }
+    };
+
+    const gun = GUN([window.location.href + "gun"]);
+    const db = gun.get('relays').get(window.location.hostname);
+
+    const state = reactive({
+      // relay status
+      status: "connecting",
+      pulse: 0,
+      started: 0,
+      store: false,
+      host: "",
+      activeWires: 0,
+      ms,
+
+      // i18n state
+      lang: 'en',
+      t(k){ const lang = this.lang || 'en'; return (i18n[k] && (i18n[k][lang] || i18n[k].en)) || k; },
+
+      // keys
+      pairText: localStorage.getItem('room_pair') || "",
+      pair: null,
+      roomPub: "",
+      hasPrivate: false,
+
+      // devices
+      devices: { audioIn: [], videoIn: [] },
+      selectedAudioIn: "",
+      selectedVideoIn: "",
+      enableMic: true,
+      enableCam: true,
+      enableE2EE: true,
+
+      // connection
+      connected: false,
+      socket: null,
+      peers: {}, // id -> RTCPeerConnection
+      remoteStreams: {}, // id -> MediaStream
+      remotePeers: [],   // ordered list of peer ids for rendering
+      localStream: null,
+      others: [],
+      selfId: "",
+      log: [],
+      iceServers: [],
+      signalingOrigin: "",
+
+      // Manual signaling config
+      manualSignalingEnabled: (localStorage.getItem('manual_signaling_enabled') === '1'),
+      manualSignalingUrl: (localStorage.getItem('manual_signaling_url') || 'http://localhost:8765'),
+
+      // E2EE session materials
+      e2eeKey: null,
+      e2eeSalt: null,
+
+      talk(ev) { db.get("message").put(ev.target.value); },
+      listen() { db.map().on((d, k) => { state[k] = d; }); },
+
+      addLog(m){ state.log.unshift({ t: new Date().toLocaleTimeString(), m }); if(state.log.length>50) state.log.pop(); },
+
+      async generatePair(){
+        const pair = await SEA.pair();
+        state.pair = pair;
+        state.pairText = JSON.stringify(pair, null, 2);
+        state.roomPub = pair.pub;
+        state.hasPrivate = !!pair.priv;
+        localStorage.setItem('room_pair', state.pairText);
+      },
+      loadPair(){
+        try{
+          const json = JSON.parse(state.pairText);
+          state.pair = json; state.roomPub = json.pub; state.hasPrivate = !!json.priv;
+          localStorage.setItem('room_pair', JSON.stringify(json));
+        }catch(e){ /* ignore */ }
+      },
+
+      saveManualSignaling(){
+        localStorage.setItem('manual_signaling_enabled', state.manualSignalingEnabled ? '1' : '0');
+        if (state.manualSignalingUrl) localStorage.setItem('manual_signaling_url', state.manualSignalingUrl);
+        // If not yet connected, reflect immediately; otherwise, user can Stop/Start to reconnect
+        if (!state.connected) {
+          if (state.manualSignalingEnabled && state.manualSignalingUrl) {
+            state.signalingOrigin = state.manualSignalingUrl;
+            state.addLog('Using manual signaling: ' + state.signalingOrigin);
+          }
+        }
+      },
+
+      // media
+      async enumerate(){
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        state.devices.audioIn = devices.filter(d=>d.kind==='audioinput');
+        state.devices.videoIn = devices.filter(d=>d.kind==='videoinput');
+        if (!state.selectedAudioIn && state.devices.audioIn[0]) state.selectedAudioIn = state.devices.audioIn[0].deviceId;
+        if (!state.selectedVideoIn && state.devices.videoIn[0]) state.selectedVideoIn = state.devices.videoIn[0].deviceId;
+      },
+      async getLocalStream(){
+        const constraints = { audio: state.enableMic ? { deviceId: state.selectedAudioIn ? { exact: state.selectedAudioIn } : undefined } : false,
+                              video: state.enableCam ? { deviceId: state.selectedVideoIn ? { exact: state.selectedVideoIn } : undefined } : false };
+        state.localStream = await navigator.mediaDevices.getUserMedia(constraints);
+        const el = document.getElementById('localVideo');
+        if (el) { el.srcObject = state.localStream; await el.play().catch(()=>{}); }
+      },
+
+      // E2EE helpers
+      async deriveRoomKey(){
+        const enc = new TextEncoder();
+        // Deterministic salt derived from roomPub so both peers match
+        const hash = await crypto.subtle.digest('SHA-256', enc.encode(state.roomPub));
+        const full = new Uint8Array(hash);
+        const salt = full.slice(0, 12); // 12 bytes salt
+        const raw = await crypto.subtle.importKey('raw', enc.encode(state.roomPub), 'HKDF', false, ['deriveKey']);
+        const key = await crypto.subtle.deriveKey({ name:'HKDF', hash:'SHA-256', salt, info: enc.encode('room-e2ee') }, raw, { name:'AES-GCM', length:256 }, false, ['encrypt','decrypt']);
+        return { key, salt };
+      },
+      ivFrom(ts, salt){
+        const iv = new Uint8Array(12);
+        const view = new DataView(iv.buffer);
+        view.setBigUint64(0, BigInt(ts ?? 0));
+        iv.set(salt.slice(0, 4), 8);
+        return iv;
+      },
+      async applySenderE2EE(sender, key, salt){
+        try{
+          if (!state.enableE2EE) return;
+          if (sender.createEncodedStreams) {
+            const { readable, writable } = sender.createEncodedStreams();
+            const transform = new TransformStream({
+              async transform(chunk, controller){
+                try{
+                  const iv = state.ivFrom(chunk.timestamp, salt);
+                  chunk.data = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, chunk.data));
+                }catch(e){}
+                controller.enqueue(chunk);
+              }
+            });
+            readable.pipeThrough(transform).pipeTo(writable);
+          } else if ('transform' in RTCRtpSender.prototype) {
+            sender.transform = new TransformStream({
+              async transform(chunk, controller){
+                try{
+                  const iv = state.ivFrom(chunk.timestamp, salt);
+                  const buf = new Uint8Array(chunk.data);
+                  const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, buf);
+                  chunk.data = new Uint8Array(ct);
+                }catch(e){}
+                controller.enqueue(chunk);
+              }
+            });
+          }
+        }catch(e){ state.addLog('Sender E2EE not applied: '+e.message); }
+      },
+
+      async applyReceiverE2EE(receiver, key, salt){
+        try{
+          if (!state.enableE2EE) return;
+          if (receiver?.createEncodedStreams) {
+            const { readable, writable } = receiver.createEncodedStreams();
+            const transform = new TransformStream({
+              async transform(chunk, controller){
+                try{
+                  const iv = state.ivFrom(chunk.timestamp, salt);
+                  const data = new Uint8Array(chunk.data);
+                  const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, data);
+                  chunk.data = new Uint8Array(pt);
+                  controller.enqueue(chunk);
+                }catch(e){ controller.enqueue(chunk); }
+              }
+            });
+            readable.pipeThrough(transform).pipeTo(writable);
+          } else if (receiver && 'transform' in RTCRtpReceiver.prototype) {
+            receiver.transform = new TransformStream({
+              async transform(chunk, controller){
+                try{
+                  const iv = state.ivFrom(chunk.timestamp, salt);
+                  const data = new Uint8Array(chunk.data);
+                  const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, data);
+                  chunk.data = new Uint8Array(pt);
+                }catch(e){}
+                controller.enqueue(chunk);
+              }
+            });
+          }
+        }catch(e){ state.addLog('Receiver E2EE not applied: '+e.message); }
+      },
+
+      newPC(id){
+        const cfg = { iceServers: state.iceServers && state.iceServers.length ? state.iceServers : [ { urls: 'stun:stun.l.google.com:19302' } ] };
+        const pc = new RTCPeerConnection(cfg);
+        state.peers[id] = pc;
+        pc.onicecandidate = ev => { if (ev.candidate) { state.addLog(`ICE => candidate to ${id}`); state.socket.emit('signal', { type:'candidate', data: ev.candidate, to: id }); } };
+        pc.oniceconnectionstatechange = ()=> state.addLog(`Peer ${id} ice ${pc.iceConnectionState}`);
+        pc.onconnectionstatechange = ()=> state.addLog(`Peer ${id} ${pc.connectionState}`);
+        pc.ontrack = async (ev)=>{
+          // Apply receiver E2EE as early as possible on track
+          try {
+            const receiver = ev.receiver || (ev.transceiver && ev.transceiver.receiver);
+            if (receiver && state.e2eeKey && state.e2eeSalt) {
+              await state.applyReceiverE2EE(receiver, state.e2eeKey, state.e2eeSalt);
+            }
+          } catch (e) {
+            state.addLog('Receiver E2EE (ontrack) error: '+e.message);
+          }
+          const stream = ev.streams[0] || new MediaStream([ev.track]);
+          state.remoteStreams[id] = stream;
+          if (!state.remotePeers.includes(id)) state.remotePeers.push(id);
+          await nextTick();
+          const elId = `remote-${id}`;
+          let el = document.getElementById(elId);
+          if (el) { el.srcObject = stream; el.play().catch(()=>{}); }
+        };
+        return pc;
+      },
+
+      async start(){
+        try{
+          state.loadPair();
+          if (!state.hasPrivate) { alert(state.t('need_full_keypair')); return; }
+
+          await state.enumerate();
+          await state.getLocalStream();
+
+          // fetch ICE config from server
+          try {
+            const res = await fetch('/ice');
+            const data = await res.json();
+            state.iceServers = Array.isArray(data.iceServers) ? data.iceServers : [];
+            // Prefer local signaling origin for localhost testing if provided
+            if (data.signaling && (data.signaling.localOrigin || data.signaling.currentOrigin)) {
+              state.addLog('Signaling origins: '+JSON.stringify(data.signaling));
+            }
+            const suggested = (data.signaling && (data.signaling.localOrigin || data.signaling.currentOrigin)) || window.location.origin;
+            // Manual override if enabled
+            if (state.manualSignalingEnabled && state.manualSignalingUrl) {
+              state.signalingOrigin = state.manualSignalingUrl;
+              state.addLog('Using manual signaling: ' + state.signalingOrigin);
+            } else {
+              state.signalingOrigin = suggested;
+            }
+            state.addLog('ICE loaded: '+JSON.stringify(state.iceServers));
+          } catch(e) {
+            state.addLog('ICE load failed, using fallback: '+e.message);
+            // Even if ICE failed, still honor manual signaling if set
+            if (state.manualSignalingEnabled && state.manualSignalingUrl) {
+              state.signalingOrigin = state.manualSignalingUrl;
+              state.addLog('Using manual signaling (no /ice): ' + state.signalingOrigin);
+            } else {
+              state.signalingOrigin = window.location.origin;
+            }
+          }
+
+          // derive room key first
+          const { key, salt } = await state.deriveRoomKey();
+          state.e2eeKey = key; state.e2eeSalt = salt;
+
+          // connect socket and auth
+          const origin = state.signalingOrigin || window.location.origin;
+          state.socket = io(origin, { path: '/socket.io' });
+
+          state.socket.on('connect', ()=> state.addLog('Socket connected'));
+          state.socket.on('connect_error', (err)=>{ state.addLog('Socket connect_error: '+(err?.message||err)); });
+          state.socket.on('error', (err)=>{ state.addLog('Socket error: '+(err?.message||err)); });
+          state.socket.on('disconnect', (reason)=> state.addLog('Socket disconnected: '+reason));
+          state.socket.on('auth_error', (e)=>{ state.addLog('Auth error: '+(e?.message||'')); alert(state.t('auth_failed')); state.connected=false; });
+
+          state.socket.on('challenge', async ({ id, text })=>{
+            const signature = await SEA.sign(text, state.pair);
+            state.socket.emit('auth', { roomPub: state.roomPub, signature, challengeId: id });
+          });
+
+          state.socket.on('auth_ok', async ({ roomPub, peers, self, others })=>{
+            state.addLog(`Authenticated as ${self}, room ${roomPub} peers ${peers}`);
+            state.connected = true; state.selfId = self; state.others = others || [];
+
+            // Create offers to others (joining client initiates calls)
+            for(const pid of state.others){ await state.call(pid, state.e2eeKey, state.e2eeSalt); }
+          });
+
+          state.socket.on('peer-joined', async ({ id })=>{
+            if (id === state.selfId) return;
+            state.addLog(`Peer joined: ${id}`);
+            if (!state.others.includes(id)) state.others.push(id);
+          });
+
+          state.socket.on('peer-left', ({ id })=>{
+            state.addLog(`Peer left: ${id}`);
+            delete state.peers[id];
+            delete state.remoteStreams[id];
+            state.remotePeers = state.remotePeers.filter(p=>p!==id);
+            state.others = state.others.filter(p=>p!==id);
+          });
+
+          state.socket.on('signal', async ({ from, type, data })=>{
+            let pc = state.peers[from];
+            if (!pc) pc = state.newPC(from);
+
+            if (type === 'offer'){
+              await pc.setRemoteDescription(new RTCSessionDescription(data));
+              state.localStream.getTracks().forEach(t=> pc.addTrack(t, state.localStream));
+              if (state.enableE2EE) {
+                for(const sender of pc.getSenders()){
+                  if (sender.track) await state.applySenderE2EE(sender, state.e2eeKey, state.e2eeSalt);
+                }
+              }
+              const ans = await pc.createAnswer();
+              await pc.setLocalDescription(ans);
+              state.socket.emit('signal', { type:'answer', data: pc.localDescription, to: from });
+              // Receiver E2EE is now applied in ontrack as early as possible
+            } else if (type === 'answer'){
+              await pc.setRemoteDescription(new RTCSessionDescription(data));
+            } else if (type === 'candidate'){
+              try { await pc.addIceCandidate(data); } catch(e) { state.addLog('addIceCandidate error: '+e.message); }
+            }
+          });
+
+          // trigger auth challenge to join room
+          state.socket.emit('get_challenge');
+          state.addLog('Requested auth challenge');
+
+        }catch(e){
+          console.error(e); state.addLog('Start error: '+e.message);
+        }
+      },
+
+      async call(id, key, salt){
+        let pc = state.peers[id];
+        if (!pc) pc = state.newPC(id);
+        state.localStream.getTracks().forEach(t=> pc.addTrack(t, state.localStream));
+        if (state.enableE2EE) {
+          for(const sender of pc.getSenders()){
+            if (sender.track) await state.applySenderE2EE(sender, key, salt);
+          }
+        }
+        const offer = await pc.createOffer();
+        await pc.setLocalDescription(offer);
+        state.socket.emit('signal', { type:'offer', data: pc.localDescription, to: id });
+        // Receiver E2EE is now applied in ontrack as early as possible
+      },
+
+      stop(){
+        try{
+          Object.values(state.peers).forEach(pc=>{ try{ pc.close(); }catch(e){} });
+          state.peers = {};
+          state.remoteStreams = {};
+          state.remotePeers = [];
+          if (state.localStream){ state.localStream.getTracks().forEach(t=> t.stop()); }
+          state.localStream = null;
+          const lv = document.getElementById('localVideo'); if (lv) lv.srcObject = null;
+          if (state.socket){ try{ state.socket.disconnect(); }catch(e){} }
+          state.connected = false; state.selfId = ""; state.others = [];
+          state.addLog('Stopped');
+        }catch(e){ state.addLog('Stop error: '+e.message); }
+      }
+    });
+
+    createApp({ state }).mount('#app');
+  </script>
+</head>
+
+<body>
+  <div id="app" class="p-4 space-y-4">
+    <!-- Language Switcher -->
+    <div class="flex items-center justify-end gap-2">
+      <label class="text-sm">{{ state.t('ui_language') }}
+        <select v-model="state.lang" class="border rounded px-2 py-1 text-sm">
+          <option value="en">{{ state.t('english') }}</option>
+          <option value="zh">{{ state.t('chinese') }}</option>
+        </select>
+      </label>
+    
+    </div>
+
+    <div class="grid">
+      <div class="space-y-2">
+        <h3 class="text-lg font-bold">{{ state.t('room_key') }}</h3>
+        <div class="flex gap-2 items-center">
+          <button class="px-3 py-1 rounded bg-green-600 text-white" @click="state.generatePair">{{ state.t('generate_keypair') }}</button>
+          <label><input type="checkbox" v-model="state.enableE2EE" /> {{ state.t('enable_e2ee') }}</label>
+        </div>
+        <textarea v-model="state.pairText" rows="6" class="w-full p-2 border rounded"></textarea>
+        <div class="text-xs text-gray-500">{{ state.t('room_key_tip') }}</div>
+      </div>
+
+      <div class="space-y-2">
+        <h3 class="text-lg font-bold">{{ state.t('device_selection') }}</h3>
+        <div class="space-y-2">
+          <label>{{ state.t('microphone') }} <select v-model="state.selectedAudioIn"><option v-for="d in state.devices.audioIn" :key="d.deviceId" :value="d.deviceId">{{d.label||d.deviceId}}</option></select></label>
+          <label>{{ state.t('camera') }} <select v-model="state.selectedVideoIn"><option v-for="d in state.devices.videoIn" :key="d.deviceId" :value="d.deviceId">{{d.label||d.deviceId}}</option></select></label>
+          <label><input type="checkbox" v-model="state.enableMic" /> {{ state.t('enable_mic') }}</label>
+          <label><input type="checkbox" v-model="state.enableCam" /> {{ state.t('enable_cam') }}</label>
+        </div>
+        <div class="text-xs text-gray-500">{{ state.t('device_selection_help') }}</div>
+
+        <div class="flex gap-2">
+          <button class="px-3 py-1 rounded bg-blue-600 text-white" @click="state.start">{{ state.t('start') }}</button>
+          <button class="px-3 py-1 rounded bg-red-600 text-white" @click="state.stop">{{ state.t('stop') }}</button>
+        </div>
+        <div class="text-xs text-gray-500">{{ state.t('controls_help') }}</div>
+      </div>
+
+      <div class="space-y-2">
+        <h3 class="text-lg font-bold">{{ state.t('local_video') }}</h3>
+        <video id="localVideo" autoplay playsinline muted></video>
+        <div class="text-xs text-gray-500">{{ state.t('local_video_help') }}</div>
+      </div>
+
+      <div class="space-y-2">
+        <h3 class="text-lg font-bold">{{ state.t('connection_status') }}</h3>
+        <div class="text-sm">{{ state.connected ? state.t('connected') : state.t('not_connected') }} <span class="badge">{{ state.t('peers') }}: {{ state.others.length }}</span></div>
+        <div class="text-xs text-gray-500">{{ state.t('connection_status_help') }}</div>
+        <div class="space-y-2">
+          <div v-for="id in state.remotePeers" :key="id">
+            <div class="text-xs">Peer {{ id }}</div>
+            <video :id="'remote-'+id" autoplay playsinline></video>
+          </div>
+        </div>
+      </div>
+
+      <!-- Signaling configuration -->
+      <div class="space-y-2">
+        <h3 class="text-lg font-bold">{{ state.t('signaling') }}</h3>
+        <div class="flex items-center gap-2">
+          <label><input type="checkbox" v-model="state.manualSignalingEnabled" @change="state.saveManualSignaling" /> {{ state.t('use_manual_signaling') }}</label>
+        </div>
+        <div class="flex items-center gap-2">
+          <input class="w-full border rounded px-2 py-1" :placeholder="state.t('manual_signaling_url')" v-model="state.manualSignalingUrl" :disabled="!state.manualSignalingEnabled" />
+          <button class="px-3 py-1 rounded bg-gray-700 text-white" @click="state.saveManualSignaling">{{ state.t('apply') }}</button>
+        </div>
+        <div class="text-sm">{{ state.t('current_signaling') }}: <span class="font-mono">{{ state.signalingOrigin || '-' }}</span></div>
+        <div class="text-xs text-gray-500">{{ state.t('signaling_help') }}</div>
+      </div>
+
+      <div class="space-y-2">
+        <h3 class="text-lg font-bold">{{ state.t('logs') }}</h3>
+        <div class="text-xs text-gray-500">{{ state.t('logs_help') }}</div>
+        <div class="h-48 overflow-auto text-xs bg-gray-50 p-2 border rounded">
+          <div v-for="(l,i) in state.log" :key="i">[{{l.t}}] {{l.m}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
